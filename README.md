@@ -1,5 +1,6 @@
 # wxnacy.github.io
 
+[首页](index.html)
 ## 语言比较
 
  --     |   c     | java    | python3   | go
