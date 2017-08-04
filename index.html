@@ -3,19 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="/css/github.css" rel="stylesheet">
+    <link href="/css/themes/xiaolei.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
+
 </head>
 <body>
+<header></header>
 <article id="article"></article>
+<footer> © 2017 wxnacy.com 版权所有 <a href="http://www.miitbeian.gov.cn/" target="_blank">京ICP备15062634号-3</a></footer>
 </body>
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="https://cdn.rawgit.com/showdownjs/showdown/1.7.1/dist/showdown.min.js"></script>
+<script src="js/showdown.min-1.7.1.js"></script>
+<script src="js/utils.js"></script>
 <script>
 
-
     $(function () {
+        var path = utils.getValue('path');
+        if (utils.isEmpty(path)) {
+            path = '/doc/index.md';
+        }
         var converter = new showdown.Converter();
-        fetch('/doc/index.md').then(res => {
+        fetch(path).then(res => {
             console.log(res)
             res.text().then(data => {
                 console.log(data)
