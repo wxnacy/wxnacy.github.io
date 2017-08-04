@@ -3,30 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="css/github.css" rel="stylesheet">
+    <link href="/css/github.css" rel="stylesheet">
 </head>
 <body>
-<article id="article" style="width: 60%;padding: 0 20% 0 20%"></article>
 </body>
 <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://cdn.rawgit.com/showdownjs/showdown/1.7.1/dist/showdown.min.js"></script>
+<script src="../js/utils.js"></script>
 <script>
 
-
     $(function () {
-        var converter = new showdown.Converter(),
-                text = '#hello, markdown!',
-                html = converter.makeHtml(text);
-        console.log(html)
-        fetch('/README.md').then(res => {
+        var path = utils.getValue('path');
+        var converter = new showdown.Converter();
+        fetch(path).then(res => {
             console.log(res)
             res.text().then(data => {
-                console.log(data)
                 html = converter.makeHtml(data);
-                console.log(html)
-//            document.write(html)
-//                document.getElementsByName('article').write(html)
-                $('#article').html(html)
+                document.write(html);
             })
         })
     })
