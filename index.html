@@ -2,20 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
     <link href="/css/themes/xiaolei.css" rel="stylesheet">
     <link href="/css/main.css" rel="stylesheet">
 
 </head>
-<body>
+<script src="js/utils.js"></script>
+<body onresize="layout.window_adaptive()">
 <header></header>
-<article id="article"></article>
-<footer> © 2017 wxnacy.com 版权所有 <a href="http://www.miitbeian.gov.cn/" target="_blank">京ICP备15062634号-3</a></footer>
+<article id="article" class="layout"></article>
+<footer class="layout"> © 2017 wxnacy.com 版权所有 <a href="http://www.miitbeian.gov.cn/" target="_blank">京ICP备15062634号-3</a></footer>
 </body>
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="js/showdown.min-1.7.1.js"></script>
-<script src="js/utils.js"></script>
-<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1263285686'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s13.cnzz.com/z_stat.php%3Fid%3D1263285686%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+
 <script>
 
     $(function () {
@@ -31,8 +32,11 @@
                 var html = converter.makeHtml(data);
                 console.log(html)
                 $('#article').html(html)
+                console.log($('h1').text())
+                $('title').text($('h1').text())
             })
         })
     })
 </script>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1263285686'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s13.cnzz.com/z_stat.php%3Fid%3D1263285686%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
 </html>

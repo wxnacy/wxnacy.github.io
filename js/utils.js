@@ -34,3 +34,18 @@ var utils = {
         return timestamp;
     }
 };
+
+var layout = {
+    window_adaptive(){
+        console.log(document.body.clientWidth, document.body.clientHeight)
+        console.log('screen', window.screen.width, window.screen.height)
+        console.log('scroll', document.body.scrollWidth, document.body.scrollHeight)
+        var w = document.body.scrollWidth;
+        var h = document.body.scrollHeight;
+        // if (w <= h) {
+        //     $(".layout").css({width: w})
+        // }
+    }
+};
+
+var web = {};
