@@ -3,59 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
+    <title>wxnacy博客</title>
+    <!--<link rel="shortcut icon" type="image/x-icon" href="/images/w.ico" media="screen"/>-->
     <link href="/css/themes/xiaolei.css" rel="stylesheet">
     <link href="/css/main.css" rel="stylesheet">
 
 </head>
-<script src="js/utils.js"></script>
-<body onresize="layout.window_adaptive()">
-<header></header>
-<article id="article" class="layout"></article>
-<!--PC和WAP自适应版-->
-<div  class="layout">
-    <div id="SOHUCS" sid=""></div>
-</div>
-<script type="text/javascript">
-    (function () {
-        var appid = 'cyt9fjmmK';
-        var conf = 'prod_89840ccfa4e29fd01bee97148cd25073';
-        var width = window.innerWidth || document.documentElement.clientWidth;
-        if (width < 960) {
-            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
-        } else {
-            var loadJs = function (d, a) {
-                var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
-                var b = document.createElement("script");
-                b.setAttribute("type", "text/javascript");
-                b.setAttribute("charset", "UTF-8");
-                b.setAttribute("src", d);
-                if (typeof a === "function") {
-                    if (window.attachEvent) {
-                        b.onreadystatechange = function () {
-                            var e = b.readyState;
-                            if (e === "loaded" || e === "complete") {
-                                b.onreadystatechange = null;
-                                a()
-                            }
-                        }
-                    } else {
-                        b.onload = a
-                    }
-                }
-                c.appendChild(b)
-            };
-            loadJs("http://changyan.sohu.com/upload/changyan.js", function () {
-                window.changyan.api.config({appid: appid, conf: conf})
-            });
-        }
-    })(); </script>
-<footer class="layout"> © 2017 wxnacy.com 版权所有 <a href="http://www.miitbeian.gov.cn/"
-                                                  target="_blank">京ICP备15062634号-3</a></footer>
-</body>
-<script src="js/jquery.min.js"></script>
-<script src="js/showdown.min-1.7.1.js"></script>
 
+<body>
+<header id="header" class="layout"></header>
+<article id="article" class="layout"></article>
+<footer id="footer" class="layout"></footer>
+</body>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/showdown.min-1.7.1.js"></script>
+<script src="/js/utils.js"></script>
 <script>
 
     $(function () {
@@ -64,7 +26,7 @@
             path = '/doc/index.md';
         }
 
-        $("#SOHUCS").attr('sid',path);
+        $("#SOHUCS").attr('sid', path);
         var converter = new showdown.Converter();
         fetch(path).then(res => {
             console.log(res)
