@@ -63,6 +63,8 @@
         if (utils.isEmpty(path)) {
             path = '/doc/index.md';
         }
+
+        $("#SOHUCS").attr('sid',path);
         var converter = new showdown.Converter();
         fetch(path).then(res => {
             console.log(res)
