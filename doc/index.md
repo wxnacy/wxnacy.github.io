@@ -12,4 +12,7 @@
 ## shell
 - [ansible和playbook简单配置进行远程操作](/?p=/doc/shell/ansible_simple.md)
 
+## mysql
+- [基础命令](/?p=/doc/mysql/basic_cmd.md)
+
 
