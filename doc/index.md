@@ -9,4 +9,7 @@
 ## javascript
 - [js和css获取屏幕大小](/?p=/doc/javascript/screen_wh.md)
 
+## shell
+- [ansible和playbook简单配置进行远程操作](/?p=/doc/shell/ansible_simple.md)
+
 
