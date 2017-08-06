@@ -56,7 +56,7 @@ var layout = {
         // var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
         // $('body').append(unescape("%3Cspan id='cnzz_stat_icon_1263285686'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s13.cnzz.com/z_stat.php%3Fid%3D1263285686%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"))
         // document.write(unescape("%3Cspan id='cnzz_stat_icon_1263285686'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s13.cnzz.com/z_stat.php%3Fid%3D1263285686%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
-        fetch('http://localhost:8082/api/v1/user',{
+        fetch('http://wxnacy.com:8082/api/v1/user',{
             method:"POST"
         }).then(res=>{
             console.log(res)
