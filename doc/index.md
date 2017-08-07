@@ -11,6 +11,7 @@
 
 ## shell
 - [ansible和playbook简单配置进行远程操作](/?p=/doc/shell/ansible_simple.md)
+- [ansible-playbook命令向playbook.yml文件传递参数](/?p=/doc/shell/playbook_kwargs.md)
 
 ## mysql
 - [基础命令](/?p=/doc/mysql/basic_cmd.md)

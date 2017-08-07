@@ -8,7 +8,9 @@ pip install ansible
 - 配置hosts /etc/ansible/hosts
 ```bash
 [wxnacy]
-100.201.193.62 ansible_ssh_pass=your_pass ansible_ssh_user=your_name
+100.201.193.62 ansible_ssh_pass=your_pass ansible_ssh_user=your_name #use password
+[prod]
+prod.server.org ansible_ssh_user=your_name ansible_ssh_private_key_file=key_path # use ssh private key
 ```
 ## 配置playbook
 配置deploy.yml完成进入远程服务器的某个目录并执行git pull操作
