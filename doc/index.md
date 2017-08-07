@@ -14,6 +14,8 @@
 - [ansible-playbook命令向playbook.yml文件传递参数](/?p=/doc/shell/playbook_kwargs.md)
 
 ## mysql
+- [mysql每天练习](/?p=/doc/mysql/mysql_daily.md)
 - [基础命令](/?p=/doc/mysql/basic_cmd.md)
+
 
 

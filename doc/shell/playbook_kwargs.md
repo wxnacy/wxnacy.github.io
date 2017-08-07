@@ -17,7 +17,6 @@
 ```bash
 ansible-playbook playbook.yml --extra-vars "host=xxx tag_name=xxx"
 ```
-
 - json格式
 ```bash
 ansible-playbook playbook.yml --extra-vars "{'host':'xxx','tag_name':'xxx'}"
