@@ -10,8 +10,7 @@
 - [js和css获取屏幕大小](/?p=/doc/javascript/screen_wh.md)
 
 ## shell
-- [ansible和playbook简单配置进行远程操作](/?p=/doc/shell/ansible_simple.md)
-- [ansible-playbook命令向playbook.yml文件传递参数](/?p=/doc/shell/playbook_kwargs.md)
+- [ansible学习笔记](/?p=/doc/shell/ansible/study_notes.md)
 
 ## mysql
 - [mysql每天练习](/?p=/doc/mysql/mysql_daily.md)
