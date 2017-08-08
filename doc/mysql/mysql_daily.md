@@ -3,5 +3,6 @@
 
 - [2017-08-06 新建video和comment表，以及`insert_commet_trigger`](/?p=/doc/mysql/daily-2017-08-06.md)
 - [2017-08-07 新建user和user_data表，完善`insert_commet_trigger`](/?p=/doc/mysql/daily-2017-08-07.md)
+- [2017-08-08 新建article表，完善`insert_comment_trigger`](/?p=/doc/mysql/daily-2017-08-08.md)
 
 
