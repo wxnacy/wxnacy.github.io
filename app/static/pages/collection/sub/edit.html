@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!-- 引入样式 -->
+<link rel="stylesheet"
+      href="https://unpkg.com/element-ui/lib/theme-default/index.css">
+
+<body>
+
+<div id="app">
+
+    <el-form id="el-form" ref="form" :model="form" label-width="80px">
+        <el-form-item label="id">
+            <el-input v-model="form.id" style="width: 200px"
+                      :disabled="true"></el-input>
+        </el-form-item>
+
+        <el-form-item label="资源类型">
+            <template>
+                <el-radio class="radio" v-model="form.res_type" label="6">
+                    文章
+                </el-radio>
+                <el-radio class="radio" v-model="form.res_type" label="7">
+                    点播
+                </el-radio>
+                <el-radio class="radio" v-model="form.res_type" label="11">
+                    音频
+                </el-radio>
+            </template>
+        </el-form-item>
+
+        <el-form-item label="资源id">
+            <el-input v-model="form.res_id" style="width: 200px"></el-input>
+        </el-form-item>
+
+        <el-form-item label="位置">
+            <el-input v-model="form.position" style="width: 60px"></el-input>
+        </el-form-item>
+        <el-form-item>
+            <el-button type="primary" @click="onSubmit">提交</el-button>
+            <el-button @click="onBack">返回</el-button>
+        </el-form-item>
+    </el-form>
+</div>
+
+
+</body>
+<!-- 引入组件库 -->
+<!-- 引入组件库 -->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/vue.js"></script>
+<script src="/static/js/element/index.js"></script>
+<script src="/static/js/utils.js"></script>
+<script>
+    var item_id = utils.getValue('id');
+    var collection_id = utils.getValue('collection_id');
+    $(function () {
+        console.log(item_id)
+        console.log(utils.getValue('id'))
+        if (item_id == undefined) {
+            initData(undefined)
+        } else {
+            $.ajax({
+                url: "/admin/v1/collection_resource/" + item_id,
+                dataType: "jsonp",
+                type: "get",
+                success: function (data) {
+                    initData(data)
+                }
+            })
+        }
+
+
+    });
+
+
+    function initData(data) {
+        var item;
+        if (data == undefined) {
+            item = {
+                "res_type":"6"
+            }
+        } else {
+            item = data['data']
+            item['res_type'] = "6"
+        }
+        var Main = {
+            data() {
+                return {
+                    form: item,
+                }
+            },
+            methods: {
+                onSubmit(e) {
+                    var formData = this.form;
+                    formData['collection_id'] = collection_id;
+                    $.ajax({
+                        url: "/admin/v1/collection/sub/edit.json",
+                        type: "post",
+                        data: formData,
+                        success: function (data) {
+                            utils.goToPageWithOutCache('list.html?collection_id='+collection_id);
+                        }
+                    })
+                },
+                onBack(e){
+                    utils.goToPageWithOutCache('list.html?collection_id='+collection_id);
+                }
+            }
+        }
+        var Ctor = Vue.extend(Main)
+        new Ctor().$mount('#app')
+    }
+
+
+</script>
+</html>

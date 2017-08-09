@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script src="https://cdn.rawgit.com/showdownjs/showdown/1.7.1/dist/showdown.min.js"></script>
+<script>
+    var converter = new showdown.Converter(),
+    text      = '#hello, markdown!',
+    html      = converter.makeHtml(text);
+    console.log(html)
+    fetch('https://github.com/zhangjikai/markdown-css/blob/master/sample.md').then(res=>{
+        console.log(res)
+        res.text().then(data=>{
+            console.log(data)
+            html      = converter.makeHtml(data);
+            console.log(html)
+            document.write(html)
+        })
+    })
+</script>
+</html>

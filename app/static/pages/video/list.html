@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!-- 引入样式 -->
+<link rel="stylesheet"
+      href="https://unpkg.com/element-ui/lib/theme-default/index.css">
+
+<body>
+
+
+<div id="app">
+
+    <el-button id="add-btn" type="primary" @click="headleAdd"><i
+            class="el-icon-plus"></i>
+    </el-button>
+    <el-button type="primary" icon="edit" @click="headleEdit"></el-button>
+    <el-button type="danger" icon="delete" @click="headleDel"></el-button>
+    <template>
+        <el-table :data="tableData" highlight-current-row
+                  @current-change="handleCurrentChange" style="width: 100%">
+            <el-table-column type="index" width="50">
+            </el-table-column>
+            <el-table-column property="id" label="id" width="200"
+                             show-overflow-tooltip>
+            </el-table-column>
+            <el-table-column property="name" label="名称" width="120">
+            </el-table-column>
+            <el-table-column property="poster" label="封面" width="140">
+                <template scope="scope"><img :src="scope.row.poster" width="120"
+                                             height="60"/></template>
+            </el-table-column>
+            <el-table-column property="status" label="状态" width="100">
+            </el-table-column>
+            <el-table-column property="create_ts" label="创建时间">
+            </el-table-column>
+            <el-table-column property="" label="操作">
+                <template scope="scope">
+                    <el-tooltip class="item" effect="dark"
+                                :content="scope.row.fabu"
+                                placement="top">
+                        <el-button>发布地址</el-button>
+                    </el-tooltip>
+                </template>
+
+            </el-table-column>
+        </el-table>
+    </template>
+    <div class="block">
+        <el-pagination
+                layout="prev, pager, next"
+                @current-change="headlePaginateChange"
+                :total="total"
+                :page-size="pageSize"
+                :current-page="currentPage"
+        >
+        </el-pagination>
+    </div>
+</div>
+
+
+</body>
+<!-- 引入组件库 -->
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="/static/js/utils.js"></script>
+<script>
+    var Main;
+    var Ctor;
+    var $btnDiv = $('#app')
+
+
+    $(function () {
+        $.ajax({
+            url: "/admin/v1/video/list.json?page=" + config.getPage(),
+            dataType: "jsonp",
+            type: "get",
+            success: function (data) {
+                initData(data)
+            }
+        })
+
+
+    });
+
+    function initData(data) {
+        data = data['data']
+        var objects = data['items']
+
+        var videos = []
+        objects.forEach(function (data, i) {
+            var status = data['status']
+            if (status == 71) {
+                data['status'] = '正常'
+            } else if (status == 72) {
+                data['status'] = '转码中'
+            }
+            data['poster'] = data['poster'] + config.image_suffix;
+            data['fabu'] = 'http://www.hopapapa.com/fabu/le_video.html?res_id=' + data['id'];
+            videos[i] = data
+
+        })
+
+        var item_per_page = data['item_per_page']
+        var total_items = data['total_items']
+        var cur_page = data['cur_page']
+
+        Main = {
+            data() {
+                return {
+                    tableData: videos,
+                    currentRow: null,
+                    pageSize: item_per_page,
+                    total: total_items,
+                    currentPage: cur_page
+                }
+            },
+
+            methods: {
+                handleCurrentChange(val) {
+                    console.log(val)
+                    $btnDiv.val(val.id)
+                    this.currentRow = val;
+                },
+                headleEdit(){
+                    var id = $btnDiv.val()
+                    console.log(id)
+                    goToEditHtml(id)
+                },
+                headleAdd(){
+                    utils.goToPageWithOutCache('edit.html');
+                },
+                headleDel(){
+                    var id = $btnDiv.val()
+                    deleteResource(this, id, 7);
+                },
+                headlePaginateChange(currentPage){
+                    utils.goToPageWithOutCache('list.html?page=' + currentPage);
+                }
+            }
+        }
+        Ctor = Vue.extend(Main)
+        new Ctor().$mount('#app')
+//        new Vue().$mount('#bt-app')
+    }
+
+
+</script>
+</html>

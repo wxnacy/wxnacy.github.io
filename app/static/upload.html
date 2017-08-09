@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!-- 引入样式 -->
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
+
+<body>
+
+<div id="app">
+    <el-upload action="http://localhost:8000/admin/v1/upload/image" list-type="picture-card"
+               :on-preview="handlePictureCardPreview" :on-remove="handleRemove"
+               :on-success="handleSuccess"
+    >
+        <i class="el-icon-plus"></i>
+    </el-upload>
+    <el-dialog v-model="dialogVisible" size="tiny">
+        <img width="100%" :src="dialogImageUrl" alt>
+    </el-dialog>
+</div>
+
+
+</body>
+<!-- 引入组件库 -->
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="../../js/utils.js"></script>
+<script>
+    $(function () {
+
+        var Main = {
+            data() {
+                return {
+                    dialogImageUrl: '',
+                    dialogVisible: false
+                };
+            },
+            methods: {
+                handleRemove(file, fileList) {
+                },
+                handlePictureCardPreview(file) {
+                    console.log(file);
+                    this.dialogImageUrl = file.url;
+                    this.dialogVisible = true;
+                },
+                handleSuccess(response, file, fileList){
+                }
+            }
+        }
+        var Ctor = Vue.extend(Main)
+        new Ctor().$mount('#app')
+
+    });
+
+
+</script>
+</html>

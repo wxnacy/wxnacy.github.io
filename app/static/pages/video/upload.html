@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>乐视云 html5 上传DEMO</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+<table class="hrPageTable table table-hover table-bordered">
+    <thead>
+    <tr>
+        <th>视频名称</th>
+        <th>上传进度</th>
+        <th>上传速度</th>
+        <th>上传状态</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td id="videoId"></td>
+        <td id="videoProgress"></td>
+        <td id="videoSpeed"></td>
+        <td id="videoStatus"></td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <input type="button" class="uploadBtn" id="uploadBtn" value="开始上传" />
+    <input type="button" class="uploadBtn" id='fileSelecter' value="添加视频" />
+</div>
+<!--使用例子-->
+<script type="text/javascript" src="/static/js/jquery.js"></script>
+<script type="text/javascript" src="/static/js/html5Upload.js"></script>
+<script type="text/javascript">
+    $(function () {
+        //添加视频
+        $("#fileSelecter").addFile({
+            addFile: function (data) { //添加文件时的回调
+                $("#videoId").html(data.data.fileName);
+                $("#videoProgress").html("0");
+                $("#videoSpeed").html("0");
+                $("#videoStatus").html("等待上传");
+            },
+            addFileError: function (data) { //添加文件时发生错误的回调
+                alert("错误码：" + data.code + ";错误消息：" + data.msg);
+            }
+        });
+
+        //开始上传
+        $("#uploadBtn").upload({
+            uploadInitUrl: "/admin/v1/video/upload_init.json",//初始化上传地址
+            uploadProgress: function (data) { //进度回调
+                $("#videoProgress").html(data.progress);
+                $("#videoSpeed").html(data.speed);
+                $("#videoStatus").html("上传中");
+            },
+            uploadFinish: function (data) { //上传完成回调
+                $("#videoProgress").html("100%");
+                $("#videoSpeed").html("0");
+                $("#videoStatus").html("已上传");
+            },
+            uploadError: function (data) { //上传错误回调
+                $("#videoStatus").html("上传错误！错误码：" + data.code + ";错误消息：" + data.msg);
+            },
+            uploadAbort:function(data){ //中断
+
+            }
+        });
+    });
+</script>
+</body>
+</html>

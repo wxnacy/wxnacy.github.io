@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!-- 引入样式 -->
+<link rel="stylesheet"
+      href="/static/css/element/index.css">
+
+<body>
+
+
+<div id="app">
+    <el-button id="add-btn" type="primary" @click="headleAdd"><i
+            class="el-icon-plus"></i>
+    </el-button>
+    <el-button type="primary" icon="edit" @click="headleEdit"></el-button>
+    <el-button type="danger" icon="delete" @click="headleDel"></el-button>
+    <template>
+        <el-table :data="tableData" highlight-current-row
+                  @current-change="handleCurrentChange" style="width: 100%">
+            <el-table-column type="index" width="50">
+            </el-table-column>
+            <el-table-column property="res_id" label="资源id"
+                             show-overflow-tooltip>
+            </el-table-column>
+            <el-table-column property="res_detail.name" label="名称" show-overflow-tooltip>
+            </el-table-column>
+            <el-table-column property="res_detail.poster" label="封面" width="120">
+                <template scope="scope"><img :src="scope.row.res_detail.poster" width="120"
+                                             height="60"/></template>
+            </el-table-column>
+            <el-table-column property="res_type" label="类型" width="120">
+            </el-table-column>
+            <el-table-column property="position" label="位置" width="120">
+            </el-table-column>
+            <el-table-column property="create_ts" label="创建时间"
+                             show-overflow-tooltip>
+            </el-table-column>
+        </el-table>
+    </template>
+</div>
+
+
+</body>
+<!-- 引入组件库 -->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/vue.js"></script>
+<script src="/static/js/element/index.js"></script>
+<script src="/static/js/utils.js"></script>
+<script>
+    var Main;
+    var Ctor;
+    var $btnDiv = $('#app');
+    var collection_id = utils.getValue('collection_id');
+
+    $(function () {
+        $.ajax({
+            url: "/admin/v1/collection/sub/list.json?collection_id=" + collection_id,
+            dataType: "jsonp",
+            type: "get",
+            success: function (data) {
+                initData(data);
+            }
+        })
+
+
+    });
+
+    function initData(data) {
+        var objects = data['data']['items']
+
+        var items = []
+        objects.forEach(function (data, i) {
+            var res_type = data['res_type'];
+
+            if (res_type == 7) {
+                res_type = "视频"
+            } else if (res_type == 6) {
+                res_type = "文章"
+            } else if (res_type == 11) {
+                res_type = "音频"
+            }
+
+            data['res_type'] = res_type;
+            console.log(data['res_detail']);
+
+            items[i] = data
+        })
+
+        Main = {
+            data() {
+                return {
+                    tableData: items,
+                    currentRow: null
+                }
+            },
+
+            methods: {
+                handleCurrentChange(val) {
+                    $btnDiv.val(val.id)
+                    this.currentRow = val;
+                },
+                headleEdit(){
+                    var id = $btnDiv.val()
+                    if (id == "") {
+                        this.$message.error('请先选择一条记录');
+                    } else {
+                        utils.goToPageWithOutCache('edit.html?id=' + id + '&collection_id=' + collection_id)
+                    }
+                },
+                headleAdd(){
+                    utils.goToPageWithOutCache('edit.html?collection_id=' +collection_id)
+                },
+                headleDel(){
+                    var id = $btnDiv.val()
+                    deleteItem(this, id, {
+                        "id": id
+                    }, "/admin/v1/collection/sub/delete.json");
+                }
+            }
+        }
+        Ctor = Vue.extend(Main)
+        new Ctor().$mount('#app')
+//        new Vue().$mount('#bt-app')
+    }
+
+
+</script>
+</html>

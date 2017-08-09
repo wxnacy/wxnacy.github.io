@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!-- 引入样式 -->
+<link rel="stylesheet"
+      href="https://unpkg.com/element-ui/lib/theme-default/index.css">
+
+<body>
+
+<div id="app">
+
+    <el-form id="el-form" ref="form" :model="form" label-width="80px"
+             v-loading="loading">
+        <el-form-item label="id">
+            <el-input v-model="form.id" style="width: 200px"
+                      :disabled="true"></el-input>
+        </el-form-item>
+        <el-form-item label="名称">
+            <el-input v-model="form.name" style="width: 100px"></el-input>
+        </el-form-item>
+        <el-form-item label="封面">
+            <el-upload class="upload-demo" drag
+                       action="/admin/v1/upload/image"
+                       :on-success="handleUploadImageSuccess"
+                       :show-file-list="false"
+                       :before-upload="handleBeforeUpload"
+            >
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+            </el-upload>
+            <el-input id="poster" v-model="form.poster"
+                      style="width: 600px"></el-input>
+        </el-form-item>
+
+
+        <el-form-item label="上传视频">
+            <el-button type="primary" id="videoId">视频名</el-button>
+            <el-button type="primary" id="videoProgress">上传进度</el-button>
+            <el-button type="primary" id="videoSpeed">上传进度</el-button>
+            <el-button type="primary" id="videoStatus">上传状态</el-button>
+            <br/><br/>
+            <div>
+
+                <input type="button" class="uploadBtn" id="uploadBtn"
+                       value="开始上传" style="display: none"/>
+                <input type="button" class="uploadBtn" id='fileSelecter'
+                       style="display: none"
+                       value="添加视频"/>
+                <el-button type="primary" @click="handleAddVideo">添加</el-button>
+                <el-button type="primary" @click="handleUploadVideo">开始上传
+                </el-button>
+            </div>
+        </el-form-item>
+        <el-form-item label="乐视id">
+            <el-input v-model="form.letv_video_id"
+                      style="width: 200px"></el-input>
+        </el-form-item>
+        <el-form-item label="乐视VU">
+            <el-input v-model="form.letv_video_unique"
+                      style="width: 200px"></el-input>
+        </el-form-item>
+        <el-form-item label="描述">
+            <el-input type="textarea" v-model="form.description"
+                      style="width: 600px"></el-input>
+        </el-form-item>
+        <el-form-item>
+            <el-button type="primary" @click="onSubmit">提交</el-button>
+            <el-button @click="onBack">返回</el-button>
+        </el-form-item>
+    </el-form>
+</div>
+
+
+</body>
+<!-- 引入组件库 -->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/vue.js"></script>
+<script src="/static/js/element/index.js"></script>
+<script src="/static/js/utils.js"></script>
+<script type="text/javascript" src="/static/js/jquery.form.js"></script>
+<script type="text/javascript" src="/static/js/formUpload.js"></script>
+<script>
+    var item_id = getValue('id');
+    var thisCtor;
+    $(function () {
+
+        if (item_id == undefined) {
+            initData(undefined)
+        } else {
+            console.log(getValue('id'))
+            q = {"filters": [{"user_id": 0}]}
+            $.ajax({
+                url: "/admin/v1/video/" + item_id,
+                dataType: "jsonp",
+                type: "get",
+                success: function (data) {
+                    console.log(data)
+                    initData(data)
+                }
+            })
+        }
+
+        //添加视频
+        $("#fileSelecter").selectUpload({
+            maxFileSize: 1024 * 1024 * 1024 * 2, //允许上传的最大值，单位是字节
+            addFiles: function (data) { //添加文件时的回调
+                $("#videoId").html(data.fileName);
+                $("#videoProgress").html("0");
+                $("#videoSpeed").html("0");
+                $("#videoStatus").html("等待上传");
+            },
+            errorCallback: function (data) { //添加文件时发生错误的回调
+                alert("错误码：" + data.code + ";错误消息：" + data.msg);
+            }
+        });
+
+        //开始上传
+        $("#uploadBtn").upload({
+            initUrl: "/api/v1/video/upload_init",//初始化上传地址
+            uploadProgress: function (progress, rate) { //进度回调
+                $("#videoProgress").html(progress);
+                $("#videoSpeed").html(rate);
+                $("#videoStatus").html("上传中");
+            },
+            finishCallback: function (data) { //上传完成回调
+                console.log(data)
+                $("#videoProgress").html("100%");
+                $("#videoSpeed").html("0");
+                $("#videoStatus").html("已上传");
+                thisCtor.$set(thisCtor.form, "letv_video_id", localStorage.video_id)
+                thisCtor.$set(thisCtor.form, "letv_video_unique", localStorage.video_unique)
+
+            },
+            errorCallback: function (data) { //上传错误回调
+                $("#videoProgress").html("0");
+                $("#videoSpeed").html("0");
+                $("#videoStatus").html("上传错误！错误码：" + data.code + ";错误消息：" + data.msg);
+            }
+        });
+
+
+    });
+
+
+    function initData(data) {
+        var item;
+        if (data == undefined) {
+            item = {}
+        } else {
+            item = data['data']
+        }
+        var Main = {
+            data() {
+                return utils.makeInitData({
+                    form: item,
+                    uploadVideoUrl: ""
+                })
+            },
+            methods: {
+                onSubmit(e) {
+                    var formData = this.form
+                    console.log('form_data', formData)
+                    $.ajax({
+                        url: "/admin/v1/video/edit.json",
+                        type: "post",
+                        data: formData,
+                        success: function (data) {
+                            utils.goToPageWithOutCache('list.html');
+                        }
+                    })
+                },
+                onBack(e){
+                    utils.goToPageWithOutCache('list.html');
+                },
+                handleUploadImageSuccess(res, file, fileList){
+                    this.$set(this.form, "poster", res.data.url)
+                    this.loading = false;
+                },
+                handleBeforeUpload(file){
+                    this.loading = true
+                },
+                handleAddVideo(){
+                    $("#fileSelecter").click()
+                },
+                handleUploadVideo(){
+                    $("#uploadBtn").click()
+                }
+            }
+        }
+        var Ctor = Vue.extend(Main)
+        thisCtor = new Ctor().$mount('#app')
+    }
+
+
+</script>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Marked in the browser</title>
+
+    <link rel="stylesheet" href="css/editormd.min.css"/>
+</head>
+<body>
+<div id="editormd" style="height: 500px">
+    <textarea id="md"
+              style="display:none;height: 500px" rows="60">### Hello Editor.md !</textarea>
+</div>
+<button onclick="getData()">获取</button>
+<div id="content"></div>
+
+</body>
+<script src="js/jquery.min.js"></script>
+<script src="js/editormd.min.js"></script>
+<script src="js/marked.js"></script>
+<script>
+    $(function () {
+        var editor = editormd("editormd", {
+            path: "lib/" // Autoload modules mode, codemirror, marked... dependents libs path
+        });
+
+        /*
+         // or
+         var editor = editormd({
+         id   : "editormd",
+         path : "../lib/"
+         });
+         */
+    });
+
+    function getData() {
+        console.log($('#md').text())
+    }
+    document.getElementById('content').innerHTML =
+        marked('# Marked in browser\n\nRendered by **marked**.```java```');
+    console.log(marked('# Marked in browser\n\nRendered by **marked**.```java```'))
+</script>
+</html>

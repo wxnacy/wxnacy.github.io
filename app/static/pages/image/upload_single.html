@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!-- 引入样式 -->
+<link rel="stylesheet"
+      href="https://unpkg.com/element-ui/lib/theme-default/index.css">
+
+<body>
+<div id="app" style="width: 500px">
+    <el-upload class="upload-demo" drag
+               action="http://localhost:8000/admin/v1/upload/image" multiple :on-success="handleSuccess">
+        <i class="el-icon-upload"></i>
+        <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+    </el-upload>
+</div>
+
+
+</body>
+<!-- 引入组件库 -->
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="../../js/utils.js"></script>
+<script>
+    $(function () {
+
+        var Main = {
+            data() {
+                return {
+                    dialogImageUrl: '',
+                    dialogVisible: false
+                };
+            },
+            methods: {
+                handleRemove(file, fileList) {
+                },
+                handlePictureCardPreview(file) {
+                    console.log(file);
+                    this.dialogImageUrl = file.url;
+                    this.dialogVisible = true;
+                },
+                handleSuccess(response, file, fileList){
+                    console.log(response);
+                }
+            }
+        }
+        var Ctor = Vue.extend(Main)
+        new Ctor().$mount('#app')
+
+    });
+
+
+</script>
+</html>

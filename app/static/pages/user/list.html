@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!-- 引入样式 -->
+<link rel="stylesheet"
+      href="/static/css/element/index.css">
+
+<body>
+
+
+<div id="app">
+
+    <el-button type="danger" icon="delete" @click="headleDel"></el-button>
+    <template>
+        <el-table :data="tableData" highlight-current-row
+                  @current-change="handleCurrentChange" style="width: 100%">
+            <el-table-column type="index" width="50">
+            </el-table-column>
+            <el-table-column property="id" label="id" width="200"
+                             show-overflow-tooltip>
+            </el-table-column>
+            <el-table-column property="name" label="姓名" width="200">
+            </el-table-column>
+            <el-table-column property="mobile" label="手机号" width="140">
+            </el-table-column>
+
+            <el-table-column property="portrait" label="头像" width="100">
+                <template scope="scope"><img :src="scope.row.portrait"
+                                             width="60"
+                                             height="60"/></template>
+            </el-table-column>
+            <el-table-column property="gender" label="性别" width="70">
+            </el-table-column>
+            <el-table-column property="age" label="年龄" width="70">
+            </el-table-column>
+            <el-table-column property="create_ts" label="创建时间"
+                             show-overflow-tooltip>
+            </el-table-column>
+
+        </el-table>
+    </template>
+    <div class="block">
+        <el-pagination
+                layout="prev, pager, next"
+                @current-change="headlePaginateChange"
+                :total="total"
+                :page-size="pageSize"
+                :current-page="currentPage"
+        >
+        </el-pagination>
+    </div>
+</div>
+
+
+</body>
+<!-- 引入组件库 -->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/vue.js"></script>
+<script src="/static/js/element/index.js"></script>
+<script src="/static/js/utils.js"></script>
+<script>
+    var Main;
+    var Ctor;
+    var $btnDiv = $('#app')
+
+    $(function () {
+        $.ajax({
+            url: "/admin/v1/user/list.json?page=" + config.getPage(),
+            dataType: "jsonp",
+            type: "get",
+            success: function (data) {
+                initData(data)
+            }
+        })
+
+
+    });
+
+    function initData(data) {
+        data = data['data'];
+        console.log(data)
+        var objects = data['items']
+
+        var items = []
+        objects.forEach(function (data, i) {
+            var age = parseInt(data['gender']);
+            if (age <= 0.5) {
+                data['gender'] = '偏女';
+            } else {
+                data['gender'] = '偏男';
+            }
+            items[i] = data
+        })
+
+        var item_per_page = data['item_per_page']
+        var total_items = data['total_items']
+        var cur_page = data['cur_page']
+
+        Main = {
+            data() {
+                return {
+                    tableData: items,
+                    currentRow: null,
+                    pageSize: item_per_page,
+                    total: total_items,
+                    currentPage: cur_page
+                }
+            },
+
+            methods: {
+                handleCurrentChange(val) {
+                    $btnDiv.val(val.id)
+                    this.currentRow = val;
+                },
+                headleEdit(){
+                    var id = $btnDiv.val();
+                    goToEditHtml(id);
+                },
+                headleAdd(){
+                    utils.goToPageWithOutCache('edit.html');
+                },
+                headleDel(){
+                    var id = $btnDiv.val()
+                    deleteItem(this, id, {
+                        "id": id
+                    }, "/admin/v1/user/delete.json")
+                },
+                headleChangeLine(flag){
+                    var id = this.currentRow.id;
+                    var is_online = 1;
+                    var show_msg = "上线成功";
+                    if (flag) {
+                        is_online = 1;
+                    } else {
+                        is_online = 0;
+                        show_msg = "下线成功";
+                    }
+                    var obj = this;
+                    $.ajax({
+                        url: "/admin/v1/audio/edit.json",
+                        type: "post",
+                        data: {
+                            "id": id,
+                            "is_online": is_online
+                        },
+                        success: function (data) {
+                            console.log(data)
+                            obj.$message({
+                                type: 'success',
+                                message: show_msg
+                            });
+                        }
+                    })
+                },
+                headlePaginateChange(currentPage){
+                    utils.goToPageWithOutCache('list.html?page=' + currentPage);
+                }
+            }
+        }
+        Ctor = Vue.extend(Main)
+        new Ctor().$mount('#app')
+//        new Vue().$mount('#bt-app')
+    }
+
+
+</script>
+</html>

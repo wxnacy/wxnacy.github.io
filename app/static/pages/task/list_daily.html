@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .undo {
+            color: #FF4949
+        }
+
+        .done {
+            color: #13CE66;
+        }
+
+        .diff_undo {
+            color: #F7BA2A
+        }
+    </style>
+</head>
+<!-- 引入样式 -->
+<link rel="stylesheet"
+      href="/static/css/element/index.css">
+
+<body>
+
+
+<div id="app">
+    <input id="done_work" value="">
+    <template>
+        <el-tag type="success">{{data.status_message}}</el-tag>
+        <el-table :data="tableData" highlight-current-row
+                  :row-class-name="tableRowClassName"
+                  @current-change="handleCurrentChange" style="width: 100%">
+            <el-table-column property="id" label="id" width="100"
+                             show-overflow-tooltip>
+            </el-table-column>
+            <el-table-column property="work_day" label="工作日" width="150"
+                             show-overflow-tooltip>
+            </el-table-column>
+            <el-table-column property="todo_work" label="预计完成" width="100"
+                             show-overflow-tooltip>
+            </el-table-column>
+            <el-table-column property="done_work" label="实际完成" width="100"
+                             show-overflow-tooltip>
+            </el-table-column>
+            <el-table-column property="status" label="状态" width="100"
+                             show-overflow-tooltip>
+            </el-table-column>
+            <el-table-column property="remark" label="状态信息" width="300"
+                             show-overflow-tooltip>
+            </el-table-column>
+            <el-table-column property="create_ts" label="创建时间"
+                             show-overflow-tooltip>
+            </el-table-column>
+            <el-table-column label="操作">
+                <template scope="scope">
+                    <el-button type="primary" @click="headleDone(scope.row)">
+                        完成
+                    </el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+    </template>
+    <div class="block">
+        <el-pagination
+                layout="prev, pager, next"
+                @current-change="headlePaginateChange"
+                :total="total"
+                :page-size="pageSize"
+                :current-page="currentPage"
+        >
+        </el-pagination>
+    </div>
+
+    <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
+        <el-form :model="form">
+            <el-form-item label="活动名称">
+                <el-input v-model="form.done_work"></el-input>
+            </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+            <el-button @click="dialogFormVisible = false">取 消</el-button>
+            <el-button type="primary" @click="dialogFormVisible = false">确 定
+            </el-button>
+        </div>
+    </el-dialog>
+</div>
+
+
+</body>
+<!-- 引入组件库 -->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/vue.js"></script>
+<script src="/static/js/element/index.js"></script>
+<script src="/static/js/utils.js"></script>
+<script>
+    var Main;
+    var Ctor;
+    var $btnDiv = $('#app')
+
+    $(function () {
+        $.ajax({
+            url: "/restful/task/" + utils.getValue('id') + "?page=" + config.getPage(),
+            dataType: "jsonp",
+            type: "get",
+            success: function (data) {
+                initData(data)
+            }
+        })
+
+
+    });
+
+    function initData(data) {
+        data = data['data']
+        var objects = data['daily_tasks'];
+
+        var items = []
+        objects.forEach(function (data, i) {
+            var done_status = data['done_status']
+            data['view_done'] = false
+            if (done_status == 0) {
+                data['status'] = '未开始'
+            } else if (done_status == 1) {
+                data['status'] = '已完成'
+            } else if (done_status == 2) {
+                data['status'] = '超额完成'
+            } else {
+                data['status'] = '未完成'
+                data['view_done'] = true
+            }
+
+            items[i] = data
+        })
+
+        var item_per_page = data['num_results']
+        var total_items = parseInt(data['total_pages']) * 10
+        var cur_page = data['page']
+
+        Main = {
+            data() {
+                return {
+                    tableData: items,
+                    currentRow: null,
+                    pageSize: item_per_page,
+                    total: total_items,
+                    currentPage: cur_page,
+                    dialogFormVisible: false,
+                    data:data,
+                    form: {
+                        done_work: 0
+                    }
+                }
+            },
+
+            methods: {
+                handleCurrentChange(val) {
+                    $btnDiv.val(val.id)
+                    this.currentRow = val;
+                },
+                headleEdit(){
+                    var id = $btnDiv.val()
+                    if (id == "") {
+                        this.$message.error('请先选择一条记录');
+                    } else {
+                        utils.goToPageWithOutCache('edit.html?id=' + id);
+                    }
+                },
+                headleAdd(){
+                    utils.goToPageWithOutCache('edit.html');
+                },
+                headleDel(){
+                    var id = $btnDiv.val()
+                    deleteResource(this, id, 13);
+                },
+                headlePaginateChange(currentPage){
+                    utils.goToPageWithOutCache('list.html?page=' + currentPage);
+                },
+                headleManage(){
+                    var id = $btnDiv.val()
+                    console.log(id)
+                    if (id == "") {
+                        this.$message.error('请先选择一条记录');
+                    } else {
+                        utils.goToPageWithOutCache('edit.html?id=' + id);
+                    }
+                },
+                headleDone(row){
+                    var $this = this;
+                    var done_work = $('#done_work').val();
+                    if (utils.isEmpty(done_work)) {
+                        this.$message.error('请输入完成数');
+                    } else {
+                        $.ajax({
+                            url: "/api/v1/task_daily/" + row.id,
+                            type: "PUT",
+                            contentType: "application/json",
+                            dateType: "json",
+                            data: JSON.stringify({
+                                done_work: done_work
+                            }),
+                            success: function (data) {
+                                console.log(data)
+                                utils.goToPageWithOutCache('list_daily.html?id=' + utils.getValue('id'));
+                            },
+                            error: function (res, error, errorMsg) {
+                                $this.$message.error(res['responseJSON']['message'])
+                            }
+                        })
+                    }
+
+                    console.log(row)
+                },
+                tableRowClassName(row, index) {
+                    if (row.done_status == 2 || row.done_status == 1) {
+                        return 'done';
+                    } else if (row.done_status == 3) {
+                        return 'diff_undo';
+                    } else {
+                        return 'undo'
+                    }
+                    return '';
+                }
+            }
+        }
+        Ctor = Vue.extend(Main)
+        new Ctor().$mount('#app')
+//        new Vue().$mount('#bt-app')
+    }
+
+
+</script>
+</html>

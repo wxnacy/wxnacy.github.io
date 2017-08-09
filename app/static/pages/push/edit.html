@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!-- 引入样式 -->
+<link rel="stylesheet"
+      href="https://unpkg.com/element-ui/lib/theme-default/index.css">
+
+<body>
+
+<div id="app">
+
+    <el-form id="el-form" ref="form" :model="form" label-width="80px">
+        <el-form-item label="类型">
+            <div class="sub-title" style="color: #FF4949">
+                打开应用：只需要填写发送消息，
+                打开链接：除了发送消息，还必填跳转地址
+                打开详情：除了发送消息，还必填资源类型和id
+            </div>
+            <template>
+                <el-radio class="radio" v-model="form.open_type" label="221">
+                    打开应用
+                </el-radio>
+                <el-radio class="radio" v-model="form.open_type" label="222">
+                    打开链接
+                </el-radio>
+                <el-radio class="radio" v-model="form.open_type" label="223">
+                    打开详情
+                </el-radio>
+            </template>
+        </el-form-item>
+        <el-form-item label="跳转地址">
+            <el-input v-model="form.url" style="width: 600px"></el-input>
+        </el-form-item>
+        <el-form-item label="资源类型">
+            <template>
+                <el-radio class="radio" v-model="form.res_type" label="6">
+                    文章
+                </el-radio>
+                <el-radio class="radio" v-model="form.res_type" label="7">
+                    点播
+                </el-radio>
+                <el-radio class="radio" v-model="form.res_type" label="11">
+                    音频
+                </el-radio>
+            </template>
+        </el-form-item>
+        <el-form-item label="资源id">
+            <el-input v-model="form.res_id" style="width: 200px"></el-input>
+        </el-form-item>
+        <el-form-item label="推送消息">
+            <el-input type="textarea" v-model="form.description"
+                      style="width: 600px"></el-input>
+        </el-form-item>
+        <el-form-item>
+            <el-button type="primary" @click="onSubmit">提交</el-button>
+            <el-button @click="onBack">返回</el-button>
+        </el-form-item>
+    </el-form>
+</div>
+
+
+</body>
+<!-- 引入组件库 -->
+<!-- 引入组件库 -->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/vue.js"></script>
+<script src="/static/js/element/index.js"></script>
+<script src="/static/js/utils.js"></script>
+<script>
+    var $form = $("#el-form");
+    var item_id = getValue('id');
+    $(function () {
+
+        if (item_id == undefined) {
+            initData(undefined)
+        } else {
+            q = {"filters": [{"user_id": 0}]}
+            $.ajax({
+                url: "/admin/v1/article/" + item_id,
+                dataType: "jsonp",
+                type: "get",
+                success: function (data) {
+                    console.log(data)
+                    initData(data)
+                }
+            })
+        }
+
+
+    });
+
+
+    function initData(data) {
+        var item;
+        if (data == undefined) {
+            item = {}
+        } else {
+            item = data['data']
+        }
+        item['open_type'] = "221";
+        item['res_type'] = "6";
+        var Main = {
+            data() {
+                return {
+                    form: item
+                }
+            },
+            methods: {
+                onSubmit(e) {
+                    var formData = this.form;
+                    var open_type = formData.open_type;
+                    if (open_type == "221") {
+
+                    } else if (open_type == '222') {
+                        var url = formData.url
+                        if (url == undefined) {
+                            this.$message.error('打开链接类型跳转地址必传');
+                            return;
+                        }
+                    } else if (open_type == "223") {
+                        var res_id = formData.res_id;
+                        var res_type = formData.res_type;
+                        if (res_id == undefined) {
+                            this.$message.error('打开详情类型资源id必传');
+                            return;
+                        }
+                    }
+                    $.ajax({
+                        url: "/admin/v1/push.json",
+                        type: "post",
+                        data: formData,
+                        success: function (data) {
+                            utils.goToPageWithOutCache('list.html');
+                        },
+                        error:function (req) {
+                            this.$message.error('推送失败');
+                        }
+                    })
+
+                },
+                onBack(e){
+                    utils.goToPageWithOutCache('list.html');
+                }
+            }
+        }
+        var Ctor = Vue.extend(Main)
+        new Ctor().$mount('#app')
+    }
+
+
+</script>
+</html>

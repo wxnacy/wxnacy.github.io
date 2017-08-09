@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!-- 引入样式 -->
+<link rel="stylesheet"
+      href="https://unpkg.com/element-ui/lib/theme-default/index.css">
+
+<body>
+
+<div id="app">
+
+    <el-form id="el-form" ref="form" :model="form" label-width="80px">
+        <el-form-item label="id">
+            <el-input v-model="form.id" style="width: 200px"
+                      :disabled="true" ></el-input>
+        </el-form-item>
+        <el-form-item label="名称">
+            <el-input v-model="form.name" style="width: 100px"></el-input>
+        </el-form-item>
+        <el-form-item label="封面">
+            <el-input v-model="form.poster" style="width: 600px"></el-input>
+        </el-form-item>
+        <el-form-item label="地址">
+            <el-input v-model="form.url" style="width: 600px"></el-input>
+        </el-form-item>
+        <el-form-item label="描述">
+            <el-input type="textarea" v-model="form.description"
+                      style="width: 600px"></el-input>
+        </el-form-item>
+        <!--<el-form-item label="状态">-->
+        <!--<el-radio-group v-model="form.status">-->
+        <!--<el-radio label="71">正常</el-radio>-->
+        <!--<el-radio label="72">转码中</el-radio>-->
+        <!--</el-radio-group>-->
+        <!--</el-form-item>-->
+        <el-form-item>
+            <el-button type="primary" @click="onSubmit">提交</el-button>
+            <el-button @click="onBack">返回</el-button>
+        </el-form-item>
+    </el-form>
+</div>
+
+
+</body>
+<!-- 引入组件库 -->
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="../../js/utils.js"></script>
+<script>
+    var item_id = getValue('id');
+    $(function () {
+
+        if (item_id == undefined) {
+            initData(undefined)
+        } else {
+            $.ajax({
+                url: "/admin/v1/audio/" + item_id,
+                dataType: "jsonp",
+                type: "get",
+                success: function (data) {
+                    initData(data)
+                }
+            })
+        }
+
+
+    });
+
+
+    function initData(data) {
+        var item;
+        if (data == undefined) {
+            item = {}
+        } else {
+            item = data['data']
+        }
+        var Main = {
+            data() {
+                return {
+                    form: item
+                }
+            },
+            methods: {
+                onSubmit(e) {
+                    var formData = this.form
+                    console.log('form_data', formData)
+                    $.ajax({
+                        url: "/admin/v1/audio/edit.json",
+                        type: "post",
+                        data: formData,
+                        success: function (data) {
+                           utils.goToPageWithOutCache('list.html');
+                        }
+                    })
+                },
+                onBack(e){
+                    utils.goToPageWithOutCache('list.html');
+                }
+            }
+        }
+        var Ctor = Vue.extend(Main)
+        new Ctor().$mount('#app')
+    }
+
+
+</script>
+</html>

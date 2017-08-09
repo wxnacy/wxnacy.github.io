@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!-- 引入样式 -->
+<link rel="stylesheet"
+      href="/static/css/element/index.css">
+
+<body>
+
+
+<div id="app">
+    <el-button type="primary" @click="headleAdd"><i class="el-icon-plus"></i>
+    </el-button>
+    <el-button type="danger" icon="delete" @click="headleDel"></el-button>
+    <template>
+        <el-table :data="tableData" highlight-current-row
+                  @current-change="handleCurrentChange" style="width: 100%">
+            <el-table-column type="index" width="50">
+            </el-table-column>
+            <el-table-column property="id" label="id" width="200"
+                             show-overflow-tooltip>
+            </el-table-column>
+            <el-table-column property="description" label="消息" width="300"
+            show-overflow-tooltip>
+            </el-table-column>
+            <el-table-column property="create_ts" label="创建时间"
+                             show-overflow-tooltip>
+            </el-table-column>
+        </el-table>
+    </template>
+    <div class="block">
+        <el-pagination
+                layout="prev, pager, next"
+                @current-change="headlePaginateChange"
+                :total="total"
+                :page-size="pageSize"
+                :current-page="currentPage"
+        >
+        </el-pagination>
+    </div>
+</div>
+
+
+</body>
+<!-- 引入组件库 -->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/vue.js"></script>
+<script src="/static/js/element/index.js"></script>
+<script src="/static/js/utils.js"></script>
+<script>
+    var Main;
+    var Ctor;
+    var $btnDiv = $('#app')
+
+    $(function () {
+        $.ajax({
+            url: "/admin/v1/push/list.json?page=" + config.getPage(),
+            dataType: "jsonp",
+            type: "get",
+            success: function (data) {
+                initData(data)
+            }
+        })
+
+
+    });
+
+    function initData(data) {
+        data = data['data'];
+        var objects = data['items'];
+
+        var items = []
+        objects.forEach(function (data, i) {
+            items[i] = data
+        })
+
+        var item_per_page = data['item_per_page']
+        var total_items = data['total_items']
+        var cur_page = data['cur_page']
+
+        Main = {
+            data() {
+                return {
+                    tableData: items,
+                    currentRow: null,
+                    pageSize: item_per_page,
+                    total: total_items,
+                    currentPage: cur_page
+                }
+            },
+
+            methods: {
+                handleCurrentChange(val) {
+                    console.log(val)
+                    $btnDiv.val(val.id)
+                    this.currentRow = val;
+                },
+                headleEdit(){
+                    var id = $btnDiv.val()
+                    console.log(id)
+                    if (id == "") {
+                        this.$message.error('请先选择一条记录');
+                    } else {
+                        utils.goToPageWithOutCache('edit.html?id=' + id);
+                    }
+                },
+                headleAdd(){
+                    utils.goToPageWithOutCache('edit.html');
+                },
+                headleDel(){
+                    var id = $btnDiv.val()
+                    deleteResource(this, id, 13);
+                },
+                headlePaginateChange(currentPage){
+                    utils.goToPageWithOutCache('list.html?page=' + currentPage);
+                }
+            }
+        }
+        Ctor = Vue.extend(Main)
+        new Ctor().$mount('#app')
+//        new Vue().$mount('#bt-app')
+    }
+
+
+</script>
+</html>

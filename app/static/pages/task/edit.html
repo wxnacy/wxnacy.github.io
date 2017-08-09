@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!-- 引入样式 -->
+<link rel="stylesheet"
+      href="https://unpkg.com/element-ui/lib/theme-default/index.css">
+
+<body>
+
+<div id="app">
+
+    <el-form id="el-form" ref="form" :model="form" label-width="80px">
+        <el-form-item label="id">
+            <el-input v-model="form.id" style="width: 200px"
+                      :disabled="true"></el-input>
+        </el-form-item>
+        <el-form-item label="名称">
+            <el-input v-model="form.name" style="width: 200px"></el-input>
+        </el-form-item>
+        <template v-if="isTotal">
+            <el-form-item label="总任务">
+                <el-input v-model="form.total_work"
+                          style="width: 100px"></el-input>
+            </el-form-item>
+            <el-form-item label="开始任务">
+                <el-input v-model="form.begin_work"
+                          style="width: 100px"></el-input>
+            </el-form-item>
+        </template>
+        <template v-else>
+            <el-form-item label="总天数">
+                <el-input v-model="form.total_day"
+                          style="width: 100px"></el-input>
+            </el-form-item>
+        </template>
+        <el-form-item label="每天任务">
+            <el-input v-model="form.daily_work" style="width: 100px"></el-input>
+        </el-form-item>
+        <el-form-item label="开始日期">
+            <el-input v-model="form.begin_day" style="width: 100px"></el-input>
+        </el-form-item>
+
+        <el-form-item>
+            <el-button type="primary" @click="onSubmit">提交</el-button>
+            <el-button @click="onBack">返回</el-button>
+        </el-form-item>
+    </el-form>
+</div>
+
+
+</body>
+<!-- 引入组件库 -->
+<!-- 引入组件库 -->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/vue.js"></script>
+<script src="/static/js/element/index.js"></script>
+<script src="/static/js/utils.js"></script>
+<script>
+    var item_id = utils.getValue('id');
+    var type = utils.getValue('type');
+    $(function () {
+
+        if (item_id == undefined) {
+            initData(undefined)
+        } else {
+            $.ajax({
+                url: "/admin/v1/task/" + item_id,
+                dataType: "jsonp",
+                type: "get",
+                success: function (data) {
+                    initData(data)
+                }
+            })
+        }
+
+
+    });
+
+
+    function initData(data) {
+        var item;
+        if (data == undefined) {
+            item = {
+                begin_work: 1
+            }
+        } else {
+            item = data['data']
+        }
+        console.log(type)
+        var isTotal = false
+        if (type == 1) {
+            isTotal = true
+            item['isTotal'] = true
+        } else {
+            item['isDaily'] = true
+        }
+
+
+        var Main = {
+            data() {
+                return {
+                    form: item,
+                    isTotal:isTotal,
+                    pickerOptions1: {
+                        shortcuts: [{
+                            text: '今天',
+                            onClick(picker) {
+                                picker.$emit('pick', new Date());
+                            }
+                        }, {
+                            text: '昨天',
+                            onClick(picker) {
+                                const date = new Date();
+                                date.setTime(date.getTime() - 3600 * 1000 * 24);
+                                picker.$emit('pick', date);
+                            }
+                        }, {
+                            text: '一周前',
+                            onClick(picker) {
+                                const date = new Date();
+                                date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
+                                picker.$emit('pick', date);
+                            }
+                        }]
+                    }
+                }
+            },
+            methods: {
+                onSubmit(e) {
+                    var $this = this;
+                    var formData = this.form
+                    formData['type'] = type;
+                    $.ajax({
+                        url: "/api/v1/task",
+                        type: "post",
+                        data: JSON.stringify(formData),
+                        contentType: "application/json",
+                        dateType: "json",
+                        success: function (data) {
+                            utils.goToPageWithOutCache('list.html?type='+type);
+                        }
+                        ,
+                        error: function (res, error, errorMsg) {
+                            $this.$message.error(res['responseJSON']['message'])
+                        }
+                    })
+                },
+                onBack(e){
+                    utils.goToPageWithOutCache('list.html?type='+type);
+                }
+            }
+        }
+        var Ctor = Vue.extend(Main)
+        new Ctor().$mount('#app')
+    }
+
+
+</script>
+</html>

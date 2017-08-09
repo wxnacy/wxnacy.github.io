@@ -15,6 +15,7 @@
 ## mysql
 - [mysql每天练习](/?p=/doc/mysql/mysql_daily.md)
 - [基础命令](/?p=/doc/mysql/basic_cmd.md)
+- [mysql索引的增删查](/?p=/doc/mysql/basic_index.md)
 
 
 
