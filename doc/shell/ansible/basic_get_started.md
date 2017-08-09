@@ -1,4 +1,5 @@
 # ansible入门笔记1 Get Started
+> Ansilbe是一个部署一群远程主机的工具。远程的主机可以是远程虚拟机或物理机， 也可以是本地主机。Ansilbe是一个部署一群远程主机的工具。远程的主机可以是远程虚拟机或物理机， 也可以是本地主机。
 
 专辑：[ansible学习笔记](/?p=/doc/shell/ansible/study_notes.md)
 ## 安装ansible
@@ -12,6 +13,7 @@ pip install ansible
 ```bash
 [wxnacy] # 如果服务器使用密码登录就用这个方式保存密码，避免每次输入
 wxnacy.server.org ansible_ssh_pass=your_pass ansible_ssh_user=your_name 
+
 [prod] # 如果服务器使用sshkey登陆（推荐使用）
 prod.server.org ansible_ssh_user=your_name ansible_ssh_private_key_file=key_path 
 ```
