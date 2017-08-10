@@ -1,4 +1,5 @@
 # mysql prompt 提示符
+原文：[http://www.thegeekstuff.com/2010/02/mysql_ps1-6-examples-to-make-your-mysql-prompt-like-angelina-jolie/](http://www.thegeekstuff.com/2010/02/mysql_ps1-6-examples-to-make-your-mysql-prompt-like-angelina-jolie/)
 ## 在命令行中使用
 ```mysql
 mysql> prompt \u@\d>

@@ -1,4 +1,8 @@
 # wxnacy博客
+## python
+- [linux 环境下安装pyenv和virtualenv虚拟机](/?p=/doc/python/python-2017-08-10-pyenv-linux.md)
+- [mac 环境下安装pyenv和virtualenv虚拟机](/?p=/doc/python/python-2017-08-10-pyenv-mac.md)
+- [pyenv virtualenv 常用命令](/?p=/doc/python/python-2017-08-10-pyenv-cmd.md)
 ## git
 - [git 常用命令](/?p=/doc/git/cmd.md)
 
@@ -11,6 +15,7 @@
 
 ## shell
 - [ansible学习笔记](/?p=/doc/shell/ansible/study_notes.md)
+- [mac清除DNS缓存](/?p=/doc/shell/mac-2017-08-10-clear-dns.md)
 
 ## mysql
 - [mysql每天练习](/?p=/doc/mysql/mysql_daily.md)
