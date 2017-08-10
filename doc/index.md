@@ -14,8 +14,11 @@
 
 ## mysql
 - [mysql每天练习](/?p=/doc/mysql/mysql_daily.md)
-- [基础命令](/?p=/doc/mysql/basic_cmd.md)
+- [mysql基础命令](/?p=/doc/mysql/basic_cmd.md)
 - [mysql索引的增删查](/?p=/doc/mysql/basic_index.md)
+- [mysql select 格式化输出](/?p=/doc/mysql/mysql-2017-08-09-select-format.md)
+- [mysql prompt 提示符](/?p=/doc/mysql/mysql-2017-08-09-prompt.md)
+- [mysql 小技巧](/?p=/doc/mysql/mysql-2017-08-09-skill.md)
 
 
 
