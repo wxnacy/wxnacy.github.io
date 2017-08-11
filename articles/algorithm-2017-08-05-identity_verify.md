@@ -3,6 +3,7 @@
 
 18位身份证号码组成：```ddddddyyyymmddxxsp```共18位，其中：
 其他部分都和15位的相同。年份代码由原来的2位升级到4位。最后一位为校验位。
+
 ## 校验规则：
 - 十七位数字本体码加权求和公式
 ```
@@ -23,6 +24,7 @@ Y: 0 1 2 3 4 5 6 7 8 9 10
 ```
 
 ## java
+
 ```java
 static String getCheckCode(String idCard){
         static String[] Wi = { "7", "9", "10", "5", "8", "4", "2", "1", "6", "3", "7",
@@ -43,21 +45,21 @@ static String getCheckCode(String idCard){
 	
 ```
 
-## python
-```python
-def check_identity_card(card):
-    wi = ["7", "9", "10", "5", "8", "4", "2", "1", "6", "3", "7", "9", "10","5", "8", "4", "2"]
-    total = 0
-    card = list(card)
-    index = 0
-    for item in card:
-        total += ord(item) * int(wi[index])
-        index += 1     t = total % 11
-    r = (12 - t) % 11
-    if r == 10:
-        return "X"
-    else:
-        return r
 
-``` 
+## python
+
+    def check_identity_card(card):
+        wi = ["7", "9", "10", "5", "8", "4", "2", "1", "6", "3", "7", "9", "10","5", "8", "4", "2"]
+        total = 0
+        card = list(card)
+        index = 0
+        for item in card:
+            total += ord(item) * int(wi[index])
+            index += 1     t = total % 11
+        r = (12 - t) % 11
+        if r == 10:
+            return "X"
+        else:
+            return r
+ 
 
