@@ -8,6 +8,7 @@ from app.common.base import BaseRequest
 from app.config import BaseConfig
 from app.run import app
 from app.views.index import index_bp
+from datetime import datetime
 from flask import g
 from flask import request
 import time
@@ -17,10 +18,20 @@ import os
 @app.before_request
 def before_request():
     g.request_start_time = time.time()
+    content_type = request.content_type or ''
+    if 'application/x-www-form-urlencoded' in content_type:
+        _args = request.form
+    elif 'application/json' in content_type:
+        _args = request.json
+    else:
+        _args = request.args
     app.logger.debug(
-        '{} {}\nargs:{}\ndata:{}\nheaders:{}'.format(
-            request.method, request.url, BaseRequest.get_args(), request.data,
-            request.headers
+        '[+8_{}] {}_{} begin \nargs:{}\ndata:{}\nheaders:\n{}'.format(
+            datetime.now().isoformat(),
+            request.method, request.url,  _args,
+            request.data, ''.join(
+                ['header {}: {}\n'.format(k, v) for k, v in
+                 request.headers])
         )
     )
     # ip
@@ -48,12 +59,12 @@ def before_request():
 def after_request(response):
     if not hasattr(g, 'request_start_time'):
         return response
-    elapsed = time.time() - g.request_start_time
-    # elapsed = int(round(1000 * elapsed))
-    app.logger.debug('{} begin request {} {} cast {} s'.format(
-        g.request_start_time, request.method, request.url, elapsed
-    ))
-
+    elapsed = datetime.utcnow().timestamp() - g.request_start_time
+    req_info = '[+8_{}] {}_{} end time_used:{}'.format(
+        datetime.utcnow().isoformat(), request.method,
+        request.url, elapsed
+    )
+    app.logger.debug(req_info)
     return response
 
 

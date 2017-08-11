@@ -13,6 +13,8 @@ from werkzeug.utils import import_string
 from werkzeug.contrib.fixers import ProxyFix
 
 from app.common.id import Snowflake
+import logging
+from logging import Formatter, FileHandler
 
 CONFIG_NAME_MAPPER = {
     'local': 'app.local_config.LocalConfig',
@@ -64,6 +66,12 @@ def create_app(flask_config_name=None):
     print('-------------------------init app-------------------------')
     logging.basicConfig(filename=app.config['METRICS_LOG_FILE'],
                         level=logging.ERROR)
+    #日志
+
+    logHandler = logging.FileHandler('debug.log')
+    logHandler.setLevel(logging.DEBUG)
+    app.logger.addHandler(logHandler)
+    app.logger.setLevel(logging.DEBUG)
     return app
 
 

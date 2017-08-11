@@ -5,6 +5,7 @@ __author__ = "wxnacy(wxnacy@gmail.com)"
 __copyright__ = "Copyright of wxnacy (2017)."
 
 from app.common.markdown import Markdown
+from app.config import app
 from app.config import BaseConfig
 from flask import Blueprint
 from flask import render_template
@@ -38,6 +39,7 @@ def index():
             article.append('- [{}]({})'.format(mf.title, mf.route))
     content = '\n'.join(article)
     md = Markdown(content=content)
+    app.logger.debug('ddd')
     return render_template('index.html', article=md)
 
 
