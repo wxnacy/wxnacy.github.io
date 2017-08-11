@@ -2,22 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ article.title }}</title>
+    <link href="/static/css/themes/xiaolei.css" rel="stylesheet">
+    <link href="/static/css/main.css" rel="stylesheet">
 
 </head>
-<body>
-{{ task }}
-{{ task.id }}
 
-{% for task in tasks %}
-    {{ task.id }}
-{% endfor %}
+<body>
+<header id="header" class="layout">
+    {% autoescape false %}
+    {{ g.header }}
+    {% endautoescape %}
+</header>
+<article id="article" class="layout">
+    {% autoescape false %}
+    {{ article.html }}
+    {% endautoescape %}
+</article>
+<footer id="footer" class="layout">
+    {% autoescape false %}
+    {{ g.footer }}
+    {% endautoescape %}
+</footer>
 </body>
-<script src="/static/js/jquery.js"></script>
 <script src="/static/js/jquery.min.js"></script>
-<script>
-    $(function(){
-        console.log('sss')
-    })
-</script>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cspan id='cnzz_stat_icon_1263285686'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s13.cnzz.com/z_stat.php%3Fid%3D1263285686%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
 </html>

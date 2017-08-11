@@ -19,6 +19,7 @@ if __name__ == '__main__':
     path = '{}/doc/{}'.format(os.getcwd(),'index.md')
 
     with open(path) as f:
+
         res = m(f.read())
         print(res)
 

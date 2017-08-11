@@ -7,11 +7,11 @@ __copyright__ = "Copyright of hopapapa (2017)."
 from app.common.base import BaseRequest
 from app.config import BaseConfig
 from app.run import app
-from app.views.api.user import user_bp
-from app.views.api.wx import wx_bp
+from app.views.index import index_bp
 from flask import g
 from flask import request
 import time
+import os
 
 
 @app.before_request
@@ -25,6 +25,22 @@ def before_request():
     )
     # ip
     g.ip = request.remote_addr
+
+    CATEGORYS = ['python', 'mysql', 'git','ansible','js','mac','algorithm']
+    file_list = os.listdir(BaseConfig.ARTICLE_DIR)
+    categorys = set([o.split('-', 1)[0] for o in file_list])
+    categorys = list(filter(lambda x: x in CATEGORYS, categorys))
+    g.categorys = categorys
+    print(categorys)
+
+    cate_html = []
+    for category in categorys:
+        cate_html.append(
+            '<li><a href="/{}">{}</a></li>'.format(category, category))
+
+    g.header = '<span><a href="/">wxnacy博客</a></span><nav><ul>{}<li><a href="/pages/contact.html">联系</a></li></ul></nav>'.format(
+        ''.join(cate_html))
+    g.footer = ' © 2017 wxnacy.com 版权所有 <a href="http://www.miitbeian.gov.cn/" target="_blank">京ICP备15062634号-3</a>'
 
 
 @app.after_request
@@ -41,6 +57,4 @@ def after_request(response):
 
 
 # api
-URL_PREFIX = BaseConfig.APPLICATION_ROOT
-app.register_blueprint(user_bp, url_prefix=URL_PREFIX)
-app.register_blueprint(wx_bp, url_prefix=URL_PREFIX)
+app.register_blueprint(index_bp)

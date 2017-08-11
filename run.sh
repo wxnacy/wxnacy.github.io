@@ -11,7 +11,7 @@ deploy_tag(){
 #    kill -9 `ps aux | grep gunicorn | awk '{print $2}'`
 #    git pull
     source env.sh
-    gunicorn -w 2  -b 0.0.0.0:8082 run:app
+    gunicorn -w 2  -b 0.0.0.0:8002 run:app
 #    --access-logfile access.log \
 
     echo '******************************'

@@ -38,14 +38,12 @@ class BaseConfig(object):
 
     HEAD_AUTHORIZATION = 'authorization'
 
+    ARTICLE_DIR = '{}/articles/'.format(os.getcwd())
+
 
     # 输出日志文件
     METRICS_LOG_FILE = './metrics.flask.log'
     # 地址前缀
-    APPLICATION_ROOT = '/api/v1'
-    APPLICATION_ROOT_RESTFUL = '/restful'
-
-    APPLICATION_ROOT_ADMIN = '/admin/v1'
 
     WX_MP_APP_ID = 'wxb5ae283f932d1ae0'
     WX_MP_APP_SECRET = '720233db12f8d6dadaa9979c49418e8d'
