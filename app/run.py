@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 '''公共需要run的项目'''
-__author__ = "wenxiaoning(371032668@qq.com)"
-__copyright__ = "Copyright of hopapapa (2017)."
+__author__ = "wxnacy(wxnacy@gmail.com)"
+__copyright__ = "Copyright of wxnacy (2017)."
 
 from app.common.base import BaseResponse
 from app.config import BaseConfig

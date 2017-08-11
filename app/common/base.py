@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 # ! -*- coding:utf-8 -*-
 """base信息"""
-from sqlalchemy import desc
 
-__author__ = "wenxiaoning(wenxiaoning@gochinatv.com)"
-__copyright__ = "Copyright of GoChinaTV (2017)."
+__author__ = "wxnacy(wxnacy@gmail.com)"
+__copyright__ = "Copyright of wxnacy (2017)."
 
 from app.config import app
 from app.config import db
@@ -15,6 +14,7 @@ from flask import make_response
 from flask import jsonify
 from flask import request
 from uuid import UUID
+from sqlalchemy import desc
 from sqlalchemy.ext.declarative import DeclarativeMeta
 from urllib.parse import urlparse
 import traceback

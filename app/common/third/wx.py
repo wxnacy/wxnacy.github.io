@@ -2,8 +2,8 @@
 # ! -*- coding:utf-8 -*-
 """wx 工具类"""
 
-__author__ = "wenxiaoning(371032668@qq.com)"
-__copyright__ = "Copyright of pythondemo (2017)."
+__author__ = "wxnacy(wxnacy@gmail.com)"
+__copyright__ = "Copyright of wxnacy (2017)."
 
 from app.common.base import BaseObject
 from app.config import app

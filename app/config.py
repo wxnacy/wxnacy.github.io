@@ -1,20 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 '''配置信息'''
-__author__ = "wenxiaoning(371032668@qq.com)"
-__copyright__ = "Copyright of hopapapa (2017)."
-
-import os
-import logging
-
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from werkzeug.utils import import_string
-from werkzeug.contrib.fixers import ProxyFix
+__author__ = "wxnacy(wxnacy@gmail.com)"
+__copyright__ = "Copyright of wxnacy (2017)."
 
 from app.common.id import Snowflake
+from datetime import date
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from werkzeug.contrib.fixers import ProxyFix
+import os
 import logging
-from logging import Formatter, FileHandler
 
 CONFIG_NAME_MAPPER = {
     'local': 'app.local_config.LocalConfig',
@@ -67,8 +63,7 @@ def create_app(flask_config_name=None):
     logging.basicConfig(filename=app.config['METRICS_LOG_FILE'],
                         level=logging.ERROR)
     #日志
-
-    logHandler = logging.FileHandler('debug.log')
+    logHandler = logging.FileHandler('debug-{}.log'.format(date.today().isoformat()))
     logHandler.setLevel(logging.DEBUG)
     app.logger.addHandler(logHandler)
     app.logger.setLevel(logging.DEBUG)

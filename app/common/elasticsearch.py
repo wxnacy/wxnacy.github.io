@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 '''ElasticSearch的工具类'''
-__author__ = "wenxiaoning(wenxiaoning@gochinatv.com)"
-__copyright__ = "Copyright of GoChinaTV (2017)."
+__author__ = "wxnacy(wxnacy@gmail.com)"
+__copyright__ = "Copyright of wxnacy (2017)."
 
 from app.config import app
 from elasticsearch.client import query_params

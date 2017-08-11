@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 '''装饰器'''
-__author__ = "wenxiaoning(wenxiaoning@gochinatv.com)"
-__copyright__ = "Copyright of GoChinaTV (2017)."
+__author__ = "wxnacy(wxnacy@gmail.com)"
+__copyright__ = "Copyright of wxnacy (2017)."
 
 from datetime import timedelta
 from flask import make_response

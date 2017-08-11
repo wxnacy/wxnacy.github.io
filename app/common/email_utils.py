@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 '''邮件'''
-__author__ = "wenxiaoning(wenxiaoning@gochinatv.com)"
-__copyright__ = "Copyright of GoChinaTV (2017)."
+__author__ = "wxnacy(wxnacy@gmail.com)"
+__copyright__ = "Copyright of wxnacy (2017)."
 
 import smtplib
 from email.mime.text import MIMEText
