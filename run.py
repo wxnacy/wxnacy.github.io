@@ -26,10 +26,11 @@ def before_request():
     # ip
     g.ip = request.remote_addr
 
-    CATEGORYS = ['python', 'mysql', 'git','ansible','js','mac','algorithm']
+    CATEGORYS = ['python', 'mysql', 'git', 'ansible', 'js', 'mac', 'algorithm']
     file_list = os.listdir(BaseConfig.ARTICLE_DIR)
     categorys = set([o.split('-', 1)[0] for o in file_list])
     categorys = list(filter(lambda x: x in CATEGORYS, categorys))
+    categorys.sort()
     g.categorys = categorys
     print(categorys)
 
@@ -38,7 +39,7 @@ def before_request():
         cate_html.append(
             '<li><a href="/{}">{}</a></li>'.format(category, category))
 
-    g.header = '<span><a href="/">wxnacy博客</a></span><nav><ul>{}<li><a href="/pages/contact.html">联系</a></li></ul></nav>'.format(
+    g.header = '<span><a href="/">wxnacy博客</a></span><nav><ul>{}</ul></nav>'.format(
         ''.join(cate_html))
     g.footer = ' © 2017 wxnacy.com 版权所有 <a href="http://www.miitbeian.gov.cn/" target="_blank">京ICP备15062634号-3</a>'
 
