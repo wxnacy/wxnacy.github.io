@@ -36,6 +36,8 @@ def before_request():
     )
     # ip
     g.ip = request.remote_addr
+    print(g.ip)
+    app.logger.debug(g.ip)
 
     CATEGORYS = ['python', 'mysql', 'git', 'ansible', 'js', 'mac', 'algorithm']
     file_list = os.listdir(BaseConfig.ARTICLE_DIR)
