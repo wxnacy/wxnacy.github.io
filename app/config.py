@@ -11,6 +11,7 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.contrib.fixers import ProxyFix
 import os
 import logging
+from logging import Formatter
 
 CONFIG_NAME_MAPPER = {
     'local': 'app.local_config.LocalConfig',
@@ -23,11 +24,9 @@ CONFIG_NAME_MAPPER = {
 class BaseConfig(object):
     DEBUG = False
 
-
     TYPE_ITEM_USER = 1
     TYPE_ITEM_IMAGE = 2
     TYPE_ACTION_VIEW = 21
-
 
     DEFAULT_PAGE = 1
     DEFAULT_PER_PAGE = 10
@@ -37,11 +36,6 @@ class BaseConfig(object):
     HEAD_AUTHORIZATION = 'authorization'
 
     ARTICLE_DIR = '{}/articles/'.format(os.getcwd())
-
-
-    # 输出日志文件
-    METRICS_LOG_FILE = './metrics.flask.log'
-    # 地址前缀
 
     WX_MP_APP_ID = 'wxb5ae283f932d1ae0'
     WX_MP_APP_SECRET = '720233db12f8d6dadaa9979c49418e8d'
@@ -59,17 +53,24 @@ def create_app(flask_config_name=None):
     config_mapper_name = flask_config_name or env_flask_config_name or 'local'
     config_name = CONFIG_NAME_MAPPER[config_mapper_name]
     app.config.from_object(config_name)
-    print('-------------------------init app-------------------------')
-    logging.basicConfig(filename=app.config['METRICS_LOG_FILE'],
-                        level=logging.ERROR)
-    #日志
-    logHandler = logging.FileHandler('debug-{}.log'.format(date.today().isoformat()))
-    logHandler.setLevel(logging.DEBUG)
-    app.logger.addHandler(logHandler)
+
+    # 日志
+    fmt = '[%(asctime)s] [%(levelname)s] %(message)s [in %(pathname)s:%(lineno)d]'
+    file_handler = logging.FileHandler(
+        'debug-{}.log'.format(date.today().isoformat()))
+    file_handler.setLevel(logging.DEBUG)
+    file_handler.setFormatter(Formatter(fmt))
+    stream_handler = logging.StreamHandler()
+    stream_handler.setFormatter(Formatter(fmt))
+    app.logger.addHandler(stream_handler)
+    app.logger.addHandler(file_handler)
     app.logger.setLevel(logging.DEBUG)
+
+    app.logger.debug('-------------------------init app-------------------------')
     return app
 
 
 app = create_app()
+logger = app.logger
 db = SQLAlchemy(app)
 snowflake = Snowflake(0)

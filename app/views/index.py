@@ -20,7 +20,6 @@ renderer = mistune.Renderer(escape=True, hard_wrap=True)
 md = mistune.Markdown(renderer=renderer)
 
 
-
 @index_bp.route('/')
 @index_bp.route('/index.html')
 def index():
@@ -28,36 +27,33 @@ def index():
     article = []
     article.append('# {}'.format('wxnacy博客'))
 
-    file_list = os.listdir(BaseConfig.ARTICLE_DIR)
-    print(g.categorys)
     for c in g.categorys:
-
-        fl = list(filter(lambda x: x.startswith(c), file_list))
-        article.append('\n## {}'.format(c))
-        for file in fl:
-            mf = Markdown(file)
-            article.append('- [{}]({})'.format(mf.title, mf.route))
+        article.append('\n')
+        article.append(generator_category_md_content(c, 2))
     content = '\n'.join(article)
     md = Markdown(content=content)
-    app.logger.debug('ddd')
     return render_template('index.html', article=md)
 
 
 @index_bp.route('/<string:category>')
 def category(category):
     '''文章分类'''
+    content = generator_category_md_content(category, 1)
+    md = Markdown(content=content)
+    return render_template('index.html', article=md)
+
+
+def generator_category_md_content(category, level):
+    """生成分类文章md内容"""
     file_list = os.listdir(BaseConfig.ARTICLE_DIR)
     file_list = list(filter(lambda x: x.startswith(category), file_list))
-
+    file_list.sort()
     article = []
-    article.append('# {}'.format(category))
+    article.append('{} {}'.format('#' * level, category))
     for file in file_list:
         mf = Markdown(file)
         article.append('- [{}]({})'.format(mf.title, mf.route))
-
-    content = '\n'.join(article)
-    md = Markdown(content=content)
-    return render_template('index.html', article=md)
+    return '\n'.join(article)
 
 
 @index_bp.route(

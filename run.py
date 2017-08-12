@@ -6,6 +6,7 @@ __copyright__ = "Copyright of wxnacy (2017)."
 
 from app.common.base import BaseRequest
 from app.config import BaseConfig
+from app.config import logger
 from app.run import app
 from app.views.index import index_bp
 from datetime import datetime
@@ -25,9 +26,8 @@ def before_request():
         _args = request.json
     else:
         _args = request.args
-    app.logger.debug(
-        '[+8_{}] {}_{} begin \nargs:{}\ndata:{}\nheaders:\n{}'.format(
-            datetime.now().isoformat(),
+    logger.debug(
+        '{}_{} begin \nargs:{}\ndata:{}\nheaders:\n{}'.format(
             request.method, request.url,  _args,
             request.data, ''.join(
                 ['header {}: {}\n'.format(k, v) for k, v in
@@ -36,8 +36,8 @@ def before_request():
     )
     # ip
     g.ip = request.remote_addr
-    print(g.ip)
-    app.logger.debug(g.ip)
+
+    logger.debug(g.ip)
 
     CATEGORYS = ['python', 'mysql', 'git', 'ansible', 'js', 'mac', 'algorithm']
     file_list = os.listdir(BaseConfig.ARTICLE_DIR)
@@ -62,11 +62,11 @@ def after_request(response):
     if not hasattr(g, 'request_start_time'):
         return response
     elapsed = datetime.utcnow().timestamp() - g.request_start_time
-    req_info = '[+8_{}] {}_{} end time_used:{}'.format(
-        datetime.utcnow().isoformat(), request.method,
+    req_info = '{}_{} end time_used:{}'.format(
+         request.method,
         request.url, elapsed
     )
-    app.logger.debug(req_info)
+    logger.debug(req_info)
     return response
 
 
