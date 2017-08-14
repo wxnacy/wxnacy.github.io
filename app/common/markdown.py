@@ -30,7 +30,7 @@ class Markdown(BaseObject):
     def parse_content(self):
         self.title = self.content.split('\n')[0][2:]
         self.html = md(self.content)
-        self.route = '/'.join(self.name[:-3].split('-', 4))
+        self.route = '/' + '/'.join(self.name[:-3].split('-', 4))
 
 
 if __name__ == '__main__':

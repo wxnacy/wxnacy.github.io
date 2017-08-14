@@ -7,10 +7,12 @@ __copyright__ = "Copyright of wxnacy (2017)."
 from app.common.markdown import Markdown
 from app.config import app
 from app.config import BaseConfig
+from app.models import VisitUser as VU
 from flask import Blueprint
 from flask import render_template
-from flask import url_for
+from flask import request
 from flask import g
+from functools import wraps
 import os
 import mistune
 
@@ -20,8 +22,18 @@ renderer = mistune.Renderer(escape=True, hard_wrap=True)
 md = mistune.Markdown(renderer=renderer)
 
 
+def visit_log(func):
+    @wraps(func)
+    def _w(*args, **kwargs):
+        VU.log()
+        return func(*args, **kwargs)
+
+    return _w
+
+
 @index_bp.route('/')
 @index_bp.route('/index.html')
+@visit_log
 def index():
     '''首页'''
     article = []
@@ -32,10 +44,12 @@ def index():
         article.append(generator_category_md_content(c, 2))
     content = '\n'.join(article)
     md = Markdown(content=content)
+
     return render_template('index.html', article=md)
 
 
 @index_bp.route('/<string:category>')
+@visit_log
 def category(category):
     '''文章分类'''
     content = generator_category_md_content(category, 1)
@@ -58,6 +72,7 @@ def generator_category_md_content(category, level):
 
 @index_bp.route(
     '/<string:category>/<string:year>/<string:month>/<string:day>/<string:name>')
+@visit_log
 def article(category, year, month, day, name):
     '''文章详情'''
     file = '{}-{}-{}-{}-{}.md'.format(category, year, month, day, name)
