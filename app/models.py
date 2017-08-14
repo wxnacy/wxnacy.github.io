@@ -46,9 +46,10 @@ class VisitUser(BaseModel, db.Model):
         return user.visit()
 
     def visit(self):
+        print(request.referrer)
         return VisitLog.create(visit_user_id=self.id, url=request.url,
                                method=request.method,
-                               referer=request.referrer,
+                               referrer=request.referrer,
                                ext=dict(request.headers))
 
 
