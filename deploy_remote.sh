@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-./push.sh $1
+./push_tag.sh $1 $2
 ansible-playbook deploy_remote.yml

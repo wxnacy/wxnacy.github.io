@@ -11,6 +11,7 @@ deploy_tag(){
     echo '******************************'
     git fetch
     git checkout ${TAG_NAME}
+    ./run.sh
 
 #    sudo /usr/local/bin/supervisorctl restart hamster
 #    sudo /usr/local/bin/supervisorctl restart hamsterschedule
