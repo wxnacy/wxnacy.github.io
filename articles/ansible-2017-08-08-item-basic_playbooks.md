@@ -1,6 +1,6 @@
 # ansible入门笔记2 Playbooks
 
-专辑：[ansible学习笔记](/?p=/doc/shell/ansible/study_notes.md)
+专辑：[ansible学习笔记](/ansible/2017/08/14/album-study-notes)
 
 > Playbooks 是 Ansible的配置,部署,编排语言.他们可以被描述为一个需要希望远程主机执行命令的方案,或者一组IT程序运行的命令集合.
 
@@ -30,8 +30,4 @@ PLAY RECAP *********************************************************************
 wxnacy.server.org             : ok=2    changed=1    unreachable=0    failed=0
 ```
 执行完运行命令ansible会在webservers组中依次执行tasks，返回以上样式结果极为成功，结果通过红黄绿三种颜色标明了不同的执行结果，红色表示有task执行失败，黄色表示改变了远程主机状态。
-
-- 上一节：[ansible入门笔记1 Get Started](/?p=/doc/shell/ansible/basic_get_started.md)
-- 下一节：[ansible入门笔记3 Playbooks 简单扩展](/?p=/doc/shell/ansible/basic_playbooks_ext.md)
-
 

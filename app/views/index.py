@@ -61,12 +61,20 @@ def generator_category_md_content(category, level):
     """生成分类文章md内容"""
     file_list = os.listdir(BaseConfig.ARTICLE_DIR)
     file_list = list(filter(lambda x: x.startswith(category), file_list))
+    file_list = list(filter(lambda x: 'item' not in x, file_list))
     file_list.sort()
     article = []
     article.append('{} {}'.format('#' * level, category))
     for file in file_list:
         mf = Markdown(file)
-        article.append('- [{}]({})'.format(mf.title, mf.route))
+        profix = ''
+        if 'item' in mf.route:
+            profix = '文章'
+        elif 'album' in mf.route:
+            profix = '专辑'
+        else:
+            profix = '文章'
+        article.append('- [{}] [{}]({})'.format(profix,mf.title, mf.route))
     return '\n'.join(article)
 
 
@@ -78,3 +86,7 @@ def article(category, year, month, day, name):
     file = '{}-{}-{}-{}-{}.md'.format(category, year, month, day, name)
     md = Markdown(file)
     return render_template('index.html', article=md)
+
+@index_bp.route('/test')
+def test():
+    return app.config['SQLALCHEMY_DATABASE_URI']

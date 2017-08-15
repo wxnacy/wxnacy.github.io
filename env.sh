@@ -7,5 +7,5 @@ then
     ENV=local
 fi
 
-export PYTHONPATH=./
-export FLASK_CONFIG=${ENV}
+export PYTHONPATH=./ # 项目跟目录
+export FLASK_CONFIG=${ENV} # 当前环境 可选 local product dev test

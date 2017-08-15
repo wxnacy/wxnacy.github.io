@@ -1,10 +1,12 @@
 # ansible入门笔记1 Get Started
+专辑：[ansible学习笔记](/ansible/2017/08/14/album-study-notes)
+
 > Ansilbe是一个部署一群远程主机的工具。远程的主机可以是远程虚拟机或物理机， 也可以是本地主机。Ansilbe是一个部署一群远程主机的工具。远程的主机可以是远程虚拟机或物理机， 也可以是本地主机。
 
-专辑：[ansible学习笔记](/?p=/doc/shell/ansible/study_notes.md)
+
 ## 安装ansible
 - 命令 
-```python
+```bash
 pip install ansible
 ```
 - 配置hosts 
@@ -47,7 +49,5 @@ Linux ip-172-31-5-249 4.9.27-14.31.amzn1.x86_64 #1 SMP Wed May 10 01:58:40 UTC 2
 ```bash
 ansible my -i hosts_path -m ping
 ```
-
-- 下一节：[ansible学习笔记2 Playbooks](/?p=/doc/shell/ansible/basic_playbooks.md)
 
 

@@ -1,6 +1,6 @@
 # ansible入门笔记3 Playbooks 简单扩展
 
-专辑：[ansible学习笔记](/?p=/doc/shell/ansible/study_notes.md)
+专辑：[ansible学习笔记](/ansible/2017/08/14/album-study-notes)
 
 > Playbooks 在实际应用过程中，需要用到一些额外扩展功能，比如外部传参或指定hosts文件，本章节将着重介绍
 
@@ -38,7 +38,4 @@ ansible-playbook playbook.yml --extra-vars "kwargs.json"
 ansible-playbook playbook.yml --inventory-file=~/ansible-hosts
 ```
 
-
-- 上一节：[ansible入门笔记2 Playbooks](/?p=/doc/shell/ansible/basic_playbooks.md)
-- 下一节：[ansible入门案例1 远程部署项目](/?p=/doc/shell/ansible/basic_tasks1.md)
 

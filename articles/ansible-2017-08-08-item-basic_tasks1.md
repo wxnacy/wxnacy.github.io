@@ -1,6 +1,6 @@
 # ansible入门案例1 远程部署项目
 
-专辑：[ansible学习笔记](/?p=/doc/shell/ansible/study_notes.md)
+专辑：[ansible学习笔记](/ansible/2017/08/14/album-study-notes)
 
 > 根据前几章讲到的内容，我们已经可以完成一些简单的功能。本章带领大家写一个通过git打tag包远程部署python项目。
 
@@ -116,7 +116,4 @@ fi
 ```bash
 ./deploy_remote.sh 1.0.0 '我的第一个版本'
 ```
-
-
-- 上一节：[ansible入门笔记3 Playbooks 简单扩展](/?p=/doc/shell/ansible/basic_playbooks_ext.md)
 
