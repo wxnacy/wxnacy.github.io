@@ -89,4 +89,4 @@ def article(category, year, month, day, name):
 
 @index_bp.route('/test')
 def test():
-    return 'hello world'
+    return 'hello world??'
