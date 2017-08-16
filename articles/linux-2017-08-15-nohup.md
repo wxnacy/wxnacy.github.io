@@ -6,5 +6,5 @@ $ nohup gunicorn run:app &
 ```
 ## 重定向日志到制定文件
 ```bash
-$ nohup gunicorn run:app >nohup.log 2>&1 &
+$ nohup gunicorn run:app >nohup.log 2>&1 & 
 ```

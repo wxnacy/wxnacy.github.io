@@ -22,6 +22,7 @@ prod.server.org ansible_ssh_user=your_name ansible_ssh_private_key_file=key_path
 ## 第一条命令
 
 - 首先执行ping，查看是否可以连接服务器
+
 ```bash
 $ ansible all -m ping
 
@@ -38,6 +39,7 @@ prod.server.org | SUCCESS => {
 得到如上样式结果即为正确,另外执行 ```ansible wxnacy -m ping``` 可以针对某一个服务器组进行操作
 
 - 现在我们用另一个命令看下是不是真的可以拿到远程服务器的信息
+
 ```bash
 $ ansible prod -m shell -a "uname -a"
 

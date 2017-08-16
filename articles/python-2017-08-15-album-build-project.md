@@ -8,6 +8,8 @@ pigar
 
 ## flask
 - [python 如何构建完整项目: flask 构建第一个项目](/python/2017/08/15/item-basic-flask-run)
+- [python 如何构建完整项目: 配置PYTHONPATH(了解python导入模块搜索路径运作原理)](/python/2017/08/15/item-config-pythonpath)
+
 - [python 如何构建完整项目: flask 如何配置多环境](/python/2017/08/15/item-flask-config)
 
 ## gunicorn
