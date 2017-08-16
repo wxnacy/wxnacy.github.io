@@ -28,7 +28,7 @@ def before_request():
         _args = request.args
     logger.debug(
         '{}_{} begin \nargs:{}\ndata:{}\nheaders:\n{}'.format(
-            request.method, request.url,  _args,
+            request.method, request.url, _args,
             request.data, ''.join(
                 ['header {}: {}\n'.format(k, v) for k, v in
                  request.headers])
@@ -39,7 +39,8 @@ def before_request():
 
     logger.debug(g.ip)
 
-    CATEGORYS = ['python', 'mysql', 'git', 'ansible', 'js', 'mac', 'algorithm','linux']
+    CATEGORYS = ['python', 'mysql', 'git', 'ansible', 'js', 'mac', 'algorithm',
+                 'linux', 'html']
     file_list = os.listdir(BaseConfig.ARTICLE_DIR)
     categorys = set([o.split('-', 1)[0] for o in file_list])
     categorys = list(filter(lambda x: x in CATEGORYS, categorys))
@@ -63,7 +64,7 @@ def after_request(response):
         return response
     elapsed = datetime.utcnow().timestamp() - g.request_start_time
     req_info = '{}_{} end time_used:{}'.format(
-         request.method,
+        request.method,
         request.url, elapsed
     )
     logger.debug(req_info)

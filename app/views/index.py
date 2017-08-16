@@ -12,6 +12,7 @@ from flask import Blueprint
 from flask import render_template
 from flask import request
 from flask import g
+from flask import jsonify
 from functools import wraps
 import os
 import mistune
@@ -74,7 +75,7 @@ def generator_category_md_content(category, level):
             profix = '专辑'
         else:
             profix = '文章'
-        article.append('- [{}] [{}]({})'.format(profix,mf.title, mf.route))
+        article.append('- [{}] [{}]({})'.format(profix, mf.title, mf.route))
     return '\n'.join(article)
 
 
@@ -87,6 +88,15 @@ def article(category, year, month, day, name):
     md = Markdown(file)
     return render_template('index.html', article=md)
 
-@index_bp.route('/test')
+
+@index_bp.route('/test',methods=['POST','GET'])
 def test():
-    return 'hello world??'
+    res = {
+        'headers': dict(request.headers),
+        'args': request.args,
+        'json': request.json,
+        'form': request.form,
+        'data': str(request.data)
+    }
+
+    return jsonify(res)
