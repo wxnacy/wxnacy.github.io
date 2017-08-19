@@ -1,4 +1,4 @@
-# python 如何构建完整项目: 配置PYTHONPATH(了解python导入模块搜索路径运作原理)
+# python 配置PYTHONPATH(了解python导入模块搜索路径运作原理)
 专辑: [python 如何构建完整项目](/python/2017/08/15/album-build-project)
 
 > python项目导入模块是必不可少的，大多数情况下，可以以来模块导入搜索路径的自动特性，完全不需要配置路径。不过，如果你想在用户间定义目录边界来导入文件，就需要知道搜索路径是如何运作的。

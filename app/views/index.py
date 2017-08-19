@@ -16,6 +16,9 @@ from flask import jsonify
 from functools import wraps
 import os
 import mistune
+import re
+
+RE_DATE = re.compile('\d{4}/\d{2}/\d{2}')
 
 index_bp = Blueprint('index', __name__)
 renderer = mistune.Renderer(escape=True, hard_wrap=True)
@@ -66,16 +69,19 @@ def generator_category_md_content(category, level):
     file_list.sort()
     article = []
     article.append('{} {}'.format('#' * level, category))
+    items = []
     for file in file_list:
         mf = Markdown(file)
-        profix = ''
-        if 'item' in mf.route:
-            profix = '文章'
-        elif 'album' in mf.route:
-            profix = '专辑'
-        else:
-            profix = '文章'
-        article.append('- [{}] [{}]({})'.format(profix, mf.title, mf.route))
+        profix = '专辑' if 'album' in mf.route else '文章'
+        res = re.findall(RE_DATE, mf.route)
+        date = ''
+        if res:
+            date = res[0]
+        items.append(
+            '- {} [{}] [{}]({})'.format(date, profix, mf.title, mf.route))
+        items.sort(reverse=True)
+    article.extend(items)
+
     return '\n'.join(article)
 
 
@@ -89,7 +95,7 @@ def article(category, year, month, day, name):
     return render_template('index.html', article=md)
 
 
-@index_bp.route('/test',methods=['POST','GET'])
+@index_bp.route('/test', methods=['POST', 'GET'])
 def test():
     res = {
         'headers': dict(request.headers),

@@ -1,4 +1,4 @@
-# mysql索引的增删查
+# mysql 索引的增删查
 
 原文：[http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html](http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html)
 

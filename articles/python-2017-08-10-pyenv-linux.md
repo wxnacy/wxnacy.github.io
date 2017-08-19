@@ -21,3 +21,13 @@ sudo yum install sqlite-devel
 sudo yum install bzip2-devel bzip2-libs
 ```
 
+## 升级
+```bash
+$ pyenv update
+```
+## 卸载
+```bash
+rm -rf ~/.pyenv
+然后把~/.bash_profile环境变量配置中的添加的删掉
+```
+

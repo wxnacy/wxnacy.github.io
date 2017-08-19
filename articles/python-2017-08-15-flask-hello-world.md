@@ -1,4 +1,4 @@
-# python 如何构建完整项目: flask 构建第一个项目
+# flask 运行hello world
 专辑: [python 如何构建完整项目](/python/2017/08/15/album-build-project)
 ## 新建项目myproject
 首先新建myproject文件夹当做工作目录，进入目录pip下flask依赖包，创建并编辑run.py
@@ -37,7 +37,7 @@ hello world%
 ```
 
 ### 外部可访问服务器
-```bash
+```python
 app.run(host='0.0.0.0')
 ```
 

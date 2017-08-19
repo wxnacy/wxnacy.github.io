@@ -1,4 +1,4 @@
-# python 如何构建完整项目: 使用gunicorn启动你的项目
+# 使用 gunicorn 启动你的项目
 
 专辑: [python 如何构建完整项目](/python/2017/08/15/album-build-project)
 
