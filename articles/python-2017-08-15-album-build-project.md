@@ -32,4 +32,4 @@ supervisor
 
 ## supervisor
 
-- [使用 supervisor 管理进程](/python/2017/08/15/basic-supervisor)
+- [使用 supervisor 管理进程](/python/2017/08/18/basic-supervisor)
