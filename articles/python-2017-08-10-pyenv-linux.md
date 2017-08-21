@@ -1,9 +1,15 @@
 # linux 环境下安装pyenv和virtualenv虚拟机
 废话不多直接上命令
 ## 下载
+CentOS:
 ```bash
 curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
 ```
+Ubuntu
+```bash
+apt-get -y install git gcc make patch zlib1g.dev libgdbm-dev libssl-dev libsqlite3-dev libbz2-dev libreadline-dev
+```
+
 ## 配置环境变量
 vim ~/.bash_profile
 ```bash
