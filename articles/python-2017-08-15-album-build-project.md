@@ -30,7 +30,7 @@ supervisor
 
 ## pigar
 
-- [python 使用pigar管理requirements.txt](/python/2017/08/15/pigar)
+- [python 使用pigar管理requirements.txt](/python/2017/08/19/pigar)
 
 ## gunicorn
 - [使用 gunicorn 启动你的项目](/python/2017/08/15/gunicorn-run)
