@@ -7,6 +7,11 @@ gunicorn
 pigar
 supervisor
 ```
+## python基础
+
+- [Python编程规范](http://pan.baidu.com/s/1boX8P6v) 密码:p73y
+- [Python编码Yes or No.pdf](http://pan.baidu.com/s/1skNCT7v) 密码:5tta
+
 
 ## pyenv和virtualenv
 > pyenv 是一款特别好用的Python版本管理器，使用它我们可以在不同的项目使用不同的python版本，并且互不影响。github项目地址：https://github.com/yyuu/pyenv
