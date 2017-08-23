@@ -26,3 +26,14 @@ create table `visit_log`(
   update_ts timestamp not null default current_timestamp on update current_timestamp comment '修改时间',
   primary key(`id`)
 ) engine=InnoDB default charset=utf8mb4 comment '访问日志表';
+
+drop table if exists `crawler`;
+create table `crawler`(
+	id int(11) not null auto_increment,
+	url varchar(512) not null comment '地址',
+	ext JSON null comment '扩展',
+	is_del tinyint(1) not null default 0 comment '是否删除',
+	create_ts timestamp not null default current_timestamp comment '创建时间',
+	update_ts timestamp not null default current_timestamp on update current_timestamp comment '修改时间',
+	primary key(`id`)
+)engine=InnoDB default charset=utf8mb4 comment '爬虫表';

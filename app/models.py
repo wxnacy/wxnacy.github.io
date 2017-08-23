@@ -12,6 +12,16 @@ from sqlalchemy.orm import backref as b
 from flask import request
 
 
+class Crawler(BaseModel, db.Model):
+    __tablename__ = 'crawler'
+    id = db.Column(db.INT, primary_key=True)
+    url = db.Column(db.String)
+    ext = db.Column(db.JSON, default={})
+    is_del = db.Column(db.INT, default=0)
+    create_ts = db.Column(db.TIMESTAMP, default=datetime.now())
+    update_ts = db.Column(db.TIMESTAMP, default=datetime.now())
+
+
 class VisitUser(BaseModel, db.Model):
     __tablename__ = 'visit_user'
     id = db.Column(db.INT, primary_key=True)
