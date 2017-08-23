@@ -1,4 +1,4 @@
-# linux curl使用指南
+# Linux curl使用指南
 原文: [http://www.ruanyifeng.com/blog/2011/09/curl.html](http://www.ruanyifeng.com/blog/2011/09/curl.html)
 
 >  curl是一种命令行工具，作用是发出网络请求，然后得到和提取数据，显示在"标准输出"（stdout）上面。

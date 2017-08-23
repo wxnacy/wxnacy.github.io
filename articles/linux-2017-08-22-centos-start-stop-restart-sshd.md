@@ -1,4 +1,4 @@
-# linux CentOS 各个版本启动SSHD服务命令
+# Linux CentOS 各个版本启动SSHD服务命令
 
 > 本篇介绍如何在 CentOS 系统中怎样启动sshd服务，如何开机自启
 
