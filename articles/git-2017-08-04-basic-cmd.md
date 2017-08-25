@@ -19,7 +19,11 @@ git commit -m 'remove'
 git pull origin master
 git push origin master
 ```
-
+## 修改用户信息
+```bash
+git config --global user.name wxnacy
+git config --global user.email xxx@qq.com
+```
 
 ## 记住密码
 ```bash
