@@ -45,3 +45,9 @@ wget
 ```bash
 $ sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 ```
+
+最后修改zshrc兼容bash_profile的环境变量
+```bash
+$ vim ~/.zshrc
+$ source ~/.bash_profile
+```
