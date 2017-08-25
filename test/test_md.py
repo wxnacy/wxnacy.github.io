@@ -8,7 +8,6 @@ import mistune
 import os
 
 
-
 if __name__ == '__main__':
     renderer = mistune.Renderer(escape=True, hard_wrap=True)
     m = mistune.Markdown(renderer=renderer)
