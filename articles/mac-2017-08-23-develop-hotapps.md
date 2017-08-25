@@ -3,6 +3,7 @@
 ## 操作设置
 - 打开三指拖动：https://support.apple.com/zh-cn/HT204609
 - 打开轻点来点按：设置==》触控板==》光标与点按
+- 修改修饰键：https://support.apple.com/kb/PH7099?locale=zh_CN&viewlocale=zh_CN
 
 ## 软件
 - Chrome 

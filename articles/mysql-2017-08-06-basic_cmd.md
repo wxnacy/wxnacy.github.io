@@ -1,5 +1,11 @@
 # mysql 基础命令
 
+## 数据库
+- 创建库
+```mysql
+create database name character utf8mb4;
+```
+
 ## 表结构
 - 创建表
 ```mysql
