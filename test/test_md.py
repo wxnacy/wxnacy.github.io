@@ -7,6 +7,7 @@ __copyright__ = "Copyright of wxnacy (2017)."
 import mistune
 import os
 
+
 if __name__ == '__main__':
     renderer = mistune.Renderer(escape=True, hard_wrap=True)
     m = mistune.Markdown(renderer=renderer)
