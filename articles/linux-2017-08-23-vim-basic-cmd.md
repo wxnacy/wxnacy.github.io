@@ -132,3 +132,119 @@ ZZ	                這是大寫的 Z 喔！若檔案沒有更動，則不儲存�
 :set nu	    顯示行號，設定之後，會在每一列的字首顯示該列的行號
 :set nonu	與 set nu 相反，為取消行號！
 ```
+## 额外功能
+### vim 的保存文件、恢复与打开时的警告信息
+當我們在使用 vim 編輯時， vim 會在與被編輯的檔案的目錄下，再建立一個名為 .filename.swp 的檔案。 比如說我們在上一個小節談到的編輯 /tmp/vitest/man_db.conf 這個檔案時， vim 會主動的建立 /tmp/vitest/.man_db.conf.swp 的暫存檔，你對 man_db.conf 做的動作就會被記錄到這個 .man_db.conf.swp 當中喔！如果你的系統因為某些原因斷線了， 導致你編輯的檔案還沒有儲存，這個時候 .man_db.conf.swp 就能夠發揮救援的功能了！我們來測試一下吧！ 底下的練習有些部分的指令我們尚未談到，沒關係，你先照著做，後續再回來瞭解囉！
+```bash
+$ cd /tmp/vitest
+$ vim man_db.conf
+# 此時會進入到 vim 的畫面，請在 vim 的一般指令模式下按下『 [ctrl]-z 』的組合鍵
+
+[1]+  Stopped             vim man_db.conf  <==按下 [ctrl]-z 會告訴你這個訊息
+```
+當我們在 vim 的一般指令模式下按下 [ctrl]-z 的組合按鍵時，你的 vim 會被丟到背景去執行。回到命令提示字元後，接下來我們來模擬將 vim 的工作不正常的中斷吧！
+```bash
+$ ls -al
+drwxrwxr-x.  2 dmtsai dmtsai    69 Jul  6 23:54 .
+drwxrwxrwt. 17 root   root    4096 Jul  6 23:53 ..
+-rw-r--r--.  1 dmtsai dmtsai  4850 Jul  6 23:47 man_db.conf
+-rw-r--r--.  1 dmtsai dmtsai 16384 Jul  6 23:54 .man_db.conf.swp  <==就是他，暫存檔
+-rw-rw-r--.  1 dmtsai dmtsai  5442 Jul  6 23:35 man.test.config
+
+$ kill -9 %1 <==這裡模擬斷線停止 vim 工作
+$ ls -al .man_db.conf.swp
+-rw-r--r--. 1 dmtsai dmtsai 16384 Jul  6 23:54 .man_db.conf.swp  <==暫存檔還是會存在！
+
+$ vim man_db.conf
+
+E325: ATTENTION  <==錯誤代碼
+Found a swap file by the name ".man_db.conf.swp"  <==底下數列說明有暫存檔的存在
+          owned by: dmtsai   dated: Mon Jul  6 23:54:16 2015
+         file name: /tmp/vitest/man_db.conf  <==這個暫存檔屬於哪個實際的檔案？
+          modified: no
+         user name: dmtsai   host name: study.centos.vbird
+        process ID: 31851
+While opening file "man_db.conf"
+             dated: Mon Jul  6 23:47:21 2015
+
+底下說明可能發生這個錯誤的兩個主要原因與解決方案！
+(1) Another program may be editing the same file.  If this is the case,
+    be careful not to end up with two different instances of the same
+    file when making changes.  Quit, or continue with caution.
+(2) An edit session for this file crashed.
+    If this is the case, use ":recover" or "vim -r man_db.conf"
+    to recover the changes (see ":help recovery").
+    If you did this already, delete the swap file ".man_db.conf.swp"
+    to avoid this message.
+
+Swap file ".man_db.conf.swp" already exists! 底下說明你可進行的動作
+[O]pen Read-Only, (E)dit anyway, (R)ecover, (D)elete it, (Q)uit, (A)bort:  
+```
+再次打开文件时，会出现六个按钮，他们的作用依次是：
+
+```bash
+[O]pen Read-Only：打開此檔案成為唯讀檔， 可以用在你只是想要查閱該檔案內容並不想要進行編輯行為時。一般來說，在上課時，如果你是登入到同學的電腦去看他的設定檔， 結果發現其實同學他自己也在編輯時，可以使用這個模式；
+
+(E)dit anyway：還是用正常的方式打開你要編輯的那個檔案， 並不會載入暫存檔的內容。不過很容易出現兩個使用者互相改變對方的檔案等問題！不好不好！
+
+(R)ecover：就是載入暫存檔的內容，用在你要救回之前未儲存的工作。 不過當你救回來並且儲存離開 vim 後，還是要手動自行刪除那個暫存檔喔！
+
+(D)elete it：你確定那個暫存檔是無用的！那麼開啟檔案前會先將這個暫存檔刪除！ 這個動作其實是比較常做的！因為你可能不確定這個暫存檔是怎麼來的，所以就刪除掉他吧！哈哈！
+
+(Q)uit：按下 q 就離開 vim ，不會進行任何動作回到命令提示字元。
+
+(A)bort：忽略這個編輯行為，感覺上與 quit 非常類似！ 也會送你回到命令提示字元就是囉！
+```
+
+### 多文件编辑
+
+很多同学任务高集成的IDE比vim好用，是因为vim不能操作一些事情，比如跨文件复制，但其实vim完全可以做到，首先下载文件：http://linux.vbird.org/linux_basic/0310vi/hosts 打开后如下所示:
+```bash
+192.168.1.1    host1.class.net
+192.168.1.2    host2.class.net
+192.168.1.3    host3.class.net
+192.168.1.4    host4.class.net
+.....中間省略......
+```
+
+我们再建一个新文件host2,并进行跨文件复制操作
+```bash
+$ touch host_copy
+$ vim hosts host_copy # 使用vim同时打开两个文件
+```
+下面我们会使用这几个命令
+```bash
+:n	    編輯下一個檔案
+:N	    編輯上一個檔案
+:files	列出目前這個 vim 的開啟的所有檔案
+```
+
+```bash
+:files      # 再打开文件后一般模式下使用改名了查看有几个文件
+
+:files
+  1 %a   "hosts"                        line 1      # %a代表当前编辑的文件
+  2      "host2"                        line 0
+
+# 使用gg切换到第一行，使用4yy复制前四行
+:n          # 指令该命令编辑下一个文件
+
+# 使用p将刚才复制的内容粘贴到该文件中使用:q退出编辑并查看host2会发现刚才的内容已经复制过来了
+```
+
+
+
+
+
+
+```bash
+v	        字元選擇，會將游標經過的地方反白選擇！
+V	        列選擇，會將游標經過的列反白選擇！
+[Ctrl]+v    區塊選擇，可以用長方形的方式選擇資料
+y	        將反白的地方複製起來
+d	        將反白的地方刪除掉
+p	        將剛剛複製的區塊，在游標所在處貼上！
+```
+
+
+

@@ -40,7 +40,7 @@ def before_request():
     logger.debug(g.ip)
 
     CATEGORYS = ['python', 'mysql', 'git', 'ansible', 'js', 'mac', 'algorithm',
-                 'linux', 'html','openresty']
+                 'linux', 'html','openresty','shell']
     file_list = os.listdir(BaseConfig.ARTICLE_DIR)
     categorys = set([o.split('-', 1)[0] for o in file_list])
     categorys = list(filter(lambda x: x in CATEGORYS, categorys))
