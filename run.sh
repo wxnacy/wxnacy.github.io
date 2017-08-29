@@ -11,7 +11,8 @@ deploy_tag(){
     kill -9 `ps aux | grep gunicorn_config.py | awk '{print $2}'`
 #    git pull
     source env.sh
-    nohup gunicorn -c gunicorn_config.py run:app >nohup-`date +%Y-%m-%d`.log 2>&1 &
+    nohup gunicorn -c gunicorn_config.py run:app &
+    #nohup gunicorn -c gunicorn_config.py run:app >nohup-`date +%Y-%m-%d`.log 2>&1 &
 #    gunicorn -w 2  -b 0.0.0.0:8002 run:app --log-file debug.log
 #    --access-logfile access.log \
 
