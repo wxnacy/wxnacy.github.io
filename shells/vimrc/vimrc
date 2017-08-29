@@ -97,6 +97,20 @@ set mouse=a       				"启用鼠标"
 
 
 "===============================
-" 快捷键设置
+" Python 工作环境 
 "==============================
+autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
+autocmd BufNewFile *.py exec ":call NewPyFile()"
+function! NewPyFile()
+    if &filetype == 'python'
+        call setline(1, "\#!/usr/bin/env python")
+        call append(1, "\# -*- coding:utf-8 -*-")
+        call append(1, "\# Author: wxnacy")
+        call append(1, "\# Email: wxnacy@gmail.com")
+        call append(1, "\# Description: ")
+    endif
 
+    normal G
+    normal o
+    normal o
+endfunc
