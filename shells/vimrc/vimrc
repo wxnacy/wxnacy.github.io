@@ -99,18 +99,32 @@ set mouse=a       				"启用鼠标"
 "===============================
 " Python 工作环境 
 "==============================
-autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
+autocmd FileType python set tabstop=4 shiftwidth=4 textwidth=79 expandtab ai
 autocmd BufNewFile *.py exec ":call NewPyFile()"
 function! NewPyFile()
     if &filetype == 'python'
         call setline(1, "\#!/usr/bin/env python")
         call append(1, "\# -*- coding:utf-8 -*-")
-        call append(1, "\# Author: wxnacy")
-        call append(1, "\# Email: wxnacy@gmail.com")
-        call append(1, "\# Description: ")
+        call append(2, "\# Author: wxnacy")
+        call append(3, "\# Email: wxnacy@gmail.com")
+        call append(4, "\# Description: ")
     endif
 
     normal G
     normal o
     normal o
 endfunc
+
+
+"===============================
+" 安装插件
+"===============================
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'altercation/vim-colors-solarized'
+colorscheme solarized
+call vundle#end()            " required
