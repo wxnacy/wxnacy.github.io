@@ -6,11 +6,18 @@ filter 与 filter_by 语法稍有不同
 User.query.filter_by(id=1,name='win').first()
 User.query.filter(User.id==1,User.name == 'win').first()
 ```
+## in
+```python
+sql = User.query.filter(User.id.in_([1,2]))
+print(sql)
+
+> select * from user where id in (1,2)
+```
 
 ## or
 ```python
 from sqlalchemy import or_
-sql = User.query.filter(or_(User.name == 'winn',User.mobile == '183'),User.email == '371');
+sql = User.query.filter(or_(User.name == 'winn',User.mobile == '183'),User.email == '371')
 print(sql)
 
 > select * from user where (name = 'winn' or mobile = '183') and email= '371'
