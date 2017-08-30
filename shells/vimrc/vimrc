@@ -25,10 +25,10 @@ set novisualbell                "关掉可视化响铃警报
 set noerrorbells                "关掉错误警报
 set visualbell t_vb=            "关掉警报 
 set tm=500
-
+set t_Co=256
 " leader
-let mapleader = ','
-let g:mapleader = ','
+let mapleader = ';'
+let g:mapleader = ';'
 
 " filetype
 filetype on                     "开启文件类型检测
@@ -82,7 +82,7 @@ set tabstop=4                   "键入<tab>的步长
 set softtabstop=4                " insert mode tab and backspace use 4 spaces
     
 " status line
-set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
+" set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
 set laststatus=2   " Always show the status line - use 2 lines for the status bar
 
 
@@ -100,6 +100,7 @@ set mouse=a       				"启用鼠标"
 " Python 工作环境 
 "==============================
 autocmd FileType python set tabstop=4 shiftwidth=4 textwidth=79 expandtab ai
+autocmd FileType html set tabstop=2 shiftwidth=2 expandtab ai
 autocmd BufNewFile *.py exec ":call NewPyFile()"
 function! NewPyFile()
     if &filetype == 'python'
@@ -122,9 +123,131 @@ endfunc
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'altercation/vim-colors-solarized'
+Plugin 'gmarik/Vundle.vim'                                                  " 插件管理
+Plugin 'Valloric/YouCompleteMe'                                             " 代码补全
+Plugin 'altercation/vim-colors-solarized'                                   " 配色方案
 colorscheme solarized
+Plugin 'thinca/vim-quickrun'                                                " 快速执行
+Plugin 'bling/vim-airline'                                                  " 状态栏
+Plugin 'junegunn/vim-easy-align'                                            " 快速对齐
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'jistr/vim-nerdtree-tabs'
 call vundle#end()            " required
+            
+"===============================
+" YouCompleterMe 配置
+"===============================
+"let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+"let g:ycm_error_symbol = '>>'
+"let g:ycm_warning_symbol = '>*'
+"l打开vim时不再询问是否加载ycm_extra_conf.py配置"
+"let g:ycm_confirm_extra_conf=0
+"let completeopt=longest,menu
+"lpython解释器路径"
+"let g:ycm_path_to_python_interpreter='/Users/wxnacy/.pyenv/shims/python'
+"l是否开启语义补全"
+"let g:ycm_seed_identifiers_with_syntax=1
+"l是否在注释中也开启补全"
+"let g:ycm_complete_in_comments=1
+"let g:ycm_collect_identifiers_from_comments_and_strings = 0
+"l开始补全的字符数"
+"let g:ycm_min_num_of_chars_for_completion=2
+"l补全后自动关机预览窗口"
+"let g:ycm_autoclose_preview_window_after_completion=1
+"l 禁止缓存匹配项,每次都重新生成匹配项"
+"let g:ycm_cache_omnifunc=0
+"l字符串中也开启补全"
+"let g:ycm_complete_in_strings=1
+"l离开插入模式后自动关闭预览窗口"
+"lutocmd InsertLeave * if pumvisible() == 0|pclose|endif
+"l回车即选中当前项"
+inoremap <expr> <CR>       pumvisible() ? '<C-y>' : '<CR>'
+"上下左右键行为"
+"inoremap <expr> <Down>     pumvisible() ? '\<C-n>' : '\<Down>'
+"inoremap <expr> <Up>       pumvisible() ? '\<C-p>' : '\<Up>'
+"inoremap <expr> <PageDown> pumvisible() ? '\<PageDown>\<C-p>\<C-n>' : '\<PageDown>'
+"inoremap <expr> <PageUp>   pumvisible() ? '\<PageUp>\<C-p>\<C-n>' : '\<PageUp>'
+nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nmap <F4> :YcmDiags<CR>
+
+"===============================
+" quickrun 配置 
+"===============================
+let g:quickrun_config = {
+\   "_" : {
+\       "outputter" : "message",
+\   },
+\}
+
+let g:quickrun_no_default_key_mappings = 1
+nmap <Leader>r <Plug>(quickrun)
+map <F10> :QuickRun<CR>
+
+"===============================
+" airline 配置 
+"===============================
+if !exists('g:airline_symbols')
+let g:airline_symbols = {}
+endif
+let g:airline_left_sep       = '▶'
+let g:airline_left_alt_sep   = '❯'
+let g:airline_right_sep      = '◀'
+let g:airline_right_alt_sep  = '❮'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+
+" 是否打开tabline
+" let g:airline#extensions#tabline#enabled = 1
+
+
+"===============================
+" airline 配置 
+"===============================
+vmap <Leader>a <Plug>(EasyAlign)
+nmap <Leader>a <Plug>(EasyAlign)
+if !exists('g:easy_align_delimiters')
+  let g:easy_align_delimiters = {}
+endif
+let g:easy_align_delimiters['#'] = { 'pattern': '#', 'ignore_groups': ['String'] }
+
+"===============================
+" NERDTree 配置 
+"===============================
+autocmd vimenter * NERDTree     " 启动vim默认打开菜单
+map q :NERDTreeToggle<CR>       " 快速打开隐藏菜单栏
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif           " 关闭vim时，如果打开的文件除了NERDTree没有其他文件时，它自动关闭，减少多次按:q!。
+let NERDTreeShowLineNumbers=1   " 是否显示菜单行号
+" let NERDTreeAutoCenter=1
+let NERDTreeShowHidden=1        " 是否显示隐藏文件
+" let NERDTreeWinSize=31          " 设置宽度
+let NERDTreeIgnore=['\.pyc','\~$','\.swp','\.class','\.git$','\.DS_Store','__pycache__','\.idea','\.cache']  " 忽略文件显示
+let NERDTreeShowBookmarks=1     " 显示书签列表
+let NERDTreeHighlightCursorline = 1 " 高亮当前行
+let NERDTreeQuitOnOpen = 1      " 从菜单打开文件后关闭菜单
+let NERDTreeWinPos ="left"      " 设置菜单在左侧打开，默认值
+
+"===============================
+" NERDTree-git-plugin 配置
+"===============================
+let g:nerdtree_tabs_open_on_console_startup=1
+
+
+"===============================
+" NERDTree-git-plugin 配置
+"===============================
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+let g:NERDTreeShowIgnoredStatus = 1
