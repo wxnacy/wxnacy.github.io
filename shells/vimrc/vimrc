@@ -1,9 +1,9 @@
 "===============================
 " Author: wxnacy
 " Email: wxnacy@gmail.com
-" Create time: 
+" Create time:
 " Last Modified: 2017-08-27
-" Description: 
+" Description:
 "===============================
 
 
@@ -20,10 +20,10 @@ set history=2003                "记录VIM历史操作的条数
 set autoread					"文件在vim外修改过自动重新载入
 set magic                       "magic (\m)：除了 $ . * ^ 之外其他元字符都要加反斜杠。nomagic (\M)：除了 $ ^ 之外其他元字符都要加反斜杠。
 set title
-set nobackup                    "去掉编辑文件时的备份 
+set nobackup                    "去掉编辑文件时的备份
 set novisualbell                "关掉可视化响铃警报
 set noerrorbells                "关掉错误警报
-set visualbell t_vb=            "关掉警报 
+set visualbell t_vb=            "关掉警报
 set tm=500
 set t_Co=256
 " leader
@@ -46,11 +46,11 @@ set ffs=unix,dos,mac            "在创建文件或写入时，这三种文件�
 set formatoptions+=m
 set formatoptions+=B
 
-" 主题 
+" 主题
 set background=dark       		"配色主题的色系,注意，这不是什么背景色！dark 是暗色系，light 是亮色系。
-colorscheme desert              "配色主题的名称,:coloscheme 后键入<tab>可以自动补全 比较喜欢的desert,peachpuff,torte,elfload,slate 
+colorscheme desert              "配色主题的名称,:coloscheme 后键入<tab>可以自动补全 比较喜欢的desert,peachpuff,torte,elfload,slate
 
-" show 
+" show
 set number						"显示行号"
 set ruler						"显示当前光标行号和列
 set nowrap    					"设置不折行"
@@ -80,7 +80,7 @@ set shiftround                  "在一般模式下键入>>整个缩进shiftwidt
 set shiftwidth=4                "缩进的空格数
 set tabstop=4                   "键入<tab>的步长
 set softtabstop=4                " insert mode tab and backspace use 4 spaces
-    
+
 " status line
 " set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
 set laststatus=2   " Always show the status line - use 2 lines for the status bar
@@ -94,10 +94,23 @@ set scrolloff=5        			"距离顶部和底部5行"
 set backspace=2					"任何情况允许使用退格键删除
 set mouse=a       				"启用鼠标"
 
+" map
+map <Leader>sa ggVG             " 选中全部
+map <Leader>q :q<CR>            " 快速推出
+map <Leader>w :w<CR>            " 快速保存
+map <Leader>wq :wq<CR>          " 快速保存推出
+nmap <Leader>nh :nohls<CR>      " 常规模式下单行右移
+nmap <tab> V>                   " 常规模式下单行右移
+nmap <s-tab> V<                 " 常规模式下单行左移
+vmap <tab> >gv                  " 可视化模式下选中左移
+vmap <s-tab> <gv                  " 可视化模式下选中右移
+cmap <C-a> <Home>
+cmap <C-e> <End>
+
 
 
 "===============================
-" Python 工作环境 
+" Python 工作环境
 "==============================
 autocmd FileType python set tabstop=4 shiftwidth=4 textwidth=79 expandtab ai
 autocmd FileType html set tabstop=2 shiftwidth=2 expandtab ai
@@ -123,18 +136,24 @@ endfunc
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'gmarik/Vundle.vim'                                                  " 插件管理
-Plugin 'Valloric/YouCompleteMe'                                             " 代码补全
-Plugin 'altercation/vim-colors-solarized'                                   " 配色方案
+Plugin 'gmarik/Vundle.vim'                  " 插件管理
+Plugin 'Valloric/YouCompleteMe'             " 代码补全
+Plugin 'altercation/vim-colors-solarized'   " 配色方案
 colorscheme solarized
-Plugin 'thinca/vim-quickrun'                                                " 快速执行
-Plugin 'bling/vim-airline'                                                  " 状态栏
-Plugin 'junegunn/vim-easy-align'                                            " 快速对齐
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'thinca/vim-quickrun'                " 快速执行
+Plugin 'bling/vim-airline'                  " 状态栏
+Plugin 'junegunn/vim-easy-align'            " 快速对齐
+Plugin 'scrooloose/nerdtree'                " 显示文件菜单栏”
+Plugin 'Xuyuanp/nerdtree-git-plugin'        " 配合nerdtree，显示文件git提交信息
+Plugin 'jistr/vim-nerdtree-tabs'            " 配合nerdtree，多tab显示一个nerdtree
+Plugin 'sjl/gundo.vim'                      " 查看文件编辑历史记录
+Plugin 'bronson/vim-trailing-whitespace'    " 快速去掉行尾空格
+Plugin 'majutsushi/tagbar'                  " 文件标签菜单
+Plugin 'scrooloose/nerdcommenter'           " 快速注释
+Plugin 'docunext/closetag.vim'              " 编辑xml/html,自动补全闭合标签
+Plugin 'mattn/emmet-vim'                    " 编辑html神器
 call vundle#end()            " required
-            
+
 "===============================
 " YouCompleterMe 配置
 "===============================
@@ -174,20 +193,19 @@ nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nmap <F4> :YcmDiags<CR>
 
 "===============================
-" quickrun 配置 
+" quickrun 配置
 "===============================
 let g:quickrun_config = {
 \   "_" : {
 \       "outputter" : "message",
 \   },
 \}
-
 let g:quickrun_no_default_key_mappings = 1
 nmap <Leader>r <Plug>(quickrun)
 map <F10> :QuickRun<CR>
 
 "===============================
-" airline 配置 
+" airline 配置
 "===============================
 if !exists('g:airline_symbols')
 let g:airline_symbols = {}
@@ -204,7 +222,7 @@ let g:airline_symbols.branch = '⎇'
 
 
 "===============================
-" airline 配置 
+" EasyAlign 配置
 "===============================
 vmap <Leader>a <Plug>(EasyAlign)
 nmap <Leader>a <Plug>(EasyAlign)
@@ -214,7 +232,7 @@ endif
 let g:easy_align_delimiters['#'] = { 'pattern': '#', 'ignore_groups': ['String'] }
 
 "===============================
-" NERDTree 配置 
+" NERDTree 配置
 "===============================
 autocmd vimenter * NERDTree     " 启动vim默认打开菜单
 map q :NERDTreeToggle<CR>       " 快速打开隐藏菜单栏
@@ -226,7 +244,7 @@ let NERDTreeShowHidden=1        " 是否显示隐藏文件
 let NERDTreeIgnore=['\.pyc','\~$','\.swp','\.class','\.git$','\.DS_Store','__pycache__','\.idea','\.cache']  " 忽略文件显示
 let NERDTreeShowBookmarks=1     " 显示书签列表
 let NERDTreeHighlightCursorline = 1 " 高亮当前行
-let NERDTreeQuitOnOpen = 1      " 从菜单打开文件后关闭菜单
+" let NERDTreeQuitOnOpen = 1      " 从菜单打开文件后关闭菜单
 let NERDTreeWinPos ="left"      " 设置菜单在左侧打开，默认值
 
 "===============================
@@ -251,3 +269,73 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 let g:NERDTreeShowIgnoredStatus = 1
+
+
+"===============================
+" gundo 配置
+"===============================
+nnoremap <leader>h :GundoToggle<CR>
+
+
+"===============================
+" whitespace 配置
+"===============================
+map <leader><space> :FixWhitespace<cr>
+
+
+"===============================
+" tagbar 配置
+"===============================
+nmap t :TagbarToggle<CR>
+" 启动时自动focus
+let g:tagbar_autofocus = 1
+let g:tagbar_width=30           " 设置宽度
+" for md
+let g:tagbar_type_markdown = {
+    \ 'ctagstype' : 'markdown',
+    \ 'kinds' : [
+        \ 'h:Heading_L1',
+        \ 'i:Heading_L2',
+        \ 'k:Heading_L3'
+    \ ]
+\ }
+"et g:tagbar_type_markdown = {
+"   \ 'ctagstype': 'markdown',
+"   \ 'ctagsbin' : '~/.vim/bundle/markdown2ctags/markdown2ctags.py',
+"   \ 'ctagsargs' : '-f - --sort=yes',
+"   \ 'kinds' : [
+"       \ 's:sections',
+"       \ 'i:images'
+"   \ ],
+"   \ 'sro' : '|',
+"   \ 'kind2scope' : {
+"       \ 's' : 'section',
+"   \ },
+"   \ 'sort': 0,
+" }
+" for ruby, delete if you do not need
+let g:tagbar_type_ruby = {
+    \ 'kinds' : [
+        \ 'm:modules',
+        \ 'c:classes',
+        \ 'd:describes',
+        \ 'C:contexts',
+        \ 'f:methods',
+        \ 'F:singleton methods'
+    \ ]
+\ }
+
+"===============================
+" nerdcommenter 配置
+"===============================
+let g:NERDSpaceDelims = 1       " 注释后添加空格
+
+"===============================
+" closetag 配置
+"===============================
+let g:closetag_html_style=1
+
+"===============================
+" emment-vim 配置
+"===============================
+let g:user_emmet_leader_key='<C-Z>'     " 设置快捷键
