@@ -152,6 +152,12 @@ Plugin 'majutsushi/tagbar'                  " 文件标签菜单
 Plugin 'scrooloose/nerdcommenter'           " 快速注释
 Plugin 'docunext/closetag.vim'              " 编辑xml/html,自动补全闭合标签
 Plugin 'mattn/emmet-vim'                    " 编辑html神器
+Plugin 'scrooloose/syntastic'               " 语法检查
+Plugin 'jiangmiao/auto-pairs'               " 成对标签自动补全
+Plugin 'kshenoy/vim-signature'              " 书签展示以及快速跳转 增强vim的书签功能
+Plugin 'Lokaltog/vim-easymotion'            " 快速跳转"
+Plugin 'tpope/vim-surround'                 " 快速给词添加符号环绕"
+Plugin 'tpope/vim-repeat'                   " 重复一个插件的操作"
 call vundle#end()            " required
 
 "===============================
@@ -339,3 +345,46 @@ let g:closetag_html_style=1
 " emment-vim 配置
 "===============================
 let g:user_emmet_leader_key='<C-Z>'     " 设置快捷键
+
+"===============================
+" syntastic 配置
+"===============================
+" execute pathogen#infect()
+let g:syntastic_error_symbol='>>'
+let g:syntastic_warning_symbol='>'
+let g:syntastic_check_on_open=1
+let g:syntastic_check_on_wq=0
+let g:syntastic_enable_highlighting=1
+let g:syntastic_python_checkers=['pyflakes'] " 使用pyflakes,速度比pylint快
+let g:syntastic_javascript_checkers = ['jsl', 'jshint']
+let g:syntastic_html_checkers=['tidy', 'jshint']
+" 修改高亮的背景色, 适应主题
+highlight SyntasticErrorSign guifg=white guibg=black
+
+" to see error location list
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_loc_list_height = 5
+function! ToggleErrors()
+    let old_last_winnr = winnr('$')
+    lclose
+    if old_last_winnr == winnr('$')
+        " Nothing was closed, open syntastic error location panel
+        Errors
+    endif
+endfunction
+nmap <Leader>e :call ToggleErrors()<cr>
+nnoremap <Leader>en :lnext<cr>
+nnoremap <Leader>ep :lprevious<cr>
+
+"===============================
+" easymotion 配置
+"===============================
+let g:EasyMotion_smartcase = 1
+"let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
+map <Leader><leader>h <Plug>(easymotion-linebackward)
+map <Leader><Leader>j <Plug>(easymotion-j)
+map <Leader><Leader>k <Plug>(easymotion-k)
+map <Leader><leader>l <Plug>(easymotion-lineforward)
+" 重复上一次操作, 类似repeat插件, 很强大
+map <Leader><leader>. <Plug>(easymotion-repeat)
