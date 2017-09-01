@@ -158,6 +158,7 @@ Plugin 'kshenoy/vim-signature'              " 书签展示以及快速跳转 增
 Plugin 'Lokaltog/vim-easymotion'            " 快速跳转"
 Plugin 'tpope/vim-surround'                 " 快速给词添加符号环绕"
 Plugin 'tpope/vim-repeat'                   " 重复一个插件的操作"
+Plugin 'terryma/vim-expand-region'          " 区域选择
 call vundle#end()            " required
 
 "===============================
@@ -247,7 +248,7 @@ let NERDTreeShowLineNumbers=1   " 是否显示菜单行号
 " let NERDTreeAutoCenter=1
 let NERDTreeShowHidden=1        " 是否显示隐藏文件
 " let NERDTreeWinSize=31          " 设置宽度
-let NERDTreeIgnore=['\.pyc','\~$','\.swp','\.class','\.git$','\.DS_Store','__pycache__','\.idea','\.cache']  " 忽略文件显示
+let NERDTreeIgnore=['\.pyc','\~$','\.swp','\.class','\.git$','\.DS_Store','__pycache__','\.idea','\.cache','.python-version']  " 忽略文件显示
 let NERDTreeShowBookmarks=1     " 显示书签列表
 let NERDTreeHighlightCursorline = 1 " 高亮当前行
 " let NERDTreeQuitOnOpen = 1      " 从菜单打开文件后关闭菜单
@@ -388,3 +389,9 @@ map <Leader><Leader>k <Plug>(easymotion-k)
 map <Leader><leader>l <Plug>(easymotion-lineforward)
 " 重复上一次操作, 类似repeat插件, 很强大
 map <Leader><leader>. <Plug>(easymotion-repeat)
+
+"===============================
+" expand-region
+"===============================
+vmap v <Plug>(expand_region_expand)
+vmap V <Plug>(expand_region_shrink)
