@@ -152,6 +152,7 @@ Plugin 'majutsushi/tagbar'                  " 文件标签菜单
 Plugin 'scrooloose/nerdcommenter'           " 快速注释
 Plugin 'docunext/closetag.vim'              " 编辑xml/html,自动补全闭合标签
 Plugin 'mattn/emmet-vim'                    " 编辑html神器
+Plugin 'terryma/vim-expand-region'          " 区域选择
 call vundle#end()            " required
 
 "===============================
@@ -241,7 +242,7 @@ let NERDTreeShowLineNumbers=1   " 是否显示菜单行号
 " let NERDTreeAutoCenter=1
 let NERDTreeShowHidden=1        " 是否显示隐藏文件
 " let NERDTreeWinSize=31          " 设置宽度
-let NERDTreeIgnore=['\.pyc','\~$','\.swp','\.class','\.git$','\.DS_Store','__pycache__','\.idea','\.cache']  " 忽略文件显示
+let NERDTreeIgnore=['\.pyc','\~$','\.swp','\.class','\.git$','\.DS_Store','__pycache__','\.idea','\.cache','.python-version']  " 忽略文件显示
 let NERDTreeShowBookmarks=1     " 显示书签列表
 let NERDTreeHighlightCursorline = 1 " 高亮当前行
 " let NERDTreeQuitOnOpen = 1      " 从菜单打开文件后关闭菜单
@@ -339,3 +340,8 @@ let g:closetag_html_style=1
 " emment-vim 配置
 "===============================
 let g:user_emmet_leader_key='<C-Z>'     " 设置快捷键
+"===============================
+" expand-region
+"===============================
+vmap v <Plug>(expand_region_expand)
+vmap V <Plug>(expand_region_shrink)
