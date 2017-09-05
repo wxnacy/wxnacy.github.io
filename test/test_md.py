@@ -23,3 +23,5 @@ if __name__ == '__main__':
         #  res = m(f.read())
         #  print(res)
     print(utils.get_random_str(3))
+    print(os.getenv('hello'))
+    print(os.getenv('FLASK_CONFIG'))
