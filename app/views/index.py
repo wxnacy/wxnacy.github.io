@@ -17,16 +17,11 @@ from flask import g
 from flask import jsonify
 from functools import wraps
 import os
-import mistune
 import re
 
 RE_DATE = re.compile('\d{4}/\d{2}/\d{2}')
 
 index_bp = Blueprint('index', __name__)
-renderer = mistune.Renderer(escape=True, hard_wrap=True)
-# use this renderer instance
-md = mistune.Markdown(renderer=renderer)
-
 
 def visit_log(func):
     @wraps(func)
@@ -59,36 +54,11 @@ def index():
 @visit_log
 def category(category):
     '''文章分类'''
-    content = generator_category_md_content(category, 1)
-    md = Markdown(content=content)
     if category == 'category':
         md = Category.get_categorys_md()
+    else:
+        md = Category.get_md(category,1)
     return render_template('index.html', article=md)
-
-
-def generator_category_md_content(category, level):
-    """生成分类文章md内容"""
-    file_list = os.listdir(BaseConfig.ARTICLE_DIR)
-    file_list = list(filter(lambda x: x.startswith(category), file_list))
-    file_list = list(filter(lambda x: 'item' not in x, file_list))
-    file_list.sort()
-    article = []
-    article.append('{} {}'.format('#' * level, category))
-    items = []
-    for file in file_list:
-        mf = Markdown(file)
-        profix = '专辑' if 'album' in mf.route else '文章'
-        res = re.findall(RE_DATE, mf.route)
-        date = ''
-        if res:
-            date = res[0]
-        items.append(
-            '- {} [{}] [{}]({})'.format(date, profix, mf.title, mf.route))
-        items.sort(reverse=True)
-    article.extend(items)
-
-    return '\n'.join(article)
-
 
 @index_bp.route(
     '/<string:category>/<string:year>/<string:month>/<string:day>/<string:name>')

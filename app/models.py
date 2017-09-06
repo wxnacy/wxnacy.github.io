@@ -46,19 +46,15 @@ class VisitUser(BaseModel, db.Model):
 
     @classmethod
     def generate_md5(cls, ip, user_agent):
-        print('{};{}'.format(ip, user_agent))
         return Md5.encrypt('{};{}'.format(ip, user_agent))
 
     @classmethod
     def log(cls):
         headers = request.headers
-        print(headers)
         ip = request.remote_addr
         user_agent = request.user_agent
-        print(type(str(user_agent)))
 
         md5 = cls.generate_md5(ip, user_agent)
-        print(md5)
         user = cls.query_item(md5=md5)
         if not user:
             user = cls(ip=ip, user_agent=str(user_agent), md5=md5,
@@ -67,7 +63,6 @@ class VisitUser(BaseModel, db.Model):
         return user.visit()
 
     def visit(self):
-        print(request.referrer)
         return VisitLog.create(visit_user_id=self.id, url=request.url,
                                method=request.method,
                                referrer=request.referrer,
@@ -109,6 +104,28 @@ class Category():
         categorys.sort()
         return categorys
 
+    @classmethod
+    def get_md(cls,category, level):
+        """生成分类文章md内容"""
+        file_list = list(filter(lambda x: 'item' not in x, FILE_LIST))
+        file_list.sort()
+        article = []
+        article.append('{} {}'.format('#' * level, category))
+        items = []
+        for file in file_list:
+            mf = Markdown(file)
+            profix = '专辑' if 'album' in mf.route else '文章'
+            res = re.findall(RE_DATE, mf.route)
+            date = ''
+            if res:
+                date = res[0]
+            items.append(
+                '- {} [{}] [{}]({})'.format(date, profix, mf.title, mf.route))
+            items.sort(reverse=True)
+        article.extend(items)
+
+        return '\n'.join(article)
+
 
 class Article():
 
@@ -120,7 +137,6 @@ class Article():
             if res:
                 md = Markdown(f)
                 article.append('- [{}] [{}]({})'.format(res[0],md.title,md.route))
-        print(article)
         content = '\n'.join(article)
         return Markdown(content=content)
 

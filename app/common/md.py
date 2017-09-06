@@ -37,7 +37,6 @@ class Markdown(BaseObject):
         self.title = self.content.split('\n')[0][2:]
         #  self.html = md(self.content)
         self.html = md.convert(self.content)
-        print(self.html)
         self.route = '/' + '/'.join(self.name[:-3].split('-', 4))
 
 
