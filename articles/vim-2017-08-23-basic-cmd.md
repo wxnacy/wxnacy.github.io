@@ -1,5 +1,7 @@
 # Linux vim 基础命令
 原文：http://linux.vbird.org/linux_basic/0310vi.php#vi_ex
+
+[TOC]
 ## 三种模式
 
 ### 一般指令模式 (command mode)

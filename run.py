@@ -34,26 +34,17 @@ def before_request():
                  request.headers])
         )
     )
-    # ip
     g.ip = request.remote_addr
-
-    logger.debug(g.ip)
-
-    CATEGORYS = ['python', 'mysql', 'git', 'ansible', 'js', 'mac', 'algorithm',
-                 'linux', 'html','openresty','shell','vim']
-    file_list = os.listdir(BaseConfig.ARTICLE_DIR)
-    categorys = set([o.split('-', 1)[0] for o in file_list])
-    categorys = list(filter(lambda x: x in CATEGORYS, categorys))
-    categorys.sort()
-    g.categorys = categorys
-    print(categorys)
-
+    categorys = [
+            dict(category='category',name='分类')
+            ]
+    g.categorys = []
     cate_html = []
-    for category in categorys:
+    for cg in categorys:
         cate_html.append(
-            '<li><a href="/{}">{}</a></li>'.format(category, category))
+            '<li><a href="/{}">{}</a></li>'.format(cg[ 'category' ], cg[ 'name' ]))
 
-    g.header = '<span><a href="/">wxnacy博客</a></span><nav><ul>{}</ul></nav>'.format(
+        g.header = '<span><a href="/">wxnacy 博客</a></span><nav><ul>{}</ul></nav>'.format(
         ''.join(cate_html))
     g.footer = ' © 2017 wxnacy.com 版权所有 <a href="http://www.miitbeian.gov.cn/" target="_blank">京ICP备15062634号-3</a>'
 

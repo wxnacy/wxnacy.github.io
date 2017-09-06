@@ -1,0 +1,4 @@
+# 北京生活
+
+- [公积金查询](http://www.bjgjj.gov.cn/ywxtgn/201606/t20160623_3924.html)
+- [社保查询](http://www.bjrbj.gov.cn/csibiz/indinfo/login.jsp)

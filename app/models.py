@@ -5,11 +5,22 @@ __author__ = "wxnacy(wxnacy@gmail.com)"
 __copyright__ = "Copyright of wxnacy (2017)."
 
 from app.common.base import BaseModel
+from app.common.md import Markdown
 from app.common.security import Md5
 from app.config import db
+from app.config import BaseConfig
 from datetime import datetime
 from sqlalchemy.orm import backref as b
 from flask import request
+import os
+import re
+
+
+FILE_LIST = os.listdir(BaseConfig.ARTICLE_DIR)
+FILE_LIST.reverse()
+FILE_LIST = list(filter(lambda x: not x.startswith('.'),FILE_LIST))
+
+RE_DATE = re.compile(u"\d{4}-\d{2}-\d{2}")  # 正则时间类型
 
 
 class Crawler(BaseModel, db.Model):
@@ -77,3 +88,42 @@ class VisitLog(BaseModel, db.Model):
 
     visit_user = db.relationship('VisitUser',
                                  backref=b('visit_logs', lazy='dynamic'))
+
+
+class Category():
+
+    @classmethod
+    def get_categorys_md(cls):
+        article = [ '# 分类' ]
+        for cg in cls.get_categorys():
+            article.append('- [{}](/{})'.format(cg,cg))
+        content = '\n'.join(article)
+        return Markdown(content=content)
+
+    @classmethod
+    def get_categorys(cls):
+        categorys = list(set([o.split('-', 1)[0] for o in FILE_LIST]))
+        #  categorys = list(filter(lambda x: x in CATEGORYS, categorys))
+        FILTER=['.DS_Store']
+        categorys = list(filter(lambda x: not x.startswith('.') , categorys))
+        categorys.sort()
+        return categorys
+
+
+class Article():
+
+    @classmethod
+    def get_timeline_md(cls):
+        article = ['# wxnacy 博客\n']
+        for f in FILE_LIST:
+            res = re.findall(RE_DATE,f)
+            if res:
+                md = Markdown(f)
+                article.append('- [{}] [{}]({})'.format(res[0],md.title,md.route))
+        print(article)
+        content = '\n'.join(article)
+        return Markdown(content=content)
+
+if __name__ == "__main__":
+    res = Article.get_timeline_md()
+    #  print(res)

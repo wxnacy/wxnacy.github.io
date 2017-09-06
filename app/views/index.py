@@ -4,10 +4,12 @@
 __author__ = "wxnacy(wxnacy@gmail.com)"
 __copyright__ = "Copyright of wxnacy (2017)."
 
-from app.common.markdown import Markdown
+from app.common.md import Markdown
 from app.config import app
 from app.config import BaseConfig
 from app.models import VisitUser as VU
+from app.models import Category
+from app.models import Article
 from flask import Blueprint
 from flask import render_template
 from flask import request
@@ -41,13 +43,14 @@ def visit_log(func):
 def index():
     '''首页'''
     article = []
-    article.append('# {}'.format('wxnacy博客'))
+    #  article.append('# {}'.format('wxnacy博客'))
 
-    for c in g.categorys:
-        article.append('\n')
-        article.append(generator_category_md_content(c, 2))
-    content = '\n'.join(article)
-    md = Markdown(content=content)
+    #  for c in g.categorys:
+        #  article.append('\n')
+        #  article.append(generator_category_md_content(c, 2))
+    #  content = '\n'.join(article)
+    #  md = Markdown(content=content)
+    md = Article.get_timeline_md()
 
     return render_template('index.html', article=md)
 
@@ -58,6 +61,8 @@ def category(category):
     '''文章分类'''
     content = generator_category_md_content(category, 1)
     md = Markdown(content=content)
+    if category == 'category':
+        md = Category.get_categorys_md()
     return render_template('index.html', article=md)
 
 

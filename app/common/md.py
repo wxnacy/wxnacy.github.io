@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 '''markdown工具类'''
 __author__ = "wxnacy(wxnacy@gmail.com)"
 __copyright__ = "Copyright of wxnacy (2017)."
@@ -7,8 +5,16 @@ __copyright__ = "Copyright of wxnacy (2017)."
 from app.common.base import BaseObject
 from app.config import BaseConfig
 import mistune
+import markdown
+import markdown2
 
-md = mistune.Markdown()
+
+#  md = mistune.Markdown()
+EXT = ['markdown.extensions.extra','markdown.extensions.toc',
+        'markdown.extensions.codehilite']
+md = markdown.Markdown(extensions=EXT)
+#  md = markdown2.Markdown(extras=["code-friendly", "fenced-code-blocks",
+    #  "header-ids", "toc"])
 
 
 class Markdown(BaseObject):
@@ -29,14 +35,21 @@ class Markdown(BaseObject):
 
     def parse_content(self):
         self.title = self.content.split('\n')[0][2:]
-        self.html = md(self.content)
+        #  self.html = md(self.content)
+        self.html = md.convert(self.content)
+        print(self.html)
         self.route = '/' + '/'.join(self.name[:-3].split('-', 4))
 
 
 if __name__ == '__main__':
-    name = 'test-2017-08-11-basic.md'
-    md = Markdown(name)
-    print(md.content)
-    print(md.title)
-    print(md.to_dict())
+
+    #  name = 'test-2017-08-11-basic.md'
+    #  md = Markdown(name)
+    #  print(md.content)
+    #  print(md.title)
+    #  print(md.to_dict())
+    #  print(md.html)
+
+    content = '# title \n## 你好 ### hao'
+    md = Markdown(content=content)
     print(md.html)

@@ -62,11 +62,11 @@ def create_app(flask_config_name=None):
     #file_handler.setFormatter(Formatter(fmt))
     stream_handler = logging.StreamHandler()
     stream_handler.setFormatter(Formatter(fmt))
-    hdlr = logging.handlers.RotatingFileHandler('wxnacy.log',
-                                            'a', 10*1024*1024, 1)
-    hdlr.setFormatter(Formatter(fmt))
-    hdlr.setLevel(logging.DEBUG)
-    app.logger.addHandler(hdlr)
+    #  hdlr = logging.handlers.RotatingFileHandler('wxnacy.log',
+                                            #  'a', 10*1024*1024, 1)
+    #  hdlr.setFormatter(Formatter(fmt))
+    #  hdlr.setLevel(logging.DEBUG)
+    #  app.logger.addHandler(hdlr)
     app.logger.addHandler(stream_handler)
     # app.logger.addHandler(file_handler)
     app.logger.setLevel(logging.DEBUG)
