@@ -166,9 +166,10 @@ class Article(BaseModel,db.Model):
         Article.query.update(dict(is_del=1),synchronize_session=False)
         Category.query.update(dict(is_del=1),synchronize_session=False)
         cgs = {}
+        timeline = {}
         def _save(o):
             md = Markdown(o)
-            d = re.findall(RE_DATE,o)
+            d = re.findall(RE_DATE,o)[0]
             category = o.split('-')[0]
             a = cls(name=md.title,file_name=o,content=md.content,
                     publish_date=d,category=category)
@@ -177,20 +178,37 @@ class Article(BaseModel,db.Model):
             if category not in cgs:
                 cgs[category] = []
             cgs[category].append('- [{}]({})'.format(md.title,md.route))
+            # timeline
+            if d not in timeline:
+                timeline[d] = []
+            timeline[d].append('- [{}]({})'.format(md.title,md.route))
 
         [_save(o) for o in file_list]
 
+        # 将category format并放入到session中
         for k,v in cgs.items():
             content = '\n'.join(v)
             content = '# {}\n{}'.format(k,content)
             c = Category(name=k,content=content)
             db.session.add(c)
 
+        # format and save timeline
+        timeline = [dict(d=k,items=v) for k,v in timeline.items()]
+        timeline.sort(key=lambda x:x['d'],reverse=False)
+        timeline.reverse()
+
+        tl = []
+        for i in timeline:
+            tl.append('## {}'.format(i['d']))
+            for item in i['items']:
+                tl.append(item)
+
+        tl = '\n'.join(tl)
+        tl = '# wxnacy 博客 \n[TOC]\n{}'.format(tl)
+        Config.sync(name='timeline',value=tl)
+
         db.session.commit()
 
-        #  同步时间线数据
-        #  content = cls.make_timeline()
-        #  Config.sync(name='timeline',value=content)
 
     @classmethod
     def get_timeline_md(cls):

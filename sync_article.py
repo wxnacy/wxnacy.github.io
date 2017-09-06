@@ -11,6 +11,6 @@ from datetime import datetime
 if __name__ == "__main__":
     begin = datetime.now().timestamp()
     Article.sync_data()
-    Article.sync_timeline()
+    #  Article.sync_timeline()
     end = datetime.now().timestamp()
     print('timed case: {}'.format(end-begin))
