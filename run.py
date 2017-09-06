@@ -47,8 +47,8 @@ def before_request():
         cate_html.append(
             '<li><a href="/{}">{}</a></li>'.format(cg[ 'category' ], cg[ 'name' ]))
 
-        g.header = '<span><a href="/">wxnacy 博客</a></span><nav><ul>{}</ul></nav>'.format(
-        ''.join(cate_html))
+    g.header = '<span><a href="/">wxnacy 博客 </a></span><nav><ul>{}</ul></nav>'.format(
+    ''.join(cate_html))
     g.footer = ' © 2017 wxnacy.com 版权所有 <a href="http://www.miitbeian.gov.cn/" target="_blank">京ICP备15062634号-3</a>'
 
 

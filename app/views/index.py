@@ -28,9 +28,7 @@ def visit_log(func):
     def _w(*args, **kwargs):
         VU.log()
         return func(*args, **kwargs)
-
     return _w
-
 
 @index_bp.route('/')
 @index_bp.route('/index.html')
@@ -39,20 +37,29 @@ def index():
     '''首页'''
     article = []
     md = Article.get_timeline_md()
-
     return render_template('index.html', article=md)
 
-
-@index_bp.route('/<string:category>')
+@index_bp.route('/<string:name>')
 @visit_log
-def route_one(category):
+def route_one(name):
     '''文章分类'''
-    if category == 'category':
-        md = Category.get_categorys_md()
-    else:
-        cg = Category.query_item(name=category)
-        md = Markdown(content=cg.content)
-        #  md = Category.get_md(category,1)
+    cg = Category.query_item(name=name)
+    md = Markdown(content=cg.content)
+    return render_template('index.html', article=md)
+
+@index_bp.route('/category')
+@visit_log
+def category_list():
+    '''文章分类'''
+    md = Category.get_categorys_md()
+    return render_template('index.html', article=md)
+
+@index_bp.route('/search')
+@visit_log
+def search():
+    '''搜索'''
+    q = request.args['q']
+    md = Article.search(q)
     return render_template('index.html', article=md)
 
 @index_bp.route(

@@ -12,6 +12,7 @@ from app.config import BaseConfig
 from datetime import datetime
 from sqlalchemy.orm import backref as b
 from sqlalchemy import desc
+from sqlalchemy import or_
 from flask import request
 from datetime import datetime
 import os
@@ -152,11 +153,27 @@ class Article(BaseModel,db.Model):
     file_name = db.Column(db.String)
     publish_date = db.Column(db.DATE)
     category = db.Column(db.String,default="")
+    route = db.Column(db.String,default="")
     content = db.Column(db.String,default="")
     ext = db.Column(db.JSON,default={})
     is_del = db.Column(db.INT,default=0)
     create_ts = db.Column(db.TIMESTAMP,default=datetime.now())
     update_ts = db.Column(db.TIMESTAMP,default=datetime.now())
+
+    @classmethod
+    def search(cls,q):
+        s = '%{}%'.format(q)
+        items = Article.query.filter(or_(
+                Article.name.like(s),Article.content.like(s)
+            ),Article.is_del==0).order_by(desc(Article.publish_date)).all()
+
+        md = []
+        for i in items:
+            md.append('- [{}]({})'.format(i.name,i.route))
+
+        content = '# 搜素：{}\n{}'.format(q,'\n'.join(md))
+        return Markdown(content=content)
+
 
     @classmethod
     def sync_data(cls):
@@ -172,7 +189,7 @@ class Article(BaseModel,db.Model):
             d = re.findall(RE_DATE,o)[0]
             category = o.split('-')[0]
             a = cls(name=md.title,file_name=o,content=md.content,
-                    publish_date=d,category=category)
+                    publish_date=d,category=category,route=md.route)
             db.session.add(a)
             # category
             if category not in cgs:
