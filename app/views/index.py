@@ -38,13 +38,6 @@ def visit_log(func):
 def index():
     '''首页'''
     article = []
-    #  article.append('# {}'.format('wxnacy博客'))
-
-    #  for c in g.categorys:
-        #  article.append('\n')
-        #  article.append(generator_category_md_content(c, 2))
-    #  content = '\n'.join(article)
-    #  md = Markdown(content=content)
     md = Article.get_timeline_md()
 
     return render_template('index.html', article=md)
@@ -52,12 +45,14 @@ def index():
 
 @index_bp.route('/<string:category>')
 @visit_log
-def category(category):
+def route_one(category):
     '''文章分类'''
     if category == 'category':
         md = Category.get_categorys_md()
     else:
-        md = Category.get_md(category,1)
+        cg = Category.query_item(name=category)
+        md = Markdown(content=cg.content)
+        #  md = Category.get_md(category,1)
     return render_template('index.html', article=md)
 
 @index_bp.route(

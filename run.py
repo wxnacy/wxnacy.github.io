@@ -8,12 +8,15 @@ from app.common.base import BaseRequest
 from app.config import BaseConfig
 from app.config import logger
 from app.run import app
+from app.models import Article
 from app.views.index import index_bp
 from datetime import datetime
 from flask import g
 from flask import request
 import time
 import os
+
+
 
 
 @app.before_request
