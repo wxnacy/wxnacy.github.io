@@ -66,8 +66,9 @@ class VisitUser(BaseModel, db.Model):
 
     def visit(self):
         return VisitLog.create(visit_user_id=self.id, url=request.url,
-                               method=request.method,
+                               method=request.method,path=request.path,
                                referrer=request.referrer,
+                               domain=request.headers.get('host'),
                                ext=dict(request.headers))
 
 
@@ -76,7 +77,9 @@ class VisitLog(BaseModel, db.Model):
     id = db.Column(db.INT, primary_key=True)
     visit_user_id = db.Column(db.INT, db.ForeignKey('visit_user.id'))
     method = db.Column(db.String, default="")
+    domain = db.Column(db.String,default="")
     url = db.Column(db.String, default="")
+    path = db.Column(db.String, default="")
     referrer = db.Column(db.String, default="")
     ext = db.Column(db.JSON, default={})
     is_del = db.Column(db.INT, default=0)
@@ -85,6 +88,11 @@ class VisitLog(BaseModel, db.Model):
 
     visit_user = db.relationship('VisitUser',
                                  backref=b('visit_logs', lazy='dynamic'))
+
+    @classmethod
+    def get_count_by_url(cls,url):
+        return cls.query.filter(cls.url.like('%{}'.format(url))
+                ).count()
 
 
 class Category(BaseModel,db.Model):
@@ -153,6 +161,7 @@ class Article(BaseModel,db.Model):
     file_name = db.Column(db.String)
     publish_date = db.Column(db.DATE)
     category = db.Column(db.String,default="")
+    view_count = db.Column(db.INT,default=0,doc="观看数量")
     route = db.Column(db.String,default="")
     content = db.Column(db.String,default="")
     ext = db.Column(db.JSON,default={})
@@ -188,8 +197,11 @@ class Article(BaseModel,db.Model):
             md = Markdown(o)
             d = re.findall(RE_DATE,o)[0]
             category = o.split('-')[0]
+            vc = VisitLog.get_count_by_url(md.route)
+            print(vc)
             a = cls(name=md.title,file_name=o,content=md.content,
-                    publish_date=d,category=category,route=md.route)
+                    publish_date=d,category=category,route=md.route,
+                    view_count=vc)
             db.session.add(a)
             # category
             if category not in cgs:
@@ -289,9 +301,11 @@ if __name__ == "__main__":
     begin = datetime.now().timestamp()
     #  res = Article.get_timeline_md()
     #  print(res)
-    Article.sync_data()
+    #  Article.sync_data()
     #  Article.sync_timeline()
     #  res = Category.get_md('python',1)
     #  print(res)
+    vc = VisitLog.get_count_by_url('/git/2017/08/04/basic-cmd')
+    print(vc)
     end = datetime.now().timestamp()
     print('timed case: {}'.format(end-begin))

@@ -79,7 +79,8 @@ def test():
         'args': request.args,
         'json': request.json,
         'form': request.form,
-        'data': str(request.data)
+        'data': str(request.data),
+        'addr': request.path
     }
 
     return jsonify(res)
