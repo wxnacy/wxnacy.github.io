@@ -1,13 +1,13 @@
-# mysql 基础命令
-
+# Mysql 基础命令
+[TOC]
 ## 数据库
-- 创建库
+###  创建库
 ```mysql
 create database name character utf8mb4;
 ```
 
 ## 表结构
-- 创建表
+### 创建表
 ```mysql
 drop table if exists `user`;
 create table `user`(
@@ -21,45 +21,51 @@ create table `user`(
 ) engine=InnoDB default charset=utf8mb4 comment '用户表';
 ```
 
-- 查看列 
+### 查看列
 ```mysql
 desc table_name
 ```
-- 修改表名 
+### 修改表名
 ```mysql
 alter table table_name rename to new_name;
 ```
-- 添加列 
+### 添加列
 ```mysql
 alter table table_name add column col_name varchar(11) not null ...;
 ```
-- 删除列 
+### 删除列
 ```mysql
 alter table table_name drop column col_name;
 ```
-- 修改列名 
+### 修改列名
 ```mysql
 alter table table_name change old_name new_name int(11)...;
 ```
-- 修改列属性 
+### 修改列属性
 ```mysql
 alter table table_name modify col_name int(11) not null...;
 ```
-- 查看列属性
+### 查看列属性
 ```mysql
 show columns from table_name;
 show full columns from table_name; # 全部信息
-
-Field ：字段名
-Type：字段类型
-Collation：字符集（mysql 5.0以上有）
-Null ：是否可以为NULL
-Key：索引（PRI,unique,index)
-Default：缺省值
-Extra：额外（是否 auto_increment)
-Privileges：权限
-Comment：备注（mysql 5.0以上有)
 ```
 
+- **Field** ：字段名
+- **Type**：字段类型
+- **Collation**：字符集（mysql 5.0以上有）
+- **Null** ：是否可以为NULL
+- **Key**：索引（PRI,unique,index)
+- **Default**：缺省值
+- **Extra**：额外（是否 auto_increment)
+- **Privileges**：权限
+- **Comment**：备注（mysql 5.0以上有)
 
+## 查询
+
+### 去掉重复数据
+```mysql
+select distinct name from user;
+```
+需要注意亮点，第一，`distinct` 必须放到查询字段最前边。第二，如果查询的字段很多，必须所有字段都相同才会过滤
 

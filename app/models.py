@@ -198,7 +198,6 @@ class Article(BaseModel,db.Model):
             d = re.findall(RE_DATE,o)[0]
             category = o.split('-')[0]
             vc = VisitLog.get_count_by_url(md.route)
-            print(vc)
             a = cls(name=md.title,file_name=o,content=md.content,
                     publish_date=d,category=category,route=md.route,
                     view_count=vc)
