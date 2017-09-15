@@ -274,6 +274,12 @@ class Article(BaseModel,db.Model):
         content = cls.make_timeline()
         Config.sync(name='timeline',value=content)
 
+    @classmethod
+    def count(cls):
+        return cls.query.filter(
+                cls.is_del == 0
+                ).count()
+
 class Config(BaseModel,db.Model):
     id = db.Column(db.INT,primary_key=True)
     name = db.Column(db.String)

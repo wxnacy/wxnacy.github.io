@@ -7,6 +7,7 @@ __copyright__ = "Copyright of wxnacy (2017)."
 from app.common.id import Snowflake
 from datetime import date
 from flask import Flask
+from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.contrib.fixers import ProxyFix
 import os
@@ -76,6 +77,7 @@ def create_app(flask_config_name=None):
 
 
 app = create_app()
+CORS(app)
 logger = app.logger
 db = SQLAlchemy(app)
 snowflake = Snowflake(0)

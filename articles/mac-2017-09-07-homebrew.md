@@ -31,16 +31,17 @@ wget -> ../Cellar/wget/1.19.1_1/bin/wget
 
 ### 更多命令
 ```bash
-$ brew install wget         # 安装包
-$ brew search wget          # 搜索包（支持正则表达式）eq：brew search /^wg/
-$ brew info wget            # 查看包的信息
-$ brew uninstall wget       # 卸载包
-$ brew switch wget 1.9.1    # 包切换到某一个版本
-$ brew outdated             # 列出过时的包
-$ brew upgrade wget         # 更新包
-$ brew update               # 更新 HomeBrew 本身
-$ brew cleanup wget         # 清除缓存
-$ brew list                 # 列出已经安装的包
+$ brew install wget             # 安装包
+$ brew search wget              # 搜索包（支持正则表达式）eq：brew search /^wg/
+$ brew info wget                # 查看包的信息
+$ brew uninstall wget           # 卸载包
+$ brew switch wget 1.9.1        # 包切换到某一个版本
+$ brew outdated                 # 列出过时的包
+$ brew upgrade wget             # 更新包
+$ brew update                   # 更新 HomeBrew 本身
+$ brew cleanup wget             # 清除缓存
+$ brew list                     # 列出已经安装的包
+$ echo $(brew --prefix wget)    # 输出软件安装路径，/usr/local/opt/wget
 ```
 
 ### oh-my-zsh 补全
