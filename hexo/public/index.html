@@ -219,6 +219,91 @@
 
 
   
+    <article id="post-linux-2017-09-15-expect" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/15/linux-2017-09-15-expect/">使用 expect 交互免输入密码</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/15/linux-2017-09-15-expect/" class="archive-article-date">
+  	<time datetime="2017-09-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在工作经常会使用 ssh、ftp、 mysql 等命令，但每次输入密码会让事情变的很枯燥，<br>重复的事情就要交给脚本去做，这时候我们需要用到 <strong><a href="http://expect.sourceforge.net/" target="_blank" rel="external">expect</a></strong> ，<br>下面我们通过一个例子 <em>mysql_login</em> 来说明</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env expect</span></div><div class="line"><span class="built_in">set</span> password xxxxx</div><div class="line"><span class="built_in">set</span> name root</div><div class="line"></div><div class="line">spawn mysql -u<span class="variable">$name</span> -p</div><div class="line">expect <span class="string">"*assword:*"</span></div><div class="line">send <span class="string">"<span class="variable">$password</span>\r"</span></div><div class="line">interact</div></pre></td></tr></table></figure>
+<p>上边这段脚本是在登录本地 mysql 时，无需输入密码就自动登录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ expect mysql_login</div></pre></td></tr></table></figure></p>
+<p>执行代码不能用 <em>sh file</em> 而是 <em>expect mysql_login</em> ，如果你在文件开头加上 <em>#!/usr/bin/env expect</em> 也可以用 <em>./mysql_login</em> 来执行</p>
+<p>其他语句解释如下：</p>
+<ul>
+<li><strong>spawn</strong>：spawn是expect的语句，执行命令前都要加这句</li>
+<li><strong>expect “<em>assword:</em>“</strong>：这句意思是交互获取是否返回 password：关键字，因为在执行 mysql 时会返回输入 password 的提示 xxxxxxxx password:</li>
+<li><strong>send</strong>：将密码发送出去</li>
+<li><strong>interact</strong>：代表执行完留在远程控制台，不加这句执行完后返回本地控制台</li>
+</ul>
+<p>你可以仿照这段脚本写其他服务自动登录脚本，但是 ssh 无密码登录我推荐使用<a href="/linux/2017/08/23/ssh">SSH 登陆远程服务器和无密码操作</a>文章中提到的不对称加密登录方式</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/15/linux-2017-09-15-expect/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-mysql-2017-09-15-tmp-mysql-sock" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -305,91 +390,6 @@
 
 
   
-    <article id="post-linux-2017-09-15-expect" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/15/linux-2017-09-15-expect/">使用 expect 交互免输入密码</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/15/linux-2017-09-15-expect/" class="archive-article-date">
-  	<time datetime="2017-09-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在工作经常会使用 ssh、ftp、 mysql 等命令，但每次输入密码会让事情变的很枯燥，<br>重复的事情就要交给脚本去做，这时候我们需要用到 <strong><a href="http://expect.sourceforge.net/" target="_blank" rel="external">expect</a></strong> ，<br>下面我们通过一个例子 <em>mysql_login</em> 来说明</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env expect</span></div><div class="line"><span class="built_in">set</span> password xxxxx</div><div class="line"><span class="built_in">set</span> name root</div><div class="line"></div><div class="line">spawn mysql -u<span class="variable">$name</span> -p</div><div class="line">expect <span class="string">"*assword:*"</span></div><div class="line">send <span class="string">"<span class="variable">$password</span>\r"</span></div><div class="line">interact</div></pre></td></tr></table></figure>
-<p>上边这段脚本是在登录本地 mysql 时，无需输入密码就自动登录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ expect mysql_login</div></pre></td></tr></table></figure></p>
-<p>执行代码不能用 <em>sh file</em> 而是 <em>expect mysql_login</em> ，如果你在文件开头加上 <em>#!/usr/bin/env expect</em> 也可以用 <em>./mysql_login</em> 来执行</p>
-<p>其他语句解释如下：</p>
-<ul>
-<li><strong>spawn</strong>：spawn是expect的语句，执行命令前都要加这句</li>
-<li><strong>expect “<em>assword:</em>“</strong>：这句意思是交互获取是否返回 password：关键字，因为在执行 mysql 时会返回输入 password 的提示 xxxxxxxx password:</li>
-<li><strong>send</strong>：将密码发送出去</li>
-<li><strong>interact</strong>：代表执行完留在远程控制台，不加这句执行完后返回本地控制台</li>
-</ul>
-<p>你可以仿照这段脚本写其他服务自动登录脚本，但是 ssh 无密码登录我推荐使用<a href="/linux/2017/08/23/ssh">SSH 登陆远程服务器和无密码操作</a>文章中提到的不对称加密登录方式</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/15/linux-2017-09-15-expect/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-nodejs-2017-09-12-npm" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -437,6 +437,92 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/09/12/nodejs-2017-09-12-npm/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-linux-2017-09-11-redirection" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/11/linux-2017-09-11-redirection/">Linux 数据流重定向(Redirection)</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/11/linux-2017-09-11-redirection/" class="archive-article-date">
+  	<time datetime="2017-09-10T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h2><span id="chong-ding-xiang">重定向</span><a href="#chong-ding-xiang" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">标准输入　　(stdin) ：代码为 0 ，使用 &lt; 或 &lt;&lt;</div><div class="line">标准输出　　(stdout)：代码为 1 ，使用 &gt; 或 &gt;&gt;</div><div class="line">标准错误输出(stderr)：代码为 2 ，使用 2&gt; 或 2&gt;&gt;</div></pre></td></tr></table></figure>
+<h2><span id="biao-zhun-shu-chu-stdout">标准输出（stdout）</span><a href="#biao-zhun-shu-chu-stdout" class="header-anchor"></a></h2><p><em>1&gt;</em> 或 <em>&gt;</em> 会将应该输出到屏幕的信息，输入到指定文件中<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ll &gt; ll.txt       <span class="comment"># 此时屏幕不再输出信息，而是输入到 ll.txt 中</span></div><div class="line"><span class="comment"># &gt; 会在每次使用时覆盖相同文件名的内容，如果想要追加内容使用 &gt;&gt;</span></div></pre></td></tr></table></figure></p>
+<h2><span id="biao-zhun-shu-chu-cuo-wu-stderr">标准输出错误（stderr）</span><a href="#biao-zhun-shu-chu-cuo-wu-stderr" class="header-anchor"></a></h2><p><em>2&gt;</em> 会将错误信息单独输出到指定文件中<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ z                             <span class="comment"># 我随便输入了指令</span></div><div class="line"></div><div class="line">pyenv: z: <span class="built_in">command</span> not found     <span class="comment"># 错误信息</span></div><div class="line"></div><div class="line">The `z<span class="string">' command exists in these Python versions:</span></div><div class="line"><span class="string">  2.7.12/envs/env_hamster</span></div><div class="line"><span class="string">  env_hamster</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">$ z 2&gt; err.log                  # 使用重定向将错误输出到文件</span></div></pre></td></tr></table></figure></p>
+<p>如果我们不想将错误单独写到一个文件而是和标准输出一同输出到同一文件中，应该怎么做呢</p>
+<p>也可能你在了解到标准输出和错误输出后会想当然的用这种写法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ z &gt; file.log 2&gt; file.log</div></pre></td></tr></table></figure></p>
+<p>这样是错误的，应该两股数据会交叉写入到同一文件中，造成数据混乱，而正确的写法应该是这样的<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ z &gt; file.log 2&gt;&amp;1</div><div class="line">$ z &amp;&gt; file.log</div><div class="line"><span class="comment"># 两种写法均可</span></div></pre></td></tr></table></figure></p>
+<h3><span id="dev-null-la-ji-tong-hei-dong-zhuang-zhi">/dev/null 垃圾桶黑洞装置</span><a href="#dev-null-la-ji-tong-hei-dong-zhuang-zhi" class="header-anchor"></a></h3><p>假如有些命令的错误是我们预知的而不想显示出，此时该怎么做呢，我们可以让他消失<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ z 2&gt; /dev/null                <span class="comment"># 此时我们将看不到输出的错误信息</span></div></pre></td></tr></table></figure></p>
+<h2><span id="biao-zhun-shu-ru-stdin">标准输入（stdin）</span><a href="#biao-zhun-shu-ru-stdin" class="header-anchor"></a></h2><p>了解 stdout 和 stderr 后我们来看下怎么理解标准输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ cat &gt; cat.txt</div><div class="line">hello world</div><div class="line"><span class="built_in">test</span></div><div class="line"><span class="comment"># 按下 ctrl + d 离开</span></div></pre></td></tr></table></figure></p>
+<p>这段命令可以使键盘输入内容重定向的文件中，如果我们想使用<strong>某个文件内容</strong>替代<strong>键盘输入</strong>到制定文件中呢，这时候 <strong>&lt;</strong> 就派上用场了<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ cat &gt; cat.txt &lt; ~/.bashrc</div><div class="line"></div><div class="line">$ ll cat.txt ~/.bashrc</div><div class="line">-rw-r--r--  1 wxnacy  staff    42B  8 27 08:14 /Users/wxnacy/.bashrc</div><div class="line">-rw-r--r--  1 wxnacy  staff    42B  9 11 09:50 cat.txt</div></pre></td></tr></table></figure></p>
+<p>通过 <strong>&lt;</strong> 导入的文件我们回它们其实一摸一样，类似复制功能</p>
+<p>接下来我们来探讨<strong>&lt;&lt;</strong>，它并不同与标准输出的追加功能，我们先来看另一个例子，当我们使用键盘输入到文件时，如果不想用 ctrl + d 来终止程序，而是其他方式可以吗，我们来试一下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ cat &gt; cat.txt &lt;&lt; <span class="string">"eof"</span></div><div class="line">hello world</div><div class="line">eof                             <span class="comment"># 输入该关键字，我们不用输入 ctrl + d 即可终止程序</span></div></pre></td></tr></table></figure></p>
+<p>现在我们可以给 <strong>&lt;&lt;</strong> 下一个定义<strong>结束的输入字符</strong>，当然 eof 不是不变的，我们也可以指定其他字符串</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/11/linux-2017-09-11-redirection/">展开全文 >></a>
         </p>
       
 
@@ -570,92 +656,6 @@
 
 
   
-    <article id="post-linux-2017-09-11-redirection" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/11/linux-2017-09-11-redirection/">Linux 数据流重定向(Redirection)</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/11/linux-2017-09-11-redirection/" class="archive-article-date">
-  	<time datetime="2017-09-10T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>[TOC]</p>
-<h2><span id="chong-ding-xiang">重定向</span><a href="#chong-ding-xiang" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">标准输入　　(stdin) ：代码为 0 ，使用 &lt; 或 &lt;&lt;</div><div class="line">标准输出　　(stdout)：代码为 1 ，使用 &gt; 或 &gt;&gt;</div><div class="line">标准错误输出(stderr)：代码为 2 ，使用 2&gt; 或 2&gt;&gt;</div></pre></td></tr></table></figure>
-<h2><span id="biao-zhun-shu-chu-stdout">标准输出（stdout）</span><a href="#biao-zhun-shu-chu-stdout" class="header-anchor"></a></h2><p><em>1&gt;</em> 或 <em>&gt;</em> 会将应该输出到屏幕的信息，输入到指定文件中<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ll &gt; ll.txt       <span class="comment"># 此时屏幕不再输出信息，而是输入到 ll.txt 中</span></div><div class="line"><span class="comment"># &gt; 会在每次使用时覆盖相同文件名的内容，如果想要追加内容使用 &gt;&gt;</span></div></pre></td></tr></table></figure></p>
-<h2><span id="biao-zhun-shu-chu-cuo-wu-stderr">标准输出错误（stderr）</span><a href="#biao-zhun-shu-chu-cuo-wu-stderr" class="header-anchor"></a></h2><p><em>2&gt;</em> 会将错误信息单独输出到指定文件中<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ z                             <span class="comment"># 我随便输入了指令</span></div><div class="line"></div><div class="line">pyenv: z: <span class="built_in">command</span> not found     <span class="comment"># 错误信息</span></div><div class="line"></div><div class="line">The `z<span class="string">' command exists in these Python versions:</span></div><div class="line"><span class="string">  2.7.12/envs/env_hamster</span></div><div class="line"><span class="string">  env_hamster</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">$ z 2&gt; err.log                  # 使用重定向将错误输出到文件</span></div></pre></td></tr></table></figure></p>
-<p>如果我们不想将错误单独写到一个文件而是和标准输出一同输出到同一文件中，应该怎么做呢</p>
-<p>也可能你在了解到标准输出和错误输出后会想当然的用这种写法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ z &gt; file.log 2&gt; file.log</div></pre></td></tr></table></figure></p>
-<p>这样是错误的，应该两股数据会交叉写入到同一文件中，造成数据混乱，而正确的写法应该是这样的<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ z &gt; file.log 2&gt;&amp;1</div><div class="line">$ z &amp;&gt; file.log</div><div class="line"><span class="comment"># 两种写法均可</span></div></pre></td></tr></table></figure></p>
-<h3><span id="dev-null-la-ji-tong-hei-dong-zhuang-zhi">/dev/null 垃圾桶黑洞装置</span><a href="#dev-null-la-ji-tong-hei-dong-zhuang-zhi" class="header-anchor"></a></h3><p>假如有些命令的错误是我们预知的而不想显示出，此时该怎么做呢，我们可以让他消失<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ z 2&gt; /dev/null                <span class="comment"># 此时我们将看不到输出的错误信息</span></div></pre></td></tr></table></figure></p>
-<h2><span id="biao-zhun-shu-ru-stdin">标准输入（stdin）</span><a href="#biao-zhun-shu-ru-stdin" class="header-anchor"></a></h2><p>了解 stdout 和 stderr 后我们来看下怎么理解标准输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ cat &gt; cat.txt</div><div class="line">hello world</div><div class="line"><span class="built_in">test</span></div><div class="line"><span class="comment"># 按下 ctrl + d 离开</span></div></pre></td></tr></table></figure></p>
-<p>这段命令可以使键盘输入内容重定向的文件中，如果我们想使用<strong>某个文件内容</strong>替代<strong>键盘输入</strong>到制定文件中呢，这时候 <strong>&lt;</strong> 就派上用场了<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ cat &gt; cat.txt &lt; ~/.bashrc</div><div class="line"></div><div class="line">$ ll cat.txt ~/.bashrc</div><div class="line">-rw-r--r--  1 wxnacy  staff    42B  8 27 08:14 /Users/wxnacy/.bashrc</div><div class="line">-rw-r--r--  1 wxnacy  staff    42B  9 11 09:50 cat.txt</div></pre></td></tr></table></figure></p>
-<p>通过 <strong>&lt;</strong> 导入的文件我们回它们其实一摸一样，类似复制功能</p>
-<p>接下来我们来探讨<strong>&lt;&lt;</strong>，它并不同与标准输出的追加功能，我们先来看另一个例子，当我们使用键盘输入到文件时，如果不想用 ctrl + d 来终止程序，而是其他方式可以吗，我们来试一下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ cat &gt; cat.txt &lt;&lt; <span class="string">"eof"</span></div><div class="line">hello world</div><div class="line">eof                             <span class="comment"># 输入该关键字，我们不用输入 ctrl + d 即可终止程序</span></div></pre></td></tr></table></figure></p>
-<p>现在我们可以给 <strong>&lt;&lt;</strong> 下一个定义<strong>结束的输入字符</strong>，当然 eof 不是不变的，我们也可以指定其他字符串</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/11/linux-2017-09-11-redirection/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-develop-2017-09-08-regex-basic" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -702,83 +702,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/09/08/develop-2017-09-08-regex-basic/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-python-2017-09-07-flask-api" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/07/python-2017-09-07-flask-api/">Flask api 文档</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/07/python-2017-09-07-flask-api/" class="archive-article-date">
-  	<time datetime="2017-09-06T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><a href="http://flask.pocoo.org/docs/0.12/api" target="_blank" rel="external"> 文档 </a></li>
-<li><a href="http://flask.pocoo.org/docs/0.12/api/#incoming-request-data" target="_blank" rel="external">request 得到的数据</a></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/07/python-2017-09-07-flask-api/">展开全文 >></a>
         </p>
       
 
@@ -891,6 +814,10 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">mac</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HomeBrew</a>
+        		</li>
       		
 		</ul>
 	</div>
@@ -900,6 +827,83 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/09/07/mac-2017-09-07-homebrew/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-python-2017-09-07-flask-api" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/07/python-2017-09-07-flask-api/">Flask api 文档</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/07/python-2017-09-07-flask-api/" class="archive-article-date">
+  	<time datetime="2017-09-06T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><a href="http://flask.pocoo.org/docs/0.12/api" target="_blank" rel="external"> 文档 </a></li>
+<li><a href="http://flask.pocoo.org/docs/0.12/api/#incoming-request-data" target="_blank" rel="external">request 得到的数据</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/07/python-2017-09-07-flask-api/">展开全文 >></a>
         </p>
       
 
@@ -966,7 +970,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">life</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">生活</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">北京</a>
         		</li>
       		
 		</ul>
@@ -1107,11 +1115,23 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工作</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">develop</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">北京</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1123,10 +1143,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">life</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
@@ -1135,11 +1151,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">movie</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">

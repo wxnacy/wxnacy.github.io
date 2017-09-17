@@ -143,6 +143,96 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-mysql-2017-08-09-item-daily" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-item-daily/">2017-08-09 新建collection合集表，新建trigger完成更新用户文章数</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/09/mysql-2017-08-09-item-daily/" class="archive-article-date">
+  	<time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>今天练习新建collection合集表，并在article中添加user_id字段，在user_data中添加article_count字段，并新建trigger <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">专辑：[mysql每天练习](/?p=/doc/mysql/mysql_daily.md)</div><div class="line"></div><div class="line"></div><div class="line">- 新建collection</div><div class="line">```mysql</div><div class="line">drop table if exists `collection`;</div><div class="line">create table `collection`(</div><div class="line">	id int(11) not null auto_increment,</div><div class="line">	name varchar(256) not null default &apos;&apos; comment &apos;合集名称&apos;,</div><div class="line">	is_del tinyint(1) not null default 0 comment &apos;是否删除&apos;,</div><div class="line">	create_ts timestamp not null default current_timestamp comment &apos;创建时间&apos;,</div><div class="line">	update_ts timestamp not null default current_timestamp on update current_timestamp comment &apos;修改时间&apos;,</div><div class="line">	primary key(`id`)</div><div class="line">)engine=InnoDB default charset=utf8mb4 comment &apos;合集表&apos;;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<ul>
+<li><p>article添加user_id</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table article add column user_id int(11) not null default 0 comment &apos;用户id&apos;;</div></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><figcaption><span>中添加```article_count```字段</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">```mysql</div><div class="line">alter table user_data add column article_count int(11) not null default 0 comment &apos;发布文章数量&apos;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>新建trigger</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">drop trigger if exists `insert_article`;</div><div class="line">delimiter $</div><div class="line">create trigger `insert_article` after insert on article for each row </div><div class="line">begin</div><div class="line">	declare count int;</div><div class="line">	if (new.user_id &gt; 0) then</div><div class="line">		select count(0) into count from user_data where user_id = new.user_id;</div><div class="line">		if (count &gt; 0) then</div><div class="line">			update user_data set article_count = article_count +1 where user_id = new.user_id;</div><div class="line">		else</div><div class="line">			insert into user_data (user_id,article_count) values (new.user_id,1);</div><div class="line">		end if;</div><div class="line">	end if;</div><div class="line">end $</div><div class="line">delimiter ;</div></pre></td></tr></table></figure>
+</li>
+<li><p>运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">insert into article (name,url,user_id) values (&apos;title&apos;,&apos;http://baidu.com&apos;,3);</div><div class="line">insert into article (name,url,user_id) values (&apos;title&apos;,&apos;http://baidu.com&apos;,3);</div><div class="line">select * from user_data where user_id = 3;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>运行后，article_count应该等于2</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-item-daily/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-mysql-2017-08-09-basic-index" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -239,43 +329,44 @@
 
 
   
-    <article id="post-mysql-2017-08-09-item-daily" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-ansible-2017-08-08-item-basic-get-started" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-item-daily/">2017-08-09 新建collection合集表，新建trigger完成更新用户文章数</a>
+      <a class="article-title" href="/2017/08/08/ansible-2017-08-08-item-basic-get-started/">ansible入门笔记1 Get Started</a>
     </h1>
   
 
         
-        <a href="/2017/08/09/mysql-2017-08-09-item-daily/" class="archive-article-date">
-  	<time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
+        <a href="/2017/08/08/ansible-2017-08-08-item-basic-get-started/" class="archive-article-date">
+  	<time datetime="2017-08-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>今天练习新建collection合集表，并在article中添加user_id字段，在user_data中添加article_count字段，并新建trigger <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">专辑：[mysql每天练习](/?p=/doc/mysql/mysql_daily.md)</div><div class="line"></div><div class="line"></div><div class="line">- 新建collection</div><div class="line">```mysql</div><div class="line">drop table if exists `collection`;</div><div class="line">create table `collection`(</div><div class="line">	id int(11) not null auto_increment,</div><div class="line">	name varchar(256) not null default &apos;&apos; comment &apos;合集名称&apos;,</div><div class="line">	is_del tinyint(1) not null default 0 comment &apos;是否删除&apos;,</div><div class="line">	create_ts timestamp not null default current_timestamp comment &apos;创建时间&apos;,</div><div class="line">	update_ts timestamp not null default current_timestamp on update current_timestamp comment &apos;修改时间&apos;,</div><div class="line">	primary key(`id`)</div><div class="line">)engine=InnoDB default charset=utf8mb4 comment &apos;合集表&apos;;</div></pre></td></tr></table></figure></p>
+        <p>专辑：<a href="/ansible/2017/08/14/album-study-notes">ansible学习笔记</a></p>
+<blockquote>
+<p>Ansilbe是一个部署一群远程主机的工具。远程的主机可以是远程虚拟机或物理机， 也可以是本地主机。Ansilbe是一个部署一群远程主机的工具。远程的主机可以是远程虚拟机或物理机， 也可以是本地主机。</p>
 </blockquote>
-<ul>
-<li><p>article添加user_id</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table article add column user_id int(11) not null default 0 comment &apos;用户id&apos;;</div></pre></td></tr></table></figure>
+<h2><span id="an-zhuang-ansible">安装ansible</span><a href="#an-zhuang-ansible" class="header-anchor"></a></h2><ul>
+<li><p>命令 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install ansible</div></pre></td></tr></table></figure>
 </li>
-<li><figure class="highlight plain"><figcaption><span>中添加```article_count```字段</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">```mysql</div><div class="line">alter table user_data add column article_count int(11) not null default 0 comment &apos;发布文章数量&apos;;</div></pre></td></tr></table></figure>
-</li>
-<li><p>新建trigger</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">drop trigger if exists `insert_article`;</div><div class="line">delimiter $</div><div class="line">create trigger `insert_article` after insert on article for each row </div><div class="line">begin</div><div class="line">	declare count int;</div><div class="line">	if (new.user_id &gt; 0) then</div><div class="line">		select count(0) into count from user_data where user_id = new.user_id;</div><div class="line">		if (count &gt; 0) then</div><div class="line">			update user_data set article_count = article_count +1 where user_id = new.user_id;</div><div class="line">		else</div><div class="line">			insert into user_data (user_id,article_count) values (new.user_id,1);</div><div class="line">		end if;</div><div class="line">	end if;</div><div class="line">end $</div><div class="line">delimiter ;</div></pre></td></tr></table></figure>
-</li>
-<li><p>运行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">insert into article (name,url,user_id) values (&apos;title&apos;,&apos;http://baidu.com&apos;,3);</div><div class="line">insert into article (name,url,user_id) values (&apos;title&apos;,&apos;http://baidu.com&apos;,3);</div><div class="line">select * from user_data where user_id = 3;</div></pre></td></tr></table></figure>
+<li><p>配置hosts </p>
 </li>
 </ul>
-<p>运行后，article_count应该等于2</p>
+<p>修改/etc/ansible/hosts 全局hosts文件，没有的话自己创建<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[wxnacy] <span class="comment"># 如果服务器使用密码登录就用这个方式保存密码，避免每次输入</span></div><div class="line">wxnacy.server.org ansible_ssh_pass=your_pass ansible_ssh_user=your_name </div><div class="line"></div><div class="line">[prod] <span class="comment"># 如果服务器使用sshkey登陆（推荐使用）</span></div><div class="line">prod.server.org ansible_ssh_user=your_name ansible_ssh_private_key_file=key_path</div></pre></td></tr></table></figure></p>
+<h2><span id="di-yi-tiao-ming-ling">第一条命令</span><a href="#di-yi-tiao-ming-ling" class="header-anchor"></a></h2><ul>
+<li>首先执行ping，查看是否可以连接服务器</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ ansible all -m ping</div><div class="line"></div><div class="line"></div><div class="line">wxnacy.server.org | SUCCESS =&gt; &#123;</div><div class="line">    <span class="string">"changed"</span>: <span class="literal">false</span>,</div><div class="line">    <span class="string">"ping"</span>: <span class="string">"pong"</span></div><div class="line">&#125;</div><div class="line">prod.server.org | SUCCESS =&gt; &#123;</div><div class="line">    <span class="string">"changed"</span>: <span class="literal">false</span>,</div><div class="line">    <span class="string">"ping"</span>: <span class="string">"pong"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>得到如上样式结果即为正确,另外执行 <figure class="highlight plain"><figcaption><span>wxnacy -m ping``` 可以针对某一个服务器组进行操作</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- 现在我们用另一个命令看下是不是真的可以拿到远程服务器的信息</div><div class="line"></div><div class="line">```bash</div><div class="line">$ ansible prod -m shell -a &quot;uname -a&quot;</div><div class="line"></div><div class="line">prod.server.org | SUCCESS | rc=0 &gt;&gt;</div><div class="line">Linux ip-172-31-5-249 4.9.27-14.31.amzn1.x86_64 #1 SMP Wed May 10 01:58:40 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux</div></pre></td></tr></table></figure></p>
+<h2><span id="zhi-ding-hosts-wen-jian">指定hosts文件</span><a href="#zhi-ding-hosts-wen-jian" class="header-anchor"></a></h2><p>在一些项目中，全局hosts配置不能满足需求，需要指定hosts命令，可以执行如下命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ansible my -i hosts_path -m ping</div></pre></td></tr></table></figure></p>
 
       
 
@@ -289,7 +380,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ansible</a>
         		</li>
       		
 		</ul>
@@ -299,7 +390,95 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-item-daily/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/08/ansible-2017-08-08-item-basic-get-started/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-ansible-2017-08-08-item-basic-playbooks-ext" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks-ext/">ansible入门笔记3 Playbooks 简单扩展</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks-ext/" class="archive-article-date">
+  	<time datetime="2017-08-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>专辑：<a href="/ansible/2017/08/14/album-study-notes">ansible学习笔记</a></p>
+<blockquote>
+<p>Playbooks 在实际应用过程中，需要用到一些额外扩展功能，比如外部传参或指定hosts文件，本章节将着重介绍</p>
+</blockquote>
+<h2><span id="wai-bu-chuan-can">外部传参</span><a href="#wai-bu-chuan-can" class="header-anchor"></a></h2><p>现在有一个playbook.yml文件，想要完成进入某个目录并完成部署任务，host和执行命令中的参数tag_name 需要外部传值<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- hosts: <span class="string">'&#123;&#123;host&#125;&#125;'</span></div><div class="line">  tasks:</div><div class="line">  - name: deploy</div><div class="line">    shell: ./deploy_api.sh <span class="string">'&#123;&#123;tag_name&#125;&#125;'</span></div><div class="line">    args:</div><div class="line">      <span class="built_in">chdir</span>: ~/path</div></pre></td></tr></table></figure></p>
+<p>通过<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- key=value</div><div class="line">```bash</div><div class="line">ansible-playbook playbook.yml --extra-vars &quot;host=xxx tag_name=xxx&quot;</div></pre></td></tr></table></figure></p>
+<ul>
+<li><p>json格式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ansible-playbook playbook.yml --extra-vars <span class="string">"&#123;'host':'xxx','tag_name':'xxx'&#125;"</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>jaon文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ansible-playbook playbook.yml --extra-vars <span class="string">"kwargs.json"</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2><span id="zhi-ding-hosts-wen-jian">指定hosts文件</span><a href="#zhi-ding-hosts-wen-jian" class="header-anchor"></a></h2><p>当多人协作开发项目的时候，都是全局/etc/ansible/hosts文件并不方便，我们可以通过传参<figure class="highlight plain"><figcaption><span>来制定当前playbook使用的hosts文件</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">```bash</div><div class="line">ansible-playbook playbook.yml --inventory-file=~/ansible-hosts</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ansible</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks-ext/">展开全文 >></a>
         </p>
       
 
@@ -421,94 +600,6 @@
 
 
   
-    <article id="post-ansible-2017-08-08-item-basic-playbooks-ext" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks-ext/">ansible入门笔记3 Playbooks 简单扩展</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks-ext/" class="archive-article-date">
-  	<time datetime="2017-08-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>专辑：<a href="/ansible/2017/08/14/album-study-notes">ansible学习笔记</a></p>
-<blockquote>
-<p>Playbooks 在实际应用过程中，需要用到一些额外扩展功能，比如外部传参或指定hosts文件，本章节将着重介绍</p>
-</blockquote>
-<h2><span id="wai-bu-chuan-can">外部传参</span><a href="#wai-bu-chuan-can" class="header-anchor"></a></h2><p>现在有一个playbook.yml文件，想要完成进入某个目录并完成部署任务，host和执行命令中的参数tag_name 需要外部传值<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- hosts: <span class="string">'&#123;&#123;host&#125;&#125;'</span></div><div class="line">  tasks:</div><div class="line">  - name: deploy</div><div class="line">    shell: ./deploy_api.sh <span class="string">'&#123;&#123;tag_name&#125;&#125;'</span></div><div class="line">    args:</div><div class="line">      <span class="built_in">chdir</span>: ~/path</div></pre></td></tr></table></figure></p>
-<p>通过<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- key=value</div><div class="line">```bash</div><div class="line">ansible-playbook playbook.yml --extra-vars &quot;host=xxx tag_name=xxx&quot;</div></pre></td></tr></table></figure></p>
-<ul>
-<li><p>json格式</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ansible-playbook playbook.yml --extra-vars <span class="string">"&#123;'host':'xxx','tag_name':'xxx'&#125;"</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>jaon文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ansible-playbook playbook.yml --extra-vars <span class="string">"kwargs.json"</span></div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2><span id="zhi-ding-hosts-wen-jian">指定hosts文件</span><a href="#zhi-ding-hosts-wen-jian" class="header-anchor"></a></h2><p>当多人协作开发项目的时候，都是全局/etc/ansible/hosts文件并不方便，我们可以通过传参<figure class="highlight plain"><figcaption><span>来制定当前playbook使用的hosts文件</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">```bash</div><div class="line">ansible-playbook playbook.yml --inventory-file=~/ansible-hosts</div></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ansible</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks-ext/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-ansible-2017-08-08-item-basic-playbooks" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -561,97 +652,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ansible-2017-08-08-item-basic-get-started" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/08/ansible-2017-08-08-item-basic-get-started/">ansible入门笔记1 Get Started</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/08/ansible-2017-08-08-item-basic-get-started/" class="archive-article-date">
-  	<time datetime="2017-08-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>专辑：<a href="/ansible/2017/08/14/album-study-notes">ansible学习笔记</a></p>
-<blockquote>
-<p>Ansilbe是一个部署一群远程主机的工具。远程的主机可以是远程虚拟机或物理机， 也可以是本地主机。Ansilbe是一个部署一群远程主机的工具。远程的主机可以是远程虚拟机或物理机， 也可以是本地主机。</p>
-</blockquote>
-<h2><span id="an-zhuang-ansible">安装ansible</span><a href="#an-zhuang-ansible" class="header-anchor"></a></h2><ul>
-<li><p>命令 </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install ansible</div></pre></td></tr></table></figure>
-</li>
-<li><p>配置hosts </p>
-</li>
-</ul>
-<p>修改/etc/ansible/hosts 全局hosts文件，没有的话自己创建<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[wxnacy] <span class="comment"># 如果服务器使用密码登录就用这个方式保存密码，避免每次输入</span></div><div class="line">wxnacy.server.org ansible_ssh_pass=your_pass ansible_ssh_user=your_name </div><div class="line"></div><div class="line">[prod] <span class="comment"># 如果服务器使用sshkey登陆（推荐使用）</span></div><div class="line">prod.server.org ansible_ssh_user=your_name ansible_ssh_private_key_file=key_path</div></pre></td></tr></table></figure></p>
-<h2><span id="di-yi-tiao-ming-ling">第一条命令</span><a href="#di-yi-tiao-ming-ling" class="header-anchor"></a></h2><ul>
-<li>首先执行ping，查看是否可以连接服务器</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ ansible all -m ping</div><div class="line"></div><div class="line"></div><div class="line">wxnacy.server.org | SUCCESS =&gt; &#123;</div><div class="line">    <span class="string">"changed"</span>: <span class="literal">false</span>,</div><div class="line">    <span class="string">"ping"</span>: <span class="string">"pong"</span></div><div class="line">&#125;</div><div class="line">prod.server.org | SUCCESS =&gt; &#123;</div><div class="line">    <span class="string">"changed"</span>: <span class="literal">false</span>,</div><div class="line">    <span class="string">"ping"</span>: <span class="string">"pong"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>得到如上样式结果即为正确,另外执行 <figure class="highlight plain"><figcaption><span>wxnacy -m ping``` 可以针对某一个服务器组进行操作</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- 现在我们用另一个命令看下是不是真的可以拿到远程服务器的信息</div><div class="line"></div><div class="line">```bash</div><div class="line">$ ansible prod -m shell -a &quot;uname -a&quot;</div><div class="line"></div><div class="line">prod.server.org | SUCCESS | rc=0 &gt;&gt;</div><div class="line">Linux ip-172-31-5-249 4.9.27-14.31.amzn1.x86_64 #1 SMP Wed May 10 01:58:40 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux</div></pre></td></tr></table></figure></p>
-<h2><span id="zhi-ding-hosts-wen-jian">指定hosts文件</span><a href="#zhi-ding-hosts-wen-jian" class="header-anchor"></a></h2><p>在一些项目中，全局hosts配置不能满足需求，需要指定hosts命令，可以执行如下命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ansible my -i hosts_path -m ping</div></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ansible</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/08/ansible-2017-08-08-item-basic-get-started/">展开全文 >></a>
         </p>
       
 
@@ -1156,11 +1156,23 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工作</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">develop</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">北京</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1172,10 +1184,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">life</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
@@ -1184,11 +1192,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">movie</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">

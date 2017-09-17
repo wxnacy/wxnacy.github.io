@@ -1,7 +1,7 @@
 ---
 title: Mac 包管理神器 HomeBrew
 date: 2017-09-07
-tags: [mac]
+tags: [mac, HomeBrew]
 ---
 
 > [ HomeBrew ](https://brew.sh/index_zh-cn.html) 使 macOS 更完整
