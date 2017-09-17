@@ -4,7 +4,7 @@ date: 2017-08-04
 tags:
 ---
 
-[TOC]
+<!-- toc -->
 ## 初始化项目
 ```bash
 cd project_root                             # 进入项目目录
