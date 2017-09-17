@@ -6,7 +6,6 @@ tags: [mac]
 
 > [ HomeBrew ](https://brew.sh/index_zh-cn.html) 使 macOS 更完整
 
-[TOC]
 
 ## 安装
 ```bash
