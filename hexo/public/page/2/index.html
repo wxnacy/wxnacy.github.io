@@ -238,19 +238,19 @@
 
 
   
-    <article id="post-life-2017-09-06-beijing" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-python-2017-09-06-use-markdown" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/06/life-2017-09-06-beijing/">北京生活</a>
+      <a class="article-title" href="/2017/09/06/python-2017-09-06-use-markdown/">Python 使用markdown</a>
     </h1>
   
 
         
-        <a href="/2017/09/06/life-2017-09-06-beijing/" class="archive-article-date">
+        <a href="/2017/09/06/python-2017-09-06-use-markdown/" class="archive-article-date">
   	<time datetime="2017-09-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-06</time>
 </a>
         
@@ -258,10 +258,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li><a href="http://www.bjgjj.gov.cn/ywxtgn/201606/t20160623_3924.html" target="_blank" rel="external">公积金查询</a></li>
-<li><a href="http://www.bjrbj.gov.cn/csibiz/indinfo/login.jsp" target="_blank" rel="external">社保查询</a></li>
-</ul>
+        <p>[TOC]</p>
+<h2><span id="mistune">mistune</span><a href="#mistune" class="header-anchor"></a></h2><p><a href="https://github.com/lepture/mistune" target="_blank" rel="external">github</a></p>
+<h3><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install mistune</div></pre></td></tr></table></figure>
+<h3><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> mistune</div><div class="line"></div><div class="line">res = mistune.Markdown(<span class="string">'# title'</span>)</div><div class="line">print(res)</div><div class="line"></div><div class="line">md = mistune.Markdown()</div><div class="line">content = <span class="string">'# title'</span></div><div class="line">print(md(content))</div></pre></td></tr></table></figure>
+<h3><span id="geng-duo">更多</span><a href="#geng-duo" class="header-anchor"></a></h3><p><a href="https://github.com/lepture/mistune#options" target="_blank" rel="external">更多用法</a></p>
+<h2><span id="markdown">markdown</span><a href="#markdown" class="header-anchor"></a></h2><p><a href="https://github.com/Python-Markdown/markdown" target="_blank" rel="external">github</a></p>
+<h3><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install markdown</div></pre></td></tr></table></figure>
+<h3><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> markdown</div><div class="line"></div><div class="line">md = markdown.Markdown()</div><div class="line">res = md.convert(<span class="string">'# title'</span>)</div><div class="line">print(res)</div></pre></td></tr></table></figure>
+<h3><span id="toc">TOC</span><a href="#toc" class="header-anchor"></a></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> markdown</div><div class="line"></div><div class="line">EXT = [<span class="string">'markdown.extensions.toc'</span>]</div><div class="line">md = markdown.Markdown(extensions=EXT)</div><div class="line">res = md.convert(<span class="string">'# title \n[TOC]\n## h2'</span>)</div><div class="line">print(res)</div></pre></td></tr></table></figure>
+<h3><span id="geng-duo">更多</span><a href="#geng-duo" class="header-anchor"></a></h3><p><a href="https://pythonhosted.org/Markdown/" target="_blank" rel="external"> 官方文档 </a><br><a href="https://pythonhosted.org/Markdown/extensions/index.html" target="_blank" rel="external">更多extensions值</a></p>
+<h2><span id="markdown2">markdown2</span><a href="#markdown2" class="header-anchor"></a></h2><p><a href="https://github.com/trentm/python-markdown2" target="_blank" rel="external">github</a></p>
+<h3><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install markdown2</div></pre></td></tr></table></figure>
+<h3><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> markdown2</div><div class="line"></div><div class="line">md = markdown2.Markdown()</div><div class="line">res = md.convert(<span class="string">'# title'</span>)</div><div class="line">print(res)</div></pre></td></tr></table></figure>
+<h3><span id="toc">TOC</span><a href="#toc" class="header-anchor"></a></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> markdown2</div><div class="line"></div><div class="line">md = markdown2.Markdown(extras=[<span class="string">"toc"</span>,<span class="string">"header-ids"</span>])</div><div class="line">res = md.convert(<span class="string">'# title \n[TOC]\n## h2'</span>)</div><div class="line">print(res.toc_html)     <span class="comment"># 这样只能得到单独生成的目录，不能生成到md文章中</span></div></pre></td></tr></table></figure>
+<h3><span id="geng-duo">更多</span><a href="#geng-duo" class="header-anchor"></a></h3><p><a href="https://github.com/trentm/python-markdown2/wiki/Extras" target="_blank" rel="external">更多extras值</a></p>
 
       
 
@@ -275,7 +286,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">life</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		
 		</ul>
@@ -285,7 +296,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/06/life-2017-09-06-beijing/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/09/06/python-2017-09-06-use-markdown/">展开全文 >></a>
         </p>
       
 
@@ -678,6 +689,82 @@
 
 
   
+    <article id="post-python-2017-08-23-scrapy-basic" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/23/python-2017-08-23-scrapy-basic/">Python Scrapy 入门教程</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/23/python-2017-08-23-scrapy-basic/" class="archive-article-date">
+  	<time datetime="2017-08-22T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install Scrapy</div></pre></td></tr></table></figure>
+<h2><span id="chuang-jian-xiang-mu">创建项目</span><a href="#chuang-jian-xiang-mu" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ scrapy startproject crawler</div><div class="line"></div><div class="line">New Scrapy project <span class="string">'crawler'</span>, using template directory <span class="string">'/Users/wxnacy/.pyenv/versions/3.5.0/envs/env_lightcircle/lib/python3.5/site-packages/scrapy/templates/project'</span>, created <span class="keyword">in</span>:</div><div class="line">    /Users/wxnacy/WebstormProjects/wxnacy.github.io/crawler</div><div class="line"></div><div class="line">You can start your first spider with:</div><div class="line">    <span class="built_in">cd</span> crawler</div><div class="line">    scrapy genspider example example.com</div></pre></td></tr></table></figure>
+<p>通过提示我们可以通过如下命令创建第一个spider<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> crawler</div><div class="line">$ scrapy genspider youtube youtube.com</div><div class="line"></div><div class="line">Created spider <span class="string">'youtube'</span> using template <span class="string">'basic'</span> <span class="keyword">in</span> module:</div><div class="line">  crawler.spiders.youtube</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/23/python-2017-08-23-scrapy-basic/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-linux-2017-08-23-ssh" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -847,82 +934,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/23/vim-2017-08-23-basic-cmd/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-python-2017-08-23-scrapy-basic" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/23/python-2017-08-23-scrapy-basic/">Python Scrapy 入门教程</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/23/python-2017-08-23-scrapy-basic/" class="archive-article-date">
-  	<time datetime="2017-08-22T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install Scrapy</div></pre></td></tr></table></figure>
-<h2><span id="chuang-jian-xiang-mu">创建项目</span><a href="#chuang-jian-xiang-mu" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ scrapy startproject crawler</div><div class="line"></div><div class="line">New Scrapy project <span class="string">'crawler'</span>, using template directory <span class="string">'/Users/wxnacy/.pyenv/versions/3.5.0/envs/env_lightcircle/lib/python3.5/site-packages/scrapy/templates/project'</span>, created <span class="keyword">in</span>:</div><div class="line">    /Users/wxnacy/WebstormProjects/wxnacy.github.io/crawler</div><div class="line"></div><div class="line">You can start your first spider with:</div><div class="line">    <span class="built_in">cd</span> crawler</div><div class="line">    scrapy genspider example example.com</div></pre></td></tr></table></figure>
-<p>通过提示我们可以通过如下命令创建第一个spider<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> crawler</div><div class="line">$ scrapy genspider youtube youtube.com</div><div class="line"></div><div class="line">Created spider <span class="string">'youtube'</span> using template <span class="string">'basic'</span> <span class="keyword">in</span> module:</div><div class="line">  crawler.spiders.youtube</div></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/23/python-2017-08-23-scrapy-basic/">展开全文 >></a>
         </p>
       
 
@@ -1153,11 +1164,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1165,11 +1176,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">life</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">life</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1177,11 +1188,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">

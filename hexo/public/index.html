@@ -219,91 +219,6 @@
 
 
   
-    <article id="post-linux-2017-09-15-expect" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/15/linux-2017-09-15-expect/">使用 expect 交互免输入密码</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/15/linux-2017-09-15-expect/" class="archive-article-date">
-  	<time datetime="2017-09-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在工作经常会使用 ssh、ftp、 mysql 等命令，但每次输入密码会让事情变的很枯燥，<br>重复的事情就要交给脚本去做，这时候我们需要用到 <strong><a href="http://expect.sourceforge.net/" target="_blank" rel="external">expect</a></strong> ，<br>下面我们通过一个例子 <em>mysql_login</em> 来说明</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env expect</span></div><div class="line"><span class="built_in">set</span> password xxxxx</div><div class="line"><span class="built_in">set</span> name root</div><div class="line"></div><div class="line">spawn mysql -u<span class="variable">$name</span> -p</div><div class="line">expect <span class="string">"*assword:*"</span></div><div class="line">send <span class="string">"<span class="variable">$password</span>\r"</span></div><div class="line">interact</div></pre></td></tr></table></figure>
-<p>上边这段脚本是在登录本地 mysql 时，无需输入密码就自动登录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ expect mysql_login</div></pre></td></tr></table></figure></p>
-<p>执行代码不能用 <em>sh file</em> 而是 <em>expect mysql_login</em> ，如果你在文件开头加上 <em>#!/usr/bin/env expect</em> 也可以用 <em>./mysql_login</em> 来执行</p>
-<p>其他语句解释如下：</p>
-<ul>
-<li><strong>spawn</strong>：spawn是expect的语句，执行命令前都要加这句</li>
-<li><strong>expect “<em>assword:</em>“</strong>：这句意思是交互获取是否返回 password：关键字，因为在执行 mysql 时会返回输入 password 的提示 xxxxxxxx password:</li>
-<li><strong>send</strong>：将密码发送出去</li>
-<li><strong>interact</strong>：代表执行完留在远程控制台，不加这句执行完后返回本地控制台</li>
-</ul>
-<p>你可以仿照这段脚本写其他服务自动登录脚本，但是 ssh 无密码登录我推荐使用<a href="/linux/2017/08/23/ssh">SSH 登陆远程服务器和无密码操作</a>文章中提到的不对称加密登录方式</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/15/linux-2017-09-15-expect/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-mysql-2017-09-15-tmp-mysql-sock" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -361,6 +276,91 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/09/15/mysql-2017-09-15-tmp-mysql-sock/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-linux-2017-09-15-expect" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/15/linux-2017-09-15-expect/">使用 expect 交互免输入密码</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/15/linux-2017-09-15-expect/" class="archive-article-date">
+  	<time datetime="2017-09-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在工作经常会使用 ssh、ftp、 mysql 等命令，但每次输入密码会让事情变的很枯燥，<br>重复的事情就要交给脚本去做，这时候我们需要用到 <strong><a href="http://expect.sourceforge.net/" target="_blank" rel="external">expect</a></strong> ，<br>下面我们通过一个例子 <em>mysql_login</em> 来说明</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env expect</span></div><div class="line"><span class="built_in">set</span> password xxxxx</div><div class="line"><span class="built_in">set</span> name root</div><div class="line"></div><div class="line">spawn mysql -u<span class="variable">$name</span> -p</div><div class="line">expect <span class="string">"*assword:*"</span></div><div class="line">send <span class="string">"<span class="variable">$password</span>\r"</span></div><div class="line">interact</div></pre></td></tr></table></figure>
+<p>上边这段脚本是在登录本地 mysql 时，无需输入密码就自动登录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ expect mysql_login</div></pre></td></tr></table></figure></p>
+<p>执行代码不能用 <em>sh file</em> 而是 <em>expect mysql_login</em> ，如果你在文件开头加上 <em>#!/usr/bin/env expect</em> 也可以用 <em>./mysql_login</em> 来执行</p>
+<p>其他语句解释如下：</p>
+<ul>
+<li><strong>spawn</strong>：spawn是expect的语句，执行命令前都要加这句</li>
+<li><strong>expect “<em>assword:</em>“</strong>：这句意思是交互获取是否返回 password：关键字，因为在执行 mysql 时会返回输入 password 的提示 xxxxxxxx password:</li>
+<li><strong>send</strong>：将密码发送出去</li>
+<li><strong>interact</strong>：代表执行完留在远程控制台，不加这句执行完后返回本地控制台</li>
+</ul>
+<p>你可以仿照这段脚本写其他服务自动登录脚本，但是 ssh 无密码登录我推荐使用<a href="/linux/2017/08/23/ssh">SSH 登陆远程服务器和无密码操作</a>文章中提到的不对称加密登录方式</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/15/linux-2017-09-15-expect/">展开全文 >></a>
         </p>
       
 
@@ -929,19 +929,19 @@
 
 
   
-    <article id="post-python-2017-09-06-use-markdown" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-life-2017-09-06-beijing" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/06/python-2017-09-06-use-markdown/">Python 使用markdown</a>
+      <a class="article-title" href="/2017/09/06/life-2017-09-06-beijing/">北京生活</a>
     </h1>
   
 
         
-        <a href="/2017/09/06/python-2017-09-06-use-markdown/" class="archive-article-date">
+        <a href="/2017/09/06/life-2017-09-06-beijing/" class="archive-article-date">
   	<time datetime="2017-09-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-06</time>
 </a>
         
@@ -949,21 +949,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>[TOC]</p>
-<h2><span id="mistune">mistune</span><a href="#mistune" class="header-anchor"></a></h2><p><a href="https://github.com/lepture/mistune" target="_blank" rel="external">github</a></p>
-<h3><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install mistune</div></pre></td></tr></table></figure>
-<h3><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> mistune</div><div class="line"></div><div class="line">res = mistune.Markdown(<span class="string">'# title'</span>)</div><div class="line">print(res)</div><div class="line"></div><div class="line">md = mistune.Markdown()</div><div class="line">content = <span class="string">'# title'</span></div><div class="line">print(md(content))</div></pre></td></tr></table></figure>
-<h3><span id="geng-duo">更多</span><a href="#geng-duo" class="header-anchor"></a></h3><p><a href="https://github.com/lepture/mistune#options" target="_blank" rel="external">更多用法</a></p>
-<h2><span id="markdown">markdown</span><a href="#markdown" class="header-anchor"></a></h2><p><a href="https://github.com/Python-Markdown/markdown" target="_blank" rel="external">github</a></p>
-<h3><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install markdown</div></pre></td></tr></table></figure>
-<h3><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> markdown</div><div class="line"></div><div class="line">md = markdown.Markdown()</div><div class="line">res = md.convert(<span class="string">'# title'</span>)</div><div class="line">print(res)</div></pre></td></tr></table></figure>
-<h3><span id="toc">TOC</span><a href="#toc" class="header-anchor"></a></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> markdown</div><div class="line"></div><div class="line">EXT = [<span class="string">'markdown.extensions.toc'</span>]</div><div class="line">md = markdown.Markdown(extensions=EXT)</div><div class="line">res = md.convert(<span class="string">'# title \n[TOC]\n## h2'</span>)</div><div class="line">print(res)</div></pre></td></tr></table></figure>
-<h3><span id="geng-duo">更多</span><a href="#geng-duo" class="header-anchor"></a></h3><p><a href="https://pythonhosted.org/Markdown/" target="_blank" rel="external"> 官方文档 </a><br><a href="https://pythonhosted.org/Markdown/extensions/index.html" target="_blank" rel="external">更多extensions值</a></p>
-<h2><span id="markdown2">markdown2</span><a href="#markdown2" class="header-anchor"></a></h2><p><a href="https://github.com/trentm/python-markdown2" target="_blank" rel="external">github</a></p>
-<h3><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install markdown2</div></pre></td></tr></table></figure>
-<h3><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> markdown2</div><div class="line"></div><div class="line">md = markdown2.Markdown()</div><div class="line">res = md.convert(<span class="string">'# title'</span>)</div><div class="line">print(res)</div></pre></td></tr></table></figure>
-<h3><span id="toc">TOC</span><a href="#toc" class="header-anchor"></a></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> markdown2</div><div class="line"></div><div class="line">md = markdown2.Markdown(extras=[<span class="string">"toc"</span>,<span class="string">"header-ids"</span>])</div><div class="line">res = md.convert(<span class="string">'# title \n[TOC]\n## h2'</span>)</div><div class="line">print(res.toc_html)     <span class="comment"># 这样只能得到单独生成的目录，不能生成到md文章中</span></div></pre></td></tr></table></figure>
-<h3><span id="geng-duo">更多</span><a href="#geng-duo" class="header-anchor"></a></h3><p><a href="https://github.com/trentm/python-markdown2/wiki/Extras" target="_blank" rel="external">更多extras值</a></p>
+        <ul>
+<li><a href="http://www.bjgjj.gov.cn/ywxtgn/201606/t20160623_3924.html" target="_blank" rel="external">公积金查询</a></li>
+<li><a href="http://www.bjrbj.gov.cn/csibiz/indinfo/login.jsp" target="_blank" rel="external">社保查询</a></li>
+</ul>
 
       
 
@@ -977,7 +966,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">life</a>
         		</li>
       		
 		</ul>
@@ -987,7 +976,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/06/python-2017-09-06-use-markdown/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/09/06/life-2017-09-06-beijing/">展开全文 >></a>
         </p>
       
 
@@ -1122,11 +1111,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1134,11 +1123,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">life</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">life</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1146,11 +1135,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">

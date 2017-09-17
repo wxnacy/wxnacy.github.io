@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>wxnacy博客</title>
+    <link href="/css/themes/xiaolei.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
+
+</head>
+
+<body>
+<header id="header" class="layout"></header>
+<article id="article" class="layout"></article>
+<footer id="footer" class="layout"></footer>
+</body>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/showdown.min-1.7.1.js"></script>
+<script src="/js/utils.js"></script>
+<script>
+
+    $(function () {
+        var path = utils.getValue('p');
+        if (utils.isEmpty(path)) {
+            path = '/doc/index.md';
+        }
+
+        $("#SOHUCS").attr('sid', path);
+        var converter = new showdown.Converter();
+        fetch(path).then(res => {
+            console.log(res)
+            res.text().then(data => {
+                console.log(data)
+                var html = converter.makeHtml(data);
+                console.log(html)
+                $('#article').html(html)
+                console.log($('h1').text())
+                $('title').text($('h1').text())
+            })
+        })
+    })
+</script>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cspan id='cnzz_stat_icon_1263285686'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s13.cnzz.com/z_stat.php%3Fid%3D1263285686%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</html>
