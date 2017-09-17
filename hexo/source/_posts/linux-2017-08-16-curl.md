@@ -1,7 +1,7 @@
 ---
 title: Linux curl使用指南
 date: 2017-08-16
-tags:
+tags: [linux]
 ---
 
 原文: [http://www.ruanyifeng.com/blog/2011/09/curl.html](http://www.ruanyifeng.com/blog/2011/09/curl.html)

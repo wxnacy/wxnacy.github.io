@@ -1,14 +1,14 @@
 ---
 title: Mysql '/tmp/mysql.sock' 错误类型解决方法
 date: 2017-09-15
-tags:
+tags: [mysql]
 ---
 
 > Can't connect to local MySQL server through socket '/tmp/mysql.sock'
 
 一般情况下我装好 mysql 后就不会在动它了，因为一不留神就出各种错误信息，在不记得
 多少次 google 这个错误之后，我决定把它记下来
-<!-- more -->
+
 网上很多解决方法都是说 mysql 服务找不到 **/tmp/mysql.sock** 文件，那我们找到它不就行了，
 ```bash
 $ find / -name mysql.sock
@@ -43,5 +43,3 @@ $ mysql.service start
 
 通过这次解决问题，报错 */tmp/mysql.sock* 不一定是它的问题，关键还是看日志，对的
 错的全在日志里
-
-

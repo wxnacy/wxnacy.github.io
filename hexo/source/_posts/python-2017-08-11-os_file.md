@@ -1,7 +1,7 @@
 ---
 title: python 目录文件相关命令
 date: 2017-08-11
-tags:
+tags: [python]
 ---
 
 ## 使用os模块进行相关操作

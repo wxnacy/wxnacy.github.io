@@ -1,7 +1,7 @@
 ---
 title: ansible学习笔记
 date: 2017-08-14
-tags:
+tags: [ansible]
 ---
 
 ## 入门级别

@@ -1,7 +1,7 @@
 ---
 title: 2017-08-09 新建collection合集表，新建trigger完成更新用户文章数
 date: 2017-08-09
-tags:
+tags: [mysql]
 ---
 
 > 今天练习新建collection合集表，并在article中添加user_id字段，在user_data中添加article_count字段，并新建trigger ```insert_article```完成用户文章数自动更新

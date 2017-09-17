@@ -1,7 +1,7 @@
 ---
 title: 2017-08-06 新建video和comment表，以及`insert_commet_trigger`
 date: 2017-08-06
-tags:
+tags: [mysql]
 ---
 
 > 今天的目标是新建一个video视频表和comment评论表，并编写trigger，达到当insert一条评论类型为video的数据到comment中时，video中comment_count字段可以自加一

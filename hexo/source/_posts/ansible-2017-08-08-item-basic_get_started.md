@@ -1,7 +1,7 @@
 ---
 title: ansible入门笔记1 Get Started
 date: 2017-08-08
-tags:
+tags: [ansible]
 ---
 
 专辑：[ansible学习笔记](/ansible/2017/08/14/album-study-notes)

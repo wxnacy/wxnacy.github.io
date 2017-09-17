@@ -1,7 +1,7 @@
 ---
 title: 使用 supervisor 管理进程
 date: 2017-08-18
-tags:
+tags: [python]
 ---
 
 原文:http://liyangliang.me/posts/2015/06/using-supervisor/

@@ -1,7 +1,7 @@
 ---
 title: 2017-08-11 新建用户行为表，新建trigger完成用户总分数更新
 date: 2017-08-11
-tags:
+tags: [mysql]
 ---
 
 > 今天练习新建用户行为表user_event，并新建trigger做到更新用户总分数

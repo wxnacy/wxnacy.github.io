@@ -1,7 +1,7 @@
 ---
 title: python 配置PYTHONPATH(了解python导入模块搜索路径运作原理)
 date: 2017-08-15
-tags:
+tags: [python]
 ---
 
 专辑: [python 如何构建完整项目](/python/2017/08/15/album-build-project)

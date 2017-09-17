@@ -1,7 +1,7 @@
 ---
 title: python 使用pigar管理requirements.txt
 date: 2017-08-19
-tags:
+tags: [python]
 ---
 
 

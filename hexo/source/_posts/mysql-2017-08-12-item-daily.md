@@ -1,7 +1,7 @@
 ---
 title: 2017-08-12 新建等级表，完善`insert_user_event`
 date: 2017-08-12
-tags:
+tags: [mysql]
 ---
 
 > 今天练习目标，新建等级表，完善`insert_user_event`做到自动更新用户总积分和当前等级

@@ -1,7 +1,7 @@
 ---
 title: Python 微信公众号接口创建菜单编码问题
 date: 2017-09-05
-tags:
+tags: [python]
 ---
 
 

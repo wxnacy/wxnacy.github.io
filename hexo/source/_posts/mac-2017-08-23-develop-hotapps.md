@@ -1,9 +1,11 @@
 ---
 title: Mac 开发人员装机必备
 date: 2017-08-23
+tags: [mac]
 ---
 
-<!-- TOC -->
+
+[TOC]
 
 ## 操作设置
 - **打开三指拖动**：[教程](https://support.apple.com/zh-cn/HT204609)

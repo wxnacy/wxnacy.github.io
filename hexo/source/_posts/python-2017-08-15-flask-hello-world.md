@@ -1,7 +1,7 @@
 ---
 title: flask 运行hello world
 date: 2017-08-15
-tags:
+tags: [python]
 ---
 
 专辑: [python 如何构建完整项目](/python/2017/08/15/album-build-project)

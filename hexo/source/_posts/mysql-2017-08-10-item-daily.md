@@ -1,7 +1,7 @@
 ---
 title: 2017-08-10 新建collection_resource表，新建trigger更新collection资源总数
 date: 2017-08-10
-tags:
+tags: [mysql]
 ---
 
 > 今天练习的目标，新建collection_resource表，并新建trigger更新collection的资源数

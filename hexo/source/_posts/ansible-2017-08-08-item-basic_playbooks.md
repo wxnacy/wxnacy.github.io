@@ -1,7 +1,7 @@
 ---
 title: ansible入门笔记2 Playbooks
 date: 2017-08-08
-tags:
+tags: [ansible]
 ---
 
 

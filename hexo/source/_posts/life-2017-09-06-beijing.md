@@ -1,7 +1,7 @@
 ---
 title: 北京生活
 date: 2017-09-06
-tags:
+tags: [life]
 ---
 
 

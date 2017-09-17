@@ -1,7 +1,7 @@
 ---
 title: mysql 小技巧
 date: 2017-08-09
-tags:
+tags: [mysql]
 ---
 
 ## 使用tee指定输入日志

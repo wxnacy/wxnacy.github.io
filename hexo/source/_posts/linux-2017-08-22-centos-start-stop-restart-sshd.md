@@ -1,7 +1,7 @@
 ---
 title: Linux CentOS 各个版本启动SSHD服务命令
 date: 2017-08-22
-tags:
+tags: [linux]
 ---
 
 

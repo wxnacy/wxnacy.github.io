@@ -1,7 +1,7 @@
 ---
 title: 2017-08-08 新建article表，完善`insert_comment_trigger`
 date: 2017-08-08
-tags:
+tags: [mysql]
 ---
 
 > 今天目标创建acticle表，并完善`insert_comment_trigger`，以支持更新article中的comment_count,comment表新增comment_id字段

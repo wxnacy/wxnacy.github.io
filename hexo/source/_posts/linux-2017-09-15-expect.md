@@ -1,7 +1,7 @@
 ---
 title: 使用 expect 交互免输入密码
 date: 2017-09-15
-tags: [ linux, shell, expect ]
+tags: [linux]
 ---
 
 
@@ -19,7 +19,6 @@ expect "*assword:*"
 send "$password\r"
 interact
 ```
-<!--more-->
 上边这段脚本是在登录本地 mysql 时，无需输入密码就自动登录
 ```bash
 $ expect mysql_login

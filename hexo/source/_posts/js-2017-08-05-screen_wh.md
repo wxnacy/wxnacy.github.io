@@ -1,7 +1,7 @@
 ---
 title: js和css获取屏幕大小
 date: 2017-08-05
-tags:
+tags: [js]
 ---
 
 [原文：https://segmentfault.com/q/1010000004605042](https://segmentfault.com/q/1010000004605042)

@@ -1,7 +1,7 @@
 ---
 title: shell 基础命令
 date: 2017-09-02
-tags:
+tags: [shell]
 ---
 
 

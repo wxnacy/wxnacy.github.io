@@ -1,7 +1,7 @@
 ---
 title: Flask api 文档
 date: 2017-09-07
-tags:
+tags: [python]
 ---
 
 

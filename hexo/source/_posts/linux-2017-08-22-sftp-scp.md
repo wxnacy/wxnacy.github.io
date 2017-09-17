@@ -1,7 +1,7 @@
 ---
 title: Linux 远程文件传输 SFTP 和 SCP 
 date: 2017-08-22
-tags:
+tags: [linux]
 ---
 
 

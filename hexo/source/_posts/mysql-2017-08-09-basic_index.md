@@ -1,13 +1,13 @@
 ---
 title: Mysql 索引的增删查
 date: 2017-08-09
-tags:
+tags: [mysql]
 ---
 
 
 原文：[http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html](http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html)
 
-<!-- toc -->
+[TOC]
 
 ## 索引类型
 ```
@@ -17,7 +17,6 @@ PRIMARY KEY索引和UNIQUE索引非常类似。事实上，PRIMARY KEY索引仅�
 这表示一个表只能包含一个PRIMARY KEY，因为一个表中不可能具有两个同名的索引。
 下面的SQL语句对students表在sid上添加PRIMARY KEY索引。
 ```
-<!-- more -->
 
 ## 创建索引
 在执行CREATE TABLE语句时可以创建索引，也可以单独用CREATE INDEX或ALTER TABLE来为表增加索引。

@@ -1,7 +1,7 @@
 ---
 title: mysql select 格式化输出
 date: 2017-08-09
-tags:
+tags: [mysql]
 ---
 
 ## 使用\G输出结果按行垂直显示结果

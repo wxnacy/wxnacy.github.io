@@ -1,7 +1,7 @@
 ---
 title: openresty 安装
 date: 2017-08-16
-tags:
+tags: [openresty]
 ---
 
 专辑:[openresty 学习笔记](/openresty/2017/08/16/album-study-notes)

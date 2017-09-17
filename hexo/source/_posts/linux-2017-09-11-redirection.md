@@ -1,7 +1,7 @@
 ---
 title: Linux 数据流重定向(Redirection)
 date: 2017-09-11
-tags:
+tags: [linux]
 ---
 
 

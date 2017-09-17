@@ -32,12 +32,13 @@ def dump():
             #  'ansible-2017-08-08-item-basic_playbooks_ext.md',
             'ansible-2017-08-08-item-basic_tasks1.md',
             #  'python-2017-08-15-album-build-project.md',
-            #  'python-2017-08-10-pyenv-mac.md'
+            'python-2017-08-10-pyenv-mac.md'
             ]
     fl = [x for x in FILE_LIST if x not in POST_LIST and x not in rl]
     print(fl)
     print(fl[0])
-    for f in fl[0:1]:
+    for f in fl:
+        tag = f.split('-')[0]
         res = re.findall(RE_DATE, f)
         d = ''
         if res:
@@ -48,7 +49,8 @@ def dump():
         line = res.split('\n')
         title = line[0][2:]
         line.pop(0)
-        data = ['---\ntitle: {}\ndate: {}\ntags:\n---\n'.format(title, d)]
+        data = ['---\ntitle: {}\ndate: {}\ntags: [{}]\n---\n'.format(title,
+            d,tag)]
         data.extend(line)
         #  wf = open('/data/_posts/{}'.format(f),'w')
         #  wf = open('/Users/wxnacy/WebstormProjects/wxnacy.blog/source/_posts/{}'.format(utils.get_random_str(4)+'.md'),'w')

@@ -1,7 +1,7 @@
 ---
 title: ansible入门笔记3 Playbooks 简单扩展
 date: 2017-08-08
-tags:
+tags: [ansible]
 ---
 
 

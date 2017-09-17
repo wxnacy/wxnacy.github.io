@@ -1,7 +1,7 @@
 ---
 title: 使用 gunicorn 启动你的项目
 date: 2017-08-15
-tags:
+tags: [python]
 ---
 
 

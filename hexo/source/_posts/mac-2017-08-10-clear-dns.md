@@ -1,7 +1,7 @@
 ---
 title: mac清除DNS缓存
 date: 2017-08-10
-tags:
+tags: [mac]
 ---
 
 原文：[https://support.apple.com/zh-cn/HT202516](https://support.apple.com/zh-cn/HT202516)

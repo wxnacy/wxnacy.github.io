@@ -1,7 +1,7 @@
 ---
 title: Mysql 基础命令
 date: 2017-08-06
-tags:
+tags: [mysql]
 ---
 
 [TOC]

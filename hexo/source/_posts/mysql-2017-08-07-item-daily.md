@@ -1,7 +1,7 @@
 ---
 title: 2017-08-07 新建user和user_data表，完善`insert_commet_trigger`
 date: 2017-08-07
-tags:
+tags: [mysql]
 ---
 
 > 今天目标新建user、`user_data`表，并完善`insert_commet_trigger`，达到根据判断resource_type来更新video还是user_data的comment_count

@@ -1,7 +1,7 @@
 ---
 title: python 如何构建完整项目
 date: 2017-08-15
-tags:
+tags: [python]
 ---
 
 ## 使用到的工具

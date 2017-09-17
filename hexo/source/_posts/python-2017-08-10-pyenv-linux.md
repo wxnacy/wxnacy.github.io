@@ -1,7 +1,7 @@
 ---
 title: linux 环境下安装pyenv和virtualenv虚拟机
 date: 2017-08-10
-tags:
+tags: [python]
 ---
 
 废话不多直接上命令

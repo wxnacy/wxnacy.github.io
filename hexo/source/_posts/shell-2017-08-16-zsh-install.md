@@ -1,7 +1,7 @@
 ---
 title: zsh 与 oh-my-zsh 安装与使用
 date: 2017-08-16
-tags:
+tags: [shell]
 ---
 
 

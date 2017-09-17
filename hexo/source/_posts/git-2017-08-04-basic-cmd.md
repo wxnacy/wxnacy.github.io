@@ -1,10 +1,10 @@
 ---
 title: git 常用命令
 date: 2017-08-04
-tags:
+tags: [git]
 ---
 
-<!-- toc -->
+[TOC]
 ## 初始化项目
 ```bash
 cd project_root                             # 进入项目目录

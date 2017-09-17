@@ -1,7 +1,7 @@
 ---
 title: python 获取本地或网络图片的宽高
 date: 2017-08-22
-tags:
+tags: [python]
 ---
 
 

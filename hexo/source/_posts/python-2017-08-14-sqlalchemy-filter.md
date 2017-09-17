@@ -1,7 +1,7 @@
 ---
 title: sqlalchemy 各种查询语句写法
 date: 2017-08-14
-tags:
+tags: [python]
 ---
 
 

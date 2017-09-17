@@ -1,7 +1,7 @@
 ---
 title: 身份证号码校验规则
 date: 2017-08-05
-tags:
+tags: [algorithm]
 ---
 
 [原文:http://www.icloudyin.com/?p=66](http://www.icloudyin.com/?p=66)

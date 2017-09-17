@@ -1,7 +1,7 @@
 ---
 title: Python 使用markdown
 date: 2017-09-06
-tags:
+tags: [python]
 ---
 
 

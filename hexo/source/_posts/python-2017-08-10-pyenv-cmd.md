@@ -1,7 +1,7 @@
 ---
 title: pyenv virtualenv 常用命令
 date: 2017-08-10
-tags:
+tags: [python]
 ---
 
 ## pyenv 

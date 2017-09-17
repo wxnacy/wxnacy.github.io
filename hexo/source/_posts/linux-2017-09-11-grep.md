@@ -1,7 +1,7 @@
 ---
 title: Linux 使用管道命令 grep
 date: 2017-09-11
-tags:
+tags: [linux]
 ---
 
 

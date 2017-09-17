@@ -1,7 +1,7 @@
 ---
 title: Python Scrapy 入门教程
 date: 2017-08-23
-tags:
+tags: [python]
 ---
 
 
