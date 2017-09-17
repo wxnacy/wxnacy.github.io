@@ -12,7 +12,8 @@ import re
 FILE_LIST = os.listdir(BaseConfig.ARTICLE_DIR)
 FILE_LIST = list(filter(lambda x: not x.startswith('.'),FILE_LIST))
 
-POST_LIST= os.listdir('/Users/wxnacy/WebstormProjects/wxnacy.blog/source/_posts/')
+HEXO_HOME = '/Users/wxnacy/WebstormProjects/wxnacy.github.io/hexo/source/_posts/'
+POST_LIST= os.listdir(HEXO_HOME)
 POST_LIST = list(filter(lambda x: not x.startswith('.'),POST_LIST))
 
 
@@ -29,7 +30,7 @@ def dump():
     rl = ['algorithm-2017-08-05-identity_verify.md',
             'ansible-2017-08-08-item-basic_playbooks_ext.md',
             'ansible-2017-08-08-item-basic_tasks1.md',
-            'python-2017-08-15-album-build-project.md',
+            #  'python-2017-08-15-album-build-project.md',
             'python-2017-08-10-pyenv-mac.md']
     fl = [x for x in FILE_LIST if x not in POST_LIST and x not in rl]
     print(fl)
@@ -49,7 +50,7 @@ def dump():
         data.extend(line)
         #  wf = open('/data/_posts/{}'.format(f),'w')
         #  wf = open('/Users/wxnacy/WebstormProjects/wxnacy.blog/source/_posts/{}'.format(utils.get_random_str(4)+'.md'),'w')
-        wf = open('/Users/wxnacy/WebstormProjects/wxnacy.blog/source/_posts/{}'.format(f),'w')
+        wf = open('{}{}'.format(HEXO_HOME,f),'w')
         wf.write('\n'.join(data))
         wf.close()
         rf.close()
