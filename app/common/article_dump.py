@@ -27,11 +27,13 @@ def dump():
     #  fn = fn.replace('/','-')
     #  fl = list(filter(lambda x: fn in x, fl))
     #  fl.re
-    rl = ['algorithm-2017-08-05-identity_verify.md',
-            'ansible-2017-08-08-item-basic_playbooks_ext.md',
+    rl = [
+            #  'algorithm-2017-08-05-identity_verify.md',
+            #  'ansible-2017-08-08-item-basic_playbooks_ext.md',
             'ansible-2017-08-08-item-basic_tasks1.md',
             #  'python-2017-08-15-album-build-project.md',
-            'python-2017-08-10-pyenv-mac.md']
+            #  'python-2017-08-10-pyenv-mac.md'
+            ]
     fl = [x for x in FILE_LIST if x not in POST_LIST and x not in rl]
     print(fl)
     print(fl[0])
