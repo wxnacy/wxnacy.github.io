@@ -219,91 +219,6 @@
 
 
   
-    <article id="post-linux-2017-09-15-expect" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/15/linux-2017-09-15-expect/">使用 expect 交互免输入密码</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/15/linux-2017-09-15-expect/" class="archive-article-date">
-  	<time datetime="2017-09-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在工作经常会使用 ssh、ftp、 mysql 等命令，但每次输入密码会让事情变的很枯燥，<br>重复的事情就要交给脚本去做，这时候我们需要用到 <strong><a href="http://expect.sourceforge.net/" target="_blank" rel="external">expect</a></strong> ，<br>下面我们通过一个例子 <em>mysql_login</em> 来说明</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env expect</span></div><div class="line"><span class="built_in">set</span> password xxxxx</div><div class="line"><span class="built_in">set</span> name root</div><div class="line"></div><div class="line">spawn mysql -u<span class="variable">$name</span> -p</div><div class="line">expect <span class="string">"*assword:*"</span></div><div class="line">send <span class="string">"<span class="variable">$password</span>\r"</span></div><div class="line">interact</div></pre></td></tr></table></figure>
-<p>上边这段脚本是在登录本地 mysql 时，无需输入密码就自动登录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ expect mysql_login</div></pre></td></tr></table></figure></p>
-<p>执行代码不能用 <em>sh file</em> 而是 <em>expect mysql_login</em> ，如果你在文件开头加上 <em>#!/usr/bin/env expect</em> 也可以用 <em>./mysql_login</em> 来执行</p>
-<p>其他语句解释如下：</p>
-<ul>
-<li><strong>spawn</strong>：spawn是expect的语句，执行命令前都要加这句</li>
-<li><strong>expect “<em>assword:</em>“</strong>：这句意思是交互获取是否返回 password：关键字，因为在执行 mysql 时会返回输入 password 的提示 xxxxxxxx password:</li>
-<li><strong>send</strong>：将密码发送出去</li>
-<li><strong>interact</strong>：代表执行完留在远程控制台，不加这句执行完后返回本地控制台</li>
-</ul>
-<p>你可以仿照这段脚本写其他服务自动登录脚本，但是 ssh 无密码登录我推荐使用<a href="/linux/2017/08/23/ssh">SSH 登陆远程服务器和无密码操作</a>文章中提到的不对称加密登录方式</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/15/linux-2017-09-15-expect/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-mysql-2017-09-15-tmp-mysql-sock" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -361,6 +276,91 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/09/15/mysql-2017-09-15-tmp-mysql-sock/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-linux-2017-09-15-expect" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/15/linux-2017-09-15-expect/">使用 expect 交互免输入密码</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/15/linux-2017-09-15-expect/" class="archive-article-date">
+  	<time datetime="2017-09-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在工作经常会使用 ssh、ftp、 mysql 等命令，但每次输入密码会让事情变的很枯燥，<br>重复的事情就要交给脚本去做，这时候我们需要用到 <strong><a href="http://expect.sourceforge.net/" target="_blank" rel="external">expect</a></strong> ，<br>下面我们通过一个例子 <em>mysql_login</em> 来说明</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env expect</span></div><div class="line"><span class="built_in">set</span> password xxxxx</div><div class="line"><span class="built_in">set</span> name root</div><div class="line"></div><div class="line">spawn mysql -u<span class="variable">$name</span> -p</div><div class="line">expect <span class="string">"*assword:*"</span></div><div class="line">send <span class="string">"<span class="variable">$password</span>\r"</span></div><div class="line">interact</div></pre></td></tr></table></figure>
+<p>上边这段脚本是在登录本地 mysql 时，无需输入密码就自动登录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ expect mysql_login</div></pre></td></tr></table></figure></p>
+<p>执行代码不能用 <em>sh file</em> 而是 <em>expect mysql_login</em> ，如果你在文件开头加上 <em>#!/usr/bin/env expect</em> 也可以用 <em>./mysql_login</em> 来执行</p>
+<p>其他语句解释如下：</p>
+<ul>
+<li><strong>spawn</strong>：spawn是expect的语句，执行命令前都要加这句</li>
+<li><strong>expect “<em>assword:</em>“</strong>：这句意思是交互获取是否返回 password：关键字，因为在执行 mysql 时会返回输入 password 的提示 xxxxxxxx password:</li>
+<li><strong>send</strong>：将密码发送出去</li>
+<li><strong>interact</strong>：代表执行完留在远程控制台，不加这句执行完后返回本地控制台</li>
+</ul>
+<p>你可以仿照这段脚本写其他服务自动登录脚本，但是 ssh 无密码登录我推荐使用<a href="/linux/2017/08/23/ssh">SSH 登陆远程服务器和无密码操作</a>文章中提到的不对称加密登录方式</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/15/linux-2017-09-15-expect/">展开全文 >></a>
         </p>
       
 
@@ -1040,6 +1040,7 @@
             <span id="busuanzi_container_site_pv">
             本站总访问量<span id="busuanzi_value_site_pv"></span>次
             本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            本文总阅读量<span id="busuanzi_value_page_pv"></span>次
             </span>
     	</div>
       	<div class="footer-right">
@@ -1136,11 +1137,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color3">develop</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">develop</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
