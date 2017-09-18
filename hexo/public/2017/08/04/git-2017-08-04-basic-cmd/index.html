@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>git 常用命令 | wxnacy 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="[TOC] 初始化项目12345678cd project_root                             # 进入项目目录git init                                    # 初始化git仓库git add .                                   # 添加文件到仓库git commit -m &apos;init co">
+  <meta name="description" content="初始化项目 删除文件 修改用户信息 记住密码 revert commit 修改remote url 分支 标签 提交检查 status log show diff      初始化项目12345678cd project_root                             # 进入项目目录git init">
 <meta name="keywords" content="git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git 常用命令">
 <meta property="og:url" content="http://wxnacy.com/2017/08/04/git-2017-08-04-basic-cmd/index.html">
 <meta property="og:site_name" content="wxnacy 博客">
-<meta property="og:description" content="[TOC] 初始化项目12345678cd project_root                             # 进入项目目录git init                                    # 初始化git仓库git add .                                   # 添加文件到仓库git commit -m &apos;init co">
+<meta property="og:description" content="初始化项目 删除文件 修改用户信息 记住密码 revert commit 修改remote url 分支 标签 提交检查 status log show diff      初始化项目12345678cd project_root                             # 进入项目目录git init">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-09-17T05:54:51.000Z">
+<meta property="og:updated_time" content="2017-09-18T09:53:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git 常用命令">
-<meta name="twitter:description" content="[TOC] 初始化项目12345678cd project_root                             # 进入项目目录git init                                    # 初始化git仓库git add .                                   # 添加文件到仓库git commit -m &apos;init co">
+<meta name="twitter:description" content="初始化项目 删除文件 修改用户信息 记住密码 revert commit 修改remote url 分支 标签 提交检查 status log show diff      初始化项目12345678cd project_root                             # 进入项目目录git init">
   
     <link rel="alternative" href="/atom.xml" title="wxnacy 博客" type="application/atom+xml">
   
@@ -163,7 +163,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>[TOC]</p>
+        <div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#chu-shi-hua-xiang-mu">初始化项目</a></li>
+<li><a href="#shan-chu-wen-jian">删除文件</a></li>
+<li><a href="#xiu-gai-yong-hu-xin-xi">修改用户信息</a></li>
+<li><a href="#ji-zhu-mi-ma">记住密码</a></li>
+<li><a href="#revert-commit">revert commit</a></li>
+<li><a href="#xiu-gai-remote-url">修改remote url</a></li>
+<li><a href="#fen-zhi">分支</a></li>
+<li><a href="#biao-qian">标签</a></li>
+<li><a href="#ti-jiao-jian-cha">提交检查</a><ul>
+<li><a href="#status">status</a></li>
+<li><a href="#log">log</a></li>
+<li><a href="#show">show</a></li>
+<li><a href="#diff">diff</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<p></div></p>
 <h2><span id="chu-shi-hua-xiang-mu">初始化项目</span><a href="#chu-shi-hua-xiang-mu" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> project_root                             <span class="comment"># 进入项目目录</span></div><div class="line">git init                                    <span class="comment"># 初始化git仓库</span></div><div class="line">git add .                                   <span class="comment"># 添加文件到仓库</span></div><div class="line">git commit -m <span class="string">'init commit'</span>                 <span class="comment"># 提交代码到本地仓库</span></div><div class="line">git remote add origin <span class="variable">$&#123;repository_path&#125;</span>    <span class="comment"># 将项目关联到git server</span></div><div class="line">git pull origin master                      <span class="comment"># 同步代码</span></div><div class="line">git push origin master                      <span class="comment"># push代码到远程仓库</span></div><div class="line">git <span class="built_in">clone</span> <span class="variable">$&#123;repository_path&#125;</span>                <span class="comment"># 新的位置clone项目</span></div></pre></td></tr></table></figure>
 <h2><span id="shan-chu-wen-jian">删除文件</span><a href="#shan-chu-wen-jian" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">rm -r file_path</div><div class="line">git rm -r <span class="variable">$&#123;file_path&#125;</span></div><div class="line">git commit -m <span class="string">'remove'</span></div><div class="line">git pull origin master</div><div class="line">git push origin master</div></pre></td></tr></table></figure>
 <h2><span id="xiu-gai-yong-hu-xin-xi">修改用户信息</span><a href="#xiu-gai-yong-hu-xin-xi" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name wxnacy            <span class="comment"># 配置用户名</span></div><div class="line">git config --global user.email xxx@qq.com       <span class="comment"># 配置邮件</span></div></pre></td></tr></table></figure>
@@ -209,11 +230,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/05/algorithm-2017-08-05-identity-verify/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/08/05/algorithm-2017-08-05-bank-verify/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          身份证号码校验规则
+          银行卡校验规则(Luhn算法)
         
       </div>
     </a>
@@ -394,7 +415,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">develop</a>
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -418,11 +439,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">mac</a>
+                <a href="javascript:void(0)" class="js-tag color2">expect</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">expect</a>
+                <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -430,11 +451,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">

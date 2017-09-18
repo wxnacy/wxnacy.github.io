@@ -5,8 +5,8 @@ tags: [linux]
 ---
 
 
-[TOC]
-
+<!-- toc -->
+<!-- more -->
 ## 重定向
 ```bash
 标准输入　　(stdin) ：代码为 0 ，使用 < 或 <<

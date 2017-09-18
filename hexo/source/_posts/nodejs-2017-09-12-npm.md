@@ -8,6 +8,8 @@ tags: [nodejs]
 ## 安装
 因为 npm 是 **NodeJS** 的包管理工具，所以下载 **NodeJS** 后自动会安装 npm
 
+<!-- more -->
+
 ### Mac
 ```bash
 $ brew install node

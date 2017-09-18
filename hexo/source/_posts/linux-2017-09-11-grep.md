@@ -4,8 +4,9 @@ date: 2017-09-11
 tags: [linux]
 ---
 
-
 > 文件搜索用 find，文本搜索用 grep
+
+<!-- more -->
 
 ```bash
 $ grep [-aicv..] [--color=auto] '搜寻字符串' filename

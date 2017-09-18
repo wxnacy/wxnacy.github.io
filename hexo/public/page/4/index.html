@@ -143,19 +143,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-openresty-2017-08-16-album-study-notes" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-openresty-2017-08-16-install" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/16/openresty-2017-08-16-album-study-notes/">openresty 学习笔记</a>
+      <a class="article-title" href="/2017/08/16/openresty-2017-08-16-install/">openresty 安装</a>
     </h1>
   
 
         
-        <a href="/2017/08/16/openresty-2017-08-16-album-study-notes/" class="archive-article-date">
+        <a href="/2017/08/16/openresty-2017-08-16-install/" class="archive-article-date">
   	<time datetime="2017-08-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
 </a>
         
@@ -163,10 +163,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li><a href="/openresty/2017/08/16/install">openresty 安装</a></li>
-</ul>
-
+        <p>专辑:<a href="/openresty/2017/08/16/album-study-notes">openresty 学习笔记</a></p>
+<h2><span id="mac-os">Mac OS</span><a href="#mac-os" class="header-anchor"></a></h2><p>推荐使用<code>brew</code>安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">brew install homebrew/nginx/openresty</div><div class="line">brew update</div><div class="line">brew install pcre openssl</div></pre></td></tr></table></figure></p>
+<h2><span id="centos">CentOS</span><a href="#centos" class="header-anchor"></a></h2><p>你可以在你的 CentOS 系统中添加 openresty 仓库，这样就可以便于未来安装或更新我们的软件包（通过 yum update 命令）。运行下面的命令就可以添加我们的仓库：</p>
+<pre><code>sudo yum install yum-utils
+sudo yum-config-manager --add-repo https://openresty.org/package/centos/openresty.repo
+</code></pre><p>然后就可以像下面这样安装软件包，比如 openresty：</p>
+<pre><code>sudo yum install openresty
+</code></pre><p>如果你想安装命令行工具 resty，那么可以像下面这样安装 openresty-resty 包：</p>
+<pre><code>sudo yum install openresty-resty
+</code></pre><p>命令行工具 opm 在 openresty-opm 包里，而 restydoc 工具在 openresty-doc 包里头。</p>
+<p>列出所有 openresty 仓库里头的软件包：</p>
+<pre><code>sudo yum --disablerepo=&quot;*&quot; --enablerepo=&quot;openresty&quot; list available
+</code></pre>
       
 
       
@@ -189,7 +198,268 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/16/openresty-2017-08-16-album-study-notes/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/16/openresty-2017-08-16-install/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-linux-2017-08-16-curl" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/16/linux-2017-08-16-curl/">Linux curl使用指南</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/16/linux-2017-08-16-curl/" class="archive-article-date">
+  	<time datetime="2017-08-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文: <a href="http://www.ruanyifeng.com/blog/2011/09/curl.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2011/09/curl.html</a></p>
+<blockquote>
+<p> curl是一种命令行工具，作用是发出网络请求，然后得到和提取数据，显示在”标准输出”（stdout）上面。</p>
+</blockquote>
+<h2><span id="cha-kan-wang-ye-yuan-ma">查看网页源码</span><a href="#cha-kan-wang-ye-yuan-ma" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl baidu.com</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"refresh"</span> <span class="attr">content</span>=<span class="string">"0;url=http://www.baidu.com/"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>如果要把这个网页保存下来，可以使用<code>-o</code>或<code>--output</code>参数，这就相当于使用wget命令了。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl -o file_name baidu.com</div></pre></td></tr></table></figure></p>
+<h2><span id="zi-dong-tiao-zhuan">自动跳转</span><a href="#zi-dong-tiao-zhuan" class="header-anchor"></a></h2><p>有的网址是自动跳转的。使用<code>-L</code>或<code>--location</code>参数，curl就会跳转到新的网址。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl -L baidu.com</div></pre></td></tr></table></figure></p>
+<h2><span id="xian-shi-tou-xin-xi">显示头信息</span><a href="#xian-shi-tou-xin-xi" class="header-anchor"></a></h2><p><code>-i</code>或<code>--include</code>参数可以显示http response的头信息，连同网页代码一起。 <code>-I</code>或<code>--head</code>参数则是只显示http response的头信息。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl -i baidu.com</div></pre></td></tr></table></figure></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 200 OK</div><div class="line">Date: Wed, 16 Aug 2017 08:21:49 GMT</div><div class="line">Server: Apache</div><div class="line">Last-Modified: Tue, 12 Jan 2010 13:48:00 GMT</div><div class="line">ETag: "51-47cf7e6ee8400"</div><div class="line">Accept-Ranges: bytes</div><div class="line">Content-Length: 81</div><div class="line">Cache-Control: max-age=86400</div><div class="line">Expires: Thu, 17 Aug 2017 08:21:49 GMT</div><div class="line">Connection: Keep-Alive</div><div class="line">Content-Type: text/html</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"refresh"</span> <span class="attr">content</span>=<span class="string">"0;url=http://www.baidu.com/"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2><span id="xian-shi-tong-xin-guo-cheng">显示通信过程</span><a href="#xian-shi-tong-xin-guo-cheng" class="header-anchor"></a></h2><p><code>-v</code>或<code>--verbose</code>参数可以显示一次http通信的整个过程，包括端口连接和http request头信息。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl -v baidu.com</div></pre></td></tr></table></figure></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">* Rebuilt URL to: baidu.com/</div><div class="line">*   Trying 220.181.57.217...</div><div class="line">* Connected to baidu.com (220.181.57.217) port 80 (#0)</div><div class="line">&gt; GET / HTTP/1.1</div><div class="line">&gt; Host: baidu.com</div><div class="line">&gt; User-Agent: curl/7.43.0</div><div class="line">&gt; Accept: */*</div><div class="line">&gt;</div><div class="line"><span class="tag">&lt; <span class="attr">HTTP</span>/<span class="attr">1.1</span> <span class="attr">200</span> <span class="attr">OK</span></span></div><div class="line">&lt; Date: Wed, 16 Aug 2017 08:24:49 GMT</div><div class="line"><span class="tag">&lt; <span class="attr">Server:</span> <span class="attr">Apache</span></span></div><div class="line">&lt; Last-Modified: Tue, 12 Jan 2010 13:48:00 GMT</div><div class="line"><span class="tag">&lt; <span class="attr">ETag:</span> "<span class="attr">51-47cf7e6ee8400</span>"</span></div><div class="line">&lt; Accept-Ranges: bytes</div><div class="line"><span class="tag">&lt; <span class="attr">Content-Length:</span> <span class="attr">81</span></span></div><div class="line">&lt; Cache-Control: max-age=86400</div><div class="line"><span class="tag">&lt; <span class="attr">Expires:</span> <span class="attr">Thu</span>, <span class="attr">17</span> <span class="attr">Aug</span> <span class="attr">2017</span> <span class="attr">08:24:49</span> <span class="attr">GMT</span></span></div><div class="line">&lt; Connection: Keep-Alive</div><div class="line"><span class="tag">&lt; <span class="attr">Content-Type:</span> <span class="attr">text</span>/<span class="attr">html</span></span></div><div class="line">&lt;</div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"refresh"</span> <span class="attr">content</span>=<span class="string">"0;url=http://www.baidu.com/"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div><div class="line">* Connection #0 to host baidu.com left intact</div></pre></td></tr></table></figure>
+<p>也可以通过<code>--trace</code>或<code>--trace-ascii</code>命令查看更详细通信过程，执行后通过制定的日志地址查看<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ curl --trace <span class="variable">$&#123;log_path&#125;</span> baidu.com</div><div class="line">$ curl --trace-ascii <span class="variable">$&#123;log_path&#125;</span> baidu.com</div></pre></td></tr></table></figure></p>
+<h2><span id="http-dong-ci">HTTP动词</span><a href="#http-dong-ci" class="header-anchor"></a></h2><p>curl默认的HTTP动词是GET，使用<code>-X</code>参数可以支持其他动词。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl -X POST baidu.com</div></pre></td></tr></table></figure>
+<h2><span id="zeng-jia-tou-xin-xi">增加头信息</span><a href="#zeng-jia-tou-xin-xi" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl localhost:8002/<span class="built_in">test</span> -H <span class="string">"Content-Type:application/json"</span> <span class="comment"># 使用-H 或 --header 可以起到这个作用</span></div></pre></td></tr></table></figure>
+<h2><span id="fa-song-biao-dan-xin-xi">发送表单信息</span><a href="#fa-song-biao-dan-xin-xi" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ curl localhost:8002/<span class="built_in">test</span>?data=xxx <span class="comment"># GET方法比较简单，网址后直接跟参数</span></div><div class="line">$ curl -X POST localhost:8002/<span class="built_in">test</span> --data <span class="string">"name=xxx"</span> --data <span class="string">"password=xxx"</span> <span class="comment"># POST方法通过--data或-d参数实现</span></div><div class="line">$ curl -X POST localhost:8002/<span class="built_in">test</span> -H <span class="string">"Content-Type:application/x-www-form-urlencoded"</span> -d <span class="string">"name=win"</span></div><div class="line">$ curl -X POST localhost:8002/<span class="built_in">test</span> -H <span class="string">"Content-Type:application/json"</span> -d <span class="string">'&#123;"name":"wxnacy"&#125;'</span> <span class="comment"># 使用application/json 提交json数据</span></div><div class="line">$ curl -X POST localhost:8002/<span class="built_in">test</span> --data-urlencode <span class="string">"data=1 2"</span> <span class="comment">#如果你的数据没有经过表单编码，还可以让curl为你编码，参数是`--data-urlencode`。</span></div></pre></td></tr></table></figure>
+<h2><span id="wen-jian-shang-chuan">文件上传</span><a href="#wen-jian-shang-chuan" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ curl --form upload_field=@localfilename localhost:8002/<span class="built_in">test</span></div><div class="line">$ curl --form <span class="string">"upload_field=@new.txt;type=text/plain"</span> localhost:8002/<span class="built_in">test</span></div></pre></td></tr></table></figure>
+<h2><span id="referer-zi-duan">Referer字段</span><a href="#referer-zi-duan" class="header-anchor"></a></h2><p>需要添加request头信息referer标示从哪里跳转来的<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl localhost:8002/<span class="built_in">test</span> --referer <span class="variable">$&#123;from_url&#125;</span></div></pre></td></tr></table></figure></p>
+<h2><span id="user-agent-zi-duan">user-agent字段</span><a href="#user-agent-zi-duan" class="header-anchor"></a></h2><p>使用<code>--user-agent</code>或<code>-A</code>可以模拟发送user-agent字段<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl localhost:8002/<span class="built_in">test</span> --user-agent <span class="string">"device"</span></div></pre></td></tr></table></figure></p>
+<h2><span id="cookie">cookie</span><a href="#cookie" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ curl localhost:8002/<span class="built_in">test</span> --cookie <span class="string">"name=ss"</span> <span class="comment"># 发送的cookie可以在response headers中看到</span></div><div class="line">$ curl localhost:8002/<span class="built_in">test</span> -c <span class="variable">$&#123;cookie_file&#125;</span> <span class="comment"># -c 可以保存服务器返回的cookies到文件中</span></div><div class="line">$ curl localhost:8002/<span class="built_in">test</span> -b <span class="variable">$&#123;cookie_file&#125;</span> <span class="comment"># -b 可以使用这个文件作为cookie信息，进行后续的请求。</span></div></pre></td></tr></table></figure>
+<h2><span id="http-ren-zheng">HTTP认证</span><a href="#http-ren-zheng" class="header-anchor"></a></h2><p>有些网域需要HTTP认证，这时curl需要用到<code>--user</code>或 <code>-u</code>参数。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl localhost:8002/<span class="built_in">test</span> --user name:apss <span class="comment"># 这时候服务器会在头信息中接收到Authorization字段，值为Basic + name:pass的base64加密数值</span></div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/16/linux-2017-08-16-curl/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-python-2017-08-15-config-pythonpath" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/15/python-2017-08-15-config-pythonpath/">python 配置PYTHONPATH(了解python导入模块搜索路径运作原理)</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/15/python-2017-08-15-config-pythonpath/" class="archive-article-date">
+  	<time datetime="2017-08-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>专辑: <a href="/python/2017/08/15/album-build-project">python 如何构建完整项目</a></p>
+<blockquote>
+<p>python项目导入模块是必不可少的，大多数情况下，可以以来模块导入搜索路径的自动特性，完全不需要配置路径。不过，如果你想在用户间定义目录边界来导入文件，就需要知道搜索路径是如何运作的。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ python tests/test_utils.py   </div><div class="line">                                                                   </div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"tests/test_utils.py"</span>, line 7, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">    from run_api import app</div><div class="line">ImportError: No module named <span class="string">'run_api'</span></div></pre></td></tr></table></figure>
+<p>在我刚学习python时，做模块导入最长碰到的就是这个错误，我明明定义了<figure class="highlight plain"><figcaption><span>module No module No你妹啊，如果你也碰到这样的问题，你应该好好看看这篇文章</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 不太好的解决办法</div><div class="line">```python</div><div class="line">import sys</div><div class="line">import os</div><div class="line">sys.path.append( os.path.join( os.path.dirname(__file__), os.path.pardir ) )</div></pre></td></tr></table></figure></p>
+<p>在google模块导入问题的时候，大部分博客给出了这样的解决方案，在每个文件配置这样的代码，他做到了将当前文件的路径加入到python模块搜索路径sys.path中，确实可以起到解决bug的作用，但是每个文件都写上这样一段代码，实在让人不舒服，下面我们还是来学习下python模块搜索路径是如何运作的</p>
+<h2><span id="python-cong-na-xie-lu-jing-dao-ru-mo-kuai">python从哪些路径导入模块</span><a href="#python-cong-na-xie-lu-jing-dao-ru-mo-kuai" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1、程序的主目录</div><div class="line">2、PYTHONPATH目录（如果已经进行了设置）</div><div class="line">3、标准链接库目录</div><div class="line">4、任何.pth文件的内容（如果存在的话）</div></pre></td></tr></table></figure>
+<h3><span id="zhu-mu-lu">主目录</span><a href="#zhu-mu-lu" class="header-anchor"></a></h3><p>Python首先会在主目录内搜索导入的文件。如果程序完全位于单一目录，所有导入的会自动工作，而并不需要配置路径。由于这个目录总是先搜索，其文件也将覆盖路径上的其他目录中具有同样名称的模块。如果你需要在自己程序中使用库模块的话，小心不要以这种方式以外地隐藏库模块。</p>
+<h3><span id="pythonpath-mu-lu">PYTHONPATH目录</span><a href="#pythonpath-mu-lu" class="header-anchor"></a></h3><p>之后，Python会从左到右搜索PYTHONPATH环境变量设置中罗列出的所有目录，可以是用户定义或平台特定的目录名。因为Python优先搜索主目录，当导入的文件跨目录时，这个设置才显得格外重要。</p>
+<h3><span id="biao-zhun-ku-mu-lu">标准库目录</span><a href="#biao-zhun-ku-mu-lu" class="header-anchor"></a></h3><p>接着，Python会自动搜索标准库模块安装在机器上的那些目录，这块通常不需要在单独配置</p>
+<h3><span id="pth-wen-jian-mu-lu">.pth文件目录</span><a href="#pth-wen-jian-mu-lu" class="header-anchor"></a></h3><p>最后，Python有个相当新的功能，允许用户把有效的目录添加到模块搜索路径中去，也就是在后缀名为.pth（路径的意思）的文本文件中一行一行的列出目录。他是PYTHONPATH的一种替代方案，我们也可以把它放在标注库所在位置的sitepackages的子目录中扩展模块搜索路径</p>
+<h2><span id="ying-yong-dao-dang-qian-xiang-mu">应用到当前项目</span><a href="#ying-yong-dao-dang-qian-xiang-mu" class="header-anchor"></a></h2><p>在开发大型项目之前，我们可以将项目根目录作为PYTHONPATH存到环境变量中，也可以每次运行前之前该命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ touch env.sh</div><div class="line">$ vim env.sh</div><div class="line"></div><div class="line"><span class="built_in">export</span> PYTHONPATH=./ <span class="comment"># 将项目根目录作为PYTHONPATH</span></div><div class="line"></div><div class="line">$ <span class="built_in">source</span> env.sh <span class="comment"># 在项目运行之前执行该命令</span></div></pre></td></tr></table></figure></p>
+<p>最后我们可以通过下面两行代码来查看当前项目python模块搜索路径和导入的模块<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> sys</div><div class="line"></div><div class="line">print(sys.path) <span class="comment"># 输出python模块搜索目录</span></div><div class="line"></div><div class="line">print(list(sys.modules.keys())) <span class="comment"># 输出python已经导入的模块列表</span></div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/15/python-2017-08-15-config-pythonpath/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-python-2017-08-15-flask-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/15/python-2017-08-15-flask-hello-world/">flask 运行hello world</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/15/python-2017-08-15-flask-hello-world/" class="archive-article-date">
+  	<time datetime="2017-08-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>专辑: <a href="/python/2017/08/15/album-build-project">python 如何构建完整项目</a></p>
+<h2><span id="xin-jian-xiang-mu-myproject">新建项目myproject</span><a href="#xin-jian-xiang-mu-myproject" class="header-anchor"></a></h2><p>首先新建myproject文件夹当做工作目录，进入目录pip下flask依赖包，创建并编辑run.py<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ mkdir myproject</div><div class="line">$ <span class="built_in">cd</span> myproject</div><div class="line">$ pip install flask</div><div class="line">$ touch run.py</div><div class="line">$ vim run.py</div></pre></td></tr></table></figure></p>
+<h3><span id="run-py">run.py</span><a href="#run-py" class="header-anchor"></a></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</div><div class="line">app = Flask(__name__)</div><div class="line"></div><div class="line"><span class="meta">@app.route('/hello')</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">return</span> <span class="string">"hello world"</span></div><div class="line"></div><div class="line">app.run()</div></pre></td></tr></table></figure>
+<h3><span id="yun-xing">运行</span><a href="#yun-xing" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ python run.py</div><div class="line"></div><div class="line">* Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)</div></pre></td></tr></table></figure>
+<h3><span id="fang-wen-fu-wu">访问服务</span><a href="#fang-wen-fu-wu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ curl http://127.0.0.1:5000/hello</div><div class="line">hello world%</div></pre></td></tr></table></figure>
+<h3><span id="wai-bu-ke-fang-wen-fu-wu-qi">外部可访问服务器</span><a href="#wai-bu-ke-fang-wen-fu-wu-qi" class="header-anchor"></a></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app.run(host=<span class="string">'0.0.0.0'</span>)</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/15/python-2017-08-15-flask-hello-world/">展开全文 >></a>
         </p>
       
 
@@ -305,85 +575,6 @@
 
 
   
-    <article id="post-python-2017-08-15-flask-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/15/python-2017-08-15-flask-hello-world/">flask 运行hello world</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/15/python-2017-08-15-flask-hello-world/" class="archive-article-date">
-  	<time datetime="2017-08-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>专辑: <a href="/python/2017/08/15/album-build-project">python 如何构建完整项目</a></p>
-<h2><span id="xin-jian-xiang-mu-myproject">新建项目myproject</span><a href="#xin-jian-xiang-mu-myproject" class="header-anchor"></a></h2><p>首先新建myproject文件夹当做工作目录，进入目录pip下flask依赖包，创建并编辑run.py<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ mkdir myproject</div><div class="line">$ <span class="built_in">cd</span> myproject</div><div class="line">$ pip install flask</div><div class="line">$ touch run.py</div><div class="line">$ vim run.py</div></pre></td></tr></table></figure></p>
-<h3><span id="run-py">run.py</span><a href="#run-py" class="header-anchor"></a></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</div><div class="line">app = Flask(__name__)</div><div class="line"></div><div class="line"><span class="meta">@app.route('/hello')</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">return</span> <span class="string">"hello world"</span></div><div class="line"></div><div class="line">app.run()</div></pre></td></tr></table></figure>
-<h3><span id="yun-xing">运行</span><a href="#yun-xing" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ python run.py</div><div class="line"></div><div class="line">* Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)</div></pre></td></tr></table></figure>
-<h3><span id="fang-wen-fu-wu">访问服务</span><a href="#fang-wen-fu-wu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ curl http://127.0.0.1:5000/hello</div><div class="line">hello world%</div></pre></td></tr></table></figure>
-<h3><span id="wai-bu-ke-fang-wen-fu-wu-qi">外部可访问服务器</span><a href="#wai-bu-ke-fang-wen-fu-wu-qi" class="header-anchor"></a></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app.run(host=<span class="string">'0.0.0.0'</span>)</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/15/python-2017-08-15-flask-hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-python-2017-08-15-album-build-project" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -456,93 +647,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/15/python-2017-08-15-album-build-project/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-python-2017-08-15-config-pythonpath" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/15/python-2017-08-15-config-pythonpath/">python 配置PYTHONPATH(了解python导入模块搜索路径运作原理)</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/15/python-2017-08-15-config-pythonpath/" class="archive-article-date">
-  	<time datetime="2017-08-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>专辑: <a href="/python/2017/08/15/album-build-project">python 如何构建完整项目</a></p>
-<blockquote>
-<p>python项目导入模块是必不可少的，大多数情况下，可以以来模块导入搜索路径的自动特性，完全不需要配置路径。不过，如果你想在用户间定义目录边界来导入文件，就需要知道搜索路径是如何运作的。</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ python tests/test_utils.py   </div><div class="line">                                                                   </div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"tests/test_utils.py"</span>, line 7, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">    from run_api import app</div><div class="line">ImportError: No module named <span class="string">'run_api'</span></div></pre></td></tr></table></figure>
-<p>在我刚学习python时，做模块导入最长碰到的就是这个错误，我明明定义了<figure class="highlight plain"><figcaption><span>module No module No你妹啊，如果你也碰到这样的问题，你应该好好看看这篇文章</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 不太好的解决办法</div><div class="line">```python</div><div class="line">import sys</div><div class="line">import os</div><div class="line">sys.path.append( os.path.join( os.path.dirname(__file__), os.path.pardir ) )</div></pre></td></tr></table></figure></p>
-<p>在google模块导入问题的时候，大部分博客给出了这样的解决方案，在每个文件配置这样的代码，他做到了将当前文件的路径加入到python模块搜索路径sys.path中，确实可以起到解决bug的作用，但是每个文件都写上这样一段代码，实在让人不舒服，下面我们还是来学习下python模块搜索路径是如何运作的</p>
-<h2><span id="python-cong-na-xie-lu-jing-dao-ru-mo-kuai">python从哪些路径导入模块</span><a href="#python-cong-na-xie-lu-jing-dao-ru-mo-kuai" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1、程序的主目录</div><div class="line">2、PYTHONPATH目录（如果已经进行了设置）</div><div class="line">3、标准链接库目录</div><div class="line">4、任何.pth文件的内容（如果存在的话）</div></pre></td></tr></table></figure>
-<h3><span id="zhu-mu-lu">主目录</span><a href="#zhu-mu-lu" class="header-anchor"></a></h3><p>Python首先会在主目录内搜索导入的文件。如果程序完全位于单一目录，所有导入的会自动工作，而并不需要配置路径。由于这个目录总是先搜索，其文件也将覆盖路径上的其他目录中具有同样名称的模块。如果你需要在自己程序中使用库模块的话，小心不要以这种方式以外地隐藏库模块。</p>
-<h3><span id="pythonpath-mu-lu">PYTHONPATH目录</span><a href="#pythonpath-mu-lu" class="header-anchor"></a></h3><p>之后，Python会从左到右搜索PYTHONPATH环境变量设置中罗列出的所有目录，可以是用户定义或平台特定的目录名。因为Python优先搜索主目录，当导入的文件跨目录时，这个设置才显得格外重要。</p>
-<h3><span id="biao-zhun-ku-mu-lu">标准库目录</span><a href="#biao-zhun-ku-mu-lu" class="header-anchor"></a></h3><p>接着，Python会自动搜索标准库模块安装在机器上的那些目录，这块通常不需要在单独配置</p>
-<h3><span id="pth-wen-jian-mu-lu">.pth文件目录</span><a href="#pth-wen-jian-mu-lu" class="header-anchor"></a></h3><p>最后，Python有个相当新的功能，允许用户把有效的目录添加到模块搜索路径中去，也就是在后缀名为.pth（路径的意思）的文本文件中一行一行的列出目录。他是PYTHONPATH的一种替代方案，我们也可以把它放在标注库所在位置的sitepackages的子目录中扩展模块搜索路径</p>
-<h2><span id="ying-yong-dao-dang-qian-xiang-mu">应用到当前项目</span><a href="#ying-yong-dao-dang-qian-xiang-mu" class="header-anchor"></a></h2><p>在开发大型项目之前，我们可以将项目根目录作为PYTHONPATH存到环境变量中，也可以每次运行前之前该命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ touch env.sh</div><div class="line">$ vim env.sh</div><div class="line"></div><div class="line"><span class="built_in">export</span> PYTHONPATH=./ <span class="comment"># 将项目根目录作为PYTHONPATH</span></div><div class="line"></div><div class="line">$ <span class="built_in">source</span> env.sh <span class="comment"># 在项目运行之前执行该命令</span></div></pre></td></tr></table></figure></p>
-<p>最后我们可以通过下面两行代码来查看当前项目python模块搜索路径和导入的模块<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> sys</div><div class="line"></div><div class="line">print(sys.path) <span class="comment"># 输出python模块搜索目录</span></div><div class="line"></div><div class="line">print(list(sys.modules.keys())) <span class="comment"># 输出python已经导入的模块列表</span></div></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/15/python-2017-08-15-config-pythonpath/">展开全文 >></a>
         </p>
       
 
@@ -732,85 +836,6 @@
 
 
   
-    <article id="post-python-2017-08-14-sqlalchemy-filter" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/14/python-2017-08-14-sqlalchemy-filter/">sqlalchemy 各种查询语句写法</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/14/python-2017-08-14-sqlalchemy-filter/" class="archive-article-date">
-  	<time datetime="2017-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2><span id="and">and</span><a href="#and" class="header-anchor"></a></h2><p>filter 与 filter_by 语法稍有不同<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">User.query.filter_by(id=<span class="number">1</span>,name=<span class="string">'win'</span>).first()</div><div class="line">User.query.filter(User.id==<span class="number">1</span>,User.name == <span class="string">'win'</span>).first()</div></pre></td></tr></table></figure></p>
-<h2><span id="in">in</span><a href="#in" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sql = User.query.filter(User.id.in_([<span class="number">1</span>,<span class="number">2</span>]))</div><div class="line">print(sql)</div><div class="line"></div><div class="line">&gt; select * <span class="keyword">from</span> user where id <span class="keyword">in</span> (<span class="number">1</span>,<span class="number">2</span>)</div></pre></td></tr></table></figure>
-<h2><span id="or">or</span><a href="#or" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> or_</div><div class="line">sql = User.query.filter(or_(User.name == <span class="string">'winn'</span>,User.mobile == <span class="string">'183'</span>),User.email == <span class="string">'371'</span>)</div><div class="line">print(sql)</div><div class="line"></div><div class="line">&gt; select * <span class="keyword">from</span> user where (name = <span class="string">'winn'</span> <span class="keyword">or</span> mobile = <span class="string">'183'</span>) <span class="keyword">and</span> email= <span class="string">'371'</span></div></pre></td></tr></table></figure>
-<h2><span id="pai-xu">排序</span><a href="#pai-xu" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> desc</div><div class="line">User.query.order_by(create_ts).all() <span class="comment"># 根据创建时间正序</span></div><div class="line">User.query.order_by(desc(create_ts)).all() <span class="comment"># 根据创建时间倒序</span></div></pre></td></tr></table></figure>
-<h2><span id="da-yu-xiao-yu">大于小于</span><a href="#da-yu-xiao-yu" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">User.query.filter(User.age &gt;= <span class="number">12</span>,User.age &lt; <span class="number">23</span>).all()</div></pre></td></tr></table></figure>
-<h2><span id="like">like</span><a href="#like" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">User.query.filter(User.name.like(<span class="string">'%win%'</span>)).all()</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/14/python-2017-08-14-sqlalchemy-filter/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-ansible-2017-08-14-album-study-notes" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -890,33 +915,32 @@
 
 
   
-    <article id="post-movie-2017-08-13-MCU" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-python-2017-08-14-sqlalchemy-filter" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/13/movie-2017-08-13-MCU/">漫威电影宇宙合集 更新到《蜘蛛侠：返校季》</a>
+      <a class="article-title" href="/2017/08/14/python-2017-08-14-sqlalchemy-filter/">sqlalchemy 各种查询语句写法</a>
     </h1>
   
 
         
-        <a href="/2017/08/13/movie-2017-08-13-MCU/" class="archive-article-date">
-  	<time datetime="2017-08-12T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-13</time>
+        <a href="/2017/08/14/python-2017-08-14-sqlalchemy-filter/" class="archive-article-date">
+  	<time datetime="2017-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>漫威电影宇宙（Marvel Cinematic Universe，缩写为MCU），是以超级英雄电影为中心的共同的架空世界，由漫威影业（Marvel Studios）基于漫威漫画出版物中的角色独立制作的系列电影。它像漫画中的漫威主宇宙一样，是由共同的元素、设定、表演和角色通过跨界作品所建立的。漫威电视（Marvel Television）将宇宙进一步扩大，制作位于该宇宙中的电视剧系列。</p>
-</blockquote>
-<h2><span id="di-yi-jie-duan">第一阶段</span><a href="#di-yi-jie-duan" class="header-anchor"></a></h2><h2><span id="mei-guo-dui-chang-3-nei-zhan">美国队长3：内战</span><a href="#mei-guo-dui-chang-3-nei-zhan" class="header-anchor"></a></h2><ul>
-<li>BD1280超清国英双语中英双字 <a href="thunder://QUFlZDJrOi8vfGZpbGV8ob5sb2y159OwzOzMw3d3dy5sb2xkeXR0LmNvbaG/w8C5+rbTs6Qzo7rE2tW9LkJEMTI4MLOsx+W5+tOiy6vT79bQ06LLq9fWLm1wNHwzODkyNTA0OTQwfERCN0RFQUNCNTA4QTkwQjQxN0UzMjRGNzhGRTQxNDVCfGg9RzVVR0VZQjdXNlpWQkNKS1ZRWDI2QUVTVjI3T01GSEN8L1pa" target="_blank" rel="external">迅雷下载</a></li>
-<li>BD1280高清国英双语中英双字 <a href="thunder://QUFlZDJrOi8vfGZpbGV8ob5sb2y159OwzOzMw3d3dy5sb2xkeXR0LmNvbaG/w8C5+rbTs6Qzo7rE2tW9LkJEMTI4MLjfx+W5+tOiy6vT79bQ06LLq9fWLm1wNHwyMjY0NjMwNjMyfDIyRDY0MkUyMjRBODIxNEVDNkNEN0YzNDlCOTkzNDg3fGg9QVNSQUFTSk5OU0VVREFOUjU2M00yTkwyNkxLVUc3WkZ8L1pa" target="_blank" rel="external">迅雷下载</a></li>
-</ul>
+        <h2><span id="and">and</span><a href="#and" class="header-anchor"></a></h2><p>filter 与 filter_by 语法稍有不同<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">User.query.filter_by(id=<span class="number">1</span>,name=<span class="string">'win'</span>).first()</div><div class="line">User.query.filter(User.id==<span class="number">1</span>,User.name == <span class="string">'win'</span>).first()</div></pre></td></tr></table></figure></p>
+<h2><span id="in">in</span><a href="#in" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sql = User.query.filter(User.id.in_([<span class="number">1</span>,<span class="number">2</span>]))</div><div class="line">print(sql)</div><div class="line"></div><div class="line">&gt; select * <span class="keyword">from</span> user where id <span class="keyword">in</span> (<span class="number">1</span>,<span class="number">2</span>)</div></pre></td></tr></table></figure>
+<h2><span id="or">or</span><a href="#or" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> or_</div><div class="line">sql = User.query.filter(or_(User.name == <span class="string">'winn'</span>,User.mobile == <span class="string">'183'</span>),User.email == <span class="string">'371'</span>)</div><div class="line">print(sql)</div><div class="line"></div><div class="line">&gt; select * <span class="keyword">from</span> user where (name = <span class="string">'winn'</span> <span class="keyword">or</span> mobile = <span class="string">'183'</span>) <span class="keyword">and</span> email= <span class="string">'371'</span></div></pre></td></tr></table></figure>
+<h2><span id="pai-xu">排序</span><a href="#pai-xu" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> desc</div><div class="line">User.query.order_by(create_ts).all() <span class="comment"># 根据创建时间正序</span></div><div class="line">User.query.order_by(desc(create_ts)).all() <span class="comment"># 根据创建时间倒序</span></div></pre></td></tr></table></figure>
+<h2><span id="da-yu-xiao-yu">大于小于</span><a href="#da-yu-xiao-yu" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">User.query.filter(User.age &gt;= <span class="number">12</span>,User.age &lt; <span class="number">23</span>).all()</div></pre></td></tr></table></figure>
+<h2><span id="like">like</span><a href="#like" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">User.query.filter(User.name.like(<span class="string">'%win%'</span>)).all()</div></pre></td></tr></table></figure>
 
       
 
@@ -930,7 +954,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">movie</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		
 		</ul>
@@ -940,7 +964,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/13/movie-2017-08-13-MCU/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/14/python-2017-08-14-sqlalchemy-filter/">展开全文 >></a>
         </p>
       
 
@@ -1086,7 +1110,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">develop</a>
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1110,11 +1134,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">mac</a>
+                <a href="javascript:void(0)" class="js-tag color2">expect</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">expect</a>
+                <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1122,11 +1146,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">

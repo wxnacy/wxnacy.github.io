@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>正则表达式 | wxnacy 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="常用元字符12345678910111213141516171819202122^           匹配输入字符串的开始位置。如果设置了 RegExp 对象的 Multiline 属性，^ 也匹配 &apos;\n&apos; 或 &apos;\r&apos; 之后的位置。$           匹配输入字符串的结束位置。如果设置了RegExp 对象的 Multiline 属性，$ 也匹配 &apos;\n&apos; 或 &apos;\r&apos; 之前的位置。.">
-<meta name="keywords" content="develop">
+  <meta name="description" content="常用元字符">
+<meta name="keywords" content="正则表达式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正则表达式">
 <meta property="og:url" content="http://wxnacy.com/2017/09/08/develop-2017-09-08-regex-basic/index.html">
 <meta property="og:site_name" content="wxnacy 博客">
-<meta property="og:description" content="常用元字符12345678910111213141516171819202122^           匹配输入字符串的开始位置。如果设置了 RegExp 对象的 Multiline 属性，^ 也匹配 &apos;\n&apos; 或 &apos;\r&apos; 之后的位置。$           匹配输入字符串的结束位置。如果设置了RegExp 对象的 Multiline 属性，$ 也匹配 &apos;\n&apos; 或 &apos;\r&apos; 之前的位置。.">
+<meta property="og:description" content="常用元字符">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-09-17T05:54:51.000Z">
+<meta property="og:updated_time" content="2017-09-18T10:31:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则表达式">
-<meta name="twitter:description" content="常用元字符12345678910111213141516171819202122^           匹配输入字符串的开始位置。如果设置了 RegExp 对象的 Multiline 属性，^ 也匹配 &apos;\n&apos; 或 &apos;\r&apos; 之后的位置。$           匹配输入字符串的结束位置。如果设置了RegExp 对象的 Multiline 属性，$ 也匹配 &apos;\n&apos; 或 &apos;\r&apos; 之前的位置。.">
+<meta name="twitter:description" content="常用元字符">
   
     <link rel="alternative" href="/atom.xml" title="wxnacy 博客" type="application/atom+xml">
   
@@ -163,7 +163,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2><span id="chang-yong-yuan-zi-fu">常用元字符</span><a href="#chang-yong-yuan-zi-fu" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">^           匹配输入字符串的开始位置。如果设置了 RegExp 对象的 Multiline 属性，^ 也匹配 <span class="string">'\n'</span> 或 <span class="string">'\r'</span> 之后的位置。</div><div class="line">$           匹配输入字符串的结束位置。如果设置了RegExp 对象的 Multiline 属性，$ 也匹配 <span class="string">'\n'</span> 或 <span class="string">'\r'</span> 之前的位置。</div><div class="line">.           匹配除 <span class="string">"\n"</span> 之外的任何单个字符。要匹配包括 <span class="string">'\n'</span> 在内的任何字符，请使用像<span class="string">"(.|\n)"</span>的模式。</div><div class="line">x|y         匹配 x 或 y。例如，<span class="string">'z|food'</span> 能匹配 <span class="string">"z"</span> 或 <span class="string">"food"</span>。<span class="string">'(z|f)ood'</span> 则匹配 <span class="string">"zood"</span> 或 <span class="string">"food"</span>。</div><div class="line">[xyz]       字符集合。匹配所包含的任意一个字符。例如， <span class="string">'[abc]'</span> 可以匹配 <span class="string">"plain"</span> 中的 <span class="string">'a'</span>。</div><div class="line">[^xyz]      负值字符集合。匹配未包含的任意字符。例如， <span class="string">'[^abc]'</span> 可以匹配 <span class="string">"plain"</span> 中的<span class="string">'p'</span>、<span class="string">'l'</span>、<span class="string">'i'</span>、<span class="string">'n'</span>。</div><div class="line">[a-z]       字符范围。匹配指定范围内的任意字符。例如，<span class="string">'[a-z]'</span> 可以匹配 <span class="string">'a'</span> 到 <span class="string">'z'</span> 范围内的任意小写字母字符。</div><div class="line">[^a-z]      负值字符范围。匹配任何不在指定范围内的任意字符。例如，<span class="string">'[^a-z]'</span> 可以匹配任何不在 <span class="string">'a'</span> 到 <span class="string">'z'</span> 范围内的任意字符。</div><div class="line">\b          匹配一个单词边界，也就是指单词和空格间的位置。例如， <span class="string">'er\b'</span> 可以匹配<span class="string">"never"</span> 中的 <span class="string">'er'</span>，但不能匹配 <span class="string">"verb"</span> 中的 <span class="string">'er'</span>。</div><div class="line">\B          匹配非单词边界。<span class="string">'er\B'</span> 能匹配 <span class="string">"verb"</span> 中的 <span class="string">'er'</span>，但不能匹配 <span class="string">"never"</span> 中的 <span class="string">'er'</span>。</div><div class="line">\cx         匹配由 x 指明的控制字符。例如， \cM 匹配一个 Control-M 或回车符。x 的值必须为 A-Z 或 a-z 之一。否则，将 c 视为一个原义的 <span class="string">'c'</span> 字符。</div><div class="line">\d          匹配一个数字字符。等价于 [0-9]。</div><div class="line">\D          匹配一个非数字字符。等价于 [^0-9]。</div><div class="line">\f          匹配一个换页符。等价于 \x0c 和 \cL。</div><div class="line">\n          匹配一个换行符。等价于 \x0a 和 \cJ。</div><div class="line">\r          匹配一个回车符。等价于 \x0d 和 \cM。</div><div class="line">\s          匹配任何空白字符，包括空格、制表符、换页符等等。等价于 [ \f\n\r\t\v]。</div><div class="line">\S          匹配任何非空白字符。等价于 [^ \f\n\r\t\v]。</div><div class="line">\t          匹配一个制表符。等价于 \x09 和 \cI。</div><div class="line">\v          匹配一个垂直制表符。等价于 \x0b 和 \cK。</div><div class="line">\w          匹配包括下划线的任何单词字符。等价于<span class="string">'[A-Za-z0-9_]'</span>。</div><div class="line">\W          匹配任何非单词字符。等价于 <span class="string">'[^A-Za-z0-9_]'</span>。</div></pre></td></tr></table></figure>
+        <h2><span id="chang-yong-yuan-zi-fu">常用元字符</span><a href="#chang-yong-yuan-zi-fu" class="header-anchor"></a></h2><a id="more"></a>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">^           匹配输入字符串的开始位置。如果设置了 RegExp 对象的 Multiline 属性，^ 也匹配 <span class="string">'\n'</span> 或 <span class="string">'\r'</span> 之后的位置。</div><div class="line">$           匹配输入字符串的结束位置。如果设置了RegExp 对象的 Multiline 属性，$ 也匹配 <span class="string">'\n'</span> 或 <span class="string">'\r'</span> 之前的位置。</div><div class="line">.           匹配除 <span class="string">"\n"</span> 之外的任何单个字符。要匹配包括 <span class="string">'\n'</span> 在内的任何字符，请使用像<span class="string">"(.|\n)"</span>的模式。</div><div class="line">x|y         匹配 x 或 y。例如，<span class="string">'z|food'</span> 能匹配 <span class="string">"z"</span> 或 <span class="string">"food"</span>。<span class="string">'(z|f)ood'</span> 则匹配 <span class="string">"zood"</span> 或 <span class="string">"food"</span>。</div><div class="line">[xyz]       字符集合。匹配所包含的任意一个字符。例如， <span class="string">'[abc]'</span> 可以匹配 <span class="string">"plain"</span> 中的 <span class="string">'a'</span>。</div><div class="line">[^xyz]      负值字符集合。匹配未包含的任意字符。例如， <span class="string">'[^abc]'</span> 可以匹配 <span class="string">"plain"</span> 中的<span class="string">'p'</span>、<span class="string">'l'</span>、<span class="string">'i'</span>、<span class="string">'n'</span>。</div><div class="line">[a-z]       字符范围。匹配指定范围内的任意字符。例如，<span class="string">'[a-z]'</span> 可以匹配 <span class="string">'a'</span> 到 <span class="string">'z'</span> 范围内的任意小写字母字符。</div><div class="line">[^a-z]      负值字符范围。匹配任何不在指定范围内的任意字符。例如，<span class="string">'[^a-z]'</span> 可以匹配任何不在 <span class="string">'a'</span> 到 <span class="string">'z'</span> 范围内的任意字符。</div><div class="line">\b          匹配一个单词边界，也就是指单词和空格间的位置。例如， <span class="string">'er\b'</span> 可以匹配<span class="string">"never"</span> 中的 <span class="string">'er'</span>，但不能匹配 <span class="string">"verb"</span> 中的 <span class="string">'er'</span>。</div><div class="line">\B          匹配非单词边界。<span class="string">'er\B'</span> 能匹配 <span class="string">"verb"</span> 中的 <span class="string">'er'</span>，但不能匹配 <span class="string">"never"</span> 中的 <span class="string">'er'</span>。</div><div class="line">\cx         匹配由 x 指明的控制字符。例如， \cM 匹配一个 Control-M 或回车符。x 的值必须为 A-Z 或 a-z 之一。否则，将 c 视为一个原义的 <span class="string">'c'</span> 字符。</div><div class="line">\d          匹配一个数字字符。等价于 [0-9]。</div><div class="line">\D          匹配一个非数字字符。等价于 [^0-9]。</div><div class="line">\f          匹配一个换页符。等价于 \x0c 和 \cL。</div><div class="line">\n          匹配一个换行符。等价于 \x0a 和 \cJ。</div><div class="line">\r          匹配一个回车符。等价于 \x0d 和 \cM。</div><div class="line">\s          匹配任何空白字符，包括空格、制表符、换页符等等。等价于 [ \f\n\r\t\v]。</div><div class="line">\S          匹配任何非空白字符。等价于 [^ \f\n\r\t\v]。</div><div class="line">\t          匹配一个制表符。等价于 \x09 和 \cI。</div><div class="line">\v          匹配一个垂直制表符。等价于 \x0b 和 \cK。</div><div class="line">\w          匹配包括下划线的任何单词字符。等价于<span class="string">'[A-Za-z0-9_]'</span>。</div><div class="line">\W          匹配任何非单词字符。等价于 <span class="string">'[^A-Za-z0-9_]'</span>。</div></pre></td></tr></table></figure>
 <h2><span id="chang-yong-ci-shu-yuan-zi-fu">常用次数元字符</span><a href="#chang-yong-ci-shu-yuan-zi-fu" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">*       匹配前面的子表达式零次或多次。例如，zo* 能匹配 <span class="string">"z"</span> 以及 <span class="string">"zoo"</span>。* 等价于&#123;0,&#125;。</div><div class="line">+       匹配前面的子表达式一次或多次。例如，<span class="string">'zo+'</span> 能匹配 <span class="string">"zo"</span> 以及 <span class="string">"zoo"</span>，但不能匹配 <span class="string">"z"</span>。+ 等价于 &#123;1,&#125;。</div><div class="line">?       匹配前面的子表达式零次或一次。例如，<span class="string">"do(es)?"</span> 可以匹配 <span class="string">"do"</span> 或 <span class="string">"does"</span> 。? 等价于 &#123;0,1&#125;。</div><div class="line">&#123;n&#125;	    n 是一个非负整数。匹配确定的 n 次。例如，<span class="string">'o&#123;2&#125;'</span> 不能匹配 <span class="string">"Bob"</span> 中的 <span class="string">'o'</span>，但是能匹配 <span class="string">"food"</span> 中的两个 o。</div><div class="line">&#123;n,&#125;	n 是一个非负整数。至少匹配n 次。例如，<span class="string">'o&#123;2,&#125;'</span> 不能匹配 <span class="string">"Bob"</span> 中的 <span class="string">'o'</span>，但能匹配 <span class="string">"foooood"</span> 中的所有 o。<span class="string">'o&#123;1,&#125;'</span> 等价于 <span class="string">'o+'</span>。<span class="string">'o&#123;0,&#125;'</span> 则等价于 <span class="string">'o*'</span>。</div><div class="line">&#123;n,m&#125;	m 和 n 均为非负整数，其中n &lt;= m。最少匹配 n 次且最多匹配 m 次。例如，<span class="string">"o&#123;1,3&#125;"</span> 将匹配 <span class="string">"fooooood"</span> 中的前三个 o。<span class="string">'o&#123;0,1&#125;'</span> 等价于 <span class="string">'o?'</span>。请注意在逗号和两个数之间不能有空格。</div></pre></td></tr></table></figure>
 
       
@@ -178,7 +179,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">develop</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">正则表达式</a>
         		</li>
       		
 		</ul>
@@ -197,18 +198,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/09/11/linux-2017-09-11-redirection/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/09/11/linux-2017-09-11-grep/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Linux 数据流重定向(Redirection)
+          Linux 使用管道命令 grep
         
       </div>
     </a>
   
   
-    <a href="/2017/09/07/python-2017-09-07-flask-api/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Flask api 文档</div>
+    <a href="/2017/09/07/mac-2017-09-07-homebrew/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mac 包管理神器 HomeBrew</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -382,7 +383,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">develop</a>
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -406,11 +407,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">mac</a>
+                <a href="javascript:void(0)" class="js-tag color2">expect</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">expect</a>
+                <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -418,11 +419,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">

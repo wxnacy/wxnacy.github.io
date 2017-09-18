@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Linux 数据流重定向(Redirection) | wxnacy 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="[TOC] 重定向123标准输入　　(stdin) ：代码为 0 ，使用 &amp;lt; 或 &amp;lt;&amp;lt;标准输出　　(stdout)：代码为 1 ，使用 &amp;gt; 或 &amp;gt;&amp;gt;标准错误输出(stderr)：代码为 2 ，使用 2&amp;gt; 或 2&amp;gt;&amp;gt; 标准输出（stdout）1&amp;gt; 或 &amp;gt; 会将应该输出到屏幕的信息，输入到指定文件中12$ ll &amp;gt; ll.txt">
+  <meta name="description" content="重定向 标准输出（stdout） 标准输出错误（stderr） /dev/null 垃圾桶黑洞装置   标准输入（stdin）">
 <meta name="keywords" content="linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux 数据流重定向(Redirection)">
 <meta property="og:url" content="http://wxnacy.com/2017/09/11/linux-2017-09-11-redirection/index.html">
 <meta property="og:site_name" content="wxnacy 博客">
-<meta property="og:description" content="[TOC] 重定向123标准输入　　(stdin) ：代码为 0 ，使用 &amp;lt; 或 &amp;lt;&amp;lt;标准输出　　(stdout)：代码为 1 ，使用 &amp;gt; 或 &amp;gt;&amp;gt;标准错误输出(stderr)：代码为 2 ，使用 2&amp;gt; 或 2&amp;gt;&amp;gt; 标准输出（stdout）1&amp;gt; 或 &amp;gt; 会将应该输出到屏幕的信息，输入到指定文件中12$ ll &amp;gt; ll.txt">
+<meta property="og:description" content="重定向 标准输出（stdout） 标准输出错误（stderr） /dev/null 垃圾桶黑洞装置   标准输入（stdin）">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-09-17T05:54:51.000Z">
+<meta property="og:updated_time" content="2017-09-18T10:29:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux 数据流重定向(Redirection)">
-<meta name="twitter:description" content="[TOC] 重定向123标准输入　　(stdin) ：代码为 0 ，使用 &amp;lt; 或 &amp;lt;&amp;lt;标准输出　　(stdout)：代码为 1 ，使用 &amp;gt; 或 &amp;gt;&amp;gt;标准错误输出(stderr)：代码为 2 ，使用 2&amp;gt; 或 2&amp;gt;&amp;gt; 标准输出（stdout）1&amp;gt; 或 &amp;gt; 会将应该输出到屏幕的信息，输入到指定文件中12$ ll &amp;gt; ll.txt">
+<meta name="twitter:description" content="重定向 标准输出（stdout） 标准输出错误（stderr） /dev/null 垃圾桶黑洞装置   标准输入（stdin）">
   
     <link rel="alternative" href="/atom.xml" title="wxnacy 博客" type="application/atom+xml">
   
@@ -163,7 +163,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>[TOC]</p>
+        <div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#chong-ding-xiang">重定向</a></li>
+<li><a href="#biao-zhun-shu-chu-stdout">标准输出（stdout）</a></li>
+<li><a href="#biao-zhun-shu-chu-cuo-wu-stderr">标准输出错误（stderr）</a><ul>
+<li><a href="#dev-null-la-ji-tong-hei-dong-zhuang-zhi">/dev/null 垃圾桶黑洞装置</a></li>
+</ul>
+</li>
+<li><a href="#biao-zhun-shu-ru-stdin">标准输入（stdin）</a></li>
+</ul>
+<!-- tocstop -->
+<p></div><br><a id="more"></a></p>
 <h2><span id="chong-ding-xiang">重定向</span><a href="#chong-ding-xiang" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">标准输入　　(stdin) ：代码为 0 ，使用 &lt; 或 &lt;&lt;</div><div class="line">标准输出　　(stdout)：代码为 1 ，使用 &gt; 或 &gt;&gt;</div><div class="line">标准错误输出(stderr)：代码为 2 ，使用 2&gt; 或 2&gt;&gt;</div></pre></td></tr></table></figure>
 <h2><span id="biao-zhun-shu-chu-stdout">标准输出（stdout）</span><a href="#biao-zhun-shu-chu-stdout" class="header-anchor"></a></h2><p><em>1&gt;</em> 或 <em>&gt;</em> 会将应该输出到屏幕的信息，输入到指定文件中<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ll &gt; ll.txt       <span class="comment"># 此时屏幕不再输出信息，而是输入到 ll.txt 中</span></div><div class="line"><span class="comment"># &gt; 会在每次使用时覆盖相同文件名的内容，如果想要追加内容使用 &gt;&gt;</span></div></pre></td></tr></table></figure></p>
 <h2><span id="biao-zhun-shu-chu-cuo-wu-stderr">标准输出错误（stderr）</span><a href="#biao-zhun-shu-chu-cuo-wu-stderr" class="header-anchor"></a></h2><p><em>2&gt;</em> 会将错误信息单独输出到指定文件中<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ z                             <span class="comment"># 我随便输入了指令</span></div><div class="line"></div><div class="line">pyenv: z: <span class="built_in">command</span> not found     <span class="comment"># 错误信息</span></div><div class="line"></div><div class="line">The `z<span class="string">' command exists in these Python versions:</span></div><div class="line"><span class="string">  2.7.12/envs/env_hamster</span></div><div class="line"><span class="string">  env_hamster</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">$ z 2&gt; err.log                  # 使用重定向将错误输出到文件</span></div></pre></td></tr></table></figure></p>
@@ -208,18 +221,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/09/11/linux-2017-09-11-grep/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/09/12/nodejs-2017-09-12-npm/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Linux 使用管道命令 grep
+          npm 使用
         
       </div>
     </a>
   
   
-    <a href="/2017/09/08/develop-2017-09-08-regex-basic/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">正则表达式</div>
+    <a href="/2017/09/11/linux-2017-09-11-grep/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux 使用管道命令 grep</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -393,7 +406,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">develop</a>
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -417,11 +430,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">mac</a>
+                <a href="javascript:void(0)" class="js-tag color2">expect</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">expect</a>
+                <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -429,11 +442,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">

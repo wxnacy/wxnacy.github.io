@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>使用 expect 交互免输入密码 | wxnacy 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Expect是一个免费的编程工具语言，用来实现自动和交互式任务进行通信，而无需人的干预。      简单的免输入密码 其他用法 传入参数 读取设置环境变量 流程控制 if   参考文献    简单的免输入密码在工作经常会使用 ssh、ftp、 mysql 等命令，但每次输入密码会让事情变的很枯燥，重复的事情就要交给脚本去做，这时候我们需要用到 expect ，下面我们通过一个例子 mysql_l">
+  <meta name="description" content="Expect是一个免费的编程工具语言，用来实现自动和交互式任务进行通信，而无需人的干预。">
 <meta name="keywords" content="linux,expect">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 expect 交互免输入密码">
 <meta property="og:url" content="http://wxnacy.com/2017/09/15/linux-2017-09-15-expect/index.html">
 <meta property="og:site_name" content="wxnacy 博客">
-<meta property="og:description" content="Expect是一个免费的编程工具语言，用来实现自动和交互式任务进行通信，而无需人的干预。      简单的免输入密码 其他用法 传入参数 读取设置环境变量 流程控制 if   参考文献    简单的免输入密码在工作经常会使用 ssh、ftp、 mysql 等命令，但每次输入密码会让事情变的很枯燥，重复的事情就要交给脚本去做，这时候我们需要用到 expect ，下面我们通过一个例子 mysql_l">
+<meta property="og:description" content="Expect是一个免费的编程工具语言，用来实现自动和交互式任务进行通信，而无需人的干预。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-09-18T09:19:11.000Z">
+<meta property="og:updated_time" content="2017-09-18T09:54:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 expect 交互免输入密码">
-<meta name="twitter:description" content="Expect是一个免费的编程工具语言，用来实现自动和交互式任务进行通信，而无需人的干预。      简单的免输入密码 其他用法 传入参数 读取设置环境变量 流程控制 if   参考文献    简单的免输入密码在工作经常会使用 ssh、ftp、 mysql 等命令，但每次输入密码会让事情变的很枯燥，重复的事情就要交给脚本去做，这时候我们需要用到 expect ，下面我们通过一个例子 mysql_l">
+<meta name="twitter:description" content="Expect是一个免费的编程工具语言，用来实现自动和交互式任务进行通信，而无需人的干预。">
   
     <link rel="alternative" href="/atom.xml" title="wxnacy 博客" type="application/atom+xml">
   
@@ -166,6 +166,7 @@
         <blockquote>
 <p>Expect是一个免费的编程工具语言，用来实现自动和交互式任务进行通信，而无需人的干预。</p>
 </blockquote>
+<a id="more"></a>
 <div class="toc">
 
 <!-- toc -->
@@ -182,7 +183,6 @@
 <!-- tocstop -->
 <p></div></p>
 <h2><span id="jian-dan-de-mian-shu-ru-mi-ma">简单的免输入密码</span><a href="#jian-dan-de-mian-shu-ru-mi-ma" class="header-anchor"></a></h2><p>在工作经常会使用 ssh、ftp、 mysql 等命令，但每次输入密码会让事情变的很枯燥，<br>重复的事情就要交给脚本去做，这时候我们需要用到 <strong><a href="http://expect.sourceforge.net/" target="_blank" rel="external">expect</a></strong> ，<br>下面我们通过一个例子 <em>mysql_login</em> 来说明</p>
-<a id="more"></a>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env expect</span></div><div class="line"><span class="built_in">set</span> password xxxxx</div><div class="line"><span class="built_in">set</span> name root</div><div class="line"></div><div class="line">spawn mysql -u<span class="variable">$name</span> -p</div><div class="line">expect <span class="string">"*assword:*"</span></div><div class="line">send <span class="string">"<span class="variable">$password</span>\r"</span></div><div class="line">interact</div></pre></td></tr></table></figure>
 <p>上边这段脚本是在登录本地 mysql 时，无需输入密码就自动登录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ expect mysql_login</div></pre></td></tr></table></figure></p>
 <p>执行代码不能用 <em>sh file</em> 而是 <em>expect mysql_login</em> ，如果你在文件开头加上 <code>#!/usr/bin/env expect</code> 也可以用 <code>./mysql_login</code> 来执行</p>
@@ -237,18 +237,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/09/15/mysql-2017-09-15-tmp-mysql-sock/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/09/17/blog-to-hexo/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Mysql &#39;/tmp/mysql.sock&#39; 错误类型解决方法
+          博客迁移到 hexo
         
       </div>
     </a>
   
   
-    <a href="/2017/09/12/nodejs-2017-09-12-npm/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">npm 使用</div>
+    <a href="/2017/09/15/mysql-2017-09-15-tmp-mysql-sock/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mysql &#39;/tmp/mysql.sock&#39; 错误类型解决方法</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -422,7 +422,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">develop</a>
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -446,11 +446,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">mac</a>
+                <a href="javascript:void(0)" class="js-tag color2">expect</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">expect</a>
+                <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -458,11 +458,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">

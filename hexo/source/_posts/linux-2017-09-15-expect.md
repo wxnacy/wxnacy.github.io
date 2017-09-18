@@ -5,6 +5,7 @@ tags: [linux, expect]
 ---
 > Expect是一个免费的编程工具语言，用来实现自动和交互式任务进行通信，而无需人的干预。
 
+<!-- more -->
 <!-- toc -->
 ## 简单的免输入密码
 
@@ -12,7 +13,6 @@ tags: [linux, expect]
 重复的事情就要交给脚本去做，这时候我们需要用到 **[expect](http://expect.sourceforge.net/)** ，
 下面我们通过一个例子 *mysql_login* 来说明
 
-<!-- more -->
 
 ```bash
 #!/usr/bin/env expect
