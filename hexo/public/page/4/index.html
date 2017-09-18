@@ -229,6 +229,89 @@
 
 
   
+    <article id="post-python-2017-08-15-gunicorn-run" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/15/python-2017-08-15-gunicorn-run/">使用 gunicorn 启动你的项目</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/15/python-2017-08-15-gunicorn-run/" class="archive-article-date">
+  	<time datetime="2017-08-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>专辑: <a href="/python/2017/08/15/album-build-project">python 如何构建完整项目</a></p>
+<blockquote>
+<p>虽然python自带服务器服务，但是最多只能用作开发环境调试用，在生产环境中如同玩具一样，一碰就坏，今天给大家介绍使用gunicorn启动python项目</p>
+</blockquote>
+<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install gunicorn</div></pre></td></tr></table></figure>
+<h2><span id="qi-dong">启动</span><a href="#qi-dong" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ gunicorn run:app</div><div class="line"></div><div class="line">[2017-08-15 15:25:28 +0800] [26628] [INFO] Starting gunicorn 19.7.1</div><div class="line">[2017-08-15 15:25:28 +0800] [26628] [INFO] Listening at: http://127.0.0.1:8000 (26628)</div><div class="line">[2017-08-15 15:25:28 +0800] [26628] [INFO] Using worker: sync</div><div class="line">[2017-08-15 15:25:28 +0800] [26631] [INFO] Booting worker with pid: 26631</div></pre></td></tr></table></figure>
+<h2><span id="pei-zhi-can-shu">配置参数</span><a href="#pei-zhi-can-shu" class="header-anchor"></a></h2><h3><span id="ming-ling-xing-can-shu">命令行参数</span><a href="#ming-ling-xing-can-shu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gunicorn -w 2 -b 0.0.0.0:8000 run:app</div></pre></td></tr></table></figure>
+<p>其中<figure class="highlight plain"><figcaption><span>或 --bind ``` 指定项目启动绑定域名和端口，``` -w 或 --workers``` 指定启动几个线程</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 配置参数文件</div><div class="line">touch gunicorn_config.py &amp;&amp; vim gunicorn.py</div><div class="line">```bash</div><div class="line">#!/usr/bin/env python</div><div class="line"># -*- coding: utf-8 -*-</div><div class="line">&apos;&apos;&apos;</div><div class="line">配置信息</div><div class="line">https://github.com/benoitc/gunicorn/blob/master/examples/example_config.py</div><div class="line">&apos;&apos;&apos;</div><div class="line">__author__ = &quot;wxnacy(wxnacy@gmail.com)&quot;</div><div class="line">__copyright__ = &quot;Copyright of wxnacy (2017).&quot;</div><div class="line"></div><div class="line">import multiprocessing</div><div class="line"></div><div class="line">bind = &apos;0.0.0.0:8002&apos; # 绑定地址</div><div class="line">workers =  multiprocessing.cpu_count() * 2 + 1 # 根据cpu数量指定线程数量</div></pre></td></tr></table></figure></p>
+<p>启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gunicorn -c gunicorn_config.py run:app</div></pre></td></tr></table></figure></p>
+<p>更多配置:<a href="http://docs.gunicorn.org/en/stable/settings.html" target="_blank" rel="external">http://docs.gunicorn.org/en/stable/settings.html</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/15/python-2017-08-15-gunicorn-run/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-python-2017-08-15-flask-env-config" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -580,89 +663,6 @@
 
 
   
-    <article id="post-python-2017-08-15-gunicorn-run" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/15/python-2017-08-15-gunicorn-run/">使用 gunicorn 启动你的项目</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/15/python-2017-08-15-gunicorn-run/" class="archive-article-date">
-  	<time datetime="2017-08-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>专辑: <a href="/python/2017/08/15/album-build-project">python 如何构建完整项目</a></p>
-<blockquote>
-<p>虽然python自带服务器服务，但是最多只能用作开发环境调试用，在生产环境中如同玩具一样，一碰就坏，今天给大家介绍使用gunicorn启动python项目</p>
-</blockquote>
-<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install gunicorn</div></pre></td></tr></table></figure>
-<h2><span id="qi-dong">启动</span><a href="#qi-dong" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ gunicorn run:app</div><div class="line"></div><div class="line">[2017-08-15 15:25:28 +0800] [26628] [INFO] Starting gunicorn 19.7.1</div><div class="line">[2017-08-15 15:25:28 +0800] [26628] [INFO] Listening at: http://127.0.0.1:8000 (26628)</div><div class="line">[2017-08-15 15:25:28 +0800] [26628] [INFO] Using worker: sync</div><div class="line">[2017-08-15 15:25:28 +0800] [26631] [INFO] Booting worker with pid: 26631</div></pre></td></tr></table></figure>
-<h2><span id="pei-zhi-can-shu">配置参数</span><a href="#pei-zhi-can-shu" class="header-anchor"></a></h2><h3><span id="ming-ling-xing-can-shu">命令行参数</span><a href="#ming-ling-xing-can-shu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gunicorn -w 2 -b 0.0.0.0:8000 run:app</div></pre></td></tr></table></figure>
-<p>其中<figure class="highlight plain"><figcaption><span>或 --bind ``` 指定项目启动绑定域名和端口，``` -w 或 --workers``` 指定启动几个线程</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 配置参数文件</div><div class="line">touch gunicorn_config.py &amp;&amp; vim gunicorn.py</div><div class="line">```bash</div><div class="line">#!/usr/bin/env python</div><div class="line"># -*- coding: utf-8 -*-</div><div class="line">&apos;&apos;&apos;</div><div class="line">配置信息</div><div class="line">https://github.com/benoitc/gunicorn/blob/master/examples/example_config.py</div><div class="line">&apos;&apos;&apos;</div><div class="line">__author__ = &quot;wxnacy(wxnacy@gmail.com)&quot;</div><div class="line">__copyright__ = &quot;Copyright of wxnacy (2017).&quot;</div><div class="line"></div><div class="line">import multiprocessing</div><div class="line"></div><div class="line">bind = &apos;0.0.0.0:8002&apos; # 绑定地址</div><div class="line">workers =  multiprocessing.cpu_count() * 2 + 1 # 根据cpu数量指定线程数量</div></pre></td></tr></table></figure></p>
-<p>启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gunicorn -c gunicorn_config.py run:app</div></pre></td></tr></table></figure></p>
-<p>更多配置:<a href="http://docs.gunicorn.org/en/stable/settings.html" target="_blank" rel="external">http://docs.gunicorn.org/en/stable/settings.html</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/15/python-2017-08-15-gunicorn-run/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-python-2017-08-15-flask-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -742,85 +742,6 @@
 
 
   
-    <article id="post-ansible-2017-08-14-album-study-notes" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/14/ansible-2017-08-14-album-study-notes/">ansible学习笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/14/ansible-2017-08-14-album-study-notes/" class="archive-article-date">
-  	<time datetime="2017-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2><span id="ru-men-ji-bie">入门级别</span><a href="#ru-men-ji-bie" class="header-anchor"></a></h2><ul>
-<li><a href="/2017/08/08/ansible-2017-08-08-item-basic-get-started/">ansible入门笔记1 Get Started</a></li>
-<li><a href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">ansible入门笔记2 Playbooks</a></li>
-<li><a href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks-ext/">ansible入门笔记3 Playbooks 简单扩展</a></li>
-<li><a href="/ansible/2017/08/08/item-basic_tasks1">ansible入门案例1 远程部署项目</a></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ansible</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/14/ansible-2017-08-14-album-study-notes/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-python-2017-08-14-sqlalchemy-filter" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -871,6 +792,85 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/14/python-2017-08-14-sqlalchemy-filter/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-ansible-2017-08-14-album-study-notes" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/14/ansible-2017-08-14-album-study-notes/">ansible学习笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/14/ansible-2017-08-14-album-study-notes/" class="archive-article-date">
+  	<time datetime="2017-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2><span id="ru-men-ji-bie">入门级别</span><a href="#ru-men-ji-bie" class="header-anchor"></a></h2><ul>
+<li><a href="/2017/08/08/ansible-2017-08-08-item-basic-get-started/">ansible入门笔记1 Get Started</a></li>
+<li><a href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">ansible入门笔记2 Playbooks</a></li>
+<li><a href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks-ext/">ansible入门笔记3 Playbooks 简单扩展</a></li>
+<li><a href="/ansible/2017/08/08/item-basic_tasks1">ansible入门案例1 远程部署项目</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ansible</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/14/ansible-2017-08-14-album-study-notes/">展开全文 >></a>
         </p>
       
 
@@ -1080,10 +1080,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ansible</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
@@ -1096,11 +1092,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
+                <a href="javascript:void(0)" class="js-tag color3">ansible</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1108,7 +1100,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1116,7 +1120,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1140,15 +1144,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">

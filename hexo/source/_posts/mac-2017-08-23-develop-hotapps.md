@@ -5,12 +5,12 @@ tags: [mac]
 ---
 
 
-[TOC]
-
 ## 操作设置
 - **打开三指拖动**：[教程](https://support.apple.com/zh-cn/HT204609)
 - **打开轻点来点按**：设置==》触控板==》光标与点按
 - **修改修饰键**：[教程](https://support.apple.com/kb/PH7099?locale=zh_CN&viewlocale=zh_CN)
+
+<!-- more -->
 
 ## 软件
 - Chrome
@@ -32,4 +32,4 @@ https://www.mediaatelier.com/CheatSheet/
 
 ## 使用工具
 
-- **Homebrew**： [Mac 包管理神器 HomeBrew](/mac/2017/09/07/homebrew)
+- **Homebrew**： [Mac 包管理神器 HomeBrew](/2017/09/07/mac-2017-09-07-homebrew/)

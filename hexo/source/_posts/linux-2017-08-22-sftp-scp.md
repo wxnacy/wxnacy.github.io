@@ -1,5 +1,5 @@
 ---
-title: Linux 远程文件传输 SFTP 和 SCP 
+title: Linux 远程文件传输 SFTP 和 SCP
 date: 2017-08-22
 tags: [linux]
 ---
@@ -7,6 +7,7 @@ tags: [linux]
 
 > 熟悉linux的朋友都知道 SSH 可以登录远程服务器进行工作，但是如果想从远程服务器下载文件或上传到服务器呢，ssh就做不到了，这时候我们可以用sftp和scp完成任务，这两个指令也是使用 SSH 的通道（Port 22），只是模拟 FTP 与复制的操作而已。下面我们一一介绍.
 
+<!-- more -->
 ## SFTP
 
 SFTP 登陆主机和 SSH 一样，也是用 用户名@主机名的方式连接
@@ -23,7 +24,7 @@ sftp> exit # 输入FTP 相关命令
 $ cd PATH
 
 # 列出当前目录文件名
-$ ls 
+$ ls
 
 # 建立目录
 $ mkdir DIR
@@ -63,7 +64,7 @@ $ exit | bye | quit
 $ lcd PATH
 
 # 列出当前目录文件名
-$ lls 
+$ lls
 
 # 建立目录
 $ lmkdir DIR
@@ -78,7 +79,7 @@ $ lpwd
 ```bash
 # 将文件由本机上传到远程主机
 $ put [本机目录或文件] [远程]
-$ put [本机目录或文件] 
+$ put [本机目录或文件]
 # 如果用第二种格式，则文件会上传到远程主机当前目录下
 
 # 将文件由远程主机下载到本地

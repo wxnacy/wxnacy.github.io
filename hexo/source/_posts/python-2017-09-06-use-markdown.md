@@ -1,12 +1,12 @@
 ---
 title: Python 使用markdown
-date: 2017-09-06
-tags: [python]
+date: 2017-09-06 21:15
+tags: [python, markdown]
 ---
+> wxnacy 博客第一版 markdown 处理方案
 
-
-[TOC]
-
+<!-- more -->
+<!-- toc -->
 ## mistune
 
 [github](https://github.com/lepture/mistune)

@@ -156,29 +156,19 @@
 
         
         <a href="/2017/09/06/python-2017-09-06-use-markdown/" class="archive-article-date">
-  	<time datetime="2017-09-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-06</time>
+  	<time datetime="2017-09-06T13:15:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>[TOC]</p>
-<h2><span id="mistune">mistune</span><a href="#mistune" class="header-anchor"></a></h2><p><a href="https://github.com/lepture/mistune" target="_blank" rel="external">github</a></p>
-<h3><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install mistune</div></pre></td></tr></table></figure>
-<h3><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> mistune</div><div class="line"></div><div class="line">res = mistune.Markdown(<span class="string">'# title'</span>)</div><div class="line">print(res)</div><div class="line"></div><div class="line">md = mistune.Markdown()</div><div class="line">content = <span class="string">'# title'</span></div><div class="line">print(md(content))</div></pre></td></tr></table></figure>
-<h3><span id="geng-duo">更多</span><a href="#geng-duo" class="header-anchor"></a></h3><p><a href="https://github.com/lepture/mistune#options" target="_blank" rel="external">更多用法</a></p>
-<h2><span id="markdown">markdown</span><a href="#markdown" class="header-anchor"></a></h2><p><a href="https://github.com/Python-Markdown/markdown" target="_blank" rel="external">github</a></p>
-<h3><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install markdown</div></pre></td></tr></table></figure>
-<h3><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> markdown</div><div class="line"></div><div class="line">md = markdown.Markdown()</div><div class="line">res = md.convert(<span class="string">'# title'</span>)</div><div class="line">print(res)</div></pre></td></tr></table></figure>
-<h3><span id="toc">TOC</span><a href="#toc" class="header-anchor"></a></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> markdown</div><div class="line"></div><div class="line">EXT = [<span class="string">'markdown.extensions.toc'</span>]</div><div class="line">md = markdown.Markdown(extensions=EXT)</div><div class="line">res = md.convert(<span class="string">'# title \n[TOC]\n## h2'</span>)</div><div class="line">print(res)</div></pre></td></tr></table></figure>
-<h3><span id="geng-duo">更多</span><a href="#geng-duo" class="header-anchor"></a></h3><p><a href="https://pythonhosted.org/Markdown/" target="_blank" rel="external"> 官方文档 </a><br><a href="https://pythonhosted.org/Markdown/extensions/index.html" target="_blank" rel="external">更多extensions值</a></p>
-<h2><span id="markdown2">markdown2</span><a href="#markdown2" class="header-anchor"></a></h2><p><a href="https://github.com/trentm/python-markdown2" target="_blank" rel="external">github</a></p>
-<h3><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install markdown2</div></pre></td></tr></table></figure>
-<h3><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> markdown2</div><div class="line"></div><div class="line">md = markdown2.Markdown()</div><div class="line">res = md.convert(<span class="string">'# title'</span>)</div><div class="line">print(res)</div></pre></td></tr></table></figure>
-<h3><span id="toc">TOC</span><a href="#toc" class="header-anchor"></a></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> markdown2</div><div class="line"></div><div class="line">md = markdown2.Markdown(extras=[<span class="string">"toc"</span>,<span class="string">"header-ids"</span>])</div><div class="line">res = md.convert(<span class="string">'# title \n[TOC]\n## h2'</span>)</div><div class="line">print(res.toc_html)     <span class="comment"># 这样只能得到单独生成的目录，不能生成到md文章中</span></div></pre></td></tr></table></figure>
-<h3><span id="geng-duo">更多</span><a href="#geng-duo" class="header-anchor"></a></h3><p><a href="https://github.com/trentm/python-markdown2/wiki/Extras" target="_blank" rel="external">更多extras值</a></p>
-
+        <blockquote>
+<p>wxnacy 博客第一版 markdown 处理方案</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2017/09/06/python-2017-09-06-use-markdown/#more">阅读全文 >></a>
+        
       
 
       
@@ -193,6 +183,10 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">markdown</a>
+        		</li>
       		
 		</ul>
 	</div>
@@ -202,87 +196,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/09/06/python-2017-09-06-use-markdown/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-life-2017-09-06-beijing" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/06/life-2017-09-06-beijing/">北京生活</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/06/life-2017-09-06-beijing/" class="archive-article-date">
-  	<time datetime="2017-09-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><a href="http://www.bjgjj.gov.cn/ywxtgn/201606/t20160623_3924.html" target="_blank" rel="external">公积金查询</a></li>
-<li><a href="http://www.bjrbj.gov.cn/csibiz/indinfo/login.jsp" target="_blank" rel="external">社保查询</a></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">生活</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">北京</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/06/life-2017-09-06-beijing/">展开全文 >></a>
         </p>
       
 
@@ -411,6 +324,87 @@
 
 
   
+    <article id="post-life-2017-09-06-beijing" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/06/life-2017-09-06-beijing/">北京生活</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/06/life-2017-09-06-beijing/" class="archive-article-date">
+  	<time datetime="2017-09-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><a href="http://www.bjgjj.gov.cn/ywxtgn/201606/t20160623_3924.html" target="_blank" rel="external">公积金查询</a></li>
+<li><a href="http://www.bjrbj.gov.cn/csibiz/indinfo/login.jsp" target="_blank" rel="external">社保查询</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">生活</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">北京</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/06/life-2017-09-06-beijing/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-python-2017-09-05-wx-create-menu-err" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -434,9 +428,9 @@
         <blockquote>
 <p>错误 {“errcode”:40033,”errmsg”:”invalid charset. please check your request, if include \uxxxx will create fail!”}</p>
 </blockquote>
-<h2><span id="fang-fa">方法</span><a href="#fang-fa" class="header-anchor"></a></h2><p>利用python的json内置模块，在进行dumps操作时，使用ensure_ascii=False 参数是中文<br>不会被转码<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">data = json.dumps(data,ensure_ascii=<span class="keyword">False</span>).encode(<span class="string">'utf-8'</span>)</div></pre></td></tr></table></figure></p>
-<h2><span id="wan-zheng-shi-li">完整实例</span><a href="#wan-zheng-shi-li" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> json</div><div class="line"><span class="keyword">import</span> requests</div><div class="line"></div><div class="line">url = <span class="string">'https://api.weixin.qq.com/cgi-bin/menu/create?access_token=...'</span></div><div class="line">data = json.dumps(data,ensure_ascii=<span class="keyword">False</span>).encode(<span class="string">'utf-8'</span>)</div><div class="line">res = requests.post(url,data=data)</div><div class="line">print(res)</div></pre></td></tr></table></figure>
-
+        
+          <a class="article-more-a" href="/2017/09/05/python-2017-09-05-wx-create-menu-err/#more">阅读全文 >></a>
+        
       
 
       
@@ -584,57 +578,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>[TOC]</p>
-<h2><span id="vundle">Vundle</span><a href="#vundle" class="header-anchor"></a></h2><p>官方推荐使用vim插件管理工具<br>安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">clone</span> https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim</div></pre></td></tr></table></figure></p>
-<p>配置.vimrc<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">$ touch ~/.vimrc</div><div class="line"></div><div class="line"><span class="built_in">set</span> nocompatible              <span class="string">" required</span></div><div class="line"><span class="string">filetype off                  "</span> required</div><div class="line"></div><div class="line"><span class="string">" set the runtime path to include Vundle and initialize</span></div><div class="line"><span class="string">set rtp+=~/.vim/bundle/Vundle.vim</span></div><div class="line"><span class="string">call vundle#begin()</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">"</span> alternatively, pass a path <span class="built_in">where</span> Vundle should install plugins</div><div class="line"><span class="string">"call vundle#begin('~/some/path/here')</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">"</span> <span class="built_in">let</span> Vundle manage Vundle, required</div><div class="line">Plugin <span class="string">'gmarik/Vundle.vim'</span></div><div class="line"></div><div class="line"><span class="string">" Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">"</span> All of your Plugins must be added before the following line</div><div class="line">call vundle<span class="comment">#end()            " required</span></div><div class="line">filetype plugin indent on    <span class="string">" required</span></div></pre></td></tr></table></figure></p>
-<p>安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ vim</div><div class="line">$ :PluginInstall</div></pre></td></tr></table></figure></p>
-<h2><span id="powerline">Powerline</span><a href="#powerline" class="header-anchor"></a></h2><p>该工具可以很优雅的显示vim下方的工具栏<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Plugin <span class="string">'Lokaltog/powerline'</span>, &#123;<span class="string">'rtp'</span>: <span class="string">'powerline/bindings/vim/'</span>&#125;</div></pre></td></tr></table></figure></p>
-<p>修改.vimrc<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ vim ~/.vimrc</div><div class="line"><span class="built_in">set</span> laststatus=2</div></pre></td></tr></table></figure></p>
-<h2><span id="solarized">Solarized</span><a href="#solarized" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Plugin <span class="string">'altercation/vim-colors-solarized'</span></div><div class="line"></div><div class="line">$ vim ~/.vimrc</div><div class="line">colorscheme solarized</div><div class="line">$ mkdir ~/.vim/colors</div><div class="line">$ cp ~/.vim/bundle/vim-colors-solarized ~/.vim/colors</div></pre></td></tr></table></figure>
-<h2><span id="youcompleteme">YouCompleteMe</span><a href="#youcompleteme" class="header-anchor"></a></h2><p>代码补全神器，但是安装也非常复杂，并不想其他插件那样一行命令就可以搞定<br>首先还是配置来源<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Plugin <span class="string">'Valloric/YouCompleteMe'</span></div></pre></td></tr></table></figure></p>
-<p>保存退出后打开vim，在正常模式下输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:PluginInstall</div></pre></td></tr></table></figure></p>
-<p>等待Vundle将YouCompleteMe安装完成，这个过程会很漫长，除非你的网络环境很好，最好翻墙<br>最后进行编译<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> ~/.vim/bundle/YouCompleteMe</div><div class="line">$ ./install.sh --clang-completer</div></pre></td></tr></table></figure></p>
-<p>如果不需要c-family的补全，可以去掉–clang-completer。如果需要c#的补全，请加上–omnisharp-completer。</p>
-<p>默认使用本地py2的环境进行安装，但是执行install.sh，提示过期，如果使用install.py安装还是修改~/.bash_profile<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> PYTHON_CONFIGURE_OPTS=<span class="string">"--enable-framework"</span></div></pre></td></tr></table></figure></p>
-<p>执行<figure class="highlight plain"><figcaption><span>~/.bash_profile``` 立即生效</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">重新使用pyenv下载一个虚拟环境，在install即可</div><div class="line"></div><div class="line">## tarbar</div><div class="line">github:https://github.com/majutsushi/tagbar</div><div class="line"></div><div class="line">### 安装</div><div class="line">依赖 vim&gt;7.0 和 [Exuberant ctags](http://ctags.sourceforge.net/)</div><div class="line">```bash</div><div class="line"># ubuntu</div><div class="line">sudo apt-get install ctags</div><div class="line"></div><div class="line"># centos</div><div class="line">sudo yum install ctags</div><div class="line"></div><div class="line"># mac</div><div class="line">brew install ctags</div></pre></td></tr></table></figure></p>
-<p>在vim中安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Plugin <span class="string">'majutsushi/tagbar'</span></div></pre></td></tr></table></figure></p>
-<h3><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h3><p>配置快捷键t，编辑文件时按t，自动进入，jk上下移动，回车选中跳转<br>最终配置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">Plugin <span class="string">'majutsushi/tagbar'</span></div><div class="line">nmap t :TagbarToggle&lt;CR&gt;</div><div class="line"><span class="string">" 启动时自动focus</span></div><div class="line"><span class="string">let g:tagbar_autofocus = 1</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">"</span> <span class="keyword">for</span> ruby, delete <span class="keyword">if</span> you <span class="keyword">do</span> not need</div><div class="line"><span class="built_in">let</span> g:tagbar_type_ruby = &#123;</div><div class="line">    \ <span class="string">'kinds'</span> : [</div><div class="line">        \ <span class="string">'m:modules'</span>,</div><div class="line">        \ <span class="string">'c:classes'</span>,</div><div class="line">        \ <span class="string">'d:describes'</span>,</div><div class="line">        \ <span class="string">'C:contexts'</span>,</div><div class="line">        \ <span class="string">'f:methods'</span>,</div><div class="line">        \ <span class="string">'F:singleton methods'</span></div><div class="line">    \ ]</div><div class="line">\ &#125;</div></pre></td></tr></table></figure></p>
-<h3><span id="pei-zhi-markdown">配置markdown</span><a href="#pei-zhi-markdown" class="header-anchor"></a></h3><p>vim ~/.ctags<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">--langdef=markdown</div><div class="line">--langmap=markdown:.mkd</div><div class="line">--regex-markdown=/^<span class="comment">#[ \t]+(.*)/\1/h,Heading_L1/</span></div><div class="line">--regex-markdown=/^<span class="comment">##[ \t]+(.*)/\1/i,Heading_L2/</span></div><div class="line">--regex-markdown=/^<span class="comment">###[ \t]+(.*)/\1/k,Heading_L3/</span></div></pre></td></tr></table></figure></p>
-<p>vim ~/.vimc<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">let</span> g:tagbar_type_markdown = &#123;</div><div class="line">    \ <span class="string">'ctagstype'</span> : <span class="string">'markdown'</span>,</div><div class="line">    \ <span class="string">'kinds'</span> : [</div><div class="line">        \ <span class="string">'h:Heading_L1'</span>,</div><div class="line">        \ <span class="string">'i:Heading_L2'</span>,</div><div class="line">        \ <span class="string">'k:Heading_L3'</span></div><div class="line">    \ ]</div><div class="line">\ &#125;</div></pre></td></tr></table></figure></p>
-<h3><span id="ming-ling">命令</span><a href="#ming-ling" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">跳到光标下tag所定义的位置，用鼠标双击此tag功能也一样</div><div class="line">o 在一个新打开的窗口中显示光标下tag</div><div class="line">显示光标下tag的原型定义</div><div class="line">u 更新taglist窗口中的tag</div><div class="line">s 更改排序方式，在按名字排序和按出现顺序排序间切换</div><div class="line">x taglist窗口放大和缩小，方便查看较长的tag</div><div class="line">+ 打开一个折叠，同zo</div><div class="line">- 将tag折叠起来，同zc</div><div class="line">* 打开所有的折叠，同zR</div><div class="line">= 将所有tag折叠起来，同zM</div><div class="line">[[ 跳到前一个文件</div><div class="line">]] 跳到后一个文件</div><div class="line">q 关闭taglist窗口</div></pre></td></tr></table></figure>
-<h3><span id="geng-duo">更多</span><a href="#geng-duo" class="header-anchor"></a></h3><p>文档：<a href="https://github.com/majutsushi/tagbar/wiki" target="_blank" rel="external">https://github.com/majutsushi/tagbar/wiki</a></p>
-<h2><span id="quickrun">quickrun</span><a href="#quickrun" class="header-anchor"></a></h2><p>快速执行<br>github：<a href="https://github.com/thinca/vim-quickrun" target="_blank" rel="external">https://github.com/thinca/vim-quickrun</a></p>
-<h3><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Plugin <span class="string">'thinca/vim-quickrun'</span>                                                <span class="string">" 快速执行</span></div></pre></td></tr></table></figure>
-<h3><span id="pei-zhi">配置</span><a href="#pei-zhi" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">let</span> g:quickrun_config = &#123;</div><div class="line">\   <span class="string">"_"</span> : &#123;</div><div class="line">\       <span class="string">"outputter"</span> : <span class="string">"message"</span>,</div><div class="line">\   &#125;,</div><div class="line">\&#125;</div><div class="line"><span class="built_in">let</span> g:quickrun_no_default_key_mappings = 1</div><div class="line">nmap &lt;Leader&gt;r &lt;Plug&gt;(quickrun)</div><div class="line">map &lt;F10&gt; :QuickRun&lt;CR&gt;</div></pre></td></tr></table></figure>
-<h2><span id="airline">airline</span><a href="#airline" class="header-anchor"></a></h2><p>增强状态栏</p>
-<h3><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Plugin <span class="string">'bling/vim-airline'</span>                                                  <span class="string">" 状态栏</span></div></pre></td></tr></table></figure>
-<h3><span id="pei-zhi">配置</span><a href="#pei-zhi" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> !exists(<span class="string">'g:airline_symbols'</span>)</div><div class="line"><span class="built_in">let</span> g:airline_symbols = &#123;&#125;</div><div class="line">endif</div><div class="line"><span class="built_in">let</span> g:airline_left_sep       = <span class="string">'▶'</span></div><div class="line"><span class="built_in">let</span> g:airline_left_alt_sep   = <span class="string">'❯'</span></div><div class="line"><span class="built_in">let</span> g:airline_right_sep      = <span class="string">'◀'</span></div><div class="line"><span class="built_in">let</span> g:airline_right_alt_sep  = <span class="string">'❮'</span></div><div class="line"><span class="built_in">let</span> g:airline_symbols.linenr = <span class="string">'¶'</span></div><div class="line"><span class="built_in">let</span> g:airline_symbols.branch = <span class="string">'⎇'</span></div></pre></td></tr></table></figure>
-<h2><span id="nerdcommenter">nerdcommenter</span><a href="#nerdcommenter" class="header-anchor"></a></h2><blockquote>
-<p>快速注释/放开注释</p>
+        <blockquote>
+<p>工欲善其事，必先利其器。熟练使用这些插件，开发起来会事半功倍</p>
 </blockquote>
-<p>github：<a href="https://github.com/scrooloose/nerdcommentera" target="_blank" rel="external">https://github.com/scrooloose/nerdcommentera</a></p>
-<h3><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Plugin <span class="string">'scrooloose/nerdcommenter'</span></div></pre></td></tr></table></figure>
-<h3><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h3><p>官方快键键,更多用法见<a href="https://github.com/scrooloose/nerdcommenter#default-mappings" target="_blank" rel="external">快捷键</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;header&gt;c&lt;space&gt;    # 自动判断注释还是放开注释</div><div class="line">&lt;header&gt;cy          # 添加注释后自动</div></pre></td></tr></table></figure></p>
-<h3><span id="pei-zhi">配置</span><a href="#pei-zhi" class="header-anchor"></a></h3><p>常用配置，更多见<a href="https://github.com/scrooloose/nerdcommenter#documentation" target="_blank" rel="external">文档</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">let</span> g:NERDSpaceDelims = 1   <span class="comment"># 注释后添加空格，推荐</span></div></pre></td></tr></table></figure></p>
-<h2><span id="gundo">gundo.</span><a href="#gundo" class="header-anchor"></a></h2><blockquote>
-<p>查看/跳转历史记录</p>
-</blockquote>
-<p>github:<a href="https://github.com/sjl/gundo.vim" target="_blank" rel="external">https://github.com/sjl/gundo.vim</a></p>
-<h3><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Plugin <span class="string">'sjl/gundo.vim'</span>                      <span class="string">" 查看文件编辑历史记录</span></div></pre></td></tr></table></figure>
-<h3><span id="pei-zhi">配置</span><a href="#pei-zhi" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nnoremap &lt;leader&gt;h :GundoToggle&lt;CR&gt;</div></pre></td></tr></table></figure>
-<h3><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">使用;h打开历史记录，使用&lt;ctrl&gt;w+hl左右移动窗口，在历史记录窗口使用jk上下移动，</div><div class="line">回车跳转到某次记录</div></pre></td></tr></table></figure>
-<h2><span id="vim-expand-region">vim-expand-region</span><a href="#vim-expand-region" class="header-anchor"></a></h2><blockquote>
-<p>区域选择</p>
-</blockquote>
-<p><a href="https://github.com/terryma/vim-expand-region" target="_blank" rel="external"> github </a></p>
-<h3><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Plugin <span class="string">'terryma/vim-expand-region'</span></div></pre></td></tr></table></figure>
-<h3><span id="pei-zhi">配置</span><a href="#pei-zhi" class="header-anchor"></a></h3><p>自定义快捷键 v 区域选择、V 取消选择 这样比较符合vim本身习惯<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">vmap v &lt;Plug&gt;(expand_region_expand)</div><div class="line">vmap V &lt;Plug&gt;(expand_region_shrink)</div></pre></td></tr></table></figure></p>
-<h3><span id="geng-duo">更多</span><a href="#geng-duo" class="header-anchor"></a></h3><p>见<a href="https://github.com/terryma/vim-expand-region#setting" target="_blank" rel="external"> 文档 </a></p>
-<h2><span id="vim-easy-align-kuai-su-dui-qi">vim-easy-align 快速对齐</span><a href="#vim-easy-align-kuai-su-dui-qi" class="header-anchor"></a></h2><h3><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Plugin <span class="string">'junegunn/vim-easy-align'</span></div></pre></td></tr></table></figure>
-<h3><span id="pei-zhi">配置</span><a href="#pei-zhi" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">vmap &lt;Leader&gt;a &lt;Plug&gt;(EasyAlign)</div><div class="line">nmap &lt;Leader&gt;a &lt;Plug&gt;(EasyAlign)</div><div class="line"><span class="keyword">if</span> !exists(<span class="string">'g:easy_align_delimiters'</span>)</div><div class="line">  <span class="built_in">let</span> g:easy_align_delimiters = &#123;&#125;</div><div class="line">endif</div><div class="line"><span class="built_in">let</span> g:easy_align_delimiters[<span class="string">'#'</span>] = &#123; <span class="string">'pattern'</span>: <span class="string">'#'</span>, <span class="string">'ignore_groups'</span>: [<span class="string">'String'</span>] &#125;</div></pre></td></tr></table></figure>
-<h3><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h3><p>绑定快捷键<leader>a，使用 v 选中目标区域后执行响应命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;Leader&gt;a=        对齐等号表达</div><div class="line">&lt;Leader&gt;a:        对齐冒号表达式(json/map等)</div><div class="line"></div><div class="line"><span class="comment"># 默认左对齐</span></div><div class="line">&lt;Leader&gt;a&lt;space&gt;  首个空格对齐</div><div class="line">&lt;Leader&gt;a2&lt;space&gt; 第二个空格对齐</div><div class="line">&lt;Leader&gt;a-&lt;space&gt; 倒数第一个空格对齐</div><div class="line">&lt;Leader&gt;a-2&lt;space&gt; 倒数第二个空格对齐</div><div class="line">&lt;Leader&gt;a*&lt;space&gt; 所有空格依次对齐</div><div class="line"></div><div class="line"><span class="comment"># 右对齐</span></div><div class="line">&lt;Leader&gt;a&lt;Enter&gt;*&lt;space&gt;</div></pre></td></tr></table></figure></leader></p>
-<h3><span id="geng-duo">更多</span><a href="#geng-duo" class="header-anchor"></a></h3><p>见<a href="https://github.com/junegunn/vim-easy-align#demo" target="_blank" rel="external"> 文档 </a></p>
-
+        
+          <a class="article-more-a" href="/2017/08/29/vim-2017-08-29-plug/#more">阅读全文 >></a>
+        
       
 
       
@@ -850,19 +799,19 @@
 
 
   
-    <article id="post-vim-2017-08-23-basic-cmd" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-linux-2017-08-23-ssh" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/23/vim-2017-08-23-basic-cmd/">Linux vim 基础命令</a>
+      <a class="article-title" href="/2017/08/23/linux-2017-08-23-ssh/">Linux SSH 登陆远程服务器和无密码操作</a>
     </h1>
   
 
         
-        <a href="/2017/08/23/vim-2017-08-23-basic-cmd/" class="archive-article-date">
+        <a href="/2017/08/23/linux-2017-08-23-ssh/" class="archive-article-date">
   	<time datetime="2017-08-22T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-23</time>
 </a>
         
@@ -870,42 +819,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>原文：<a href="http://linux.vbird.org/linux_basic/0310vi.php#vi_ex" target="_blank" rel="external">http://linux.vbird.org/linux_basic/0310vi.php#vi_ex</a></p>
-<p>[TOC]</p>
-<h2><span id="san-chong-mo-shi">三种模式</span><a href="#san-chong-mo-shi" class="header-anchor"></a></h2><h3><span id="yi-ban-zhi-ling-mo-shi-command-mode">一般指令模式 (command mode)</span><a href="#yi-ban-zhi-ling-mo-shi-command-mode" class="header-anchor"></a></h3><pre><code>以 vi 打開一個檔案就直接進入一般指令模式了(這是預設的模式，也簡稱為一般模式)。在這個模式中， 你可以使用『上下左右』按鍵來移動游標，你可以使用『刪除字元』或『刪除整列』來處理檔案內容， 也可以使用『複製、貼上』來處理你的文件資料。
-</code></pre><h3><span id="bian-ji-mo-shi-insert-mode">編輯模式 (insert mode)</span><a href="#bian-ji-mo-shi-insert-mode" class="header-anchor"></a></h3><pre><code>在一般指令模式中可以進行刪除、複製、貼上等等的動作，但是卻無法編輯文件內容的！ 要等到你按下『i, I, o, O, a, A, r, R』等任何一個字母之後才會進入編輯模式。注意了！通常在 Linux 中，按下這些按鍵時，在畫面的左下方會出現『 INSERT 或 REPLACE 』的字樣，此時才可以進行編輯。而如果要回到一般指令模式時， 則必須要按下『Esc』這個按鍵即可退出編輯模式。
-</code></pre><h3><span id="zhi-ling-lie-ming-ling-mo-shi-command-line-mode">指令列命令模式 (command-line mode)</span><a href="#zhi-ling-lie-ming-ling-mo-shi-command-line-mode" class="header-anchor"></a></h3><pre><code>在一般模式當中，輸入『 : / ? 』三個中的任何一個按鈕，就可以將游標移動到最底下那一列。在這個模式當中， 可以提供你『搜尋資料』的動作，而讀取、存檔、大量取代字元、離開 vi 、顯示行號等等的動作則是在此模式中達成的！
-</code></pre><h2><span id="an-jian-shuo-ming">按鍵說明</span><a href="#an-jian-shuo-ming" class="header-anchor"></a></h2><p>第一部份：一般指令模式可用的按鈕說明，游標移動、複製貼上、搜尋取代等</p>
-<h3><span id="yi-dong-guang-biao-de-fang-fa">移动光标的方法</span><a href="#yi-dong-guang-biao-de-fang-fa" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">h j k l(← ↓ ↑ →)    分别左下上右移动操作 配合数字可以移动多格 如：30j 向左移动格</div><div class="line"></div><div class="line">[Ctrl] + [f]	    螢幕『向下』移動一頁，相當於 [Page Down]按鍵 (常用)</div><div class="line">[Ctrl] + [b]	    螢幕『向上』移動一頁，相當於 [Page Up] 按鍵 (常用)</div><div class="line">[Ctrl] + [d]	    螢幕『向下』移動半頁</div><div class="line">[Ctrl] + [u]	    螢幕『向上』移動半頁</div><div class="line"></div><div class="line">n&lt;space&gt;	        n 标示数字，数字加上空格，表示向右移动相应的格数</div><div class="line">0 或功能鍵[Home]	数字0 可以移动到行首</div><div class="line">$ 或功能鍵[End]	    移动到行尾</div><div class="line"></div><div class="line">G	                移动到文档最后一行</div><div class="line">nG	                n 表示数字，20G表示移动到第20列</div><div class="line">gg	                移动到文档第一行，相当于1G</div><div class="line">n&lt;Enter&gt;	        n 表示数字，表示移动多相应的行，等同于nG 常用</div><div class="line"></div><div class="line"><span class="comment"># 不常用</span></div><div class="line">H	                游標移動到這個螢幕的最上方那一列的第一個字元</div><div class="line">M	                游標移動到這個螢幕的中央那一列的第一個字元</div><div class="line">L	                游標移動到這個螢幕的最下方那一列的第一個字元</div><div class="line">+	                游標移動到非空白字元的下一列</div><div class="line">-	                游標移動到非空白字元的上一列</div></pre></td></tr></table></figure>
-<h3><span id="cha-zhao-yu-ti-huan">查找与替换</span><a href="#cha-zhao-yu-ti-huan" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">/word	向游標之下尋找一個名稱為 word 的字串。例如要在檔案內搜尋 vbird 這個字串，就輸入 /vbird 即可！ (常用)</div><div class="line">?word	向游標之上尋找一個字串名稱為 word 的字串。</div><div class="line">n	    這個 n 是英文按鍵。代表『重複前一個搜尋的動作』。舉例來說， 如果剛剛我們執行 /vbird 去向下搜尋 vbird 這個字串，則按下 n 後，會向下繼續搜尋下一個名稱為 vbird 的字串。如果是執行 ?vbird 的話，那麼按下 n 則會向上繼續搜尋名稱為 vbird 的字串！</div><div class="line">N	    這個 N 是英文按鍵。與 n 剛好相反，為『反向』進行前一個搜尋動作。 例如 /vbird 後，按下 N 則表示『向上』搜尋 vbird 。</div><div class="line"></div><div class="line"><span class="comment">#使用 /word 配合 n 及 N 是非常有幫助的！可以讓你重複的找到一些你搜尋的關鍵字！</span></div><div class="line"></div><div class="line">:n1,n2s/word1/word2/g	n1, n2 表示数字，替换 n1 行到 n2 行的单词</div><div class="line">:1,<span class="variable">$s</span>/word1/word2/g	    全文替换，也可以写成 :%s/word1/word2/g</div><div class="line">:1,<span class="variable">$s</span>/word1/word2/gc	全文替换，并出现确认提示</div></pre></td></tr></table></figure>
-<h3><span id="shan-chu-fu-zhi-he-nian-tie">删除、复制和黏贴</span><a href="#shan-chu-fu-zhi-he-nian-tie" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">x, X	在一列字當中，x 為向後刪除一個字元 (相當於 [del] 按鍵)， X 為向前刪除一個字元(相當於 [backspace] 亦即是倒退鍵) (常用)</div><div class="line">nx	    n 為數字，連續向後刪除 n 個字元。舉例來說，我要連續刪除 10 個字元， 『10x』。</div><div class="line">dd	    刪除游標所在的那一整列(常用)</div><div class="line">ndd	    n 為數字。刪除游標所在的向下 n 列，例如 20dd 則是刪除 20 列 (常用)</div><div class="line">d1G	    刪除游標所在到第一列的所有資料</div><div class="line">dG	    刪除游標所在到最後一列的所有資料</div><div class="line">d$	    刪除游標所在處，到該列的最後一個字元</div><div class="line">d0	    那個是數字的 0 ，刪除游標所在處，到該列的最前面一個字元</div><div class="line">yy	    複製游標所在的那一列(常用)</div><div class="line">nyy	    n 為數字。複製游標所在的向下 n 列，例如 20yy 則是複製 20 列(常用)</div><div class="line">y1G	    複製游標所在列到第一列的所有資料</div><div class="line">yG	    複製游標所在列到最後一列的所有資料</div><div class="line">y0	    複製游標所在的那個字元到該列行首的所有資料</div><div class="line">y$	    複製游標所在的那個字元到該列行尾的所有資料</div><div class="line">p, P    	p 為將已複製的資料在游標下一列貼上，P 則為貼在游標上一列！ 舉例來說，我目前游標在第 20 列，且已經複製了 10 列資料。則按下 p 後， 那 10 列資料會貼在原本的 20 列之後，亦即由 21 列開始貼。但如果是按下 P 呢？ 那麼原本的第 20 列會被推到變成 30 列。 (常用)</div><div class="line">J	    將游標所在列與下一列的資料結合成同一列</div><div class="line">c	    重複刪除多個資料，例如向下刪除 10 列，[ 10cj ]</div><div class="line">u	    復原前一個動作。(常用)</div><div class="line">[Ctrl]+r	重做上一個動作。(常用)</div><div class="line"></div><div class="line"><span class="comment"># 這個 u 與 [Ctrl]+r 是很常用的指令！一個是復原，另一個則是重做一次～ 利用這兩個功能按鍵，你的編輯，嘿嘿！很快樂的啦！</span></div><div class="line"></div><div class="line">.	    不要懷疑！這就是小數點！意思是重複前一個動作的意思。 如果你想要重複刪除、重複貼上等等動作，按下小數點『.』就好了！ (常用)</div></pre></td></tr></table></figure>
-<p>第二部份：一般指令模式切換到編輯模式的可用的按鈕說明</p>
-<h3><span id="jin-ru-cha-ru-huo-ti-huan-de-bian-ji-mo-shi">进入插入或替换的编辑模式</span><a href="#jin-ru-cha-ru-huo-ti-huan-de-bian-ji-mo-shi" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">i       在光标所在处插入</div><div class="line">I       在该行第一个非空字符处插</div><div class="line">a       在光标后一个字符插入</div><div class="line">A       在该行最后一个字符后插入</div><div class="line">o, O	進入插入模式(Insert mode)：</div><div class="line">o       在光标的下一行插入</div><div class="line">O       在光标的上一行插入</div><div class="line">cw      删除光标后第一个单词，并进入插入模式</div><div class="line"></div><div class="line">r, R	進入取代模式(Replace mode)：</div><div class="line">r       只會取代游標所在的那一個字元一次；R會一直取代游標所在的文字，直到按下 ESC 為止；(常用)</div><div class="line">&lt;C<span class="_">-a</span>&gt;   光标放在数字上，按下该组合键可以让数字加一</div><div class="line"></div><div class="line"><span class="comment"># 上面這些按鍵中，在 vi 畫面的左下角處會出現『--INSERT--』或『--REPLACE--』的字樣。 由名稱就知道該動作了吧！！特別注意的是，我們上面也提過了，你想要在檔案裡面輸入字元時， 一定要在左下角處看到 INSERT 或 REPLACE 才能輸入喔！</span></div><div class="line"></div><div class="line"></div><div class="line">[Esc]	退出編輯模式，回到一般指令模式中(常用)</div></pre></td></tr></table></figure>
-<p>第三部份：一般指令模式切換到指令列模式的可用按钮说明</p>
-<h3><span id="zhi-ling-lie-mo-shi-de-bao-cun-chi-kai-deng-zhi-ling">指令列模式的保存、离开等指令</span><a href="#zhi-ling-lie-mo-shi-de-bao-cun-chi-kai-deng-zhi-ling" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">:w	                將編輯的資料寫入硬碟檔案中(常用)</div><div class="line">:w!	                若檔案屬性為『唯讀』時，強制寫入該檔案。不過，到底能不能寫入， 還是跟你對該檔案的檔案權限有關啊！</div><div class="line">:q	                離開 vi (常用)</div><div class="line">:q!	                若曾修改過檔案，又不想儲存，使用 ! 為強制離開不儲存檔案。</div><div class="line"></div><div class="line"><span class="comment"># 注意一下啊，那個驚嘆號 (!) 在 vi 當中，常常具有『強制』的意思～</span></div><div class="line"></div><div class="line">:wq	                儲存後離開           ，若為 :wq! 則為強制儲存後離開 (常用)</div><div class="line">ZZ	                這是大寫的 Z 喔！若檔案沒有更動，則不儲存離開，若檔案已經被更動過，則儲存後離開！</div><div class="line">:w [filename]	    將編輯的資料儲存成另一個檔案（類似另存新檔）</div><div class="line">:r [filename]	    在編輯的資料中，讀入另一個檔案的資料。亦即將 『filename』 這個檔案內容加到游標所在列後面</div><div class="line">:n1,n2 w [filename]	將 n1 到 n2 的內容儲存成 filename 這個檔案。</div><div class="line">:! <span class="built_in">command</span>	        暫時離開 vi 到指令列模式下執行 <span class="built_in">command</span> 的顯示結果！例如『:! ls /home』即可在 vi 當中察看 /home 底下以 ls 輸出的檔案資訊！</div></pre></td></tr></table></figure>
-<h3><span id="vim-huan-jing-de-bian-geng">vim 环境的变更</span><a href="#vim-huan-jing-de-bian-geng" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">:<span class="built_in">set</span> nu	    顯示行號，設定之後，會在每一列的字首顯示該列的行號</div><div class="line">:<span class="built_in">set</span> nonu	與 <span class="built_in">set</span> nu 相反，為取消行號！</div></pre></td></tr></table></figure>
-<h2><span id="e-wai-gong-neng">额外功能</span><a href="#e-wai-gong-neng" class="header-anchor"></a></h2><h3><span id="vim-de-bao-cun-wen-jian-hui-fu-yu-da-kai-shi-de-jing-gao-xin-xi">vim 的保存文件、恢复与打开时的警告信息</span><a href="#vim-de-bao-cun-wen-jian-hui-fu-yu-da-kai-shi-de-jing-gao-xin-xi" class="header-anchor"></a></h3><p>當我們在使用 vim 編輯時， vim 會在與被編輯的檔案的目錄下，再建立一個名為 .filename.swp 的檔案。 比如說我們在上一個小節談到的編輯 /tmp/vitest/man_db.conf 這個檔案時， vim 會主動的建立 /tmp/vitest/.man_db.conf.swp 的暫存檔，你對 man_db.conf 做的動作就會被記錄到這個 .man_db.conf.swp 當中喔！如果你的系統因為某些原因斷線了， 導致你編輯的檔案還沒有儲存，這個時候 .man_db.conf.swp 就能夠發揮救援的功能了！我們來測試一下吧！ 底下的練習有些部分的指令我們尚未談到，沒關係，你先照著做，後續再回來瞭解囉！<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> /tmp/vitest</div><div class="line">$ vim man_db.conf</div><div class="line"><span class="comment"># 此時會進入到 vim 的畫面，請在 vim 的一般指令模式下按下『 [ctrl]-z 』的組合鍵</span></div><div class="line"></div><div class="line">[1]+  Stopped             vim man_db.conf  &lt;==按下 [ctrl]-z 會告訴你這個訊息</div></pre></td></tr></table></figure></p>
-<p>當我們在 vim 的一般指令模式下按下 [ctrl]-z 的組合按鍵時，你的 vim 會被丟到背景去執行。回到命令提示字元後，接下來我們來模擬將 vim 的工作不正常的中斷吧！<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">$ ls -al</div><div class="line">drwxrwxr-x.  2 dmtsai dmtsai    69 Jul  6 23:54 .</div><div class="line">drwxrwxrwt. 17 root   root    4096 Jul  6 23:53 ..</div><div class="line">-rw-r--r--.  1 dmtsai dmtsai  4850 Jul  6 23:47 man_db.conf</div><div class="line">-rw-r--r--.  1 dmtsai dmtsai 16384 Jul  6 23:54 .man_db.conf.swp  &lt;==就是他，暫存檔</div><div class="line">-rw-rw-r--.  1 dmtsai dmtsai  5442 Jul  6 23:35 man.test.config</div><div class="line"></div><div class="line">$ <span class="built_in">kill</span> -9 %1 &lt;==這裡模擬斷線停止 vim 工作</div><div class="line">$ ls -al .man_db.conf.swp</div><div class="line">-rw-r--r--. 1 dmtsai dmtsai 16384 Jul  6 23:54 .man_db.conf.swp  &lt;==暫存檔還是會存在！</div><div class="line"></div><div class="line">$ vim man_db.conf</div><div class="line"></div><div class="line">E325: ATTENTION  &lt;==錯誤代碼</div><div class="line">Found a swap file by the name <span class="string">".man_db.conf.swp"</span>  &lt;==底下數列說明有暫存檔的存在</div><div class="line">          owned by: dmtsai   dated: Mon Jul  6 23:54:16 2015</div><div class="line">         file name: /tmp/vitest/man_db.conf  &lt;==這個暫存檔屬於哪個實際的檔案？</div><div class="line">          modified: no</div><div class="line">         user name: dmtsai   host name: study.centos.vbird</div><div class="line">        process ID: 31851</div><div class="line">While opening file <span class="string">"man_db.conf"</span></div><div class="line">             dated: Mon Jul  6 23:47:21 2015</div><div class="line"></div><div class="line">底下說明可能發生這個錯誤的兩個主要原因與解決方案！</div><div class="line">(1) Another program may be editing the same file.  If this is the <span class="keyword">case</span>,</div><div class="line">    be careful not to end up with two different instances of the same</div><div class="line">    file when making changes.  Quit, or <span class="built_in">continue</span> with caution.</div><div class="line">(2) An edit session <span class="keyword">for</span> this file crashed.</div><div class="line">    If this is the <span class="keyword">case</span>, use <span class="string">":recover"</span> or <span class="string">"vim -r man_db.conf"</span></div><div class="line">    to recover the changes (see <span class="string">":help recovery"</span>).</div><div class="line">    If you did this already, delete the swap file <span class="string">".man_db.conf.swp"</span></div><div class="line">    to avoid this message.</div><div class="line"></div><div class="line">Swap file <span class="string">".man_db.conf.swp"</span> already exists! 底下說明你可進行的動作</div><div class="line">[O]pen Read-Only, (E)dit anyway, (R)ecover, (D)elete it, (Q)uit, (A)bort:</div></pre></td></tr></table></figure></p>
-<p>再次打开文件时，会出现六个按钮，他们的作用依次是：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[O]pen Read-Only：打開此檔案成為唯讀檔， 可以用在你只是想要查閱該檔案內容並不想要進行編輯行為時。一般來說，在上課時，如果你是登入到同學的電腦去看他的設定檔， 結果發現其實同學他自己也在編輯時，可以使用這個模式；</div><div class="line"></div><div class="line">(E)dit anyway：還是用正常的方式打開你要編輯的那個檔案， 並不會載入暫存檔的內容。不過很容易出現兩個使用者互相改變對方的檔案等問題！不好不好！</div><div class="line"></div><div class="line">(R)ecover：就是載入暫存檔的內容，用在你要救回之前未儲存的工作。 不過當你救回來並且儲存離開 vim 後，還是要手動自行刪除那個暫存檔喔！</div><div class="line"></div><div class="line">(D)elete it：你確定那個暫存檔是無用的！那麼開啟檔案前會先將這個暫存檔刪除！ 這個動作其實是比較常做的！因為你可能不確定這個暫存檔是怎麼來的，所以就刪除掉他吧！哈哈！</div><div class="line"></div><div class="line">(Q)uit：按下 q 就離開 vim ，不會進行任何動作回到命令提示字元。</div><div class="line"></div><div class="line">(A)bort：忽略這個編輯行為，感覺上與 quit 非常類似！ 也會送你回到命令提示字元就是囉！</div></pre></td></tr></table></figure>
-<h3><span id="duo-wen-jian-bian-ji">多文件编辑</span><a href="#duo-wen-jian-bian-ji" class="header-anchor"></a></h3><p>很多同学任务高集成的IDE比vim好用，是因为vim不能操作一些事情，比如跨文件复制，但其实vim完全可以做到，首先下载文件：<a href="http://linux.vbird.org/linux_basic/0310vi/hosts" target="_blank" rel="external">http://linux.vbird.org/linux_basic/0310vi/hosts</a> 打开后如下所示:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">192.168.1.1    host1.class.net</div><div class="line">192.168.1.2    host2.class.net</div><div class="line">192.168.1.3    host3.class.net</div><div class="line">192.168.1.4    host4.class.net</div><div class="line">.....中間省略......</div></pre></td></tr></table></figure></p>
-<p>我们再建一个新文件host2,并进行跨文件复制操作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ touch host_copy</div><div class="line">$ vim hosts host_copy <span class="comment"># 使用vim同时打开两个文件</span></div></pre></td></tr></table></figure></p>
-<p>下面我们会使用这几个命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">:n	    編輯下一個檔案</div><div class="line">:N	    編輯上一個檔案</div><div class="line">:files	列出目前這個 vim 的開啟的所有檔案</div></pre></td></tr></table></figure></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">:files      <span class="comment"># 再打开文件后一般模式下使用改名了查看有几个文件</span></div><div class="line"></div><div class="line">:files</div><div class="line">  1 %a   <span class="string">"hosts"</span>                        line 1      <span class="comment"># %a代表当前编辑的文件</span></div><div class="line">  2      <span class="string">"host2"</span>                        line 0</div><div class="line"></div><div class="line"><span class="comment"># 使用gg切换到第一行，使用4yy复制前四行</span></div><div class="line">:n          <span class="comment"># 指令该命令编辑下一个文件</span></div><div class="line"></div><div class="line"><span class="comment"># 使用p将刚才复制的内容粘贴到该文件中使用:q退出编辑并查看host2会发现刚才的内容已经复制过来了</span></div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">v	        字元選擇，會將游標經過的地方反白選擇！</div><div class="line">V	        列選擇，會將游標經過的列反白選擇！</div><div class="line">[Ctrl]+v    區塊選擇，可以用長方形的方式選擇資料</div><div class="line">y	        將反白的地方複製起來</div><div class="line">d	        將反白的地方刪除掉</div><div class="line">p	        將剛剛複製的區塊，在游標所在處貼上！</div></pre></td></tr></table></figure>
-<h2><span id="kuai-ti-huan">快替换</span><a href="#kuai-ti-huan" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[Ctrl] + v 选中块</div><div class="line">c  输入替换文字</div><div class="line">&lt;Esc&gt; 完成替换</div></pre></td></tr></table></figure>
-<h2><span id="duo-chuang-kou">多窗口</span><a href="#duo-chuang-kou" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">:sp [filename]	开启一个新窗口，如果有加 filename， 表示在新窗口开启一个新档案，否则表示两个窗口为同一个档案内容(同步显示)。</div><div class="line">[ctrl]+w+↓/j	按键的按法是：先按下 [ctrl] 不放， 再按下 w 后放开所有的按键，然后再按下 j (或向下箭头键)，则光标可移动到下方的窗口。</div><div class="line">[ctrl]+w+↑/k	同上，不过光标移动到上面的窗口。</div><div class="line">[ctrl]+w+q  	其实就是 :q 结束离开啦！ 举例来说，如果我想要结束下方的窗口，那么利用 [ctrl]+w+↓ 移动到下方窗口后，按下 :q 即可离开， 也可以按下 [ctrl]+w+q 啊！</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># set compatible 就是让 vim 关闭所有扩展的功能，尽量模拟 vi 的行为。</span></div><div class="line">但这样就不应用 vim 的很多强大功能，所以一般没有什么特殊需要的话（比如执行很老的 vi 脚本），都要在 vim 的配置开始，写上 <span class="built_in">set</span> nocompatible，关闭兼容模式。由于这个选项是最最基础的选项，会连带很多其它选项发生变动（称作副作用），所以它必需是第一个设定的选项。</div><div class="line"><span class="built_in">set</span> nocompatible</div></pre></td></tr></table></figure>
-<h2><span id="kuai-su-xuan-zhong-duan-luo">快速选中段落</span><a href="#kuai-su-xuan-zhong-duan-luo" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vip         <span class="comment"># vip很好记</span></div></pre></td></tr></table></figure>
-<h2><span id="hong">宏</span><a href="#hong" class="header-anchor"></a></h2><p>vim有个非常厉害的功能叫<strong>宏</strong>，它可以将你的操作进行宏录制，放到vim寄存器中，并按照你想要的方式播放出来</p>
-<h3><span id="cao-zuo">操作</span><a href="#cao-zuo" class="header-anchor"></a></h3><ul>
-<li>首先准备一个文件，第一行为数字1</li>
-<li>光标放在1上并按下 qa（当然也可以 qb，qc，这只是录制宏的名字）开始录制，测试左下角会显示录制字样</li>
-<li>输入 yyp 复制当前行到下一行，并输入 <c-a> 将数字增加1，此时第二行数字为2</c-a></li>
-<li>按下 q 结束录制，并按下 @a 播放宏，此时第三行会变成3，按下 @@ 重复上次播放，第四行会变成4</li>
-<li>当按下 100@@ 时，宏会重复播放100次上次的播放记录，自动生成104行数据</li>
-</ul>
+        <div class="tocStart"></div>
 
+<!-- toc -->
+<ul>
+<li><a href="#shi-yong">使用</a></li>
+<li><a href="#sshd-fu-wu-qi-xi-bu-she-ding">sshd 服务器细部设定</a></li>
+<li><a href="#zhi-zuo-bu-yong-mi-ma-ke-li-ji-deng-ru-de-ssh-yong-hu">制作不用密码可立即登入的 ssh 用户</a><ul>
+<li><a href="#1-ke-hu-duan-jian-li-liang-ba-yao-chi">1. 客户端建立两把钥匙</a></li>
+<li><a href="#2-jiang-gong-yao-dang-an-shu-ju-shang-chuan-dao-fu-wu-qi-shang">2. 将公钥档案数据上传到服务器上</a></li>
+<li><a href="#3-jiang-gong-yao-fang-zhi-fu-wu-qi-duan-de-zheng-que-mu-lu-yu-wen-jian-ming">3. 将公钥放置服务器端的正确目录与文件名</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<p><div class="tocEnd"></div><br>
+        
+          <a class="article-more-a" href="/2017/08/23/linux-2017-08-23-ssh/#more">阅读全文 >></a>
+        
       
 
       
@@ -918,7 +849,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vim</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ssh</a>
         		</li>
       		
 		</ul>
@@ -928,7 +863,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/23/vim-2017-08-23-basic-cmd/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/23/linux-2017-08-23-ssh/">展开全文 >></a>
         </p>
       
 
@@ -978,30 +913,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>[TOC]</p>
-<h2><span id="cao-zuo-she-zhi">操作设置</span><a href="#cao-zuo-she-zhi" class="header-anchor"></a></h2><ul>
+        <h2 id="操作设置"><a href="#操作设置" class="headerlink" title="操作设置"></a>操作设置</h2><ul>
 <li><strong>打开三指拖动</strong>：<a href="https://support.apple.com/zh-cn/HT204609" target="_blank" rel="external">教程</a></li>
 <li><strong>打开轻点来点按</strong>：设置==》触控板==》光标与点按</li>
 <li><strong>修改修饰键</strong>：<a href="https://support.apple.com/kb/PH7099?locale=zh_CN&amp;viewlocale=zh_CN" target="_blank" rel="external">教程</a></li>
 </ul>
-<h2><span id="ruan-jian">软件</span><a href="#ruan-jian" class="header-anchor"></a></h2><ul>
-<li>Chrome</li>
-<li><a href="https://www.iterm2.com/downloads.html" target="_blank" rel="external">iTerm2</a> 终端神器，文件管理编程全部搞定</li>
-<li>Alfred</li>
-<li><a href="https://www.renfei.org/snippets-lab/" target="_blank" rel="external">SnippetsLab</a> 随便代码管理从未如此方便</li>
-<li>Shiftlt<br><a href="https://github.com/fikovnik/ShiftIt/releases" target="_blank" rel="external">https://github.com/fikovnik/ShiftIt/releases</a></li>
-<li>CheatSheet<br><a href="https://www.mediaatelier.com/CheatSheet/" target="_blank" rel="external">https://www.mediaatelier.com/CheatSheet/</a></li>
-<li>印象笔记</li>
-<li>xcode</li>
-</ul>
-<h3><span id="xiao-lu">效率</span><a href="#xiao-lu" class="header-anchor"></a></h3><ul>
-<li><a href="http://xclient.info/s/atext.html?_=27616038f53cd5faaa39e6ab06ffb219#history_versions" target="_blank" rel="external">aText</a> 快捷输入神器</li>
-<li><a href="https://www.cockos.com/licecap/" target="_blank" rel="external">LICEcap</a> 录制gif图片小工具</li>
-</ul>
-<h2><span id="shi-yong-gong-ju">使用工具</span><a href="#shi-yong-gong-ju" class="header-anchor"></a></h2><ul>
-<li><strong>Homebrew</strong>： <a href="/mac/2017/09/07/homebrew">Mac 包管理神器 HomeBrew</a></li>
-</ul>
-
+        
+          <a class="article-more-a" href="/2017/08/23/mac-2017-08-23-develop-hotapps/#more">阅读全文 >></a>
+        
       
 
       
@@ -1154,10 +1073,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ansible</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
@@ -1170,11 +1085,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
+                <a href="javascript:void(0)" class="js-tag color3">ansible</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1182,7 +1093,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1190,7 +1113,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1214,15 +1137,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">

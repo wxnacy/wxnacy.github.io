@@ -4,9 +4,9 @@ date: 2017-09-05
 tags: [python]
 ---
 
-
 > 错误 {"errcode":40033,"errmsg":"invalid charset. please check your request, if include \\uxxxx will create fail!"}
 
+<!-- more -->
 ## 方法
 利用python的json内置模块，在进行dumps操作时，使用ensure_ascii=False 参数是中文
 不会被转码

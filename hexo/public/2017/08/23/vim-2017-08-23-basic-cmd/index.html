@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Linux vim 基础命令 | wxnacy 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="原文：http://linux.vbird.org/linux_basic/0310vi.php#vi_ex [TOC] 三种模式一般指令模式 (command mode)以 vi 打開一個檔案就直接進入一般指令模式了(這是預設的模式，也簡稱為一般模式)。在這個模式中， 你可以使用『上下左右』按鍵來移動游標，你可以使用『刪除字元』或『刪除整列』來處理檔案內容， 也可以使用『複製、貼上』來處理你的文">
+  <meta name="description" content="程序员一定要学的编辑器 vim">
 <meta name="keywords" content="vim">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux vim 基础命令">
 <meta property="og:url" content="http://wxnacy.com/2017/08/23/vim-2017-08-23-basic-cmd/index.html">
 <meta property="og:site_name" content="wxnacy 博客">
-<meta property="og:description" content="原文：http://linux.vbird.org/linux_basic/0310vi.php#vi_ex [TOC] 三种模式一般指令模式 (command mode)以 vi 打開一個檔案就直接進入一般指令模式了(這是預設的模式，也簡稱為一般模式)。在這個模式中， 你可以使用『上下左右』按鍵來移動游標，你可以使用『刪除字元』或『刪除整列』來處理檔案內容， 也可以使用『複製、貼上』來處理你的文">
+<meta property="og:description" content="程序员一定要学的编辑器 vim">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-09-17T05:54:51.000Z">
+<meta property="og:updated_time" content="2017-09-18T13:26:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux vim 基础命令">
-<meta name="twitter:description" content="原文：http://linux.vbird.org/linux_basic/0310vi.php#vi_ex [TOC] 三种模式一般指令模式 (command mode)以 vi 打開一個檔案就直接進入一般指令模式了(這是預設的模式，也簡稱為一般模式)。在這個模式中， 你可以使用『上下左右』按鍵來移動游標，你可以使用『刪除字元』或『刪除整列』來處理檔案內容， 也可以使用『複製、貼上』來處理你的文">
+<meta name="twitter:description" content="程序员一定要学的编辑器 vim">
   
     <link rel="alternative" href="/atom.xml" title="wxnacy 博客" type="application/atom+xml">
   
@@ -163,8 +163,45 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>原文：<a href="http://linux.vbird.org/linux_basic/0310vi.php#vi_ex" target="_blank" rel="external">http://linux.vbird.org/linux_basic/0310vi.php#vi_ex</a></p>
-<p>[TOC]</p>
+        <blockquote>
+<p>程序员一定要学的编辑器 vim</p>
+</blockquote>
+<a id="more"></a>
+<div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#san-chong-mo-shi">三种模式</a><ul>
+<li><a href="#yi-ban-zhi-ling-mo-shi-command-mode">一般指令模式 (command mode)</a></li>
+<li><a href="#bian-ji-mo-shi-insert-mode">編輯模式 (insert mode)</a></li>
+<li><a href="#zhi-ling-lie-ming-ling-mo-shi-command-line-mode">指令列命令模式 (command-line mode)</a></li>
+</ul>
+</li>
+<li><a href="#an-jian-shuo-ming">按鍵說明</a><ul>
+<li><a href="#yi-dong-guang-biao-de-fang-fa">移动光标的方法</a></li>
+<li><a href="#cha-zhao-yu-ti-huan">查找与替换</a></li>
+<li><a href="#shan-chu-fu-zhi-he-nian-tie">删除、复制和黏贴</a></li>
+<li><a href="#jin-ru-cha-ru-huo-ti-huan-de-bian-ji-mo-shi">进入插入或替换的编辑模式</a></li>
+<li><a href="#zhi-ling-lie-mo-shi-de-bao-cun-chi-kai-deng-zhi-ling">指令列模式的保存、离开等指令</a></li>
+<li><a href="#vim-huan-jing-de-bian-geng">vim 环境的变更</a></li>
+</ul>
+</li>
+<li><a href="#e-wai-gong-neng">额外功能</a><ul>
+<li><a href="#vim-de-bao-cun-wen-jian-hui-fu-yu-da-kai-shi-de-jing-gao-xin-xi">vim 的保存文件、恢复与打开时的警告信息</a></li>
+<li><a href="#duo-wen-jian-bian-ji">多文件编辑</a></li>
+</ul>
+</li>
+<li><a href="#kuai-ti-huan">快替换</a></li>
+<li><a href="#duo-chuang-kou">多窗口</a></li>
+<li><a href="#kuai-su-xuan-zhong-duan-luo">快速选中段落</a></li>
+<li><a href="#hong">宏</a><ul>
+<li><a href="#cao-zuo">操作</a></li>
+</ul>
+</li>
+<li><a href="#can-kao-wen-xian">参考文献</a></li>
+</ul>
+<!-- tocstop -->
+<p></div></p>
 <h2><span id="san-chong-mo-shi">三种模式</span><a href="#san-chong-mo-shi" class="header-anchor"></a></h2><h3><span id="yi-ban-zhi-ling-mo-shi-command-mode">一般指令模式 (command mode)</span><a href="#yi-ban-zhi-ling-mo-shi-command-mode" class="header-anchor"></a></h3><pre><code>以 vi 打開一個檔案就直接進入一般指令模式了(這是預設的模式，也簡稱為一般模式)。在這個模式中， 你可以使用『上下左右』按鍵來移動游標，你可以使用『刪除字元』或『刪除整列』來處理檔案內容， 也可以使用『複製、貼上』來處理你的文件資料。
 </code></pre><h3><span id="bian-ji-mo-shi-insert-mode">編輯模式 (insert mode)</span><a href="#bian-ji-mo-shi-insert-mode" class="header-anchor"></a></h3><pre><code>在一般指令模式中可以進行刪除、複製、貼上等等的動作，但是卻無法編輯文件內容的！ 要等到你按下『i, I, o, O, a, A, r, R』等任何一個字母之後才會進入編輯模式。注意了！通常在 Linux 中，按下這些按鍵時，在畫面的左下方會出現『 INSERT 或 REPLACE 』的字樣，此時才可以進行編輯。而如果要回到一般指令模式時， 則必須要按下『Esc』這個按鍵即可退出編輯模式。
 </code></pre><h3><span id="zhi-ling-lie-ming-ling-mo-shi-command-line-mode">指令列命令模式 (command-line mode)</span><a href="#zhi-ling-lie-ming-ling-mo-shi-command-line-mode" class="header-anchor"></a></h3><pre><code>在一般模式當中，輸入『 : / ? 』三個中的任何一個按鈕，就可以將游標移動到最底下那一列。在這個模式當中， 可以提供你『搜尋資料』的動作，而讀取、存檔、大量取代字元、離開 vi 、顯示行號等等的動作則是在此模式中達成的！
@@ -198,6 +235,9 @@
 <li>按下 q 结束录制，并按下 @a 播放宏，此时第三行会变成3，按下 @@ 重复上次播放，第四行会变成4</li>
 <li>当按下 100@@ 时，宏会重复播放100次上次的播放记录，自动生成104行数据</li>
 </ul>
+<h2><span id="can-kao-wen-xian">参考文献</span><a href="#can-kao-wen-xian" class="header-anchor"></a></h2><ul>
+<li><a href="http://cn.linux.vbird.org/linux_basic/0310vi.php" target="_blank" rel="external">vim 程式编辑器</a></li>
+</ul>
 
       
 
@@ -230,18 +270,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/23/python-2017-08-23-scrapy-basic/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/08/23/mac-2017-08-23-develop-hotapps/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Python Scrapy 入门教程
+          Mac 开发人员装机必备
         
       </div>
     </a>
   
   
-    <a href="/2017/08/23/mac-2017-08-23-develop-hotapps/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Mac 开发人员装机必备</div>
+    <a href="/2017/08/22/linux-2017-08-22-sftp-scp/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux 远程文件传输 SFTP 和 SCP</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -268,7 +308,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">三种模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text">一般指令模式 (command mode)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.2.</span> <span class="toc-text">編輯模式 (insert mode)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.3.</span> <span class="toc-text">指令列命令模式 (command-line mode)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">按鍵說明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text">移动光标的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text">查找与替换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.3.</span> <span class="toc-text">删除、复制和黏贴</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.4.</span> <span class="toc-text">进入插入或替换的编辑模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.5.</span> <span class="toc-text">指令列模式的保存、离开等指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.6.</span> <span class="toc-text">vim 环境的变更</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">额外功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.1.</span> <span class="toc-text">vim 的保存文件、恢复与打开时的警告信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.2.</span> <span class="toc-text">多文件编辑</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">快替换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">多窗口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">快速选中段落</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">7.</span> <span class="toc-text">宏</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">7.1.</span> <span class="toc-text">操作</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">三种模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text">一般指令模式 (command mode)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.2.</span> <span class="toc-text">編輯模式 (insert mode)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.3.</span> <span class="toc-text">指令列命令模式 (command-line mode)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">按鍵說明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text">移动光标的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text">查找与替换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.3.</span> <span class="toc-text">删除、复制和黏贴</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.4.</span> <span class="toc-text">进入插入或替换的编辑模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.5.</span> <span class="toc-text">指令列模式的保存、离开等指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.6.</span> <span class="toc-text">vim 环境的变更</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">额外功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.1.</span> <span class="toc-text">vim 的保存文件、恢复与打开时的警告信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.2.</span> <span class="toc-text">多文件编辑</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">快替换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">多窗口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">快速选中段落</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">7.</span> <span class="toc-text">宏</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">7.1.</span> <span class="toc-text">操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">8.</span> <span class="toc-text">参考文献</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -399,10 +439,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ansible</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
@@ -415,11 +451,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
+                <a href="javascript:void(0)" class="js-tag color3">ansible</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -427,7 +459,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -435,7 +479,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -459,15 +503,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
