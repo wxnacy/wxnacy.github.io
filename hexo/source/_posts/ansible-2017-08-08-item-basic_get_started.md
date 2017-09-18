@@ -4,25 +4,27 @@ date: 2017-08-08
 tags: [ansible]
 ---
 
-专辑：[ansible学习笔记](/ansible/2017/08/14/album-study-notes)
+专辑：[ansible学习笔记](/2017/08/14/ansible-2017-08-14-album-study-notes/)
 
 > Ansilbe是一个部署一群远程主机的工具。远程的主机可以是远程虚拟机或物理机， 也可以是本地主机。Ansilbe是一个部署一群远程主机的工具。远程的主机可以是远程虚拟机或物理机， 也可以是本地主机。
 
+<!-- move -->
+<!-- toc -->
 
 ## 安装ansible
-- 命令 
+- 命令
 ```bash
 pip install ansible
 ```
-- 配置hosts 
+- 配置hosts
 
 修改/etc/ansible/hosts 全局hosts文件，没有的话自己创建
 ```bash
 [wxnacy] # 如果服务器使用密码登录就用这个方式保存密码，避免每次输入
-wxnacy.server.org ansible_ssh_pass=your_pass ansible_ssh_user=your_name 
+wxnacy.server.org ansible_ssh_pass=your_pass ansible_ssh_user=your_name
 
 [prod] # 如果服务器使用sshkey登陆（推荐使用）
-prod.server.org ansible_ssh_user=your_name ansible_ssh_private_key_file=key_path 
+prod.server.org ansible_ssh_user=your_name ansible_ssh_private_key_file=key_path
 ```
 ## 第一条命令
 
@@ -41,7 +43,7 @@ prod.server.org | SUCCESS => {
     "ping": "pong"
 }
 ```
-得到如上样式结果即为正确,另外执行 ```ansible wxnacy -m ping``` 可以针对某一个服务器组进行操作
+得到如上样式结果即为正确,另外执行 `ansible wxnacy -m ping` 可以针对某一个服务器组进行操作
 
 - 现在我们用另一个命令看下是不是真的可以拿到远程服务器的信息
 

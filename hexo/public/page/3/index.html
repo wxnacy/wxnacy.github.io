@@ -143,19 +143,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-python-2017-08-23-scrapy-basic" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-linux-2017-08-23-ssh" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/23/python-2017-08-23-scrapy-basic/">Python Scrapy 入门教程</a>
+      <a class="article-title" href="/2017/08/23/linux-2017-08-23-ssh/">Linux SSH 登陆远程服务器和无密码操作</a>
     </h1>
   
 
         
-        <a href="/2017/08/23/python-2017-08-23-scrapy-basic/" class="archive-article-date">
+        <a href="/2017/08/23/linux-2017-08-23-ssh/" class="archive-article-date">
   	<time datetime="2017-08-22T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-23</time>
 </a>
         
@@ -163,9 +163,38 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install Scrapy</div></pre></td></tr></table></figure>
-<h2><span id="chuang-jian-xiang-mu">创建项目</span><a href="#chuang-jian-xiang-mu" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ scrapy startproject crawler</div><div class="line"></div><div class="line">New Scrapy project <span class="string">'crawler'</span>, using template directory <span class="string">'/Users/wxnacy/.pyenv/versions/3.5.0/envs/env_lightcircle/lib/python3.5/site-packages/scrapy/templates/project'</span>, created <span class="keyword">in</span>:</div><div class="line">    /Users/wxnacy/WebstormProjects/wxnacy.github.io/crawler</div><div class="line"></div><div class="line">You can start your first spider with:</div><div class="line">    <span class="built_in">cd</span> crawler</div><div class="line">    scrapy genspider example example.com</div></pre></td></tr></table></figure>
-<p>通过提示我们可以通过如下命令创建第一个spider<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> crawler</div><div class="line">$ scrapy genspider youtube youtube.com</div><div class="line"></div><div class="line">Created spider <span class="string">'youtube'</span> using template <span class="string">'basic'</span> <span class="keyword">in</span> module:</div><div class="line">  crawler.spiders.youtube</div></pre></td></tr></table></figure></p>
+        <div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#shi-yong">使用</a></li>
+<li><a href="#sshd-fu-wu-qi-xi-bu-she-ding">sshd 服务器细部设定</a></li>
+<li><a href="#zhi-zuo-bu-yong-mi-ma-ke-li-ji-deng-ru-de-ssh-yong-hu">制作不用密码可立即登入的 ssh 用户</a><ul>
+<li><a href="#1-ke-hu-duan-jian-li-liang-ba-yao-chi">1. 客户端建立两把钥匙</a></li>
+<li><a href="#2-jiang-gong-yao-dang-an-shu-ju-shang-chuan-dao-fu-wu-qi-shang">2. 将公钥档案数据上传到服务器上</a></li>
+<li><a href="#3-jiang-gong-yao-fang-zhi-fu-wu-qi-duan-de-zheng-que-mu-lu-yu-wen-jian-ming">3. 将公钥放置服务器端的正确目录与文件名</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+</div>
+
+<p><a href="http://cn.linux.vbird.org/linux_server/0310telnetssh.php#new_serverkey" target="_blank" rel="external">原文</a></p>
+<h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ ssh [-f] [-o 参数项目] [-p 非正规埠口] [账号@]IP [指令]</div><div class="line"></div><div class="line">选项与参数：</div><div class="line">-f ： 需要配合后面的 [指令] ，不登入远程主机直接发送一个指令过去而已；</div><div class="line">-o 参数项目：主要的参数项目有：</div><div class="line">	ConnectTimeout=秒数 ：联机等待的秒数，减少等待的时间</div><div class="line">	StrictHostKeyChecking=[yes|no|ask]：预设是 ask，若要让 public key</div><div class="line">           主动加入 known_hosts ，则可以设定为 no 即可。</div><div class="line">-p ：如果你的 sshd 服务启动在非正规的埠口 (22)，需使用此项目；</div><div class="line">[指令] ：不登入远程主机，直接发送指令过去。但与 -f 意义不太相同。</div></pre></td></tr></table></figure>
+<p>使用root用户登录远程主机<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh root@server</div></pre></td></tr></table></figure></p>
+<p>如果本机用户和想要登录的用户相同则可以直接输入地址登陆(但不建议这样做)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh server</div></pre></td></tr></table></figure></p>
+<p>登入对方主机执行过指令后立刻离开的方式<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ ssh student@127.0.0.1 find / &amp;&gt; ~/find1.log</div><div class="line"></div><div class="line"><span class="comment"># 此时你会发现怎么画面卡住了？这是因为上头的指令会造成，你已经登入远程主机，</span></div><div class="line"><span class="comment"># 但是执行的指令尚未跑完，因此你会在等待当中。那如何指定系统自己跑？</span></div></pre></td></tr></table></figure></p>
+<p>与上题相同，但是让对方主机自己跑该指令，你立刻回到近端主机继续工作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ssh -f student@127.0.0.1 find / &amp;&gt; ~/find1.log</div><div class="line"><span class="comment"># 此时你会立刻注销 127.0.0.1 ，但 find 指令会自己在远程服务器跑喔！</span></div></pre></td></tr></table></figure></p>
+<p>删除掉 known_hosts 后，重新使用 root 联机到本机，且自动加上公钥记录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ rm ~/.ssh/known_hosts</div><div class="line">$ ssh -o StrictHostKeyChecking=no root@localhost</div><div class="line"></div><div class="line">Warning: Permanently added <span class="string">'localhost'</span> (RSA) to the list of known hosts.</div><div class="line">root@localhost<span class="string">'s password:</span></div><div class="line"><span class="string"># 如上所示，不会问你 yes 或 no 啦！直接会写入 ~/.ssh/known_hosts 当中！</span></div></pre></td></tr></table></figure></p>
+<h2><span id="sshd-fu-wu-qi-xi-bu-she-ding">sshd 服务器细部设定</span><a href="#sshd-fu-wu-qi-xi-bu-she-ding" class="header-anchor"></a></h2><p>基本上，所有的 sshd 服务器详细设定都放在 /etc/ssh/sshd_config 里面！不过，每个 Linux distribution 的预设设定都不太相同，所以我们有必要来了解一下整个设定值的意义为何才好！ 同时请注意，在预设的档案内，只要是预设有出现且被批注的设定值 (设定值前面加 #)，即为『默认值！』，你可以依据它来修改的哩。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div></pre></td><td class="code"><pre><div class="line">$ vim /etc/ssh/sshd_config</div><div class="line"></div><div class="line"><span class="comment"># 1. 关于 SSH Server 的整体设定，包含使用的 port 啦，以及使用的密码演算方式</span></div><div class="line"><span class="comment"># Port 22</span></div><div class="line"><span class="comment"># SSH 预设使用 22 这个port，也可以使用多个port，即重复使用 port 这个设定项目！</span></div><div class="line"><span class="comment"># 例如想要开放 sshd 在 22 与 443 ，则多加一行内容为：『 Port 443 』</span></div><div class="line"><span class="comment"># 然后重新启动 sshd 这样就好了！不过，不建议修改 port number 啦！</span></div><div class="line"></div><div class="line">Protocol 2</div><div class="line"><span class="comment"># 选择的 SSH 协议版本，可以是 1 也可以是 2 ，CentOS 5.x 预设是仅支援 V2。</span></div><div class="line"><span class="comment"># 如果想要支持旧版 V1 ，就得要使用『 Protocol 2,1 』才行。</span></div><div class="line"></div><div class="line"><span class="comment"># ListenAddress 0.0.0.0</span></div><div class="line"><span class="comment"># 监听的主机适配器！举个例子来说，如果你有两个 IP，分别是 192.168.1.100 及 </span></div><div class="line"><span class="comment"># 192.168.100.254，假设你只想要让 192.168.1.100 可以监听 sshd ，那就这样写：</span></div><div class="line"><span class="comment"># 『 ListenAddress 192.168.1.100 』默认值是监听所有接口的 SSH 要求</span></div><div class="line"></div><div class="line"><span class="comment"># PidFile /var/run/sshd.pid</span></div><div class="line"><span class="comment"># 可以放置 SSHD 这个 PID 的档案！上述为默认值</span></div><div class="line"></div><div class="line"><span class="comment"># LoginGraceTime 2m</span></div><div class="line"><span class="comment"># 当使用者连上 SSH server 之后，会出现输入密码的画面，在该画面中，</span></div><div class="line"><span class="comment"># 在多久时间内没有成功连上 SSH server 就强迫断线！若无单位则默认时间为秒！</span></div><div class="line"></div><div class="line"><span class="comment"># Compression delayed</span></div><div class="line"><span class="comment"># 指定何时开始使用压缩数据模式进行传输。有 yes, no 与登入后才将数据压缩 (delayed)</span></div><div class="line"></div><div class="line"><span class="comment"># 2. 说明主机的 Private Key 放置的档案，预设使用下面的档案即可！</span></div><div class="line"><span class="comment"># HostKey /etc/ssh/ssh_host_key        # SSH version 1 使用的私钥</span></div><div class="line"><span class="comment"># HostKey /etc/ssh/ssh_host_rsa_key    # SSH version 2 使用的 RSA 私钥</span></div><div class="line"><span class="comment"># HostKey /etc/ssh/ssh_host_dsa_key    # SSH version 2 使用的 DSA 私钥</span></div><div class="line"><span class="comment"># 还记得我们在主机的 SSH 联机流程里面谈到的，这里就是 Host Key ～</span></div><div class="line"></div><div class="line"><span class="comment"># 3. 关于登录文件的讯息数据放置与 daemon 的名称！</span></div><div class="line">SyslogFacility AUTHPRIV</div><div class="line"><span class="comment"># 当有人使用 SSH 登入系统的时候，SSH 会记录信息，这个信息要记录在什么 daemon name</span></div><div class="line"><span class="comment"># 底下？预设是以 AUTH 来设定的，即是 /var/log/secure 里面！什么？忘记了！</span></div><div class="line"><span class="comment"># 回到 Linux 基础去翻一下。其他可用的 daemon name 为：DAEMON,USER,AUTH,</span></div><div class="line"><span class="comment"># LOCAL0,LOCAL1,LOCAL2,LOCAL3,LOCAL4,LOCAL5,</span></div><div class="line"></div><div class="line"><span class="comment"># LogLevel INFO</span></div><div class="line"><span class="comment"># 登录记录的等级！嘿嘿！任何讯息！同样的，忘记了就回去参考！</span></div><div class="line"></div><div class="line"><span class="comment"># 4. 安全设定项目！极重要！</span></div><div class="line"><span class="comment"># 4.1 登入设定部分</span></div><div class="line"><span class="comment"># PermitRootLogin yes</span></div><div class="line"><span class="comment"># 是否允许 root 登入！预设是允许的，但是建议设定成 no！</span></div><div class="line"></div><div class="line"><span class="comment"># StrictModes yes</span></div><div class="line"><span class="comment"># 是否让 sshd 去检查用户家目录或相关档案的权限数据，</span></div><div class="line"><span class="comment"># 这是为了担心使用者将某些重要档案的权限设错，可能会导致一些问题所致。</span></div><div class="line"><span class="comment"># 例如使用者的 ~.ssh/ 权限设错时，某些特殊情况下会不许用户登入</span></div><div class="line"></div><div class="line"><span class="comment"># PubkeyAuthentication yes</span></div><div class="line"><span class="comment"># AuthorizedKeysFile      .ssh/authorized_keys</span></div><div class="line"><span class="comment"># 是否允许用户自行使用成对的密钥系统进行登入行为，仅针对 version 2。</span></div><div class="line"><span class="comment"># 至于自制的公钥数据就放置于用户家目录下的 .ssh/authorized_keys 内</span></div><div class="line"></div><div class="line">PasswordAuthentication yes</div><div class="line"><span class="comment"># 密码验证当然是需要的！所以这里写 yes 啰！</span></div><div class="line"></div><div class="line"><span class="comment"># PermitEmptyPasswords no</span></div><div class="line"><span class="comment"># 若上面那一项如果设定为 yes 的话，这一项就最好设定为 no ，</span></div><div class="line"><span class="comment"># 这个项目在是否允许以空的密码登入！当然不许！</span></div><div class="line"></div><div class="line"><span class="comment"># 4.2 认证部分</span></div><div class="line"><span class="comment"># RhostsAuthentication no</span></div><div class="line"><span class="comment"># 本机系统不使用 .rhosts，因为仅使用 .rhosts太不安全了，所以这里一定要设定为 no</span></div><div class="line"></div><div class="line"><span class="comment"># IgnoreRhosts yes</span></div><div class="line"><span class="comment"># 是否取消使用 ~/.ssh/.rhosts 来做为认证！当然是！</span></div><div class="line"></div><div class="line"><span class="comment"># RhostsRSAAuthentication no #</span></div><div class="line"><span class="comment"># 这个选项是专门给 version 1 用的，使用 rhosts 档案在 /etc/hosts.equiv</span></div><div class="line"><span class="comment"># 配合 RSA 演算方式来进行认证！不要使用啊！</span></div><div class="line"></div><div class="line"><span class="comment"># HostbasedAuthentication no</span></div><div class="line"><span class="comment"># 这个项目与上面的项目类似，不过是给 version 2 使用的！</span></div><div class="line"></div><div class="line"><span class="comment"># IgnoreUserKnownHosts no</span></div><div class="line"><span class="comment"># 是否忽略家目录内的 ~/.ssh/known_hosts 这个档案所记录的主机内容？</span></div><div class="line"><span class="comment"># 当然不要忽略，所以这里就是 no 啦！</span></div><div class="line"></div><div class="line">ChallengeResponseAuthentication no</div><div class="line"><span class="comment"># 允许任何的密码认证！所以，任何 login.conf 规定的认证方式，均可适用！</span></div><div class="line"><span class="comment"># 但目前我们比较喜欢使用 PAM 模块帮忙管理认证，因此这个选项可以设定为 no 喔！</span></div><div class="line"></div><div class="line">UsePAM yes</div><div class="line"><span class="comment"># 利用 PAM 管理使用者认证有很多好处，可以记录与管理。</span></div><div class="line"><span class="comment"># 所以这里我们建议你使用 UsePAM 且 ChallengeResponseAuthentication 设定为 no </span></div><div class="line">　</div><div class="line"><span class="comment"># 4.3 与 Kerberos 有关的参数设定！因为我们没有 Kerberos 主机，所以底下不用设定！</span></div><div class="line"><span class="comment"># KerberosAuthentication no</span></div><div class="line"><span class="comment"># KerberosOrLocalPasswd yes</span></div><div class="line"><span class="comment"># KerberosTicketCleanup yes</span></div><div class="line"><span class="comment"># KerberosTgtPassing no</span></div><div class="line">　</div><div class="line"><span class="comment"># 4.4 底下是有关在 X-Window 底下使用的相关设定！</span></div><div class="line">X11Forwarding yes</div><div class="line"><span class="comment"># X11DisplayOffset 10</span></div><div class="line"><span class="comment"># X11UseLocalhost yes</span></div><div class="line"><span class="comment"># 比较重要的是 X11Forwarding 项目，他可以让窗口的数据透过 ssh 信道来传送喔！</span></div><div class="line"><span class="comment"># 在本章后面比较进阶的 ssh 使用方法中会谈到。</span></div><div class="line"></div><div class="line"><span class="comment"># 4.5 登入后的项目：</span></div><div class="line"><span class="comment"># PrintMotd yes</span></div><div class="line"><span class="comment"># 登入后是否显示出一些信息呢？例如上次登入的时间、地点等等，预设是 yes</span></div><div class="line"><span class="comment"># 亦即是打印出 /etc/motd 这个档案的内容。但是，如果为了安全，可以考虑改为 no ！</span></div><div class="line"></div><div class="line"><span class="comment"># PrintLastLog yes</span></div><div class="line"><span class="comment"># 显示上次登入的信息！可以啊！预设也是 yes ！</span></div><div class="line"></div><div class="line"><span class="comment"># TCPKeepAlive yes</span></div><div class="line"><span class="comment"># 当达成联机后，服务器会一直传送 TCP 封包给客户端藉以判断对方式否一直存在联机。</span></div><div class="line"><span class="comment"># 不过，如果联机时中间的路由器暂时停止服务几秒钟，也会让联机中断喔！</span></div><div class="line"><span class="comment"># 在这个情况下，任何一端死掉后，SSH可以立刻知道！而不会有僵尸程序的发生！</span></div><div class="line"><span class="comment"># 但如果你的网络或路由器常常不稳定，那么可以设定为 no 的啦！</span></div><div class="line"></div><div class="line">UsePrivilegeSeparation yes</div><div class="line"><span class="comment"># 是否权限较低的程序来提供用户操作。我们知道 sshd 启动在 port 22 ，</span></div><div class="line"><span class="comment"># 因此启动的程序是属于 root 的身份。那么当 student 登入后，这个设定值</span></div><div class="line"><span class="comment"># 会让 sshd 产生一个属于 sutdent 的 sshd 程序来使用，对系统较安全</span></div><div class="line"></div><div class="line">MaxStartups 10</div><div class="line"><span class="comment"># 同时允许几个尚未登入的联机画面？当我们连上 SSH ，但是尚未输入密码时，</span></div><div class="line"><span class="comment"># 这个时候就是我们所谓的联机画面啦！在这个联机画面中，为了保护主机，</span></div><div class="line"><span class="comment"># 所以需要设定最大值，预设最多十个联机画面，而已经建立联机的不计算在这十个当中</span></div><div class="line"></div><div class="line"><span class="comment"># 4.6 关于用户抵挡的设定项目：</span></div><div class="line">DenyUsers *</div><div class="line"><span class="comment"># 设定受抵挡的使用者名称，如果是全部的使用者，那就是全部挡吧！</span></div><div class="line"><span class="comment"># 若是部分使用者，可以将该账号填入！例如下列！</span></div><div class="line">DenyUsers <span class="built_in">test</span></div><div class="line"></div><div class="line">DenyGroups <span class="built_in">test</span></div><div class="line"><span class="comment"># 与 DenyUsers 相同！仅抵挡几个群组而已！</span></div><div class="line"></div><div class="line"><span class="comment"># 5. 关于 SFTP 服务与其他的设定项目！</span></div><div class="line">Subsystem       sftp    /usr/lib/ssh/sftp-server</div><div class="line"><span class="comment"># UseDNS yes</span></div><div class="line"><span class="comment"># 一般来说，为了要判断客户端来源是正常合法的，因此会使用 DNS 去反查客户端的主机名</span></div><div class="line"><span class="comment"># 不过如果是在内网互连，这项目设定为 no 会让联机达成速度比较快。</span></div></pre></td></tr></table></figure></p>
+<p>基本上，CentOS 预设的 sshd 服务已经算是挺安全的了，不过还不够！建议你 (1)将 root 的登入权限取消； (2)将 ssh 版本设定为 2 。其他的设定值就请你依照自己的喜好来设定了。 通常不建议进行随便修改啦！另外，如果你修改过上面这个档案(/etc/ssh/sshd_config)，那么就必需要重新启动一次 sshd 这个 daemon 才行！亦即是：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ /etc/init.d/sshd restart</div></pre></td></tr></table></figure></p>
+<h2><span id="zhi-zuo-bu-yong-mi-ma-ke-li-ji-deng-ru-de-ssh-yong-hu">制作不用密码可立即登入的 ssh 用户</span><a href="#zhi-zuo-bu-yong-mi-ma-ke-li-ji-deng-ru-de-ssh-yong-hu" class="header-anchor"></a></h2><p>三个步骤<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">1、客户端建立两把钥匙：想一想，在密钥系统中，是公钥比较重要还是私钥比较重要？ 当然是私钥比较重要！因此私钥才是解密的关键啊！所以啰，这两把钥匙当然得在发起联机的客户端建置才对。利用的指令为 ssh-keygen 这个命令；</div><div class="line"></div><div class="line">2、客户端放置好私钥档案：将 Private Key 放在 Client 上面的家目录，亦即 <span class="variable">$HOME</span>/.ssh/ ， 并且得要注意权限喔！</div><div class="line"></div><div class="line">3、将公钥放置服务器端的正确目录与文件名去：最后，将那把 Public Key 放在任何一个你想要用来登入的服务器端的某 User 的家目录内之 .ssh/ 里面的认证档案即可完成整个程序。</div></pre></td></tr></table></figure></p>
+<h3><span id="1-ke-hu-duan-jian-li-liang-ba-yao-chi">1. 客户端建立两把钥匙</span><a href="#1-ke-hu-duan-jian-li-liang-ba-yao-chi" class="header-anchor"></a></h3><p>建立的方法很简单，在 clientlinux.centos.vbird 这部主机上面以 vbirdtsai 的身份来建立两把钥匙即可。 不过，需要注意的是，我们有多种密码算法，如果不指定特殊的算法，则默认以 RSA 算法来处理：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen [-t rsa|dsa] &lt;==可选 rsa 或 dsa</div><div class="line">$ ssh-keygen  &lt;==用预设的方法建立密钥</div><div class="line">Generating public/private rsa key pair.</div><div class="line">Enter file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (/home/wxnacy/.ssh/id_rsa): &lt;==按 enter</div><div class="line">Created directory <span class="string">'/home/wxnacy/.ssh'</span>. &lt;==此目录若不存在则会主动建立</div><div class="line">Enter passphrase (empty <span class="keyword">for</span> no passphrase): &lt;==按 Enter 不给密码</div><div class="line">Enter same passphrase again: &lt;==再输入一次 Enter 吧！</div><div class="line">Your identification has been saved <span class="keyword">in</span> /home/wxnacy/.ssh/id_rsa. &lt;==私钥档</div><div class="line">Your public key has been saved <span class="keyword">in</span> /home/wxnacy/.ssh/id_rsa.pub. &lt;==公钥档</div><div class="line">The key fingerprint is:</div><div class="line">0f:d3:e7:1a:1c:bd:5c:03:f1:19:f1:22:df:9b:cc:08 wxnacy</div><div class="line"></div><div class="line">$ ls -ld ~/.ssh; ls -l ~/.ssh</div><div class="line">drwx------. 2 wxnacy wxnacy 4096 2017-07-25 12:58 /home/wxnacy/.ssh</div><div class="line">-rw-------. 1 wxnacy wxnacy 1675 2017-07-25 12:58 id_rsa      &lt;==私钥档</div><div class="line">-rw-r--r--. 1 wxnacy wxnacy  416 2017-07-25 12:58 id_rsa.pub  &lt;==公钥档</div></pre></td></tr></table></figure></p>
+<p>请注意上面喔，我的身份是 wxnacy ，所以当我执行 ssh-keygen 时，才会在我的家目录底下的 .ssh/ 这个目录里面产生所需要的两把 Keys ，分别是私钥 (id_rsa) 与公钥 (id_rsa.pub)。 ~/.ssh/ 目录必须要是 700 的权限才行！另外一个要特别注意的就是那个 id_rsa 的档案权限啦！他必须要是 -rw——- 且属于 vbirdtsai 自己才行！否则在未来密钥比对的过程当中，可能会被判定为危险而无法成功的以公私钥成对档案的机制来达成联机喔。 其实，建立私钥后预设的权限与文件名放置位置都是正确的，你只要检查过没问题即可。</p>
+<h3><span id="2-jiang-gong-yao-dang-an-shu-ju-shang-chuan-dao-fu-wu-qi-shang">2. 将公钥档案数据上传到服务器上</span><a href="#2-jiang-gong-yao-dang-an-shu-ju-shang-chuan-dao-fu-wu-qi-shang" class="header-anchor"></a></h3><p>那如何上传呢？最简单的方法当然就是使用 scp 嘛<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ scp ~/.ssh/id_rsa.pub root@192.168.100.254:~</div></pre></td></tr></table></figure></p>
+<h3><span id="3-jiang-gong-yao-fang-zhi-fu-wu-qi-duan-de-zheng-que-mu-lu-yu-wen-jian-ming">3. 将公钥放置服务器端的正确目录与文件名</span><a href="#3-jiang-gong-yao-fang-zhi-fu-wu-qi-duan-de-zheng-que-mu-lu-yu-wen-jian-ming" class="header-anchor"></a></h3><p>还记得 sshd_config 里面谈到的 AuthorizedKeysFile 这个设定值吧？该设定值就是在指定公钥数据应该要放置的文件名啰！所以，我们必须要到服务器端的 dmtsai 这个用户身份下， 将刚刚上传的 id_rsa.pub 数据附加到 authorized_keys 这个档案内才行。作法有点像这样</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 1. 建立 ~/.ssh 档案，注意权限需要为 700 喔！</span></div><div class="line">$ ls -ld .ssh</div><div class="line">ls: .ssh: 没有此一档案或目录</div><div class="line"><span class="comment"># 由于可能是新建的用户，因此这个目录不存在。不存在才作底下建立目录的行为</span></div><div class="line"></div><div class="line">$ mkdir .ssh; chmod 700 .ssh</div><div class="line">$ ls -ld .ssh</div><div class="line">drwx------. 2 dmtsai dmtsai 4096 Jul 25 13:06 .ssh</div><div class="line"><span class="comment"># 权限设定中，务必是 700 且属于使用者本人的账号与群组才行！</span></div><div class="line"></div><div class="line"><span class="comment"># 2. 将公钥档案内的数据使用 cat 转存到 authorized_keys 内</span></div><div class="line">$ ls -l *pub</div><div class="line">-rw-r--r--. 1 dmtsai dmtsai 416 Jul 25 13:05 id_rsa.pub &lt;==确实有存在</div><div class="line"></div><div class="line">$ cat id_rsa.pub &gt;&gt; .ssh/authorized_keys</div><div class="line">$ chmod 644 .ssh/authorized_keys</div><div class="line">$ ls -l .ssh</div><div class="line">-rw-r--r--. 1 dmtsai dmtsai 416 Jul 25 13:07 authorized_keys</div><div class="line"><span class="comment"># 这个档案的权限设定中，就得要是 644 才可以！不可以搞混了！</span></div></pre></td></tr></table></figure>
+<p>接下来在用 ssh 登陆下就不再需要密码了</p>
 
       
 
@@ -179,7 +208,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
         		</li>
       		
 		</ul>
@@ -189,7 +218,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/23/python-2017-08-23-scrapy-basic/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/23/linux-2017-08-23-ssh/">展开全文 >></a>
         </p>
       
 
@@ -219,19 +248,19 @@
 
 
   
-    <article id="post-python-2017-08-22-get-image-size" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-linux-2017-08-22-centos-start-stop-restart-sshd" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/22/python-2017-08-22-get-image-size/">python 获取本地或网络图片的宽高</a>
+      <a class="article-title" href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/">Linux CentOS 各个版本启动SSHD服务命令</a>
     </h1>
   
 
         
-        <a href="/2017/08/22/python-2017-08-22-get-image-size/" class="archive-article-date">
+        <a href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/" class="archive-article-date">
   	<time datetime="2017-08-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
 </a>
         
@@ -239,8 +268,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2><span id="ben-di">本地</span><a href="#ben-di" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</div><div class="line">fp = <span class="string">'/Users/wxnacy/Documents/WX20170412-190958@2x.png'</span></div><div class="line">i = Image.open(fp)</div><div class="line">print(i.size) <span class="comment"># 获取宽高 (w,h)</span></div><div class="line">print(i.format) <span class="comment"># 获取图片格式</span></div></pre></td></tr></table></figure>
-<h2><span id="wang-luo-tu-pian">网络图片</span><a href="#wang-luo-tu-pian" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</div><div class="line"><span class="keyword">import</span> io </div><div class="line"><span class="keyword">import</span> requests</div><div class="line">url = <span class="string">''</span></div><div class="line">i = Image.open(io.BytesIO(requests.get(url).content))</div><div class="line">print(i.size) <span class="comment"># 获取宽高 (w,h)</span></div><div class="line">print(i.format) <span class="comment"># 获取图片格式</span></div></pre></td></tr></table></figure>
+        <blockquote>
+<p>本篇介绍如何在 CentOS 系统中怎样启动sshd服务，如何开机自启</p>
+</blockquote>
+<h2><span id="ming-ling-gai-kuang">命令概况</span><a href="#ming-ling-gai-kuang" class="header-anchor"></a></h2><p>CentOS &lt; 7.x<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">service <span class="built_in">command</span> <span class="comment"># 使用service命令做start|stop|restart sshd</span></div><div class="line">chkconfig <span class="built_in">command</span> <span class="comment"># turn on or off 机器自启sshd</span></div></pre></td></tr></table></figure></p>
+<p>CentOS &gt;= 7.x<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl <span class="built_in">command</span> <span class="comment"># 管理 start|stop|start 自启sshd</span></div></pre></td></tr></table></figure></p>
+<h2><span id="centos-lt-7-x">CentOS &lt; 7.x</span><a href="#centos-lt-7-x" class="header-anchor"></a></h2><h3><span id="chkconfig">chkconfig</span><a href="#chkconfig" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ chkconfig sshd on <span class="comment"># 开机自启sshd</span></div><div class="line">$ chkconfig sshd off <span class="comment"># 开机关闭自启sshd</span></div><div class="line">$ chkconfig --list sshd <span class="comment"># 查看每个运行级别类型中服务的当前状态</span></div></pre></td></tr></table></figure>
+<h3><span id="service">service</span><a href="#service" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ service sshd start | stop | restart</div><div class="line">or </div><div class="line">$ /etc/init.d/sshd start | stop | restart</div></pre></td></tr></table></figure>
+<h2><span id="centos-gt-7-x">CentOS &gt;= 7.x</span><a href="#centos-gt-7-x" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ systemctl <span class="built_in">enable</span> sshd.service <span class="comment"># 开机自启sshd</span></div><div class="line">$ systemctl <span class="built_in">disable</span> sshd.service <span class="comment"># 开机关闭自启sshd</span></div><div class="line">$ systemctl start sshd.service <span class="comment"># 启动sshd</span></div><div class="line">$ systemctl restart sshd.service <span class="comment"># 重启</span></div><div class="line">$ systemctl stop sshd.service <span class="comment"># 停止</span></div><div class="line">$ systemctl reload sshd.service <span class="comment"># 重新加载</span></div><div class="line">$ systemctl status sshd.service <span class="comment"># 查看启动状态</span></div></pre></td></tr></table></figure>
+
       
 
       
@@ -253,7 +289,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
         		</li>
       		
 		</ul>
@@ -263,7 +299,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/22/python-2017-08-22-get-image-size/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/">展开全文 >></a>
         </p>
       
 
@@ -376,19 +412,19 @@
 
 
   
-    <article id="post-linux-2017-08-22-centos-start-stop-restart-sshd" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-python-2017-08-22-get-image-size" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/">Linux CentOS 各个版本启动SSHD服务命令</a>
+      <a class="article-title" href="/2017/08/22/python-2017-08-22-get-image-size/">python 获取本地或网络图片的宽高</a>
     </h1>
   
 
         
-        <a href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/" class="archive-article-date">
+        <a href="/2017/08/22/python-2017-08-22-get-image-size/" class="archive-article-date">
   	<time datetime="2017-08-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
 </a>
         
@@ -396,15 +432,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>本篇介绍如何在 CentOS 系统中怎样启动sshd服务，如何开机自启</p>
-</blockquote>
-<h2><span id="ming-ling-gai-kuang">命令概况</span><a href="#ming-ling-gai-kuang" class="header-anchor"></a></h2><p>CentOS &lt; 7.x<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">service <span class="built_in">command</span> <span class="comment"># 使用service命令做start|stop|restart sshd</span></div><div class="line">chkconfig <span class="built_in">command</span> <span class="comment"># turn on or off 机器自启sshd</span></div></pre></td></tr></table></figure></p>
-<p>CentOS &gt;= 7.x<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl <span class="built_in">command</span> <span class="comment"># 管理 start|stop|start 自启sshd</span></div></pre></td></tr></table></figure></p>
-<h2><span id="centos-lt-7-x">CentOS &lt; 7.x</span><a href="#centos-lt-7-x" class="header-anchor"></a></h2><h3><span id="chkconfig">chkconfig</span><a href="#chkconfig" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ chkconfig sshd on <span class="comment"># 开机自启sshd</span></div><div class="line">$ chkconfig sshd off <span class="comment"># 开机关闭自启sshd</span></div><div class="line">$ chkconfig --list sshd <span class="comment"># 查看每个运行级别类型中服务的当前状态</span></div></pre></td></tr></table></figure>
-<h3><span id="service">service</span><a href="#service" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ service sshd start | stop | restart</div><div class="line">or </div><div class="line">$ /etc/init.d/sshd start | stop | restart</div></pre></td></tr></table></figure>
-<h2><span id="centos-gt-7-x">CentOS &gt;= 7.x</span><a href="#centos-gt-7-x" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ systemctl <span class="built_in">enable</span> sshd.service <span class="comment"># 开机自启sshd</span></div><div class="line">$ systemctl <span class="built_in">disable</span> sshd.service <span class="comment"># 开机关闭自启sshd</span></div><div class="line">$ systemctl start sshd.service <span class="comment"># 启动sshd</span></div><div class="line">$ systemctl restart sshd.service <span class="comment"># 重启</span></div><div class="line">$ systemctl stop sshd.service <span class="comment"># 停止</span></div><div class="line">$ systemctl reload sshd.service <span class="comment"># 重新加载</span></div><div class="line">$ systemctl status sshd.service <span class="comment"># 查看启动状态</span></div></pre></td></tr></table></figure>
-
+        <h2><span id="ben-di">本地</span><a href="#ben-di" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</div><div class="line">fp = <span class="string">'/Users/wxnacy/Documents/WX20170412-190958@2x.png'</span></div><div class="line">i = Image.open(fp)</div><div class="line">print(i.size) <span class="comment"># 获取宽高 (w,h)</span></div><div class="line">print(i.format) <span class="comment"># 获取图片格式</span></div></pre></td></tr></table></figure>
+<h2><span id="wang-luo-tu-pian">网络图片</span><a href="#wang-luo-tu-pian" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</div><div class="line"><span class="keyword">import</span> io </div><div class="line"><span class="keyword">import</span> requests</div><div class="line">url = <span class="string">''</span></div><div class="line">i = Image.open(io.BytesIO(requests.get(url).content))</div><div class="line">print(i.size) <span class="comment"># 获取宽高 (w,h)</span></div><div class="line">print(i.format) <span class="comment"># 获取图片格式</span></div></pre></td></tr></table></figure>
       
 
       
@@ -417,7 +446,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		
 		</ul>
@@ -427,7 +456,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/22/python-2017-08-22-get-image-size/">展开全文 >></a>
         </p>
       
 
@@ -515,6 +544,79 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/19/python-2017-08-19-pigar/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-python-2017-08-18-pip-not-found" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/18/python-2017-08-18-pip-not-found/">linux 执行pip：command not found</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/18/python-2017-08-18-pip-not-found/" class="archive-article-date">
+  	<time datetime="2017-08-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">easy_install pip</div></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/18/python-2017-08-18-pip-not-found/">展开全文 >></a>
         </p>
       
 
@@ -647,79 +749,6 @@
 
 
   
-    <article id="post-python-2017-08-18-pip-not-found" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/18/python-2017-08-18-pip-not-found/">linux 执行pip：command not found</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/18/python-2017-08-18-pip-not-found/" class="archive-article-date">
-  	<time datetime="2017-08-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">easy_install pip</div></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/18/python-2017-08-18-pip-not-found/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-shell-2017-08-16-zsh-install" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -772,92 +801,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/16/shell-2017-08-16-zsh-install/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-http-2017-08-16-basic" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/16/http-2017-08-16-basic/">HTTP相关知识</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/16/http-2017-08-16-basic/" class="archive-article-date">
-  	<time datetime="2017-08-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2><span id="content-type">Content-Type</span><a href="#content-type" class="header-anchor"></a></h2><h3><span id="chang-yong">常用</span><a href="#chang-yong" class="header-anchor"></a></h3><ul>
-<li>application/octet-stream</li>
-<li>application/json</li>
-<li>application/javascript</li>
-<li>application/xml</li>
-<li>application/x-www-form-urlencoded</li>
-<li>text/plain</li>
-<li>text/xml</li>
-<li>text/html</li>
-<li>image/jpeg</li>
-<li>image/jpeg</li>
-<li>multipart/form-data<br>详细内容:<a href="http://tool.oschina.net/commons" target="_blank" rel="external">http://tool.oschina.net/commons</a></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/16/http-2017-08-16-basic/">展开全文 >></a>
         </p>
       
 
@@ -953,6 +896,91 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/16/linux-2017-08-16-curl/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-openresty-2017-08-16-install" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/16/openresty-2017-08-16-install/">openresty 安装</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/16/openresty-2017-08-16-install/" class="archive-article-date">
+  	<time datetime="2017-08-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>专辑:<a href="/openresty/2017/08/16/album-study-notes">openresty 学习笔记</a></p>
+<h2><span id="mac-os">Mac OS</span><a href="#mac-os" class="header-anchor"></a></h2><p>推荐使用<code>brew</code>安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">brew install homebrew/nginx/openresty</div><div class="line">brew update</div><div class="line">brew install pcre openssl</div></pre></td></tr></table></figure></p>
+<h2><span id="centos">CentOS</span><a href="#centos" class="header-anchor"></a></h2><p>你可以在你的 CentOS 系统中添加 openresty 仓库，这样就可以便于未来安装或更新我们的软件包（通过 yum update 命令）。运行下面的命令就可以添加我们的仓库：</p>
+<pre><code>sudo yum install yum-utils
+sudo yum-config-manager --add-repo https://openresty.org/package/centos/openresty.repo
+</code></pre><p>然后就可以像下面这样安装软件包，比如 openresty：</p>
+<pre><code>sudo yum install openresty
+</code></pre><p>如果你想安装命令行工具 resty，那么可以像下面这样安装 openresty-resty 包：</p>
+<pre><code>sudo yum install openresty-resty
+</code></pre><p>命令行工具 opm 在 openresty-opm 包里，而 restydoc 工具在 openresty-doc 包里头。</p>
+<p>列出所有 openresty 仓库里头的软件包：</p>
+<pre><code>sudo yum --disablerepo=&quot;*&quot; --enablerepo=&quot;openresty&quot; list available
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">openresty</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/16/openresty-2017-08-16-install/">展开全文 >></a>
         </p>
       
 
@@ -1082,6 +1110,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ansible</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
@@ -1094,15 +1126,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ansible</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1114,6 +1138,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">北京</a>
               </li>
              
@@ -1122,11 +1150,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">expect</a>
+                <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">mac</a>
+                <a href="javascript:void(0)" class="js-tag color2">expect</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1142,11 +1170,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">

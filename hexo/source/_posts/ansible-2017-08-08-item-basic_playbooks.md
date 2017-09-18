@@ -5,7 +5,7 @@ tags: [ansible]
 ---
 
 
-专辑：[ansible学习笔记](/ansible/2017/08/14/album-study-notes)
+专辑：[ansible学习笔记](/2017/08/14/ansible-2017-08-14-album-study-notes/)
 
 > Playbooks 是 Ansible的配置,部署,编排语言.他们可以被描述为一个需要希望远程主机执行命令的方案,或者一组IT程序运行的命令集合.
 
