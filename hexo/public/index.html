@@ -242,17 +242,10 @@
         <blockquote>
 <p>Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’</p>
 </blockquote>
-<p>一般情况下我装好 mysql 后就不会在动它了，因为一不留神就出各种错误信息，在不记得<br>多少次 google 这个错误之后，我决定把它记下来</p>
-<p>网上很多解决方法都是说 mysql 服务找不到 <strong>/tmp/mysql.sock</strong> 文件，那我们找到它不就行了，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ find / -name mysql.sock</div><div class="line">/var/lib/mysql/mysql.sock</div><div class="line">$ ln -s /var/lib/mysql/mysql.sock   /tmp/mysql.sock</div></pre></td></tr></table></figure></p>
-<p>先找到这个文件，然后建立软连接到 <em>/tmp/mysql.sock</em> ，然而到我试验的时候，完全找<br>不到这个文件</p>
-<p>在翻阅资料后，发现 <em>/tmp/mysql.sock</em> 是在 mysql 启动后生成的临时文件，也就是说<br>不成功启动 mysql 就不会有这个文件，我的方向完全错误，折腾到筋疲力尽，最后我只得找到各种日志查看<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mysqld status</div></pre></td></tr></table></figure></p>
-<p>通过查看 mysql 运行状态状态发现这货<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[ERROR] unknown variable <span class="string">'prompt=\c \U[\d] \D&gt; '</span></div></pre></td></tr></table></figure></p>
-<p>不管为啥不通过先干掉再说，重启 mysql 继续查看状态，又出现这货<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[ERROR] InnoDB: Unable to lock ./ibdata1 error</div></pre></td></tr></table></figure></p>
-<p>说明当前又进行 mysql 进程再启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">kill</span> -9 `ps aux | grep mysql | awk <span class="string">'&#123;print $2&#125;'</span>`</div></pre></td></tr></table></figure></p>
-<p>通过这段命令强行 kill 掉所以 mysql 进程<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mysql.service start</div></pre></td></tr></table></figure></p>
-<p>成功</p>
-<p>通过这次解决问题，报错 <em>/tmp/mysql.sock</em> 不一定是它的问题，关键还是看日志，对的<br>错的全在日志里</p>
-
+<p>一般情况下我装好 mysql 后就不会在动它了，因为一不留神就出各种错误信息，在不记得<br>多少次 google 这个错误之后，我决定把它记下来<br>
+        
+          <a class="article-more-a" href="/2017/09/15/mysql-2017-09-15-tmp-mysql-sock/#more">阅读全文 >></a>
+        
       
 
       
@@ -325,19 +318,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在工作经常会使用 ssh、ftp、 mysql 等命令，但每次输入密码会让事情变的很枯燥，<br>重复的事情就要交给脚本去做，这时候我们需要用到 <strong><a href="http://expect.sourceforge.net/" target="_blank" rel="external">expect</a></strong> ，<br>下面我们通过一个例子 <em>mysql_login</em> 来说明</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env expect</span></div><div class="line"><span class="built_in">set</span> password xxxxx</div><div class="line"><span class="built_in">set</span> name root</div><div class="line"></div><div class="line">spawn mysql -u<span class="variable">$name</span> -p</div><div class="line">expect <span class="string">"*assword:*"</span></div><div class="line">send <span class="string">"<span class="variable">$password</span>\r"</span></div><div class="line">interact</div></pre></td></tr></table></figure>
-<p>上边这段脚本是在登录本地 mysql 时，无需输入密码就自动登录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ expect mysql_login</div></pre></td></tr></table></figure></p>
-<p>执行代码不能用 <em>sh file</em> 而是 <em>expect mysql_login</em> ，如果你在文件开头加上 <em>#!/usr/bin/env expect</em> 也可以用 <em>./mysql_login</em> 来执行</p>
-<p>其他语句解释如下：</p>
-<ul>
-<li><strong>spawn</strong>：spawn是expect的语句，执行命令前都要加这句</li>
-<li><strong>expect “<em>assword:</em>“</strong>：这句意思是交互获取是否返回 password：关键字，因为在执行 mysql 时会返回输入 password 的提示 xxxxxxxx password:</li>
-<li><strong>send</strong>：将密码发送出去</li>
-<li><strong>interact</strong>：代表执行完留在远程控制台，不加这句执行完后返回本地控制台</li>
-</ul>
-<p>你可以仿照这段脚本写其他服务自动登录脚本，但是 ssh 无密码登录我推荐使用<a href="/linux/2017/08/23/ssh">SSH 登陆远程服务器和无密码操作</a>文章中提到的不对称加密登录方式</p>
+        <blockquote>
+<p>Expect是一个免费的编程工具语言，用来实现自动和交互式任务进行通信，而无需人的干预。</p>
+</blockquote>
+<div class="tocStart"></div>
 
+<!-- toc -->
+<ul>
+<li><a href="#jian-dan-de-mian-shu-ru-mi-ma">简单的免输入密码</a></li>
+<li><a href="#qi-ta-yong-fa">其他用法</a><ul>
+<li><a href="#chuan-ru-can-shu">传入参数</a></li>
+<li><a href="#du-qu-she-zhi-huan-jing-bian-liang">读取设置环境变量</a></li>
+<li><a href="#liu-cheng-kong-zhi-if">流程控制 if</a></li>
+</ul>
+</li>
+<li><a href="#can-kao-wen-xian">参考文献</a></li>
+</ul>
+<!-- tocstop -->
+<p><div class="tocEnd"></div></p>
+<h2 id="简单的免输入密码"><a href="#简单的免输入密码" class="headerlink" title="简单的免输入密码"></a>简单的免输入密码</h2><p>在工作经常会使用 ssh、ftp、 mysql 等命令，但每次输入密码会让事情变的很枯燥，<br>重复的事情就要交给脚本去做，这时候我们需要用到 <strong><a href="http://expect.sourceforge.net/" target="_blank" rel="external">expect</a></strong> ，<br>下面我们通过一个例子 <em>mysql_login</em> 来说明</p>
+        
+          <a class="article-more-a" href="/2017/09/15/linux-2017-09-15-expect/#more">阅读全文 >></a>
+        
       
 
       
@@ -351,6 +353,10 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">expect</a>
         		</li>
       		
 		</ul>
@@ -731,6 +737,83 @@
 
 
   
+    <article id="post-python-2017-09-07-flask-api" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/07/python-2017-09-07-flask-api/">Flask api 文档</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/07/python-2017-09-07-flask-api/" class="archive-article-date">
+  	<time datetime="2017-09-06T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><a href="http://flask.pocoo.org/docs/0.12/api" target="_blank" rel="external"> 文档 </a></li>
+<li><a href="http://flask.pocoo.org/docs/0.12/api/#incoming-request-data" target="_blank" rel="external">request 得到的数据</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/07/python-2017-09-07-flask-api/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-mac-2017-09-07-homebrew" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -827,83 +910,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/09/07/mac-2017-09-07-homebrew/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-python-2017-09-07-flask-api" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/07/python-2017-09-07-flask-api/">Flask api 文档</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/07/python-2017-09-07-flask-api/" class="archive-article-date">
-  	<time datetime="2017-09-06T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><a href="http://flask.pocoo.org/docs/0.12/api" target="_blank" rel="external"> 文档 </a></li>
-<li><a href="http://flask.pocoo.org/docs/0.12/api/#incoming-request-data" target="_blank" rel="external">request 得到的数据</a></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/07/python-2017-09-07-flask-api/">展开全文 >></a>
         </p>
       
 
@@ -1162,6 +1168,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">expect</a>
               </li>
              
               <li class="article-tag-list-item">

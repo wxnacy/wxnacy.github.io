@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>使用 expect 交互免输入密码 | wxnacy 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在工作经常会使用 ssh、ftp、 mysql 等命令，但每次输入密码会让事情变的很枯燥，重复的事情就要交给脚本去做，这时候我们需要用到 expect ，下面我们通过一个例子 mysql_login 来说明 12345678#!/usr/bin/env expectset password xxxxxset name rootspawn mysql -u$name -pexpect &quot;*asswo">
-<meta name="keywords" content="linux">
+  <meta name="description" content="Expect是一个免费的编程工具语言，用来实现自动和交互式任务进行通信，而无需人的干预。      简单的免输入密码 其他用法 传入参数 读取设置环境变量 流程控制 if   参考文献    简单的免输入密码在工作经常会使用 ssh、ftp、 mysql 等命令，但每次输入密码会让事情变的很枯燥，重复的事情就要交给脚本去做，这时候我们需要用到 expect ，下面我们通过一个例子 mysql_l">
+<meta name="keywords" content="linux,expect">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 expect 交互免输入密码">
 <meta property="og:url" content="http://wxnacy.com/2017/09/15/linux-2017-09-15-expect/index.html">
 <meta property="og:site_name" content="wxnacy 博客">
-<meta property="og:description" content="在工作经常会使用 ssh、ftp、 mysql 等命令，但每次输入密码会让事情变的很枯燥，重复的事情就要交给脚本去做，这时候我们需要用到 expect ，下面我们通过一个例子 mysql_login 来说明 12345678#!/usr/bin/env expectset password xxxxxset name rootspawn mysql -u$name -pexpect &quot;*asswo">
+<meta property="og:description" content="Expect是一个免费的编程工具语言，用来实现自动和交互式任务进行通信，而无需人的干预。      简单的免输入密码 其他用法 传入参数 读取设置环境变量 流程控制 if   参考文献    简单的免输入密码在工作经常会使用 ssh、ftp、 mysql 等命令，但每次输入密码会让事情变的很枯燥，重复的事情就要交给脚本去做，这时候我们需要用到 expect ，下面我们通过一个例子 mysql_l">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-09-17T05:54:51.000Z">
+<meta property="og:updated_time" content="2017-09-18T09:19:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 expect 交互免输入密码">
-<meta name="twitter:description" content="在工作经常会使用 ssh、ftp、 mysql 等命令，但每次输入密码会让事情变的很枯燥，重复的事情就要交给脚本去做，这时候我们需要用到 expect ，下面我们通过一个例子 mysql_login 来说明 12345678#!/usr/bin/env expectset password xxxxxset name rootspawn mysql -u$name -pexpect &quot;*asswo">
+<meta name="twitter:description" content="Expect是一个免费的编程工具语言，用来实现自动和交互式任务进行通信，而无需人的干预。      简单的免输入密码 其他用法 传入参数 读取设置环境变量 流程控制 if   参考文献    简单的免输入密码在工作经常会使用 ssh、ftp、 mysql 等命令，但每次输入密码会让事情变的很枯燥，重复的事情就要交给脚本去做，这时候我们需要用到 expect ，下面我们通过一个例子 mysql_l">
   
     <link rel="alternative" href="/atom.xml" title="wxnacy 博客" type="application/atom+xml">
   
@@ -163,10 +163,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在工作经常会使用 ssh、ftp、 mysql 等命令，但每次输入密码会让事情变的很枯燥，<br>重复的事情就要交给脚本去做，这时候我们需要用到 <strong><a href="http://expect.sourceforge.net/" target="_blank" rel="external">expect</a></strong> ，<br>下面我们通过一个例子 <em>mysql_login</em> 来说明</p>
+        <blockquote>
+<p>Expect是一个免费的编程工具语言，用来实现自动和交互式任务进行通信，而无需人的干预。</p>
+</blockquote>
+<div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#jian-dan-de-mian-shu-ru-mi-ma">简单的免输入密码</a></li>
+<li><a href="#qi-ta-yong-fa">其他用法</a><ul>
+<li><a href="#chuan-ru-can-shu">传入参数</a></li>
+<li><a href="#du-qu-she-zhi-huan-jing-bian-liang">读取设置环境变量</a></li>
+<li><a href="#liu-cheng-kong-zhi-if">流程控制 if</a></li>
+</ul>
+</li>
+<li><a href="#can-kao-wen-xian">参考文献</a></li>
+</ul>
+<!-- tocstop -->
+<p></div></p>
+<h2><span id="jian-dan-de-mian-shu-ru-mi-ma">简单的免输入密码</span><a href="#jian-dan-de-mian-shu-ru-mi-ma" class="header-anchor"></a></h2><p>在工作经常会使用 ssh、ftp、 mysql 等命令，但每次输入密码会让事情变的很枯燥，<br>重复的事情就要交给脚本去做，这时候我们需要用到 <strong><a href="http://expect.sourceforge.net/" target="_blank" rel="external">expect</a></strong> ，<br>下面我们通过一个例子 <em>mysql_login</em> 来说明</p>
+<a id="more"></a>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env expect</span></div><div class="line"><span class="built_in">set</span> password xxxxx</div><div class="line"><span class="built_in">set</span> name root</div><div class="line"></div><div class="line">spawn mysql -u<span class="variable">$name</span> -p</div><div class="line">expect <span class="string">"*assword:*"</span></div><div class="line">send <span class="string">"<span class="variable">$password</span>\r"</span></div><div class="line">interact</div></pre></td></tr></table></figure>
 <p>上边这段脚本是在登录本地 mysql 时，无需输入密码就自动登录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ expect mysql_login</div></pre></td></tr></table></figure></p>
-<p>执行代码不能用 <em>sh file</em> 而是 <em>expect mysql_login</em> ，如果你在文件开头加上 <em>#!/usr/bin/env expect</em> 也可以用 <em>./mysql_login</em> 来执行</p>
+<p>执行代码不能用 <em>sh file</em> 而是 <em>expect mysql_login</em> ，如果你在文件开头加上 <code>#!/usr/bin/env expect</code> 也可以用 <code>./mysql_login</code> 来执行</p>
 <p>其他语句解释如下：</p>
 <ul>
 <li><strong>spawn</strong>：spawn是expect的语句，执行命令前都要加这句</li>
@@ -174,7 +193,14 @@
 <li><strong>send</strong>：将密码发送出去</li>
 <li><strong>interact</strong>：代表执行完留在远程控制台，不加这句执行完后返回本地控制台</li>
 </ul>
-<p>你可以仿照这段脚本写其他服务自动登录脚本，但是 ssh 无密码登录我推荐使用<a href="/linux/2017/08/23/ssh">SSH 登陆远程服务器和无密码操作</a>文章中提到的不对称加密登录方式</p>
+<p>你可以仿照这段脚本写其他服务自动登录脚本，但是 ssh 无密码登录我推荐使用<a href="/2017/08/23/linux-2017-08-23-ssh/">SSH 登陆远程服务器和无密码操作</a>文章中提到的不对称加密登录方式</p>
+<h2><span id="qi-ta-yong-fa">其他用法</span><a href="#qi-ta-yong-fa" class="header-anchor"></a></h2><h3><span id="chuan-ru-can-shu">传入参数</span><a href="#chuan-ru-can-shu" class="header-anchor"></a></h3><p>参数传入跟 bash 一样，都是执行命令后跟参数，如：<code>./mysql_login p1 p2 p3 p4</code><br>但是接收有很大不同，在 bash 中我们只需要使用 <strong>$1 $2</strong> 来接收第一个和第二个参数<br>但是在 expect 中我们需要用到 <strong>$arg</strong> 关键字来获取参数<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">puts <span class="variable">$argv</span>                      ==&gt; p1 p2 p3 p4     <span class="comment"># 输出参数数组</span></div><div class="line">puts <span class="variable">$argc</span>                      ==&gt; 4               <span class="comment"># 输出参数个数</span></div><div class="line">puts [lindex <span class="variable">$argv</span> 0]           ==&gt; p1              <span class="comment"># 使用 lindex 关键字获取第一个参数</span></div><div class="line">puts [lrange <span class="variable">$argv</span> 0 2]         ==&gt; p1 p2 p3        <span class="comment"># 使用 lrange 关键字获取第一个到第三个参数</span></div></pre></td></tr></table></figure></p>
+<h3><span id="du-qu-she-zhi-huan-jing-bian-liang">读取设置环境变量</span><a href="#du-qu-she-zhi-huan-jing-bian-liang" class="header-anchor"></a></h3><p>不同于 bash 通过 export 和 echo 在设置和输出环境变量<br>expect 需要通过 <strong>set</strong> 和 <strong>puts</strong> 进行设置和输出<br>并且需要变量名需要用 <strong>env()</strong> 包起来<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">wxnacy@wxnacydeMacBook-Pro ~/W/w/s/mysql&gt; expect</div><div class="line">expect1.1&gt; <span class="built_in">set</span> env(NAME) <span class="string">"wxnacy"</span>       <span class="comment"># 设置环境变量，NAME 就是在 bash 中用到的环境变量</span></div><div class="line">wxnacy</div><div class="line">expect1.2&gt; puts <span class="variable">$env</span>(NAME)              <span class="comment"># 打印环境变量</span></div><div class="line">wxnacy</div></pre></td></tr></table></figure></p>
+<h3><span id="liu-cheng-kong-zhi-if">流程控制 if</span><a href="#liu-cheng-kong-zhi-if" class="header-anchor"></a></h3><p>与绝大多数语言一样 expect 也可以通过 <strong>if</strong> 来控制程序流程<br>与绝大多数语言不同的是 expect 中 <strong>if</strong> 的条件语句是包含在大括号中的，如：<code>if { name == &quot;wxnacy&quot; }</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> &#123; <span class="variable">$argc</span> &lt; 1 &#125; &#123;</div><div class="line">    send_user <span class="string">'Usage: ./mysql_login arg1'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2><span id="can-kao-wen-xian">参考文献</span><a href="#can-kao-wen-xian" class="header-anchor"></a></h2><ul>
+<li><a href="http://xstarcd.github.io/wiki/shell/expect.html" target="_blank" rel="external">expect - 自动交互脚本</a></li>
+<li><a href="http://blog.51niux.com/?id=55" target="_blank" rel="external">expect使用详解</a></li>
+</ul>
 
       
 
@@ -189,6 +215,10 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">expect</a>
         		</li>
       		
 		</ul>
@@ -245,7 +275,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">简单的免输入密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">其他用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text">传入参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text">读取设置环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.3.</span> <span class="toc-text">流程控制 if</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">参考文献</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -417,6 +447,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">expect</a>
               </li>
              
               <li class="article-tag-list-item">

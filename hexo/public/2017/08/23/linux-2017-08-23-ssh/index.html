@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Linux SSH 登陆远程服务器和无密码操作 | wxnacy 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="[TOC] 原文 使用12345678910$ ssh [-f] [-o 参数项目] [-p 非正规埠口] [账号@]IP [指令]选项与参数：-f ： 需要配合后面的 [指令] ，不登入远程主机直接发送一个指令过去而已；-o 参数项目：主要的参数项目有：	ConnectTimeout=秒数 ：联机等待的秒数，减少等待的时间	StrictHostKeyChecking=[yes|no|ask]：预">
+  <meta name="description" content="使用 sshd 服务器细部设定 制作不用密码可立即登入的 ssh 用户 1. 客户端建立两把钥匙 2. 将公钥档案数据上传到服务器上 3. 将公钥放置服务器端的正确目录与文件名       原文 使用12345678910$ ssh [-f] [-o 参数项目] [-p 非正规埠口] [账号@]IP [指令]选项与参数：-f ： 需要配合后面的 [指令] ，不登入远程主机直接发送一个指令过">
 <meta name="keywords" content="linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux SSH 登陆远程服务器和无密码操作">
 <meta property="og:url" content="http://wxnacy.com/2017/08/23/linux-2017-08-23-ssh/index.html">
 <meta property="og:site_name" content="wxnacy 博客">
-<meta property="og:description" content="[TOC] 原文 使用12345678910$ ssh [-f] [-o 参数项目] [-p 非正规埠口] [账号@]IP [指令]选项与参数：-f ： 需要配合后面的 [指令] ，不登入远程主机直接发送一个指令过去而已；-o 参数项目：主要的参数项目有：	ConnectTimeout=秒数 ：联机等待的秒数，减少等待的时间	StrictHostKeyChecking=[yes|no|ask]：预">
+<meta property="og:description" content="使用 sshd 服务器细部设定 制作不用密码可立即登入的 ssh 用户 1. 客户端建立两把钥匙 2. 将公钥档案数据上传到服务器上 3. 将公钥放置服务器端的正确目录与文件名       原文 使用12345678910$ ssh [-f] [-o 参数项目] [-p 非正规埠口] [账号@]IP [指令]选项与参数：-f ： 需要配合后面的 [指令] ，不登入远程主机直接发送一个指令过">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-09-17T05:54:51.000Z">
+<meta property="og:updated_time" content="2017-09-18T07:53:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux SSH 登陆远程服务器和无密码操作">
-<meta name="twitter:description" content="[TOC] 原文 使用12345678910$ ssh [-f] [-o 参数项目] [-p 非正规埠口] [账号@]IP [指令]选项与参数：-f ： 需要配合后面的 [指令] ，不登入远程主机直接发送一个指令过去而已；-o 参数项目：主要的参数项目有：	ConnectTimeout=秒数 ：联机等待的秒数，减少等待的时间	StrictHostKeyChecking=[yes|no|ask]：预">
+<meta name="twitter:description" content="使用 sshd 服务器细部设定 制作不用密码可立即登入的 ssh 用户 1. 客户端建立两把钥匙 2. 将公钥档案数据上传到服务器上 3. 将公钥放置服务器端的正确目录与文件名       原文 使用12345678910$ ssh [-f] [-o 参数项目] [-p 非正规埠口] [账号@]IP [指令]选项与参数：-f ： 需要配合后面的 [指令] ，不登入远程主机直接发送一个指令过">
   
     <link rel="alternative" href="/atom.xml" title="wxnacy 博客" type="application/atom+xml">
   
@@ -163,7 +163,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>[TOC]</p>
+        <div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#shi-yong">使用</a></li>
+<li><a href="#sshd-fu-wu-qi-xi-bu-she-ding">sshd 服务器细部设定</a></li>
+<li><a href="#zhi-zuo-bu-yong-mi-ma-ke-li-ji-deng-ru-de-ssh-yong-hu">制作不用密码可立即登入的 ssh 用户</a><ul>
+<li><a href="#1-ke-hu-duan-jian-li-liang-ba-yao-chi">1. 客户端建立两把钥匙</a></li>
+<li><a href="#2-jiang-gong-yao-dang-an-shu-ju-shang-chuan-dao-fu-wu-qi-shang">2. 将公钥档案数据上传到服务器上</a></li>
+<li><a href="#3-jiang-gong-yao-fang-zhi-fu-wu-qi-duan-de-zheng-que-mu-lu-yu-wen-jian-ming">3. 将公钥放置服务器端的正确目录与文件名</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+</div>
+
 <p><a href="http://cn.linux.vbird.org/linux_server/0310telnetssh.php#new_serverkey" target="_blank" rel="external">原文</a></p>
 <h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ ssh [-f] [-o 参数项目] [-p 非正规埠口] [账号@]IP [指令]</div><div class="line"></div><div class="line">选项与参数：</div><div class="line">-f ： 需要配合后面的 [指令] ，不登入远程主机直接发送一个指令过去而已；</div><div class="line">-o 参数项目：主要的参数项目有：</div><div class="line">	ConnectTimeout=秒数 ：联机等待的秒数，减少等待的时间</div><div class="line">	StrictHostKeyChecking=[yes|no|ask]：预设是 ask，若要让 public key</div><div class="line">           主动加入 known_hosts ，则可以设定为 no 即可。</div><div class="line">-p ：如果你的 sshd 服务启动在非正规的埠口 (22)，需使用此项目；</div><div class="line">[指令] ：不登入远程主机，直接发送指令过去。但与 -f 意义不太相同。</div></pre></td></tr></table></figure>
 <p>使用root用户登录远程主机<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh root@server</div></pre></td></tr></table></figure></p>
@@ -212,11 +227,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/23/mac-2017-08-23-develop-hotapps/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/08/23/python-2017-08-23-scrapy-basic/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Mac 开发人员装机必备
+          Python Scrapy 入门教程
         
       </div>
     </a>
@@ -422,6 +437,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">expect</a>
               </li>
              
               <li class="article-tag-list-item">

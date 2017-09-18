@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Mysql &#39;/tmp/mysql.sock&#39; 错误类型解决方法 | wxnacy 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’  一般情况下我装好 mysql 后就不会在动它了，因为一不留神就出各种错误信息，在不记得多少次 google 这个错误之后，我决定把它记下来 网上很多解决方法都是说 mysql 服务找不到 /tmp/mysql.sock 文件，那我们找到它不就行了，123$">
+  <meta name="description" content="Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’  一般情况下我装好 mysql 后就不会在动它了，因为一不留神就出各种错误信息，在不记得多少次 google 这个错误之后，我决定把它记下来">
 <meta name="keywords" content="mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mysql &#39;&#x2F;tmp&#x2F;mysql.sock&#39; 错误类型解决方法">
 <meta property="og:url" content="http://wxnacy.com/2017/09/15/mysql-2017-09-15-tmp-mysql-sock/index.html">
 <meta property="og:site_name" content="wxnacy 博客">
-<meta property="og:description" content="Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’  一般情况下我装好 mysql 后就不会在动它了，因为一不留神就出各种错误信息，在不记得多少次 google 这个错误之后，我决定把它记下来 网上很多解决方法都是说 mysql 服务找不到 /tmp/mysql.sock 文件，那我们找到它不就行了，123$">
+<meta property="og:description" content="Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’  一般情况下我装好 mysql 后就不会在动它了，因为一不留神就出各种错误信息，在不记得多少次 google 这个错误之后，我决定把它记下来">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-09-17T05:54:51.000Z">
+<meta property="og:updated_time" content="2017-09-18T07:56:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql &#39;&#x2F;tmp&#x2F;mysql.sock&#39; 错误类型解决方法">
-<meta name="twitter:description" content="Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’  一般情况下我装好 mysql 后就不会在动它了，因为一不留神就出各种错误信息，在不记得多少次 google 这个错误之后，我决定把它记下来 网上很多解决方法都是说 mysql 服务找不到 /tmp/mysql.sock 文件，那我们找到它不就行了，123$">
+<meta name="twitter:description" content="Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’  一般情况下我装好 mysql 后就不会在动它了，因为一不留神就出各种错误信息，在不记得多少次 google 这个错误之后，我决定把它记下来">
   
     <link rel="alternative" href="/atom.xml" title="wxnacy 博客" type="application/atom+xml">
   
@@ -166,8 +166,7 @@
         <blockquote>
 <p>Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’</p>
 </blockquote>
-<p>一般情况下我装好 mysql 后就不会在动它了，因为一不留神就出各种错误信息，在不记得<br>多少次 google 这个错误之后，我决定把它记下来</p>
-<p>网上很多解决方法都是说 mysql 服务找不到 <strong>/tmp/mysql.sock</strong> 文件，那我们找到它不就行了，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ find / -name mysql.sock</div><div class="line">/var/lib/mysql/mysql.sock</div><div class="line">$ ln -s /var/lib/mysql/mysql.sock   /tmp/mysql.sock</div></pre></td></tr></table></figure></p>
+<p>一般情况下我装好 mysql 后就不会在动它了，因为一不留神就出各种错误信息，在不记得<br>多少次 google 这个错误之后，我决定把它记下来<br><a id="more"></a><br>网上很多解决方法都是说 mysql 服务找不到 <strong>/tmp/mysql.sock</strong> 文件，那我们找到它不就行了，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ find / -name mysql.sock</div><div class="line">/var/lib/mysql/mysql.sock</div><div class="line">$ ln -s /var/lib/mysql/mysql.sock   /tmp/mysql.sock</div></pre></td></tr></table></figure></p>
 <p>先找到这个文件，然后建立软连接到 <em>/tmp/mysql.sock</em> ，然而到我试验的时候，完全找<br>不到这个文件</p>
 <p>在翻阅资料后，发现 <em>/tmp/mysql.sock</em> 是在 mysql 启动后生成的临时文件，也就是说<br>不成功启动 mysql 就不会有这个文件，我的方向完全错误，折腾到筋疲力尽，最后我只得找到各种日志查看<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mysqld status</div></pre></td></tr></table></figure></p>
 <p>通过查看 mysql 运行状态状态发现这货<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[ERROR] unknown variable <span class="string">'prompt=\c \U[\d] \D&gt; '</span></div></pre></td></tr></table></figure></p>
@@ -418,6 +417,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">expect</a>
               </li>
              
               <li class="article-tag-list-item">
