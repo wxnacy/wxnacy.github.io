@@ -19,7 +19,8 @@ if { $argc == 1 } {
 spawn sh -c "mysqldump \
     --default-character-set=utf8mb4 --routines --single-transaction --force -v \
     --add-drop-table --create-options --quick --extended-insert --compress \
-    -u${prod_user} -p -h ${prod_host} tmdprd ${table}> /data/dump/tmdprd-`date +%Y-%m-%d_%H:%M:%S`.sql"
+    -u${prod_user} -p -h ${prod_host} tmdprd ${table} \
+    > /data/dump/tmdprd-`date +%Y-%m-%d_%H:%M:%S`.sql"
 expect "*password:*"
 send "${prod_password}\r"
 interact
