@@ -81,6 +81,11 @@ set shiftwidth=4                "缩进的空格数
 set tabstop=4                   "键入<tab>的步长
 set softtabstop=4                " insert mode tab and backspace use 4 spaces
 
+" set mark column color
+hi! link SignColumn   LineNr
+hi! link ShowMarksHLl DiffAdd
+hi! link ShowMarksHLu DiffChange
+
 " status line
 " set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
 set laststatus=2   " Always show the status line - use 2 lines for the status bar
@@ -177,7 +182,8 @@ Plugin 'majutsushi/tagbar'                  " 文件标签菜单
 Plugin 'scrooloose/nerdcommenter'           " 快速注释
 Plugin 'docunext/closetag.vim'              " 编辑xml/html,自动补全闭合标签
 Plugin 'mattn/emmet-vim'                    " 编辑html神器
-" Plugin 'scrooloose/syntastic'               " 语法检查
+Plugin 'scrooloose/syntastic'               " 语法检查
+Plugin 'kevinw/pyflakes-vim'                " 搭配语法检查的pyflakes"
 Plugin 'jiangmiao/auto-pairs'               " 成对标签自动补全
 Plugin 'kshenoy/vim-signature'              " 书签展示以及快速跳转 增强vim的书签功能
 Plugin 'Lokaltog/vim-easymotion'            " 快速跳转"
@@ -382,32 +388,35 @@ let g:user_emmet_leader_key='<C-Z>'     " 设置快捷键
 "===============================
 " syntastic 配置
 "===============================
-" let g:syntastic_error_symbol='>>'
-" let g:syntastic_warning_symbol='>'
-" let g:syntastic_check_on_open=1
-" let g:syntastic_check_on_wq=0
-" let g:syntastic_enable_highlighting=1
-" let g:syntastic_python_checkers=['pyflakes'] " 使用pyflakes,速度比pylint快
-" let g:syntastic_javascript_checkers = ['jsl', 'jshint']
-" let g:syntastic_html_checkers=['tidy', 'jshint']
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_error_symbol='>>'
+let g:syntastic_warning_symbol='>'
+let g:syntastic_check_on_open=1
+let g:syntastic_check_on_wq=0
+let g:syntastic_enable_highlighting=1
+let g:syntastic_python_checkers=['pyflakes'] " 使用pyflakes,速度比pylint快
+let g:syntastic_javascript_checkers = ['jsl', 'jshint']
+let g:syntastic_html_checkers=['tidy', 'jshint']
 " 修改高亮的背景色, 适应主题
-" highlight SyntasticErrorSign guifg=white guibg=black
+highlight SyntasticErrorSign guifg=white guibg=black
 
 " to see error location list
-" let g:syntastic_always_populate_loc_list = 0
-" let g:syntastic_auto_loc_list = 0
-" let g:syntastic_loc_list_height = 5
-" function! ToggleErrors()
-    " let old_last_winnr = winnr('$')
-    " lclose
-    " if old_last_winnr == winnr('$')
-        " " Nothing was closed, open syntastic error location panel
-        " Errors
-    " endif
-" endfunction
-" nmap <Leader>e :call ToggleErrors()<cr>
-" nnoremap <Leader>en :lnext<cr>
-" nnoremap <Leader>ep :lprevious<cr>
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_loc_list_height = 5
+function! ToggleErrors()
+    let old_last_winnr = winnr('$')
+    lclose
+    if old_last_winnr == winnr('$')
+        " Nothing was closed, open syntastic error location panel
+        Errors
+    endif
+endfunction
+nmap <Leader>e :call ToggleErrors()<cr>
+nnoremap <Leader>en :lnext<cr>
+nnoremap <Leader>ep :lprevious<cr>
 
 "===============================
 " easymotion 配置

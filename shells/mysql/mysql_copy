@@ -1,0 +1,33 @@
+#!/usr/bin/env expect
+
+# echo 'export MYSQL_PROD_USER=your_prod_user' >> ~/.bash_profile                                                                                         master?
+# echo 'export MYSQL_PROD_PASSWORD=your_prod_password' >> ~/.bash_profile                                                                                master?
+# echo 'export MYSQL_PROD_HOST=your_prod_host' >> ~/.bash_profile
+# source ~/.bash_profile
+puts $env(MYSQL_PROD_USER)
+set timeout 10
+set prod_user $env(MYSQL_PROD_USER)
+set prod_password $env(MYSQL_PROD_PASSWORD)
+set prod_host $env(MYSQL_PROD_HOST)
+set local_user root
+set local_password wxnacy
+set local_host localhost
+
+set table ""
+if { $argc == 1 } {
+    set table [lindex $argv 0]
+}
+
+
+spawn sh -c "mysqldump \
+    --default-character-set=utf8mb4 --routines --single-transaction --force -v \
+    --add-drop-table --create-options --quick --extended-insert --compress \
+    -u${prod_user} -p -h ${prod_host} tmdprd ${table} > /data/dump/tmdprd.sql"
+expect "*password:*"
+send "${prod_password}\r"
+interact
+
+spawn sh -c "mysql -uroot -p tmddev < /data/dump/tmdprd.sql"
+expect "*password:*"
+send "${local_password}\r"
+interact
