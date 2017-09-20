@@ -1,10 +1,10 @@
 ---
-title: Git 工具 Submodule
+title: Git 工具 submodule
 date: 2017-09-19 22:14:07
 tags: [git]
 ---
 
-> git Submodule 是一个很好的多项目使用共同类库的工具，他允许类库项目做为repository,子项目做为一个单独的git项目存在父项目中，子项目可以有自己的独立的commit，push，pull。而父项目以Submodule的形式包含子项目，父项目可以指定子项目header，父项目中会的提交信息包含Submodule的信息，再clone父项目的时候可以把Submodule初始化。
+> Git submodule 是一个很好的多项目使用共同类库的工具，他允许类库项目做为repository,子项目做为一个单独的 Git 项目存在父项目中，子项目可以有自己的独立的commit，push，pull。而父项目以Submodule的形式包含子项目，父项目可以指定子项目header，父项目中会的提交信息包含Submodule的信息，再clone父项目的时候可以把Submodule初始化。
 
 <!-- more -->
 添加
@@ -49,9 +49,20 @@ $ git submodule update
 ```bash
 $ git submodule update --init --recursive
 ```
-不过还有更简单一点的方式。 如果给 git clone 命令传递 --recursive 选项，它就会自动初始化并更新仓库中的每一个子模块。
+不过还有更简单一点的方式。 如果给 `git clone` 命令传递 `--recursive` 选项，它就会自动初始化并更新仓库中的每一个子模块。
 ```bash
 $ git clone --recursive https://github.com/chaconinc/MainProject
+```
+
+## 删除子模块
+想要删除子模块需要进行两部操作
+```bash
+$ rm -rf DbConnector/
+$ git rm DbConnector/
+```
+此时想要重新添加该子模块可能会报 ***'DbConnector' already exists in the index*** 的错误，此时我们需要加上 `--force` 参数
+```bash
+$ git submodule add --force https://github.com/chaconinc/DbConnector
 ```
 
 ## 参考文献

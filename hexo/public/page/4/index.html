@@ -58,6 +58,8 @@
 			
 				<li><a href="/">主页</a></li>
 	        
+				<li><a href="/vim/">Vim 练级手册</a></li>
+	        
 				<li><a href="/archives">归档</a></li>
 	        
 			</ul>
@@ -108,6 +110,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -121,12 +125,14 @@
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/archives">归档</a></li>
+					<li style="width: 33.333333333333336%"><a href="/vim/">Vim 练级手册</a></li>
+		        
+					<li style="width: 33.333333333333336%"><a href="/archives">归档</a></li>
 		        
 				</ul>
 			</nav>
@@ -142,6 +148,109 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-python-2017-08-18-basic-supervisor" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/18/python-2017-08-18-basic-supervisor/">使用 supervisor 管理进程</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/18/python-2017-08-18-basic-supervisor/" class="archive-article-date">
+  	<time datetime="2017-08-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文:<a href="http://liyangliang.me/posts/2015/06/using-supervisor/" target="_blank" rel="external">http://liyangliang.me/posts/2015/06/using-supervisor/</a></p>
+<blockquote>
+<p>Supervisor (<a href="http://supervisord.org" target="_blank" rel="external">http://supervisord.org</a>) 是一个用 Python 写的进程管理工具，可以很方便的用来启动、重启、关闭进程（不仅仅是 Python 进程）。除了对单个进程的控制，还可以同时启动、关闭多个进程，比如很不幸的服务器出问题导致所有应用程序都被杀死，此时可以用 supervisor 同时启动所有应用程序而不是一个一个地敲命令启动。</p>
+</blockquote>
+<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><p>Supervisor 可以运行在 Linux、Mac OS X 上。如前所述，supervisor 是 Python 编写的，所以安装起来也很方便，可以直接用 pip :<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo pip install supervisor</div></pre></td></tr></table></figure></p>
+<p>如果是 Ubuntu 系统，还可以使用 apt-get 安装。</p>
+<h2><span id="supervisord-pei-zhi">supervisord 配置</span><a href="#supervisord-pei-zhi" class="header-anchor"></a></h2><blockquote>
+<p>Supervisor 相当强大，提供了很丰富的功能，不过我们可能只需要用到其中一小部分。安装完成之后，可以编写配置文件，来满足自己的需求。为了方便，我们把配置分成两部分：supervisord（supervisor 是一个 C/S 模型的程序，这是 server 端，对应的有 client 端：supervisorctl）和应用程序（即我们要管理的程序）。</p>
+</blockquote>
+<p>首先来看 supervisord 的配置文件。安装完 supervisor 之后，可以运行echo_supervisord_conf 命令输出默认的配置项，也可以重定向到一个配置文件里：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo_supervisord_conf &gt; /etc/supervisord.conf</div></pre></td></tr></table></figure></p>
+<p>去除里面大部分注释和“不相关”的部分，我们可以先看这些配置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">[unix_http_server]</div><div class="line">file=/tmp/supervisor.sock   ; UNIX socket 文件，supervisorctl 会使用</div><div class="line">;chmod=0700                 ; socket 文件的 mode，默认是 0700</div><div class="line">;chown=nobody:nogroup       ; socket 文件的 owner，格式： uid:gid</div><div class="line"></div><div class="line">;[inet_http_server]         ; HTTP 服务器，提供 web 管理界面</div><div class="line">;port=127.0.0.1:9001        ; Web 管理后台运行的 IP 和端口，如果开放到公网，需要注意安全性</div><div class="line">;username=user              ; 登录管理后台的用户名</div><div class="line">;password=123               ; 登录管理后台的密码</div><div class="line"></div><div class="line">[supervisord]</div><div class="line">logfile=/tmp/supervisord.log ; 日志文件，默认是 <span class="variable">$CWD</span>/supervisord.log</div><div class="line">logfile_maxbytes=50MB        ; 日志文件大小，超出会 rotate，默认 50MB</div><div class="line">logfile_backups=10           ; 日志文件保留备份数量默认 10</div><div class="line">loglevel=info                ; 日志级别，默认 info，其它: debug,warn,trace</div><div class="line">pidfile=/tmp/supervisord.pid ; pid 文件</div><div class="line">nodaemon=<span class="literal">false</span>               ; 是否在前台启动，默认是 <span class="literal">false</span>，即以 daemon 的方式启动</div><div class="line">minfds=1024                  ; 可以打开的文件描述符的最小值，默认 1024</div><div class="line">minprocs=200                 ; 可以打开的进程数的最小值，默认 200</div><div class="line"></div><div class="line">; the below section must remain <span class="keyword">in</span> the config file <span class="keyword">for</span> RPC</div><div class="line">; (supervisorctl/web interface) to work, additional interfaces may be</div><div class="line">; added by defining them <span class="keyword">in</span> separate rpcinterface: sections</div><div class="line">[rpcinterface:supervisor]</div><div class="line">supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface</div><div class="line"></div><div class="line">[supervisorctl]</div><div class="line">serverurl=unix:///tmp/supervisor.sock ; 通过 UNIX socket 连接 supervisord，路径与 unix_http_server 部分的 file 一致</div><div class="line">;serverurl=http://127.0.0.1:9001 ; 通过 HTTP 的方式连接 supervisord</div><div class="line"></div><div class="line">; 包含其他的配置文件</div><div class="line">[include]</div><div class="line">files = relative/directory/*.ini    ; 可以是 *.conf 或 *.ini</div></pre></td></tr></table></figure></p>
+<p>我们把上面这部分配置保存到 /etc/supervisord.conf（或其他任意有权限访问的文件），然后启动 supervisord（通过 -c 选项指定配置文件路径，如果不指定会按照这个顺序查找配置文件：$CWD/supervisord.conf, $CWD/etc/supervisord.conf, /etc/supervisord.conf）：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">supervisord -c /etc/supervisord.conf</div></pre></td></tr></table></figure></p>
+<p>查看 supervisord 是否在运行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps aux | grep supervisord</div></pre></td></tr></table></figure></p>
+<h2><span id="program-pei-zhi">program 配置</span><a href="#program-pei-zhi" class="header-anchor"></a></h2><blockquote>
+<p>上面我们已经把 supervisrod 运行起来了，现在可以添加我们要管理的进程的配置文件。可以把所有配置项都写到 supervisord.conf 文件里，但并不推荐这样做，而是通过 include 的方式把不同的程序（组）写到不同的配置文件里。</p>
+</blockquote>
+<p>为了举例，我们新建一个目录 /etc/supervisor/ 用于存放这些配置文件，相应的，把 /etc/supervisord.conf 里 include 部分的的配置修改一下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[include]</div><div class="line">files = /etc/supervisor/*.conf</div></pre></td></tr></table></figure></p>
+<p>假设有个用 Python 和 Flask 框架编写的用户中心系统，取名 usercenter，用 gunicorn (<a href="http://gunicorn.org/" target="_blank" rel="external">http://gunicorn.org/</a>) 做 web 服务器。项目代码位于 /home/leon/projects/usercenter，gunicorn 配置文件为 gunicorn.py，WSGI callable 是 wsgi.py 里的 app 属性。所以直接在命令行启动的方式可能是这样的：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /home/leon/projects/usercenter</div><div class="line">gunicorn -c gunicorn.py wsgi:app</div></pre></td></tr></table></figure></p>
+<p>现在编写一份配置文件来管理这个进程（需要注意：用 supervisord 管理时，gunicorn 的 daemon 选项需要设置为 False）：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">[program:usercenter]</div><div class="line">directory = /home/leon/projects/usercenter ; 程序的启动目录</div><div class="line"><span class="built_in">command</span> = gunicorn -c gunicorn.py wsgi:app  ; 启动命令，可以看出与手动在命令行启动的命令是一样的</div><div class="line">autostart = <span class="literal">true</span>     ; 在 supervisord 启动的时候也自动启动</div><div class="line">startsecs = 5        ; 启动 5 秒后没有异常退出，就当作已经正常启动了</div><div class="line">autorestart = <span class="literal">true</span>   ; 程序异常退出后自动重启</div><div class="line">startretries = 3     ; 启动失败自动重试次数，默认是 3</div><div class="line">user = leon          ; 用哪个用户启动</div><div class="line">redirect_stderr = <span class="literal">true</span>  ; 把 stderr 重定向到 stdout，默认 <span class="literal">false</span></div><div class="line">stdout_logfile_maxbytes = 20MB  ; stdout 日志文件大小，默认 50MB</div><div class="line">stdout_logfile_backups = 20     ; stdout 日志文件备份数</div><div class="line">; stdout 日志文件，需要注意当指定目录不存在时无法正常启动，所以需要手动创建目录（supervisord 会自动创建日志文件）</div><div class="line">stdout_logfile = /data/logs/usercenter_stdout.log</div><div class="line"></div><div class="line">; 可以通过 environment 来添加需要的环境变量，一种常见的用法是修改 PYTHONPATH</div><div class="line">; environment=PYTHONPATH=<span class="variable">$PYTHONPATH</span>:/path/to/somewhere</div></pre></td></tr></table></figure></p>
+<p>一份配置文件至少需要一个 [program:x] 部分的配置，来告诉 supervisord 需要管理那个进程。[program:x] 语法中的 x 表示 program name，会在客户端（supervisorctl 或 web 界面）显示，在 supervisorctl 中通过这个值来对程序进行 start、restart、stop 等操作。</p>
+<h2><span id="shi-yong-supervisorctl">使用 supervisorctl</span><a href="#shi-yong-supervisorctl" class="header-anchor"></a></h2><blockquote>
+<p>Supervisorctl 是 supervisord 的一个命令行客户端工具，启动时需要指定与 supervisord 使用同一份配置文件，否则与 supervisord 一样按照顺序查找配置文件。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">supervisorctl -c /etc/supervisord.conf</div></pre></td></tr></table></figure>
+<p>上面这个命令会进入 supervisorctl 的 shell 界面，然后可以执行不同的命令了：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; status    <span class="comment"># 查看程序状态</span></div><div class="line">&gt; stop usercenter   <span class="comment"># 关闭 usercenter 程序</span></div><div class="line">&gt; start usercenter  <span class="comment"># 启动 usercenter 程序</span></div><div class="line">&gt; restart usercenter    <span class="comment"># 重启 usercenter 程序</span></div><div class="line">&gt; reread    ＃ 读取有更新（增加）的配置文件，不会启动新添加的程序</div><div class="line">&gt; update    ＃ 重启配置文件修改过的程序</div></pre></td></tr></table></figure></p>
+<p>上面这些命令都有相应的输出，除了进入 supervisorctl 的 shell 界面，也可以直接在 bash 终端运行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ supervisorctl status</div><div class="line">$ supervisorctl stop usercenter</div><div class="line">$ supervisorctl start usercenter</div><div class="line">$ supervisorctl restart usercenter</div><div class="line">$ supervisorctl reread</div><div class="line">$ supervisorctl update</div></pre></td></tr></table></figure></p>
+<h2><span id="qi-ta">其它</span><a href="#qi-ta" class="header-anchor"></a></h2><p>除了 supervisorctl 之外，还可以配置 supervisrod 启动 web 管理界面，这个 web 后台使用 Basic Auth 的方式进行身份认证。</p>
+<p>除了单个进程的控制，还可以配置 group，进行分组管理。</p>
+<p>经常查看日志文件，包括 supervisord 的日志和各个 pragram 的日志文件，程序 crash 或抛出异常的信息一半会输出到 stderr，可以查看相应的日志文件来查找问题。</p>
+<p>Supervisor 有很丰富的功能，还有其他很多项配置，可以在官方文档获取更多信息：<a href="http://supervisord.org/index.html" target="_blank" rel="external">http://supervisord.org/index.html</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/18/python-2017-08-18-basic-supervisor/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-http-2017-08-16-basic" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -200,6 +309,87 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/16/http-2017-08-16-basic/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-shell-2017-08-16-zsh-install" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/16/shell-2017-08-16-zsh-install/">zsh 与 oh-my-zsh 安装与使用</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/16/shell-2017-08-16-zsh-install/" class="archive-article-date">
+  	<time datetime="2017-08-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h2><span id="an-zhuang-zsh">安装 zsh</span><a href="#an-zhuang-zsh" class="header-anchor"></a></h2><h3><span id="linux">Linux</span><a href="#linux" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ yum install zsh</div><div class="line">$ chsh -s /bin/zsh <span class="comment"># 将默认shell改为zsh</span></div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$SHELL</span> <span class="comment"># 查看是否生效</span></div></pre></td></tr></table></figure>
+<h3><span id="mac">Mac</span><a href="#mac" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">$ brew install zsh</div><div class="line"></div><div class="line">$ <span class="built_in">which</span> zsh</div><div class="line">/usr/<span class="built_in">local</span>/bin/zsh  <span class="comment"># 执行which命令发现brew将zsh安装到了/usr/local/bin/zsh</span></div><div class="line"></div><div class="line"><span class="comment"># 所以首先需要将zsh执行脚本所在位置写入到/etc/shells 中，在进行chsh操作</span></div><div class="line">$ sudo vim /etc/shells</div><div class="line"></div><div class="line"><span class="comment"># List of acceptable shells for chpass(1).</span></div><div class="line">  2 <span class="comment"># Ftpd will not allow users to connect who are not using</span></div><div class="line">  3 <span class="comment"># one of these shells.</span></div><div class="line">  4</div><div class="line">  5 /bin/bash</div><div class="line">  6 /bin/csh</div><div class="line">  7 /bin/ksh</div><div class="line">  8 /bin/sh</div><div class="line">  9 /bin/tcsh</div><div class="line">-10 /bin/zsh</div><div class="line">+10 /usr/<span class="built_in">local</span>/bin/zsh</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 保存退出后在更换shell</span></div><div class="line">$ chsh -s /usr/<span class="built_in">local</span>/bin/zsh</div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$SHELL</span> <span class="comment"># 查看是否生效</span></div></pre></td></tr></table></figure>
+<h2><span id="an-zhuang-oh-my-zsh">安装 </span><a href="#an-zhuang-oh-my-zsh" class="header-anchor"></a></h2><p>curl<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sh -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span></div></pre></td></tr></table></figure></p>
+<p>wget<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sh -c <span class="string">"<span class="variable">$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)</span>"</span></div></pre></td></tr></table></figure></p>
+<p>最后修改zshrc兼容bash_profile的环境变量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ vim ~/.zshrc</div><div class="line">$ <span class="built_in">source</span> ~/.bash_profile</div></pre></td></tr></table></figure></p>
+<h2><span id="pi-fu">皮肤</span><a href="#pi-fu" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ vim ~/.zshrc</div><div class="line"></div><div class="line">...</div><div class="line">ZSH_THEME=<span class="string">"fishy"</span>       <span class="comment"># 修改此处可以更改zsh使用皮肤</span></div><div class="line">...</div></pre></td></tr></table></figure>
+<p><a href="https://github.com/robbyrussell/oh-my-zsh/wiki/themes" target="_blank" rel="external">更多皮肤</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">shell</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/16/shell-2017-08-16-zsh-install/">展开全文 >></a>
         </p>
       
 
@@ -314,87 +504,6 @@ sudo yum-config-manager --add-repo https://openresty.org/package/centos/openrest
 
 
   
-    <article id="post-shell-2017-08-16-zsh-install" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/16/shell-2017-08-16-zsh-install/">zsh 与 oh-my-zsh 安装与使用</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/16/shell-2017-08-16-zsh-install/" class="archive-article-date">
-  	<time datetime="2017-08-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>[TOC]</p>
-<h2><span id="an-zhuang-zsh">安装 zsh</span><a href="#an-zhuang-zsh" class="header-anchor"></a></h2><h3><span id="linux">Linux</span><a href="#linux" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ yum install zsh</div><div class="line">$ chsh -s /bin/zsh <span class="comment"># 将默认shell改为zsh</span></div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$SHELL</span> <span class="comment"># 查看是否生效</span></div></pre></td></tr></table></figure>
-<h3><span id="mac">Mac</span><a href="#mac" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">$ brew install zsh</div><div class="line"></div><div class="line">$ <span class="built_in">which</span> zsh</div><div class="line">/usr/<span class="built_in">local</span>/bin/zsh  <span class="comment"># 执行which命令发现brew将zsh安装到了/usr/local/bin/zsh</span></div><div class="line"></div><div class="line"><span class="comment"># 所以首先需要将zsh执行脚本所在位置写入到/etc/shells 中，在进行chsh操作</span></div><div class="line">$ sudo vim /etc/shells</div><div class="line"></div><div class="line"><span class="comment"># List of acceptable shells for chpass(1).</span></div><div class="line">  2 <span class="comment"># Ftpd will not allow users to connect who are not using</span></div><div class="line">  3 <span class="comment"># one of these shells.</span></div><div class="line">  4</div><div class="line">  5 /bin/bash</div><div class="line">  6 /bin/csh</div><div class="line">  7 /bin/ksh</div><div class="line">  8 /bin/sh</div><div class="line">  9 /bin/tcsh</div><div class="line">-10 /bin/zsh</div><div class="line">+10 /usr/<span class="built_in">local</span>/bin/zsh</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 保存退出后在更换shell</span></div><div class="line">$ chsh -s /usr/<span class="built_in">local</span>/bin/zsh</div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$SHELL</span> <span class="comment"># 查看是否生效</span></div></pre></td></tr></table></figure>
-<h2><span id="an-zhuang-oh-my-zsh">安装 </span><a href="#an-zhuang-oh-my-zsh" class="header-anchor"></a></h2><p>curl<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sh -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span></div></pre></td></tr></table></figure></p>
-<p>wget<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sh -c <span class="string">"<span class="variable">$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)</span>"</span></div></pre></td></tr></table></figure></p>
-<p>最后修改zshrc兼容bash_profile的环境变量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ vim ~/.zshrc</div><div class="line">$ <span class="built_in">source</span> ~/.bash_profile</div></pre></td></tr></table></figure></p>
-<h2><span id="pi-fu">皮肤</span><a href="#pi-fu" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ vim ~/.zshrc</div><div class="line"></div><div class="line">...</div><div class="line">ZSH_THEME=<span class="string">"fishy"</span>       <span class="comment"># 修改此处可以更改zsh使用皮肤</span></div><div class="line">...</div></pre></td></tr></table></figure>
-<p><a href="https://github.com/robbyrussell/oh-my-zsh/wiki/themes" target="_blank" rel="external">更多皮肤</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">shell</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/16/shell-2017-08-16-zsh-install/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-linux-2017-08-16-curl" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -461,92 +570,6 @@ sudo yum-config-manager --add-repo https://openresty.org/package/centos/openrest
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/16/linux-2017-08-16-curl/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-python-2017-08-15-flask-env-config" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/15/python-2017-08-15-flask-env-config/">flask 如何配置多环境</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/15/python-2017-08-15-flask-env-config/" class="archive-article-date">
-  	<time datetime="2017-08-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>专辑: <a href="/python/2017/08/15/album-build-project">python 如何构建完整项目</a></p>
-<blockquote>
-<p>一个完整的web项目都需要配置数据库连接和开发环境、生产环境灵活切换，今天来在各个环境中切换数据库连接</p>
-</blockquote>
-<h2><span id="shou-xian-tian-jia-zhi-ding-huan-jing-jiao-ben">首先添加指定环境脚本</span><a href="#shou-xian-tian-jia-zhi-ding-huan-jing-jiao-ben" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$ touch env.sh</div><div class="line">$ vim env.sh</div><div class="line"></div><div class="line"><span class="meta">#!/usr/bin/env bash</span></div><div class="line"></div><div class="line">ENV=<span class="variable">$1</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ ! <span class="variable">$&#123;ENV&#125;</span> ]</div><div class="line"><span class="keyword">then</span></div><div class="line">    ENV=<span class="built_in">local</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="built_in">export</span> PYTHONPATH=./ <span class="comment"># 项目跟目录</span></div><div class="line"><span class="built_in">export</span> FLASK_CONFIG=<span class="variable">$&#123;ENV&#125;</span> <span class="comment"># 当前环境 可选 local product dev test</span></div></pre></td></tr></table></figure>
-<p>该文件起到两个作用 1、PYTHONPATH：项目根目录。2、FLASK_CONFIG：当前环境,使用方法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">source</span> env.sh <span class="variable">$&#123;env&#125;</span> <span class="comment"># env=local|product|dev|test 默认local</span></div></pre></td></tr></table></figure></p>
-<h2><span id="tian-jia-huan-jing-xin-xi-wen-jian">添加环境信息文件</span><a href="#tian-jia-huan-jing-xin-xi-wen-jian" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ mkdir app</div><div class="line">$ <span class="built_in">cd</span> app</div><div class="line">$ touch local_config.py</div><div class="line">$ vim local_config.py</div></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="string">'''配置文件程序'''</span></div><div class="line">__author__ = <span class="string">"wxnacy(wxnacy@gmail.com)"</span></div><div class="line">__copyright__ = <span class="string">"Copyright of wxnacy (2017)."</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProductionConfig</span><span class="params">()</span>:</span></div><div class="line">    DEBUG = <span class="keyword">False</span></div><div class="line">    SQLALCHEMY_DATABASE_URI = <span class="string">'mysql+pymysql://root:pass@prod.server.org:3306/db_name?charset=utf8mb4'</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DevelopmentConfig</span><span class="params">()</span>:</span></div><div class="line">    DEBUG = <span class="keyword">True</span></div><div class="line">    SQLALCHEMY_DATABASE_URI = <span class="string">'mysql+pymysql://root:pass@dev.server.org:3306/db_name?charset=utf8mb4'</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestingConfig</span><span class="params">()</span>:</span></div><div class="line">    DEBUG = <span class="keyword">True</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LocalConfig</span><span class="params">()</span>:</span></div><div class="line">    DEBUG = <span class="keyword">True</span></div><div class="line">    SQLALCHEMY_DATABASE_URI = <span class="string">'mysql+pymysql://root:pass@127.0.0.1:3306/db_name?charset=utf8mb4'</span></div></pre></td></tr></table></figure>
-<p>该文件配置了各个环境数据库连接信息</p>
-<h2><span id="tian-jia-wen-jian-config-py-lai-gen-ju-huan-jing-du-qu-dang-qian-huan-jing-nei-rong">添加文件config.py来根据环境读取当前环境内容</span><a href="#tian-jia-wen-jian-config-py-lai-gen-ju-huan-jing-du-qu-dang-qian-huan-jing-nei-rong" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="string">'''配置信息'''</span></div><div class="line">__author__ = <span class="string">"wxnacy(wxnacy@gmail.com)"</span></div><div class="line">__copyright__ = <span class="string">"Copyright of wxnacy (2017)."</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</div><div class="line"><span class="keyword">from</span> werkzeug.contrib.fixers <span class="keyword">import</span> ProxyFix</div><div class="line"><span class="keyword">import</span> os</div><div class="line"></div><div class="line">CONFIG_NAME_MAPPER = &#123;</div><div class="line">    <span class="string">'local'</span>: <span class="string">'app.local_config.LocalConfig'</span>,</div><div class="line">    <span class="string">'product'</span>: <span class="string">'app.local_config.ProductionConfig'</span>,</div><div class="line">    <span class="string">'dev'</span>: <span class="string">'app.local_config.DevelopmentConfig'</span>,</div><div class="line">    <span class="string">'test'</span>: <span class="string">'app.local_config.TestingConfig'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_app</span><span class="params">(flask_config_name=None)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line"><span class="string">    创建配置</span></div><div class="line"><span class="string">    :return:</span></div><div class="line"><span class="string">    """</span></div><div class="line">    app = Flask(__name__)</div><div class="line">    app.wsgi_app = ProxyFix(app.wsgi_app)</div><div class="line">    env_flask_config_name = os.getenv(<span class="string">'FLASK_CONFIG'</span>)</div><div class="line">    config_mapper_name = flask_config_name <span class="keyword">or</span> env_flask_config_name <span class="keyword">or</span> <span class="string">'local'</span></div><div class="line">    config_name = CONFIG_NAME_MAPPER[config_mapper_name]</div><div class="line">    app.config.from_object(config_name)</div><div class="line"></div><div class="line">    <span class="keyword">return</span> app</div><div class="line"></div><div class="line"></div><div class="line">app = create_app()</div></pre></td></tr></table></figure>
-<h2><span id="xiu-gai-run-py-lai-du-qu-huan-jing-nei-rong">修改run.py 来读取环境内容</span><a href="#xiu-gai-run-py-lai-du-qu-huan-jing-nei-rong" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="string">'''配置信息'''</span></div><div class="line">__author__ = <span class="string">"wxnacy(wxnacy@gmail.com)"</span></div><div class="line">__copyright__ = <span class="string">"Copyright of wxnacy (2017)."</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">from</span> app.config <span class="keyword">import</span> app</div><div class="line"></div><div class="line"><span class="meta">@app.route('/test')</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">mysql</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">return</span> app.config[<span class="string">'SQLALCHEMY_DATABASE_URI'</span>]</div><div class="line">    </div><div class="line">app.run()</div></pre></td></tr></table></figure>
-<p>现在项目的目录结构为<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">myproject:</div><div class="line">    app:</div><div class="line">        config.py</div><div class="line">        local_config.py</div><div class="line">    run.py</div><div class="line">    env.sh</div></pre></td></tr></table></figure></p>
-<h2><span id="yun-xing">运行</span><a href="#yun-xing" class="header-anchor"></a></h2><h3><span id="ben-di-huan-jing">本地环境</span><a href="#ben-di-huan-jing" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">source</span> env.sh</div><div class="line">$ python run.py</div><div class="line">$ curl http://localhost:5000/<span class="built_in">test</span></div><div class="line">mysql+pymysql://root:pass@127.0.0.1:3306/db_name?charset=utf8mb4</div><div class="line"></div><div class="line">$ <span class="built_in">source</span> env.sh product</div><div class="line">$ python run.py</div><div class="line">$ curl http://localhost:5000/<span class="built_in">test</span></div><div class="line">mysql+pymysql://root:pass@prod.server.org:3306/db_name?charset=utf8mb4</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/15/python-2017-08-15-flask-env-config/">展开全文 >></a>
         </p>
       
 
@@ -738,6 +761,169 @@ sudo yum-config-manager --add-repo https://openresty.org/package/centos/openrest
 
 
   
+    <article id="post-linux-2017-08-15-nohup" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/15/linux-2017-08-15-nohup/">Linux 使用nohup在后台不挂断执行命令</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/15/linux-2017-08-15-nohup/" class="archive-article-date">
+  	<time datetime="2017-08-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>nohup搭配 &amp; 来不挂断地运行某条命令达到后台执行的效果，默认会在根目录生成一个 nohup.out 文件用来记录所有的 log 信息，也可以重定向到其他位置。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nohup gunicorn run:app &amp;</div></pre></td></tr></table></figure>
+<h2><span id="chong-ding-xiang-ri-zhi-dao-zhi-ding-wen-jian">重定向日志到制定文件</span><a href="#chong-ding-xiang-ri-zhi-dao-zhi-ding-wen-jian" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nohup gunicorn run:app &gt;nohup.log 2&gt;&amp;1 &amp;</div></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/15/linux-2017-08-15-nohup/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-python-2017-08-15-flask-env-config" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/15/python-2017-08-15-flask-env-config/">flask 如何配置多环境</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/15/python-2017-08-15-flask-env-config/" class="archive-article-date">
+  	<time datetime="2017-08-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>专辑: <a href="/python/2017/08/15/album-build-project">python 如何构建完整项目</a></p>
+<blockquote>
+<p>一个完整的web项目都需要配置数据库连接和开发环境、生产环境灵活切换，今天来在各个环境中切换数据库连接</p>
+</blockquote>
+<h2><span id="shou-xian-tian-jia-zhi-ding-huan-jing-jiao-ben">首先添加指定环境脚本</span><a href="#shou-xian-tian-jia-zhi-ding-huan-jing-jiao-ben" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$ touch env.sh</div><div class="line">$ vim env.sh</div><div class="line"></div><div class="line"><span class="meta">#!/usr/bin/env bash</span></div><div class="line"></div><div class="line">ENV=<span class="variable">$1</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ ! <span class="variable">$&#123;ENV&#125;</span> ]</div><div class="line"><span class="keyword">then</span></div><div class="line">    ENV=<span class="built_in">local</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="built_in">export</span> PYTHONPATH=./ <span class="comment"># 项目跟目录</span></div><div class="line"><span class="built_in">export</span> FLASK_CONFIG=<span class="variable">$&#123;ENV&#125;</span> <span class="comment"># 当前环境 可选 local product dev test</span></div></pre></td></tr></table></figure>
+<p>该文件起到两个作用 1、PYTHONPATH：项目根目录。2、FLASK_CONFIG：当前环境,使用方法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">source</span> env.sh <span class="variable">$&#123;env&#125;</span> <span class="comment"># env=local|product|dev|test 默认local</span></div></pre></td></tr></table></figure></p>
+<h2><span id="tian-jia-huan-jing-xin-xi-wen-jian">添加环境信息文件</span><a href="#tian-jia-huan-jing-xin-xi-wen-jian" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ mkdir app</div><div class="line">$ <span class="built_in">cd</span> app</div><div class="line">$ touch local_config.py</div><div class="line">$ vim local_config.py</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="string">'''配置文件程序'''</span></div><div class="line">__author__ = <span class="string">"wxnacy(wxnacy@gmail.com)"</span></div><div class="line">__copyright__ = <span class="string">"Copyright of wxnacy (2017)."</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProductionConfig</span><span class="params">()</span>:</span></div><div class="line">    DEBUG = <span class="keyword">False</span></div><div class="line">    SQLALCHEMY_DATABASE_URI = <span class="string">'mysql+pymysql://root:pass@prod.server.org:3306/db_name?charset=utf8mb4'</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DevelopmentConfig</span><span class="params">()</span>:</span></div><div class="line">    DEBUG = <span class="keyword">True</span></div><div class="line">    SQLALCHEMY_DATABASE_URI = <span class="string">'mysql+pymysql://root:pass@dev.server.org:3306/db_name?charset=utf8mb4'</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestingConfig</span><span class="params">()</span>:</span></div><div class="line">    DEBUG = <span class="keyword">True</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LocalConfig</span><span class="params">()</span>:</span></div><div class="line">    DEBUG = <span class="keyword">True</span></div><div class="line">    SQLALCHEMY_DATABASE_URI = <span class="string">'mysql+pymysql://root:pass@127.0.0.1:3306/db_name?charset=utf8mb4'</span></div></pre></td></tr></table></figure>
+<p>该文件配置了各个环境数据库连接信息</p>
+<h2><span id="tian-jia-wen-jian-config-py-lai-gen-ju-huan-jing-du-qu-dang-qian-huan-jing-nei-rong">添加文件config.py来根据环境读取当前环境内容</span><a href="#tian-jia-wen-jian-config-py-lai-gen-ju-huan-jing-du-qu-dang-qian-huan-jing-nei-rong" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="string">'''配置信息'''</span></div><div class="line">__author__ = <span class="string">"wxnacy(wxnacy@gmail.com)"</span></div><div class="line">__copyright__ = <span class="string">"Copyright of wxnacy (2017)."</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</div><div class="line"><span class="keyword">from</span> werkzeug.contrib.fixers <span class="keyword">import</span> ProxyFix</div><div class="line"><span class="keyword">import</span> os</div><div class="line"></div><div class="line">CONFIG_NAME_MAPPER = &#123;</div><div class="line">    <span class="string">'local'</span>: <span class="string">'app.local_config.LocalConfig'</span>,</div><div class="line">    <span class="string">'product'</span>: <span class="string">'app.local_config.ProductionConfig'</span>,</div><div class="line">    <span class="string">'dev'</span>: <span class="string">'app.local_config.DevelopmentConfig'</span>,</div><div class="line">    <span class="string">'test'</span>: <span class="string">'app.local_config.TestingConfig'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_app</span><span class="params">(flask_config_name=None)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line"><span class="string">    创建配置</span></div><div class="line"><span class="string">    :return:</span></div><div class="line"><span class="string">    """</span></div><div class="line">    app = Flask(__name__)</div><div class="line">    app.wsgi_app = ProxyFix(app.wsgi_app)</div><div class="line">    env_flask_config_name = os.getenv(<span class="string">'FLASK_CONFIG'</span>)</div><div class="line">    config_mapper_name = flask_config_name <span class="keyword">or</span> env_flask_config_name <span class="keyword">or</span> <span class="string">'local'</span></div><div class="line">    config_name = CONFIG_NAME_MAPPER[config_mapper_name]</div><div class="line">    app.config.from_object(config_name)</div><div class="line"></div><div class="line">    <span class="keyword">return</span> app</div><div class="line"></div><div class="line"></div><div class="line">app = create_app()</div></pre></td></tr></table></figure>
+<h2><span id="xiu-gai-run-py-lai-du-qu-huan-jing-nei-rong">修改run.py 来读取环境内容</span><a href="#xiu-gai-run-py-lai-du-qu-huan-jing-nei-rong" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="string">'''配置信息'''</span></div><div class="line">__author__ = <span class="string">"wxnacy(wxnacy@gmail.com)"</span></div><div class="line">__copyright__ = <span class="string">"Copyright of wxnacy (2017)."</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">from</span> app.config <span class="keyword">import</span> app</div><div class="line"></div><div class="line"><span class="meta">@app.route('/test')</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">mysql</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">return</span> app.config[<span class="string">'SQLALCHEMY_DATABASE_URI'</span>]</div><div class="line">    </div><div class="line">app.run()</div></pre></td></tr></table></figure>
+<p>现在项目的目录结构为<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">myproject:</div><div class="line">    app:</div><div class="line">        config.py</div><div class="line">        local_config.py</div><div class="line">    run.py</div><div class="line">    env.sh</div></pre></td></tr></table></figure></p>
+<h2><span id="yun-xing">运行</span><a href="#yun-xing" class="header-anchor"></a></h2><h3><span id="ben-di-huan-jing">本地环境</span><a href="#ben-di-huan-jing" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">source</span> env.sh</div><div class="line">$ python run.py</div><div class="line">$ curl http://localhost:5000/<span class="built_in">test</span></div><div class="line">mysql+pymysql://root:pass@127.0.0.1:3306/db_name?charset=utf8mb4</div><div class="line"></div><div class="line">$ <span class="built_in">source</span> env.sh product</div><div class="line">$ python run.py</div><div class="line">$ curl http://localhost:5000/<span class="built_in">test</span></div><div class="line">mysql+pymysql://root:pass@prod.server.org:3306/db_name?charset=utf8mb4</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/15/python-2017-08-15-flask-env-config/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-python-2017-08-15-config-pythonpath" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -796,184 +982,6 @@ sudo yum-config-manager --add-repo https://openresty.org/package/centos/openrest
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/15/python-2017-08-15-config-pythonpath/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-python-2017-08-15-album-build-project" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/15/python-2017-08-15-album-build-project/">python 如何构建完整项目</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/15/python-2017-08-15-album-build-project/" class="archive-article-date">
-  	<time datetime="2017-08-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2><span id="shi-yong-dao-de-gong-ju">使用到的工具</span><a href="#shi-yong-dao-de-gong-ju" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">pyenv virtualenv</div><div class="line">flask</div><div class="line">gunicorn </div><div class="line">pigar</div><div class="line">supervisor</div></pre></td></tr></table></figure>
-<h2><span id="python-ji-chu">python基础</span><a href="#python-ji-chu" class="header-anchor"></a></h2><ul>
-<li><a href="http://pan.baidu.com/s/1boX8P6v" target="_blank" rel="external">Python编程规范</a> 密码:p73y</li>
-<li><a href="http://pan.baidu.com/s/1skNCT7v" target="_blank" rel="external">Python编码Yes or No.pdf</a> 密码:5tta</li>
-</ul>
-<h2><span id="pyenv-he-virtualenv">pyenv和virtualenv</span><a href="#pyenv-he-virtualenv" class="header-anchor"></a></h2><blockquote>
-<p>pyenv 是一款特别好用的Python版本管理器，使用它我们可以在不同的项目使用不同的python版本，并且互不影响。github项目地址：<a href="https://github.com/yyuu/pyenv" target="_blank" rel="external">https://github.com/yyuu/pyenv</a></p>
-<p>pyenv-virtualenv 是pyenv的一个plugin（插件），可以用来创建基于不同Python版本的干净的虚拟环境。github项目地址：<a href="https://github.com/yyuu/pyenv-virtualenv" target="_blank" rel="external">https://github.com/yyuu/pyenv-virtualenv</a></p>
-</blockquote>
-<ul>
-<li><a href="/python/2017/08/10/pyenv-linux">linux 环境下安装pyenv和virtualenv虚拟机</a></li>
-<li><a href="/python/2017/08/10/pyenv-mac">mac 环境下安装pyenv和virtualenv虚拟机</a></li>
-<li><a href="/python/2017/08/10/pyenv-cmd">pyenv virtualenv 常用命令</a></li>
-</ul>
-<h2><span id="flask">flask</span><a href="#flask" class="header-anchor"></a></h2><ul>
-<li><a href="/python/2017/08/15/flask-hello-world">flask 运行hello world</a></li>
-<li><a href="/python/2017/08/15/config-pythonpath">python 配置PYTHONPATH(了解python导入模块搜索路径运作原理)</a></li>
-<li><a href="/python/2017/08/15/flask-env-config">flask 如何配置多环境</a></li>
-</ul>
-<h2><span id="pigar">pigar</span><a href="#pigar" class="header-anchor"></a></h2><ul>
-<li><a href="/python/2017/08/19/pigar">python 使用pigar管理requirements.txt</a></li>
-</ul>
-<h2><span id="gunicorn">gunicorn</span><a href="#gunicorn" class="header-anchor"></a></h2><ul>
-<li><a href="/python/2017/08/15/gunicorn-run">使用 gunicorn 启动你的项目</a></li>
-</ul>
-<h2><span id="supervisor">supervisor</span><a href="#supervisor" class="header-anchor"></a></h2><ul>
-<li><a href="/python/2017/08/18/basic-supervisor">使用 supervisor 管理进程</a></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/15/python-2017-08-15-album-build-project/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-linux-2017-08-15-nohup" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/15/linux-2017-08-15-nohup/">Linux 使用nohup在后台不挂断执行命令</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/15/linux-2017-08-15-nohup/" class="archive-article-date">
-  	<time datetime="2017-08-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>nohup搭配 &amp; 来不挂断地运行某条命令达到后台执行的效果，默认会在根目录生成一个 nohup.out 文件用来记录所有的 log 信息，也可以重定向到其他位置。</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nohup gunicorn run:app &amp;</div></pre></td></tr></table></figure>
-<h2><span id="chong-ding-xiang-ri-zhi-dao-zhi-ding-wen-jian">重定向日志到制定文件</span><a href="#chong-ding-xiang-ri-zhi-dao-zhi-ding-wen-jian" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nohup gunicorn run:app &gt;nohup.log 2&gt;&amp;1 &amp;</div></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/15/linux-2017-08-15-nohup/">展开全文 >></a>
         </p>
       
 
@@ -1099,6 +1107,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -1111,11 +1123,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1123,7 +1139,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1131,11 +1147,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color3">北京</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1143,7 +1159,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">北京</a>
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1155,15 +1171,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">movie</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1179,15 +1191,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">shell</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">shell</a>
               </li>
             
             <div class="clearfix"></div>

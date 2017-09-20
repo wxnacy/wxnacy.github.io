@@ -1,5 +1,5 @@
 ---
-title: Linux vim 基础命令
+title: Vim 基础命令
 date: 2017-08-23
 tags: [vim]
 ---

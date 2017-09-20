@@ -2,7 +2,7 @@
   remote_user: root
   tasks:
   - name: deploy wxnacy.github.io nginx
-    shell: git pull
+    shell: git pull && git submodule update --remote hexo/themes/yilia
     args:
       chdir: /www/wxnacy.github.io
   # - name: deploy wxnacy.github.io python
