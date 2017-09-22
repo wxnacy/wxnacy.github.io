@@ -1,13 +1,12 @@
 ---
-title: Linux curl使用指南
+title: 网络请求工具 cURL
 date: 2017-08-16
-tags: [linux]
+tags: [linux, curl, http]
 ---
 
-原文: [http://www.ruanyifeng.com/blog/2011/09/curl.html](http://www.ruanyifeng.com/blog/2011/09/curl.html)
+> cRUL 是一种命令行工具，作用是发出网络请求，然后得到和提取数据，显示在"标准输出"（stdout）上面。
 
->  curl是一种命令行工具，作用是发出网络请求，然后得到和提取数据，显示在"标准输出"（stdout）上面。
-
+<!-- more -->
 ## 查看网页源码
 ```bash
 $ curl baidu.com
@@ -140,4 +139,5 @@ $ curl localhost:8002/test -b ${cookie_file} # -b 可以使用这个文件作为
 $ curl localhost:8002/test --user name:apss # 这时候服务器会在头信息中接收到Authorization字段，值为Basic + name:pass的base64加密数值
 ```
 
-
+## 参考资料
+- [curl网站开发指南](http://www.ruanyifeng.com/blog/2011/09/curl.html)

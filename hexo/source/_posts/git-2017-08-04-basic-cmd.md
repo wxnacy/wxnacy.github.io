@@ -1,10 +1,15 @@
 ---
-title: git 常用命令
+title: Git 常用命令
 date: 2017-08-04
 tags: [git]
 ---
 
 <!-- toc -->
+## ssh-key
+```bash
+ssh-keygen -t rsa -C "$your_email"          # 获取 sshkey
+cat ~/.ssh/id_rsa.pub                       # 查看 sshkey
+```
 ## 初始化项目
 ```bash
 cd project_root                             # 进入项目目录
@@ -36,7 +41,26 @@ git config --global user.email xxx@qq.com       # 配置邮件
 ```bash
 git config credential.helper store
 ```
-## revert commit
+## 撤销操作
+### 重新提交
+提交后如果发现遗漏可以使用 `git commit --amend` 重新提交
+```bash
+git commit -m 'initial commit'
+git add forgotten_file
+git commit --amend
+```
+### 撤销提交文件
+```bash
+git checkout -- <file>              # 取消对文件的修改。还原到最近的版本，废弃本地做的修改。
+git reset HEAD <file>...            # 取消已经暂存的文件。即，撤销先前"git add"的操作
+git reset HEAD^                     # 回退所有内容到上一个版本
+git reset HEAD^ a.py                # 回退a.py这个文件的版本到上一个版本
+git reset –soft HEAD~3              # 向前回退到第3个版本
+git reset –hard origin/master       # 将本地的状态回退到和远程的一样
+git reset 057d                      # 回退到某个版本
+git revert HEAD                     # 回退到上一次提交的状态，按照某一次的commit完全反向的进行一次commit.(代码回滚到上个版本，并提交git)
+```
+或者
 ```bash
 git -c core.quotepath=false rm --cached -f -- env.sh
 git -c core.quotepath=false checkout HEAD -- env.sh
@@ -102,7 +126,9 @@ git diff origin/master..master            # 比较远程分支master上有本地
 git diff origin/master..master --stat     # 只显示差异的文件，不显示具体内容
 ```
 
-
+## 参考资料
+- [常用 Git 命令清单](http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
+- [Pro Git](https://git-scm.com/book/zh/v2)
 
 
 

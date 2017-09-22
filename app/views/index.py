@@ -75,6 +75,7 @@ def article(category, year, month, day, name):
 @index_bp.route('/test', methods=['POST', 'GET'])
 def test():
     res = {
+        'method': request.method,
         'headers': dict(request.headers),
         'args': request.args,
         'json': request.json,
