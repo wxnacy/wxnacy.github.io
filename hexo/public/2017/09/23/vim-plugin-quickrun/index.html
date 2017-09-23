@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://wxnacy.com">
-  <title>vim | wxnacy 博客</title>
+  <title>Vim 插件 quickrun 快速运行 | wxnacy 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="基础篇 Vim 基础命令  插件篇 Vim 插件 pathogen Vim 插件 YouCompleteMe Vim 插件 tern_for_vim">
-<meta property="og:type" content="website">
-<meta property="og:title" content="vim">
-<meta property="og:url" content="http://wxnacy.com/vim/index.html">
+  <meta name="description" content="quickrun 可以快速运行 .py/.sh 等常见程序">
+<meta name="keywords" content="vim">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vim 插件 quickrun 快速运行">
+<meta property="og:url" content="http://wxnacy.com/2017/09/23/vim-plugin-quickrun/index.html">
 <meta property="og:site_name" content="wxnacy 博客">
-<meta property="og:description" content="基础篇 Vim 基础命令  插件篇 Vim 插件 pathogen Vim 插件 YouCompleteMe Vim 插件 tern_for_vim">
+<meta property="og:description" content="quickrun 可以快速运行 .py/.sh 等常见程序">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-09-23T00:47:25.000Z">
+<meta property="og:updated_time" content="2017-09-23T13:56:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="vim">
-<meta name="twitter:description" content="基础篇 Vim 基础命令  插件篇 Vim 插件 pathogen Vim 插件 YouCompleteMe Vim 插件 tern_for_vim">
+<meta name="twitter:title" content="Vim 插件 quickrun 快速运行">
+<meta name="twitter:description" content="quickrun 可以快速运行 .py/.sh 等常见程序">
   
     <link rel="alternative" href="/atom.xml" title="wxnacy 博客" type="application/atom+xml">
   
@@ -148,34 +149,47 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-vim-plugin-quickrun" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      vim
+      Vim 插件 quickrun 快速运行
     </h1>
   
 
         
-        <a href="/vim/index.html" class="archive-article-date">
-  	<time datetime="2017-09-20T10:02:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-20</time>
+        <a href="/2017/09/23/vim-plugin-quickrun/" class="archive-article-date">
+  	<time datetime="2017-09-23T13:27:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2><span id="ji-chu-pian">基础篇</span><a href="#ji-chu-pian" class="header-anchor"></a></h2><ul>
-<li><a href="/2017/08/23/vim-2017-08-23-basic-cmd">Vim 基础命令</a></li>
+        <p><a href="https://github.com/wklken/k-vim" target="_blank" rel="external">quickrun</a> 可以快速运行 <strong><em>.py/.sh</em></strong> 等常见程序<br><a id="more"></a></p>
+<div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#an-zhuang">安装</a><ul>
+<li><a href="#pathogen">Pathogen</a></li>
+<li><a href="#vundle">Vundle</a></li>
 </ul>
-<h2><span id="cha-jian-pian">插件篇</span><a href="#cha-jian-pian" class="header-anchor"></a></h2><ul>
-<li><a href="/2017/09/20/vim-plugin-pathogen">Vim 插件 pathogen</a></li>
-<li><a href="/2017/09/22/vim-plugin-youcompleteme">Vim 插件 YouCompleteMe</a></li>
-<li><a href="/2017/09/22/vim-plugin-tern">Vim 插件 tern_for_vim</a></li>
+</li>
+<li><a href="#pei-zhi">配置</a></li>
+<li><a href="#shi-yong">使用</a></li>
 </ul>
+<!-- tocstop -->
+</div>
+
+<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><h3><span id="pathogen">Pathogen</span><a href="#pathogen" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> ~/.vim/bundle</div><div class="line">$ git <span class="built_in">clone</span> https://github.com/wklken/k-vim</div></pre></td></tr></table></figure>
+<h3><span id="vundle">Vundle</span><a href="#vundle" class="header-anchor"></a></h3><p>修改 <code>~/.vimrc</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Plugin <span class="string">'wklken/k-vim'</span></div></pre></td></tr></table></figure></p>
+<p>在 Vim 中运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:PluginInstall</div></pre></td></tr></table></figure></p>
+<h2><span id="pei-zhi">配置</span><a href="#pei-zhi" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">let</span> g:quickrun_config = &#123;</div><div class="line">\   <span class="string">"_"</span> : &#123;</div><div class="line">\       <span class="string">"outputter"</span> : <span class="string">"message"</span>,</div><div class="line">\   &#125;,</div><div class="line">\&#125;</div><div class="line"></div><div class="line"><span class="built_in">let</span> g:quickrun_no_default_key_mappings = 1</div><div class="line">nmap &lt;Leader&gt;r &lt;Plug&gt;(quickrun)</div><div class="line">map &lt;F10&gt; :QuickRun&lt;CR&gt;</div></pre></td></tr></table></figure>
+<h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;leader&gt;r 或 F10    <span class="comment"># 可以运行程序，以 message 显示结果，任意键可返回</span></div></pre></td></tr></table></figure>
 
       
 
@@ -184,6 +198,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vim</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -195,6 +220,25 @@
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2017/09/23/vim-plugin-expand-region/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Vim 插件 expand-region 区域选中
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/23/vim-plugin-ctrlp/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Vim 插件 ctrlp.vim 模糊搜索文件</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -216,7 +260,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">基础篇</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">插件篇</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text">Pathogen</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.2.</span> <span class="toc-text">Vundle</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">使用</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -281,7 +325,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
@@ -359,11 +403,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -395,11 +439,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color3">北京</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">北京</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -407,7 +451,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+                <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -415,7 +459,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">mac</a>
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -427,19 +471,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">shell</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">shell</a>
               </li>
             
             <div class="clearfix"></div>

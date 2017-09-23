@@ -1,5 +1,5 @@
 ---
-title: Vim 插件 pathogen
+title: Vim 插件 pathogen 插件管理
 date: 2017-09-20 15:00:12
 tags: [vim]
 ---

@@ -1,5 +1,5 @@
 ---
-title: Vim 插件 tern_for_vim
+title: Vim 插件 tern_for_vim Javascript 自动补全
 date: 2017-09-22 18:14:03
 tags: [vim, javascript]
 ---

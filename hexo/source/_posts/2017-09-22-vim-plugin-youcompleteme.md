@@ -1,5 +1,5 @@
 ---
-title: Vim 插件 YouCompleteMe
+title: Vim 插件 YouCompleteMe 代码自动补全
 date: 2017-09-22 18:14:28
 tags: [vim, python, javascript]
 ---
