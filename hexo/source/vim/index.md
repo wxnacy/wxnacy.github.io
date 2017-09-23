@@ -1,7 +1,6 @@
 ---
-title: Vim 练级手册
+title: vim
 date: 2017-09-20 18:02:20
-tags: [vim]
 ---
 
 ## 基础篇
