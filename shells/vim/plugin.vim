@@ -178,6 +178,7 @@ let g:tagbar_type_ruby = {
 " nerdcommenter 配置
 "===============================
 let g:NERDSpaceDelims = 1       " 注释后添加空格
+" let g:NERDCompactSexyComs = 1
 
 "===============================
 " closetag 配置
@@ -318,4 +319,4 @@ highlight link multiple_cursors_visual Visual
 "===============================
 " python-mode 配置
 "===============================
-let g:pymode_python = 'python3'
+" let g:pymode_python = 'python3'
