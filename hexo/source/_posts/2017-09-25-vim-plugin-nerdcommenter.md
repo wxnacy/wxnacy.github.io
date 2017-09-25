@@ -39,3 +39,4 @@ let g:NERDSpaceDelims=1     " 注释后面自动加空格"
 <leader>c<space>  加上/解开注释, 智能判断
 <leader>cy   先复制, 再注解(p可以进行黏贴)
 ```
+更多使用见[文档](https://github.com/scrooloose/nerdcommenter#usage)
