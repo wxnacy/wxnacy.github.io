@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="wxnacy 博客">
 <meta property="og:description" content="程序员一定要学的编辑器 vim">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-09-20T10:04:29.000Z">
+<meta property="og:updated_time" content="2017-09-25T02:34:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vim 基础命令">
 <meta name="twitter:description" content="程序员一定要学的编辑器 vim">
@@ -230,7 +230,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">:files      <span class="comment"># 再打开文件后一般模式下使用改名了查看有几个文件</span></div><div class="line"></div><div class="line">:files</div><div class="line">  1 %a   <span class="string">"hosts"</span>                        line 1      <span class="comment"># %a代表当前编辑的文件</span></div><div class="line">  2      <span class="string">"host2"</span>                        line 0</div><div class="line"></div><div class="line"><span class="comment"># 使用gg切换到第一行，使用4yy复制前四行</span></div><div class="line">:n          <span class="comment"># 指令该命令编辑下一个文件</span></div><div class="line"></div><div class="line"><span class="comment"># 使用p将刚才复制的内容粘贴到该文件中使用:q退出编辑并查看host2会发现刚才的内容已经复制过来了</span></div></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">v	        字元選擇，會將游標經過的地方反白選擇！</div><div class="line">V	        列選擇，會將游標經過的列反白選擇！</div><div class="line">[Ctrl]+v    區塊選擇，可以用長方形的方式選擇資料</div><div class="line">y	        將反白的地方複製起來</div><div class="line">d	        將反白的地方刪除掉</div><div class="line">p	        將剛剛複製的區塊，在游標所在處貼上！</div></pre></td></tr></table></figure>
 <h2><span id="kuai-ti-huan">快替换</span><a href="#kuai-ti-huan" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[Ctrl] + v 选中块</div><div class="line">c  输入替换文字</div><div class="line">&lt;Esc&gt; 完成替换</div></pre></td></tr></table></figure>
-<h2><span id="duo-chuang-kou">多窗口</span><a href="#duo-chuang-kou" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">:sp [filename]	开启一个新窗口，如果有加 filename， 表示在新窗口开启一个新档案，否则表示两个窗口为同一个档案内容(同步显示)。</div><div class="line">[ctrl]+w+↓/j	按键的按法是：先按下 [ctrl] 不放， 再按下 w 后放开所有的按键，然后再按下 j (或向下箭头键)，则光标可移动到下方的窗口。</div><div class="line">[ctrl]+w+↑/k	同上，不过光标移动到上面的窗口。</div><div class="line">[ctrl]+w+q  	其实就是 :q 结束离开啦！ 举例来说，如果我想要结束下方的窗口，那么利用 [ctrl]+w+↓ 移动到下方窗口后，按下 :q 即可离开， 也可以按下 [ctrl]+w+q 啊！</div></pre></td></tr></table></figure>
+<h2><span id="duo-chuang-kou">多窗口</span><a href="#duo-chuang-kou" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">:sp [filename]  <span class="comment"># 垂直分割屏幕，filename 是想要打开的文件，默认当前文档</span></div><div class="line">:vsp [filename] <span class="comment"># 水平分割屏幕</span></div><div class="line">[ctrl]+w+↓/j    <span class="comment"># 按键的按法是：先按下 [ctrl] 不放， 再按下 w 后放开所有的按键，然后再按下 j (或向下箭头键)，则光标可移动到下方的窗口。</span></div><div class="line">[ctrl]+w+↑/k    <span class="comment"># 同上，不过光标移动到上面的窗口。</span></div><div class="line">[ctrl]+w+q      <span class="comment"># 其实就是 :q 结束离开啦！ 举例来说，如果我想要结束下方的窗口，那么利用 [ctrl]+w+↓ 移动到下方窗口后，按下 :q 即可离开， 也可以按下 [ctrl]+w+q 啊！</span></div></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># set compatible 就是让 vim 关闭所有扩展的功能，尽量模拟 vi 的行为。</span></div><div class="line">但这样就不应用 vim 的很多强大功能，所以一般没有什么特殊需要的话（比如执行很老的 vi 脚本），都要在 vim 的配置开始，写上 <span class="built_in">set</span> nocompatible，关闭兼容模式。由于这个选项是最最基础的选项，会连带很多其它选项发生变动（称作副作用），所以它必需是第一个设定的选项。</div><div class="line"><span class="built_in">set</span> nocompatible</div></pre></td></tr></table></figure>
 <h2><span id="kuai-su-xuan-zhong-duan-luo">快速选中段落</span><a href="#kuai-su-xuan-zhong-duan-luo" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vip         <span class="comment"># vip很好记</span></div></pre></td></tr></table></figure>
 <h2><span id="hong">宏</span><a href="#hong" class="header-anchor"></a></h2><p>vim有个非常厉害的功能叫<strong>宏</strong>，它可以将你的操作进行宏录制，放到vim寄存器中，并按照你想要的方式播放出来</p>
@@ -276,18 +276,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/23/mac-2017-08-23-develop-hotapps/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/08/23/linux-2017-08-23-ssh/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Mac 开发人员装机必备
+          Linux SSH 登陆远程服务器和无密码操作
         
       </div>
     </a>
   
   
-    <a href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Linux CentOS 各个版本启动SSHD服务命令</div>
+    <a href="/2017/08/23/python-2017-08-23-scrapy-basic/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Python Scrapy 入门教程</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -457,7 +457,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -469,15 +469,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -485,11 +481,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ansible</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -497,11 +489,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">北京</a>
+                <a href="javascript:void(0)" class="js-tag color3">ansible</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -509,11 +505,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">curl</a>
+                <a href="javascript:void(0)" class="js-tag color3">北京</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color5">curl</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -521,15 +517,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
