@@ -29,3 +29,6 @@ git submodule add --force http://github.com/scrooloose/syntastic shells/vim/bund
 
 # work for hexo them
 git submodule add --force https://github.com/wxnacy/hexo-theme-yilia.git hexo/themes/yilia
+
+# work for tmux
+git submodule add --force https://github.com/tmux-plugins/tpm shells/tmux/plugins/tpm
