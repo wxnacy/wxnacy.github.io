@@ -1,7 +1,7 @@
 ---
 title: Vim 插件 vim-airline 状态栏增强显示
 date: 2017-09-25 14:41:18
-tags:
+tags: [vim]
 ---
 
 [vim-airline](https://github.com/bling/vim-airline) 状态栏增强显示

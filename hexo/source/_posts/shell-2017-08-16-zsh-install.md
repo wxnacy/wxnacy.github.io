@@ -1,13 +1,12 @@
 ---
-title: zsh 与 oh-my-zsh 安装与使用
+title: Zsh 与 oh-my-zsh 安装与使用
 date: 2017-08-16
-tags: [shell]
+tags: [linux, mac]
 ---
 
+<!-- toc -->
 
-[TOC]
-
-## 安装 zsh
+## 安装 Zsh
 ### Linux
 ```bash
 $ yum install zsh

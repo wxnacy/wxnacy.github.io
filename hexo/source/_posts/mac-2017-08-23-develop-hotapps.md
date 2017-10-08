@@ -12,9 +12,14 @@ tags: [mac]
 
 <!-- more -->
 
+## 终端
+- [iTerm2](https://www.iterm2.com/downloads.html) 终端神器，文件管理编程全部搞定
+- **Homebrew** [Mac 包管理神器 HomeBrew](/2017/09/07/mac-2017-09-07-homebrew/)
+- **Tmux** [窗口管理工具 Tmux](/2017/09/24/tmux)
+- **Zsh** [Zsh 与 oh-my-zsh 安装与使用](/2017/08/16/shell-2017-08-16-zsh-install)
+
 ## 软件
 - Chrome
-- [iTerm2](https://www.iterm2.com/downloads.html) 终端神器，文件管理编程全部搞定
 - Alfred
 - [SnippetsLab](https://www.renfei.org/snippets-lab/) 随便代码管理从未如此方便
 - Shiftlt
@@ -29,7 +34,3 @@ https://www.mediaatelier.com/CheatSheet/
 - [LICEcap](https://www.cockos.com/licecap/) 录制gif图片小工具
 
 
-
-## 使用工具
-
-- **Homebrew**： [Mac 包管理神器 HomeBrew](/2017/09/07/mac-2017-09-07-homebrew/)
