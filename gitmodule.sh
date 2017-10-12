@@ -26,6 +26,7 @@ git submodule add --force http://github.com/tacahiroy/ctrlp-funky shells/vim/bun
 git submodule add --force http://github.com/vim-scripts/matchit.zip shells/vim/bundle/matchit.zip                     # 成对标签跳转,需要光标放在div等文字上
 git submodule add --force http://github.com/terryma/vim-multiple-cursors shells/vim/bundle/vim-multiple-cursors       # 多光标操作
 git submodule add --force http://github.com/scrooloose/syntastic shells/vim/bundle/syntastic                          # 语法检查
+git submodule add --force http://github.com/dkprice/vim-easygrep.git shells/vim/bundle/vim-easygrep                   # 全局搜索插件
 
 # work for hexo them
 git submodule add --force https://github.com/wxnacy/hexo-theme-yilia.git hexo/themes/yilia

@@ -320,3 +320,8 @@ highlight link multiple_cursors_visual Visual
 " python-mode 配置
 "===============================
 " let g:pymode_python = 'python3'
+
+"===============================
+" ack 配置
+"===============================
+" let g:ackprg = 'ag --nogroup --nocolor --column'
