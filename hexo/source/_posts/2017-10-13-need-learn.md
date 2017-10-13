@@ -8,4 +8,4 @@ tags:
 
 - [Vim](/vim)
 - [Tmux](/tmux)
-- Byobu Tmux 的在封装
+- ***Byobu*** Tmux 的再封装

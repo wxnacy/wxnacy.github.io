@@ -23,6 +23,8 @@ date: 2017-09-20 18:02:20
 ### 搜索
 - [Vim 插件 ctrlp 模糊搜索文件](/2017/09/23/vim-plugin-ctrlp)
 - [Vim 插件 EasyGrep 全局搜索文件](/2017/10/13/vim-plugin-easygrep)
+- [Vim 插件 Ack 全局搜索文件](/2017/10/13/vim-plugin-ack)
+- [Vim 插件 CtrlSF 全局搜索文件](/2017/10/13/vim-plugin-ctrlsf)
 ### 美化
 - [Vim 插件 vim-colors-solarized 主题](/2017/09/25/vim-plugin-solarize)
 - [Vim 插件 vim-airline 状态栏增强显示](/2017/09/25/vim-plugin-artline)

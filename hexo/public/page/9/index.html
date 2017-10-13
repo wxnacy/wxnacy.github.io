@@ -149,6 +149,449 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-ansible-2017-08-08-item-basic-playbooks" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">ansible入门笔记2 Playbooks</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/" class="archive-article-date">
+  	<time datetime="2017-08-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>专辑：<a href="/2017/08/14/ansible-2017-08-14-album-study-notes/">ansible学习笔记</a></p>
+<blockquote>
+<p>Playbooks 是 Ansible的配置,部署,编排语言.他们可以被描述为一个需要希望远程主机执行命令的方案,或者一组IT程序运行的命令集合.</p>
+</blockquote>
+<p>一个playbook就是一个YAML文件，所以playbook文件一般都以.yml结尾，一个playbook文件由一个或多个play组成，每个play定义了在一个或多个远程主机上执行的一系列的task，其中每个task一般就是调用一个ansible的模块，如调用copy模块复制文件到远程主机或调用shell模块执行命令。</p>
+<h2><span id="jian-dan-de-pei-zhi">简单的配置</span><a href="#jian-dan-de-pei-zhi" class="header-anchor"></a></h2><p>配置deploy.yml完成进入远程服务器的某个目录并执行git pull操作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- hosts: wxnacy <span class="comment"># 它会默认使用/etc/ansible/hosts 中配置的服务器组名 也可以单独设置hosts地址</span></div><div class="line">  tasks:</div><div class="line">  - name: <span class="built_in">cd</span> path and git pull <span class="comment"># 命令名称</span></div><div class="line">    shell: git pull <span class="comment"># 执行命令</span></div><div class="line">    args:</div><div class="line">      <span class="built_in">chdir</span>: ~/workdir <span class="comment"># 进入目录</span></div></pre></td></tr></table></figure></p>
+<p>运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ ansible-playbook deploy.yml</div><div class="line"></div><div class="line">PLAY [wxnacy] **********************************************************************************************************************************************************************************************</div><div class="line"></div><div class="line">TASK [<span class="built_in">cd</span> path and git pull] *************************************************************************************************************************************************************************************</div><div class="line">ok: [wxnacy.server.org]</div><div class="line"></div><div class="line"></div><div class="line">PLAY RECAP *************************************************************************************************************************************************************************************************</div><div class="line">wxnacy.server.org             : ok=2    changed=1    unreachable=0    failed=0</div></pre></td></tr></table></figure></p>
+<p>执行完运行命令ansible会在webservers组中依次执行tasks，返回以上样式结果极为成功，结果通过红黄绿三种颜色标明了不同的执行结果，红色表示有task执行失败，黄色表示改变了远程主机状态。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ansible</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-ansible-2017-08-08-item-basic-playbooks-ext" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks-ext/">ansible入门笔记3 Playbooks 简单扩展</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks-ext/" class="archive-article-date">
+  	<time datetime="2017-08-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>专辑：<a href="/2017/08/14/ansible-2017-08-14-album-study-notes/">ansible学习笔记</a></p>
+<blockquote>
+<p>Playbooks 在实际应用过程中，需要用到一些额外扩展功能，比如外部传参或指定hosts文件，本章节将着重介绍</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks-ext/#more">阅读全文 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ansible</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks-ext/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-mysql-2017-08-07-item-daily" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/07/mysql-2017-08-07-item-daily/">2017-08-07 新建user和user_data表，完善`insert_commet_trigger`</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/07/mysql-2017-08-07-item-daily/" class="archive-article-date">
+  	<time datetime="2017-08-06T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>今天目标新建user、<code>user_data</code>表，并完善<code>insert_commet_trigger</code>，达到根据判断resource_type来更新video还是user_data的comment_count</p>
+</blockquote>
+<p>专辑：<a href="/?p=/doc/mysql/mysql_daily.md">mysql每天练习</a></p>
+<ul>
+<li><p>新建user表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">drop table if exists `user`;</div><div class="line">create table `user`(</div><div class="line">    id int(11) not null auto_increment,</div><div class="line">    name varchar(32) not null comment &apos;姓名&apos;,</div><div class="line">    is_del int(1) not null default 0 comment &apos;是否删除&apos;,</div><div class="line">    create_ts timestamp not null default current_timestamp comment &apos;创建时间&apos;,</div><div class="line">    update_ts timestamp not null default current_timestamp on update current_timestamp comment &apos;修改时间&apos;,</div><div class="line">    primary key(`id`)</div><div class="line">)engine=InnoDB default charset=utf8mb4 comment &apos;用户表&apos;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>新建user_data表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">drop table if exists `user_data`;</div><div class="line">create table `user_data`(</div><div class="line">    user_id int(11) not null,</div><div class="line">    comment_count int(11) not null default 0 comment &apos;评论数量&apos;,</div><div class="line">    update_ts timestamp not null default current_timestamp on update current_timestamp comment &apos;最后修改时间&apos;,</div><div class="line">    primary key(`user_id`)</div><div class="line">)engine=InnoDB default charset=utf8mb4 comment &apos;用户数据表，记录用户额外数据&apos;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>重写 <code>insert_comment_trigger</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">drop trigger if exists `insert_comment`;</div><div class="line">delimiter $</div><div class="line">create trigger `insert_comment` after insert on comment for each row </div><div class="line">begin</div><div class="line">    declare count int;</div><div class="line">    if (new.resource_type = &apos;user&apos;) then</div><div class="line">        select count(0) into count from user_data where user_id = new.resource_id;</div><div class="line">        if (count &gt; 0 ) then</div><div class="line">            update user_data set comment_count = comment_count +1  where user_id = new.resource_id;</div><div class="line">        else</div><div class="line">            insert into user_data (user_id,comment_count) values (new.resource_id,1);</div><div class="line">        end if;</div><div class="line">    else</div><div class="line">        update video set comment_count = comment_count +1 where id= new.resource_id;</div><div class="line">    end if; </div><div class="line">end $</div><div class="line">delimiter ;</div></pre></td></tr></table></figure>
+</li>
+<li><p>执行相关语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">insert into user(name) values (&apos;wxnacy&apos;);</div><div class="line">insert into comment (resource_id,resource_type,content) values (1,&apos;user&apos;,&apos;好人&apos;);</div><div class="line">insert into comment (resource_id,resource_type,content) values (1,&apos;user&apos;,&apos;大好人&apos;);</div><div class="line">select * from user_data;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>执行语句后，user_data中comment_count应该等于2</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/07/mysql-2017-08-07-item-daily/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-mysql-2017-08-06-basic-cmd" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/mysql-2017-08-06-basic-cmd/">Mysql 基础命令</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/06/mysql-2017-08-06-basic-cmd/" class="archive-article-date">
+  	<time datetime="2017-08-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h2><span id="shu-ju-ku">数据库</span><a href="#shu-ju-ku" class="header-anchor"></a></h2><h3><span id="chuang-jian-ku">创建库</span><a href="#chuang-jian-ku" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create database name character utf8mb4;</div></pre></td></tr></table></figure>
+<h2><span id="biao-jie-gou">表结构</span><a href="#biao-jie-gou" class="header-anchor"></a></h2><h3><span id="chuang-jian-biao">创建表</span><a href="#chuang-jian-biao" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">drop table if exists `user`;</div><div class="line">create table `user`(</div><div class="line">    id int(11) not null auto_increment,</div><div class="line">    name varchar(32) not null comment &apos;姓名&apos;,</div><div class="line">    mobile varchar(11) not null default &apos;&apos; comment &apos;手机号&apos;,</div><div class="line">    ext JSON default null comment &apos;扩展信息&apos;,</div><div class="line">    create_ts timestamp not null default current_timestamp comment &apos;创建时间&apos;,</div><div class="line">    update_ts timestamp not null default current_timestamp on update current_timestamp comment &apos;修改时间&apos;,</div><div class="line">    primary key(`id`)</div><div class="line">) engine=InnoDB default charset=utf8mb4 comment &apos;用户表&apos;;</div></pre></td></tr></table></figure>
+<h3><span id="cha-kan-lie">查看列</span><a href="#cha-kan-lie" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">desc table_name</div></pre></td></tr></table></figure>
+<h3><span id="xiu-gai-biao-ming">修改表名</span><a href="#xiu-gai-biao-ming" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table table_name rename to new_name;</div></pre></td></tr></table></figure>
+<h3><span id="tian-jia-lie">添加列</span><a href="#tian-jia-lie" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table table_name add column col_name varchar(11) not null ...;</div></pre></td></tr></table></figure>
+<h3><span id="shan-chu-lie">删除列</span><a href="#shan-chu-lie" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table table_name drop column col_name;</div></pre></td></tr></table></figure>
+<h3><span id="xiu-gai-lie-ming">修改列名</span><a href="#xiu-gai-lie-ming" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table table_name change old_name new_name int(11)...;</div></pre></td></tr></table></figure>
+<h3><span id="xiu-gai-lie-shu-xing">修改列属性</span><a href="#xiu-gai-lie-shu-xing" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table table_name modify col_name int(11) not null...;</div></pre></td></tr></table></figure>
+<h3><span id="cha-kan-lie-shu-xing">查看列属性</span><a href="#cha-kan-lie-shu-xing" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">show columns from table_name;</div><div class="line">show full columns from table_name; # 全部信息</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>Field</strong> ：字段名</li>
+<li><strong>Type</strong>：字段类型</li>
+<li><strong>Collation</strong>：字符集（mysql 5.0以上有）</li>
+<li><strong>Null</strong> ：是否可以为NULL</li>
+<li><strong>Key</strong>：索引（PRI,unique,index)</li>
+<li><strong>Default</strong>：缺省值</li>
+<li><strong>Extra</strong>：额外（是否 auto_increment)</li>
+<li><strong>Privileges</strong>：权限</li>
+<li><strong>Comment</strong>：备注（mysql 5.0以上有)</li>
+</ul>
+<h2><span id="cha-xun">查询</span><a href="#cha-xun" class="header-anchor"></a></h2><h3><span id="qu-diao-chong-fu-shu-ju">去掉重复数据</span><a href="#qu-diao-chong-fu-shu-ju" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select distinct name from user;</div></pre></td></tr></table></figure>
+<p>需要注意亮点，第一，<code>distinct</code> 必须放到查询字段最前边。第二，如果查询的字段很多，必须所有字段都相同才会过滤</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/06/mysql-2017-08-06-basic-cmd/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-mysql-2017-08-06-item-daily" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/mysql-2017-08-06-item-daily/">2017-08-06 新建video和comment表，以及`insert_commet_trigger`</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/06/mysql-2017-08-06-item-daily/" class="archive-article-date">
+  	<time datetime="2017-08-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>今天的目标是新建一个video视频表和comment评论表，并编写trigger，达到当insert一条评论类型为video的数据到comment中时，video中comment_count字段可以自加一</p>
+</blockquote>
+<p>专辑：<a href="/?p=/doc/mysql/mysql_daily.md">mysql每天练习</a></p>
+<ul>
+<li><p>新建video表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">drop table if exists `video`;</div><div class="line">create table `video`(</div><div class="line">    id int(11) not null auto_increment,</div><div class="line">    name varchar(32) not null comment &apos;标题&apos;,</div><div class="line">    url varchar(512) not null comment &apos;视频地址&apos;,</div><div class="line">    is_del int(1) not null default 0 comment &apos;是否删除&apos;,</div><div class="line">    create_ts timestamp not null default current_timestamp comment &apos;创建时间&apos;,</div><div class="line">    update_ts timestamp not null default current_timestamp on update current_timestamp comment &apos;修改时间&apos;,</div><div class="line">    primary key(`id`)</div><div class="line">)engine=InnoDB default charset=utf8mb4 comment &apos;视频表&apos;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>添加comment_count字段（不是忘了，就是想练一下add column语句╭(╯^╰)╮）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table video add column comment_count int(11) not null default 0 comment &apos;评论数量&apos;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>新建comment表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">drop table if exists `comment`;</div><div class="line">create table `comment`(</div><div class="line">    id int(11) not null auto_increment,</div><div class="line">    resource_id int(11) not null comment &apos;被评论资源id&apos;,</div><div class="line">    resource_type varchar(16) not null comment &apos;被评论资源类型&apos;,</div><div class="line">    content varchar(1024) not null comment &apos;评论内容&apos;,</div><div class="line">    is_del int(1) not null default 0 comment &apos;是否删除&apos;,</div><div class="line">    create_ts timestamp not null default current_timestamp comment &apos;创建时间&apos;,</div><div class="line">    update_ts timestamp not null default current_timestamp on update current_timestamp comment &apos;修改时间&apos;,</div><div class="line">    primary key(`id`)</div><div class="line">)engine=InnoDB default charset=utf8mb4 comment &apos;评论表&apos;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>新建trigger</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">drop trigger if exists `insert_comment`;</div><div class="line">delimiter $</div><div class="line">create trigger `insert_comment` after insert on comment for each row</div><div class="line">begin</div><div class="line">    if (new.resource_type = &apos;video&apos;) then </div><div class="line">        update video set comment_count = comment_count +1 where id = new.resource_id;</div><div class="line">    end if;</div><div class="line">end $</div><div class="line">delimiter ;</div></pre></td></tr></table></figure>
+</li>
+<li><p>执行相应操作语句</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">insert into video (name,url) values (&apos;蜘蛛侠：返校季&apos;,&apos;http://woyemeiyou/wangzhi.mp4&apos;);</div><div class="line">insert into comment (resource_id,resource_type,content) values (1,&apos;video&apos;,&apos;找不到资源&apos;);</div><div class="line">select * from video;</div></pre></td></tr></table></figure>
+<p>最后结果中video表中的comment_count应该等于1</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/06/mysql-2017-08-06-item-daily/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-algorithm-2017-08-05-identity-verify" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -211,6 +654,88 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/05/algorithm-2017-08-05-identity-verify/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-algorithm-2017-08-05-bank-verify" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/05/algorithm-2017-08-05-bank-verify/">银行卡校验规则(Luhn算法)</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/05/algorithm-2017-08-05-bank-verify/" class="archive-article-date">
+  	<time datetime="2017-08-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://www.icloudyin.com/?p=61" target="_blank" rel="external">原文:http://www.icloudyin.com/?p=61</a></p>
+<ul>
+<li>检验数字算法（Luhn Check Digit Algorithm），也叫做模数10公式，是一种简单的算法，用于验证银行卡、信用卡号码的有效性的算法。对所有大型信用卡公司发行的信用卡都起作用，这些公司包括美国Express、护照、万事达卡、Discover和用餐者俱乐部等。这种算法最初是在20世纪60年代由一组数学家制定，现在Luhn检验数字算法属于大众，任何人都可以使用它。</li>
+<li>将卡号上的每个数字乘上其权重（weight），如果卡号上的数字个数是偶数，那么第一个数字的权重就是2，若是奇数，那么权重就给1，剩下来的数字，根据第一个数字依序给定。例如某信用卡卡号的数字个数为偶数，那么从第一个数字开始的权重依序为 2、1、2、1、2、1 …。</li>
+<li>如果数字乘上自己的权重后比9还大，那么就从这加权数字里扣除9。</li>
+<li>接下来将所有处理过的加权数字全部加总起来，并且除以10，取其余数。</li>
+</ul>
+<h2><span id="java">java</span><a href="#java" class="header-anchor"></a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">	<span class="keyword">boolean</span> even = <span class="keyword">true</span>;</div><div class="line">	<span class="keyword">for</span> ( <span class="keyword">int</span> index = digits.size() - <span class="number">1</span>; index &gt;= <span class="number">0</span>; index-- ) &#123;</div><div class="line">		<span class="keyword">int</span> digit = digits.get( index );</div><div class="line"></div><div class="line">		<span class="keyword">if</span> ( even ) &#123;</div><div class="line">			digit &lt;&lt;= <span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> ( digit &gt; <span class="number">9</span> ) &#123;</div><div class="line">			digit -= <span class="number">9</span>;</div><div class="line">		&#125;</div><div class="line">		sum += digit;</div><div class="line">		even = !even;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> ( <span class="number">10</span> - ( sum % <span class="number">10</span> ) ) % <span class="number">10</span>;</div></pre></td></tr></table></figure>
+<h2><span id="python">python</span><a href="#python" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_bank_card</span><span class="params">(card_num)</span>:</span></div><div class="line">    <span class="string">"""检查银行卡的合法性"""</span></div><div class="line">    total = <span class="number">0</span></div><div class="line">    even = <span class="keyword">True</span></div><div class="line">    <span class="keyword">if</span> isinstance(card_num, int):</div><div class="line">        card_num = str(card_num)</div><div class="line">    check_num = card_num[<span class="number">-1</span>]</div><div class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> card_num[<span class="number">-2</span>::<span class="number">-1</span>]:</div><div class="line">        item = int(item)</div><div class="line">        <span class="keyword">if</span> even:</div><div class="line">            item &lt;&lt;= <span class="number">1</span></div><div class="line">        <span class="keyword">if</span> item &gt; <span class="number">9</span>:</div><div class="line">            item -= <span class="number">9</span></div><div class="line">        total += item</div><div class="line">        even = <span class="keyword">not</span> even</div><div class="line">    <span class="keyword">return</span> int(check_num) <span class="keyword">is</span> (<span class="number">10</span> - (total % <span class="number">10</span>)) % <span class="number">10</span></div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algorithm</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/05/algorithm-2017-08-05-bank-verify/">展开全文 >></a>
         </p>
       
 
@@ -336,55 +861,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <div class="toc">
-
-<!-- toc -->
-<ul>
-<li><a href="#ssh-key">ssh-key</a></li>
-<li><a href="#chu-shi-hua-xiang-mu">初始化项目</a></li>
-<li><a href="#shan-chu-wen-jian">删除文件</a></li>
-<li><a href="#xiu-gai-yong-hu-xin-xi">修改用户信息</a></li>
-<li><a href="#ji-zhu-mi-ma">记住密码</a></li>
-<li><a href="#che-xiao-cao-zuo">撤销操作</a><ul>
-<li><a href="#chong-xin-ti-jiao">重新提交</a></li>
-<li><a href="#che-xiao-ti-jiao-wen-jian">撤销提交文件</a></li>
-</ul>
-</li>
-<li><a href="#xiu-gai-remote-url">修改remote url</a></li>
-<li><a href="#fen-zhi">分支</a></li>
-<li><a href="#biao-qian">标签</a></li>
-<li><a href="#ti-jiao-jian-cha">提交检查</a><ul>
-<li><a href="#status">status</a></li>
-<li><a href="#log">log</a></li>
-<li><a href="#show">show</a></li>
-<li><a href="#diff">diff</a></li>
-</ul>
-</li>
-<li><a href="#can-kao-zi-liao">参考资料</a></li>
-</ul>
-<!-- tocstop -->
-<p></div></p>
-<h2><span id="ssh-key">ssh-key</span><a href="#ssh-key" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C <span class="string">"<span class="variable">$your_email</span>"</span>          <span class="comment"># 获取 sshkey</span></div><div class="line">cat ~/.ssh/id_rsa.pub                       <span class="comment"># 查看 sshkey</span></div></pre></td></tr></table></figure>
-<h2><span id="chu-shi-hua-xiang-mu">初始化项目</span><a href="#chu-shi-hua-xiang-mu" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> project_root                             <span class="comment"># 进入项目目录</span></div><div class="line">git init                                    <span class="comment"># 初始化git仓库</span></div><div class="line">git add .                                   <span class="comment"># 添加文件到仓库</span></div><div class="line">git commit -m <span class="string">'init commit'</span>                 <span class="comment"># 提交代码到本地仓库</span></div><div class="line">git remote add origin <span class="variable">$&#123;repository_path&#125;</span>    <span class="comment"># 将项目关联到git server</span></div><div class="line">git pull origin master                      <span class="comment"># 同步代码</span></div><div class="line">git push origin master                      <span class="comment"># push代码到远程仓库</span></div><div class="line">git <span class="built_in">clone</span> <span class="variable">$&#123;repository_path&#125;</span>                <span class="comment"># 新的位置clone项目</span></div></pre></td></tr></table></figure>
-<h2><span id="shan-chu-wen-jian">删除文件</span><a href="#shan-chu-wen-jian" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">rm -r file_path</div><div class="line">git rm -r <span class="variable">$&#123;file_path&#125;</span></div><div class="line">git commit -m <span class="string">'remove'</span></div><div class="line">git pull origin master</div><div class="line">git push origin master</div></pre></td></tr></table></figure>
-<h2><span id="xiu-gai-yong-hu-xin-xi">修改用户信息</span><a href="#xiu-gai-yong-hu-xin-xi" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name wxnacy            <span class="comment"># 配置用户名</span></div><div class="line">git config --global user.email xxx@qq.com       <span class="comment"># 配置邮件</span></div></pre></td></tr></table></figure>
-<h2><span id="ji-zhu-mi-ma">记住密码</span><a href="#ji-zhu-mi-ma" class="header-anchor"></a></h2><p>在服务器上 <code>clone</code> 代码第一次通常会提示输入密码，为了下次不再提示，可以在 <code>clone</code> 后做如下操作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config credential.helper store</div></pre></td></tr></table></figure></p>
-<h2><span id="che-xiao-cao-zuo">撤销操作</span><a href="#che-xiao-cao-zuo" class="header-anchor"></a></h2><h3><span id="chong-xin-ti-jiao">重新提交</span><a href="#chong-xin-ti-jiao" class="header-anchor"></a></h3><p>提交后如果发现遗漏可以使用 <code>git commit --amend</code> 重新提交<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git commit -m <span class="string">'initial commit'</span></div><div class="line">git add forgotten_file</div><div class="line">git commit --amend</div></pre></td></tr></table></figure></p>
-<h3><span id="che-xiao-ti-jiao-wen-jian">撤销提交文件</span><a href="#che-xiao-ti-jiao-wen-jian" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">git checkout -- &lt;file&gt;              <span class="comment"># 取消对文件的修改。还原到最近的版本，废弃本地做的修改。</span></div><div class="line">git reset HEAD &lt;file&gt;...            <span class="comment"># 取消已经暂存的文件。即，撤销先前"git add"的操作</span></div><div class="line">git reset HEAD^                     <span class="comment"># 回退所有内容到上一个版本</span></div><div class="line">git reset HEAD^ a.py                <span class="comment"># 回退a.py这个文件的版本到上一个版本</span></div><div class="line">git reset –soft HEAD~3              <span class="comment"># 向前回退到第3个版本</span></div><div class="line">git reset –hard origin/master       <span class="comment"># 将本地的状态回退到和远程的一样</span></div><div class="line">git reset 057d                      <span class="comment"># 回退到某个版本</span></div><div class="line">git revert HEAD                     <span class="comment"># 回退到上一次提交的状态，按照某一次的commit完全反向的进行一次commit.(代码回滚到上个版本，并提交git)</span></div></pre></td></tr></table></figure>
-<p>或者<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git -c core.quotepath=<span class="literal">false</span> rm --cached -f -- env.sh</div><div class="line">git -c core.quotepath=<span class="literal">false</span> checkout HEAD -- env.sh</div></pre></td></tr></table></figure></p>
-<h2><span id="xiu-gai-remote-url">修改remote url</span><a href="#xiu-gai-remote-url" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote <span class="built_in">set</span>-url origin <span class="variable">$&#123;new_repository_path&#125;</span></div></pre></td></tr></table></figure>
-<h2><span id="fen-zhi">分支</span><a href="#fen-zhi" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git checkout -b <span class="variable">$&#123;new_branch&#125;</span> master    <span class="comment"># 从master创建新分支</span></div><div class="line">git checkout <span class="variable">$&#123;branch_name&#125;</span>             <span class="comment"># 定位分支</span></div><div class="line">git merge --no-off <span class="variable">$&#123;branch_name&#125;</span>       <span class="comment"># 将其他分支合并到master</span></div><div class="line">git rebase origin master <span class="comment"># master分支合并到当前分支</span></div></pre></td></tr></table></figure>
-<h2><span id="biao-qian">标签</span><a href="#biao-qian" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git tag <span class="variable">$&#123;tag_name&#125;</span> master              <span class="comment"># 创建新分支</span></div><div class="line">git push origin <span class="variable">$&#123;tag_name&#125;</span>             <span class="comment"># 将标签推到远程仓库</span></div><div class="line">git branch -D <span class="variable">$&#123;branch_tag_name&#125;</span>        <span class="comment"># 删除本地分支或标签</span></div><div class="line">git push origin :<span class="variable">$&#123;branch_tag_name&#125;</span>     <span class="comment"># 删除远程分支或分支</span></div></pre></td></tr></table></figure>
-<h2><span id="ti-jiao-jian-cha">提交检查</span><a href="#ti-jiao-jian-cha" class="header-anchor"></a></h2><p>在代码提前前或查看提交记录详情时可能会用到下面几组命令</p>
-<h3><span id="status">status</span><a href="#status" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git status          <span class="comment"># 查看当前版本状态（是否修改）</span></div></pre></td></tr></table></figure>
-<h3><span id="log">log</span><a href="#log" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">log</span>             <span class="comment"># 显示提交日志</span></div><div class="line">git <span class="built_in">log</span> -1          <span class="comment"># 显示1行日志 -n为n行</span></div><div class="line">git <span class="built_in">log</span> --<span class="built_in">stat</span>      <span class="comment"># 显示提交日志及相关变动文件</span></div><div class="line">git <span class="built_in">log</span> -p -m       <span class="comment"># 显示提交日志及变动的详细情况</span></div><div class="line">git <span class="built_in">log</span> v2.0        <span class="comment"># 显示v2.0的日志</span></div></pre></td></tr></table></figure>
-<h3><span id="show">show</span><a href="#show" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git show dfb02e6e4f2f7b573         <span class="comment"># 显示某个提交的详细内容</span></div><div class="line">git show dfb02                     <span class="comment"># 可只用commitid的前几位</span></div><div class="line">git show HEAD                      <span class="comment"># 显示HEAD提交日志</span></div><div class="line">git show HEAD^                     <span class="comment"># 显示HEAD的父（上一个版本）的提交日志 ^^为上两个版本 ^5为上5个版本</span></div><div class="line">git show v2.0                      <span class="comment"># 显示v2.0的日志及详细内容</span></div></pre></td></tr></table></figure>
-<h3><span id="diff">diff</span><a href="#diff" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">git diff                                  <span class="comment"># 显示所有未添加至index的变更</span></div><div class="line">git diff --cached                         <span class="comment"># 显示所有已添加index但还未commit的变更</span></div><div class="line">git diff HEAD^                            <span class="comment"># 比较与上一个版本的差异</span></div><div class="line">git diff HEAD -- ./lib                    <span class="comment"># 比较与HEAD版本lib目录的差异</span></div><div class="line">git diff origin/master..master            <span class="comment"># 比较远程分支master上有本地分支master上没有的</span></div><div class="line">git diff origin/master..master --<span class="built_in">stat</span>     <span class="comment"># 只显示差异的文件，不显示具体内容</span></div></pre></td></tr></table></figure>
-<h2><span id="can-kao-zi-liao">参考资料</span><a href="#can-kao-zi-liao" class="header-anchor"></a></h2><ul>
-<li><a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" target="_blank" rel="external">常用 Git 命令清单</a></li>
-<li><a href="https://git-scm.com/book/zh/v2" target="_blank" rel="external">Pro Git</a></li>
-</ul>
-
+        <blockquote>
+<p>有这些命令就够了</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2017/08/04/git-2017-08-04-basic-cmd/#more">阅读全文 >></a>
+        
       
 
       
@@ -625,19 +1107,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -649,11 +1127,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">mac</a>
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -661,7 +1139,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">grep</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -669,7 +1159,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -681,19 +1179,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">expect</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">

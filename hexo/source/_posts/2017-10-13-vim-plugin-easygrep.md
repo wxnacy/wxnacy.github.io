@@ -1,7 +1,7 @@
 ---
 title: Vim 插件 EasyGrep 全局搜索文件
 date: 2017-10-13 14:19:15
-tags: [vim, grep]
+tags: [vim, grep, 搜索]
 ---
 
 关于在 Vim 中使用 Grep 做全局搜索，我在文章[Vim 高级功能 vimgrep 全局搜索文件](/2017/10/13/vim-grep)中有介绍，
@@ -20,7 +20,7 @@ $ git clone https://github.com/dkprice/vim-easygrep.git
 ### Vundle
 修改 `~/.vimrc`
 ```bash
-Plugin 'dkprice/vim-easygrep.git'
+Plugin 'dkprice/vim-easygrep'
 ```
 在 Vim 中运行
 ```bash

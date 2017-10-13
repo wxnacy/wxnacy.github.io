@@ -9,14 +9,14 @@
   <title>窗口管理工具 Tmux | wxnacy 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Tmux 是一个终端复用器: 可以激活多个终端或窗口, 在每个终端都可以单独访问，每一个终端都可以访问，运行和控制各自的程序.tmux 类似于screen，可以关闭窗口将程序放在后台运行，需要的时候再重新连接。">
-<meta name="keywords" content="linux,mac">
+<meta name="keywords" content="linux,mac,tmux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="窗口管理工具 Tmux">
 <meta property="og:url" content="http://wxnacy.com/2017/09/24/tmux/index.html">
 <meta property="og:site_name" content="wxnacy 博客">
 <meta property="og:description" content="Tmux 是一个终端复用器: 可以激活多个终端或窗口, 在每个终端都可以单独访问，每一个终端都可以访问，运行和控制各自的程序.tmux 类似于screen，可以关闭窗口将程序放在后台运行，需要的时候再重新连接。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-09-25T01:34:25.000Z">
+<meta property="og:updated_time" content="2017-10-13T06:07:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="窗口管理工具 Tmux">
 <meta name="twitter:description" content="Tmux 是一个终端复用器: 可以激活多个终端或窗口, 在每个终端都可以单独访问，每一个终端都可以访问，运行和控制各自的程序.tmux 类似于screen，可以关闭窗口将程序放在后台运行，需要的时候再重新连接。">
@@ -204,16 +204,7 @@
 <p>Mac 终端管理神器 iTerm 也可以很好的多标签页面和分割窗口工作，<br>而 Tmux 最大的好处是可以离线后可以储存窗口布局和使用状态，在 SSH 环境下尤其有帮助</p>
 <h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><h3><span id="mac">Mac</span><a href="#mac" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install tmux</div></pre></td></tr></table></figure>
 <h3><span id="centos">Centos</span><a href="#centos" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yum install tmux</div></pre></td></tr></table></figure>
-<h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><!-- 命令行                                          | 快捷键 | 解释 -->
-<!-- -----                                         | -----  | ----- -->
-<!-- tmux [new -s session-name]                    |        | 创建session，并命名，默认创建一个无名会话 -->
-<!-- tmux rename-session [-t target-name] new-name | $      | 修改session名字，-t target-name 不是必传，默认当前链接 session -->
-<!-- tmux (attach, a, at) [-t session-name]        |        | 打开指定session，默认上次访问会话 -->
-<!-- tmux switch -t <session_name>                 |        | 转换到指定session -->
-<!-- tmux (list-sessions, ls)                      | s      | 列出所有session -->
-<!-- tmux detach                                   | d      | 退出当前session -->
-<!-- tmux kill-session [-t session-name]           |        | 删除指定会话，默认删除上次访问会话 -->
-<h3><span id="session">Session</span><a href="#session" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">tmux [new -s session-name]                      <span class="comment"># 创建session，并命名，默认创建一个无名会话</span></div><div class="line">tmux rename-session [-t target-name] new-name   <span class="comment"># 修改session名字，-t target-name 不是必传，默认当前链接 session</span></div><div class="line">tmux (attach, a, at) [-t session-name]          <span class="comment"># 打开指定session，默认上次访问会话</span></div><div class="line">tmux switch -t &lt;session_name&gt;                   <span class="comment"># 转换到指定session</span></div><div class="line">tmux (list-sessions, ls)                        <span class="comment"># 列出所有session</span></div><div class="line">tmux detach                                     <span class="comment"># 退出当前session</span></div><div class="line">tmux <span class="built_in">kill</span>-session [-t session-name]             <span class="comment"># 删除指定会话，默认删除上次访问会话</span></div></pre></td></tr></table></figure>
+<h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><h3><span id="session">Session</span><a href="#session" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">tmux [new -s session-name]                      <span class="comment"># 创建session，并命名，默认创建一个无名会话</span></div><div class="line">tmux rename-session [-t target-name] new-name   <span class="comment"># 修改session名字，-t target-name 不是必传，默认当前链接 session</span></div><div class="line">tmux (attach, a, at) [-t session-name]          <span class="comment"># 打开指定session，默认上次访问会话</span></div><div class="line">tmux switch -t &lt;session_name&gt;                   <span class="comment"># 转换到指定session</span></div><div class="line">tmux (list-sessions, ls)                        <span class="comment"># 列出所有session</span></div><div class="line">tmux detach                                     <span class="comment"># 退出当前session</span></div><div class="line">tmux <span class="built_in">kill</span>-session [-t session-name]             <span class="comment"># 删除指定会话，默认删除上次访问会话</span></div></pre></td></tr></table></figure>
 <h3><span id="windows">windows</span><a href="#windows" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">tmux new-window                             <span class="comment"># 创建一个新的 window</span></div><div class="line">tmux select-window -t (0-9)                 <span class="comment"># 根据索引转到该 window</span></div><div class="line">tmux rename-window                          <span class="comment"># 重命名当前 window</span></div><div class="line">tmux <span class="built_in">kill</span>-window [-t window-name]           <span class="comment"># 删除窗口</span></div></pre></td></tr></table></figure>
 <h3><span id="panes">Panes</span><a href="#panes" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">tmux split-window        <span class="comment"># 将 window 垂直划分为两个 pane</span></div><div class="line">tmux split-window -h     <span class="comment"># 将 window 水平划分为两个 pane</span></div><div class="line">tmux swap-pane -[UDLR]   <span class="comment"># 在指定的方向交换 pane</span></div><div class="line">tmux select-pane -[UDLR] <span class="comment"># 在指定的方向选择下一个 pane</span></div><div class="line">tmux select-pane -t :.+  <span class="comment"># 选择按数字顺序的下一个 pane</span></div></pre></td></tr></table></figure>
 <h3><span id="qi-ta">其他</span><a href="#qi-ta" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">tmux list-keys</div><div class="line"><span class="comment"># 列出所有可以的快捷键和其运行的 tmux 命令</span></div><div class="line"></div><div class="line">tmux list-commands</div><div class="line"><span class="comment"># 列出所有的 tmux 命令及其参数</span></div><div class="line"></div><div class="line">tmux info</div><div class="line"><span class="comment"># 流出所有的 session, window, pane, 运行的进程号，等。</span></div><div class="line"></div><div class="line">tmux <span class="built_in">source</span>-file ~/.tmux.conf</div><div class="line"><span class="comment"># 重新加载当前的 tmux 配置（基于一个默认的 tmux 配置）</span></div></pre></td></tr></table></figure>
@@ -246,6 +237,10 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">mac</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tmux</a>
         		</li>
       		
 		</ul>
@@ -441,19 +436,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -465,11 +456,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">mac</a>
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -477,7 +468,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">grep</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -485,7 +488,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -497,19 +508,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">expect</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
