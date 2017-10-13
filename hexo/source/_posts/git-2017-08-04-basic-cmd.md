@@ -3,7 +3,9 @@ title: Git 常用命令
 date: 2017-08-04
 tags: [git]
 ---
+> 有这些命令就够了
 
+<!-- more -->
 <!-- toc -->
 ## ssh-key
 ```bash

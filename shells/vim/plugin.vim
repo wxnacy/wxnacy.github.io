@@ -228,12 +228,12 @@ nnoremap <Leader>ep :lprevious<cr>
 "===============================
 let g:EasyMotion_smartcase = 1
 "let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
-map <Leader><leader>h <Plug>(easymotion-linebackward)
+map <Leader><Leader>h <Plug>(easymotion-linebackward)
 map <Leader><Leader>j <Plug>(easymotion-j)
 map <Leader><Leader>k <Plug>(easymotion-k)
-map <Leader><leader>l <Plug>(easymotion-lineforward)
+map <Leader><Leader>l <Plug>(easymotion-lineforward)
 " 重复上一次操作, 类似repeat插件, 很强大
-map <Leader><leader>. <Plug>(easymotion-repeat)
+map <Leader><Leader>. <Plug>(easymotion-repeat)
 
 "===============================
 " expand-region
@@ -325,3 +325,10 @@ highlight link multiple_cursors_visual Visual
 " ack 配置
 "===============================
 " let g:ackprg = 'ag --nogroup --nocolor --column'
+nmap <Leader><Leader>a :Ack<space>-i<space>
+
+"===============================
+" Ctrlsf 配置
+"===============================
+nmap <Leader><Leader>c :CtrlSF<space>
+
