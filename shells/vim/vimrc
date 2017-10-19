@@ -100,25 +100,82 @@ set mouse=a       				"启用鼠标"
 "==============================
 " 修改快捷键
 "==============================
-map <Leader>sa ggVG             " 选中全部
-map <Leader>q :q<CR>            " 快速推出
-map <Leader>w :w<CR>            " 快速保存
-map <Leader>wq :wq<CR>          " 快速保存推出
+" 快速打开 vimrc文件
+nnoremap <Leader>vw :vsp ~/.vim/vimrc<CR>
+nnoremap <Leader>vs :source $MYVIMRC<CR>
+" 选中全部
+nnoremap <Leader>sa ggVG
+" 快速推出
+nnoremap <Leader>q :q<CR>
+" 快速保存
+nnoremap <Leader>w :w<CR>
+" 快速保存推出
+nnoremap <Leader>wq :wq<CR>
+" 快速返回常用模式
+inoremap jk <esc>
+vnoremap jk <esc>
+" 快速查看 messages
+nnoremap <Leader>vm :messages<CR>
 " 使用 <C-hjkl> 进行移动窗口，不必输入 w
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-nmap <Leader>nh :nohls<CR>      " 常规模式下单行右移
-nmap <Leader>! :!
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+" 去掉高亮
+nnoremap <Leader>nh :nohls<CR>
 " 模拟IDE<tab>键
-nmap <tab> V>                   " 常规模式下单行右移
-nmap <s-tab> V<                 " 常规模式下单行左移
-vmap <tab> >gv                  " 可视化模式下选中左移
-vmap <s-tab> <gv                  " 可视化模式下选中右移
+" 单行的缩紧退回和选中模式下的缩进退回
+nnoremap <tab> V>
+nnoremap <S-tab> V<
+vnoremap <tab> >gv
+vnoremap <S-tab> <gv
+" 上下移动文本
+nnoremap <Leader>k ddkP
+nnoremap <Leader>j ddp
+vnoremap <Leader>k dkP
+vnoremap <Leader>j dp
 
-cmap <C-a> <Home>
-cmap <C-e> <End>
+" 插入模式快速移动到行首和行尾
+nnoremap <C-a> I
+nnoremap <C-e> A
+inoremap <C-a> <esc>I
+inoremap <C-e> <esc>A
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+
+" 复制和系统剪贴板交互
+nnoremap <C-y> "+Y
+vnoremap <C-y> "+y
+
+" 快速添加成对标签
+" nnoremap <Leader>" eb<esc>i"<esc>ea"<esc>
+" nnoremap <Leader>" viw<esc>a"<esc>bi"<esc>lel
+nnoremap <Leader>" viw<esc>bi"<esc>ea"<esc>
+nnoremap <Leader>' viw<esc>bi'<esc>ea'<esc>
+nnoremap <Leader>[ viw<esc>bi[<esc>ea]<esc>
+nnoremap <Leader>{ viw<esc>bi{<esc>ea}<esc>
+nnoremap <Leader>( viw<esc>bi(<esc>ea)<esc>
+vnoremap <Leader>" da""<esc>hp
+vnoremap <Leader>' da''<esc>hp
+vnoremap <Leader>( da()<esc>hp
+vnoremap <Leader>{ da{}<esc>hp
+vnoremap <Leader>[ da[]<esc>hp
+nnoremap <Leader><Leader>" <s-i>"<esc><s-a>"<esc>
+nnoremap <Leader><Leader>' <s-i>'<esc><s-a>'<esc>
+nnoremap <Leader><Leader>[ <s-i>[<esc><s-a>]<esc>
+nnoremap <Leader><Leader>{ <s-i>{<esc><s-a>}<esc>
+nnoremap <Leader><Leader>( <s-i>(<esc><s-a>)<esc>
+
+"==============================
+" 快速输入
+"==============================
+iabbrev mid 132201199108297010
+iabbrev pyb #!/user/bin/env python<cr>
+            \# -*- coding:utf-8 -*-<cr>
+            \# Author: wxnacy<cr>
+            \# Email: wxnacy@gmail.com<cr>
+            \# Description:<cr>
+            \<cr><delete>
 
 
 " if exists('$TMUX')
@@ -134,6 +191,7 @@ autocmd FileType python set tabstop=4 shiftwidth=4 textwidth=79 expandtab ai
 autocmd FileType html set tabstop=2 shiftwidth=2 expandtab ai
 autocmd BufNewFile *.py exec ":call NewPyFile()"
 function! NewPyFile()
+    echom 'new py file'
     if &filetype == 'python'
         call setline(1, "\#!/usr/bin/env python")
         call append(1, "\# -*- coding:utf-8 -*-")
