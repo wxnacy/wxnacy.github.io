@@ -46,7 +46,7 @@ nmap <F4> :YcmDiags<CR>
 "===============================
 let g:quickrun_config = {
 \   "_" : {
-\       "outputter" : "message",
+\       "outputter" : "loclist",
 \   },
 \}
 let g:quickrun_no_default_key_mappings = 1

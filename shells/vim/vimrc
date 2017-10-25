@@ -16,6 +16,10 @@ set nocompatible				"去掉对vi的兼容，让vim运行在完全模式下
 syntax on    					"开启语法高亮"
 set history=2003                "记录VIM历史操作的条数
 set autoread					"文件在vim外修改过自动重新载入
+au CursorHold,CursorHoldI * checktime
+" au FocusGained,BufEnter * :silent! checktime
+" au FocusLost,WinLeave * :silent! w
+" au FileChangedShell * echo "Warning: File changed on disk"
 set magic                       "magic (\m)：除了 $ . * ^ 之外其他元字符都要加反斜杠。nomagic (\M)：除了 $ ^ 之外其他元字符都要加反斜杠。
 set title
 set nobackup                    "去掉编辑文件时的备份
@@ -102,7 +106,11 @@ set mouse=a       				"启用鼠标"
 "==============================
 " 快速打开 vimrc文件
 nnoremap <Leader>vw :vsp ~/.vim/vimrc<CR>
-nnoremap <Leader>vs :source $MYVIMRC<CR>
+nnoremap <Leader>vs :source $MYVIMRC<CR>:nohls<CR>
+nnoremap <Leader>mw :vsp ~/VimProjects/vim-mysql/plugin/mysql.vim<CR>
+nnoremap <Leader>ms :source ~/VimProjects/vim-mysql/plugin/mysql.vim<CR>
+" 重新加载文件
+" nnoremap <Leader>ar :e<CR>
 " 选中全部
 nnoremap <Leader>sa ggVG
 " 快速推出
@@ -142,6 +150,13 @@ inoremap <C-a> <esc>I
 inoremap <C-e> <esc>A
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
+" 插入模式快速左右移动一格
+inoremap <Leader>l <esc>la
+inoremap <Leader>h <esc>i
+inoremap <Leader>j <esc>ja
+inoremap <Leader>k <esc>ka
+" 插入模式右删除一格
+inoremap <C-l> <esc>lxi
 
 " 复制和系统剪贴板交互
 nnoremap <C-y> "+Y
@@ -175,7 +190,7 @@ iabbrev pyb #!/user/bin/env python<cr>
             \# Author: wxnacy<cr>
             \# Email: wxnacy@gmail.com<cr>
             \# Description:<cr>
-            \<cr><delete>
+            \<cr>
 
 
 " if exists('$TMUX')
@@ -184,14 +199,25 @@ iabbrev pyb #!/user/bin/env python<cr>
 
 
 
+autocmd FileType vim setlocal foldmethod=marker
 "==============================
 " Python 工作环境
 "==============================
-autocmd FileType python set tabstop=4 shiftwidth=4 textwidth=79 expandtab ai
-autocmd FileType html set tabstop=2 shiftwidth=2 expandtab ai
-autocmd BufNewFile *.py exec ":call NewPyFile()"
+" Python 工作环境 ------------- {{{
+augroup pythonGroup
+    autocmd!
+    autocmd FileType python set tabstop=4 shiftwidth=4 textwidth=79 expandtab ai
+
+    autocmd FileType python :iabbrev <buffer> main if __name__ == "__main__":<cr>
+    autocmd FileType python :iabbrev <buffer> fh #!/user/bin/env python<cr>
+                                                \# -*- coding:utf-8 -*-<cr>
+                                                \# Author: wxnacy<cr>
+                                                \# Email: wxnacy@gmail.com<cr>
+                                                \# Description:<cr>
+                                                \<cr>
+    autocmd BufNewFile *.py exec ":call NewPyFile()"
+augroup END
 function! NewPyFile()
-    echom 'new py file'
     if &filetype == 'python'
         call setline(1, "\#!/usr/bin/env python")
         call append(1, "\# -*- coding:utf-8 -*-")
@@ -204,6 +230,7 @@ function! NewPyFile()
     normal o
     normal o
 endfunc
+" }}}
 
 "===============================
 " ruby 工作环境
@@ -227,5 +254,6 @@ endfunc
 "===============================
 " javascript 工作环境
 "==============================
+autocmd FileType html set tabstop=2 shiftwidth=2 expandtab ai
 " autocmd FileType javascript set tabstop=2 shiftwidth=2 expandtab ai
 

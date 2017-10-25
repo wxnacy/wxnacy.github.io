@@ -18,10 +18,10 @@ if __name__ == '__main__':
 
     path = '{}/doc/{}'.format(os.getcwd(),'index.md')
 
-    #  with open(path) as f:
+    #  with open(path) as f:jjjdd
 
         #  res = m(f.read())
         #  print(res)
     print(utils.get_random_str(3))
-    print(os.getenv('hello'))
-    print(os.getenv('FLASK_CONFIG'))
+    print(os.getenv('helloddd'))
+    print(os.getenv('FLASK_CONFIGklllll'))
