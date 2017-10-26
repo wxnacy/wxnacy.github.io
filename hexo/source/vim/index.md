@@ -10,6 +10,8 @@ date: 2017-09-20 18:02:20
 - [Vim 高级功能 vimgrep 全局搜索文件](/2017/10/13/vim-grep)
 
 ## 插件篇
+### 我的作品
+- [Vim 插件 vim-mysql 快速运行 sql](https://github.com/wxnacy/vim-mysql)
 ### 插件管理
 - [Vim 插件 pathogen 插件管理](/2017/09/20/vim-plugin-pathogen)
 ### 功能

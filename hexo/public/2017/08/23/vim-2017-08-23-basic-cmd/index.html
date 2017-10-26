@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="wxnacy 博客">
 <meta property="og:description" content="程序员一定要学的编辑器 vim">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-10-12T07:20:51.000Z">
+<meta property="og:updated_time" content="2017-10-21T13:51:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vim 基础命令">
 <meta name="twitter:description" content="程序员一定要学的编辑器 vim">
@@ -199,12 +199,13 @@
 </li>
 <li><a href="#kuai-ti-huan">快替换</a></li>
 <li><a href="#duo-chuang-kou">多窗口</a></li>
-<li><a href="#kuai-su-xuan-zhong-duan-luo">快速选中段落</a></li>
+<li><a href="#operator-pending-ying-she">Operator-Pending映射</a></li>
 <li><a href="#hong">宏</a><ul>
 <li><a href="#cao-zuo">操作</a></li>
 </ul>
 </li>
 <li><a href="#yu-xi-tong-jian-qie-ban-jiao-hu">与系统剪切版交互</a></li>
+<li><a href="#qi-ta-cao-zuo">其他操作</a></li>
 <li><a href="#can-kao-wen-xian">参考文献</a></li>
 </ul>
 <!-- tocstop -->
@@ -231,9 +232,9 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">:files      <span class="comment"># 再打开文件后一般模式下使用改名了查看有几个文件</span></div><div class="line"></div><div class="line">:files</div><div class="line">  1 %a   <span class="string">"hosts"</span>                        line 1      <span class="comment"># %a代表当前编辑的文件</span></div><div class="line">  2      <span class="string">"host2"</span>                        line 0</div><div class="line"></div><div class="line"><span class="comment"># 使用gg切换到第一行，使用4yy复制前四行</span></div><div class="line">:n          <span class="comment"># 指令该命令编辑下一个文件</span></div><div class="line"></div><div class="line"><span class="comment"># 使用p将刚才复制的内容粘贴到该文件中使用:q退出编辑并查看host2会发现刚才的内容已经复制过来了</span></div></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">v	        字元選擇，會將游標經過的地方反白選擇！</div><div class="line">V	        列選擇，會將游標經過的列反白選擇！</div><div class="line">[Ctrl]+v    區塊選擇，可以用長方形的方式選擇資料</div><div class="line">y	        將反白的地方複製起來</div><div class="line">d	        將反白的地方刪除掉</div><div class="line">p	        將剛剛複製的區塊，在游標所在處貼上！</div></pre></td></tr></table></figure>
 <h2><span id="kuai-ti-huan">快替换</span><a href="#kuai-ti-huan" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[Ctrl] + v 选中块</div><div class="line">c  输入替换文字</div><div class="line">&lt;Esc&gt; 完成替换</div></pre></td></tr></table></figure>
-<h2><span id="duo-chuang-kou">多窗口</span><a href="#duo-chuang-kou" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">:sp [filename]  <span class="comment"># 垂直分割屏幕，filename 是想要打开的文件，默认当前文档</span></div><div class="line">:vsp [filename] <span class="comment"># 水平分割屏幕</span></div><div class="line">[ctrl]+w+↓/j    <span class="comment"># 按键的按法是：先按下 [ctrl] 不放， 再按下 w 后放开所有的按键，然后再按下 j (或向下箭头键)，则光标可移动到下方的窗口。</span></div><div class="line">[ctrl]+w+↑/k    <span class="comment"># 同上，不过光标移动到上面的窗口。</span></div><div class="line">[ctrl]+w+q      <span class="comment"># 其实就是 :q 结束离开啦！ 举例来说，如果我想要结束下方的窗口，那么利用 [ctrl]+w+↓ 移动到下方窗口后，按下 :q 即可离开， 也可以按下 [ctrl]+w+q 啊！</span></div></pre></td></tr></table></figure>
+<h2><span id="duo-chuang-kou">多窗口</span><a href="#duo-chuang-kou" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">:sp [filename]  <span class="comment"># 垂直分割屏幕，filename 是想要打开的文件，默认当前文档</span></div><div class="line">:vsp [filename] <span class="comment"># 水平分割屏幕</span></div><div class="line">[ctrl]+w+↓/j    <span class="comment"># 按键的按法是：先按下 [ctrl] 不放， 再按下 w 后放开所有的按键，然后再按下 j (或向下箭头键)，则光标可移动到下方的窗口。</span></div><div class="line">[ctrl]+w+↑/k    <span class="comment"># 同上，不过光标移动到上面的窗口。</span></div><div class="line">[ctrl]+w+q      <span class="comment"># 其实就是 :q 结束离开啦！ 举例来说，如果我想要结束下方的窗口，那么利用 [ctrl]+w+↓ 移动到下方窗口后，按下 :q 即可离开， 也可以按下 [ctrl]+w+q 啊！</span></div><div class="line"></div><div class="line">ctrl_w + r: 窗口本身, 不是鼠标指针顺时针 (向下, 向右 移动), R : 则是逆时针反方向(向上, 向左)移动.</div><div class="line">ctrl_w+x: 左右上下对应位置的窗口 对调. 要注意窗口必须是 对应的, 如果不对应将无法对换, 比如左边一个大窗口, 右边有两个小的 子窗口, 则左右不能互换.</div></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># set compatible 就是让 vim 关闭所有扩展的功能，尽量模拟 vi 的行为。</span></div><div class="line">但这样就不应用 vim 的很多强大功能，所以一般没有什么特殊需要的话（比如执行很老的 vi 脚本），都要在 vim 的配置开始，写上 <span class="built_in">set</span> nocompatible，关闭兼容模式。由于这个选项是最最基础的选项，会连带很多其它选项发生变动（称作副作用），所以它必需是第一个设定的选项。</div><div class="line"><span class="built_in">set</span> nocompatible</div></pre></td></tr></table></figure>
-<h2><span id="kuai-su-xuan-zhong-duan-luo">快速选中段落</span><a href="#kuai-su-xuan-zhong-duan-luo" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vip         <span class="comment"># vip很好记</span></div></pre></td></tr></table></figure>
+<h2><span id="operator-pending-ying-she">Operator-Pending映射</span><a href="#operator-pending-ying-she" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">vip         <span class="comment"># vip很好记</span></div><div class="line">viw         <span class="comment"># 快速选中当前单词</span></div><div class="line">vi(         <span class="comment"># 选择括号内的文字</span></div><div class="line">vt,         <span class="comment"># 选择到下一个逗号</span></div></pre></td></tr></table></figure>
 <h2><span id="hong">宏</span><a href="#hong" class="header-anchor"></a></h2><p>vim有个非常厉害的功能叫<strong>宏</strong>，它可以将你的操作进行宏录制，放到vim寄存器中，并按照你想要的方式播放出来</p>
 <h3><span id="cao-zuo">操作</span><a href="#cao-zuo" class="header-anchor"></a></h3><ul>
 <li>首先准备一个文件，第一行为数字1</li>
@@ -243,6 +244,7 @@
 <li>当按下 100@@ 时，宏会重复播放100次上次的播放记录，自动生成104行数据</li>
 </ul>
 <h2><span id="yu-xi-tong-jian-qie-ban-jiao-hu">与系统剪切版交互</span><a href="#yu-xi-tong-jian-qie-ban-jiao-hu" class="header-anchor"></a></h2><p>加上 <code>&quot;+</code> 即可<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="string">"+yy</span></div><div class="line"><span class="string">"</span>+Y</div><div class="line">v<span class="string">"+y</span></div></pre></td></tr></table></figure></p>
+<h2><span id="qi-ta-cao-zuo">其他操作</span><a href="#qi-ta-cao-zuo" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">:inoremap &lt;esc&gt; &lt;nop&gt;   <span class="comment"># 使&lt;esc&gt;失效</span></div><div class="line">g_  <span class="comment"># 移动到当前行（译注：等号组成的行）的最后一个非空字符。</span></div></pre></td></tr></table></figure>
 <h2><span id="can-kao-wen-xian">参考文献</span><a href="#can-kao-wen-xian" class="header-anchor"></a></h2><ul>
 <li><a href="http://cn.linux.vbird.org/linux_basic/0310vi.php" target="_blank" rel="external">vim 程式编辑器</a></li>
 </ul>
@@ -278,11 +280,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/23/python-2017-08-23-scrapy-basic/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/08/28/linux-2017-08-28-ln/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Python Scrapy 入门教程
+          Linux 硬链接与软连接的增删查
         
       </div>
     </a>
@@ -316,7 +318,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">三种模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text">一般指令模式 (command mode)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.2.</span> <span class="toc-text">編輯模式 (insert mode)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.3.</span> <span class="toc-text">指令列命令模式 (command-line mode)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">按鍵說明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text">移动光标的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text">查找与替换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.3.</span> <span class="toc-text">删除、复制和黏贴</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.4.</span> <span class="toc-text">进入插入或替换的编辑模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.5.</span> <span class="toc-text">指令列模式的保存、离开等指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.6.</span> <span class="toc-text">vim 环境的变更</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">额外功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.1.</span> <span class="toc-text">vim 的保存文件、恢复与打开时的警告信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.2.</span> <span class="toc-text">多文件编辑</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">快替换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">多窗口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">快速选中段落</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">7.</span> <span class="toc-text">宏</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">7.1.</span> <span class="toc-text">操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">8.</span> <span class="toc-text">与系统剪切版交互</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">9.</span> <span class="toc-text">参考文献</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">三种模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text">一般指令模式 (command mode)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.2.</span> <span class="toc-text">編輯模式 (insert mode)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.3.</span> <span class="toc-text">指令列命令模式 (command-line mode)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">按鍵說明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text">移动光标的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text">查找与替换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.3.</span> <span class="toc-text">删除、复制和黏贴</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.4.</span> <span class="toc-text">进入插入或替换的编辑模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.5.</span> <span class="toc-text">指令列模式的保存、离开等指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.6.</span> <span class="toc-text">vim 环境的变更</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">额外功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.1.</span> <span class="toc-text">vim 的保存文件、恢复与打开时的警告信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.2.</span> <span class="toc-text">多文件编辑</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">快替换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">多窗口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">Operator-Pending映射</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">7.</span> <span class="toc-text">宏</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">7.1.</span> <span class="toc-text">操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">8.</span> <span class="toc-text">与系统剪切版交互</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">9.</span> <span class="toc-text">其他操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">10.</span> <span class="toc-text">参考文献</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -471,15 +473,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -495,19 +497,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">grep</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ansible</a>
+                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ansible</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -531,11 +533,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
