@@ -4,6 +4,8 @@ date: 2017-09-25 10:40:43
 tags: [vim]
 ---
 
+[专辑：Vim 练级手册](/vim)
+
 > [vim-surround](https://github.com/tpope/vim-surround) 可以给单词或句子加上各种标签符号
 
 <!-- more -->

@@ -4,6 +4,8 @@ date: 2017-09-23 21:27:02
 tags: [vim]
 ---
 
+[专辑：Vim 练级手册](/vim)
+
 [quickrun](https://github.com/wklken/k-vim) 可以快速运行 ***.py/.sh*** 等常见程序
 <!-- more -->
 <!-- toc -->

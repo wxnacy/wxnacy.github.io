@@ -4,6 +4,8 @@ date: 2017-09-25 14:41:18
 tags: [vim]
 ---
 
+[专辑：Vim 练级手册](/vim)
+
 [vim-airline](https://github.com/bling/vim-airline) 状态栏增强显示
 先来看效果
 ![airline](/images/airline.png)

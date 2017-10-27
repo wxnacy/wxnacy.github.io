@@ -4,6 +4,8 @@ date: 2017-09-23 21:41:31
 tags: [vim]
 ---
 
+[专辑：Vim 练级手册](/vim)
+
 [expand-region](https://github.com/terryma/vim-expand-region) 可以快速选中临近区域
 
 <!-- more -->

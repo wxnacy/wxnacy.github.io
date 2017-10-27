@@ -4,6 +4,8 @@ date: 2017-09-25 11:36:18
 tags: [vim]
 ---
 
+[专辑：Vim 练级手册](/vim)
+
 
 在 IDE 开发代码时，***xml, html*** 等成对标签都可以自动补全
 在 Vim 中想要达到这样的效果需要借助插件 [closetag](https://github.com/docunext/closetag.vim)

@@ -4,6 +4,8 @@ date: 2017-09-25 15:54:43
 tags: [vim]
 ---
 
+[专辑：Vim 练级手册](/vim)
+
 [vim-colors-solarized](https://github.com/altercation/vim-colors-solarized) 不用多说现在最流行的 Vim 主题
 
 <!-- more -->

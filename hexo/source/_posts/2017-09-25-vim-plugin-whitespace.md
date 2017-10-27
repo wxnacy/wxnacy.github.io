@@ -4,6 +4,8 @@ date: 2017-09-25 11:17:57
 tags: [vim]
 ---
 
+[专辑：Vim 练级手册](/vim)
+
 [vim-trailing-whitespace](https://github.com/bronson/vim-trailing-whitespace) 会将行尾空格标红，并可以一键去掉行尾的空格，python 开发和强迫症必备
 
 <!-- more -->

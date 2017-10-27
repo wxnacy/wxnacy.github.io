@@ -4,6 +4,8 @@ date: 2017-10-13 14:19:15
 tags: [vim, grep, 搜索]
 ---
 
+[专辑：Vim 练级手册](/vim)
+
 关于在 Vim 中使用 Grep 做全局搜索，我在文章[Vim 高级功能 vimgrep 全局搜索文件](/2017/10/13/vim-grep)中有介绍，
 但是命令行和手动打开搜索结果都让人感觉很不方便，[EasyGrep](https://github.com/dkprice/vim-easygrep) 应运而生，
 它基于 vimgrep 进行封装，让搜索变得更简单，EasyGrep 有快捷键和命令行两种使用方式

@@ -4,6 +4,8 @@ date: 2017-09-25 17:49:06
 tags: [vim]
 ---
 
+[专辑：Vim 练级手册](/vim)
+
 [nerdcommenter](https://github.com/scrooloose/nerdcommenter) 快速注释/解开注释
 Vim 必备的插件
 

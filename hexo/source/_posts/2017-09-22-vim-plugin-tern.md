@@ -4,6 +4,8 @@ date: 2017-09-22 18:14:03
 tags: [vim, javascript]
 ---
 
+[专辑：Vim 练级手册](/vim)
+
 在使用 Vim 开发的过程中，发现 仅仅使用 ***YouCompleteMe*** 并不能很好的支持 JavaScript 的自动补全
 后来发现 ***Tern*** 可以跟 YouCompleteMe 很好的配合来完成自动补全
 下面我来介绍 Tern 在 Vim 中的插件 [tern_for_vim](https://github.com/ternjs/tern_for_vim.git)

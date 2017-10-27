@@ -4,6 +4,8 @@ date: 2017-09-25 11:04:11
 tags: [vim]
 ---
 
+[专辑：Vim 练级手册](/vim)
+
 成熟健壮的 IDE 都有本地代码回滚的功能，
 [gundo](https://github.com/sjl/gundo.vim) 也可以帮助 Vim 实现查看历史记录和回滚的功能
 

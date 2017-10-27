@@ -4,6 +4,8 @@ date: 2017-09-25 10:40:59
 tags: [vim]
 ---
 
+[专辑：Vim 练级手册](/vim)
+
 > [vim-repeat](https://github.com/tpope/vim-repeat) 重复一个插件的操作
 
 <!-- more -->

@@ -4,6 +4,8 @@ date: 2017-09-23 20:09:57
 tags: [vim]
 ---
 
+[专辑：Vim 练级手册](/vim)
+
 > Vim 中的 find
 
 <!-- more -->

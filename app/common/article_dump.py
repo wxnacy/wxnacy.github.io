@@ -60,8 +60,26 @@ def dump():
         rf.close()
     pass
 
+def batch_add_text():
+    vim_list = list(filter(lambda x: 'vim' in x, POST_LIST))
+    print(len(vim_list), vim_list)
+
+    for vim_name in vim_list:
+        p = '{}{}'.format(HEXO_HOME, vim_name)
+        content = '\n[专辑：Vim 练级手册](/vim)\n'
+        f = open(p, 'r')
+        text = f.readlines()
+        print(text)
+        text.insert(5, content)
+
+        w = open(p, 'w')
+        w.writelines(text)
+        w.flush()
+        w.close()
+        print(p)
+
+
 
 
 if __name__ == '__main__':
-    dump()
-
+    batch_add_text()

@@ -4,6 +4,8 @@ date: 2017-10-13 14:19:26
 tags: [vim, 搜索]
 ---
 
+[专辑：Vim 练级手册](/vim)
+
 简单项目使用 vimgrep 或 EasyGrep 已经足够完成搜索任务，
 但是在一些大型项目中 grep 的搜索速度就跟不上了，
 这时候可以使用 [Ack](https://github.com/mileszs/ack.vim) 替代它完成搜索任务

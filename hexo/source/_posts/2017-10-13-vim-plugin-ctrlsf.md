@@ -4,6 +4,8 @@ date: 2017-10-13 14:19:35
 tags: [vim, 搜索]
 ---
 
+[专辑：Vim 练级手册](/vim)
+
 在 Vim 中搜索文件，使用 Ack 或 EasyGrep 已经足足的够了，
 但是如果我们想把搜索做的更像 IDE ，比如把搜索命中行的上下几行也都显示出来那就更完美了，
 这时候我们需要用到 [CtrlSF](https://github.com/dyng/ctrlsf.vim)

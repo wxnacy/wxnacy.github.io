@@ -4,6 +4,8 @@ date: 2017-09-22 18:14:28
 tags: [vim, python, javascript]
 ---
 
+[专辑：Vim 练级手册](/vim)
+
 > Vim 代码补全神器 [YouCompleteMe](https://github.com/Valloric/YouCompleteMe.git)
 
 <!-- more -->
