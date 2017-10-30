@@ -1,2 +1,6 @@
-silent execute "mysql_login"
-execute "grep vim"
+function! HelloWorld()
+    echo 'hello world'
+endfunction
+
+
+call HelloWorld()

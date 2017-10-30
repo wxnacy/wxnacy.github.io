@@ -1,8 +1,9 @@
 "===============================
-" Author: wxnacy
-" Email: wxnacy@gmail.com
-" Create time:
-" Last Modified: 2017-08-27
+" Name: wxnacy's Vim setting
+" Author: wxnacy <wxnacy@gmail.com>
+" URL: https://wxnacy.com
+" Created: 2017-08-27
+" Modified: 2017-10-26
 " Description:
 "===============================
 
@@ -104,6 +105,7 @@ set mouse=a       				"启用鼠标"
 "==============================
 " 修改快捷键
 "==============================
+" 修改快捷键 ================== {{{
 " 快速打开 vimrc文件
 nnoremap <Leader>vw :vsp ~/.vim/vimrc<CR>
 nnoremap <Leader>vs :source $MYVIMRC<CR>:nohls<CR>
@@ -183,6 +185,11 @@ nnoremap <Leader><Leader>[ <s-i>[<esc><s-a>]<esc>
 nnoremap <Leader><Leader>{ <s-i>{<esc><s-a>}<esc>
 nnoremap <Leader><Leader>( <s-i>(<esc><s-a>)<esc>
 
+" 快速在行尾巴插入分号;
+nnoremap <Leader>, mzA;<esc>`z
+inoremap <Leader>, <esc>mzA;<esc>`za
+" }}}
+
 "==============================
 " 快速输入
 "==============================
@@ -209,6 +216,8 @@ autocmd FileType vim setlocal foldmethod=marker
 augroup pythonGroup
     autocmd!
     autocmd FileType python set tabstop=4 shiftwidth=4 textwidth=79 expandtab ai
+    autocmd FileType python setlocal foldmethod=indent
+    autocmd FileType python setlocal foldignore=
 
     autocmd FileType python :iabbrev <buffer> main if __name__ == "__main__":<cr>
     autocmd FileType python :iabbrev <buffer> fh #!/user/bin/env python<cr>
@@ -234,9 +243,10 @@ function! NewPyFile()
 endfunc
 " }}}
 
-"===============================
+"==============================
 " ruby 工作环境
 "==============================
+" ruby 工作环境 --------------- {{{
 autocmd FileType ruby set tabstop=2 shiftwidth=2 expandtab ai
 autocmd BufNewFile *.rb exec ":call NewRbFile()"
 function! NewRbFile()
@@ -252,10 +262,25 @@ function! NewRbFile()
     normal o
     normal o
 endfunc
+" }}}
 
 "===============================
 " javascript 工作环境
 "==============================
+" javascript 工作环境 --------- {{{
+augroup jsGroup
+    autocmd!
+    autocmd FileType javascript setlocal foldmethod=syntax
+    autocmd FileType js setlocal foldmethod=syntax
+    " autocmd FileType javascript setlocal foldmarker="{,}"
+augroup end
 autocmd FileType html set tabstop=2 shiftwidth=2 expandtab ai
+
+" }}}
 " autocmd FileType javascript set tabstop=2 shiftwidth=2 expandtab ai
+"
+" {
+" j
+" }
+"
 
