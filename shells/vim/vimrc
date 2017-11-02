@@ -33,6 +33,7 @@ set t_Co=256
 let mapleader = ';'
 let g:mapleader = ';'
 
+
 " filetype
 filetype on                     "开启文件类型检测
 filetype plugin on              "开启插件的支持
@@ -64,6 +65,7 @@ set showmatch    				"显示匹配的括号"
 set matchtime=1					"设置showmatch的效果时间，默认500ms，现在是100ms
 set cursorline        			"突出显示当前行"
 set cursorcolumn        		"突出显示当前列"
+set colorcolumn=80              "设置某一列高亮"
 
 
 " search
@@ -102,6 +104,9 @@ set scrolloff=5        			"距离顶部和底部5行"
 set backspace=2					"任何情况允许使用退格键删除
 set mouse=a       				"启用鼠标"
 
+" 代码折叠
+set foldlevelstart=99           "默认不折叠"
+set foldmethod=indent           "按照缩紧折叠"
 "==============================
 " 修改快捷键
 "==============================
@@ -109,6 +114,7 @@ set mouse=a       				"启用鼠标"
 " 快速打开 vimrc文件
 nnoremap <Leader>vw :vsp ~/.vim/vimrc<CR>
 nnoremap <Leader>vs :source $MYVIMRC<CR>:nohls<CR>
+nnoremap <Leader>tw :vsp ~/.tmux.conf<CR>
 nnoremap <Leader>mw :vsp ~/VimProjects/vim-mysql/plugin/mysql.vim<CR>
 nnoremap <Leader>ms :source ~/VimProjects/vim-mysql/plugin/mysql.vim<CR>
 " nnoremap <Leader>lw :vsp ~/VimProjects/vim-linux/plugin/linux.vim<CR>
@@ -146,6 +152,9 @@ nnoremap <Leader>k ddkP
 nnoremap <Leader>j ddp
 vnoremap <Leader>k dkP
 vnoremap <Leader>j dp
+" 文本超出屏幕时左右移动
+nnoremap <Leader>l 79l
+nnoremap <Leader>h 79h
 
 " 插入模式快速移动到行首和行尾
 nnoremap <C-a> I
@@ -194,19 +203,10 @@ inoremap <Leader>, <esc>mzA;<esc>`za
 " 快速输入
 "==============================
 iabbrev mid 132201199108297010
-iabbrev pyb #!/usr/bin/env python<cr>
-            \# -*- coding:utf-8 -*-<cr>
-            \# Author: wxnacy<cr>
-            \# Email: wxnacy@gmail.com<cr>
-            \# Description:<cr>
-            \<cr>
-
 
 " if exists('$TMUX')
   " set term=screen-256color
 " endif
-
-
 
 autocmd FileType vim setlocal foldmethod=marker
 "==============================
@@ -216,6 +216,7 @@ autocmd FileType vim setlocal foldmethod=marker
 augroup pythonGroup
     autocmd!
     autocmd FileType python set tabstop=4 shiftwidth=4 textwidth=79 expandtab ai
+    autocmd FileType python :nnoremap <buffer> <Leader>F :call FormatPy()<cr>
     autocmd FileType python setlocal foldmethod=indent
     autocmd FileType python setlocal foldignore=
 
@@ -241,6 +242,23 @@ function! NewPyFile()
     normal o
     normal o
 endfunc
+
+function! FormatPy()
+    normal 079lF)
+    let b:nc = col('.')
+    if b:nc < 80
+        exec "normal! i\<cr>\<esc>"
+    elseif b:nc == 80
+        if @@ ==# ')'
+            exec "normal! i\<cr>\<esc>"
+        else
+            normal! F,
+            exec "normal! a\<cr>\<esc>"
+        endif
+    endif
+endfunc
+" nnoremap  <Leader>F :call FormatPy()<esc>
+
 " }}}
 
 "==============================
@@ -279,8 +297,12 @@ autocmd FileType html set tabstop=2 shiftwidth=2 expandtab ai
 " }}}
 " autocmd FileType javascript set tabstop=2 shiftwidth=2 expandtab ai
 "
-" {
-" j
-" }
-"
+" markdown 工作环境 ----------- {{{
+augroup mdGroup
+    autocmd!
+    autocmd FileType markdown :iabbrev <buffer> h1 #
+    autocmd FileType markdown :iabbrev <buffer> h2 ##
+    autocmd FileType markdown :iabbrev <buffer> h3 ###
+augroup end
+" }}}
 

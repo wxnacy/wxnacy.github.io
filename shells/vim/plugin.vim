@@ -123,7 +123,7 @@ let g:NERDTreeShowIgnoredStatus = 1
 "===============================
 " gundo 配置
 "===============================
-nnoremap <leader>h :GundoToggle<CR>
+nnoremap <leader>H :GundoToggle<CR>
 
 
 "===============================

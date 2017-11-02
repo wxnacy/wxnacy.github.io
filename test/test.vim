@@ -3,4 +3,5 @@ function! HelloWorld()
 endfunction
 
 
+echo ${tw}
 call HelloWorld()
