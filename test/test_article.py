@@ -27,8 +27,7 @@ if __name__ == '__main__':
     #  categorys = set([o.split('-', 1)[0] for o in file_list])
     #  categorys = list(filter(lambda x: x in CATEGORYS, categorys))
     #  print(categorys)
-    Article.query.filter_by(name='wxnacy', content='sssssssssss', is_del=0,
-            name='').first();
+    Article.query.filter_by(name='wxnacy', content='sssssssssss', is_del=0, name='').first();
     Article.query.filter_by(name='wxnacy', content='sssssssssss', is_del=0).first();
     Article.query.filter_by(name='wxnacy', content='ssssssssssssssss', is_del=0
             ).first();

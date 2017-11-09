@@ -29,6 +29,7 @@ git submodule add --force https://github.com/scrooloose/syntastic shells/vim/bun
 git submodule add --force https://github.com/dkprice/vim-easygrep.git shells/vim/bundle/vim-easygrep                   # 全局搜索插件
 git submodule add --force https://github.com/mileszs/ack.vim.git shells/vim/bundle/ack.vim                             # 全局搜索插件
 git submodule add --force https://github.com/dyng/ctrlsf.vim.git shells/vim/bundle/ctrlsf.vim                          # 搜索增强
+git submodule add --force https://github.com/artur-shaik/vim-javacomplete2.git shells/vim/bundle/vim-javacomplete2     # java 代码不全
 
 
 # work for hexo them

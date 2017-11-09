@@ -123,6 +123,8 @@ nnoremap <Leader>ms :source ~/VimProjects/vim-mysql/plugin/mysql.vim<CR>
 " nnoremap <Leader>ar :e<CR>
 " 选中全部
 nnoremap <Leader>sa ggVG
+" 删除全部
+nnoremap <Leader>da ggdG
 " 快速推出
 nnoremap <Leader>q :q<CR>
 " 快速保存
@@ -217,6 +219,7 @@ augroup pythonGroup
     autocmd!
     autocmd FileType python set tabstop=4 shiftwidth=4 textwidth=79 expandtab ai
     autocmd FileType python :nnoremap <buffer> <Leader>F :call FormatPy()<cr>
+    autocmd FileType python :inoremap <buffer> <Leader>/ """"""<esc>hhi
     autocmd FileType python setlocal foldmethod=indent
     autocmd FileType python setlocal foldignore=
 
@@ -282,19 +285,7 @@ function! NewRbFile()
 endfunc
 " }}}
 
-"===============================
-" javascript 工作环境
-"==============================
-" javascript 工作环境 --------- {{{
-augroup jsGroup
-    autocmd!
-    autocmd FileType javascript setlocal foldmethod=syntax
-    autocmd FileType js setlocal foldmethod=syntax
-    " autocmd FileType javascript setlocal foldmarker="{,}"
-augroup end
 autocmd FileType html set tabstop=2 shiftwidth=2 expandtab ai
-
-" }}}
 " autocmd FileType javascript set tabstop=2 shiftwidth=2 expandtab ai
 "
 " markdown 工作环境 ----------- {{{
@@ -305,4 +296,56 @@ augroup mdGroup
     autocmd FileType markdown :iabbrev <buffer> h3 ###
 augroup end
 " }}}
+" javascript 工作环境 --------- {{{
+augroup jsGroup
+    autocmd!
+    autocmd FileType javascript setlocal foldmethod=syntax
+    autocmd FileType javascript :iabbrev <buffer> print console.log("");<esc>hhi
+    autocmd FileType javascript :iabbrev <buffer> if if(){}<esc>i<cr><esc>k$hi
+    autocmd FileType javascript :iabbrev <buffer> for for(int i = 0; i <; i++)
+                                            \{}<esc>i<cr><esc>k$F;i
+augroup end
+" }}}
+" java 工作环境 --------------- {{{
+augroup javaGroup
+    autocmd!
+    " doc https://github.com/artur-shaik/vim-javacomplete2
+    autocmd BufNewFile *.java exec ":call NewJava()"
+    autocmd FileType java setlocal omnifunc=javacomplete#Complete
+    autocmd FileType java :iabbrev <buffer> class public class{}
+                                            \<esc>i<cr><esc>k$Fsli
+    autocmd FileType java :iabbrev <buffer> main public static void
+                                            \ main(String args[]){}<esc>i<cr>
+    autocmd FileType java :iabbrev <buffer> classm public class{}
+                                            \<esc>i<cr>public static void main
+                                            \(String args[]){}<esc>i<cr>
+                                            \System.out.println("Hello World");
+                                            \<esc>kk$Fsli
+    autocmd FileType java :iabbrev <buffer> sout System.out.println()
+                                            \<esc>i""<esc>i
+    autocmd FileType java :iabbrev <buffer> if if(){}<esc>i<cr><esc>k$hi
+    autocmd FileType java :iabbrev <buffer> for for(int i = 0; i <; i++)
+                                            \{}<esc>i<cr><esc>k$F;i
+augroup end
+function! NewJava()
+    " :h expand
+    let l:name = expand("%:r")
+    call setline(1, "/**")
+    call append(1, " * Author: wxnacy(wxnacy@gmail.com)")
+    call append(2, " */")
+    call append(3, "public class " . l:name . "{")
+    call append(4, "    public static void main(String args[]){")
+    call append(5, '        System.out.println("Hello world");')
+    call append(6, "    }")
+    call append(7, "}")
+endfunc
+" }}}
+" nmap <leader>jI <Plug>(JavaComplete-Imports-AddMissing)
+" nmap <leader>jR <Plug>(JavaComplete-Imports-RemoveUnused)
+" nmap <leader>ji <Plug>(JavaComplete-Imports-AddSmart)
+" nmap <leader>jii <Plug>(JavaComplete-Imports-Add)
 
+" imap <C-j>I <Plug>(JavaComplete-Imports-AddMissing)
+" imap <C-j>R <Plug>(JavaComplete-Imports-RemoveUnused)
+" imap <C-j>i <Plug>(JavaComplete-Imports-AddSmart)
+" imap <C-j>ii <Plug>(JavaComplete-Imports-Add)
