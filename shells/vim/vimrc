@@ -218,30 +218,29 @@ autocmd FileType vim setlocal foldmethod=marker
 " Python 工作环境
 "==============================
 " Python 工作环境 ------------- {{{
-augroup pythonGroup
-    autocmd!
-    autocmd FileType python set tabstop=4 shiftwidth=4 textwidth=79 expandtab ai
-    autocmd FileType python :nnoremap <buffer> <Leader>F :call FormatPy()<cr>
-    autocmd FileType python :inoremap <buffer> <Leader>/ """"""<esc>hhi
-    autocmd FileType python setlocal foldmethod=indent
-    autocmd FileType python setlocal foldignore=
+" augroup pythonGroup
+    " autocmd!
+    " autocmd FileType python set tabstop=4 shiftwidth=4 textwidth=79 expandtab ai
+    " autocmd FileType python :nnoremap <buffer> <Leader>F :call FormatPy()<cr>
+    " autocmd FileType python :inoremap <buffer> <Leader>/ """"""<esc>hhi
+    " autocmd FileType python setlocal foldmethod=indent
+    " autocmd FileType python setlocal foldignore=
 
-    autocmd FileType python :iabbrev <buffer> main if __name__ == "__main__":<cr>
-    autocmd FileType python :iabbrev <buffer> fh #!/user/bin/env python<cr>
-                                                \# -*- coding:utf-8 -*-<cr>
-                                                \# Author: wxnacy<cr>
-                                                \# Email: wxnacy@gmail.com<cr>
-                                                \# Description:<cr>
-                                                \<cr>
-    autocmd BufNewFile *.py exec ":call NewPyFile()"
-augroup END
+    " autocmd FileType python :iabbrev <buffer> main if __name__ == "__main__":<cr>
+    " autocmd FileType python :iabbrev <buffer> fh #!/user/bin/env python<cr>
+                                                " \# -*- coding:utf-8 -*-<cr>
+                                                " \# Author: wxnacy
+                                                " \(wxnacy@gmail.com)<cr>
+                                                " \# Description:<cr>
+                                                " \<cr>
+    " autocmd BufNewFile *.py exec ":call NewPyFile()"
+" augroup END
 function! NewPyFile()
     if &filetype == 'python'
         call setline(1, "\#!/usr/bin/env python")
         call append(1, "\# -*- coding:utf-8 -*-")
-        call append(2, "\# Author: wxnacy")
-        call append(3, "\# Email: wxnacy@gmail.com")
-        call append(4, "\# Description: ")
+        call append(2, "\# Author: wxnacy(wxnacy@gmail.com)")
+        call append(3, "\# Description: ")
     endif
 
     normal G
@@ -264,7 +263,6 @@ function! FormatPy()
     endif
 endfunc
 " nnoremap  <Leader>F :call FormatPy()<esc>
-
 " }}}
 
 "==============================
@@ -277,9 +275,8 @@ function! NewRbFile()
     if &filetype == 'ruby'
         call setline(1, "\#!/usr/bin/env ruby")
         call append(1, "\# -*- coding:utf-8 -*-")
-        call append(2, "\# Author: wxnacy")
-        call append(3, "\# Email: wxnacy@gmail.com")
-        call append(4, "\# Description: ")
+        call append(2, "\# Author: wxnacy(wxnacy@gmail.com)")
+        call append(3, "\# Description: ")
     endif
 
     normal G
@@ -310,26 +307,26 @@ augroup jsGroup
 augroup end
 " }}}
 " java 工作环境 --------------- {{{
-augroup javaGroup
-    autocmd!
+" augroup javaGroup
+    " autocmd!
     " doc https://github.com/artur-shaik/vim-javacomplete2
-    autocmd BufNewFile *.java exec ":call NewJava()"
-    autocmd FileType java setlocal omnifunc=javacomplete#Complete
-    autocmd FileType java :iabbrev <buffer> class public class{}
-                                            \<esc>i<cr><esc>k$Fsli
-    autocmd FileType java :iabbrev <buffer> main public static void
-                                            \ main(String args[]){}<esc>i<cr>
-    autocmd FileType java :iabbrev <buffer> classm public class{}
-                                            \<esc>i<cr>public static void main
-                                            \(String args[]){}<esc>i<cr>
-                                            \System.out.println("Hello World");
-                                            \<esc>kk$Fsli
-    autocmd FileType java :iabbrev <buffer> sout System.out.println()
-                                            \<esc>i""<esc>i
-    autocmd FileType java :iabbrev <buffer> if if(){}<esc>i<cr><esc>k$hi
-    autocmd FileType java :iabbrev <buffer> for for(int i = 0; i <; i++)
-                                            \{}<esc>i<cr><esc>k$F;i
-augroup end
+    " autocmd BufNewFile *.java exec ":call NewJava()"
+    " autocmd FileType java setlocal omnifunc=javacomplete#Complete
+    " autocmd FileType java :iabbrev <buffer> class public class{}
+                                            " \<esc>i<cr><esc>k$Fsli
+    " autocmd FileType java :iabbrev <buffer> main public static void
+                                            " \ main(String args[]){}<esc>i<cr>
+    " autocmd FileType java :iabbrev <buffer> classm public class{}
+                                            " \<esc>i<cr>public static void main
+                                            " \(String args[]){}<esc>i<cr>
+                                            " \System.out.println("Hello World");
+                                            " \<esc>kk$Fsli
+    " autocmd FileType java :iabbrev <buffer> sout System.out.println()
+                                            " \<esc>i""<esc>i
+    " autocmd FileType java :iabbrev <buffer> if if(){}<esc>i<cr><esc>k$hi
+    " autocmd FileType java :iabbrev <buffer> for for(int i = 0; i <; i++)
+                                            " \{}<esc>i<cr><esc>k$F;i
+" augroup end
 function! NewJava()
     " :h expand
     let l:name = expand("%:r")

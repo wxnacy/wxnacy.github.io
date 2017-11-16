@@ -39,5 +39,5 @@ date: 2017-09-20 18:02:20
 ## 参考文献
 - [像 IDE 一样使用 vim](http://treelib.com/book-detail-id-48-aid-2937.html)
 - [Vim 与系统剪切板交互](http://blog.fooleap.org/using-vim-with-clipboard-on-archlinux.html)
-- [笨方法学Python](http://learnvimscriptthehardway.onefloweroneworld.com/)
+- [笨方法学 Vimscript](http://learnvimscriptthehardway.onefloweroneworld.com/)
 - [Learn Vimscript the Hard Way](http://learnvimscriptthehardway.stevelosh.com/)
