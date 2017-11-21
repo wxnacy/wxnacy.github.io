@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="wxnacy 博客">
 <meta property="og:description" content="使用 sshd 服务器细部设定 制作不用密码可立即登入的 ssh 用户 1. 客户端建立两把钥匙 2. 将公钥档案数据上传到服务器上 3. 将公钥放置服务器端的正确目录与文件名">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-09-18T13:16:57.000Z">
+<meta property="og:updated_time" content="2017-11-16T07:25:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux SSH 登陆远程服务器和无密码操作">
 <meta name="twitter:description" content="使用 sshd 服务器细部设定 制作不用密码可立即登入的 ssh 用户 1. 客户端建立两把钥匙 2. 将公钥档案数据上传到服务器上 3. 将公钥放置服务器端的正确目录与文件名">
@@ -61,6 +61,8 @@
 				<li><a href="/">主页</a></li>
 	        
 				<li><a href="/vim/">Vim 练级手册</a></li>
+	        
+				<li><a href="/python">Python 练级手册</a></li>
 	        
 				<li><a href="/archives">归档</a></li>
 	        
@@ -114,6 +116,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -130,11 +134,13 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
+					<li style="width: 25%"><a href="/">主页</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/vim/">Vim 练级手册</a></li>
+					<li style="width: 25%"><a href="/vim/">Vim 练级手册</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/archives">归档</a></li>
+					<li style="width: 25%"><a href="/python">Python 练级手册</a></li>
+		        
+					<li style="width: 25%"><a href="/archives">归档</a></li>
 		        
 				</ul>
 			</nav>
@@ -197,8 +203,8 @@
 <h3><span id="1-ke-hu-duan-jian-li-liang-ba-yao-chi">1. 客户端建立两把钥匙</span><a href="#1-ke-hu-duan-jian-li-liang-ba-yao-chi" class="header-anchor"></a></h3><p>建立的方法很简单，在 clientlinux.centos.vbird 这部主机上面以 vbirdtsai 的身份来建立两把钥匙即可。 不过，需要注意的是，我们有多种密码算法，如果不指定特殊的算法，则默认以 RSA 算法来处理：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen [-t rsa|dsa] &lt;==可选 rsa 或 dsa</div><div class="line">$ ssh-keygen  &lt;==用预设的方法建立密钥</div><div class="line">Generating public/private rsa key pair.</div><div class="line">Enter file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (/home/wxnacy/.ssh/id_rsa): &lt;==按 enter</div><div class="line">Created directory <span class="string">'/home/wxnacy/.ssh'</span>. &lt;==此目录若不存在则会主动建立</div><div class="line">Enter passphrase (empty <span class="keyword">for</span> no passphrase): &lt;==按 Enter 不给密码</div><div class="line">Enter same passphrase again: &lt;==再输入一次 Enter 吧！</div><div class="line">Your identification has been saved <span class="keyword">in</span> /home/wxnacy/.ssh/id_rsa. &lt;==私钥档</div><div class="line">Your public key has been saved <span class="keyword">in</span> /home/wxnacy/.ssh/id_rsa.pub. &lt;==公钥档</div><div class="line">The key fingerprint is:</div><div class="line">0f:d3:e7:1a:1c:bd:5c:03:f1:19:f1:22:df:9b:cc:08 wxnacy</div><div class="line"></div><div class="line">$ ls -ld ~/.ssh; ls -l ~/.ssh</div><div class="line">drwx------. 2 wxnacy wxnacy 4096 2017-07-25 12:58 /home/wxnacy/.ssh</div><div class="line">-rw-------. 1 wxnacy wxnacy 1675 2017-07-25 12:58 id_rsa      &lt;==私钥档</div><div class="line">-rw-r--r--. 1 wxnacy wxnacy  416 2017-07-25 12:58 id_rsa.pub  &lt;==公钥档</div></pre></td></tr></table></figure></p>
 <p>请注意上面喔，我的身份是 wxnacy ，所以当我执行 ssh-keygen 时，才会在我的家目录底下的 .ssh/ 这个目录里面产生所需要的两把 Keys ，分别是私钥 (id_rsa) 与公钥 (id_rsa.pub)。 ~/.ssh/ 目录必须要是 700 的权限才行！另外一个要特别注意的就是那个 id_rsa 的档案权限啦！他必须要是 -rw——- 且属于 vbirdtsai 自己才行！否则在未来密钥比对的过程当中，可能会被判定为危险而无法成功的以公私钥成对档案的机制来达成联机喔。 其实，建立私钥后预设的权限与文件名放置位置都是正确的，你只要检查过没问题即可。</p>
 <h3><span id="2-jiang-gong-yao-dang-an-shu-ju-shang-chuan-dao-fu-wu-qi-shang">2. 将公钥档案数据上传到服务器上</span><a href="#2-jiang-gong-yao-dang-an-shu-ju-shang-chuan-dao-fu-wu-qi-shang" class="header-anchor"></a></h3><p>那如何上传呢？最简单的方法当然就是使用 scp 嘛<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ scp ~/.ssh/id_rsa.pub root@192.168.100.254:~</div></pre></td></tr></table></figure></p>
-<h3><span id="3-jiang-gong-yao-fang-zhi-fu-wu-qi-duan-de-zheng-que-mu-lu-yu-wen-jian-ming">3. 将公钥放置服务器端的正确目录与文件名</span><a href="#3-jiang-gong-yao-fang-zhi-fu-wu-qi-duan-de-zheng-que-mu-lu-yu-wen-jian-ming" class="header-anchor"></a></h3><p>还记得 sshd_config 里面谈到的 AuthorizedKeysFile 这个设定值吧？该设定值就是在指定公钥数据应该要放置的文件名啰！所以，我们必须要到服务器端的 dmtsai 这个用户身份下， 将刚刚上传的 id_rsa.pub 数据附加到 authorized_keys 这个档案内才行。作法有点像这样</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 1. 建立 ~/.ssh 档案，注意权限需要为 700 喔！</span></div><div class="line">$ ls -ld .ssh</div><div class="line">ls: .ssh: 没有此一档案或目录</div><div class="line"><span class="comment"># 由于可能是新建的用户，因此这个目录不存在。不存在才作底下建立目录的行为</span></div><div class="line"></div><div class="line">$ mkdir .ssh; chmod 700 .ssh</div><div class="line">$ ls -ld .ssh</div><div class="line">drwx------. 2 dmtsai dmtsai 4096 Jul 25 13:06 .ssh</div><div class="line"><span class="comment"># 权限设定中，务必是 700 且属于使用者本人的账号与群组才行！</span></div><div class="line"></div><div class="line"><span class="comment"># 2. 将公钥档案内的数据使用 cat 转存到 authorized_keys 内</span></div><div class="line">$ ls -l *pub</div><div class="line">-rw-r--r--. 1 dmtsai dmtsai 416 Jul 25 13:05 id_rsa.pub &lt;==确实有存在</div><div class="line"></div><div class="line">$ cat id_rsa.pub &gt;&gt; .ssh/authorized_keys</div><div class="line">$ chmod 644 .ssh/authorized_keys</div><div class="line">$ ls -l .ssh</div><div class="line">-rw-r--r--. 1 dmtsai dmtsai 416 Jul 25 13:07 authorized_keys</div><div class="line"><span class="comment"># 这个档案的权限设定中，就得要是 644 才可以！不可以搞混了！</span></div></pre></td></tr></table></figure>
+<h3><span id="3-jiang-gong-yao-fang-zhi-fu-wu-qi-duan-de-zheng-que-mu-lu-yu-wen-jian-ming">3. 将公钥放置服务器端的正确目录与文件名</span><a href="#3-jiang-gong-yao-fang-zhi-fu-wu-qi-duan-de-zheng-que-mu-lu-yu-wen-jian-ming" class="header-anchor"></a></h3><p>还记得 sshd_config 里面谈到的 AuthorizedKeysFile 这个设定值吧？<br>该设定值就是在指定公钥数据应该要放置的文件名啰！<br>所以，我们必须要到服务器端的 dmtsai 这个用户身份下，<br>将刚刚上传的 id_rsa.pub 数据附加到 authorized_keys 这个档案内才行。作法有点像这样</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 1. 建立 ~/.ssh 档案，注意权限需要为 700 喔！</span></div><div class="line">$ mkdir .ssh; chmod 700 .ssh</div><div class="line"></div><div class="line"><span class="comment"># 2. 将公钥档案内的数据使用 cat 转存到 authorized_keys 内</span></div><div class="line">$ cat id_rsa.pub &gt;&gt; .ssh/authorized_keys</div><div class="line">$ chmod 644 .ssh/authorized_keys</div></pre></td></tr></table></figure>
 <p>接下来在用 ssh 登陆下就不再需要密码了</p>
 
       
@@ -466,6 +472,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">ansible</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">pyenv</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://wxnacy.com">
-  <title>pyenv virtualenv 常用命令 | wxnacy 博客</title>
+  <title>pyenv 常用命令 | wxnacy 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="pyenv查看可安装版本1pyenv install -list 安装某个版本1pyenv install -v 3.5.0 查看本地版本列表1234$ pyenv versions* system (set by /home/wxnacy/.pyenv/version) # 系统python环境 *号代表当前环境版本  3.5.0 # 刚下载的3.5.0版本 查看当前环境版本12$ pyenv">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="pyenv virtualenv 常用命令">
+<meta property="og:title" content="pyenv 常用命令">
 <meta property="og:url" content="http://wxnacy.com/2017/08/10/python-2017-08-10-pyenv-cmd/index.html">
 <meta property="og:site_name" content="wxnacy 博客">
 <meta property="og:description" content="pyenv查看可安装版本1pyenv install -list 安装某个版本1pyenv install -v 3.5.0 查看本地版本列表1234$ pyenv versions* system (set by /home/wxnacy/.pyenv/version) # 系统python环境 *号代表当前环境版本  3.5.0 # 刚下载的3.5.0版本 查看当前环境版本12$ pyenv">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-09-17T05:54:51.000Z">
+<meta property="og:updated_time" content="2017-11-21T14:17:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="pyenv virtualenv 常用命令">
+<meta name="twitter:title" content="pyenv 常用命令">
 <meta name="twitter:description" content="pyenv查看可安装版本1pyenv install -list 安装某个版本1pyenv install -v 3.5.0 查看本地版本列表1234$ pyenv versions* system (set by /home/wxnacy/.pyenv/version) # 系统python环境 *号代表当前环境版本  3.5.0 # 刚下载的3.5.0版本 查看当前环境版本12$ pyenv">
   
     <link rel="alternative" href="/atom.xml" title="wxnacy 博客" type="application/atom+xml">
@@ -61,6 +61,8 @@
 				<li><a href="/">主页</a></li>
 	        
 				<li><a href="/vim/">Vim 练级手册</a></li>
+	        
+				<li><a href="/python">Python 练级手册</a></li>
 	        
 				<li><a href="/archives">归档</a></li>
 	        
@@ -114,6 +116,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -130,11 +134,13 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
+					<li style="width: 25%"><a href="/">主页</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/vim/">Vim 练级手册</a></li>
+					<li style="width: 25%"><a href="/vim/">Vim 练级手册</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/archives">归档</a></li>
+					<li style="width: 25%"><a href="/python">Python 练级手册</a></li>
+		        
+					<li style="width: 25%"><a href="/archives">归档</a></li>
 		        
 				</ul>
 			</nav>
@@ -156,7 +162,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      pyenv virtualenv 常用命令
+      pyenv 常用命令
     </h1>
   
 
@@ -176,7 +182,7 @@
 <h3><span id="she-zhi-quan-ju-wei-mou-yi-ge-huan-jing">设置全局为某一个环境</span><a href="#she-zhi-quan-ju-wei-mou-yi-ge-huan-jing" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ pyenv global 3.5.0</div><div class="line">$ pyenv version <span class="comment"># 查看当前环境</span></div><div class="line">3.5.0 (<span class="built_in">set</span> by /home/wxnacy/project/project_350/.python-version)</div></pre></td></tr></table></figure>
 <h3><span id="wei-xiang-mu-she-zhi-dan-du-huan-jing">为项目设置单独环境</span><a href="#wei-xiang-mu-she-zhi-dan-du-huan-jing" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> project</div><div class="line">$ pyenv <span class="built_in">local</span> 3.5.0 <span class="comment"># 使用local命令为某个目录单独设置目录</span></div><div class="line">$ pyenv version</div><div class="line">3.5.0 (<span class="built_in">set</span> by /home/wxnacy/project/project_350/.python-version)</div><div class="line"></div><div class="line">$ <span class="built_in">cd</span> ..</div><div class="line">$ pyenv version <span class="comment"># 退出目录查看环境没有改变</span></div><div class="line">system (<span class="built_in">set</span> by /home/wxnacy/.pyenv/version)</div></pre></td></tr></table></figure>
 <h2><span id="virtualenv">virtualenv</span><a href="#virtualenv" class="header-anchor"></a></h2><p>假如我们有多个项目都是用3.5.0的环境，但是又不想让他们公用一个环境该怎么办？<br>使用virtualenv可以为某一个python版本创建一个干净的虚拟机环境</p>
-<h3><span id="chuang-jian-xu-ni-ji">创建虚拟机</span><a href="#chuang-jian-xu-ni-ji" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ pyenv virtualenv 3.5.0 env_350</div><div class="line">$ pyenv versions </div><div class="line">* system (<span class="built_in">set</span> by /home/wxnacy/.pyenv/version)</div><div class="line">  3.5.0</div><div class="line">  3.5.0/envs/env_350</div><div class="line">  env_350</div></pre></td></tr></table></figure>
+<h3><span id="chuang-jian-xu-ni-ji">创建虚拟机</span><a href="#chuang-jian-xu-ni-ji" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ pyenv virtualenv 3.5.0 env_350</div><div class="line">$ pyenv versions</div><div class="line">* system (<span class="built_in">set</span> by /home/wxnacy/.pyenv/version)</div><div class="line">  3.5.0</div><div class="line">  3.5.0/envs/env_350</div><div class="line">  env_350</div></pre></td></tr></table></figure>
 <p>查看环境后我们发现多了两个环境<code>3.5.0/envs/env_350</code>和<code>env_350</code>，这两个是同一个</p>
 <h3><span id="zhi-ding-dang-qian-jin-cheng-huan-jing">指定当前进程环境</span><a href="#zhi-ding-dang-qian-jin-cheng-huan-jing" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pyenv activate env_350</div></pre></td></tr></table></figure>
 <p>该命令只能指定当前进程的环境，退出shell后重新进入，发现环境又变回之前的环境</p>
@@ -225,7 +231,7 @@
   
   
     <a href="/2017/08/10/python-2017-08-10-pyenv-linux/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">linux 环境下安装pyenv和virtualenv虚拟机</div>
+      <div class="article-nav-title">Linux 环境下安装 pyenv 和 virtualenv</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -444,6 +450,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">ansible</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">pyenv</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -8,8 +8,8 @@ tags: [python]
 
 <!-- more -->
 ## 方法
-利用python的json内置模块，在进行dumps操作时，使用ensure_ascii=False 参数是中文
-不会被转码
+利用 Python 的 json 内置模块，在进行 dumps 操作时，使用 `ensure_ascii=False`
+参数是中文不会被转码
 ```python
 data = json.dumps(data,ensure_ascii=False).encode('utf-8')
 ```

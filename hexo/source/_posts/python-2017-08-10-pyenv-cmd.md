@@ -1,10 +1,10 @@
 ---
-title: pyenv virtualenv 常用命令
+title: pyenv 常用命令
 date: 2017-08-10
 tags: [python]
 ---
 
-## pyenv 
+## pyenv
 ### 查看可安装版本
 ```bash
 pyenv install -list
@@ -54,7 +54,7 @@ system (set by /home/wxnacy/.pyenv/version)
 ### 创建虚拟机
 ```bash
 $ pyenv virtualenv 3.5.0 env_350
-$ pyenv versions 
+$ pyenv versions
 * system (set by /home/wxnacy/.pyenv/version)
   3.5.0
   3.5.0/envs/env_350

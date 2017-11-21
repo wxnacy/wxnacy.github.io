@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="wxnacy 博客">
 <meta property="og:description" content="错误 {“errcode”:40033,”errmsg”:”invalid charset. please check your request, if include \uxxxx will create fail!”}">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-09-18T13:14:40.000Z">
+<meta property="og:updated_time" content="2017-11-21T14:40:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 微信公众号接口创建菜单编码问题">
 <meta name="twitter:description" content="错误 {“errcode”:40033,”errmsg”:”invalid charset. please check your request, if include \uxxxx will create fail!”}">
@@ -61,6 +61,8 @@
 				<li><a href="/">主页</a></li>
 	        
 				<li><a href="/vim/">Vim 练级手册</a></li>
+	        
+				<li><a href="/python">Python 练级手册</a></li>
 	        
 				<li><a href="/archives">归档</a></li>
 	        
@@ -114,6 +116,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -130,11 +134,13 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
+					<li style="width: 25%"><a href="/">主页</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/vim/">Vim 练级手册</a></li>
+					<li style="width: 25%"><a href="/vim/">Vim 练级手册</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/archives">归档</a></li>
+					<li style="width: 25%"><a href="/python">Python 练级手册</a></li>
+		        
+					<li style="width: 25%"><a href="/archives">归档</a></li>
 		        
 				</ul>
 			</nav>
@@ -173,7 +179,7 @@
 <p>错误 {“errcode”:40033,”errmsg”:”invalid charset. please check your request, if include \uxxxx will create fail!”}</p>
 </blockquote>
 <a id="more"></a>
-<h2><span id="fang-fa">方法</span><a href="#fang-fa" class="header-anchor"></a></h2><p>利用python的json内置模块，在进行dumps操作时，使用ensure_ascii=False 参数是中文<br>不会被转码<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">data = json.dumps(data,ensure_ascii=<span class="keyword">False</span>).encode(<span class="string">'utf-8'</span>)</div></pre></td></tr></table></figure></p>
+<h2><span id="fang-fa">方法</span><a href="#fang-fa" class="header-anchor"></a></h2><p>利用 Python 的 json 内置模块，在进行 dumps 操作时，使用 <code>ensure_ascii=False</code><br>参数是中文不会被转码<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">data = json.dumps(data,ensure_ascii=<span class="keyword">False</span>).encode(<span class="string">'utf-8'</span>)</div></pre></td></tr></table></figure></p>
 <h2><span id="wan-zheng-shi-li">完整实例</span><a href="#wan-zheng-shi-li" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> json</div><div class="line"><span class="keyword">import</span> requests</div><div class="line"></div><div class="line">url = <span class="string">'https://api.weixin.qq.com/cgi-bin/menu/create?access_token=...'</span></div><div class="line">data = json.dumps(data,ensure_ascii=<span class="keyword">False</span>).encode(<span class="string">'utf-8'</span>)</div><div class="line">res = requests.post(url,data=data)</div><div class="line">print(res)</div></pre></td></tr></table></figure>
 
       
@@ -437,6 +443,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">ansible</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">pyenv</a>
               </li>
              
               <li class="article-tag-list-item">
