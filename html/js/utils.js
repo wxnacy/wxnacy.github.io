@@ -1,8 +1,6 @@
 /**
  * Created by wxnacy on 17/4/16.
  */
-
-
 var config = {
     getPage(){
         var page = getValue('page');
@@ -20,8 +18,6 @@ var config = {
         return type;
     }
 }
-
-
 $(function () {
 
 })
