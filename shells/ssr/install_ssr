@@ -1,0 +1,34 @@
+#!/usr/bin/env expect
+wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssr.sh && chmod +x ssr.sh && bash ssr.sh
+wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh && chmod +x bbr.sh
+
+
+spawn sh -c "./ssr.sh"
+expect "*请输入数字*"
+send "${prod_password}\r"
+expect "*默认: 2333*"
+send "\r"
+expect "*默认: doub.io*"
+send "\r"
+expect "*默认: 5. aes-128-ctr*"
+send "10\r"
+expect "*默认: 2. auth_sha1_v4*"
+send "\r"
+expect "*是否设置 协议插件兼容原版*"
+send "n\r"
+expect "*默认: 5. tls1.2_ticket_auth*"
+send "\r"
+expect "*是否设置 混淆插件兼容原版*"
+send "n\r"
+expect "*默认: 无限*"
+send "\r"
+expect "*Is this ok*"
+send "y\r"
+interact
+
+spawn sh -c "./bbr.sh"
+expect "*Press any key to start...or Press Ctrl+C:*"
+send "\r"
+expect "*Do you want to restart system*"
+send "y\r"
+interact

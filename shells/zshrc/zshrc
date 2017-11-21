@@ -7,6 +7,20 @@ ZSH_THEME="fishy"
 plugins=(git python sublime)
 source $ZSH/oh-my-zsh.sh
 
+function proxyoff(){
+    unset http_proxy
+    unset https_proxy
+    echo -e "已关闭代理"
+
+}
+function proxyon() {
+    # export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
+    export no_proxy="baidu.com,github.com,wxnacy.com"
+    export http_proxy="http://127.0.0.1:1080"
+    export https_proxy=$http_proxy
+    echo -e "已开启代理"
+}
+
 alias zshc="vim ~/.zshrc"
 alias zshs="source ~/.zshrc"
 alias vimc="vim ~/.vimrc"

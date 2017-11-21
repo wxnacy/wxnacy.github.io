@@ -17,10 +17,7 @@ set nocompatible				"去掉对vi的兼容，让vim运行在完全模式下
 syntax on    					"开启语法高亮"
 set history=2003                "记录VIM历史操作的条数
 set autoread					"文件在vim外修改过自动重新载入
-au CursorHold,CursorHoldI * checktime
-" au FocusGained,BufEnter * :silent! checktime
-" au FocusLost,WinLeave * :silent! w
-" au FileChangedShell * echo "Warning: File changed on disk"
+au CursorHold,CursorHoldI * checktime   " 自动加载文件变动"
 set magic                       "magic (\m)：除了 $ . * ^ 之外其他元字符都要加反斜杠。nomagic (\M)：除了 $ ^ 之外其他元字符都要加反斜杠。
 set title
 set nobackup                    "去掉编辑文件时的备份
@@ -117,6 +114,10 @@ nnoremap <Leader>vs :source $MYVIMRC<CR>:nohls<CR>
 nnoremap <Leader>tw :vsp ~/.tmux.conf<CR>
 nnoremap <Leader>mw :vsp ~/VimProjects/vim-mysql/plugin/mysql.vim<CR>
 nnoremap <Leader>ms :source ~/VimProjects/vim-mysql/plugin/mysql.vim<CR>
+nnoremap <Leader>jsw :vsp ~/.vim/syntax/javascript.vim<CR>
+nnoremap <Leader>pyw :vsp ~/.vim/syntax/python.vim<CR>
+nnoremap <Leader>sshw :vsp ~/.ssh/config<CR>
+nnoremap <Leader>zshw :vsp ~/.zshrc<CR>
 " nnoremap <Leader>lw :vsp ~/VimProjects/vim-linux/plugin/linux.vim<CR>
 " nnoremap <Leader>ls :source ~/VimProjects/vim-linux/plugin/linux.vim<CR>
 " 重新加载文件
@@ -285,7 +286,7 @@ function! NewRbFile()
 endfunc
 " }}}
 
-autocmd FileType html set tabstop=2 shiftwidth=2 expandtab ai
+" autocmd FileType html set tabstop=2 shiftwidth=2 expandtab ai
 " autocmd FileType javascript set tabstop=2 shiftwidth=2 expandtab ai
 "
 " markdown 工作环境 ----------- {{{
@@ -297,14 +298,14 @@ augroup mdGroup
 augroup end
 " }}}
 " javascript 工作环境 --------- {{{
-augroup jsGroup
-    autocmd!
-    autocmd FileType javascript setlocal foldmethod=syntax
-    autocmd FileType javascript :iabbrev <buffer> print console.log("");<esc>hhi
-    autocmd FileType javascript :iabbrev <buffer> if if(){}<esc>i<cr><esc>k$hi
-    autocmd FileType javascript :iabbrev <buffer> for for(int i = 0; i <; i++)
-                                            \{}<esc>i<cr><esc>k$F;i
-augroup end
+" augroup jsGroup
+    " autocmd!
+    " autocmd FileType javascript setlocal foldmethod=syntax
+    " autocmd FileType javascript :iabbrev <buffer> print console.log("");<esc>hhi
+    " autocmd FileType javascript :iabbrev <buffer> if if(){}<esc>i<cr><esc>k$hi
+    " autocmd FileType javascript :iabbrev <buffer> for for(int i = 0; i <; i++)
+                                            " \{}<esc>i<cr><esc>k$F;i
+" augroup end
 " }}}
 " java 工作环境 --------------- {{{
 " augroup javaGroup
