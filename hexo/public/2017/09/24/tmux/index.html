@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="wxnacy 博客">
 <meta property="og:description" content="Tmux 是一个终端复用器: 可以激活多个终端或窗口, 在每个终端都可以单独访问，每一个终端都可以访问，运行和控制各自的程序.tmux 类似于screen，可以关闭窗口将程序放在后台运行，需要的时候再重新连接。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-10-13T06:07:16.000Z">
+<meta property="og:updated_time" content="2017-11-22T13:29:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="窗口管理工具 Tmux">
 <meta name="twitter:description" content="Tmux 是一个终端复用器: 可以激活多个终端或窗口, 在每个终端都可以单独访问，每一个终端都可以访问，运行和控制各自的程序.tmux 类似于screen，可以关闭窗口将程序放在后台运行，需要的时候再重新连接。">
@@ -182,7 +182,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p><a href="https://github.com/tmux/tmux/wiki" target="_blank" rel="external">Tmux</a> 是一个终端复用器: 可以激活多个终端或窗口, 在每个终端都可以单独访问，每一个终端都可以访问，运行和控制各自的程序.tmux 类似于screen，可以关闭窗口将程序放在后台运行，需要的时候再重新连接。</p>
+<p><a href="https://github.com/tmux/tmux/wiki" target="_blank" rel="external">Tmux</a> 是一个终端复用器: 可以激活多个终端或<br>窗口, 在每个终端都可以单独访问，每一个终端都可以访问，运行和控制各自的程序<br>.tmux 类似于screen，可以关闭窗口将程序放在后台运行，需要的时候再重新连接。</p>
 </blockquote>
 <a id="more"></a>
 <div class="toc">
@@ -213,7 +213,7 @@
 <!-- tocstop -->
 </div>
 
-<p>Mac 终端管理神器 iTerm 也可以很好的多标签页面和分割窗口工作，<br>而 Tmux 最大的好处是可以离线后可以储存窗口布局和使用状态，在 SSH 环境下尤其有帮助</p>
+<p>Mac 终端管理神器 iTerm 也可以很好的多标签页面和分割窗口工作，而 Tmux 最大的好处<br>是可以离线后可以储存窗口布局和使用状态，在 SSH 环境下尤其有帮助</p>
 <h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><h3><span id="mac">Mac</span><a href="#mac" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install tmux</div></pre></td></tr></table></figure>
 <h3><span id="centos">Centos</span><a href="#centos" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yum install tmux</div></pre></td></tr></table></figure>
 <h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><h3><span id="session">Session</span><a href="#session" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">tmux [new -s session-name]                      <span class="comment"># 创建session，并命名，默认创建一个无名会话</span></div><div class="line">tmux rename-session [-t target-name] new-name   <span class="comment"># 修改session名字，-t target-name 不是必传，默认当前链接 session</span></div><div class="line">tmux (attach, a, at) [-t session-name]          <span class="comment"># 打开指定session，默认上次访问会话</span></div><div class="line">tmux switch -t &lt;session_name&gt;                   <span class="comment"># 转换到指定session</span></div><div class="line">tmux (list-sessions, ls)                        <span class="comment"># 列出所有session</span></div><div class="line">tmux detach                                     <span class="comment"># 退出当前session</span></div><div class="line">tmux <span class="built_in">kill</span>-session [-t session-name]             <span class="comment"># 删除指定会话，默认删除上次访问会话</span></div></pre></td></tr></table></figure>
@@ -226,7 +226,7 @@
 <h2><span id="pei-zhi-wen-jian">配置文件</span><a href="#pei-zhi-wen-jian" class="header-anchor"></a></h2><p>Tmux 可以在 <code>~/.tmux.conf</code> 或 <code>/etc/.tmux.conf</code> 中配置快捷键等操作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 改变 prefix 快捷键为 &lt;C-a&gt;</span></div><div class="line">unbind C-b</div><div class="line"><span class="built_in">set</span> -g prefix C<span class="_">-a</span></div><div class="line"><span class="built_in">bind</span> C<span class="_">-a</span> send-prefix</div><div class="line"></div><div class="line"><span class="comment"># 绑定重新加载 ~/.tmux.conf 的快捷键</span></div><div class="line"><span class="built_in">bind</span> r <span class="built_in">source</span>-file ~/.tmux.conf ; display-message <span class="string">"Config reloaded.."</span></div><div class="line"></div><div class="line"><span class="built_in">set</span> -g default-terminal <span class="string">"screen-256color"</span>   <span class="comment"># use 256 colors</span></div><div class="line"><span class="built_in">set</span> -g display-time 5000                    <span class="comment"># status line messages display</span></div><div class="line"><span class="built_in">set</span> -g <span class="built_in">history</span>-limit 100000                 <span class="comment"># scrollback buffer n lines</span></div><div class="line"><span class="built_in">set</span> -g base-index 1                         <span class="comment"># 窗口索引从1开始，默认是0</span></div><div class="line"><span class="built_in">set</span> -g pane-base-index 1</div><div class="line">setw -g mode-keys vi                        <span class="comment"># use vi in copy mode</span></div><div class="line"><span class="comment"># set-option -g default-shell $SHELL</span></div><div class="line"></div><div class="line"><span class="comment"># 美化状态栏</span></div><div class="line"><span class="built_in">set</span>-option -g status on</div><div class="line"><span class="built_in">set</span>-option -g status-interval 2</div><div class="line"><span class="built_in">set</span>-option -g status-justify <span class="string">"centre"</span></div><div class="line"><span class="built_in">set</span>-option -g status-left-length 60</div><div class="line"><span class="built_in">set</span>-option -g status-right-length 90</div><div class="line"><span class="built_in">set</span>-option -g status-left <span class="string">"#(~/WebstormProjects/wxnacy.github.io/shells/tmux/plugin/tmux-powerline/powerline.sh left)"</span></div><div class="line"><span class="built_in">set</span>-option -g status-right <span class="string">"#(~/WebstormProjects/wxnacy.github.io/shells/tmux/plugin/tmux-powerline/powerline.sh right)"</span></div><div class="line"><span class="built_in">set</span>-window-option -g window-status-current-format <span class="string">"#[fg=colour235, bg=colour27]⮀#[fg=colour255, bg=colour27] #I ⮁ #W #[fg=colour27, bg=colour235]⮀"</span></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 分割窗口</span></div><div class="line">unbind <span class="string">'"'</span></div><div class="line"><span class="built_in">bind</span> - splitw -v    <span class="comment"># 垂直分割</span></div><div class="line">unbind %</div><div class="line"><span class="built_in">bind</span> | splitw -h    <span class="comment"># 水平分割</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 选择面板，更符合 Vim 习惯</span></div><div class="line"><span class="built_in">bind</span> k selectp -U</div><div class="line"><span class="built_in">bind</span> j selectp -D</div><div class="line"><span class="built_in">bind</span> h selectp -L</div><div class="line"><span class="built_in">bind</span> l selectp -R</div><div class="line"></div><div class="line"><span class="comment"># 使用 X 关闭 window</span></div><div class="line">unbind &amp;</div><div class="line"><span class="built_in">bind</span> X killw</div></pre></td></tr></table></figure></p>
 <h2><span id="can-kao-wen-xian">参考文献</span><a href="#can-kao-wen-xian" class="header-anchor"></a></h2><ul>
 <li><a href="http://kumu-linux.github.io/blog/2013/08/06/tmux/" target="_blank" rel="external">Linux下终端利器tmux</a></li>
-<li><a href="https://wiki.archlinux.org/index.php/Tmux_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="external">Tmux (简体中文)</a>)</li>
+<li><a href="https://wiki.archlinux.org/index.php/Tmux_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="external">Tmux (简体中文)</a></li>
 <li><a href="http://cenalulu.github.io/linux/tmux/" target="_blank" rel="external">Tmux - Linux从业者必备利器</a></li>
 <li><a href="https://wiki.freebsdchina.org/software/t/tmux" target="_blank" rel="external">使用tmux</a></li>
 <li><a href="http://blog.jobbole.com/87584/" target="_blank" rel="external">Tmux 速成教程：技巧和调整</a></li>
@@ -467,11 +467,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -487,11 +487,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
+                <a href="javascript:void(0)" class="js-tag color5">grep</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">grep</a>
+                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -511,15 +511,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">北京</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -539,11 +539,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>网络请求工具 HTTPie | wxnacy 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="HTTPie—aitch-tee-tee-pie—is a command line HTTP client with an intuitive UI, JSON support, syntax highlighting, wget-like downloads, plugins, and more.">
+  <meta name="description" content="HTTPie—aitch-tee-tee-pie—is a command line HTTP client with an intuitive UI,JSON support, syntax highlighting, wget-like downloads, plugins, and more.">
 <meta name="keywords" content="http,linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="网络请求工具 HTTPie">
 <meta property="og:url" content="http://wxnacy.com/2017/09/21/http/index.html">
 <meta property="og:site_name" content="wxnacy 博客">
-<meta property="og:description" content="HTTPie—aitch-tee-tee-pie—is a command line HTTP client with an intuitive UI, JSON support, syntax highlighting, wget-like downloads, plugins, and more.">
+<meta property="og:description" content="HTTPie—aitch-tee-tee-pie—is a command line HTTP client with an intuitive UI,JSON support, syntax highlighting, wget-like downloads, plugins, and more.">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="http://wxnacy.com/images/httpie1.png">
-<meta property="og:updated_time" content="2017-09-22T00:12:01.000Z">
+<meta property="og:updated_time" content="2017-11-22T13:34:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络请求工具 HTTPie">
-<meta name="twitter:description" content="HTTPie—aitch-tee-tee-pie—is a command line HTTP client with an intuitive UI, JSON support, syntax highlighting, wget-like downloads, plugins, and more.">
+<meta name="twitter:description" content="HTTPie—aitch-tee-tee-pie—is a command line HTTP client with an intuitive UI,JSON support, syntax highlighting, wget-like downloads, plugins, and more.">
 <meta name="twitter:image" content="http://wxnacy.com/images/httpie1.png">
   
     <link rel="alternative" href="/atom.xml" title="wxnacy 博客" type="application/atom+xml">
@@ -184,7 +184,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>HTTPie—aitch-tee-tee-pie—is a command line HTTP client with an intuitive UI, JSON support, syntax highlighting, wget-like downloads, plugins, and more.</p>
+<p>HTTPie—aitch-tee-tee-pie—is a command line HTTP client with an intuitive UI,<br>JSON support, syntax highlighting, wget-like downloads, plugins, and more.</p>
 </blockquote>
 <a id="more"></a>
 <div class="toc">
@@ -192,8 +192,9 @@
 <!-- toc -->
 <ul>
 <li><a href="#an-zhuang">安装</a><ul>
-<li><a href="#macos">macOS</a></li>
-<li><a href="#linux">Linux</a></li>
+<li><a href="#macos">MacOS</a></li>
+<li><a href="#ubuntu">Ubuntu</a></li>
+<li><a href="#centos">CentOS</a></li>
 <li><a href="#python">Python</a></li>
 </ul>
 </li>
@@ -213,12 +214,12 @@
 <li><a href="#https">https</a></li>
 </ul>
 <!-- tocstop -->
-<p></div><br>做 web 开发少不了测试网络请求，虽然现在有很多方便的工具（如：postman）都能很好的做到模拟请求，<br>但是在没有界面的 Linux 服务器上，还是命令行比较实用，比如：<a href="https://github.com/curl/curl" target="_blank" rel="external">cURL</a> ，<br>它大而全，是我们第一个想到的工具，但想要用 cURL 很好的完成查看网络请求各种数据的任务，需要一些深入了解，<br>在我的文章<a href="/2017/08/16/linux-2017-08-16-curl/">网络请求工具 cURL</a>中有介绍<br>下面我想给大家介绍一个更加直观的网络请求测试工具 <a href="https://httpie.org/" target="_blank" rel="external">HTTPie</a><br>它能更好的支持 JSON 格式化展示，代码高亮，类 wget 下载等功能</p>
+<p></div><br>做 web 开发少不了测试网络请求，虽然现在有很多方便的工具（如：postman）都能很好的<br>做到模拟请求，但是在没有界面的 Linux 服务器上，还是命令行比较实用，比如：<br><a href="https://github.com/curl/curl" target="_blank" rel="external">cURL</a> ，它大而全，是我们第一个想到的工具，但想要<br>用 cURL 很好的完成查看网络请求各种数据的任务，需要一些深入了解，在我的文章<br><a href="/2017/08/16/linux-2017-08-16-curl/">网络请求工具 cURL</a>中有介绍下面我想给大家<br>介绍一个更加直观的网络请求测试工具 <a href="https://httpie.org/" target="_blank" rel="external">HTTPie</a> 它能更好的支持<br>JSON 格式化展示，代码高亮，类 wget 下载等功能</p>
 <p><img src="/images/httpie1.png" alt="httpie1"></p>
-<p>上图就是一个最简单的 get 请求，不要担心不明白 <code>:8002</code> 是什么意思，下面我们会一一介绍</p>
-<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><h3><span id="macos">macOS</span><a href="#macos" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install httpie</div></pre></td></tr></table></figure>
-<h3><span id="linux">Linux</span><a href="#linux" class="header-anchor"></a></h3><p>Ubuntu<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ apt-get install httpie</div></pre></td></tr></table></figure></p>
-<p>CentOS<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yum install httpie</div></pre></td></tr></table></figure></p>
+<p>上图就是一个最简单的 get 请求，不要担心不明白 <code>:8002</code> 是什么意思，下面我们会<br>一一介绍</p>
+<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><h3><span id="macos">MacOS</span><a href="#macos" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install httpie</div></pre></td></tr></table></figure>
+<h3><span id="ubuntu">Ubuntu</span><a href="#ubuntu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ apt-get install httpie</div></pre></td></tr></table></figure>
+<h3><span id="centos">CentOS</span><a href="#centos" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yum install httpie</div></pre></td></tr></table></figure>
 <h3><span id="python">Python</span><a href="#python" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install httpie</div></pre></td></tr></table></figure>
 <h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><h3><span id="qing-qiu-zhuang-tai">请求状态</span><a href="#qing-qiu-zhuang-tai" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ http example.org          <span class="comment"># 默认 GET 请求</span></div><div class="line">$ http POST example.org</div><div class="line">$ http PUT example.org</div><div class="line">$ http DELETE example.org</div></pre></td></tr></table></figure>
 <h3><span id="ben-di-duan-lian-jie">本地短链接</span><a href="#ben-di-duan-lian-jie" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ http :            <span class="comment"># GET localhost ，默认80端口</span></div><div class="line">$ http :8002/<span class="built_in">test</span>   <span class="comment"># GET lcoalhost:8002/test</span></div></pre></td></tr></table></figure>
@@ -228,8 +229,8 @@
 <p>我们还可以使用 <code>=@</code> 来传递文本文件，使用 <code>:=@</code> 来传递 json 文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ http example.org hello=@hello.txt file:=@kwargs.json</div><div class="line"><span class="comment"># ==&gt; &#123;"hello": "hello world", "file": &#123;"name": "wxnacy"&#125;&#125;</span></div></pre></td></tr></table></figure></p>
 <p>还可以将 json 文件直接传值<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ http example.org &lt; file.json</div></pre></td></tr></table></figure></p>
 <p>你也可以使用 <code>--json</code> 或 <code>-j</code> 确保 <strong><em>Accept</em></strong> 为 <strong><em>application/json</em></strong></p>
-<h3><span id="forms">Forms</span><a href="#forms" class="header-anchor"></a></h3><p>提交 forms 数据和 JSON 请求很相似，只需要使用 <code>--form, -f</code> 参数，确保 <code>Content-Type: application/x-www-form-urlencoded; charset=utf-8</code><br>只是传值的话，使用 <code>=</code> 符号<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ http POST -f example.org name=<span class="string">'helle world'</span></div></pre></td></tr></table></figure></p>
-<p>需要上传文件时使用 <code>@</code> 符号，此时请求头 <code>Content-Type</code> 自动变为 <code>multipart/form-data</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ http POST -f example.org name=wxnacy file@file.json</div></pre></td></tr></table></figure></p>
+<h3><span id="forms">Forms</span><a href="#forms" class="header-anchor"></a></h3><p>提交 forms 数据和 JSON 请求很相似，只需要使用 <code>--form, -f</code> 参数，确保<br><code>Content-Type: application/x-www-form-urlencoded; charset=utf-8</code> 只是传值的话，<br>使用 <code>=</code> 符号<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ http POST -f example.org name=<span class="string">'helle world'</span></div></pre></td></tr></table></figure></p>
+<p>需要上传文件时使用 <code>@</code> 符号，此时请求头 <code>Content-Type</code> 自动变为<br><code>multipart/form-data</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ http POST -f example.org name=wxnacy file@file.json</div></pre></td></tr></table></figure></p>
 <h3><span id="tou-xin-xi">头信息</span><a href="#tou-xin-xi" class="header-anchor"></a></h3><p>设置头信息非常简单，需要用 <code>:</code> 符号<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ http example.org X-API:1111                 <span class="comment"># GET example.org</span></div></pre></td></tr></table></figure></p>
 <p>如果想给某个头信息设置空置，可以在 <code>:</code> 后跟空字符串<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ http httpbin.org/headers Accept: User-Agent:</div></pre></td></tr></table></figure></p>
 <p>另外官方给出如果头信息整个传空值可以使用 <code>&#39;Header;&#39;</code> ，但我实验并没有效果</p>
@@ -309,7 +310,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text">macOS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.2.</span> <span class="toc-text">Linux</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.3.</span> <span class="toc-text">Python</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text">请求状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text">本地短链接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">参数传递</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.1.</span> <span class="toc-text">URL 地址参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.2.</span> <span class="toc-text">JSON 数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.3.</span> <span class="toc-text">Forms</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.4.</span> <span class="toc-text">头信息</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">https</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text">MacOS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.2.</span> <span class="toc-text">Ubuntu</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.3.</span> <span class="toc-text">CentOS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.4.</span> <span class="toc-text">Python</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text">请求状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text">本地短链接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">参数传递</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.1.</span> <span class="toc-text">URL 地址参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.2.</span> <span class="toc-text">JSON 数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.3.</span> <span class="toc-text">Forms</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.4.</span> <span class="toc-text">头信息</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">https</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -467,11 +468,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -487,11 +488,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
+                <a href="javascript:void(0)" class="js-tag color5">grep</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">grep</a>
+                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -511,15 +512,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">北京</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -539,11 +540,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">

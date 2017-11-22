@@ -3,7 +3,8 @@ title: 使用 expect 交互免输入密码
 date: 2017-09-15
 tags: [linux, expect]
 ---
-> Expect是一个免费的编程工具语言，用来实现自动和交互式任务进行通信，而无需人的干预。
+> Expect是一个免费的编程工具语言，用来实现自动和交互式任务进行通信，而无需人的
+干预。
 
 <!-- more -->
 <!-- toc -->
@@ -28,16 +29,20 @@ interact
 ```bash
 $ expect mysql_login
 ```
-执行代码不能用 *sh file* 而是 *expect mysql_login* ，如果你在文件开头加上 `#!/usr/bin/env expect` 也可以用 `./mysql_login` 来执行
+执行代码不能用 *sh file* 而是 *expect mysql_login* ，如果你在文件开头加上
+`#!/usr/bin/env expect` 也可以用 `./mysql_login` 来执行
 
 其他语句解释如下：
 
 - **spawn**：spawn是expect的语句，执行命令前都要加这句
-- **expect "*assword:*"**：这句意思是交互获取是否返回 password：关键字，因为在执行 mysql 时会返回输入 password 的提示 xxxxxxxx password:
+- **expect "*assword:*"**：这句意思是交互获取是否返回 password：关键字，因为在
+执行 mysql 时会返回输入 password 的提示 xxxxxxxx password:
 - **send**：将密码发送出去
 - **interact**：代表执行完留在远程控制台，不加这句执行完后返回本地控制台
 
-你可以仿照这段脚本写其他服务自动登录脚本，但是 ssh 无密码登录我推荐使用[SSH 登陆远程服务器和无密码操作](/2017/08/23/linux-2017-08-23-ssh/)文章中提到的不对称加密登录方式
+你可以仿照这段脚本写其他服务自动登录脚本，但是 ssh 无密码登录我推荐使用
+[SSH 登陆远程服务器和无密码操作](/2017/08/23/linux-2017-08-23-ssh/)文章中提到的
+不对称加密登录方式
 
 ## 其他用法
 
@@ -65,8 +70,8 @@ wxnacy
 ```
 
 ### 流程控制 if
-与绝大多数语言一样 expect 也可以通过 **if** 来控制程序流程
-与绝大多数语言不同的是 expect 中 **if** 的条件语句是包含在大括号中的，如：`if { name == "wxnacy" }`
+与绝大多数语言一样 expect 也可以通过 **if** 来控制程序流程，与绝大多数语言不同
+的是 expect 中 **if** 的条件语句是包含在大括号中的，如：`if { name == "wxnacy" }`
 ```bash
 if { $argc < 1 } {
     send_user 'Usage: ./mysql_login arg1'
