@@ -1,18 +1,18 @@
 ---
-title: flask 如何配置多环境
+title: Flask 如何配置多环境
 date: 2017-08-15
-tags: [python]
+tags: [python, flask]
 ---
 
-专辑: [python 如何构建完整项目](/python/2017/08/15/album-build-project)
+> 一个完整的web项目都需要配置数据库连接和开发环境、生产环境灵活切换，今天来在
+各个环境中切换数据库连接
 
-> 一个完整的web项目都需要配置数据库连接和开发环境、生产环境灵活切换，今天来在各个环境中切换数据库连接
+<!-- more -->
+<!-- toc -->
 
 ## 首先添加指定环境脚本
+在项目根目录下创建环境脚本 `touch env.sh` 并编辑
 ```bash
-$ touch env.sh
-$ vim env.sh
-
 #!/usr/bin/env bash
 
 ENV=$1
@@ -22,12 +22,17 @@ then
     ENV=local
 fi
 
-export PYTHONPATH=./ # 项目跟目录
-export FLASK_CONFIG=${ENV} # 当前环境 可选 local product dev test
+export PYTHONPATH=./        # 项目跟目录
+export FLASK_CONFIG=${ENV}  # 当前环境 可选 local product dev test
 ```
-该文件起到两个作用 1、PYTHONPATH：项目根目录。2、FLASK_CONFIG：当前环境,使用方法
+
+该文件起到两个作用
+1、PYTHONPATH：项目根目录。
+2、FLASK_CONFIG：当前环境,使用方法
+
+然后执行命令，使配置生效
 ```bash
-$ source env.sh ${env} # env=local|product|dev|test 默认local
+$ source env.sh ${env}      # env=local|product|dev|test 默认local
 ```
 
 ## 添加环境信息文件
@@ -37,8 +42,8 @@ $ cd app
 $ touch local_config.py
 $ vim local_config.py
 ```
-```python
 
+```python
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 '''配置文件程序'''
@@ -117,8 +122,8 @@ from app.config import app
 @app.route('/test')
 def mysql():
     return app.config['SQLALCHEMY_DATABASE_URI']
-    
-app.run()   
+
+app.run()
 ```
 
 现在项目的目录结构为
@@ -128,7 +133,7 @@ myproject:
         config.py
         local_config.py
     run.py
-    env.sh 
+    env.sh
 ```
 
 ## 运行
@@ -143,5 +148,4 @@ $ source env.sh product
 $ python run.py
 $ curl http://localhost:5000/test
 mysql+pymysql://root:pass@prod.server.org:3306/db_name?charset=utf8mb4
-
 ```

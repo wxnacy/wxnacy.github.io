@@ -1,21 +1,23 @@
 ---
-title: flask 运行hello world
+title: Flask 运行 Hello World
 date: 2017-08-15
-tags: [python]
+tags: [python, flask]
 ---
 
-专辑: [python 如何构建完整项目](/python/2017/08/15/album-build-project)
-## 新建项目myproject
-首先新建myproject文件夹当做工作目录，进入目录pip下flask依赖包，创建并编辑run.py
+### 新建项目 myproject
+首先新建 myproject 文件夹当做工作目录，进入目录 pip 下 Flask 依赖包，创建并编辑
+run.py
+
+<!-- more -->
+
 ```bash
 $ mkdir myproject
 $ cd myproject
 $ pip install flask
 $ touch run.py
 $ vim run.py
-
 ```
-### run.py 
+### run.py
 ```python
 #!/usr/bin/env python
 
@@ -26,7 +28,7 @@ app = Flask(__name__)
 def hello():
     return "hello world"
 
-app.run() 
+app.run()
 ```
 ### 运行
 ```bash

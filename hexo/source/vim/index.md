@@ -1,9 +1,7 @@
 ---
-title: vim
+title: Vim 练级手册
 date: 2017-09-20 18:02:20
 ---
-
-> Vim 练级手册
 
 <!-- toc -->
 

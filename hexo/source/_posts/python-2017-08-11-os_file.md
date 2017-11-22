@@ -1,5 +1,5 @@
 ---
-title: python 目录文件相关命令
+title: Python 操作目录文件相关命令
 date: 2017-08-11
 tags: [python]
 ---

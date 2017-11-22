@@ -1,9 +1,10 @@
 ---
-title: sqlalchemy 各种查询语句写法
+title: SQLAlchemy 各种查询语句写法
 date: 2017-08-14
-tags: [python]
+tags: [python, sqlalchemy]
 ---
 
+<!-- toc -->
 
 ## and
 filter 与 filter_by 语法稍有不同

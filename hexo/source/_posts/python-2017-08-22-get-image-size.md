@@ -1,5 +1,5 @@
 ---
-title: python 获取本地或网络图片的宽高
+title: Python 获取本地或网络图片的宽高
 date: 2017-08-22
 tags: [python]
 ---
@@ -17,7 +17,7 @@ print(i.format) # 获取图片格式
 ## 网络图片
 ```python
 from PIL import Image
-import io 
+import io
 import requests
 url = ''
 i = Image.open(io.BytesIO(requests.get(url).content))
