@@ -155,19 +155,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-linux-2017-08-22-centos-start-stop-restart-sshd" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-linux-2017-08-22-sftp-scp" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/">Linux CentOS 各个版本启动SSHD服务命令</a>
+      <a class="article-title" href="/2017/08/22/linux-2017-08-22-sftp-scp/">Linux 远程文件传输 SFTP 和 SCP</a>
     </h1>
   
 
         
-        <a href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/" class="archive-article-date">
+        <a href="/2017/08/22/linux-2017-08-22-sftp-scp/" class="archive-article-date">
   	<time datetime="2017-08-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
 </a>
         
@@ -176,14 +176,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>本篇介绍如何在 CentOS 系统中怎样启动sshd服务，如何开机自启</p>
+<p>熟悉linux的朋友都知道 SSH 可以登录远程服务器进行工作，但是如果想从远程服务器下载文件或上传到服务器呢，ssh就做不到了，这时候我们可以用sftp和scp完成任务，这两个指令也是使用 SSH 的通道（Port 22），只是模拟 FTP 与复制的操作而已。下面我们一一介绍.</p>
 </blockquote>
-<h2><span id="ming-ling-gai-kuang">命令概况</span><a href="#ming-ling-gai-kuang" class="header-anchor"></a></h2><p>CentOS &lt; 7.x<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">service <span class="built_in">command</span> <span class="comment"># 使用service命令做start|stop|restart sshd</span></div><div class="line">chkconfig <span class="built_in">command</span> <span class="comment"># turn on or off 机器自启sshd</span></div></pre></td></tr></table></figure></p>
-<p>CentOS &gt;= 7.x<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl <span class="built_in">command</span> <span class="comment"># 管理 start|stop|start 自启sshd</span></div></pre></td></tr></table></figure></p>
-<h2><span id="centos-lt-7-x">CentOS &lt; 7.x</span><a href="#centos-lt-7-x" class="header-anchor"></a></h2><h3><span id="chkconfig">chkconfig</span><a href="#chkconfig" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ chkconfig sshd on <span class="comment"># 开机自启sshd</span></div><div class="line">$ chkconfig sshd off <span class="comment"># 开机关闭自启sshd</span></div><div class="line">$ chkconfig --list sshd <span class="comment"># 查看每个运行级别类型中服务的当前状态</span></div></pre></td></tr></table></figure>
-<h3><span id="service">service</span><a href="#service" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ service sshd start | stop | restart</div><div class="line">or </div><div class="line">$ /etc/init.d/sshd start | stop | restart</div></pre></td></tr></table></figure>
-<h2><span id="centos-gt-7-x">CentOS &gt;= 7.x</span><a href="#centos-gt-7-x" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ systemctl <span class="built_in">enable</span> sshd.service <span class="comment"># 开机自启sshd</span></div><div class="line">$ systemctl <span class="built_in">disable</span> sshd.service <span class="comment"># 开机关闭自启sshd</span></div><div class="line">$ systemctl start sshd.service <span class="comment"># 启动sshd</span></div><div class="line">$ systemctl restart sshd.service <span class="comment"># 重启</span></div><div class="line">$ systemctl stop sshd.service <span class="comment"># 停止</span></div><div class="line">$ systemctl reload sshd.service <span class="comment"># 重新加载</span></div><div class="line">$ systemctl status sshd.service <span class="comment"># 查看启动状态</span></div></pre></td></tr></table></figure>
-
+        
+          <a class="article-more-a" href="/2017/08/22/linux-2017-08-22-sftp-scp/#more">阅读全文 >></a>
+        
       
 
       
@@ -206,7 +203,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/22/linux-2017-08-22-sftp-scp/">展开全文 >></a>
         </p>
       
 
@@ -310,6 +307,87 @@
 
 
   
+    <article id="post-linux-2017-08-22-centos-start-stop-restart-sshd" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/">Linux CentOS 各个版本启动SSHD服务命令</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/" class="archive-article-date">
+  	<time datetime="2017-08-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>本篇介绍如何在 CentOS 系统中怎样启动sshd服务，如何开机自启</p>
+</blockquote>
+<h2><span id="ming-ling-gai-kuang">命令概况</span><a href="#ming-ling-gai-kuang" class="header-anchor"></a></h2><p>CentOS &lt; 7.x<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">service <span class="built_in">command</span> <span class="comment"># 使用service命令做start|stop|restart sshd</span></div><div class="line">chkconfig <span class="built_in">command</span> <span class="comment"># turn on or off 机器自启sshd</span></div></pre></td></tr></table></figure></p>
+<p>CentOS &gt;= 7.x<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl <span class="built_in">command</span> <span class="comment"># 管理 start|stop|start 自启sshd</span></div></pre></td></tr></table></figure></p>
+<h2><span id="centos-lt-7-x">CentOS &lt; 7.x</span><a href="#centos-lt-7-x" class="header-anchor"></a></h2><h3><span id="chkconfig">chkconfig</span><a href="#chkconfig" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ chkconfig sshd on <span class="comment"># 开机自启sshd</span></div><div class="line">$ chkconfig sshd off <span class="comment"># 开机关闭自启sshd</span></div><div class="line">$ chkconfig --list sshd <span class="comment"># 查看每个运行级别类型中服务的当前状态</span></div></pre></td></tr></table></figure>
+<h3><span id="service">service</span><a href="#service" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ service sshd start | stop | restart</div><div class="line">or </div><div class="line">$ /etc/init.d/sshd start | stop | restart</div></pre></td></tr></table></figure>
+<h2><span id="centos-gt-7-x">CentOS &gt;= 7.x</span><a href="#centos-gt-7-x" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ systemctl <span class="built_in">enable</span> sshd.service <span class="comment"># 开机自启sshd</span></div><div class="line">$ systemctl <span class="built_in">disable</span> sshd.service <span class="comment"># 开机关闭自启sshd</span></div><div class="line">$ systemctl start sshd.service <span class="comment"># 启动sshd</span></div><div class="line">$ systemctl restart sshd.service <span class="comment"># 重启</span></div><div class="line">$ systemctl stop sshd.service <span class="comment"># 停止</span></div><div class="line">$ systemctl reload sshd.service <span class="comment"># 重新加载</span></div><div class="line">$ systemctl status sshd.service <span class="comment"># 查看启动状态</span></div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-python-2017-08-19-pigar" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -331,20 +409,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>在查看别人的项目时，经常会看到一个requirements.txt文件，里面记录了当前程序的所有依赖包及其精确版本号。类似于java框架管理maven中pom.xml文件或者nodejs中package.json文件</p>
+<p>在查看别人的项目时，经常会看到一个 requirements.txt 文件，里面记录了当前程序的<br>所有依赖包及其精确版本号。类似于 Java 框架管理 maven 中 pom.xml 文件或者 nodejs<br>中 package.json 文件</p>
 </blockquote>
-<p>pip可以生成和安装 requirements.txt</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pip freeze &gt; requirements.txt <span class="comment"># 生成</span></div><div class="line">pip install -r requirements.txt <span class="comment"># 安装requirements.txt中依赖包</span></div></pre></td></tr></table></figure>
-<p>通过pip生成requirements.txt可以用，但是打开requirements.txt我们会发现，当前python环境下依赖包会全部写到文件中,这时候我们需要另一个工具来真正管理项目中需要的依赖</p>
-<h2><span id="pigar">pigar</span><a href="#pigar" class="header-anchor"></a></h2><p>项目地址:<a href="https://github.com/damnever/pigar" target="_blank" rel="external">https://github.com/damnever/pigar</a></p>
-<h3><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install pigar</div></pre></td></tr></table></figure>
-<h3><span id="yun-xing">运行</span><a href="#yun-xing" class="header-anchor"></a></h3><p>进入项目根目录并执行pigar<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> project_path</div><div class="line">$ pigar</div><div class="line"></div><div class="line">Starting generate requirements ...</div><div class="line">Writing requirements to <span class="string">"/root/myproject/requirements.txt"</span></div><div class="line">Requirements file has been covered, no difference.</div><div class="line">Generate requirements <span class="keyword">done</span>!</div></pre></td></tr></table></figure></p>
-<p>出现如上则为成功，此时查看requirements.txt 会发现，pigar不止记录了依赖和版本，还把在代码中依赖具体出现的位置标了出来</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Requirements automatically generated by pigar.</span></div><div class="line"><span class="comment"># https://github.com/Damnever/pigar</span></div><div class="line"></div><div class="line"><span class="comment"># run.py: 3</span></div><div class="line">Flask == 0.12.2</div></pre></td></tr></table></figure>
-<p>在大型项目中执行pigar时会出现如下提示：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">Starting generate requirements ...</div><div class="line">The following modules are not found yet:</div><div class="line">  app referenced from:</div><div class="line">    app/common/base.py: 8,9,10,11</div><div class="line">    app/common/decorator.py: 16</div><div class="line">    app/common/elasticsearch.py: 7</div><div class="line">    app/common/markdown.py: 7,8</div><div class="line">    app/common/third/wx.py: 8,9,10</div><div class="line">    app/config.py: 7</div><div class="line">    app/local_config.py: 7</div><div class="line">    app/models.py: 7,8,9</div><div class="line">    app/run.py: 7,8,9,10</div><div class="line">    app/views/index.py: 7,8,9,10</div><div class="line">    run.py: 7,8,9,10,11</div><div class="line">    <span class="built_in">test</span>/test_article.py: 7</div><div class="line">  oss2 referenced from:</div><div class="line">    app/common/aliyun.py: 7</div><div class="line">    app/common/qiniu.py: 7</div><div class="line">Some of them may not install <span class="keyword">in</span> <span class="built_in">local</span> environment.</div><div class="line"></div><div class="line">Try to search PyPI <span class="keyword">for</span> the missing modules and filter some unnecessary modules? (y/[N])</div></pre></td></tr></table></figure></p>
-<p>pigar会提示你本地找不到一些依赖，询问你是否下载，这时候你要看清楚他提示的是需要下载的依赖，还是你写在项目中的module，如果不需要下载输入n继续即可。</p>
-<h3><span id="usage">Usage</span><a href="#usage" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">usage: pigar [-h] [-v] [-u] [-s NAME [NAME ...]] [-c [PATH]] [-l LOG_LEVEL]</div><div class="line">             [-i DIR [DIR ...]] [-p SAVE_PATH] [-P PROJECT_PATH]</div><div class="line"></div><div class="line">Python requirements tool -- pigar, it will <span class="keyword">do</span> only one thing at each time.</div><div class="line">Default action is generate requirements.txt <span class="keyword">in</span> current directory.</div><div class="line"></div><div class="line">optional arguments:</div><div class="line">  -h, --<span class="built_in">help</span>          show this <span class="built_in">help</span> message and <span class="built_in">exit</span></div><div class="line">  -v, --version       show pigar version information and <span class="built_in">exit</span></div><div class="line">  -u, --update        update database, use it when pigar failed you, <span class="built_in">exit</span> when</div><div class="line">                      action <span class="keyword">done</span></div><div class="line">  -s NAME [NAME ...]  search package name by import name, use it <span class="keyword">if</span> you <span class="keyword">do</span> not</div><div class="line">                      know import name come from <span class="built_in">which</span> package, <span class="built_in">exit</span> when</div><div class="line">                      action <span class="keyword">done</span></div><div class="line">  -c [PATH]           check requirements <span class="keyword">for</span> the latest version. If file path</div><div class="line">                      not given, search *requirements.txt <span class="keyword">in</span> current</div><div class="line">                      directory, <span class="keyword">if</span> not found, generate file requirements.txt,</div><div class="line">                      <span class="built_in">exit</span> when action <span class="keyword">done</span></div><div class="line">  -l LOG_LEVEL        show given level <span class="built_in">log</span> messages, argument can be (ERROR,</div><div class="line">                      WARNING, INFO), <span class="keyword">case</span>-insensitive</div><div class="line">  -i DIR [DIR ...]    given a list of directory to ignore, relative directory,</div><div class="line">                      *used <span class="keyword">for</span>* -c and default action</div><div class="line">  -p SAVE_PATH        save requirements <span class="keyword">in</span> given file path, *used <span class="keyword">for</span>* default</div><div class="line">                      action</div><div class="line">  -P PROJECT_PATH     project path, <span class="built_in">which</span> is directory, *used <span class="keyword">for</span>* default</div><div class="line">                      action</div></pre></td></tr></table></figure>
-
+        
+          <a class="article-more-a" href="/2017/08/19/python-2017-08-19-pigar/#more">阅读全文 >></a>
+        
       
 
       
@@ -573,6 +642,92 @@
 
 
   
+    <article id="post-linux-2017-08-16-curl" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/16/linux-2017-08-16-curl/">网络请求工具 cURL</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/16/linux-2017-08-16-curl/" class="archive-article-date">
+  	<time datetime="2017-08-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>cRUL 是一种命令行工具，作用是发出网络请求，然后得到和提取数据，显示在”标准输出”（stdout）上面。</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2017/08/16/linux-2017-08-16-curl/#more">阅读全文 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">curl</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/16/linux-2017-08-16-curl/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-shell-2017-08-16-zsh-install" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -643,177 +798,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/16/shell-2017-08-16-zsh-install/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-openresty-2017-08-16-install" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/16/openresty-2017-08-16-install/">openresty 安装</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/16/openresty-2017-08-16-install/" class="archive-article-date">
-  	<time datetime="2017-08-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>专辑:<a href="/openresty/2017/08/16/album-study-notes">openresty 学习笔记</a></p>
-<h2><span id="mac-os">Mac OS</span><a href="#mac-os" class="header-anchor"></a></h2><p>推荐使用<code>brew</code>安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">brew install homebrew/nginx/openresty</div><div class="line">brew update</div><div class="line">brew install pcre openssl</div></pre></td></tr></table></figure></p>
-<h2><span id="centos">CentOS</span><a href="#centos" class="header-anchor"></a></h2><p>你可以在你的 CentOS 系统中添加 openresty 仓库，这样就可以便于未来安装或更新我们的软件包（通过 yum update 命令）。运行下面的命令就可以添加我们的仓库：</p>
-<pre><code>sudo yum install yum-utils
-sudo yum-config-manager --add-repo https://openresty.org/package/centos/openresty.repo
-</code></pre><p>然后就可以像下面这样安装软件包，比如 openresty：</p>
-<pre><code>sudo yum install openresty
-</code></pre><p>如果你想安装命令行工具 resty，那么可以像下面这样安装 openresty-resty 包：</p>
-<pre><code>sudo yum install openresty-resty
-</code></pre><p>命令行工具 opm 在 openresty-opm 包里，而 restydoc 工具在 openresty-doc 包里头。</p>
-<p>列出所有 openresty 仓库里头的软件包：</p>
-<pre><code>sudo yum --disablerepo=&quot;*&quot; --enablerepo=&quot;openresty&quot; list available
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">openresty</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/16/openresty-2017-08-16-install/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-linux-2017-08-16-curl" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/16/linux-2017-08-16-curl/">网络请求工具 cURL</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/16/linux-2017-08-16-curl/" class="archive-article-date">
-  	<time datetime="2017-08-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>cRUL 是一种命令行工具，作用是发出网络请求，然后得到和提取数据，显示在”标准输出”（stdout）上面。</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2017/08/16/linux-2017-08-16-curl/#more">阅读全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">curl</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/16/linux-2017-08-16-curl/">展开全文 >></a>
         </p>
       
 
@@ -929,55 +913,39 @@ sudo yum-config-manager --add-repo https://openresty.org/package/centos/openrest
 
 
   
-    <article id="post-python-2017-08-15-album-build-project" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-openresty-2017-08-16-install" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/15/python-2017-08-15-album-build-project/">python 如何构建完整项目</a>
+      <a class="article-title" href="/2017/08/16/openresty-2017-08-16-install/">openresty 安装</a>
     </h1>
   
 
         
-        <a href="/2017/08/15/python-2017-08-15-album-build-project/" class="archive-article-date">
-  	<time datetime="2017-08-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-15</time>
+        <a href="/2017/08/16/openresty-2017-08-16-install/" class="archive-article-date">
+  	<time datetime="2017-08-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2><span id="shi-yong-dao-de-gong-ju">使用到的工具</span><a href="#shi-yong-dao-de-gong-ju" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">pyenv virtualenv</div><div class="line">flask</div><div class="line">gunicorn </div><div class="line">pigar</div><div class="line">supervisor</div></pre></td></tr></table></figure>
-<h2><span id="python-ji-chu">python基础</span><a href="#python-ji-chu" class="header-anchor"></a></h2><ul>
-<li><a href="http://pan.baidu.com/s/1boX8P6v" target="_blank" rel="external">Python编程规范</a> 密码:p73y</li>
-<li><a href="http://pan.baidu.com/s/1skNCT7v" target="_blank" rel="external">Python编码Yes or No.pdf</a> 密码:5tta</li>
-</ul>
-<h2><span id="pyenv-he-virtualenv">pyenv和virtualenv</span><a href="#pyenv-he-virtualenv" class="header-anchor"></a></h2><blockquote>
-<p>pyenv 是一款特别好用的Python版本管理器，使用它我们可以在不同的项目使用不同的python版本，并且互不影响。github项目地址：<a href="https://github.com/yyuu/pyenv" target="_blank" rel="external">https://github.com/yyuu/pyenv</a></p>
-<p>pyenv-virtualenv 是pyenv的一个plugin（插件），可以用来创建基于不同Python版本的干净的虚拟环境。github项目地址：<a href="https://github.com/yyuu/pyenv-virtualenv" target="_blank" rel="external">https://github.com/yyuu/pyenv-virtualenv</a></p>
-</blockquote>
-<ul>
-<li><a href="/python/2017/08/10/pyenv-linux">linux 环境下安装pyenv和virtualenv虚拟机</a></li>
-<li><a href="/python/2017/08/10/pyenv-mac">mac 环境下安装pyenv和virtualenv虚拟机</a></li>
-<li><a href="/python/2017/08/10/pyenv-cmd">pyenv virtualenv 常用命令</a></li>
-</ul>
-<h2><span id="flask">flask</span><a href="#flask" class="header-anchor"></a></h2><ul>
-<li><a href="/python/2017/08/15/flask-hello-world">flask 运行hello world</a></li>
-<li><a href="/python/2017/08/15/config-pythonpath">python 配置PYTHONPATH(了解python导入模块搜索路径运作原理)</a></li>
-<li><a href="/python/2017/08/15/flask-env-config">flask 如何配置多环境</a></li>
-</ul>
-<h2><span id="pigar">pigar</span><a href="#pigar" class="header-anchor"></a></h2><ul>
-<li><a href="/python/2017/08/19/pigar">python 使用pigar管理requirements.txt</a></li>
-</ul>
-<h2><span id="gunicorn">gunicorn</span><a href="#gunicorn" class="header-anchor"></a></h2><ul>
-<li><a href="/python/2017/08/15/gunicorn-run">使用 gunicorn 启动你的项目</a></li>
-</ul>
-<h2><span id="supervisor">supervisor</span><a href="#supervisor" class="header-anchor"></a></h2><ul>
-<li><a href="/python/2017/08/18/basic-supervisor">使用 supervisor 管理进程</a></li>
-</ul>
-
+        <p>专辑:<a href="/openresty/2017/08/16/album-study-notes">openresty 学习笔记</a></p>
+<h2><span id="mac-os">Mac OS</span><a href="#mac-os" class="header-anchor"></a></h2><p>推荐使用<code>brew</code>安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">brew install homebrew/nginx/openresty</div><div class="line">brew update</div><div class="line">brew install pcre openssl</div></pre></td></tr></table></figure></p>
+<h2><span id="centos">CentOS</span><a href="#centos" class="header-anchor"></a></h2><p>你可以在你的 CentOS 系统中添加 openresty 仓库，这样就可以便于未来安装或更新我们的软件包（通过 yum update 命令）。运行下面的命令就可以添加我们的仓库：</p>
+<pre><code>sudo yum install yum-utils
+sudo yum-config-manager --add-repo https://openresty.org/package/centos/openresty.repo
+</code></pre><p>然后就可以像下面这样安装软件包，比如 openresty：</p>
+<pre><code>sudo yum install openresty
+</code></pre><p>如果你想安装命令行工具 resty，那么可以像下面这样安装 openresty-resty 包：</p>
+<pre><code>sudo yum install openresty-resty
+</code></pre><p>命令行工具 opm 在 openresty-opm 包里，而 restydoc 工具在 openresty-doc 包里头。</p>
+<p>列出所有 openresty 仓库里头的软件包：</p>
+<pre><code>sudo yum --disablerepo=&quot;*&quot; --enablerepo=&quot;openresty&quot; list available
+</code></pre>
       
 
       
@@ -990,7 +958,7 @@ sudo yum-config-manager --add-repo https://openresty.org/package/centos/openrest
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">openresty</a>
         		</li>
       		
 		</ul>
@@ -1000,7 +968,7 @@ sudo yum-config-manager --add-repo https://openresty.org/package/centos/openrest
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/15/python-2017-08-15-album-build-project/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/16/openresty-2017-08-16-install/">展开全文 >></a>
         </p>
       
 
@@ -1130,11 +1098,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">生活</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工作</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1142,19 +1106,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1166,6 +1122,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
@@ -1174,7 +1138,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1190,15 +1154,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ansible</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">pyenv</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ansible</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1226,15 +1194,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -155,6 +155,97 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-algorithm-2017-08-05-identity-verify" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/05/algorithm-2017-08-05-identity-verify/">身份证号码校验规则</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/05/algorithm-2017-08-05-identity-verify/" class="archive-article-date">
+  	<time datetime="2017-08-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://www.icloudyin.com/?p=66" target="_blank" rel="external">原文:http://www.icloudyin.com/?p=66</a></p>
+<p>18位身份证号码组成：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">其他部分都和15位的相同。年份代码由原来的2位升级到4位。最后一位为校验位。</div><div class="line"></div><div class="line">## 校验规则：</div><div class="line">- 十七位数字本体码加权求和公式</div></pre></td></tr></table></figure></p>
+<p>S = Sum(Ai * Wi), i = 0, … , 16 ，先对前17位数字的权求和<br>Ai:表示第i位置上的身份证号码数字值<br>Wi:表示第i位置上的加权因子<br>Wi: 7 9 10 5 8 4 2 1 6 3 7 9 10 5 8 4 2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- 计算模</div></pre></td></tr></table></figure></p>
+<p>Y = mod(S, 11)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- 通过模得到对应的校验码</div></pre></td></tr></table></figure></p>
+<p>Y: 0 1 2 3 4 5 6 7 8 9 10<br>校验码: 1 0 X 9 8 7 6 5 4 3 2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## java</div><div class="line"></div><div class="line">```java</div><div class="line">static String getCheckCode(String idCard)&#123;</div><div class="line">        static String[] Wi = &#123; &quot;7&quot;, &quot;9&quot;, &quot;10&quot;, &quot;5&quot;, &quot;8&quot;, &quot;4&quot;, &quot;2&quot;, &quot;1&quot;, &quot;6&quot;, &quot;3&quot;, &quot;7&quot;,</div><div class="line">            &quot;9&quot;, &quot;10&quot;, &quot;5&quot;, &quot;8&quot;, &quot;4&quot;, &quot;2&quot; &#125;;</div><div class="line">        int sum = 0;</div><div class="line">        for( int i = 0 ; i &lt; 17 ; i ++)</div><div class="line">        &#123;</div><div class="line">            sum = sum + Integer.parseInt(String.valueOf(idCard.charAt(i))) * Integer.parseInt(String.valueOf(Wi[i]));</div><div class="line">        &#125;</div><div class="line">        int T  = sum % 11;</div><div class="line">        int R = (12 -T) % 11;</div><div class="line">        if( R == 10 )</div><div class="line">            return &quot;X&quot;;</div><div class="line">        else &#123;</div><div class="line">            return String.valueOf(R);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<h2><span id="python">python</span><a href="#python" class="header-anchor"></a></h2><pre><code>def check_identity_card(card):
+    wi = [&quot;7&quot;, &quot;9&quot;, &quot;10&quot;, &quot;5&quot;, &quot;8&quot;, &quot;4&quot;, &quot;2&quot;, &quot;1&quot;, &quot;6&quot;, &quot;3&quot;, &quot;7&quot;, &quot;9&quot;, &quot;10&quot;,&quot;5&quot;, &quot;8&quot;, &quot;4&quot;, &quot;2&quot;]
+    total = 0
+    card = list(card)
+    index = 0
+    for item in card:
+        total += ord(item) * int(wi[index])
+        index += 1 t = total % 11
+    r = (12 - t) % 11
+    if r == 10:
+        return &quot;X&quot;
+    else:
+        return r
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algorithm</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/05/algorithm-2017-08-05-identity-verify/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-git-2017-08-04-basic-cmd" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -269,11 +360,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">生活</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工作</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂谈</a>
         		</li>
       		
 		</ul>
@@ -413,11 +500,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">生活</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工作</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -425,19 +508,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -449,6 +524,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
@@ -457,7 +540,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -473,15 +556,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ansible</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">pyenv</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ansible</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -509,15 +596,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">

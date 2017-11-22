@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>python 使用pigar管理requirements.txt | wxnacy 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在查看别人的项目时，经常会看到一个requirements.txt文件，里面记录了当前程序的所有依赖包及其精确版本号。类似于java框架管理maven中pom.xml文件或者nodejs中package.json文件  pip可以生成和安装 requirements.txt 12pip freeze &amp;gt; requirements.txt # 生成pip install -r require">
+  <meta name="description" content="在查看别人的项目时，经常会看到一个 requirements.txt 文件，里面记录了当前程序的所有依赖包及其精确版本号。类似于 Java 框架管理 maven 中 pom.xml 文件或者 nodejs中 package.json 文件">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python 使用pigar管理requirements.txt">
 <meta property="og:url" content="http://wxnacy.com/2017/08/19/python-2017-08-19-pigar/index.html">
 <meta property="og:site_name" content="wxnacy 博客">
-<meta property="og:description" content="在查看别人的项目时，经常会看到一个requirements.txt文件，里面记录了当前程序的所有依赖包及其精确版本号。类似于java框架管理maven中pom.xml文件或者nodejs中package.json文件  pip可以生成和安装 requirements.txt 12pip freeze &amp;gt; requirements.txt # 生成pip install -r require">
+<meta property="og:description" content="在查看别人的项目时，经常会看到一个 requirements.txt 文件，里面记录了当前程序的所有依赖包及其精确版本号。类似于 Java 框架管理 maven 中 pom.xml 文件或者 nodejs中 package.json 文件">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-09-17T05:54:51.000Z">
+<meta property="og:updated_time" content="2017-11-22T01:52:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python 使用pigar管理requirements.txt">
-<meta name="twitter:description" content="在查看别人的项目时，经常会看到一个requirements.txt文件，里面记录了当前程序的所有依赖包及其精确版本号。类似于java框架管理maven中pom.xml文件或者nodejs中package.json文件  pip可以生成和安装 requirements.txt 12pip freeze &amp;gt; requirements.txt # 生成pip install -r require">
+<meta name="twitter:description" content="在查看别人的项目时，经常会看到一个 requirements.txt 文件，里面记录了当前程序的所有依赖包及其精确版本号。类似于 Java 框架管理 maven 中 pom.xml 文件或者 nodejs中 package.json 文件">
   
     <link rel="alternative" href="/atom.xml" title="wxnacy 博客" type="application/atom+xml">
   
@@ -176,18 +176,19 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>在查看别人的项目时，经常会看到一个requirements.txt文件，里面记录了当前程序的所有依赖包及其精确版本号。类似于java框架管理maven中pom.xml文件或者nodejs中package.json文件</p>
+<p>在查看别人的项目时，经常会看到一个 requirements.txt 文件，里面记录了当前程序的<br>所有依赖包及其精确版本号。类似于 Java 框架管理 maven 中 pom.xml 文件或者 nodejs<br>中 package.json 文件</p>
 </blockquote>
+<a id="more"></a>
 <p>pip可以生成和安装 requirements.txt</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pip freeze &gt; requirements.txt <span class="comment"># 生成</span></div><div class="line">pip install -r requirements.txt <span class="comment"># 安装requirements.txt中依赖包</span></div></pre></td></tr></table></figure>
-<p>通过pip生成requirements.txt可以用，但是打开requirements.txt我们会发现，当前python环境下依赖包会全部写到文件中,这时候我们需要另一个工具来真正管理项目中需要的依赖</p>
+<p>通过 pip 生成 requirements.txt 可以用，但是打开 requirements.txt 我们会发现，<br>当前 python 环境下依赖包会全部写到文件中,这时候我们需要另一个工具来真正管理项目<br>中需要的依赖</p>
 <h2><span id="pigar">pigar</span><a href="#pigar" class="header-anchor"></a></h2><p>项目地址:<a href="https://github.com/damnever/pigar" target="_blank" rel="external">https://github.com/damnever/pigar</a></p>
 <h3><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install pigar</div></pre></td></tr></table></figure>
-<h3><span id="yun-xing">运行</span><a href="#yun-xing" class="header-anchor"></a></h3><p>进入项目根目录并执行pigar<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> project_path</div><div class="line">$ pigar</div><div class="line"></div><div class="line">Starting generate requirements ...</div><div class="line">Writing requirements to <span class="string">"/root/myproject/requirements.txt"</span></div><div class="line">Requirements file has been covered, no difference.</div><div class="line">Generate requirements <span class="keyword">done</span>!</div></pre></td></tr></table></figure></p>
-<p>出现如上则为成功，此时查看requirements.txt 会发现，pigar不止记录了依赖和版本，还把在代码中依赖具体出现的位置标了出来</p>
+<h3><span id="yun-xing">运行</span><a href="#yun-xing" class="header-anchor"></a></h3><p>进入项目根目录并执行 pigar<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> project_path</div><div class="line">$ pigar</div><div class="line"></div><div class="line">Starting generate requirements ...</div><div class="line">Writing requirements to <span class="string">"/root/myproject/requirements.txt"</span></div><div class="line">Requirements file has been covered, no difference.</div><div class="line">Generate requirements <span class="keyword">done</span>!</div></pre></td></tr></table></figure></p>
+<p>出现如上则为成功，此时查看 requirements.txt 会发现，pigar 不止记录了依赖和版本，<br>还把在代码中依赖具体出现的位置标了出来</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Requirements automatically generated by pigar.</span></div><div class="line"><span class="comment"># https://github.com/Damnever/pigar</span></div><div class="line"></div><div class="line"><span class="comment"># run.py: 3</span></div><div class="line">Flask == 0.12.2</div></pre></td></tr></table></figure>
-<p>在大型项目中执行pigar时会出现如下提示：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">Starting generate requirements ...</div><div class="line">The following modules are not found yet:</div><div class="line">  app referenced from:</div><div class="line">    app/common/base.py: 8,9,10,11</div><div class="line">    app/common/decorator.py: 16</div><div class="line">    app/common/elasticsearch.py: 7</div><div class="line">    app/common/markdown.py: 7,8</div><div class="line">    app/common/third/wx.py: 8,9,10</div><div class="line">    app/config.py: 7</div><div class="line">    app/local_config.py: 7</div><div class="line">    app/models.py: 7,8,9</div><div class="line">    app/run.py: 7,8,9,10</div><div class="line">    app/views/index.py: 7,8,9,10</div><div class="line">    run.py: 7,8,9,10,11</div><div class="line">    <span class="built_in">test</span>/test_article.py: 7</div><div class="line">  oss2 referenced from:</div><div class="line">    app/common/aliyun.py: 7</div><div class="line">    app/common/qiniu.py: 7</div><div class="line">Some of them may not install <span class="keyword">in</span> <span class="built_in">local</span> environment.</div><div class="line"></div><div class="line">Try to search PyPI <span class="keyword">for</span> the missing modules and filter some unnecessary modules? (y/[N])</div></pre></td></tr></table></figure></p>
-<p>pigar会提示你本地找不到一些依赖，询问你是否下载，这时候你要看清楚他提示的是需要下载的依赖，还是你写在项目中的module，如果不需要下载输入n继续即可。</p>
+<p>在大型项目中执行 pigar 时会出现如下提示：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">Starting generate requirements ...</div><div class="line">The following modules are not found yet:</div><div class="line">  app referenced from:</div><div class="line">    app/common/base.py: 8,9,10,11</div><div class="line">    app/common/decorator.py: 16</div><div class="line">    app/common/elasticsearch.py: 7</div><div class="line">    app/common/markdown.py: 7,8</div><div class="line">    app/common/third/wx.py: 8,9,10</div><div class="line">    app/config.py: 7</div><div class="line">    app/local_config.py: 7</div><div class="line">    app/models.py: 7,8,9</div><div class="line">    app/run.py: 7,8,9,10</div><div class="line">    app/views/index.py: 7,8,9,10</div><div class="line">    run.py: 7,8,9,10,11</div><div class="line">    <span class="built_in">test</span>/test_article.py: 7</div><div class="line">  oss2 referenced from:</div><div class="line">    app/common/aliyun.py: 7</div><div class="line">    app/common/qiniu.py: 7</div><div class="line">Some of them may not install <span class="keyword">in</span> <span class="built_in">local</span> environment.</div><div class="line"></div><div class="line">Try to search PyPI <span class="keyword">for</span> the missing modules and filter some unnecessary modules? (y/[N])</div></pre></td></tr></table></figure></p>
+<p>pigar 会提示你本地找不到一些依赖，询问你是否下载，这时候你要看清楚他提示的是<br>需要下载的依赖，还是你写在项目中的 module ，如果不需要下载输入 n 继续即可。</p>
 <h3><span id="usage">Usage</span><a href="#usage" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">usage: pigar [-h] [-v] [-u] [-s NAME [NAME ...]] [-c [PATH]] [-l LOG_LEVEL]</div><div class="line">             [-i DIR [DIR ...]] [-p SAVE_PATH] [-P PROJECT_PATH]</div><div class="line"></div><div class="line">Python requirements tool -- pigar, it will <span class="keyword">do</span> only one thing at each time.</div><div class="line">Default action is generate requirements.txt <span class="keyword">in</span> current directory.</div><div class="line"></div><div class="line">optional arguments:</div><div class="line">  -h, --<span class="built_in">help</span>          show this <span class="built_in">help</span> message and <span class="built_in">exit</span></div><div class="line">  -v, --version       show pigar version information and <span class="built_in">exit</span></div><div class="line">  -u, --update        update database, use it when pigar failed you, <span class="built_in">exit</span> when</div><div class="line">                      action <span class="keyword">done</span></div><div class="line">  -s NAME [NAME ...]  search package name by import name, use it <span class="keyword">if</span> you <span class="keyword">do</span> not</div><div class="line">                      know import name come from <span class="built_in">which</span> package, <span class="built_in">exit</span> when</div><div class="line">                      action <span class="keyword">done</span></div><div class="line">  -c [PATH]           check requirements <span class="keyword">for</span> the latest version. If file path</div><div class="line">                      not given, search *requirements.txt <span class="keyword">in</span> current</div><div class="line">                      directory, <span class="keyword">if</span> not found, generate file requirements.txt,</div><div class="line">                      <span class="built_in">exit</span> when action <span class="keyword">done</span></div><div class="line">  -l LOG_LEVEL        show given level <span class="built_in">log</span> messages, argument can be (ERROR,</div><div class="line">                      WARNING, INFO), <span class="keyword">case</span>-insensitive</div><div class="line">  -i DIR [DIR ...]    given a list of directory to ignore, relative directory,</div><div class="line">                      *used <span class="keyword">for</span>* -c and default action</div><div class="line">  -p SAVE_PATH        save requirements <span class="keyword">in</span> given file path, *used <span class="keyword">for</span>* default</div><div class="line">                      action</div><div class="line">  -P PROJECT_PATH     project path, <span class="built_in">which</span> is directory, *used <span class="keyword">for</span>* default</div><div class="line">                      action</div></pre></td></tr></table></figure>
 
       
@@ -221,11 +222,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/22/python-2017-08-22-get-image-size/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          python 获取本地或网络图片的宽高
+          Linux CentOS 各个版本启动SSHD服务命令
         
       </div>
     </a>
@@ -390,11 +391,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">生活</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工作</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -402,19 +399,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -426,6 +415,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
@@ -434,7 +431,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -450,15 +447,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ansible</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">pyenv</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ansible</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -486,15 +487,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">

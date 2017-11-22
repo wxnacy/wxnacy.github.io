@@ -5,6 +5,7 @@ date: 2017-11-21 21:07:36
 <!-- toc -->
 ## 基础
 - [了解 PYTHONPATH](/2017/08/15/python-2017-08-15-config-pythonpath/)
+- [pigar 管理 requirements.txt](/2017/08/19/python-2017-08-19-pigar/)
 ## pyenv
 - [Linux 安装](/2017/08/10/python-2017-08-10-pyenv-linux/)
 - [Mac 安装](/2017/11/21/pyenv-mac/)
