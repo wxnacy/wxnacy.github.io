@@ -217,56 +217,6 @@ iabbrev mid 132201199108297010
 " endif
 
 autocmd FileType vim setlocal foldmethod=marker
-"==============================
-" Python 工作环境
-"==============================
-" Python 工作环境 ------------- {{{
-" augroup pythonGroup
-    " autocmd!
-    " autocmd FileType python set tabstop=4 shiftwidth=4 textwidth=79 expandtab ai
-    " autocmd FileType python :nnoremap <buffer> <Leader>F :call FormatPy()<cr>
-    " autocmd FileType python :inoremap <buffer> <Leader>/ """"""<esc>hhi
-    " autocmd FileType python setlocal foldmethod=indent
-    " autocmd FileType python setlocal foldignore=
-
-    " autocmd FileType python :iabbrev <buffer> main if __name__ == "__main__":<cr>
-    " autocmd FileType python :iabbrev <buffer> fh #!/user/bin/env python<cr>
-                                                " \# -*- coding:utf-8 -*-<cr>
-                                                " \# Author: wxnacy
-                                                " \(wxnacy@gmail.com)<cr>
-                                                " \# Description:<cr>
-                                                " \<cr>
-    " autocmd BufNewFile *.py exec ":call NewPyFile()"
-" augroup END
-function! NewPyFile()
-    if &filetype == 'python'
-        call setline(1, "\#!/usr/bin/env python")
-        call append(1, "\# -*- coding:utf-8 -*-")
-        call append(2, "\# Author: wxnacy(wxnacy@gmail.com)")
-        call append(3, "\# Description: ")
-    endif
-
-    normal G
-    normal o
-    normal o
-endfunc
-
-function! FormatPy()
-    normal 079lF)
-    let b:nc = col('.')
-    if b:nc < 80
-        exec "normal! i\<cr>\<esc>"
-    elseif b:nc == 80
-        if @@ ==# ')'
-            exec "normal! i\<cr>\<esc>"
-        else
-            normal! F,
-            exec "normal! a\<cr>\<esc>"
-        endif
-    endif
-endfunc
-" nnoremap  <Leader>F :call FormatPy()<esc>
-" }}}
 
 "==============================
 " ruby 工作环境
