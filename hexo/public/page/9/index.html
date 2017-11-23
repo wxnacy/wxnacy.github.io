@@ -161,19 +161,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-mysql-2017-08-09-basic-index" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mysql-2017-08-09-prompt" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-basic-index/">Mysql 索引的增删查</a>
+      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-prompt/">mysql prompt 提示符</a>
     </h1>
   
 
         
-        <a href="/2017/08/09/mysql-2017-08-09-basic-index/" class="archive-article-date">
+        <a href="/2017/08/09/mysql-2017-08-09-prompt/" class="archive-article-date">
   	<time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
 </a>
         
@@ -181,29 +181,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>原文：<a href="http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html" target="_blank" rel="external">http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html</a></p>
-<p>[TOC]</p>
-<h2><span id="suo-yin-lei-xing">索引类型</span><a href="#suo-yin-lei-xing" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">在创建索引时，可以规定索引能否包含重复值。如果不包含，则索引应该创建为PRIMARY KEY或UNIQUE索引。</div><div class="line">对于单列惟一性索引，这保证单列不包含重复的值。对于多列惟一性索引，保证多个值的组合不重复。</div><div class="line">PRIMARY KEY索引和UNIQUE索引非常类似。事实上，PRIMARY KEY索引仅是一个具有名称PRIMARY的UNIQUE索引。</div><div class="line">这表示一个表只能包含一个PRIMARY KEY，因为一个表中不可能具有两个同名的索引。</div><div class="line">下面的SQL语句对students表在sid上添加PRIMARY KEY索引。</div></pre></td></tr></table></figure>
-<h2><span id="chuang-jian-suo-yin">创建索引</span><a href="#chuang-jian-suo-yin" class="header-anchor"></a></h2><p>在执行CREATE TABLE语句时可以创建索引，也可以单独用CREATE INDEX或ALTER TABLE来为表增加索引。</p>
-<h3><span id="alter-table">alter table</span><a href="#alter-table" class="header-anchor"></a></h3><p>其中table_name是要增加索引的表名，column_list指出对哪些列进行索引，多列时各列之间用逗号分隔。索引名index_name可选，缺省时，MySQL将根据第一个索引列赋一个名称。另外，ALTER TABLE允许在单个语句中更改多个表，因此可以在同时创建多个索引。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">alter table table_name add index index_name (column_list);</div><div class="line">alter table table_name add unique index_name (column_list);</div><div class="line">alter table table_name add primary key (column_list);</div></pre></td></tr></table></figure></p>
-<h3><span id="create-table">create table</span><a href="#create-table" class="header-anchor"></a></h3><p>CREATE INDEX可对表增加普通索引或UNIQUE索引。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">create index index_name on table_name (column_list);</div><div class="line">create unique index index_name on table_name (column_list);</div></pre></td></tr></table></figure></p>
-<h2><span id="shan-chu-suo-yin">删除索引</span><a href="#shan-chu-suo-yin" class="header-anchor"></a></h2><p>可利用ALTER TABLE或DROP INDEX语句来删除索引。类似于CREATE INDEX语句，DROP INDEX可以在ALTER TABLE内部作为一条语句处理，语法如下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">drop index index_name on table_name;</div><div class="line">alter table_name drop index index_name;</div><div class="line">alter table_name drop primary key;</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">其中，前两条语句是等价的，删除掉table_name中的索引index_name。</div><div class="line">第3条语句只在删除PRIMARY KEY索引时使用，因为一个表只可能有一个PRIMARY KEY索引，因此不需要指定索引名。</div><div class="line">如果没有创建PRIMARY KEY索引，但表具有一个或多个UNIQUE索引，则MySQL将删除第一个UNIQUE索引。</div><div class="line">如果从表中删除了某列，则索引会受到影响。对于多列组合的索引</div><div class="line">如果删除其中的某列，则该列也会从索引中删除。如果删除组成索引的所有列，则整个索引将被删除。</div></pre></td></tr></table></figure>
-<h2><span id="cha-kan-suo-yin">查看索引</span><a href="#cha-kan-suo-yin" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">show index from table_name;</div><div class="line">show keys from table_name;</div></pre></td></tr></table></figure>
-<ul>
-<li><strong>Table</strong>: 表的名称。</li>
-<li><strong>Non_unique</strong>: 如果索引不能包括重复词，则为0。如果可以，则为1。</li>
-<li><strong>Key_name</strong>: 索引的名称。</li>
-<li><strong>Seq_in_index</strong>: 索引中的列序列号，从1开始。</li>
-<li><strong>Column_name</strong>: 列名称。</li>
-<li><strong>Collation</strong>: 列以什么方式存储在索引中。在MySQL中，有值‘A’（升序）或NULL（无分类）。</li>
-<li><strong>Cardinality</strong>: 索引中唯一值的数目的估计值。通过运行ANALYZE TABLE或myisamchk -a可以更新。基数根据被存储为整数的统计数据来计数，所以即使对于小型表，该值也没有必要是精确的。基数越大，当进行联合时，MySQL使用该索引的机会就越大。</li>
-<li><strong>Sub_part</strong>: 如果列只是被部分地编入索引，则为被编入索引的字符的数目。如果整列被编入索引，则为NULL。</li>
-<li><strong>Packed</strong>: 指示关键字如何被压缩。如果没有被压缩，则为NULL。</li>
-<li><strong>Null</strong>: 如果列含有NULL，则含有YES。如果没有，则该列含有NO。</li>
-<li><strong>Index_type</strong>: 用过的索引方法（BTREE, FULLTEXT, HASH, RTREE）。</li>
-<li><strong>Comment</strong>: 备注</li>
-</ul>
+        <p>原文：<a href="http://www.thegeekstuff.com/2010/02/mysql_ps1-6-examples-to-make-your-mysql-prompt-like-angelina-jolie/" target="_blank" rel="external">http://www.thegeekstuff.com/2010/02/mysql_ps1-6-examples-to-make-your-mysql-prompt-like-angelina-jolie/</a></p>
+<h2><span id="zai-ming-ling-xing-zhong-shi-yong">在命令行中使用</span><a href="#zai-ming-ling-xing-zhong-shi-yong" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mysql&gt; prompt \u@\d&gt;</div><div class="line">PROMPT set to &apos;\u@\d&gt; &apos;</div><div class="line">root@(none)&gt; use test</div><div class="line">Reading table information for completion of table and column names</div><div class="line">You can turn off this feature to get a quicker startup with -A</div><div class="line"></div><div class="line">Database changed</div><div class="line">root@test&gt;</div></pre></td></tr></table></figure>
+<h2><span id="zai-ming-ling-xing-can-shu-zhong-shi-yong">在命令行参数中使用</span><a href="#zai-ming-ling-xing-can-shu-zhong-shi-yong" class="header-anchor"></a></h2><p>需要使用双引号括起来<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wxnacy@wxnacydeMacBook-Pro: ~ $ mysql -u root -p --prompt=&quot;\u@\d&gt; &quot;    </div><div class="line">root@(none)&gt; use test;</div><div class="line">root@test&gt;</div></pre></td></tr></table></figure></p>
+<h3><span id="zai-bash-ceng-xiu-gai-mysql-ps1-bian-liang">在bash层修改 MYSQL_PS1 变量</span><a href="#zai-bash-ceng-xiu-gai-mysql-ps1-bian-liang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wxnacy@wxnacydeMacBook-Pro: ~ $ <span class="built_in">export</span> MYSQL_PS1=<span class="string">"\u@\d&gt; "</span>                              </div><div class="line">wxnacy@wxnacydeMacBook-Pro: ~ $ mysql -u root -p                            </div><div class="line">root@(none)&gt;</div></pre></td></tr></table></figure>
+<h2><span id="zai-etc-my-cnf-zhong-pei-zhi">在/etc/my.cnf中配置</span><a href="#zai-etc-my-cnf-zhong-pei-zhi" class="header-anchor"></a></h2><p>也可以在配置中一劳永逸<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[mysql]  </div><div class="line">prompt=\\u@\\d&gt;\\ <span class="comment"># 要多加一个反斜线\</span></div><div class="line">  </div><div class="line">又或者：  </div><div class="line">[mysql]  </div><div class="line">prompt=<span class="string">"\u@\d&gt; "</span></div></pre></td></tr></table></figure></p>
+<h3><span id="geng-duo-can-shu">更多参数</span><a href="#geng-duo-can-shu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">Option  Description  </div><div class="line">  </div><div class="line">\c  A counter that increments <span class="keyword">for</span> each statement you issue  </div><div class="line">\D  The full current date  </div><div class="line">\d  The default database  </div><div class="line">\h  The server host  </div><div class="line">\l  The current delimiter (new <span class="keyword">in</span> 5.0.25)  </div><div class="line">\m  Minutes of the current time  </div><div class="line">\n  A newline character  </div><div class="line">\O  The current month <span class="keyword">in</span> three-letter format (Jan, Feb, …)  </div><div class="line">\o  The current month <span class="keyword">in</span> numeric format  </div><div class="line">\P  am/pm  </div><div class="line">\p  The current TCP/IP port or socket file  </div><div class="line">\R  The current time, <span class="keyword">in</span> 24-hour military time (0–23)  </div><div class="line">\r  The current time, standard 12-hour time (1–12)  </div><div class="line">\S  Semicolon  </div><div class="line">\s  Seconds of the current time  </div><div class="line">\t  A tab character  </div><div class="line">\U  Your full user_name@host_name account name  </div><div class="line">   </div><div class="line">\u  Your user name  </div><div class="line">\v  The server version  </div><div class="line">\w  The current day of the week <span class="keyword">in</span> three-letter format (Mon, Tue, …)  </div><div class="line">\Y  The current year, four digits  </div><div class="line">\y  The current year, two digits  </div><div class="line">\_  A space  </div><div class="line">\   A space (a space follows the backslash)  </div><div class="line">\<span class="string">'  Single quote  </span></div><div class="line"><span class="string">\"  Double quote  </span></div><div class="line"><span class="string">\\  A literal “\” backslash character  </span></div><div class="line"><span class="string">\x  x, for any “x” not listed above</span></div></pre></td></tr></table></figure>
 
       
 
@@ -227,7 +210,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-basic-index/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-prompt/">展开全文 >></a>
         </p>
       
 
@@ -257,34 +240,30 @@
 
 
   
-    <article id="post-ansible-2017-08-08-item-basic-playbooks" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mysql-2017-08-09-select-format" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">ansible入门笔记2 Playbooks</a>
+      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-select-format/">mysql select 格式化输出</a>
     </h1>
   
 
         
-        <a href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/" class="archive-article-date">
-  	<time datetime="2017-08-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
+        <a href="/2017/08/09/mysql-2017-08-09-select-format/" class="archive-article-date">
+  	<time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>专辑：<a href="/2017/08/14/ansible-2017-08-14-album-study-notes/">ansible学习笔记</a></p>
-<blockquote>
-<p>Playbooks 是 Ansible的配置,部署,编排语言.他们可以被描述为一个需要希望远程主机执行命令的方案,或者一组IT程序运行的命令集合.</p>
-</blockquote>
-<p>一个playbook就是一个YAML文件，所以playbook文件一般都以.yml结尾，一个playbook文件由一个或多个play组成，每个play定义了在一个或多个远程主机上执行的一系列的task，其中每个task一般就是调用一个ansible的模块，如调用copy模块复制文件到远程主机或调用shell模块执行命令。</p>
-<h2><span id="jian-dan-de-pei-zhi">简单的配置</span><a href="#jian-dan-de-pei-zhi" class="header-anchor"></a></h2><p>配置deploy.yml完成进入远程服务器的某个目录并执行git pull操作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- hosts: wxnacy <span class="comment"># 它会默认使用/etc/ansible/hosts 中配置的服务器组名 也可以单独设置hosts地址</span></div><div class="line">  tasks:</div><div class="line">  - name: <span class="built_in">cd</span> path and git pull <span class="comment"># 命令名称</span></div><div class="line">    shell: git pull <span class="comment"># 执行命令</span></div><div class="line">    args:</div><div class="line">      <span class="built_in">chdir</span>: ~/workdir <span class="comment"># 进入目录</span></div></pre></td></tr></table></figure></p>
-<p>运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ ansible-playbook deploy.yml</div><div class="line"></div><div class="line">PLAY [wxnacy] **********************************************************************************************************************************************************************************************</div><div class="line"></div><div class="line">TASK [<span class="built_in">cd</span> path and git pull] *************************************************************************************************************************************************************************************</div><div class="line">ok: [wxnacy.server.org]</div><div class="line"></div><div class="line"></div><div class="line">PLAY RECAP *************************************************************************************************************************************************************************************************</div><div class="line">wxnacy.server.org             : ok=2    changed=1    unreachable=0    failed=0</div></pre></td></tr></table></figure></p>
-<p>执行完运行命令ansible会在webservers组中依次执行tasks，返回以上样式结果极为成功，结果通过红黄绿三种颜色标明了不同的执行结果，红色表示有task执行失败，黄色表示改变了远程主机状态。</p>
+        <h2><span id="shi-yong-g-shu-chu-jie-guo-an-xing-chui-zhi-xian-shi-jie-guo">使用\G输出结果按行垂直显示结果</span><a href="#shi-yong-g-shu-chu-jie-guo-an-xing-chui-zhi-xian-shi-jie-guo" class="header-anchor"></a></h2><p>当使用命令select结果，如果表属性特别多的时候，查看起来非常难受，在select语句后使用\G(必须大写)，可以让结果按行垂直显示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select * from user\G;</div><div class="line"></div><div class="line">*************************** 1. row ***************************</div><div class="line">       id: 1</div><div class="line">     name: wxnacy</div><div class="line">   is_del: 0</div><div class="line">create_ts: 2017-08-08 07:46:42</div><div class="line">update_ts: 2017-08-08 07:46:42</div><div class="line">1 row in set (0.00 sec)</div></pre></td></tr></table></figure></p>
+<h2><span id="yi-html-ge-shi-shu-chu">以html格式输出</span><a href="#yi-html-ge-shi-shu-chu" class="header-anchor"></a></h2><p>使用mysql客户端的参数–html或者-T，则所有SQL的查询结果会自动生成为html的table代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ mysql -u root --html -p</div><div class="line">mysql&gt; select * from user;</div><div class="line"></div><div class="line">&lt;TABLE BORDER=1&gt;&lt;TR&gt;&lt;TH&gt;id&lt;/TH&gt;&lt;TH&gt;name&lt;/TH&gt;&lt;TH&gt;is_del&lt;/TH&gt;&lt;TH&gt;create_ts&lt;/TH&gt;&lt;TH&gt;update_ts&lt;/TH&gt;&lt;/TR&gt;&lt;TR&gt;&lt;TD&gt;1&lt;/TD&gt;&lt;TD&gt;wxnacy&lt;/TD&gt;&lt;TD&gt;0&lt;/TD&gt;&lt;TD&gt;2017-08-08 07:46:42&lt;/TD&gt;&lt;TD&gt;2017-08-08 07:46:42&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;</div></pre></td></tr></table></figure></p>
+<h2><span id="yi-xml-ge-shi-shu-chu">以xml格式输出</span><a href="#yi-xml-ge-shi-shu-chu" class="header-anchor"></a></h2><p>使用mysql客户端的参数–xml或者-X选项，可以将结果输出为xml格式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$ mysql -u root --xml -p</div><div class="line">mysql&gt; select * from user;</div><div class="line"></div><div class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</div><div class="line"></div><div class="line">&lt;resultset statement=&quot;select * from user;&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;</div><div class="line">  &lt;row&gt;</div><div class="line">	&lt;field name=&quot;id&quot;&gt;1&lt;/field&gt;</div><div class="line">	&lt;field name=&quot;name&quot;&gt;wxnacy&lt;/field&gt;</div><div class="line">	&lt;field name=&quot;is_del&quot;&gt;0&lt;/field&gt;</div><div class="line">	&lt;field name=&quot;create_ts&quot;&gt;2017-08-08 07:46:42&lt;/field&gt;</div><div class="line">	&lt;field name=&quot;update_ts&quot;&gt;2017-08-08 07:46:42&lt;/field&gt;</div><div class="line">  &lt;/row&gt;</div><div class="line">&lt;/resultset&gt;</div></pre></td></tr></table></figure></p>
+<h2><span id="shi-yong-pager-jin-ru-more-huo-less-cha-kan-jie-guo">使用pager进入more或less查看结果</span><a href="#shi-yong-pager-jin-ru-more-huo-less-cha-kan-jie-guo" class="header-anchor"></a></h2><p>当select查询结果很多时，一屏幕往往无法装下。使用pager命令后在进行select命令，可以进入类似linux中more或less查看文件的效果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mysql&gt; pager more</div><div class="line">PAGER set to &apos;more&apos;</div><div class="line">mysql&gt; select * from user;</div><div class="line">...</div><div class="line">mysql&gt; nopager #退出pager状态</div><div class="line">PAGER set to stdout</div></pre></td></tr></table></figure></p>
 
       
 
@@ -298,7 +277,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ansible</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
         		</li>
       		
 		</ul>
@@ -308,7 +287,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-select-format/">展开全文 >></a>
         </p>
       
 
@@ -445,19 +424,19 @@
 
 
   
-    <article id="post-mysql-2017-08-08-item-daily" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-ansible-2017-08-08-item-basic-playbooks" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/08/mysql-2017-08-08-item-daily/">2017-08-08 新建article表，完善`insert_comment_trigger`</a>
+      <a class="article-title" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">ansible入门笔记2 Playbooks</a>
     </h1>
   
 
         
-        <a href="/2017/08/08/mysql-2017-08-08-item-daily/" class="archive-article-date">
+        <a href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/" class="archive-article-date">
   	<time datetime="2017-08-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
 </a>
         
@@ -465,25 +444,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>今天目标创建acticle表，并完善<code>insert_comment_trigger</code>，以支持更新article中的comment_count,comment表新增comment_id字段</p>
+        <p>专辑：<a href="/2017/08/14/ansible-2017-08-14-album-study-notes/">ansible学习笔记</a></p>
+<blockquote>
+<p>Playbooks 是 Ansible的配置,部署,编排语言.他们可以被描述为一个需要希望远程主机执行命令的方案,或者一组IT程序运行的命令集合.</p>
 </blockquote>
-<p>专辑：<a href="/?p=/doc/mysql/mysql_daily.md">mysql每天练习</a></p>
-<ul>
-<li><p>新建article</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">drop table if exists `article`;</div><div class="line">create table `article`(</div><div class="line">	id int(11) not null auto_increment,</div><div class="line">	name varchar(32) not null comment &apos;标题&apos;,</div><div class="line">	url varchar(512) not null comment &apos;地址&apos;,</div><div class="line">	comment_count int(11) not null default 0 comment &apos;评论数量&apos;,</div><div class="line">	is_del tinyint(1) not null default 0 comment &apos;是否删除&apos;,</div><div class="line">	create_ts timestamp not null default current_timestamp comment &apos;创建时间&apos;,</div><div class="line">	update_ts timestamp not null default current_timestamp on update current_timestamp comment &apos;修改时间&apos;,</div><div class="line">	primary key(`id`)</div><div class="line">)engine=InnoDB default charset=utf8mb4 comment &apos;文章表&apos;;</div></pre></td></tr></table></figure>
-</li>
-<li><p>修改<code>insert_comment</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">drop trigger if exists `insert_comment`;</div><div class="line">delimiter $</div><div class="line">create trigger `insert_comment` after insert on comment for each row </div><div class="line">begin</div><div class="line">	declare count int;</div><div class="line">	if (new.resource_type = &apos;video&apos;) then</div><div class="line">		update video set comment_count = comment_count + 1 where id  = new.resource_id;</div><div class="line">	elseif (new.resource_type = &apos;article&apos;) then</div><div class="line">		update article set comment_count = comment_count + 1 where id = new.resource_id;</div><div class="line">	elseif (new.resource_type = &apos;user&apos;) then</div><div class="line">		select count(0) into count from user_data where user_id = new.resource_id;</div><div class="line">		if (count &gt;0) then</div><div class="line">			update user_data set comment_count = comment_count + 1 where user_id = new.resource_id;</div><div class="line">		else</div><div class="line">			insert into user_data (user_id,comment_count) values (new.resource_id,1);</div><div class="line">		end if;</div><div class="line">	end if;</div><div class="line">end $</div><div class="line">delimiter ;</div></pre></td></tr></table></figure>
-</li>
-<li><p>添加字段</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table comment add column comment_id int(11) not null default 0 comment &apos;回复的评论注解id&apos;;</div></pre></td></tr></table></figure>
-</li>
-<li><p>测试</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">insert into article (name,url) values (&apos;好文章&apos;,&apos;http://wen.com/wen.html&apos;);</div><div class="line">insert into comment(resource_id,resource_type,content) values(1,&apos;article&apos;,&apos;好文章&apos;);</div><div class="line">select * from article;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>执行完后，article中comment_count应该等于1</p>
+<p>一个playbook就是一个YAML文件，所以playbook文件一般都以.yml结尾，一个playbook文件由一个或多个play组成，每个play定义了在一个或多个远程主机上执行的一系列的task，其中每个task一般就是调用一个ansible的模块，如调用copy模块复制文件到远程主机或调用shell模块执行命令。</p>
+<h2><span id="jian-dan-de-pei-zhi">简单的配置</span><a href="#jian-dan-de-pei-zhi" class="header-anchor"></a></h2><p>配置deploy.yml完成进入远程服务器的某个目录并执行git pull操作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- hosts: wxnacy <span class="comment"># 它会默认使用/etc/ansible/hosts 中配置的服务器组名 也可以单独设置hosts地址</span></div><div class="line">  tasks:</div><div class="line">  - name: <span class="built_in">cd</span> path and git pull <span class="comment"># 命令名称</span></div><div class="line">    shell: git pull <span class="comment"># 执行命令</span></div><div class="line">    args:</div><div class="line">      <span class="built_in">chdir</span>: ~/workdir <span class="comment"># 进入目录</span></div></pre></td></tr></table></figure></p>
+<p>运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ ansible-playbook deploy.yml</div><div class="line"></div><div class="line">PLAY [wxnacy] **********************************************************************************************************************************************************************************************</div><div class="line"></div><div class="line">TASK [<span class="built_in">cd</span> path and git pull] *************************************************************************************************************************************************************************************</div><div class="line">ok: [wxnacy.server.org]</div><div class="line"></div><div class="line"></div><div class="line">PLAY RECAP *************************************************************************************************************************************************************************************************</div><div class="line">wxnacy.server.org             : ok=2    changed=1    unreachable=0    failed=0</div></pre></td></tr></table></figure></p>
+<p>执行完运行命令ansible会在webservers组中依次执行tasks，返回以上样式结果极为成功，结果通过红黄绿三种颜色标明了不同的执行结果，红色表示有task执行失败，黄色表示改变了远程主机状态。</p>
 
       
 
@@ -497,7 +465,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ansible</a>
         		</li>
       		
 		</ul>
@@ -507,7 +475,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/08/mysql-2017-08-08-item-daily/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">展开全文 >></a>
         </p>
       
 
@@ -616,6 +584,98 @@
 
 
   
+    <article id="post-mysql-2017-08-08-item-daily" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/08/mysql-2017-08-08-item-daily/">2017-08-08 新建article表，完善`insert_comment_trigger`</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/08/mysql-2017-08-08-item-daily/" class="archive-article-date">
+  	<time datetime="2017-08-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>今天目标创建acticle表，并完善<code>insert_comment_trigger</code>，以支持更新article中的comment_count,comment表新增comment_id字段</p>
+</blockquote>
+<p>专辑：<a href="/?p=/doc/mysql/mysql_daily.md">mysql每天练习</a></p>
+<ul>
+<li><p>新建article</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">drop table if exists `article`;</div><div class="line">create table `article`(</div><div class="line">	id int(11) not null auto_increment,</div><div class="line">	name varchar(32) not null comment &apos;标题&apos;,</div><div class="line">	url varchar(512) not null comment &apos;地址&apos;,</div><div class="line">	comment_count int(11) not null default 0 comment &apos;评论数量&apos;,</div><div class="line">	is_del tinyint(1) not null default 0 comment &apos;是否删除&apos;,</div><div class="line">	create_ts timestamp not null default current_timestamp comment &apos;创建时间&apos;,</div><div class="line">	update_ts timestamp not null default current_timestamp on update current_timestamp comment &apos;修改时间&apos;,</div><div class="line">	primary key(`id`)</div><div class="line">)engine=InnoDB default charset=utf8mb4 comment &apos;文章表&apos;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改<code>insert_comment</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">drop trigger if exists `insert_comment`;</div><div class="line">delimiter $</div><div class="line">create trigger `insert_comment` after insert on comment for each row </div><div class="line">begin</div><div class="line">	declare count int;</div><div class="line">	if (new.resource_type = &apos;video&apos;) then</div><div class="line">		update video set comment_count = comment_count + 1 where id  = new.resource_id;</div><div class="line">	elseif (new.resource_type = &apos;article&apos;) then</div><div class="line">		update article set comment_count = comment_count + 1 where id = new.resource_id;</div><div class="line">	elseif (new.resource_type = &apos;user&apos;) then</div><div class="line">		select count(0) into count from user_data where user_id = new.resource_id;</div><div class="line">		if (count &gt;0) then</div><div class="line">			update user_data set comment_count = comment_count + 1 where user_id = new.resource_id;</div><div class="line">		else</div><div class="line">			insert into user_data (user_id,comment_count) values (new.resource_id,1);</div><div class="line">		end if;</div><div class="line">	end if;</div><div class="line">end $</div><div class="line">delimiter ;</div></pre></td></tr></table></figure>
+</li>
+<li><p>添加字段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table comment add column comment_id int(11) not null default 0 comment &apos;回复的评论注解id&apos;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">insert into article (name,url) values (&apos;好文章&apos;,&apos;http://wen.com/wen.html&apos;);</div><div class="line">insert into comment(resource_id,resource_type,content) values(1,&apos;article&apos;,&apos;好文章&apos;);</div><div class="line">select * from article;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>执行完后，article中comment_count应该等于1</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/08/mysql-2017-08-08-item-daily/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-mysql-2017-08-07-item-daily" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -679,102 +739,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/07/mysql-2017-08-07-item-daily/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-mysql-2017-08-06-basic-cmd" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/06/mysql-2017-08-06-basic-cmd/">Mysql 基础命令</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/06/mysql-2017-08-06-basic-cmd/" class="archive-article-date">
-  	<time datetime="2017-08-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>[TOC]</p>
-<h2><span id="shu-ju-ku">数据库</span><a href="#shu-ju-ku" class="header-anchor"></a></h2><h3><span id="chuang-jian-ku">创建库</span><a href="#chuang-jian-ku" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create database name character utf8mb4;</div></pre></td></tr></table></figure>
-<h2><span id="biao-jie-gou">表结构</span><a href="#biao-jie-gou" class="header-anchor"></a></h2><h3><span id="chuang-jian-biao">创建表</span><a href="#chuang-jian-biao" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">drop table if exists `user`;</div><div class="line">create table `user`(</div><div class="line">    id int(11) not null auto_increment,</div><div class="line">    name varchar(32) not null comment &apos;姓名&apos;,</div><div class="line">    mobile varchar(11) not null default &apos;&apos; comment &apos;手机号&apos;,</div><div class="line">    ext JSON default null comment &apos;扩展信息&apos;,</div><div class="line">    create_ts timestamp not null default current_timestamp comment &apos;创建时间&apos;,</div><div class="line">    update_ts timestamp not null default current_timestamp on update current_timestamp comment &apos;修改时间&apos;,</div><div class="line">    primary key(`id`)</div><div class="line">) engine=InnoDB default charset=utf8mb4 comment &apos;用户表&apos;;</div></pre></td></tr></table></figure>
-<h3><span id="cha-kan-lie">查看列</span><a href="#cha-kan-lie" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">desc table_name</div></pre></td></tr></table></figure>
-<h3><span id="xiu-gai-biao-ming">修改表名</span><a href="#xiu-gai-biao-ming" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table table_name rename to new_name;</div></pre></td></tr></table></figure>
-<h3><span id="tian-jia-lie">添加列</span><a href="#tian-jia-lie" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table table_name add column col_name varchar(11) not null ...;</div></pre></td></tr></table></figure>
-<h3><span id="shan-chu-lie">删除列</span><a href="#shan-chu-lie" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table table_name drop column col_name;</div></pre></td></tr></table></figure>
-<h3><span id="xiu-gai-lie-ming">修改列名</span><a href="#xiu-gai-lie-ming" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table table_name change old_name new_name int(11)...;</div></pre></td></tr></table></figure>
-<h3><span id="xiu-gai-lie-shu-xing">修改列属性</span><a href="#xiu-gai-lie-shu-xing" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table table_name modify col_name int(11) not null...;</div></pre></td></tr></table></figure>
-<h3><span id="cha-kan-lie-shu-xing">查看列属性</span><a href="#cha-kan-lie-shu-xing" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">show columns from table_name;</div><div class="line">show full columns from table_name; # 全部信息</div></pre></td></tr></table></figure>
-<ul>
-<li><strong>Field</strong> ：字段名</li>
-<li><strong>Type</strong>：字段类型</li>
-<li><strong>Collation</strong>：字符集（mysql 5.0以上有）</li>
-<li><strong>Null</strong> ：是否可以为NULL</li>
-<li><strong>Key</strong>：索引（PRI,unique,index)</li>
-<li><strong>Default</strong>：缺省值</li>
-<li><strong>Extra</strong>：额外（是否 auto_increment)</li>
-<li><strong>Privileges</strong>：权限</li>
-<li><strong>Comment</strong>：备注（mysql 5.0以上有)</li>
-</ul>
-<h2><span id="cha-xun">查询</span><a href="#cha-xun" class="header-anchor"></a></h2><h3><span id="qu-diao-chong-fu-shu-ju">去掉重复数据</span><a href="#qu-diao-chong-fu-shu-ju" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select distinct name from user;</div></pre></td></tr></table></figure>
-<p>需要注意亮点，第一，<code>distinct</code> 必须放到查询字段最前边。第二，如果查询的字段很多，必须所有字段都相同才会过滤</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/06/mysql-2017-08-06-basic-cmd/">展开全文 >></a>
         </p>
       
 
@@ -899,29 +863,49 @@
 
 
   
-    <article id="post-js-2017-08-05-screen-wh" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mysql-2017-08-06-basic-cmd" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/05/js-2017-08-05-screen-wh/">js和css获取屏幕大小</a>
+      <a class="article-title" href="/2017/08/06/mysql-2017-08-06-basic-cmd/">Mysql 基础命令</a>
     </h1>
   
 
         
-        <a href="/2017/08/05/js-2017-08-05-screen-wh/" class="archive-article-date">
-  	<time datetime="2017-08-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-05</time>
+        <a href="/2017/08/06/mysql-2017-08-06-basic-cmd/" class="archive-article-date">
+  	<time datetime="2017-08-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="https://segmentfault.com/q/1010000004605042" target="_blank" rel="external">原文：https://segmentfault.com/q/1010000004605042</a></p>
-<h2><span id="js">js</span><a href="#js" class="header-anchor"></a></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getScreenInfo</span>(<span class="params"></span>) </span></div><div class="line"><span class="function"></span>&#123; </div><div class="line">    <span class="keyword">var</span> s = <span class="string">""</span>; </div><div class="line">    s = <span class="string">" 网页可见区域宽："</span> <span class="built_in">document</span>.body.clientWidth; </div><div class="line">    s = <span class="string">" 网页可见区域高："</span> <span class="built_in">document</span>.body.clientHeight; </div><div class="line">    s = <span class="string">" 网页可见区域宽："</span> <span class="built_in">document</span>.body.offsetWidth <span class="string">" (包括边线和滚动条的宽)"</span>; </div><div class="line">    s = <span class="string">" 网页可见区域高："</span> <span class="built_in">document</span>.body.offsetHeight <span class="string">" (包括边线的宽)"</span>; </div><div class="line">    s = <span class="string">" 网页正文全文宽："</span> <span class="built_in">document</span>.body.scrollWidth; </div><div class="line">    s = <span class="string">" 网页正文全文高："</span> <span class="built_in">document</span>.body.scrollHeight; </div><div class="line">    s = <span class="string">" 网页被卷去的高(ff)："</span> <span class="built_in">document</span>.body.scrollTop; </div><div class="line">    s = <span class="string">" 网页被卷去的高(ie)："</span> <span class="built_in">document</span>.documentElement.scrollTop; </div><div class="line">    s = <span class="string">" 网页被卷去的左："</span> <span class="built_in">document</span>.body.scrollLeft; </div><div class="line">    s = <span class="string">" 网页正文部分上："</span> <span class="built_in">window</span>.screenTop; </div><div class="line">    s = <span class="string">" 网页正文部分左："</span> <span class="built_in">window</span>.screenLeft; </div><div class="line">    s = <span class="string">" 屏幕分辨率的高："</span> <span class="built_in">window</span>.screen.height; </div><div class="line">    s = <span class="string">" 屏幕分辨率的宽："</span> <span class="built_in">window</span>.screen.width; </div><div class="line">    s = <span class="string">" 屏幕可用工作区高度："</span> <span class="built_in">window</span>.screen.availHeight; </div><div class="line">    s = <span class="string">" 屏幕可用工作区宽度："</span> <span class="built_in">window</span>.screen.availWidth;</div><div class="line">    s = <span class="string">" 你的屏幕设置是 "</span> <span class="built_in">window</span>.screen.colorDepth <span class="string">" 位彩色"</span>; </div><div class="line">    s = <span class="string">" 你的屏幕设置 "</span> <span class="built_in">window</span>.screen.deviceXDPI <span class="string">" 像素/英寸"</span>; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2><span id="css-pan-duan">css判断</span><a href="#css-pan-duan" class="header-anchor"></a></h2><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 小屏幕（平板，大于等于 768px） */</span></div><div class="line">@<span class="keyword">media</span> (min-width: <span class="number">768px</span>) &#123; ... &#125;</div><div class="line"></div><div class="line"><span class="comment">/* 中等屏幕（桌面显示器，大于等于 992px） */</span></div><div class="line">@<span class="keyword">media</span> (min-width: <span class="number">992px</span>) &#123; ... &#125;</div><div class="line"></div><div class="line"><span class="comment">/* 大屏幕（大桌面显示器，大于等于 1200px） */</span></div><div class="line">@<span class="keyword">media</span> (min-width: <span class="number">1200px</span>) &#123; ... &#125;</div></pre></td></tr></table></figure>
+        <p>[TOC]</p>
+<h2><span id="shu-ju-ku">数据库</span><a href="#shu-ju-ku" class="header-anchor"></a></h2><h3><span id="chuang-jian-ku">创建库</span><a href="#chuang-jian-ku" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create database name character utf8mb4;</div></pre></td></tr></table></figure>
+<h2><span id="biao-jie-gou">表结构</span><a href="#biao-jie-gou" class="header-anchor"></a></h2><h3><span id="chuang-jian-biao">创建表</span><a href="#chuang-jian-biao" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">drop table if exists `user`;</div><div class="line">create table `user`(</div><div class="line">    id int(11) not null auto_increment,</div><div class="line">    name varchar(32) not null comment &apos;姓名&apos;,</div><div class="line">    mobile varchar(11) not null default &apos;&apos; comment &apos;手机号&apos;,</div><div class="line">    ext JSON default null comment &apos;扩展信息&apos;,</div><div class="line">    create_ts timestamp not null default current_timestamp comment &apos;创建时间&apos;,</div><div class="line">    update_ts timestamp not null default current_timestamp on update current_timestamp comment &apos;修改时间&apos;,</div><div class="line">    primary key(`id`)</div><div class="line">) engine=InnoDB default charset=utf8mb4 comment &apos;用户表&apos;;</div></pre></td></tr></table></figure>
+<h3><span id="cha-kan-lie">查看列</span><a href="#cha-kan-lie" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">desc table_name</div></pre></td></tr></table></figure>
+<h3><span id="xiu-gai-biao-ming">修改表名</span><a href="#xiu-gai-biao-ming" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table table_name rename to new_name;</div></pre></td></tr></table></figure>
+<h3><span id="tian-jia-lie">添加列</span><a href="#tian-jia-lie" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table table_name add column col_name varchar(11) not null ...;</div></pre></td></tr></table></figure>
+<h3><span id="shan-chu-lie">删除列</span><a href="#shan-chu-lie" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table table_name drop column col_name;</div></pre></td></tr></table></figure>
+<h3><span id="xiu-gai-lie-ming">修改列名</span><a href="#xiu-gai-lie-ming" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table table_name change old_name new_name int(11)...;</div></pre></td></tr></table></figure>
+<h3><span id="xiu-gai-lie-shu-xing">修改列属性</span><a href="#xiu-gai-lie-shu-xing" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table table_name modify col_name int(11) not null...;</div></pre></td></tr></table></figure>
+<h3><span id="cha-kan-lie-shu-xing">查看列属性</span><a href="#cha-kan-lie-shu-xing" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">show columns from table_name;</div><div class="line">show full columns from table_name; # 全部信息</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>Field</strong> ：字段名</li>
+<li><strong>Type</strong>：字段类型</li>
+<li><strong>Collation</strong>：字符集（mysql 5.0以上有）</li>
+<li><strong>Null</strong> ：是否可以为NULL</li>
+<li><strong>Key</strong>：索引（PRI,unique,index)</li>
+<li><strong>Default</strong>：缺省值</li>
+<li><strong>Extra</strong>：额外（是否 auto_increment)</li>
+<li><strong>Privileges</strong>：权限</li>
+<li><strong>Comment</strong>：备注（mysql 5.0以上有)</li>
+</ul>
+<h2><span id="cha-xun">查询</span><a href="#cha-xun" class="header-anchor"></a></h2><h3><span id="qu-diao-chong-fu-shu-ju">去掉重复数据</span><a href="#qu-diao-chong-fu-shu-ju" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select distinct name from user;</div></pre></td></tr></table></figure>
+<p>需要注意亮点，第一，<code>distinct</code> 必须放到查询字段最前边。第二，如果查询的字段很多，必须所有字段都相同才会过滤</p>
 
       
 
@@ -935,7 +919,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
         		</li>
       		
 		</ul>
@@ -945,7 +929,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/05/js-2017-08-05-screen-wh/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/06/mysql-2017-08-06-basic-cmd/">展开全文 >></a>
         </p>
       
 
@@ -1156,10 +1140,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -1168,11 +1148,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1181,6 +1157,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1212,15 +1196,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">pyenv</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">ansible</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1248,19 +1232,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1276,11 +1260,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color1">shell</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">shell</a>
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
             
             <div class="clearfix"></div>

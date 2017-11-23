@@ -2,7 +2,7 @@
 title: Linux 练级手册
 date: 2017-11-22 16:41:10
 ---
-
+<!-- toc -->
 ## SSH
 - [SSH](/2017/08/23/linux-2017-08-23-ssh/)
 - [CentOS 各个版本启动SSHD服务命令](/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/)
@@ -29,3 +29,4 @@ date: 2017-11-22 16:41:10
 - [使用nohup在后台不挂断执行命令](/2017/08/15/linux-2017-08-15-nohup/)
 ## 常见错误
 - [no acceptable C compiler found in $PATH](/2017/11/22/no-c-compiler/)
+- [Ubuntu 报错 Unable to locate package](/2017/11/23/unable-to-locate-package/)
