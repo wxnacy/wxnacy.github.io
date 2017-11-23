@@ -41,14 +41,22 @@ install_ubuntu(){
     echo 'begin install zsh'
     sudo apt-get -y install zsh
     chsh -s /bin/zsh
-    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    if [ -d ~/.oh-my-zsh   ]; then
+        echo 'oh-my-zsh is ready not re-install'
+    else
+        sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    fi
     update_zshrc ~/.zshrc
     zsh
 }
 main(){
     if [ $sysOS == "Darwin"  ];then
         echo "I'm MacOS"
-        update_zshrc ~/.wxnacy/test/find.txt
+        # update_zshrc ~/.wxnacy/test/find.txt
+        if [ -d ~/.oh-my-zsh   ]; then
+            echo 'have bp'
+        fi
+
     elif [ $sysOS == "Linux"  ];then
         echo "I'm Linux"
         source /etc/os-release
