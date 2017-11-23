@@ -7,7 +7,13 @@ sysOS=`uname -s`
 update_zshrc(){
     sudo mv ~/.zshrc ~/.zshrc_old
 
-    sudo echo 'source ~/.bash_profile' >> $1
+    if [ -f ~/.bash_profile  ]; then
+        sudo echo 'source ~/.bash_profile' >> $1
+    fi
+    if [ -f ~/.profile  ]; then
+        sudo echo 'source ~/.profile' >> $1
+    fi
+
     sudo echo 'source $ZSH/oh-my-zsh.sh' >> $1
     sudo echo 'export ZSH=${HOME}/.oh-my-zsh' >> $1
     sudo echo '' >> $1
