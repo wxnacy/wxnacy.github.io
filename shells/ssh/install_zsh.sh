@@ -34,20 +34,21 @@ update_zshrc(){
 
 install_ubuntu(){
     echo 'I am ubuntu'
-    echo 'begin apt-get update'
     sudo apt-get update
-    echo 'begin install git'
     sudo apt-get -y install git
-    echo 'begin install zsh'
     sudo apt-get -y install zsh
     chsh -s /bin/zsh
+    install_ohmyzsh
+    update_zshrc ~/.zshrc
+    zsh
+}
+install_ohmyzsh(){
     if [ -d ~/.oh-my-zsh   ]; then
         echo 'oh-my-zsh is ready not re-install'
     else
         sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
     fi
-    update_zshrc ~/.zshrc
-    zsh
+
 }
 main(){
     if [ $sysOS == "Darwin"  ];then
