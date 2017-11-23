@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="wxnacy 博客">
 <meta property="og:description" content="专辑：Vim 练级手册  pathogen 更好的插件管理方案">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-10-27T05:52:35.000Z">
+<meta property="og:updated_time" content="2017-11-23T07:11:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vim 插件 pathogen 插件管理">
 <meta name="twitter:description" content="专辑：Vim 练级手册  pathogen 更好的插件管理方案">
@@ -186,14 +186,14 @@
 <p>pathogen 更好的插件管理方案</p>
 </blockquote>
 <a id="more"></a>
-<p>改用 vim 做主开发工具有一段时间了，之前一直在用 <a href="https://github.com/VundleVim/Vundle.vim" target="_blank" rel="external">Vundle</a> 管理插件<br>回想起用 Vundle 装第一个插件，当时的痛苦现在还历历在目，对于一个新手来说去哪里写 <code>:PluginInstall</code> 都折腾了好久<br>pathogen 可以将插件都集中管理到 <strong><em>~/.vim/bundle</em></strong> 中，并且各个插件都拥有自己的目录（这点 Vundle 也可以做到），<br>他的优点在于只依赖与 git 来管理插件，无需在 vim 做过多的配置</p>
+<p>改用 vim 做主开发工具有一段时间了，之前一直在用 <a href="https://github.com/VundleVim/Vundle.vim" target="_blank" rel="external">Vundle</a><br>管理插件回想起用 Vundle 装第一个插件，当时的痛苦现在还历历在目，对于一个新手来<br>说去哪里写 <code>:PluginInstall</code> 都折腾了好久 pathogen 可以将插件都集中管理到<br><strong><em>~/.vim/bundle</em></strong> 中，并且各个插件都拥有自己的目录（这点 Vundle 也可以做到），<br>他的优点在于只依赖与 git 来管理插件，无需在 vim 做过多的配置</p>
 <h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ mkdir .vim &amp;&amp; <span class="built_in">cd</span> .vim</div><div class="line">$ mkdir bundle &amp;&amp; mkdir <span class="built_in">autoload</span> &amp;&amp; <span class="built_in">cd</span> bundle</div><div class="line">$ git <span class="built_in">clone</span> https://github.com/tpope/vim-pathogen.git</div><div class="line">$ cp vim-pathogen/<span class="built_in">autoload</span>/pathogen.vim ~/.vim/<span class="built_in">autoload</span>/</div></pre></td></tr></table></figure>
-<h2><span id="pei-zhi">配置</span><a href="#pei-zhi" class="header-anchor"></a></h2><p>在 <strong><em>~/.vimrc</em></strong> 文件里, <code>filetype plugin indent on</code> 之前的任何地方，加入这句：<code>call pathogen#infect()</code></p>
+<h2><span id="pei-zhi">配置</span><a href="#pei-zhi" class="header-anchor"></a></h2><p>在 <strong><em>~/.vimrc</em></strong> 文件里, <code>filetype plugin indent on</code> 之前的任何地方，加入这句<br>：<code>call pathogen#infect()</code></p>
 <p>这样 pathogen 就已经安装完成了，接下来我们下载一个插件看下效果</p>
 <h2><span id="di-yi-ge-cha-jian">第一个插件</span><a href="#di-yi-ge-cha-jian" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> ~/.vim/bundle</div><div class="line">$ git <span class="built_in">clone</span> http://github.com/scrooloose/nerdtree.git</div></pre></td></tr></table></figure>
 <p>执行完两条命令后，bundle 文件夹中就会出现 nerdtree 文件，<br>这样就已经安装完成，pathogen 会自动加载 bundle 中的插件</p>
-<h2><span id="geng-xin-cha-jian">更新插件</span><a href="#geng-xin-cha-jian" class="header-anchor"></a></h2><p>如果想要更新某个插件，只需要进入到相应插件目录 <code>~/.vim/bundle/nerdtree</code> 中执行下拉命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git pull</div></pre></td></tr></table></figure></p>
-<p>如果插件特别多，不想一个一个下拉代码，也可以使用 Git 的 <strong><em>submodule</em></strong> 模块托管到 GitHub 中<br>在我的文章 <a href="/2017/09/19/git-submodule">Git 工具 submodule</a> 中有介绍</p>
+<h2><span id="geng-xin-cha-jian">更新插件</span><a href="#geng-xin-cha-jian" class="header-anchor"></a></h2><p>如果想要更新某个插件，只需要进入到相应插件目录 <code>~/.vim/bundle/nerdtree</code> 中执行<br>下拉命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git pull</div></pre></td></tr></table></figure></p>
+<p>如果插件特别多，不想一个一个下拉代码，也可以使用 Git 的 <strong><em>submodule</em></strong> 模块<br>托管到 GitHub 中<br>在我的文章 <a href="/2017/09/19/git-submodule">Git 工具 submodule</a> 中有介绍</p>
 <h2><span id="shan-chu-cha-jian">删除插件</span><a href="#shan-chu-cha-jian" class="header-anchor"></a></h2><p>删除插件也很简单，需要进入 <strong><em>~/.vim/bundle</em></strong> 执行删除目录命令即可<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ rm -rf nerdtree</div></pre></td></tr></table></figure></p>
 
       
@@ -399,11 +399,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -412,14 +420,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -443,19 +443,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">grep</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">pyenv</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -487,19 +487,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -515,11 +515,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">shell</a>
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color1">shell</a>
               </li>
             
             <div class="clearfix"></div>
