@@ -5,11 +5,18 @@ date: 2017-11-22 16:41:10
 
 ## SSH
 - [SSH](/2017/08/23/linux-2017-08-23-ssh/)
+- [CentOS 各个版本启动SSHD服务命令](/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/)
+- [SFTP 与 SCP](/2017/08/22/linux-2017-08-22-sftp-scp/)
 - [Mosh](/2017/09/25/mosh/)
 
 ## shell
 - [Zsh](/2017/08/16/shell-2017-08-16-zsh-install/)
 - [使用 expect 交互免输入密码](/2017/09/15/linux-2017-09-15-expect/)
+- [数据流重定向](/2017/09/11/linux-2017-09-11-redirection/)
+- [链接](/2017/08/28/linux-2017-08-28-ln/)
+
+### 搜索
+- [grep](/2017/09/11/linux-2017-09-11-grep/)
 
 ## 窗口管理工具
 - [Tmux](/2017/09/24/tmux/)

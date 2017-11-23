@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="wxnacy 博客">
 <meta property="og:description" content="原文:http://www.cnblogs.com/xiaochaohuashengmi/archive/2011/10/05/2199534.html  链接是一种在共享文件和访问它的用户的若干目录项之间建立联系的一种方法。Linux中包括两种链接：硬链接(Hard Link)和软链接(Soft Link),软链接又称为符号链接（Symbolic link）。符号连接相当于Windows下的快捷">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-09-17T05:54:51.000Z">
+<meta property="og:updated_time" content="2017-11-23T02:48:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux 硬链接与软连接的增删查">
 <meta name="twitter:description" content="原文:http://www.cnblogs.com/xiaochaohuashengmi/archive/2011/10/05/2199534.html  链接是一种在共享文件和访问它的用户的若干目录项之间建立联系的一种方法。Linux中包括两种链接：硬链接(Hard Link)和软链接(Soft Link),软链接又称为符号链接（Symbolic link）。符号连接相当于Windows下的快捷">
@@ -183,16 +183,17 @@
       
         <p>原文:<a href="http://www.cnblogs.com/xiaochaohuashengmi/archive/2011/10/05/2199534.html" target="_blank" rel="external">http://www.cnblogs.com/xiaochaohuashengmi/archive/2011/10/05/2199534.html</a></p>
 <blockquote>
-<p>链接是一种在共享文件和访问它的用户的若干目录项之间建立联系的一种方法。Linux中包括两种链接：硬链接(Hard Link)和软链接(Soft Link),软链接又称为符号链接（Symbolic link）。符号连接相当于Windows下的快捷方式。</p>
+<p>链接是一种在共享文件和访问它的用户的若干目录项之间建立联系的一种方法。Linux<br>中包括两种链接：硬链接(Hard Link)和软链接(Soft Link),软链接又称为符号链接<br>（Symbolic link）。符号连接相当于Windows下的快捷方式。</p>
 </blockquote>
-<h2><span id="ying-lian-jie">硬链接</span><a href="#ying-lian-jie" class="header-anchor"></a></h2><p>硬链接说白了是一个指针，指向文件索引节点，系统并不为它重新分配inode。可以用:ln命令来建立硬链接。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">语法：</div><div class="line">ln [options] existing_file new_file     <span class="comment"># existing_file 是待创建链接的文件，new_file 是要创建的连接文件</span></div><div class="line">ln [options] existing_file new_file     </div><div class="line"></div><div class="line">-f 建立时将同名文件删除</div><div class="line">-i 如果有同名文件询问是否替换</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2><span id="ying-lian-jie">硬链接</span><a href="#ying-lian-jie" class="header-anchor"></a></h2><p>硬链接说白了是一个指针，指向文件索引节点，系统并不为它重新分配 inode。可以用<code>:ln</code><br>命令来建立硬链接。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">语法：</div><div class="line"><span class="comment"># existing_file 是待创建链接的文件，new_file 是要创建的连接文件</span></div><div class="line">ln [options] existing_file new_file</div><div class="line">ln [options] existing_file new_file</div><div class="line"></div><div class="line">-f 建立时将同名文件删除</div><div class="line">-i 如果有同名文件询问是否替换</div></pre></td></tr></table></figure>
 <p>尽管硬链接节省空间，也是Linux系统整合文件系统的传统方式，但是存在一下不足之处：</p>
 <ul>
 <li>不可以在不同文件系统的文件间建立链接</li>
 <li>只有超级用户才可以为目录创建硬链接。</li>
 </ul>
-<h2><span id="ruan-lian-jie">软连接</span><a href="#ruan-lian-jie" class="header-anchor"></a></h2><p>软链接克服了硬链接的不足，没有任何文件系统的限制，任何用户可以创建指向目录的符号链接。因而现在更为广泛使用，它具有更大的灵活性，甚至可以跨越不同机器、不同网络对文件进行链接。</p>
+<h2><span id="ruan-lian-jie">软连接</span><a href="#ruan-lian-jie" class="header-anchor"></a></h2><p>软链接克服了硬链接的不足，没有任何文件系统的限制，任何用户可以创建指向目录的符号<br>链接。因而现在更为广泛使用，它具有更大的灵活性，甚至可以跨越不同机器、不同网络对<br>文件进行链接。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ln -s existing_file new_file            <span class="comment"># 需要加上-s即可</span></div></pre></td></tr></table></figure>
 <h2><span id="shan-chu">删除</span><a href="#shan-chu" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rm -rf new_file     <span class="comment"># 直接rm掉链接文件即可</span></div></pre></td></tr></table></figure>
 
@@ -237,8 +238,8 @@
     </a>
   
   
-    <a href="/2017/08/23/vim-2017-08-23-basic-cmd/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Vim 基础命令</div>
+    <a href="/2017/08/23/python-2017-08-23-scrapy-basic/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Python Scrapy 入门教程</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -395,11 +396,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -423,15 +424,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -443,7 +440,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">grep</a>
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -451,11 +448,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">pyenv</a>
+                <a href="javascript:void(0)" class="js-tag color5">grep</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color1">pyenv</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -463,7 +460,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -472,10 +477,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">北京</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">

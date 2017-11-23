@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="wxnacy 博客">
 <meta property="og:description" content="cRUL 是一种命令行工具，作用是发出网络请求，然后得到和提取数据，显示在“标准输出”（stdout）上面。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-11-22T13:44:24.000Z">
+<meta property="og:updated_time" content="2017-11-23T02:38:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络请求工具 cURL">
 <meta name="twitter:description" content="cRUL 是一种命令行工具，作用是发出网络请求，然后得到和提取数据，显示在“标准输出”（stdout）上面。">
@@ -200,9 +200,9 @@
 <h2><span id="fa-song-biao-dan-xin-xi">发送表单信息</span><a href="#fa-song-biao-dan-xin-xi" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># GET方法比较简单，网址后直接跟参数</span></div><div class="line">$ curl localhost:8002/<span class="built_in">test</span>?data=xxx</div><div class="line"><span class="comment"># POST方法通过--data或-d参数实现</span></div><div class="line">$ curl -X POST localhost:8002/<span class="built_in">test</span> --data <span class="string">"name=xxx"</span> --data <span class="string">"password=xxx"</span></div><div class="line">$ curl -X POST localhost:8002/<span class="built_in">test</span> -H <span class="string">"Content-Type:application/x-www-form-urlencoded"</span> -d <span class="string">"name=win"</span></div><div class="line"><span class="comment"># 使用application/json 提交json数据</span></div><div class="line">$ curl -X POST localhost:8002/<span class="built_in">test</span> -H <span class="string">"Content-Type:application/json"</span> -d <span class="string">'&#123;"name":"wxnacy"&#125;'</span></div><div class="line"><span class="comment">#如果你的数据没有经过表单编码，还可以让curl为你编码，参数是`--data-urlencode`。</span></div><div class="line">$ curl -X POST localhost:8002/<span class="built_in">test</span> --data-urlencode <span class="string">"data=1 2"</span></div></pre></td></tr></table></figure>
 <h2><span id="wen-jian-shang-chuan">文件上传</span><a href="#wen-jian-shang-chuan" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ curl --form upload_field=@localfilename localhost:8002/<span class="built_in">test</span></div><div class="line">$ curl --form <span class="string">"upload_field=@new.txt;type=text/plain"</span> localhost:8002/<span class="built_in">test</span></div></pre></td></tr></table></figure>
 <h2><span id="referer-zi-duan">Referer字段</span><a href="#referer-zi-duan" class="header-anchor"></a></h2><p>需要添加request头信息referer标示从哪里跳转来的<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl localhost:8002/<span class="built_in">test</span> --referer <span class="variable">$&#123;from_url&#125;</span></div></pre></td></tr></table></figure></p>
-<h2><span id="user-agent-zi-duan">user-agent字段</span><a href="#user-agent-zi-duan" class="header-anchor"></a></h2><p>使用<code>--user-agent</code>或<code>-A</code>可以模拟发送user-agent字段<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl localhost:8002/<span class="built_in">test</span> --user-agent <span class="string">"device"</span></div></pre></td></tr></table></figure></p>
+<h2><span id="user-agent-zi-duan">user-agent字段</span><a href="#user-agent-zi-duan" class="header-anchor"></a></h2><p>使用 <code>--user-agent</code> 或 <code>-A</code> 可以模拟发送 user-agent 字段<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl localhost:8002/<span class="built_in">test</span> --user-agent <span class="string">"device"</span></div></pre></td></tr></table></figure></p>
 <h2><span id="cookie">cookie</span><a href="#cookie" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 发送的cookie可以在response headers中看到</span></div><div class="line">$ curl localhost:8002/<span class="built_in">test</span> --cookie <span class="string">"name=ss"</span></div><div class="line"><span class="comment"># -c 可以保存服务器返回的cookies到文件中</span></div><div class="line">$ curl localhost:8002/<span class="built_in">test</span> -c <span class="variable">$&#123;cookie_file&#125;</span></div><div class="line"><span class="comment"># -b 可以使用这个文件作为cookie信息，进行后续的请求。</span></div><div class="line">$ curl localhost:8002/<span class="built_in">test</span> -b <span class="variable">$&#123;cookie_file&#125;</span></div></pre></td></tr></table></figure>
-<h2><span id="http-ren-zheng">HTTP认证</span><a href="#http-ren-zheng" class="header-anchor"></a></h2><p>有些网域需要HTTP认证，这时curl需要用到<code>--user</code>或 <code>-u</code>参数。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 这时候服务器会在头信息中接收到Authorization字段，值为Basic + name:pass的base64加密数值</span></div><div class="line">$ curl localhost:8002/<span class="built_in">test</span> --user name:apss</div></pre></td></tr></table></figure></p>
+<h2><span id="http-ren-zheng">HTTP认证</span><a href="#http-ren-zheng" class="header-anchor"></a></h2><p>有些网域需要HTTP认证，这时 cURL 需要用到<code>--user</code>或 <code>-u</code>参数。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 这时候服务器会在头信息中接收到Authorization字段，值为Basic + name:pass的base64加密数值</span></div><div class="line">$ curl localhost:8002/<span class="built_in">test</span> --user name:apss</div></pre></td></tr></table></figure></p>
 <h2><span id="can-kao-zi-liao">参考资料</span><a href="#can-kao-zi-liao" class="header-anchor"></a></h2><ul>
 <li><a href="http://www.ruanyifeng.com/blog/2011/09/curl.html" target="_blank" rel="external">curl网站开发指南</a></li>
 </ul>
@@ -246,11 +246,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/16/shell-2017-08-16-zsh-install/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/08/18/python-2017-08-18-pip-not-found/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Zsh 与 oh-my-zsh 安装与使用
+          Linux 执行 pip 报错 command not found
         
       </div>
     </a>
@@ -414,11 +414,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -442,15 +442,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -462,7 +458,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">grep</a>
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -470,11 +466,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">pyenv</a>
+                <a href="javascript:void(0)" class="js-tag color5">grep</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color1">pyenv</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -482,7 +478,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -491,10 +495,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">北京</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">

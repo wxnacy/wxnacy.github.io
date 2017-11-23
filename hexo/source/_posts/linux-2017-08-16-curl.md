@@ -130,7 +130,7 @@ $ curl --form "upload_field=@new.txt;type=text/plain" localhost:8002/test
 $ curl localhost:8002/test --referer ${from_url}
 ```
 ## user-agent字段
-使用`--user-agent`或`-A`可以模拟发送user-agent字段
+使用 `--user-agent` 或 `-A` 可以模拟发送 user-agent 字段
 ```bash
 $ curl localhost:8002/test --user-agent "device"
 ```
@@ -147,7 +147,7 @@ $ curl localhost:8002/test -b ${cookie_file}
 
 
 ## HTTP认证
-有些网域需要HTTP认证，这时curl需要用到`--user`或 `-u`参数。
+有些网域需要HTTP认证，这时 cURL 需要用到`--user`或 `-u`参数。
 ```bash
 # 这时候服务器会在头信息中接收到Authorization字段，值为Basic + name:pass的base64加密数值
 $ curl localhost:8002/test --user name:apss

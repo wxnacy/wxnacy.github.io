@@ -1,7 +1,7 @@
 ---
-title: Linux 使用管道命令 grep
+title: Linux 搜索命令 grep
 date: 2017-09-11
-tags: [linux]
+tags: [linux, 搜索]
 ---
 
 > 文件搜索用 find，文本搜索用 grep
