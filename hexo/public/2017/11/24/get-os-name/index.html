@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://wxnacy.com">
-  <title>Archives: 2016 | wxnacy 博客</title>
+  <title>如何判断 Unix 系统 OS 版本 | wxnacy 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="python linux nodejs vim git">
-<meta property="og:type" content="website">
-<meta property="og:title" content="wxnacy 博客">
-<meta property="og:url" content="http://wxnacy.com/archives/2016/index.html">
+  <meta name="description" content="在编写自动化脚本时，经常会需要对系统版本进行区分，以便做自适应，这样就需要精确的获取当前操作系统的系统名，甚至发行版本，接下来我们来一步步探讨如果区分 Mac，Linux 及 Linux 中各个系统版本，本教程对 Windows 系统是废的，或者说 Windows 是废的">
+<meta name="keywords" content="linux,mac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何判断 Unix 系统 OS 版本">
+<meta property="og:url" content="http://wxnacy.com/2017/11/24/get-os-name/index.html">
 <meta property="og:site_name" content="wxnacy 博客">
-<meta property="og:description" content="python linux nodejs vim git">
+<meta property="og:description" content="在编写自动化脚本时，经常会需要对系统版本进行区分，以便做自适应，这样就需要精确的获取当前操作系统的系统名，甚至发行版本，接下来我们来一步步探讨如果区分 Mac，Linux 及 Linux 中各个系统版本，本教程对 Windows 系统是废的，或者说 Windows 是废的">
 <meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2017-11-24T03:22:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wxnacy 博客">
-<meta name="twitter:description" content="python linux nodejs vim git">
+<meta name="twitter:title" content="如何判断 Unix 系统 OS 版本">
+<meta name="twitter:description" content="在编写自动化脚本时，经常会需要对系统版本进行区分，以便做自适应，这样就需要精确的获取当前操作系统的系统名，甚至发行版本，接下来我们来一步步探讨如果区分 Mac，Linux 及 Linux 中各个系统版本，本教程对 Windows 系统是废的，或者说 Windows 是废的">
   
     <link rel="alternative" href="/atom.xml" title="wxnacy 博客" type="application/atom+xml">
   
@@ -159,60 +161,161 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-get-os-name" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/03/25/life-so-hard/" class="archive-article-date">
-  	<time datetime="2016-03-24T19:53:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-25</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/03/25/life-so-hard/">人生为什么活的这么艰难？</a>
+    <h1 class="article-title" itemprop="name">
+      如何判断 Unix 系统 OS 版本
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/11/24/get-os-name/" class="archive-article-date">
+  	<time datetime="2017-11-24T02:24:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在编写自动化脚本时，经常会需要对系统版本进行区分，以便做自适应，这样就需要精确<br>的获取当前操作系统的系统名，甚至发行版本，接下来我们来一步步探讨如果区分 Mac，<br>Linux 及 Linux 中各个系统版本，本教程对 Windows 系统是废的，或者说 Windows 是废的</p>
+<a id="more"></a>
+<div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#uname">Uname</a><ul>
+<li><a href="#linux">Linux</a></li>
+<li><a href="#mac">Mac</a></li>
+</ul>
+</li>
+<li><a href="#os-release">os-release</a><ul>
+<li><a href="#centos">CentOS</a></li>
+<li><a href="#ubuntu">Ubuntu</a></li>
+</ul>
+</li>
+<li><a href="#bian-xie-jiao-ben">编写脚本</a></li>
+<li><a href="#qi-ta-ban-ben">其他版本</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+
+<h2><span id="uname">Uname</span><a href="#uname" class="header-anchor"></a></h2><p>首先先来区分 Mac 和 Linux 系统，我们来使用 <a href="https://en.wikipedia.org/wiki/Uname" target="_blank" rel="external">Uname</a> 命令<br>它可以判断系统名称，版本，内核等信息</p>
+<h3><span id="linux">Linux</span><a href="#linux" class="header-anchor"></a></h3><p>在 Linux 中使用规则为<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ uname [-amnprsvio]    <span class="comment"># 默认使用 -s</span></div></pre></td></tr></table></figure></p>
+<p>具体参数定义<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">-a, --all               <span class="comment"># 输出所有信息。其中若 -p 和 -i 的探测没有结果则被省略</span></div><div class="line">-s, --kernel-name       <span class="comment"># 输出内核名称(Linux)</span></div><div class="line">-n, --nodename          <span class="comment"># 输出网络节点上的主机名</span></div><div class="line">-r, --kernel-release    <span class="comment"># 输出内核版本</span></div><div class="line">-v, --kernel-version    <span class="comment"># 输出内核发行时间</span></div><div class="line">-m, --machine           <span class="comment"># 输出主机的硬件架构名称(和64位,32位有关)</span></div><div class="line">-p, --processor         <span class="comment"># 输出处理器类型或“unknown”</span></div><div class="line">-i, --hardware-platform <span class="comment"># 输出硬件平台或“unknown”</span></div><div class="line">-o, --operating-system  <span class="comment"># 输出操作系统名称(GNU/Linux)</span></div><div class="line">    --<span class="built_in">help</span>              <span class="comment"># 显示此帮助信息并离开</span></div><div class="line">    --version           <span class="comment"># 显示版本信息并离开</span></div></pre></td></tr></table></figure></p>
+<h3><span id="mac">Mac</span><a href="#mac" class="header-anchor"></a></h3><p>在 Mac 中使用规则基本和 Linux 一样，唯一区别在于没有 <code>-i, -o</code> 两个参数<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ uname [-amnprsv]    <span class="comment"># 默认使用 -s</span></div></pre></td></tr></table></figure></p>
+<p>知道这些我们区分这两个系统已经足够，及使用 <code>uname -s</code> 命令即可</p>
+<h2><span id="os-release">os-release</span><a href="#os-release" class="header-anchor"></a></h2><p>在区分 Mac／Linux 之后我们要来谈谈怎样更好的区分 Linux 各个发行版本，毕竟现在<br>发行版本还是很多的，每个版本的组件使用又不尽相同，我们拿最常用到的 CentOS 和<br>Ubuntu 最新的版本来举例说明</p>
+<p>在 Linux 系统中有一个 os-release 文件，位置在 <code>/etc/os-release</code> 从名字我们就<br>明白它是记录 OS 的发行版本的，它在两个系统中的内容分别如下</p>
+<h3><span id="centos">CentOS</span><a href="#centos" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">NAME=<span class="string">"CentOS Linux"</span></div><div class="line">VERSION=<span class="string">"7 (Core)"</span></div><div class="line">ID=<span class="string">"centos"</span></div><div class="line">ID_LIKE=<span class="string">"rhel fedora"</span></div><div class="line">VERSION_ID=<span class="string">"7"</span></div><div class="line">PRETTY_NAME=<span class="string">"CentOS Linux 7 (Core)"</span></div><div class="line">ANSI_COLOR=<span class="string">"0;31"</span></div><div class="line">CPE_NAME=<span class="string">"cpe:/o:centos:centos:7"</span></div><div class="line">HOME_URL=<span class="string">"https://www.centos.org/"</span></div><div class="line">BUG_REPORT_URL=<span class="string">"https://bugs.centos.org/"</span></div><div class="line"></div><div class="line">CENTOS_MANTISBT_PROJECT=<span class="string">"CentOS-7"</span></div><div class="line">CENTOS_MANTISBT_PROJECT_VERSION=<span class="string">"7"</span></div><div class="line">REDHAT_SUPPORT_PRODUCT=<span class="string">"centos"</span></div><div class="line">REDHAT_SUPPORT_PRODUCT_VERSION=<span class="string">"7"</span></div></pre></td></tr></table></figure>
+<h3><span id="ubuntu">Ubuntu</span><a href="#ubuntu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">NAME=<span class="string">"Ubuntu"</span></div><div class="line">VERSION=<span class="string">"16.04.2 LTS (Xenial Xerus)"</span></div><div class="line">ID=ubuntu</div><div class="line">ID_LIKE=debian</div><div class="line">PRETTY_NAME=<span class="string">"Ubuntu 16.04.2 LTS"</span></div><div class="line">VERSION_ID=<span class="string">"16.04"</span></div><div class="line">HOME_URL=<span class="string">"http://www.ubuntu.com/"</span></div><div class="line">SUPPORT_URL=<span class="string">"http://help.ubuntu.com/"</span></div><div class="line">BUG_REPORT_URL=<span class="string">"http://bugs.launchpad.net/ubuntu/"</span></div><div class="line">VERSION_CODENAME=xenial</div><div class="line">UBUNTU_CODENAME=xenial</div></pre></td></tr></table></figure>
+<p>这些信息中，我们暂时只用 ID 属性，在 Linux 中我们可以使用 <code>source</code> 命令来将文件<br>中的 <code>k-v</code> 数据倒入到上下文中<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">source</span> /etc/os-release</div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$ID</span>      <span class="comment"># --&gt; ubuntu</span></div></pre></td></tr></table></figure></p>
+<h2><span id="bian-xie-jiao-ben">编写脚本</span><a href="#bian-xie-jiao-ben" class="header-anchor"></a></h2><p>知道了上边这些我们来写一个简单脚本，以达到判断系统并使用相应的安装工具安装 Git<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">OS=`uname -s`</div><div class="line"><span class="keyword">if</span> [ <span class="variable">$&#123;OS&#125;</span> == <span class="string">"Darwin"</span>  ];<span class="keyword">then</span></div><div class="line">    sudo brew install git</div><div class="line"><span class="keyword">elif</span> [ <span class="variable">$&#123;OS&#125;</span> == <span class="string">"Linux"</span>  ];<span class="keyword">then</span></div><div class="line">    <span class="built_in">source</span> /etc/os-release</div><div class="line">    <span class="keyword">case</span> <span class="variable">$ID</span> <span class="keyword">in</span></div><div class="line">        debian|ubuntu|devuan)</div><div class="line">            sudo apt-get install git</div><div class="line">            ;;</div><div class="line">        centos|fedora|rhel)</div><div class="line">            yumdnf=<span class="string">"yum"</span></div><div class="line">            <span class="keyword">if</span> <span class="built_in">test</span> <span class="string">"<span class="variable">$(echo "$VERSION_ID &gt;= 22" | bc)</span>"</span> -ne 0;</div><div class="line">            <span class="keyword">then</span></div><div class="line">                yumdnf=<span class="string">"dnf"</span></div><div class="line">            <span class="keyword">fi</span></div><div class="line">            sudo <span class="variable">$yumdnf</span> install -y git</div><div class="line">            ;;</div><div class="line">        *)</div><div class="line">            <span class="built_in">exit</span> 1</div><div class="line">            ;;</div><div class="line">    <span class="keyword">esac</span></div><div class="line"><span class="keyword">else</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">"Other OS: <span class="variable">$&#123;OS&#125;</span>"</span></div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure></p>
+<h2><span id="qi-ta-ban-ben">其他版本</span><a href="#qi-ta-ban-ben" class="header-anchor"></a></h2><p>这个脚本基本可以满足简单的判断系统和版本的需求，但是在写这篇文章的时候，我发现<br>CentOS 6 及以前的版本是没有 <code>/etc/os-release</code> 文件的，只有 <code>/etc/centos-release</code><br>也没有 <code>k-v</code> 信息，只有简单的 <code>CentOS release 6.8 (Final)</code> 信息，如何更好的区分<br>这个版本，是我们下一步需要探讨的。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂谈</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">mac</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/11/23/apt/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Ubuntu 软件包管理工具 Apt</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">Uname</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text">Linux</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.2.</span> <span class="toc-text">Mac</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">os-release</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text">CentOS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text">Ubuntu</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">编写脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">其他版本</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'true'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
+  
 
 
           </div>
@@ -245,8 +348,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

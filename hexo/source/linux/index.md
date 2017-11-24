@@ -30,6 +30,7 @@ date: 2017-11-22 16:41:10
 
 ## 杂谈
 - [使用nohup在后台不挂断执行命令](/2017/08/15/linux-2017-08-15-nohup/)
+- [如何判断 Unix 系统 OS 版本](/2017/11/24/get-os-name/)
 ## 常见错误
 - [no acceptable C compiler found in $PATH](/2017/11/22/no-c-compiler/)
 - [Ubuntu 报错 Unable to locate package](/2017/11/23/unable-to-locate-package/)
