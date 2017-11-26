@@ -161,82 +161,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-mysql-2017-08-09-skill" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-skill/">mysql 小技巧</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/09/mysql-2017-08-09-skill/" class="archive-article-date">
-  	<time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2><span id="shi-yong-tee-zhi-ding-shu-ru-ri-zhi">使用tee指定输入日志</span><a href="#shi-yong-tee-zhi-ding-shu-ru-ri-zhi" class="header-anchor"></a></h2><p>tee命令可以将mysql操作日志输出到指定文件中，如果文件已存在则追加。命令行参数可以使用–tee=file_path，命令中可以使用tee或\T,想要退出使用日志可以使用\t<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ mysql -u root -p --tee=mysql.log</div><div class="line">Logging to file &apos;mysql.log&apos;</div><div class="line">mysql&gt; tee mysql.log 或 \T mysql.log</div><div class="line">Logging to file &apos;mysql.log&apos;</div><div class="line">mysql&gt; \t mysql.log</div><div class="line">Outfile disabled</div></pre></td></tr></table></figure></p>
-<h2><span id="shi-yong-os-ming-ling">使用os命令</span><a href="#shi-yong-os-ming-ling" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mysql&gt; system uname;</div><div class="line">Darwin</div><div class="line">mysql&gt; \! uname;</div><div class="line">Darwin</div></pre></td></tr></table></figure>
-<h2><span id="zhi-xing-sql-wen-jian">执行sql文件</span><a href="#zhi-xing-sql-wen-jian" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; source mysql.sql</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-skill/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-mysql-2017-08-09-item-daily" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -327,19 +251,19 @@
 
 
   
-    <article id="post-mysql-2017-08-09-basic-index" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mysql-2017-08-09-skill" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-basic-index/">Mysql 索引的增删查</a>
+      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-skill/">mysql 小技巧</a>
     </h1>
   
 
         
-        <a href="/2017/08/09/mysql-2017-08-09-basic-index/" class="archive-article-date">
+        <a href="/2017/08/09/mysql-2017-08-09-skill/" class="archive-article-date">
   	<time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
 </a>
         
@@ -347,29 +271,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>原文：<a href="http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html" target="_blank" rel="external">http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html</a></p>
-<p>[TOC]</p>
-<h2><span id="suo-yin-lei-xing">索引类型</span><a href="#suo-yin-lei-xing" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">在创建索引时，可以规定索引能否包含重复值。如果不包含，则索引应该创建为PRIMARY KEY或UNIQUE索引。</div><div class="line">对于单列惟一性索引，这保证单列不包含重复的值。对于多列惟一性索引，保证多个值的组合不重复。</div><div class="line">PRIMARY KEY索引和UNIQUE索引非常类似。事实上，PRIMARY KEY索引仅是一个具有名称PRIMARY的UNIQUE索引。</div><div class="line">这表示一个表只能包含一个PRIMARY KEY，因为一个表中不可能具有两个同名的索引。</div><div class="line">下面的SQL语句对students表在sid上添加PRIMARY KEY索引。</div></pre></td></tr></table></figure>
-<h2><span id="chuang-jian-suo-yin">创建索引</span><a href="#chuang-jian-suo-yin" class="header-anchor"></a></h2><p>在执行CREATE TABLE语句时可以创建索引，也可以单独用CREATE INDEX或ALTER TABLE来为表增加索引。</p>
-<h3><span id="alter-table">alter table</span><a href="#alter-table" class="header-anchor"></a></h3><p>其中table_name是要增加索引的表名，column_list指出对哪些列进行索引，多列时各列之间用逗号分隔。索引名index_name可选，缺省时，MySQL将根据第一个索引列赋一个名称。另外，ALTER TABLE允许在单个语句中更改多个表，因此可以在同时创建多个索引。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">alter table table_name add index index_name (column_list);</div><div class="line">alter table table_name add unique index_name (column_list);</div><div class="line">alter table table_name add primary key (column_list);</div></pre></td></tr></table></figure></p>
-<h3><span id="create-table">create table</span><a href="#create-table" class="header-anchor"></a></h3><p>CREATE INDEX可对表增加普通索引或UNIQUE索引。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">create index index_name on table_name (column_list);</div><div class="line">create unique index index_name on table_name (column_list);</div></pre></td></tr></table></figure></p>
-<h2><span id="shan-chu-suo-yin">删除索引</span><a href="#shan-chu-suo-yin" class="header-anchor"></a></h2><p>可利用ALTER TABLE或DROP INDEX语句来删除索引。类似于CREATE INDEX语句，DROP INDEX可以在ALTER TABLE内部作为一条语句处理，语法如下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">drop index index_name on table_name;</div><div class="line">alter table_name drop index index_name;</div><div class="line">alter table_name drop primary key;</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">其中，前两条语句是等价的，删除掉table_name中的索引index_name。</div><div class="line">第3条语句只在删除PRIMARY KEY索引时使用，因为一个表只可能有一个PRIMARY KEY索引，因此不需要指定索引名。</div><div class="line">如果没有创建PRIMARY KEY索引，但表具有一个或多个UNIQUE索引，则MySQL将删除第一个UNIQUE索引。</div><div class="line">如果从表中删除了某列，则索引会受到影响。对于多列组合的索引</div><div class="line">如果删除其中的某列，则该列也会从索引中删除。如果删除组成索引的所有列，则整个索引将被删除。</div></pre></td></tr></table></figure>
-<h2><span id="cha-kan-suo-yin">查看索引</span><a href="#cha-kan-suo-yin" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">show index from table_name;</div><div class="line">show keys from table_name;</div></pre></td></tr></table></figure>
-<ul>
-<li><strong>Table</strong>: 表的名称。</li>
-<li><strong>Non_unique</strong>: 如果索引不能包括重复词，则为0。如果可以，则为1。</li>
-<li><strong>Key_name</strong>: 索引的名称。</li>
-<li><strong>Seq_in_index</strong>: 索引中的列序列号，从1开始。</li>
-<li><strong>Column_name</strong>: 列名称。</li>
-<li><strong>Collation</strong>: 列以什么方式存储在索引中。在MySQL中，有值‘A’（升序）或NULL（无分类）。</li>
-<li><strong>Cardinality</strong>: 索引中唯一值的数目的估计值。通过运行ANALYZE TABLE或myisamchk -a可以更新。基数根据被存储为整数的统计数据来计数，所以即使对于小型表，该值也没有必要是精确的。基数越大，当进行联合时，MySQL使用该索引的机会就越大。</li>
-<li><strong>Sub_part</strong>: 如果列只是被部分地编入索引，则为被编入索引的字符的数目。如果整列被编入索引，则为NULL。</li>
-<li><strong>Packed</strong>: 指示关键字如何被压缩。如果没有被压缩，则为NULL。</li>
-<li><strong>Null</strong>: 如果列含有NULL，则含有YES。如果没有，则该列含有NO。</li>
-<li><strong>Index_type</strong>: 用过的索引方法（BTREE, FULLTEXT, HASH, RTREE）。</li>
-<li><strong>Comment</strong>: 备注</li>
-</ul>
+        <h2><span id="shi-yong-tee-zhi-ding-shu-ru-ri-zhi">使用tee指定输入日志</span><a href="#shi-yong-tee-zhi-ding-shu-ru-ri-zhi" class="header-anchor"></a></h2><p>tee命令可以将mysql操作日志输出到指定文件中，如果文件已存在则追加。命令行参数可以使用–tee=file_path，命令中可以使用tee或\T,想要退出使用日志可以使用\t<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ mysql -u root -p --tee=mysql.log</div><div class="line">Logging to file &apos;mysql.log&apos;</div><div class="line">mysql&gt; tee mysql.log 或 \T mysql.log</div><div class="line">Logging to file &apos;mysql.log&apos;</div><div class="line">mysql&gt; \t mysql.log</div><div class="line">Outfile disabled</div></pre></td></tr></table></figure></p>
+<h2><span id="shi-yong-os-ming-ling">使用os命令</span><a href="#shi-yong-os-ming-ling" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mysql&gt; system uname;</div><div class="line">Darwin</div><div class="line">mysql&gt; \! uname;</div><div class="line">Darwin</div></pre></td></tr></table></figure>
+<h2><span id="zhi-xing-sql-wen-jian">执行sql文件</span><a href="#zhi-xing-sql-wen-jian" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; source mysql.sql</div></pre></td></tr></table></figure>
 
       
 
@@ -393,7 +297,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-basic-index/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-skill/">展开全文 >></a>
         </p>
       
 
@@ -550,6 +454,183 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-prompt/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-mysql-2017-08-09-basic-index" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-basic-index/">Mysql 索引的增删查</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/09/mysql-2017-08-09-basic-index/" class="archive-article-date">
+  	<time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文：<a href="http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html" target="_blank" rel="external">http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html</a></p>
+<p>[TOC]</p>
+<h2><span id="suo-yin-lei-xing">索引类型</span><a href="#suo-yin-lei-xing" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">在创建索引时，可以规定索引能否包含重复值。如果不包含，则索引应该创建为PRIMARY KEY或UNIQUE索引。</div><div class="line">对于单列惟一性索引，这保证单列不包含重复的值。对于多列惟一性索引，保证多个值的组合不重复。</div><div class="line">PRIMARY KEY索引和UNIQUE索引非常类似。事实上，PRIMARY KEY索引仅是一个具有名称PRIMARY的UNIQUE索引。</div><div class="line">这表示一个表只能包含一个PRIMARY KEY，因为一个表中不可能具有两个同名的索引。</div><div class="line">下面的SQL语句对students表在sid上添加PRIMARY KEY索引。</div></pre></td></tr></table></figure>
+<h2><span id="chuang-jian-suo-yin">创建索引</span><a href="#chuang-jian-suo-yin" class="header-anchor"></a></h2><p>在执行CREATE TABLE语句时可以创建索引，也可以单独用CREATE INDEX或ALTER TABLE来为表增加索引。</p>
+<h3><span id="alter-table">alter table</span><a href="#alter-table" class="header-anchor"></a></h3><p>其中table_name是要增加索引的表名，column_list指出对哪些列进行索引，多列时各列之间用逗号分隔。索引名index_name可选，缺省时，MySQL将根据第一个索引列赋一个名称。另外，ALTER TABLE允许在单个语句中更改多个表，因此可以在同时创建多个索引。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">alter table table_name add index index_name (column_list);</div><div class="line">alter table table_name add unique index_name (column_list);</div><div class="line">alter table table_name add primary key (column_list);</div></pre></td></tr></table></figure></p>
+<h3><span id="create-table">create table</span><a href="#create-table" class="header-anchor"></a></h3><p>CREATE INDEX可对表增加普通索引或UNIQUE索引。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">create index index_name on table_name (column_list);</div><div class="line">create unique index index_name on table_name (column_list);</div></pre></td></tr></table></figure></p>
+<h2><span id="shan-chu-suo-yin">删除索引</span><a href="#shan-chu-suo-yin" class="header-anchor"></a></h2><p>可利用ALTER TABLE或DROP INDEX语句来删除索引。类似于CREATE INDEX语句，DROP INDEX可以在ALTER TABLE内部作为一条语句处理，语法如下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">drop index index_name on table_name;</div><div class="line">alter table_name drop index index_name;</div><div class="line">alter table_name drop primary key;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">其中，前两条语句是等价的，删除掉table_name中的索引index_name。</div><div class="line">第3条语句只在删除PRIMARY KEY索引时使用，因为一个表只可能有一个PRIMARY KEY索引，因此不需要指定索引名。</div><div class="line">如果没有创建PRIMARY KEY索引，但表具有一个或多个UNIQUE索引，则MySQL将删除第一个UNIQUE索引。</div><div class="line">如果从表中删除了某列，则索引会受到影响。对于多列组合的索引</div><div class="line">如果删除其中的某列，则该列也会从索引中删除。如果删除组成索引的所有列，则整个索引将被删除。</div></pre></td></tr></table></figure>
+<h2><span id="cha-kan-suo-yin">查看索引</span><a href="#cha-kan-suo-yin" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">show index from table_name;</div><div class="line">show keys from table_name;</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>Table</strong>: 表的名称。</li>
+<li><strong>Non_unique</strong>: 如果索引不能包括重复词，则为0。如果可以，则为1。</li>
+<li><strong>Key_name</strong>: 索引的名称。</li>
+<li><strong>Seq_in_index</strong>: 索引中的列序列号，从1开始。</li>
+<li><strong>Column_name</strong>: 列名称。</li>
+<li><strong>Collation</strong>: 列以什么方式存储在索引中。在MySQL中，有值‘A’（升序）或NULL（无分类）。</li>
+<li><strong>Cardinality</strong>: 索引中唯一值的数目的估计值。通过运行ANALYZE TABLE或myisamchk -a可以更新。基数根据被存储为整数的统计数据来计数，所以即使对于小型表，该值也没有必要是精确的。基数越大，当进行联合时，MySQL使用该索引的机会就越大。</li>
+<li><strong>Sub_part</strong>: 如果列只是被部分地编入索引，则为被编入索引的字符的数目。如果整列被编入索引，则为NULL。</li>
+<li><strong>Packed</strong>: 指示关键字如何被压缩。如果没有被压缩，则为NULL。</li>
+<li><strong>Null</strong>: 如果列含有NULL，则含有YES。如果没有，则该列含有NO。</li>
+<li><strong>Index_type</strong>: 用过的索引方法（BTREE, FULLTEXT, HASH, RTREE）。</li>
+<li><strong>Comment</strong>: 备注</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-basic-index/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-ansible-2017-08-08-item-basic-playbooks" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">ansible入门笔记2 Playbooks</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/" class="archive-article-date">
+  	<time datetime="2017-08-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>专辑：<a href="/2017/08/14/ansible-2017-08-14-album-study-notes/">ansible学习笔记</a></p>
+<blockquote>
+<p>Playbooks 是 Ansible的配置,部署,编排语言.他们可以被描述为一个需要希望远程主机执行命令的方案,或者一组IT程序运行的命令集合.</p>
+</blockquote>
+<p>一个playbook就是一个YAML文件，所以playbook文件一般都以.yml结尾，一个playbook文件由一个或多个play组成，每个play定义了在一个或多个远程主机上执行的一系列的task，其中每个task一般就是调用一个ansible的模块，如调用copy模块复制文件到远程主机或调用shell模块执行命令。</p>
+<h2><span id="jian-dan-de-pei-zhi">简单的配置</span><a href="#jian-dan-de-pei-zhi" class="header-anchor"></a></h2><p>配置deploy.yml完成进入远程服务器的某个目录并执行git pull操作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- hosts: wxnacy <span class="comment"># 它会默认使用/etc/ansible/hosts 中配置的服务器组名 也可以单独设置hosts地址</span></div><div class="line">  tasks:</div><div class="line">  - name: <span class="built_in">cd</span> path and git pull <span class="comment"># 命令名称</span></div><div class="line">    shell: git pull <span class="comment"># 执行命令</span></div><div class="line">    args:</div><div class="line">      <span class="built_in">chdir</span>: ~/workdir <span class="comment"># 进入目录</span></div></pre></td></tr></table></figure></p>
+<p>运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ ansible-playbook deploy.yml</div><div class="line"></div><div class="line">PLAY [wxnacy] **********************************************************************************************************************************************************************************************</div><div class="line"></div><div class="line">TASK [<span class="built_in">cd</span> path and git pull] *************************************************************************************************************************************************************************************</div><div class="line">ok: [wxnacy.server.org]</div><div class="line"></div><div class="line"></div><div class="line">PLAY RECAP *************************************************************************************************************************************************************************************************</div><div class="line">wxnacy.server.org             : ok=2    changed=1    unreachable=0    failed=0</div></pre></td></tr></table></figure></p>
+<p>执行完运行命令ansible会在webservers组中依次执行tasks，返回以上样式结果极为成功，结果通过红黄绿三种颜色标明了不同的执行结果，红色表示有task执行失败，黄色表示改变了远程主机状态。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ansible</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">展开全文 >></a>
         </p>
       
 
@@ -747,87 +828,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/08/ansible-2017-08-08-item-basic-get-started/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ansible-2017-08-08-item-basic-playbooks" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">ansible入门笔记2 Playbooks</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/" class="archive-article-date">
-  	<time datetime="2017-08-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>专辑：<a href="/2017/08/14/ansible-2017-08-14-album-study-notes/">ansible学习笔记</a></p>
-<blockquote>
-<p>Playbooks 是 Ansible的配置,部署,编排语言.他们可以被描述为一个需要希望远程主机执行命令的方案,或者一组IT程序运行的命令集合.</p>
-</blockquote>
-<p>一个playbook就是一个YAML文件，所以playbook文件一般都以.yml结尾，一个playbook文件由一个或多个play组成，每个play定义了在一个或多个远程主机上执行的一系列的task，其中每个task一般就是调用一个ansible的模块，如调用copy模块复制文件到远程主机或调用shell模块执行命令。</p>
-<h2><span id="jian-dan-de-pei-zhi">简单的配置</span><a href="#jian-dan-de-pei-zhi" class="header-anchor"></a></h2><p>配置deploy.yml完成进入远程服务器的某个目录并执行git pull操作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- hosts: wxnacy <span class="comment"># 它会默认使用/etc/ansible/hosts 中配置的服务器组名 也可以单独设置hosts地址</span></div><div class="line">  tasks:</div><div class="line">  - name: <span class="built_in">cd</span> path and git pull <span class="comment"># 命令名称</span></div><div class="line">    shell: git pull <span class="comment"># 执行命令</span></div><div class="line">    args:</div><div class="line">      <span class="built_in">chdir</span>: ~/workdir <span class="comment"># 进入目录</span></div></pre></td></tr></table></figure></p>
-<p>运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ ansible-playbook deploy.yml</div><div class="line"></div><div class="line">PLAY [wxnacy] **********************************************************************************************************************************************************************************************</div><div class="line"></div><div class="line">TASK [<span class="built_in">cd</span> path and git pull] *************************************************************************************************************************************************************************************</div><div class="line">ok: [wxnacy.server.org]</div><div class="line"></div><div class="line"></div><div class="line">PLAY RECAP *************************************************************************************************************************************************************************************************</div><div class="line">wxnacy.server.org             : ok=2    changed=1    unreachable=0    failed=0</div></pre></td></tr></table></figure></p>
-<p>执行完运行命令ansible会在webservers组中依次执行tasks，返回以上样式结果极为成功，结果通过红黄绿三种颜色标明了不同的执行结果，红色表示有task执行失败，黄色表示改变了远程主机状态。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ansible</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">展开全文 >></a>
         </p>
       
 
@@ -1139,6 +1139,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
@@ -1152,10 +1156,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1175,11 +1175,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">grep</a>
+                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
+                <a href="javascript:void(0)" class="js-tag color5">grep</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1199,15 +1199,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">北京</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -4,6 +4,7 @@ date: 2017-11-21 21:07:36
 ---
 <!-- toc -->
 ## 基础
+- [列表 List](/2017/11/24/python-list/)
 - [Python编程规范](http://pan.baidu.com/s/1boX8P6v) 密码:p73y
 - [Python编码Yes or No.pdf](http://pan.baidu.com/s/1skNCT7v) 密码:5tta
 - [操作目录文件相关命令](/2017/08/11/python-2017-08-11-os-file/)
