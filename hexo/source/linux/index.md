@@ -28,6 +28,9 @@ date: 2017-11-22 16:41:10
 - [cURL](/2017/08/16/linux-2017-08-16-curl/)
 - [HTTPie](/2017/09/21/http/)
 
+## 远程操控机器 ansible
+- [Get Started](/2017/08/08/ansible-2017-08-08-item-basic-get-started/)
+
 ## 杂谈
 - [使用nohup在后台不挂断执行命令](/2017/08/15/linux-2017-08-15-nohup/)
 - [如何判断 Unix 系统 OS 版本](/2017/11/24/get-os-name/)
