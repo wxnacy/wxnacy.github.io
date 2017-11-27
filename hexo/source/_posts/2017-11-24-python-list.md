@@ -136,6 +136,75 @@ print(l)        # ==> [1, 2, 3, 4]
 ```
 通过使用列表解析，可以完成去重合并的目的，这也是比较高效的做法
 
+## 排序
+Python 提供了列表的排序方法 `sort()` ，默认有小到大排列
+```python
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+# Author: wxnacy(wxnacy@gmail.com)
+
+l = [3, 5, 1]
+l.sort()
+print(l)        # ==> [1, 3, 5]
+```
+另外，还有个倒序排序的方法 `reverse()` ，他不是由大到小，而只是倒序，比如
+```python
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+# Author: wxnacy(wxnacy@gmail.com)
+
+l = [3, 5, 1]
+l.reverse()
+print(l)        # ==> [1, 5, 3]
+```
+但是由此你可能会想到，可以通过顺序执行这两个方法达到由大到小排序的效果，但是我
+们有更好的办法，`sort()` 方法是可以传参数的，有一个参数 `reverse` ，它默认为
+**False** ，传入 **True** 即可达到由大到小排序
+```python
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+# Author: wxnacy(wxnacy@gmail.com)
+
+l = [3, 5, 1]
+l.sort(reverse=True)
+print(l)        # ==> [5, 3, 1]
+```
+
+### 复杂对象排序
+`sort()` 方法在默认情况下只能对基本类型数据做排序，数字或字符串，但实际开发中
+列表中的数据通常是更复杂的结果，比如字典，假设我们有这样一组数据，并做排序处理
+```python
+ex_list = [dict(age=44), dict(age=43), dict(age=24), dict(age=74)]
+```
+```bash
+unorderable types: dict() < dict()
+```
+它懵逼了，不会处理了。因为这时候需要我们告诉他应该对字典的某一个字段进行排序
+```python
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+# Author: wxnacy(wxnacy@gmail.com)
+
+ex_list = [dict(age=44), dict(age=43), dict(age=24), dict(age=74)]
+ex_list.sort(key=lambda x: x['age'])
+print(ex_list)  # ==> [{'age': 24}, {'age': 43}, {'age': 44}, {'age': 74}]
+```
+`key` 需要传入一个方法名，告诉它应该怎么处理的对象并排序，如果 `lambda` 方法满足
+不了你的需求，可以额外编写方法，知道了这个原理，我们还可以做一些别的事
+```python
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+# Author: wxnacy(wxnacy@gmail.com)
+
+l = ['BB', 'aa', 'cc']
+l.sort()
+print(l)    # ==> ['BB', 'aa', 'cc']
+l.sort(key=str.lower)
+print(l)    # ==> ['aa', 'BB', 'cc']
+```
+通过传入 `str.lower` 方法，我们告诉它需要先将字符转为小写，在进行排序，有些时候
+我们会需要到这种用法
+
 ## 函数
 ```bash
 len(list)      # 返回列表的长度

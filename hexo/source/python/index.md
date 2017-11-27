@@ -10,14 +10,16 @@ date: 2017-11-21 21:07:36
 - [操作目录文件相关命令](/2017/08/11/python-2017-08-11-os-file/)
 - [SQLAlchemy 各种查询语句写法](/2017/08/14/python-2017-08-14-sqlalchemy-filter/)
 - [了解 PYTHONPATH](/2017/08/15/python-2017-08-15-config-pythonpath/)
+
+## 高级
 - [pigar 管理 requirements.txt](/2017/08/19/python-2017-08-19-pigar/)
 - [使用 gunicorn 启动你的项目](/2017/08/15/python-2017-08-15-gunicorn-run/)
 - [使用 Supervisor 管理进程](/2017/08/18/python-2017-08-18-basic-supervisor/)
 
-## web 框架 Flask
+### Flask
 - [Hello World](/2017/08/15/python-2017-08-15-flask-hello-world/)
 - [配置多环境](/2017/08/15/python-2017-08-15-flask-env-config/)
-## pyenv
+### pyenv
 > [pyenv](https://github.com/yyuu/pyenv) 是一款特别好用的Python版本管理器，
 使用它我们可以在不同的项目使用不同的 Python 版本，并且互不影响。
 > [pyenv-virtualenv](https://github.com/yyuu/pyenv-virtualenv) 是 pyenv 的一个 plugin（插件），
