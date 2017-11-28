@@ -161,6 +161,98 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-mysql-2017-08-07-item-daily" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/07/mysql-2017-08-07-item-daily/">2017-08-07 新建user和user_data表，完善`insert_commet_trigger`</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/07/mysql-2017-08-07-item-daily/" class="archive-article-date">
+  	<time datetime="2017-08-06T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>今天目标新建user、<code>user_data</code>表，并完善<code>insert_commet_trigger</code>，达到根据判断resource_type来更新video还是user_data的comment_count</p>
+</blockquote>
+<p>专辑：<a href="/?p=/doc/mysql/mysql_daily.md">mysql每天练习</a></p>
+<ul>
+<li><p>新建user表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">drop table if exists `user`;</div><div class="line">create table `user`(</div><div class="line">    id int(11) not null auto_increment,</div><div class="line">    name varchar(32) not null comment &apos;姓名&apos;,</div><div class="line">    is_del int(1) not null default 0 comment &apos;是否删除&apos;,</div><div class="line">    create_ts timestamp not null default current_timestamp comment &apos;创建时间&apos;,</div><div class="line">    update_ts timestamp not null default current_timestamp on update current_timestamp comment &apos;修改时间&apos;,</div><div class="line">    primary key(`id`)</div><div class="line">)engine=InnoDB default charset=utf8mb4 comment &apos;用户表&apos;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>新建user_data表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">drop table if exists `user_data`;</div><div class="line">create table `user_data`(</div><div class="line">    user_id int(11) not null,</div><div class="line">    comment_count int(11) not null default 0 comment &apos;评论数量&apos;,</div><div class="line">    update_ts timestamp not null default current_timestamp on update current_timestamp comment &apos;最后修改时间&apos;,</div><div class="line">    primary key(`user_id`)</div><div class="line">)engine=InnoDB default charset=utf8mb4 comment &apos;用户数据表，记录用户额外数据&apos;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>重写 <code>insert_comment_trigger</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">drop trigger if exists `insert_comment`;</div><div class="line">delimiter $</div><div class="line">create trigger `insert_comment` after insert on comment for each row </div><div class="line">begin</div><div class="line">    declare count int;</div><div class="line">    if (new.resource_type = &apos;user&apos;) then</div><div class="line">        select count(0) into count from user_data where user_id = new.resource_id;</div><div class="line">        if (count &gt; 0 ) then</div><div class="line">            update user_data set comment_count = comment_count +1  where user_id = new.resource_id;</div><div class="line">        else</div><div class="line">            insert into user_data (user_id,comment_count) values (new.resource_id,1);</div><div class="line">        end if;</div><div class="line">    else</div><div class="line">        update video set comment_count = comment_count +1 where id= new.resource_id;</div><div class="line">    end if; </div><div class="line">end $</div><div class="line">delimiter ;</div></pre></td></tr></table></figure>
+</li>
+<li><p>执行相关语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">insert into user(name) values (&apos;wxnacy&apos;);</div><div class="line">insert into comment (resource_id,resource_type,content) values (1,&apos;user&apos;,&apos;好人&apos;);</div><div class="line">insert into comment (resource_id,resource_type,content) values (1,&apos;user&apos;,&apos;大好人&apos;);</div><div class="line">select * from user_data;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>执行语句后，user_data中comment_count应该等于2</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/07/mysql-2017-08-07-item-daily/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-mysql-2017-08-06-item-daily" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -352,19 +444,19 @@
 
 
   
-    <article id="post-js-2017-08-05-screen-wh" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-algorithm-2017-08-05-identity-verify" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/05/js-2017-08-05-screen-wh/">js和css获取屏幕大小</a>
+      <a class="article-title" href="/2017/08/05/algorithm-2017-08-05-identity-verify/">身份证号码校验规则</a>
     </h1>
   
 
         
-        <a href="/2017/08/05/js-2017-08-05-screen-wh/" class="archive-article-date">
+        <a href="/2017/08/05/algorithm-2017-08-05-identity-verify/" class="archive-article-date">
   	<time datetime="2017-08-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-05</time>
 </a>
         
@@ -372,10 +464,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="https://segmentfault.com/q/1010000004605042" target="_blank" rel="external">原文：https://segmentfault.com/q/1010000004605042</a></p>
-<h2><span id="js">js</span><a href="#js" class="header-anchor"></a></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getScreenInfo</span>(<span class="params"></span>) </span></div><div class="line"><span class="function"></span>&#123; </div><div class="line">    <span class="keyword">var</span> s = <span class="string">""</span>; </div><div class="line">    s = <span class="string">" 网页可见区域宽："</span> <span class="built_in">document</span>.body.clientWidth; </div><div class="line">    s = <span class="string">" 网页可见区域高："</span> <span class="built_in">document</span>.body.clientHeight; </div><div class="line">    s = <span class="string">" 网页可见区域宽："</span> <span class="built_in">document</span>.body.offsetWidth <span class="string">" (包括边线和滚动条的宽)"</span>; </div><div class="line">    s = <span class="string">" 网页可见区域高："</span> <span class="built_in">document</span>.body.offsetHeight <span class="string">" (包括边线的宽)"</span>; </div><div class="line">    s = <span class="string">" 网页正文全文宽："</span> <span class="built_in">document</span>.body.scrollWidth; </div><div class="line">    s = <span class="string">" 网页正文全文高："</span> <span class="built_in">document</span>.body.scrollHeight; </div><div class="line">    s = <span class="string">" 网页被卷去的高(ff)："</span> <span class="built_in">document</span>.body.scrollTop; </div><div class="line">    s = <span class="string">" 网页被卷去的高(ie)："</span> <span class="built_in">document</span>.documentElement.scrollTop; </div><div class="line">    s = <span class="string">" 网页被卷去的左："</span> <span class="built_in">document</span>.body.scrollLeft; </div><div class="line">    s = <span class="string">" 网页正文部分上："</span> <span class="built_in">window</span>.screenTop; </div><div class="line">    s = <span class="string">" 网页正文部分左："</span> <span class="built_in">window</span>.screenLeft; </div><div class="line">    s = <span class="string">" 屏幕分辨率的高："</span> <span class="built_in">window</span>.screen.height; </div><div class="line">    s = <span class="string">" 屏幕分辨率的宽："</span> <span class="built_in">window</span>.screen.width; </div><div class="line">    s = <span class="string">" 屏幕可用工作区高度："</span> <span class="built_in">window</span>.screen.availHeight; </div><div class="line">    s = <span class="string">" 屏幕可用工作区宽度："</span> <span class="built_in">window</span>.screen.availWidth;</div><div class="line">    s = <span class="string">" 你的屏幕设置是 "</span> <span class="built_in">window</span>.screen.colorDepth <span class="string">" 位彩色"</span>; </div><div class="line">    s = <span class="string">" 你的屏幕设置 "</span> <span class="built_in">window</span>.screen.deviceXDPI <span class="string">" 像素/英寸"</span>; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2><span id="css-pan-duan">css判断</span><a href="#css-pan-duan" class="header-anchor"></a></h2><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 小屏幕（平板，大于等于 768px） */</span></div><div class="line">@<span class="keyword">media</span> (min-width: <span class="number">768px</span>) &#123; ... &#125;</div><div class="line"></div><div class="line"><span class="comment">/* 中等屏幕（桌面显示器，大于等于 992px） */</span></div><div class="line">@<span class="keyword">media</span> (min-width: <span class="number">992px</span>) &#123; ... &#125;</div><div class="line"></div><div class="line"><span class="comment">/* 大屏幕（大桌面显示器，大于等于 1200px） */</span></div><div class="line">@<span class="keyword">media</span> (min-width: <span class="number">1200px</span>) &#123; ... &#125;</div></pre></td></tr></table></figure>
-
+        <p><a href="http://www.icloudyin.com/?p=66" target="_blank" rel="external">原文:http://www.icloudyin.com/?p=66</a></p>
+<p>18位身份证号码组成：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">其他部分都和15位的相同。年份代码由原来的2位升级到4位。最后一位为校验位。</div><div class="line"></div><div class="line">## 校验规则：</div><div class="line">- 十七位数字本体码加权求和公式</div></pre></td></tr></table></figure></p>
+<p>S = Sum(Ai * Wi), i = 0, … , 16 ，先对前17位数字的权求和<br>Ai:表示第i位置上的身份证号码数字值<br>Wi:表示第i位置上的加权因子<br>Wi: 7 9 10 5 8 4 2 1 6 3 7 9 10 5 8 4 2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- 计算模</div></pre></td></tr></table></figure></p>
+<p>Y = mod(S, 11)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- 通过模得到对应的校验码</div></pre></td></tr></table></figure></p>
+<p>Y: 0 1 2 3 4 5 6 7 8 9 10<br>校验码: 1 0 X 9 8 7 6 5 4 3 2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## java</div><div class="line"></div><div class="line">```java</div><div class="line">static String getCheckCode(String idCard)&#123;</div><div class="line">        static String[] Wi = &#123; &quot;7&quot;, &quot;9&quot;, &quot;10&quot;, &quot;5&quot;, &quot;8&quot;, &quot;4&quot;, &quot;2&quot;, &quot;1&quot;, &quot;6&quot;, &quot;3&quot;, &quot;7&quot;,</div><div class="line">            &quot;9&quot;, &quot;10&quot;, &quot;5&quot;, &quot;8&quot;, &quot;4&quot;, &quot;2&quot; &#125;;</div><div class="line">        int sum = 0;</div><div class="line">        for( int i = 0 ; i &lt; 17 ; i ++)</div><div class="line">        &#123;</div><div class="line">            sum = sum + Integer.parseInt(String.valueOf(idCard.charAt(i))) * Integer.parseInt(String.valueOf(Wi[i]));</div><div class="line">        &#125;</div><div class="line">        int T  = sum % 11;</div><div class="line">        int R = (12 -T) % 11;</div><div class="line">        if( R == 10 )</div><div class="line">            return &quot;X&quot;;</div><div class="line">        else &#123;</div><div class="line">            return String.valueOf(R);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<h2><span id="python">python</span><a href="#python" class="header-anchor"></a></h2><pre><code>def check_identity_card(card):
+    wi = [&quot;7&quot;, &quot;9&quot;, &quot;10&quot;, &quot;5&quot;, &quot;8&quot;, &quot;4&quot;, &quot;2&quot;, &quot;1&quot;, &quot;6&quot;, &quot;3&quot;, &quot;7&quot;, &quot;9&quot;, &quot;10&quot;,&quot;5&quot;, &quot;8&quot;, &quot;4&quot;, &quot;2&quot;]
+    total = 0
+    card = list(card)
+    index = 0
+    for item in card:
+        total += ord(item) * int(wi[index])
+        index += 1 t = total % 11
+    r = (12 - t) % 11
+    if r == 10:
+        return &quot;X&quot;
+    else:
+        return r
+</code></pre>
       
 
       
@@ -388,7 +495,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algorithm</a>
         		</li>
       		
 		</ul>
@@ -398,7 +505,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/05/js-2017-08-05-screen-wh/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/05/algorithm-2017-08-05-identity-verify/">展开全文 >></a>
         </p>
       
 
@@ -510,19 +617,19 @@
 
 
   
-    <article id="post-algorithm-2017-08-05-identity-verify" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-js-2017-08-05-screen-wh" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/05/algorithm-2017-08-05-identity-verify/">身份证号码校验规则</a>
+      <a class="article-title" href="/2017/08/05/js-2017-08-05-screen-wh/">js和css获取屏幕大小</a>
     </h1>
   
 
         
-        <a href="/2017/08/05/algorithm-2017-08-05-identity-verify/" class="archive-article-date">
+        <a href="/2017/08/05/js-2017-08-05-screen-wh/" class="archive-article-date">
   	<time datetime="2017-08-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-05</time>
 </a>
         
@@ -530,25 +637,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="http://www.icloudyin.com/?p=66" target="_blank" rel="external">原文:http://www.icloudyin.com/?p=66</a></p>
-<p>18位身份证号码组成：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">其他部分都和15位的相同。年份代码由原来的2位升级到4位。最后一位为校验位。</div><div class="line"></div><div class="line">## 校验规则：</div><div class="line">- 十七位数字本体码加权求和公式</div></pre></td></tr></table></figure></p>
-<p>S = Sum(Ai * Wi), i = 0, … , 16 ，先对前17位数字的权求和<br>Ai:表示第i位置上的身份证号码数字值<br>Wi:表示第i位置上的加权因子<br>Wi: 7 9 10 5 8 4 2 1 6 3 7 9 10 5 8 4 2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- 计算模</div></pre></td></tr></table></figure></p>
-<p>Y = mod(S, 11)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- 通过模得到对应的校验码</div></pre></td></tr></table></figure></p>
-<p>Y: 0 1 2 3 4 5 6 7 8 9 10<br>校验码: 1 0 X 9 8 7 6 5 4 3 2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## java</div><div class="line"></div><div class="line">```java</div><div class="line">static String getCheckCode(String idCard)&#123;</div><div class="line">        static String[] Wi = &#123; &quot;7&quot;, &quot;9&quot;, &quot;10&quot;, &quot;5&quot;, &quot;8&quot;, &quot;4&quot;, &quot;2&quot;, &quot;1&quot;, &quot;6&quot;, &quot;3&quot;, &quot;7&quot;,</div><div class="line">            &quot;9&quot;, &quot;10&quot;, &quot;5&quot;, &quot;8&quot;, &quot;4&quot;, &quot;2&quot; &#125;;</div><div class="line">        int sum = 0;</div><div class="line">        for( int i = 0 ; i &lt; 17 ; i ++)</div><div class="line">        &#123;</div><div class="line">            sum = sum + Integer.parseInt(String.valueOf(idCard.charAt(i))) * Integer.parseInt(String.valueOf(Wi[i]));</div><div class="line">        &#125;</div><div class="line">        int T  = sum % 11;</div><div class="line">        int R = (12 -T) % 11;</div><div class="line">        if( R == 10 )</div><div class="line">            return &quot;X&quot;;</div><div class="line">        else &#123;</div><div class="line">            return String.valueOf(R);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
-<h2><span id="python">python</span><a href="#python" class="header-anchor"></a></h2><pre><code>def check_identity_card(card):
-    wi = [&quot;7&quot;, &quot;9&quot;, &quot;10&quot;, &quot;5&quot;, &quot;8&quot;, &quot;4&quot;, &quot;2&quot;, &quot;1&quot;, &quot;6&quot;, &quot;3&quot;, &quot;7&quot;, &quot;9&quot;, &quot;10&quot;,&quot;5&quot;, &quot;8&quot;, &quot;4&quot;, &quot;2&quot;]
-    total = 0
-    card = list(card)
-    index = 0
-    for item in card:
-        total += ord(item) * int(wi[index])
-        index += 1 t = total % 11
-    r = (12 - t) % 11
-    if r == 10:
-        return &quot;X&quot;
-    else:
-        return r
-</code></pre>
+        <p><a href="https://segmentfault.com/q/1010000004605042" target="_blank" rel="external">原文：https://segmentfault.com/q/1010000004605042</a></p>
+<h2><span id="js">js</span><a href="#js" class="header-anchor"></a></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getScreenInfo</span>(<span class="params"></span>) </span></div><div class="line"><span class="function"></span>&#123; </div><div class="line">    <span class="keyword">var</span> s = <span class="string">""</span>; </div><div class="line">    s = <span class="string">" 网页可见区域宽："</span> <span class="built_in">document</span>.body.clientWidth; </div><div class="line">    s = <span class="string">" 网页可见区域高："</span> <span class="built_in">document</span>.body.clientHeight; </div><div class="line">    s = <span class="string">" 网页可见区域宽："</span> <span class="built_in">document</span>.body.offsetWidth <span class="string">" (包括边线和滚动条的宽)"</span>; </div><div class="line">    s = <span class="string">" 网页可见区域高："</span> <span class="built_in">document</span>.body.offsetHeight <span class="string">" (包括边线的宽)"</span>; </div><div class="line">    s = <span class="string">" 网页正文全文宽："</span> <span class="built_in">document</span>.body.scrollWidth; </div><div class="line">    s = <span class="string">" 网页正文全文高："</span> <span class="built_in">document</span>.body.scrollHeight; </div><div class="line">    s = <span class="string">" 网页被卷去的高(ff)："</span> <span class="built_in">document</span>.body.scrollTop; </div><div class="line">    s = <span class="string">" 网页被卷去的高(ie)："</span> <span class="built_in">document</span>.documentElement.scrollTop; </div><div class="line">    s = <span class="string">" 网页被卷去的左："</span> <span class="built_in">document</span>.body.scrollLeft; </div><div class="line">    s = <span class="string">" 网页正文部分上："</span> <span class="built_in">window</span>.screenTop; </div><div class="line">    s = <span class="string">" 网页正文部分左："</span> <span class="built_in">window</span>.screenLeft; </div><div class="line">    s = <span class="string">" 屏幕分辨率的高："</span> <span class="built_in">window</span>.screen.height; </div><div class="line">    s = <span class="string">" 屏幕分辨率的宽："</span> <span class="built_in">window</span>.screen.width; </div><div class="line">    s = <span class="string">" 屏幕可用工作区高度："</span> <span class="built_in">window</span>.screen.availHeight; </div><div class="line">    s = <span class="string">" 屏幕可用工作区宽度："</span> <span class="built_in">window</span>.screen.availWidth;</div><div class="line">    s = <span class="string">" 你的屏幕设置是 "</span> <span class="built_in">window</span>.screen.colorDepth <span class="string">" 位彩色"</span>; </div><div class="line">    s = <span class="string">" 你的屏幕设置 "</span> <span class="built_in">window</span>.screen.deviceXDPI <span class="string">" 像素/英寸"</span>; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2><span id="css-pan-duan">css判断</span><a href="#css-pan-duan" class="header-anchor"></a></h2><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 小屏幕（平板，大于等于 768px） */</span></div><div class="line">@<span class="keyword">media</span> (min-width: <span class="number">768px</span>) &#123; ... &#125;</div><div class="line"></div><div class="line"><span class="comment">/* 中等屏幕（桌面显示器，大于等于 992px） */</span></div><div class="line">@<span class="keyword">media</span> (min-width: <span class="number">992px</span>) &#123; ... &#125;</div><div class="line"></div><div class="line"><span class="comment">/* 大屏幕（大桌面显示器，大于等于 1200px） */</span></div><div class="line">@<span class="keyword">media</span> (min-width: <span class="number">1200px</span>) &#123; ... &#125;</div></pre></td></tr></table></figure>
+
       
 
       
@@ -561,7 +653,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algorithm</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
         		</li>
       		
 		</ul>
@@ -571,7 +663,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/05/algorithm-2017-08-05-identity-verify/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/05/js-2017-08-05-screen-wh/">展开全文 >></a>
         </p>
       
 
@@ -870,15 +962,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -926,15 +1018,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">北京</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">

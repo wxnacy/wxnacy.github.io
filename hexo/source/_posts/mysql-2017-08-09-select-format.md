@@ -5,9 +5,12 @@ tags: [mysql]
 ---
 
 ## 使用\G输出结果按行垂直显示结果
-当使用命令select结果，如果表属性特别多的时候，查看起来非常难受，在select语句后使用\G(必须大写)，可以让结果按行垂直显示
+当使用命令 select 结果，如果表属性特别多的时候，查看起来非常难受，在 select 语句
+后使用`\G`(必须大写)，可以让结果按行垂直显示
 ```mysql
 mysql> select * from user\G;
+```
+```mysql
 
 *************************** 1. row ***************************
        id: 1
@@ -22,15 +25,17 @@ update_ts: 2017-08-08 07:46:42
 ```mysql
 $ mysql -u root --html -p
 mysql> select * from user;
-
-<TABLE BORDER=1><TR><TH>id</TH><TH>name</TH><TH>is_del</TH><TH>create_ts</TH><TH>update_ts</TH></TR><TR><TD>1</TD><TD>wxnacy</TD><TD>0</TD><TD>2017-08-08 07:46:42</TD><TD>2017-08-08 07:46:42</TD></TR></TABLE>
+```
+```html
+<TABLE BORDER=1><TR><TH>id</TH><TH>name</TH><TH>is_del</TH><TH>create_ts</TH> <TH>update_ts</TH></TR><TR><TD>1</TD><TD>wxnacy</TD><TD>0</TD><TD>2017-08-08 07:46:42</TD><TD>2017-08-08 07:46:42</TD></TR></TABLE>
 ```
 ## 以xml格式输出
 使用mysql客户端的参数–xml或者-X选项，可以将结果输出为xml格式
 ```mysql
 $ mysql -u root --xml -p
 mysql> select * from user;
-
+```
+```xml
 <?xml version="1.0"?>
 
 <resultset statement="select * from user;" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">

@@ -35,7 +35,7 @@ setlocal foldmethod=indent
 setlocal foldignore=
 
 iabbrev <buffer> main if __name__ == "__main__":<cr>
-iabbrev <buffer> fh #!/user/bin/env python<cr>
+iabbrev <buffer> fh #!/usr/bin/env python<cr>
                     \# -*- coding:utf-8 -*-<cr>
                     \# Author: wxnacy
                     \(wxnacy@gmail.com)<cr>

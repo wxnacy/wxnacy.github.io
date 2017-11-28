@@ -13,6 +13,9 @@ tags: [vim]
 我认为是 Vim 中必不可少的插件，作用是可以模糊搜索文件 ***/buf/mru/tag*** 等等
 我用的是改进版的 [ctrlpvim/ctrlp.vim](https://github.com/ctrlpvim/ctrlp.vim) 原版是 [kien/ctrlp.vim](https://github.com/kien/ctrlp.vim)
 
+## 预览
+![ctrlp](/images/ctrlp.gif)
+
 ## 安装
 ### Pathogen
 ```bash
@@ -21,7 +24,7 @@ $ git clone https://github.com/kien/ctrlp.vim
 ```
 
 ### Vundle
-修改 `~/.vimrc` 
+修改 `~/.vimrc`
 ```bash
 Plugin 'kien/ctrlp.vim'
 ```
@@ -69,6 +72,9 @@ F5          # 刷新可搜索文件
 
 ## ctrlp 的插件 ctrlp-funky
 [ctrlp-funky](https://github.com/tacahiroy/ctrlp-funky) 可以模糊搜索文件内容的方法名
+
+## 预览
+![ctrlpfu](/images/ctrlpfu.gif)
 
 ### 安装
 Pathogen
