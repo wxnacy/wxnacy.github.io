@@ -16,7 +16,7 @@ date: 2017-09-20 18:02:20
 - [Vim 插件 pathogen 插件管理](/2017/09/20/vim-plugin-pathogen)
 ### 功能
 - [Vim 插件 quickrun 快速运行](/2017/09/23/vim-plugin-quickrun)
-- [Vim 插件 expand-region 区域选中](/2017/09/23/vim-plugin-quickrun)
+- [Vim 插件 expand-region 区域选中](/2017/09/23/vim-plugin-expand-region/)
 - [Vim 插件 vim-surround 单词加环绕符号](/2017/09/25/vim-plugin-surround)
 - [Vim 插件 vim-repeat 重复插件操作](/2017/09/25/vim-plugin-repeat)
 - [Vim 插件 gundo 代码回滚](/2017/09/25/vim-plugin-gundo)

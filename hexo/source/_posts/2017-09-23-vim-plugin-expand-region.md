@@ -11,6 +11,9 @@ tags: [vim]
 <!-- more -->
 <!-- toc -->
 
+## 预览
+![er](/images/expand-region.gif)
+
 ## 安装
 ### Pathogen
 ```bash

@@ -11,6 +11,9 @@ tags: [vim, 搜索]
 这时候可以使用 [Ack](https://github.com/mileszs/ack.vim) 替代它完成搜索任务
 <!-- more -->
 <!-- toc -->
+
+## 预览
+![ack](/images/ack.gif)
 ## 安装
 首先需要在机器上安装 Ack 工具
 Mac
