@@ -12,6 +12,9 @@ tags: [vim]
 
 <!-- more -->
 <!-- toc -->
+## 预览
+![closetag](/images/closetag.gif)
+
 ## 安装
 ### Pathogen
 ```bash

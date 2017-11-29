@@ -14,6 +14,9 @@ tags: [vim, python, javascript]
 唯一的缺点就是安装起来太复杂，这也算是变相的“能量守恒”吧
 废话不多说进入使用教程
 
+## 预览
+![ycm](/images/ycm.gif)
+
 ## 安装
 ### Pathogen
 ```bash

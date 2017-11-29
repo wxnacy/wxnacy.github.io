@@ -10,6 +10,9 @@ tags: [vim]
 
 <!-- more -->
 <!-- toc -->
+## 预览
+![whitespace](/images/whitespace.gif)
+
 ## 安装
 ### Pathogen
 ```bash

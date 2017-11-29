@@ -11,6 +11,8 @@ tags: [vim]
 
 <!-- more -->
 <!-- toc -->
+## 预览
+![gundo](/images/gundo.gif)
 ## 安装
 ### Pathogen
 ```bash
