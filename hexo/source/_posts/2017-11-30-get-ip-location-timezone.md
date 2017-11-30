@@ -38,6 +38,7 @@ $ curl http://ip-api.com/json
 显示的是名字，在库里经常会保存小时偏移量 `8, -8` 等，所以还需要其他手段来获取。
 
 ## 时区
+timezone [时刻表](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
 ### Google API
 Google API 提供了通过经纬度来获取时区的接口 [Time Zone API](https://developers.google.com/maps/documentation/timezone/intro?hl=zh-cn)
 ```bash
