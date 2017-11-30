@@ -7,7 +7,9 @@ date: 2017-09-20 18:02:20
 
 ## 基础篇
 - [Vim 基础命令](/2017/08/23/vim-2017-08-23-basic-cmd)
-- [Vim 高级功能 vimgrep 全局搜索文件](/2017/10/13/vim-grep)
+## 高级篇
+- [vimgrep 全局搜索文件](/2017/10/13/vim-grep)
+- [abbreviations 快速输入](/2017/11/29/vim-abbreviations/)
 
 ## 插件篇
 ### 我的作品
