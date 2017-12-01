@@ -10,6 +10,7 @@ date: 2017-09-20 18:02:20
 ## 高级篇
 - [vimgrep 全局搜索文件](/2017/10/13/vim-grep)
 - [abbreviations 快速输入](/2017/11/29/vim-abbreviations/)
+- [Mapping 映射](/2017/12/01/vim-mappings/)
 
 ## 插件篇
 ### 我的作品
