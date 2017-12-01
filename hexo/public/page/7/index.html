@@ -161,6 +161,87 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-linux-2017-08-22-centos-start-stop-restart-sshd" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/">Linux CentOS 各个版本启动SSHD服务命令</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/" class="archive-article-date">
+  	<time datetime="2017-08-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>本篇介绍如何在 CentOS 系统中怎样启动sshd服务，如何开机自启</p>
+</blockquote>
+<h2><span id="ming-ling-gai-kuang">命令概况</span><a href="#ming-ling-gai-kuang" class="header-anchor"></a></h2><p>CentOS &lt; 7.x<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">service <span class="built_in">command</span>     <span class="comment"># 使用service命令做start|stop|restart sshd</span></div><div class="line">chkconfig <span class="built_in">command</span>   <span class="comment"># turn on or off 机器自启sshd</span></div></pre></td></tr></table></figure></p>
+<p>CentOS &gt;= 7.x<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl <span class="built_in">command</span> <span class="comment"># 管理 start|stop|start 自启sshd</span></div></pre></td></tr></table></figure></p>
+<h2><span id="centos-lt-7-x">CentOS &lt; 7.x</span><a href="#centos-lt-7-x" class="header-anchor"></a></h2><h3><span id="chkconfig">chkconfig</span><a href="#chkconfig" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ chkconfig sshd on     <span class="comment"># 开机自启sshd</span></div><div class="line">$ chkconfig sshd off    <span class="comment"># 开机关闭自启sshd</span></div><div class="line">$ chkconfig --list sshd <span class="comment"># 查看每个运行级别类型中服务的当前状态</span></div></pre></td></tr></table></figure>
+<h3><span id="service">service</span><a href="#service" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ service sshd start | stop | restart</div><div class="line">or</div><div class="line">$ /etc/init.d/sshd start | stop | restart</div></pre></td></tr></table></figure>
+<h2><span id="centos-gt-7-x">CentOS &gt;= 7.x</span><a href="#centos-gt-7-x" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ systemctl <span class="built_in">enable</span> sshd.service     <span class="comment"># 开机自启sshd</span></div><div class="line">$ systemctl <span class="built_in">disable</span> sshd.service    <span class="comment"># 开机关闭自启sshd</span></div><div class="line">$ systemctl start sshd.service      <span class="comment"># 启动sshd</span></div><div class="line">$ systemctl restart sshd.service    <span class="comment"># 重启</span></div><div class="line">$ systemctl stop sshd.service       <span class="comment"># 停止</span></div><div class="line">$ systemctl reload sshd.service     <span class="comment"># 重新加载</span></div><div class="line">$ systemctl status sshd.service     <span class="comment"># 查看启动状态</span></div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-python-2017-08-22-get-image-size" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -207,84 +288,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/22/python-2017-08-22-get-image-size/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-linux-2017-08-22-sftp-scp" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/22/linux-2017-08-22-sftp-scp/">Linux 远程文件传输 SFTP 和 SCP</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/22/linux-2017-08-22-sftp-scp/" class="archive-article-date">
-  	<time datetime="2017-08-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>熟悉linux的朋友都知道 SSH 可以登录远程服务器进行工作，但是如果想从远程服务器<br>下载文件或上传到服务器呢，SSH 就做不到了，这时候我们可以用 SFTP 和 SCP 完成任务，<br>这两个指令也是使用 SSH 的通道（Port 22），只是模拟 FTP 与复制的操作而已。下面<br>我们一一介绍.</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2017/08/22/linux-2017-08-22-sftp-scp/#more">阅读全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/22/linux-2017-08-22-sftp-scp/">展开全文 >></a>
         </p>
       
 
@@ -517,92 +520,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/18/python-2017-08-18-pip-not-found/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-linux-2017-08-16-curl" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/16/linux-2017-08-16-curl/">网络请求工具 cURL</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/16/linux-2017-08-16-curl/" class="archive-article-date">
-  	<time datetime="2017-08-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>cRUL 是一种命令行工具，作用是发出网络请求，然后得到和提取数据，显示在<br>“标准输出”（stdout）上面。</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2017/08/16/linux-2017-08-16-curl/#more">阅读全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">curl</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/16/linux-2017-08-16-curl/">展开全文 >></a>
         </p>
       
 
@@ -910,20 +827,20 @@ sudo yum-config-manager --add-repo https://openresty.org/package/centos/openrest
 
 
   
-    <article id="post-python-2017-08-15-gunicorn-run" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-linux-2017-08-16-curl" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/15/python-2017-08-15-gunicorn-run/">Python 使用 gunicorn 启动你的项目</a>
+      <a class="article-title" href="/2017/08/16/linux-2017-08-16-curl/">网络请求工具 cURL</a>
     </h1>
   
 
         
-        <a href="/2017/08/15/python-2017-08-15-gunicorn-run/" class="archive-article-date">
-  	<time datetime="2017-08-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-15</time>
+        <a href="/2017/08/16/linux-2017-08-16-curl/" class="archive-article-date">
+  	<time datetime="2017-08-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
 </a>
         
       </header>
@@ -931,10 +848,10 @@ sudo yum-config-manager --add-repo https://openresty.org/package/centos/openrest
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>虽然 Python 自带服务器服务，但是最多只能用作开发环境调试用，在生产环境中如同<br>玩具一样，一碰就坏，今天给大家介绍使用 gunicorn 启动 Python 项目</p>
+<p>cRUL 是一种命令行工具，作用是发出网络请求，然后得到和提取数据，显示在<br>“标准输出”（stdout）上面。</p>
 </blockquote>
         
-          <a class="article-more-a" href="/2017/08/15/python-2017-08-15-gunicorn-run/#more">阅读全文 >></a>
+          <a class="article-more-a" href="/2017/08/16/linux-2017-08-16-curl/#more">阅读全文 >></a>
         
       
 
@@ -948,11 +865,15 @@ sudo yum-config-manager --add-repo https://openresty.org/package/centos/openrest
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">gunicorn</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">curl</a>
         		</li>
       		
 		</ul>
@@ -962,7 +883,85 @@ sudo yum-config-manager --add-repo https://openresty.org/package/centos/openrest
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/15/python-2017-08-15-gunicorn-run/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/16/linux-2017-08-16-curl/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-linux-2017-08-15-nohup" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/15/linux-2017-08-15-nohup/">Linux 使用nohup在后台不挂断执行命令</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/15/linux-2017-08-15-nohup/" class="archive-article-date">
+  	<time datetime="2017-08-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>nohup 搭配 &amp; 来不挂断地运行某条命令达到后台执行的效果，默认会在根目录生成一个<br>nohup.out 文件用来记录所有的 log 信息，也可以重定向到其他位置。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nohup gunicorn run:app &amp;</div></pre></td></tr></table></figure>
+<h2><span id="chong-ding-xiang-ri-zhi-dao-zhi-ding-wen-jian">重定向日志到制定文件</span><a href="#chong-ding-xiang-ri-zhi-dao-zhi-ding-wen-jian" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nohup gunicorn run:app &gt;nohup.log 2&gt;&amp;1 &amp;</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/15/linux-2017-08-15-nohup/">展开全文 >></a>
         </p>
       
 
@@ -1111,15 +1110,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
