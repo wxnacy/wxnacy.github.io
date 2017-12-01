@@ -218,7 +218,8 @@ vnoremap <Leader><Leader><space> di<space><space><esc>hp
 " 快速输入
 "==============================
 iabbrev mid 132201199108297010
-iabbrev meg wxnacy@gmail.com
+iabbrev eg wxnacy@gmail.com
+iabbrev eq 371032668@qq.com
 iabbrev hw Hello World
 
 " if exists('$TMUX')
@@ -226,70 +227,6 @@ iabbrev hw Hello World
 " endif
 
 autocmd FileType vim setlocal foldmethod=marker
-
-"==============================
-" ruby 工作环境
-"==============================
-" ruby 工作环境 --------------- {{{
-autocmd FileType ruby set tabstop=2 shiftwidth=2 expandtab ai
-autocmd BufNewFile *.rb exec ":call NewRbFile()"
-function! NewRbFile()
-    if &filetype == 'ruby'
-        call setline(1, "\#!/usr/bin/env ruby")
-        call append(1, "\# -*- coding:utf-8 -*-")
-        call append(2, "\# Author: wxnacy(wxnacy@gmail.com)")
-        call append(3, "\# Description: ")
-    endif
-
-    normal G
-    normal o
-    normal o
-endfunc
-" }}}
-
 " autocmd FileType html set tabstop=2 shiftwidth=2 expandtab ai
 " autocmd FileType javascript set tabstop=2 shiftwidth=2 expandtab ai
 "
-" java 工作环境 --------------- {{{
-" augroup javaGroup
-    " autocmd!
-    " doc https://github.com/artur-shaik/vim-javacomplete2
-    " autocmd BufNewFile *.java exec ":call NewJava()"
-    " autocmd FileType java setlocal omnifunc=javacomplete#Complete
-    " autocmd FileType java :iabbrev <buffer> class public class{}
-                                            " \<esc>i<cr><esc>k$Fsli
-    " autocmd FileType java :iabbrev <buffer> main public static void
-                                            " \ main(String args[]){}<esc>i<cr>
-    " autocmd FileType java :iabbrev <buffer> classm public class{}
-                                            " \<esc>i<cr>public static void main
-                                            " \(String args[]){}<esc>i<cr>
-                                            " \System.out.println("Hello World");
-                                            " \<esc>kk$Fsli
-    " autocmd FileType java :iabbrev <buffer> sout System.out.println()
-                                            " \<esc>i""<esc>i
-    " autocmd FileType java :iabbrev <buffer> if if(){}<esc>i<cr><esc>k$hi
-    " autocmd FileType java :iabbrev <buffer> for for(int i = 0; i <; i++)
-                                            " \{}<esc>i<cr><esc>k$F;i
-" augroup end
-function! NewJava()
-    " :h expand
-    let l:name = expand("%:r")
-    call setline(1, "/**")
-    call append(1, " * Author: wxnacy(wxnacy@gmail.com)")
-    call append(2, " */")
-    call append(3, "public class " . l:name . "{")
-    call append(4, "    public static void main(String args[]){")
-    call append(5, '        System.out.println("Hello world");')
-    call append(6, "    }")
-    call append(7, "}")
-endfunc
-" }}}
-" nmap <leader>jI <Plug>(JavaComplete-Imports-AddMissing)
-" nmap <leader>jR <Plug>(JavaComplete-Imports-RemoveUnused)
-" nmap <leader>ji <Plug>(JavaComplete-Imports-AddSmart)
-" nmap <leader>jii <Plug>(JavaComplete-Imports-Add)
-
-" imap <C-j>I <Plug>(JavaComplete-Imports-AddMissing)
-" imap <C-j>R <Plug>(JavaComplete-Imports-RemoveUnused)
-" imap <C-j>i <Plug>(JavaComplete-Imports-AddSmart)
-" imap <C-j>ii <Plug>(JavaComplete-Imports-Add)
