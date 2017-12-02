@@ -13,11 +13,22 @@ iabbrev <buffer> `v ```vim<cr>```<esc>O
 iabbrev <buffer> `m ```mysql<cr>```<esc>O
 
 iabbrev <buffer> mt <!-- more --><!-- toc --><cr>
+iabbrev <buffer> mt <!-- more --><!-- toc --><cr>
+
+
 
 iabbrev <buffer> pi <!-- more --><cr><!-- toc --><cr>## 安装<cr> ### Pathogen
             \<cr>```bash<cr>$ cd ~/.vim/bundle<cr>$ git clone <cr>```<cr>
             \### Vundle<cr>修改 `~/.vimrc`<cr>```bash<cr>Plugin ''<cr> ```<cr>
             \在 Vim 中运行<cr>```bash<cr>:PluginInstall<cr>```<cr>## 配置<cr>
             \```bash<cr>```<cr>## 使用<cr>```bash<cr>```
+
+nnoremap <buffer> <leader>mi 0vg_di![]<esc>hpla()<esc>hp
+inoremap <buffer> <leader>mi ![]()<esc>0la
+onoremap <buffer> ih :<c-u>normal! ggjf:llvg_<cr>
+onoremap <buffer> it :<c-u>normal! ggjjjf:llvg_<cr>[]<esc>i
+
+onoremap <buffer> in( :<c-u>normal! f(vi(<cr>
+onoremap <buffer> in[ :<c-u>normal! f[vi[<cr>
 
 " }}}
