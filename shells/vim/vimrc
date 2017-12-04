@@ -104,10 +104,8 @@ set mouse=a       				"启用鼠标"
 " 代码折叠
 set foldlevelstart=99           "默认不折叠"
 set foldmethod=indent           "按照缩紧折叠"
-"==============================
-" 修改快捷键
-"==============================
-" 修改快捷键 ================== {{{
+
+" Mapping ================== {{{
 " 快速打开 vimrc文件
 nnoremap <Leader>vw :vsp ~/.vim/vimrc<CR>
 nnoremap <Leader>vs :source $MYVIMRC<CR>:nohls<CR>
@@ -184,6 +182,8 @@ inoremap <C-l> <esc>lxi
 " 复制和系统剪贴板交互
 nnoremap <C-y> "+Y
 vnoremap <C-y> "+y
+" 复制黏贴
+nnoremap yp yyp
 
 " 快速添加成对标签
 " nnoremap <Leader>" eb<esc>i"<esc>ea"<esc>
@@ -213,16 +213,28 @@ inoremap <Leader>, <esc>mzA;<esc>`za
 nnoremap <Leader><Leader><space> viw<esc>a<space><esc>bi<space><esc>
 vnoremap <Leader><Leader><space> di<space><space><esc>hp
 
-onoremap in( :<c-u>normal! f(vi(<cr>
+
 " }}}
 
-"==============================
-" 快速输入
-"==============================
+" Operator Mapping {{{
+
+onoremap in( :<c-u>normal! f(vi(<cr>
+onoremap in[ :<c-u>normal! f[vi[<cr>
+onoremap in{ :<c-u>normal! f{vi{<cr>
+onoremap in" :<c-u>normal! f"vi"<cr>
+onoremap in' :<c-u>normal! f'vi'<cr>
+
+" }}}
+
+" Abbreviations {{{
+
 iabbrev mid 132201199108297010
 iabbrev eg wxnacy@gmail.com
 iabbrev eq 371032668@qq.com
 iabbrev hw Hello World
+
+" }}}
+
 
 " if exists('$TMUX')
   " set term=screen-256color

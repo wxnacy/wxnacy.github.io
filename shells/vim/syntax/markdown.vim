@@ -25,10 +25,12 @@ iabbrev <buffer> pi <!-- more --><cr><!-- toc --><cr>## 安装<cr> ### Pathogen
 
 nnoremap <buffer> <leader>mi 0vg_di![]<esc>hpla()<esc>hp
 inoremap <buffer> <leader>mi ![]()<esc>0la
+
+
+
+" }}}
+
+" for hexo {{{
 onoremap <buffer> ih :<c-u>normal! ggjf:llvg_<cr>
 onoremap <buffer> it :<c-u>normal! ggjjjf:llvg_<cr>[]<esc>i
-
-onoremap <buffer> in( :<c-u>normal! f(vi(<cr>
-onoremap <buffer> in[ :<c-u>normal! f[vi[<cr>
-
 " }}}
