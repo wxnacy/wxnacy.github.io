@@ -12,6 +12,8 @@ tags: [vim, grep, 搜索]
 
 <!-- more -->
 <!-- toc -->
+## 预览
+![/images/easygrep.gif](/images/easygrep.gif)
 ## 安装
 ### Pathogen
 ```bash
