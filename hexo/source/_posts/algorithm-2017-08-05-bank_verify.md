@@ -1,7 +1,7 @@
 ---
 title: 银行卡校验规则(Luhn算法)
 date: 2017-08-05
-tags: [algorithm]
+tags: [算法]
 ---
 
 [原文:http://www.icloudyin.com/?p=61](http://www.icloudyin.com/?p=61)
