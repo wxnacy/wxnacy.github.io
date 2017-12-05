@@ -5,6 +5,9 @@
 
 from datetime import datetime 
 from datetime import timezone
+import time
+import pytz
+import re
 
 ex_list = [dict(age=44, n=74), dict(age=43, n=44), dict(age=24, n=43),
         dict(age=74, n=24)]
@@ -19,17 +22,11 @@ class User():
     def get_name(self):
         pass
 
+def test_re_match():
+
+    res = re.match('www', 'https://www.wxnacy.com')
+    print(res)
+
 
 if __name__ == "__main__":
-     #  print(ex_list)
-     #  #  ex_list.sort(key=lambda x: x['age'])
-     #  #  ex_list.sort(key=age)
-     #  print(ex_list)
-     #  print(l)
-     #  l.sort(key=str.lower)
-     #  print(l)
-     print(datetime.now().timestamp())
-     print(datetime.utcnow().timestamp())
-     dt = datetime.utcnow()
-     print(dt.replace(tzinfo=timezone.utc).timestamp())  # ==> 
-     print(datetime.now().timestamp())        # ==> 1512393482.510263
+    test_re_match()

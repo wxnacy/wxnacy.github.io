@@ -51,3 +51,21 @@ import time
 print(time.time())      # ==> 1512454270.614852
 ```
 
+## 时间戳转为地区时间
+如果想要将时间戳转为某个地区的时间，比如北京时间，需要引入 `pytz` 模块，首先下
+载 `pip install pytz`
+```python
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+# Author: wxnacy(wxnacy@gmail.com)
+
+import time
+from datetime import datetime
+import pytz
+
+tz = pytz.timezone('Asia/Shanghai') #东八区
+t = datetime.fromtimestamp(int(time.time()),
+    pytz.timezone('Asia/Shanghai')).strftime('%Y-%m-%d %H:%M:%S %Z%z')
+print(t)    # ==> 2017-12-05 18:39:45 CST+0800
+```
+

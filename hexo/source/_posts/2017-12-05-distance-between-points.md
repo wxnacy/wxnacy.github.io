@@ -1,7 +1,7 @@
 ---
 title: 计算两个经纬度之间的直线距离
 date: 2017-12-05 17:45:16
-tags: [算法]
+tags: [算法, python, javascript]
 ---
 
 在针对经纬度之间距离的运算维基百科推荐使用 [Haversine](https://en.wikipedia.org/wiki/Haversine_formula) 算法
