@@ -7,6 +7,12 @@ __copyright__ = "Copyright of wxnacy (2017)."
 from app.common import utils
 import mistune
 import os
+from datetime import datetime as dt
+
+class User():
+    def __init__(self):
+        # TODO
+        pass
 
 
 if __name__ == '__main__':
