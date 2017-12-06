@@ -26,6 +26,7 @@ date: 2017-09-20 18:02:20
 - [Vim 插件 gundo 代码回滚](/2017/09/25/vim-plugin-gundo)
 - [Vim 插件 closetag 成对标签自动补全](/2017/09/25/vim-plugin-closetag)
 - [Vim 插件 vim-trailing-whitespace 去掉行尾空格](/2017/09/25/vim-plugin-whitespace)
+- [Vim 插件 nerdcommenter 快速注释](/2017/09/25/vim-plugin-nerdcommenter/)
 ### 搜索
 - [Vim 插件 ctrlp 模糊搜索文件](/2017/09/23/vim-plugin-ctrlp)
 - [Vim 插件 EasyGrep 全局搜索文件](/2017/10/13/vim-plugin-easygrep)

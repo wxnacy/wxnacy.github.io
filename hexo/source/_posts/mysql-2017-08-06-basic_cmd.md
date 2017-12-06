@@ -4,13 +4,13 @@ date: 2017-08-06
 tags: [mysql]
 ---
 
-[TOC]
+整理 Mysql 的一些基础命令以便查阅
+<!-- more --><!-- toc -->
 ## 数据库
 ###  创建库
 ```mysql
 create database name character utf8mb4;
 ```
-
 ## 表结构
 ### 创建表
 ```mysql

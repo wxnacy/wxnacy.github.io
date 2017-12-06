@@ -4,16 +4,13 @@ date: 2017-11-24 10:24:37
 tags: [linux, mac]
 ---
 
-在编写自动化脚本时，经常会需要对系统版本进行区分，以便做自适应，这样就需要精确
-的获取当前操作系统的系统名，甚至发行版本，接下来我们来一步步探讨如果区分 Mac，
-Linux 及 Linux 中各个系统版本，本教程对 Windows 系统是废的，或者说 Windows 是废的
+在编写自动化脚本时，经常会需要对系统版本进行区分，以便做自适应，这样就需要精确的获取当前操作系统的系统名，甚至发行版本，接下来我们来一步步探讨如果区分 Mac， Linux 及 Linux 中各个系统版本，本教程对 Windows 系统是废的，或者说 Windows 是废的
 
 <!-- more -->
 <!-- toc -->
 
 ## Uname
-首先先来区分 Mac 和 Linux 系统，我们来使用 [Uname](https://en.wikipedia.org/wiki/Uname) 命令
-它可以判断系统名称，版本，内核等信息
+首先先来区分 Mac 和 Linux 系统，我们来使用 [Uname](https://en.wikipedia.org/wiki/Uname) 命令它可以判断系统名称，版本，内核等信息
 
 ### Linux
 在 Linux 中使用规则为
@@ -45,12 +42,9 @@ $ uname [-amnprsv]    # 默认使用 -s
 
 ## os-release
 
-在区分 Mac／Linux 之后我们要来谈谈怎样更好的区分 Linux 各个发行版本，毕竟现在
-发行版本还是很多的，每个版本的组件使用又不尽相同，我们拿最常用到的 CentOS 和
-Ubuntu 最新的版本来举例说明
+在区分 Mac／Linux 之后我们要来谈谈怎样更好的区分 Linux 各个发行版本，毕竟现在发行版本还是很多的，每个版本的组件使用又不尽相同，我们拿最常用到的 CentOS 和 Ubuntu 最新的版本来举例说明
 
-在 Linux 系统中有一个 os-release 文件，位置在 `/etc/os-release` 从名字我们就
-明白它是记录 OS 的发行版本的，它在两个系统中的内容分别如下
+在 Linux 系统中有一个 os-release 文件，位置在 `/etc/os-release` 从名字我们就明白它是记录 OS 的发行版本的，它在两个系统中的内容分别如下
 
 ### CentOS
 ```bash
@@ -86,8 +80,7 @@ VERSION_CODENAME=xenial
 UBUNTU_CODENAME=xenial
 ```
 
-这些信息中，我们暂时只用 ID 属性，在 Linux 中我们可以使用 `source` 命令来将文件
-中的 `k-v` 数据倒入到上下文中
+这些信息中，我们暂时只用 ID 属性，在 Linux 中我们可以使用 `source` 命令来将文件中的 `k-v` 数据倒入到上下文中
 ```bash
 $ source /etc/os-release
 $ echo $ID      # --> ubuntu
@@ -123,7 +116,4 @@ fi
 ```
 
 ## 其他版本
-这个脚本基本可以满足简单的判断系统和版本的需求，但是在写这篇文章的时候，我发现
-CentOS 6 及以前的版本是没有 `/etc/os-release` 文件的，只有 `/etc/centos-release`
-也没有 `k-v` 信息，只有简单的 `CentOS release 6.8 (Final)` 信息，如何更好的区分
-这个版本，是我们下一步需要探讨的。
+这个脚本基本可以满足简单的判断系统和版本的需求，但是在写这篇文章的时候，我发现 CentOS 6 及以前的版本是没有 `/etc/os-release` 文件的，只有 `/etc/centos-release` 也没有 `k-v` 信息，只有简单的 `CentOS release 6.8 (Final)` 信息，如何更好的区分这个版本，是我们下一步需要探讨的。

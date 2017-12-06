@@ -17,7 +17,7 @@
 <meta property="og:description" content="在文章 Vim 高级功能 Mapping 映射 中我介绍了映射功能，今天这篇来介绍更高级的 Operator-Pending 映射">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="http://wxnacy.com/images/operator.gif">
-<meta property="og:updated_time" content="2017-12-02T11:40:42.000Z">
+<meta property="og:updated_time" content="2017-12-06T03:01:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vim 高级功能 Operator-Pending 映射">
 <meta name="twitter:description" content="在文章 Vim 高级功能 Mapping 映射 中我介绍了映射功能，今天这篇来介绍更高级的 Operator-Pending 映射">
@@ -183,7 +183,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在文章 <a href="/2017/12/01/vim-mappings/">Vim 高级功能 Mapping 映射</a> 中我介绍了映射功能，<br>今天这篇来介绍更高级的 Operator-Pending 映射<br><a id="more"></a><div class="toc"></p>
+        <p>在文章 <a href="/2017/12/01/vim-mappings/">Vim 高级功能 Mapping 映射</a> 中我介绍了映射功能，今天这篇来介绍更高级的 Operator-Pending 映射<br><a id="more"></a><div class="toc"></p>
 <!-- toc -->
 <ul>
 <li><a href="#ji-chu-cao-zuo">基础操作</a></li>
@@ -195,24 +195,24 @@
 <h2><span id="ji-chu-cao-zuo">基础操作</span><a href="#ji-chu-cao-zuo" class="header-anchor"></a></h2><p>我们还是先来看效果，在图中我们做了两件事</p>
 <ul>
 <li>快速替换输入括号中的文本</li>
-<li>快速选中一个段落<br>这两个操作都用到了 Operator-Pending 映射，这个映射的本质是一个 Operator（操作）<br>命令，再输入一个 Movement （移动）命令，这个操作命令会从当前位置开始，到移动命<br>令结束为止。</li>
+<li>快速选中一个段落<br>这两个操作都用到了 Operator-Pending 映射，这个映射的本质是一个 Operator（操作）命令，再输入一个 Movement （移动）命令，这个操作命令会从当前位置开始，到移动命令结束为止。</li>
 </ul>
 <p>常用的 Operator（操作）命令有 <code>d, c, y</code>，常用的组合有<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">dw      <span class="comment">" 删除  到下个单词开始</span></div><div class="line">de      <span class="comment">" 删除  到当前单词结束</span></div><div class="line">diw     <span class="comment">" 删除  当前单词</span></div><div class="line">dip     <span class="comment">" 高亮  当前段落内容</span></div><div class="line">ci(     <span class="comment">" 修改  括号内的内容（光标要在括号内）</span></div><div class="line">yt,     <span class="comment">" 复制  到逗号</span></div></pre></td></tr></table></figure></p>
 <p>以上提到的 Operator 命令和 Movement 命令可以任意组合，实现想要的效果。</p>
-<h2><span id="movement">Movement</span><a href="#movement" class="header-anchor"></a></h2><p>Vim 灵活性决定它是不会限制我们做自己想做的事情，同样的我们可以任意修改自己想要的<br>Movement 命令，先来看一个简单例子<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">onoremap</span> , t,</div></pre></td></tr></table></figure></p>
+<h2><span id="movement">Movement</span><a href="#movement" class="header-anchor"></a></h2><p>Vim 灵活性决定它是不会限制我们做自己想做的事情，同样的我们可以任意修改自己想要的 Movement 命令，先来看一个简单例子<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">onoremap</span> , t,</div></pre></td></tr></table></figure></p>
 <p>另外我们准备这样一段文本<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Hello, World</div></pre></td></tr></table></figure></p>
-<p>将光标放到这行开头，输入 <code>d,</code>，会发现他删除到逗号之前的内容，因为我们替换了上边<br>提到的官方移动操作</p>
-<h2><span id="zi-ding-yi-movement">自定义 Movement</span><a href="#zi-ding-yi-movement" class="header-anchor"></a></h2><p>在了解到基本规则后，我们开始自定义 Movement 命令，开始之前我们还需要一点小思路，<br>Movement 是跟在 <code>d, c, y</code> 之后出现，他们都有一个共同点，需要操作一个可视区的部<br>分，所以不管移动的开始和结束在哪都需要先进入可视模式</p>
+<p>将光标放到这行开头，输入 <code>d,</code>，会发现他删除到逗号之前的内容，因为我们替换了上边提到的官方移动操作</p>
+<h2><span id="zi-ding-yi-movement">自定义 Movement</span><a href="#zi-ding-yi-movement" class="header-anchor"></a></h2><p>在了解到基本规则后，我们开始自定义 Movement 命令，开始之前我们还需要一点小思路， Movement 是跟在 <code>d, c, y</code> 之后出现，他们都有一个共同点，需要操作一个可视区的部分，所以不管移动的开始和结束在哪都需要先进入可视模式</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">title: Vim 高级功能 Operator-Pending 映射</div><div class="line">date: 2017-12-02 10:25:32</div><div class="line">tags: [vim]</div><div class="line">---</div></pre></td></tr></table></figure>
-<p>这个是 hexo 文章的文件头，每次新建文章后我都需要手动找到标题的位置，并将默认标题<br>替换成我想要的，我想要通过修改 Movement 一步修改<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">onoremap</span> ih :<span class="symbol">&lt;c-u&gt;</span>normal! ggjf:llvg_<span class="symbol">&lt;cr&gt;</span></div></pre></td></tr></table></figure></p>
-<p>先将这个它复制到你的配置文件中，然后按下 <code>cih</code> 试试效果，如果你已经试过，我们来<br>谈谈它是怎样做到的，开头的 <code>:&lt;c-u&gt;normal!</code> 先不多说，你只需要知道它可以让后边的<br>命令可以在 normal 模式进行，然后剩下的命令我们做了这样几件事</p>
+<p>这个是 hexo 文章的文件头，每次新建文章后我都需要手动找到标题的位置，并将默认标题替换成我想要的，我想要通过修改 Movement 一步修改<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">onoremap</span> ih :<span class="symbol">&lt;c-u&gt;</span>normal! ggjf:llvg_<span class="symbol">&lt;cr&gt;</span></div></pre></td></tr></table></figure></p>
+<p>先将这个它复制到你的配置文件中，然后按下 <code>cih</code> 试试效果，如果你已经试过，我们来谈谈它是怎样做到的，开头的 <code>:&lt;c-u&gt;normal!</code> 先不多说，你只需要知道它可以让后边的命令可以在 normal 模式进行，然后剩下的命令我们做了这样几件事</p>
 <ul>
 <li><code>ggjf</code> 跳到第一行，再下移一行，查找 <code>:</code></li>
 <li><code>llv</code> 右移两格，进入可视模式</li>
 <li><code>g_</code> 将可视区域移动到当前行最后一个非空白字符，<code>$</code> 会包含回车符，所以不用它</li>
 <li><code>&lt;cr&gt;</code> 因为这个条命令其实是在 command 模式中进行的，所以需要回车返回结果</li>
 </ul>
-<p>了解了这些，你已经可以写一些简单的映射来丰富自己的 <code>~/.vimrc</code>，至于刚才我们没有<br>提到的部分，我会在以后更新出来。</p>
+<p>了解了这些，你已经可以写一些简单的映射来丰富自己的 <code>~/.vimrc</code>，至于刚才我们没有提到的部分，我会在以后更新出来。</p>
 
       
 
@@ -433,15 +433,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -4,14 +4,11 @@ date: 2017-11-30 17:43:09
 tags: [api]
 ---
 
-在开发电视端产品时发现，并不能像手机端一样通过 GPS 等手段获取用户的经纬度，产品
-上添加的天气预报非常依赖这项数据，经 Google 发现，通过 IP 可以使用一些开发接口
-获取到这些信息，通过一系列接口调用可以形成一个闭环，现在记录下来。
+在开发电视端产品时发现，并不能像手机端一样通过 GPS 等手段获取用户的经纬度，产品上添加的天气预报非常依赖这项数据，经 Google 发现，通过 IP 可以使用一些开发接口获取到这些信息，通过一系列接口调用可以形成一个闭环，现在记录下来。
 
 <!-- more -->
 ## IP
-获取 IP 的手段很多，最方便的是从后台获取接口请求的 IP 地址，也有开发 API 可以实
-现，比如 [ip-api](http://ip-api.com/) ，它提供了免费 API 可以使用
+获取 IP 的手段很多，最方便的是从后台获取接口请求的 IP 地址，也有开发 API 可以实现，比如 [ip-api](http://ip-api.com/) ，它提供了免费 API 可以使用
 ```bash
 $ curl http://ip-api.com/json
 ```
@@ -34,8 +31,7 @@ $ curl http://ip-api.com/json
 
 }
 ```
-结果除了 IP 还有经纬度和时区，如果只需要这些信息，那已经足够了。但是会发现时区
-显示的是名字，在库里经常会保存小时偏移量 `8, -8` 等，所以还需要其他手段来获取。
+结果除了 IP 还有经纬度和时区，如果只需要这些信息，那已经足够了。但是会发现时区显示的是名字，在库里经常会保存小时偏移量 `8, -8` 等，所以还需要其他手段来获取。
 
 ## 时区
 timezone [时刻表](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
@@ -57,9 +53,7 @@ $ https://maps.googleapis.com/maps/api/timezone/json?location=39.6034810,-119.68
 返回的接口 `rawOffset` 字段就是时区的小时偏移量，单位秒
 
 ### timezonedb
-如果你不想调用很多接口，还可以使用专门提供时区数据的服务 [timezonedb](https://timezonedb.com)
-在[这里](https://timezonedb.com/download)可以直接下载 timezone 的数据库 SQL 文件或 CSV 文件
-不过他们也提供 API
+如果你不想调用很多接口，还可以使用专门提供时区数据的服务 [timezonedb](https://timezonedb.com) 在[这里](https://timezonedb.com/download)可以直接下载 timezone 的数据库 SQL 文件或 CSV 文件，不过他们也提供 API
 ```bash
 $ curl http://api.timezonedb.com/v2/get-time-zone?key=your_key&format=json&by=zone&zone=America/Chicago
 ```

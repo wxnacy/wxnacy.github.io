@@ -17,7 +17,7 @@
 <meta property="og:description" content="Vim 的 dd, hjkl 等基础按键操作已经可以很好的完成基本编辑工作，然而它还是会不太方便，尤其是熟悉了成熟 IDE 很多人性化设计的人们，曾经的我也是。所幸 Vim 提供了 Mapping 映射可以更好的进行文本操作，甚至比 IDE 更好方便。">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="http://wxnacy.com/images/mapping.gif">
-<meta property="og:updated_time" content="2017-12-01T12:12:34.000Z">
+<meta property="og:updated_time" content="2017-12-06T03:23:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vim 高级功能 Mapping 映射">
 <meta name="twitter:description" content="Vim 的 dd, hjkl 等基础按键操作已经可以很好的完成基本编辑工作，然而它还是会不太方便，尤其是熟悉了成熟 IDE 很多人性化设计的人们，曾经的我也是。所幸 Vim 提供了 Mapping 映射可以更好的进行文本操作，甚至比 IDE 更好方便。">
@@ -183,7 +183,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Vim 的 <code>dd, hjkl</code> 等基础按键操作已经可以很好的完成基本编辑工作，然而它还是会不<br>太方便，尤其是熟悉了成熟 IDE 很多人性化设计的人们，曾经的我也是。所幸 Vim 提供<br>了 Mapping 映射可以更好的进行文本操作，甚至比 IDE 更好方便。<br><a id="more"></a><div class="toc"></p>
+        <p>Vim 的 <code>dd, hjkl</code> 等基础按键操作已经可以很好的完成基本编辑工作，然而它还是会不太方便，尤其是熟悉了成熟 IDE 很多人性化设计的人们，曾经的我也是。所幸 Vim 提供了 Mapping 映射可以更好的进行文本操作，甚至比 IDE 更好方便。<br><a id="more"></a><div class="toc"></p>
 <!-- toc -->
 <ul>
 <li><a href="#jian-dan-ying-she">简单映射</a></li>
@@ -192,9 +192,7 @@
 <li><a href="#geng-fu-za-de-ying-she">更复杂的映射</a></li>
 </ul>
 <!-- tocstop -->
-</div>
-
-<p><img src="/images/mapping.gif" alt="mapping"></p>
+<p></div><br><img src="/images/mapping.gif" alt="mapping"></p>
 <p>从截图中我做了这么几个事情</p>
 <ul>
 <li>先输入一个字符串 <code>wxnacy</code> 但是忘记包双引号，然后利用映射快速完成双引号环绕</li>
@@ -203,29 +201,29 @@
 <li>最后输入一行 <code>=</code> 并快速移动到上一行</li>
 </ul>
 <h2><span id="jian-dan-ying-she">简单映射</span><a href="#jian-dan-ying-she" class="header-anchor"></a></h2><p>我们先放一放，从最简单的开始<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">map</span> - dd</div></pre></td></tr></table></figure></p>
-<p>你可以在命令行中输入这句，然后在文本的某一行中按下 <code>-</code> ，如果你已经按下了，相信<br>你已经明白他的含义，<code>-</code> 映射了 <code>dd</code> 的功能，当然 <code>dd</code> 的功能并没有消失，这样的<br>意义是什么呢，可以输入少，但做的多，我在其他文章中提到过，<strong><em>懒是第一生产力</em></strong></p>
-<p>Vim 提供了映射的功能，除了少输入字符外，它可以让我们免受一些“别扭”的按键所折磨，<br>在预览中我们提到了，快速跳到行首行尾来编辑，其实 Vim 的基础操作就有提及，<code>I, A</code><br>分别可以完成，然后这样的按键让从其他编辑器跳槽过来的人颇为头疼，因为现在几乎所有<br>的编辑器都可以通过 <code>ctrl + a, ctrl + e</code> 来实现这个功能，就算我强迫自己适应了它<br>的设定，在与其他编辑器切换使用时，这样的区别也会让我很恼火，所以我想改了它<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">nmap</span> <span class="symbol">&lt;c-a&gt;</span> I</div><div class="line"><span class="keyword">nmap</span> <span class="symbol">&lt;c-e&gt;</span> A</div><div class="line"><span class="keyword">imap</span> <span class="symbol">&lt;c-a&gt;</span> <span class="symbol">&lt;esc&gt;</span>I</div><div class="line"><span class="keyword">imap</span> <span class="symbol">&lt;c-e&gt;</span> <span class="symbol">&lt;esc&gt;</span>A</div></pre></td></tr></table></figure></p>
-<p>按照这样修改你的配置文件，你就可以像其他编辑器一样使用快速跳转行首行尾了，在这里<br>有两个新东西 <code>&lt;c-a&gt;</code> <code>nmap, imap</code> ，我们来看一下。</p>
+<p>你可以在命令行中输入这句，然后在文本的某一行中按下 <code>-</code> ，如果你已经按下了，相信你已经明白他的含义，<code>-</code> 映射了 <code>dd</code> 的功能，当然 <code>dd</code> 的功能并没有消失，这样的意义是什么呢，可以输入少，但做的多，我在其他文章中提到过，<strong><em>懒是第一生产力</em></strong></p>
+<p>Vim 提供了映射的功能，除了少输入字符外，它可以让我们免受一些“别扭”的按键所折磨，在预览中我们提到了，快速跳到行首行尾来编辑，其实 Vim 的基础操作就有提及，<code>I, A</code> 分别可以完成，然后这样的按键让从其他编辑器跳槽过来的人颇为头疼，因为现在几乎所有的编辑器都可以通过 <code>ctrl + a, ctrl + e</code> 来实现这个功能，就算我强迫自己适应了它的设定，在与其他编辑器切换使用时，这样的区别也会让我很恼火，所以我想改了它<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">nmap</span> <span class="symbol">&lt;c-a&gt;</span> I</div><div class="line"><span class="keyword">nmap</span> <span class="symbol">&lt;c-e&gt;</span> A</div><div class="line"><span class="keyword">imap</span> <span class="symbol">&lt;c-a&gt;</span> <span class="symbol">&lt;esc&gt;</span>I</div><div class="line"><span class="keyword">imap</span> <span class="symbol">&lt;c-e&gt;</span> <span class="symbol">&lt;esc&gt;</span>A</div></pre></td></tr></table></figure></p>
+<p>按照这样修改你的配置文件，你就可以像其他编辑器一样使用快速跳转行首行尾了，在这里有两个新东西 <code>&lt;c-a&gt;</code> <code>nmap, imap</code> ，我们来看一下。</p>
 <ul>
 <li><code>&lt;c-a&gt;</code> 就是 <code>ctrl + a</code> 的组合键，第一个 c 就代表 ctrl</li>
 <li>Vim 在映射上提供了四个关键词 <code>nmap, imap, vmap, cmap</code> 分别代表了四种使用模式，<br><code>map</code> 默认为 <code>nmap</code></li>
 </ul>
 <h2><span id="ke-pa-de-di-gui">可怕的递归</span><a href="#ke-pa-de-di-gui" class="header-anchor"></a></h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">nmap</span> dd jddk</div></pre></td></tr></table></figure>
-<p>试着用一下这个映射，结果发现它只是想按了 <code>G</code> 一样，跳到了最后一行，并没有按照<br>预想的一样，先下移一行，删除，再上移一行，问题出在了哪里？</p>
-<p>我们在这里遇到了递归映射，在执行 <code>j</code> 以后遇到 <code>dd</code> Vim 以为我们又想映射，所以又<br>从 <code>j</code> 开始执行，如此往复，陷入了递归陷阱。当然你会说，尽量避免这种情况就是了，<br>这样好像可以解决眼前的问题，但是却解决不了以后的问题，随着自定义映射越来越多，这<br>样的情况出现几率会越来越高，因为一共也就这么多按键，总有用完的时候，另外你以后<br>肯定记不住那么的映射都用在哪了。所以我们应该用<strong>更好</strong>的方式来解决问题。</p>
+<p>试着用一下这个映射，结果发现它只是想按了 <code>G</code> 一样，跳到了最后一行，并没有按照预想的一样，先下移一行，删除，再上移一行，问题出在了哪里？</p>
+<p>我们在这里遇到了递归映射，在执行 <code>j</code> 以后遇到 <code>dd</code> Vim 以为我们又想映射，所以又从 <code>j</code> 开始执行，如此往复，陷入了递归陷阱。当然你会说，尽量避免这种情况就是了，这样好像可以解决眼前的问题，但是却解决不了以后的问题，随着自定义映射越来越多，这样的情况出现几率会越来越高，因为一共也就这么多按键，总有用完的时候，另外你以后肯定记不住那么的映射都用在哪了。所以我们应该用<strong>更好</strong>的方式来解决问题。</p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">nnoremap</span> dd jddk</div></pre></td></tr></table></figure>
-<p>再次试用这个映射，现在我们会发现，当按下 <code>dd</code> 的时候已经可以删除下一行了，Vim<br>提供了<strong>非递归映射</strong>，同时提供了 <code>inoremap, vnoremap, cnoremap</code> 一共四种模式</p>
-<p>不要问什么时候用这种模式，答案很显然，是永远，forver。毕竟我们不能永远惦记着哪些<br>映射可能会触发递归，因为我们的时间和精力应该用在更有意义的事情上。</p>
+<p>再次试用这个映射，现在我们会发现，当按下 <code>dd</code> 的时候已经可以删除下一行了，Vim 提供了<strong>非递归映射</strong>，同时提供了 <code>inoremap, vnoremap, cnoremap</code> 一共四种模式</p>
+<p>不要问什么时候用这种模式，答案很显然，是永远，forver。毕竟我们不能永远惦记着哪些映射可能会触发递归，因为我们的时间和精力应该用在更有意义的事情上。</p>
 <p>相关文档 <code>:help unmap</code></p>
-<h2><span id="leader">Leader</span><a href="#leader" class="header-anchor"></a></h2><p>在解决完递归的问题，我们再来看一种情况，在上个问题中我们使用 <code>dd</code> 来做删除下一行<br>的操作，那删除当前行怎么办，对，我之前提过可以用 <code>-</code> 来映射。但我们不能用这样<br>映射下去，我们需要<strong>更好</strong>的解决方法。<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nnoremap ;d jddk</div></pre></td></tr></table></figure></p>
-<p>通过这样的配置，我们并没有多输入字符，但是也达到了同样的效果，并且这样的组合几乎<br>不会在其他地方用到，在 Vim 中我们称 <code>;</code> 这样的“前缀”为 <code>leader</code><br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> mapleader = <span class="string">';'</span></div></pre></td></tr></table></figure></p>
-<p>做这样的配置可以设置自己的 <code>leader</code> 键，并用 <code>&lt;leader&gt;</code> 来使用它，这样做的好处<br>是如果你有一天想改变这个键位，只需要修改一个地方即可，不必在到处查找，并且如果<br>哪天你把自己的配置放到网上供他人使用，别人只需修改成自己喜欢的键位，就可以马上<br>使用。</p>
+<h2><span id="leader">Leader</span><a href="#leader" class="header-anchor"></a></h2><p>在解决完递归的问题，我们再来看一种情况，在上个问题中我们使用 <code>dd</code> 来做删除下一行的操作，那删除当前行怎么办，对，我之前提过可以用 <code>-</code> 来映射。但我们不能用这样映射下去，我们需要<strong>更好</strong>的解决方法。<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nnoremap ;d jddk</div></pre></td></tr></table></figure></p>
+<p>通过这样的配置，我们并没有多输入字符，但是也达到了同样的效果，并且这样的组合几乎不会在其他地方用到，在 Vim 中我们称 <code>;</code> 这样的“前缀”为 <code>leader</code><br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> mapleader = <span class="string">';'</span></div></pre></td></tr></table></figure></p>
+<p>做这样的配置可以设置自己的 <code>leader</code> 键，并用 <code>&lt;leader&gt;</code> 来使用它，这样做的好处是如果你有一天想改变这个键位，只需要修改一个地方即可，不必在到处查找，并且如果哪天你把自己的配置放到网上供他人使用，别人只需修改成自己喜欢的键位，就可以马上使用。</p>
 <p>更多的资料可以阅读 <code>:help mapleader</code> <code>:help maplocalleader</code></p>
 <h2><span id="geng-fu-za-de-ying-she">更复杂的映射</span><a href="#geng-fu-za-de-ying-she" class="header-anchor"></a></h2><p>现在我们来做一些更复杂的事情，分析一下效果预览中一些操作<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;Leader&gt;</span><span class="string">" viw&lt;esc&gt;bi"</span><span class="symbol">&lt;esc&gt;</span><span class="keyword">ea</span><span class="comment">"&lt;esc&gt;</span></div></pre></td></tr></table></figure></p>
-<p>这是给单词做环绕括号时的操作，你可以先复制到你的配置中试一下效果，它做了什么呢？<br>首先 <code>viw</code> 可以选中当前光标所在单词，这是 Vim 自带的映射，我们记住即可。然后输<br>入 <code>&lt;esc&gt;</code> 退出选中模式，<code>b</code> 跳到单词开头，<code>i</code> 进入插入模式，输入 <code>&quot;</code> ，再次退出<br>插入模式，<code>e</code> 跳到单词末尾，<code>a</code> 在末尾进入插入模式，输入 <code>&quot;</code> ，最后退出插入模式</p>
+<p>这是给单词做环绕括号时的操作，你可以先复制到你的配置中试一下效果，它做了什么呢？首先 <code>viw</code> 可以选中当前光标所在单词，这是 Vim 自带的映射，我们记住即可。然后输入 <code>&lt;esc&gt;</code> 退出选中模式，<code>b</code> 跳到单词开头，<code>i</code> 进入插入模式，输入 <code>&quot;</code> ，再次退出插入模式，<code>e</code> 跳到单词末尾，<code>a</code> 在末尾进入插入模式，输入 <code>&quot;</code> ，最后退出插入模式</p>
 <p>如果你把 Vim 当做主编辑器来使用，这样的映射操作会经常发生，所以你需要不断的练习<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">" 在行尾输入分号</span></div><div class="line">nnoremap &lt;Leader&gt;, mzA;&lt;esc&gt;`z</div><div class="line"><span class="comment">" 在正常模式和插入模式快速跳到行首行尾</span></div><div class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;C-a&gt;</span> I</div><div class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;C-e&gt;</span> A</div><div class="line"><span class="keyword">inoremap</span> <span class="symbol">&lt;C-a&gt;</span> <span class="symbol">&lt;esc&gt;</span>I</div><div class="line"><span class="keyword">inoremap</span> <span class="symbol">&lt;C-e&gt;</span> <span class="symbol">&lt;esc&gt;</span>A</div></pre></td></tr></table></figure></p>
-<p>剩下两个操作我不在进行解释，你可以自己尝试搞明白原理，你可能会发现我没有提及为<br>什么输入 <code>print</code> 后会快速变成 <code>System.out.println(&quot;&quot;)</code>，但是如果你看下<br><a href="/2017/11/29/vim-abbreviations/">Vim 高级应用 Abbreviations 快速输入</a> 就会明白</p>
-<p>师傅领进门，修行靠个人。即使知道的再多，不去做也是不行，因为不做就等于不知道，<br>知行合一嘛。不要担心不适应，相信我，你并不孤独，每个人在这个阶段都是这样的。有<br>个方法可以强迫帮你一下，在改过映射后，将原来的按键映射为 <code>&lt;nop&gt;</code> ，这样按键就会<br>失效，当你按完没有反应时，自然会去使用新按键，久而久之就改过来了，好了，快去练习吧</p>
+<p>剩下两个操作我不在进行解释，你可以自己尝试搞明白原理，你可能会发现我没有提及为什么输入 <code>print</code> 后会快速变成 <code>System.out.println(&quot;&quot;)</code>，但是如果你看下 <a href="/2017/11/29/vim-abbreviations/">Vim 高级应用 Abbreviations 快速输入</a> 就会明白</p>
+<p>师傅领进门，修行靠个人。即使知道的再多，不去做也是不行，因为不做就等于不知道，知行合一嘛。不要担心不适应，相信我，你并不孤独，每个人在这个阶段都是这样的。有个方法可以强迫帮你一下，在改过映射后，将原来的按键映射为 <code>&lt;nop&gt;</code> ，这样按键就会失效，当你按完没有反应时，自然会去使用新按键，久而久之就改过来了，好了，快去练习吧</p>
 
       
 
@@ -446,15 +444,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">

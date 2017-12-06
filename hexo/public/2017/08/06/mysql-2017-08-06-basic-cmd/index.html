@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Mysql 基础命令 | wxnacy 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="[TOC] 数据库创建库1create database name character utf8mb4; 表结构创建表12345678910drop table if exists `user`;create table `user`(    id int(11) not null auto_increment,    name varchar(32) not null comment &amp;apos">
+  <meta name="description" content="整理 Mysql 的一些基础命令以便查阅">
 <meta name="keywords" content="mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mysql 基础命令">
 <meta property="og:url" content="http://wxnacy.com/2017/08/06/mysql-2017-08-06-basic-cmd/index.html">
 <meta property="og:site_name" content="wxnacy 博客">
-<meta property="og:description" content="[TOC] 数据库创建库1create database name character utf8mb4; 表结构创建表12345678910drop table if exists `user`;create table `user`(    id int(11) not null auto_increment,    name varchar(32) not null comment &amp;apos">
+<meta property="og:description" content="整理 Mysql 的一些基础命令以便查阅">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-09-17T05:54:51.000Z">
+<meta property="og:updated_time" content="2017-12-06T02:51:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql 基础命令">
-<meta name="twitter:description" content="[TOC] 数据库创建库1create database name character utf8mb4; 表结构创建表12345678910drop table if exists `user`;create table `user`(    id int(11) not null auto_increment,    name varchar(32) not null comment &amp;apos">
+<meta name="twitter:description" content="整理 Mysql 的一些基础命令以便查阅">
   
     <link rel="alternative" href="/atom.xml" title="wxnacy 博客" type="application/atom+xml">
   
@@ -181,7 +181,31 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>[TOC]</p>
+        <p>整理 Mysql 的一些基础命令以便查阅<br><a id="more"></a><div class="toc"></p>
+<!-- toc -->
+<ul>
+<li><a href="#shu-ju-ku">数据库</a><ul>
+<li><a href="#chuang-jian-ku">创建库</a></li>
+</ul>
+</li>
+<li><a href="#biao-jie-gou">表结构</a><ul>
+<li><a href="#chuang-jian-biao">创建表</a></li>
+<li><a href="#cha-kan-lie">查看列</a></li>
+<li><a href="#xiu-gai-biao-ming">修改表名</a></li>
+<li><a href="#tian-jia-lie">添加列</a></li>
+<li><a href="#shan-chu-lie">删除列</a></li>
+<li><a href="#xiu-gai-lie-ming">修改列名</a></li>
+<li><a href="#xiu-gai-lie-shu-xing">修改列属性</a></li>
+<li><a href="#cha-kan-lie-shu-xing">查看列属性</a></li>
+</ul>
+</li>
+<li><a href="#cha-xun">查询</a><ul>
+<li><a href="#qu-diao-chong-fu-shu-ju">去掉重复数据</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<p></div></p>
 <h2><span id="shu-ju-ku">数据库</span><a href="#shu-ju-ku" class="header-anchor"></a></h2><h3><span id="chuang-jian-ku">创建库</span><a href="#chuang-jian-ku" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create database name character utf8mb4;</div></pre></td></tr></table></figure>
 <h2><span id="biao-jie-gou">表结构</span><a href="#biao-jie-gou" class="header-anchor"></a></h2><h3><span id="chuang-jian-biao">创建表</span><a href="#chuang-jian-biao" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">drop table if exists `user`;</div><div class="line">create table `user`(</div><div class="line">    id int(11) not null auto_increment,</div><div class="line">    name varchar(32) not null comment &apos;姓名&apos;,</div><div class="line">    mobile varchar(11) not null default &apos;&apos; comment &apos;手机号&apos;,</div><div class="line">    ext JSON default null comment &apos;扩展信息&apos;,</div><div class="line">    create_ts timestamp not null default current_timestamp comment &apos;创建时间&apos;,</div><div class="line">    update_ts timestamp not null default current_timestamp on update current_timestamp comment &apos;修改时间&apos;,</div><div class="line">    primary key(`id`)</div><div class="line">) engine=InnoDB default charset=utf8mb4 comment &apos;用户表&apos;;</div></pre></td></tr></table></figure>
 <h3><span id="cha-kan-lie">查看列</span><a href="#cha-kan-lie" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">desc table_name</div></pre></td></tr></table></figure>
@@ -424,15 +448,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">

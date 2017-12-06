@@ -61,11 +61,10 @@ def get_random_str(str_len):
     :param str_len: 需要获取的长度
     :return:
     """
-    str_list = ""
-    for i in range(0, str_len):
-        str_list = str_list + STR[int(random.uniform(0, len(STR)))]
-        pass
-    return str_list
+    def _create():
+        return str(STR[int(random.uniform(0, len(STR)))])
+    res = [_create() for x in range(0, str_len)]
+    return ''.join(res)
 
 
 def generate_body_sort_script(sort='desc', **params):
