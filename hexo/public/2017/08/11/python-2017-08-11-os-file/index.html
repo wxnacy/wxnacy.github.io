@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Python 操作目录文件相关命令 | wxnacy 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="使用os模块进行相关操作导入1import os 列出目录下所有文件1os.listdir(path) 获取项目目录1os.getcwd() 判断文件或目录是否存在1os.path.exists(file_path) 判断路径是文件或目录12os.path.isfile(path)os.path.isdir(path)">
+  <meta name="description" content="12345678910111213141516171819202122232425262728293031323334#!/usr/bin/env python# -*- coding:utf-8 -*-# Author: wxnacy(wxnacy@gmail.com)import osimport syscur_file = sys.argv[0]              # ==&amp;gt;">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 操作目录文件相关命令">
 <meta property="og:url" content="http://wxnacy.com/2017/08/11/python-2017-08-11-os-file/index.html">
 <meta property="og:site_name" content="wxnacy 博客">
-<meta property="og:description" content="使用os模块进行相关操作导入1import os 列出目录下所有文件1os.listdir(path) 获取项目目录1os.getcwd() 判断文件或目录是否存在1os.path.exists(file_path) 判断路径是文件或目录12os.path.isfile(path)os.path.isdir(path)">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334#!/usr/bin/env python# -*- coding:utf-8 -*-# Author: wxnacy(wxnacy@gmail.com)import osimport syscur_file = sys.argv[0]              # ==&amp;gt;">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-11-22T08:11:46.000Z">
+<meta property="og:updated_time" content="2017-12-07T06:32:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 操作目录文件相关命令">
-<meta name="twitter:description" content="使用os模块进行相关操作导入1import os 列出目录下所有文件1os.listdir(path) 获取项目目录1os.getcwd() 判断文件或目录是否存在1os.path.exists(file_path) 判断路径是文件或目录12os.path.isfile(path)os.path.isdir(path)">
+<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334#!/usr/bin/env python# -*- coding:utf-8 -*-# Author: wxnacy(wxnacy@gmail.com)import osimport syscur_file = sys.argv[0]              # ==&amp;gt;">
   
     <link rel="alternative" href="/atom.xml" title="wxnacy 博客" type="application/atom+xml">
   
@@ -181,11 +181,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2><span id="shi-yong-os-mo-kuai-jin-xing-xiang-guan-cao-zuo">使用os模块进行相关操作</span><a href="#shi-yong-os-mo-kuai-jin-xing-xiang-guan-cao-zuo" class="header-anchor"></a></h2><p>导入<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> os</div></pre></td></tr></table></figure></p>
-<p>列出目录下所有文件<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">os.listdir(path)</div></pre></td></tr></table></figure></p>
-<p>获取项目目录<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">os.getcwd()</div></pre></td></tr></table></figure></p>
-<p>判断文件或目录是否存在<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">os.path.exists(file_path)</div></pre></td></tr></table></figure></p>
-<p>判断路径是文件或目录<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">os.path.isfile(path)</div><div class="line">os.path.isdir(path)</div></pre></td></tr></table></figure></p>
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"></div><div class="line">cur_file = sys.argv[<span class="number">0</span>]              <span class="comment"># ==&gt; 获取当前文件名</span></div><div class="line">print(cur_file)</div><div class="line"><span class="comment"># python test.py                    ==&gt; test.py</span></div><div class="line"><span class="comment"># python test/test.py               ==&gt; test/test.py</span></div><div class="line"><span class="comment"># python /Users/wxnacy/test/test.py ==&gt; /Users/wxnacy/test/test.py</span></div><div class="line"><span class="comment"># __file__ 可以达到同样效果</span></div><div class="line"></div><div class="line">cmd_dir = os.getcwd()               <span class="comment"># ==&gt; 获取命令运行目录绝对路径</span></div><div class="line">print(cmd_dir)</div><div class="line"><span class="comment"># python test.py                    ==&gt; /Users/wxnacy/test</span></div><div class="line"><span class="comment"># python test/test.py               ==&gt; /Users/wxnacy</span></div><div class="line"></div><div class="line">print(os.listdir(cmd_dir))          <span class="comment"># ==&gt; 获取目录下的所有文件</span></div><div class="line">print(os.path.exists(cmd_dir))      <span class="comment"># ==&gt; 判断文件或目录是否存在</span></div><div class="line">print(os.path.isfile(cmd_dir))      <span class="comment"># ==&gt; 判断是否为文件</span></div><div class="line">print(os.path.isdir(cmd_dir))       <span class="comment"># ==&gt; 判断是否为目录</span></div><div class="line"></div><div class="line">dirname = os.path.dirname(cur_file) <span class="comment"># ==&gt; 获取文件目录名</span></div><div class="line">print(dirname)</div><div class="line"><span class="comment"># os.path.dirname('test.py')        ==&gt; 空</span></div><div class="line"><span class="comment"># os.path.dirname('test/test.py')   ==&gt; test</span></div><div class="line"></div><div class="line">abspath = os.path.abspath(cur_file) <span class="comment"># ==&gt; 获取文件名的绝对路径</span></div><div class="line">print(abspath)</div><div class="line"><span class="comment"># os.path.abspath('')               ==&gt; 运行命令所在目录</span></div><div class="line"><span class="comment"># os.path.abspath('test/test.py')   ==&gt; /Users/wxnacy/test/test.py</span></div><div class="line"><span class="comment"># os.path.abspath('/Users/wxnacy')  ==&gt; /Users/wxnacy</span></div></pre></td></tr></table></figure>
 
       
 
@@ -218,18 +214,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/11/mysql-2017-08-11-item-daily/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/08/12/mysql-2017-08-12-item-daily/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          2017-08-11 新建用户行为表，新建trigger完成用户总分数更新
+          2017-08-12 新建等级表，完善`insert_user_event`
         
       </div>
     </a>
   
   
-    <a href="/2017/08/10/python-2017-08-10-pyenv-cmd/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">pyenv 常用命令</div>
+    <a href="/2017/08/11/mysql-2017-08-11-item-daily/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">2017-08-11 新建用户行为表，新建trigger完成用户总分数更新</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -256,7 +252,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">使用os模块进行相关操作</span></a></li></ol>
+                    目录，不存在的…
                     </div>
                 </span>
             </div>
@@ -402,10 +398,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
@@ -415,6 +407,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -451,6 +447,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">

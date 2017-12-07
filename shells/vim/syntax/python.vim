@@ -11,8 +11,8 @@ endfunction
 syntax match   pythonRun		"\%^#!.*$"
 syntax match   pythonCoding	"\%^.*\%(\n.*\)\?#.*coding[:=]\s*[0-9A-Za-z-_.]\+.*$"
 syntax keyword potionKeyword class self def cls
-syntax keyword potionKeyword from import
-syntax keyword potionKeyword __name__
+" syntax keyword potionKeyword from import
+syntax keyword potionKeyword __name__ __file__
 syntax keyword potionFunction print join string
 syntax keyword pythonMagic __abs__ __add__ __aenter__ __aexit__ __aiter__ __and__ __anext__
   \ __await__ __bytes__ __call__ __complex__ __contains__ __del__ __delattr__ __delete__
