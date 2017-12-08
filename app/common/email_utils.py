@@ -57,5 +57,8 @@ class Email():
 
 
 if __name__ == '__main__':
-    e = Email()
-    e.send(['371032668@qq.com','18311233541@163.com'],'邀请您','<div>欢迎您</div>')
+    #  e = Email()
+    e1 = 'wenxiaoning@gochinatv.com'
+    e = Email(user=e1, password='M31rHuE2Nf05cbmB', sender=e1, sender_name=e1)
+    emails = ['371032668@qq.com','18311233541@163.com']
+    e.send(emails,'邀请您','<div>欢迎您</div>')
