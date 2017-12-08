@@ -11,6 +11,11 @@ iabbrev <buffer> print System.out.println()<esc>i""<esc>i
 iabbrev <buffer> if if(){}<esc>i<cr><esc>k$hi
 iabbrev <buffer> for for(int i = 0; i <; i++){}<esc>i<cr><esc>k$F;i
 
+" let g:JavaComplete_SourcesPath = '~/IdeaProjects/HelloWorld/src'
+" let g:JavaComplete_LibsPath = '~/IdeaProjects/HelloWorld/src'
+" let g:syntastic_java_javac_config_file_enabled = 1
+" let g:syntastic_java_javac_config_file = '~/IdeaProjects/HelloWorld/syntastic_config'
+
 function! NewJava()
     " :h expand
     let l:name = expand("%:r")

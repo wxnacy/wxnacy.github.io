@@ -161,19 +161,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-mysql-2017-08-06-basic-cmd" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mysql-2017-08-06-item-daily" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/06/mysql-2017-08-06-basic-cmd/">Mysql 基础命令</a>
+      <a class="article-title" href="/2017/08/06/mysql-2017-08-06-item-daily/">2017-08-06 新建video和comment表，以及`insert_commet_trigger`</a>
     </h1>
   
 
         
-        <a href="/2017/08/06/mysql-2017-08-06-basic-cmd/" class="archive-article-date">
+        <a href="/2017/08/06/mysql-2017-08-06-item-daily/" class="archive-article-date">
   	<time datetime="2017-08-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-06</time>
 </a>
         
@@ -181,10 +181,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>整理 Mysql 的一些基础命令以便查阅<br>
-        
-          <a class="article-more-a" href="/2017/08/06/mysql-2017-08-06-basic-cmd/#more">阅读全文 >></a>
-        
+        <blockquote>
+<p>今天的目标是新建一个video视频表和comment评论表，并编写trigger，达到当insert一条评论类型为video的数据到comment中时，video中comment_count字段可以自加一</p>
+</blockquote>
+<p>专辑：<a href="/?p=/doc/mysql/mysql_daily.md">mysql每天练习</a></p>
+<ul>
+<li><p>新建video表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">drop table if exists `video`;</div><div class="line">create table `video`(</div><div class="line">    id int(11) not null auto_increment,</div><div class="line">    name varchar(32) not null comment &apos;标题&apos;,</div><div class="line">    url varchar(512) not null comment &apos;视频地址&apos;,</div><div class="line">    is_del int(1) not null default 0 comment &apos;是否删除&apos;,</div><div class="line">    create_ts timestamp not null default current_timestamp comment &apos;创建时间&apos;,</div><div class="line">    update_ts timestamp not null default current_timestamp on update current_timestamp comment &apos;修改时间&apos;,</div><div class="line">    primary key(`id`)</div><div class="line">)engine=InnoDB default charset=utf8mb4 comment &apos;视频表&apos;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>添加comment_count字段（不是忘了，就是想练一下add column语句╭(╯^╰)╮）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table video add column comment_count int(11) not null default 0 comment &apos;评论数量&apos;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>新建comment表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">drop table if exists `comment`;</div><div class="line">create table `comment`(</div><div class="line">    id int(11) not null auto_increment,</div><div class="line">    resource_id int(11) not null comment &apos;被评论资源id&apos;,</div><div class="line">    resource_type varchar(16) not null comment &apos;被评论资源类型&apos;,</div><div class="line">    content varchar(1024) not null comment &apos;评论内容&apos;,</div><div class="line">    is_del int(1) not null default 0 comment &apos;是否删除&apos;,</div><div class="line">    create_ts timestamp not null default current_timestamp comment &apos;创建时间&apos;,</div><div class="line">    update_ts timestamp not null default current_timestamp on update current_timestamp comment &apos;修改时间&apos;,</div><div class="line">    primary key(`id`)</div><div class="line">)engine=InnoDB default charset=utf8mb4 comment &apos;评论表&apos;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>新建trigger</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">drop trigger if exists `insert_comment`;</div><div class="line">delimiter $</div><div class="line">create trigger `insert_comment` after insert on comment for each row</div><div class="line">begin</div><div class="line">    if (new.resource_type = &apos;video&apos;) then </div><div class="line">        update video set comment_count = comment_count +1 where id = new.resource_id;</div><div class="line">    end if;</div><div class="line">end $</div><div class="line">delimiter ;</div></pre></td></tr></table></figure>
+</li>
+<li><p>执行相应操作语句</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">insert into video (name,url) values (&apos;蜘蛛侠：返校季&apos;,&apos;http://woyemeiyou/wangzhi.mp4&apos;);</div><div class="line">insert into comment (resource_id,resource_type,content) values (1,&apos;video&apos;,&apos;找不到资源&apos;);</div><div class="line">select * from video;</div></pre></td></tr></table></figure>
+<p>最后结果中video表中的comment_count应该等于1</p>
+
       
 
       
@@ -207,7 +226,98 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/06/mysql-2017-08-06-basic-cmd/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/06/mysql-2017-08-06-item-daily/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-algorithm-2017-08-05-identity-verify" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/05/algorithm-2017-08-05-identity-verify/">身份证号码校验规则</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/05/algorithm-2017-08-05-identity-verify/" class="archive-article-date">
+  	<time datetime="2017-08-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://www.icloudyin.com/?p=66" target="_blank" rel="external">原文:http://www.icloudyin.com/?p=66</a></p>
+<p>18位身份证号码组成：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">其他部分都和15位的相同。年份代码由原来的2位升级到4位。最后一位为校验位。</div><div class="line"></div><div class="line">## 校验规则：</div><div class="line">- 十七位数字本体码加权求和公式</div></pre></td></tr></table></figure></p>
+<p>S = Sum(Ai * Wi), i = 0, … , 16 ，先对前17位数字的权求和<br>Ai:表示第i位置上的身份证号码数字值<br>Wi:表示第i位置上的加权因子<br>Wi: 7 9 10 5 8 4 2 1 6 3 7 9 10 5 8 4 2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- 计算模</div></pre></td></tr></table></figure></p>
+<p>Y = mod(S, 11)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- 通过模得到对应的校验码</div></pre></td></tr></table></figure></p>
+<p>Y: 0 1 2 3 4 5 6 7 8 9 10<br>校验码: 1 0 X 9 8 7 6 5 4 3 2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## java</div><div class="line"></div><div class="line">```java</div><div class="line">static String getCheckCode(String idCard)&#123;</div><div class="line">        static String[] Wi = &#123; &quot;7&quot;, &quot;9&quot;, &quot;10&quot;, &quot;5&quot;, &quot;8&quot;, &quot;4&quot;, &quot;2&quot;, &quot;1&quot;, &quot;6&quot;, &quot;3&quot;, &quot;7&quot;,</div><div class="line">            &quot;9&quot;, &quot;10&quot;, &quot;5&quot;, &quot;8&quot;, &quot;4&quot;, &quot;2&quot; &#125;;</div><div class="line">        int sum = 0;</div><div class="line">        for( int i = 0 ; i &lt; 17 ; i ++)</div><div class="line">        &#123;</div><div class="line">            sum = sum + Integer.parseInt(String.valueOf(idCard.charAt(i))) * Integer.parseInt(String.valueOf(Wi[i]));</div><div class="line">        &#125;</div><div class="line">        int T  = sum % 11;</div><div class="line">        int R = (12 -T) % 11;</div><div class="line">        if( R == 10 )</div><div class="line">            return &quot;X&quot;;</div><div class="line">        else &#123;</div><div class="line">            return String.valueOf(R);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<h2><span id="python">python</span><a href="#python" class="header-anchor"></a></h2><pre><code>def check_identity_card(card):
+    wi = [&quot;7&quot;, &quot;9&quot;, &quot;10&quot;, &quot;5&quot;, &quot;8&quot;, &quot;4&quot;, &quot;2&quot;, &quot;1&quot;, &quot;6&quot;, &quot;3&quot;, &quot;7&quot;, &quot;9&quot;, &quot;10&quot;,&quot;5&quot;, &quot;8&quot;, &quot;4&quot;, &quot;2&quot;]
+    total = 0
+    card = list(card)
+    index = 0
+    for item in card:
+        total += ord(item) * int(wi[index])
+        index += 1 t = total % 11
+    r = (12 - t) % 11
+    if r == 10:
+        return &quot;X&quot;
+    else:
+        return r
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/05/algorithm-2017-08-05-identity-verify/">展开全文 >></a>
         </p>
       
 
@@ -366,97 +476,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/05/js-2017-08-05-screen-wh/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-algorithm-2017-08-05-identity-verify" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/05/algorithm-2017-08-05-identity-verify/">身份证号码校验规则</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/05/algorithm-2017-08-05-identity-verify/" class="archive-article-date">
-  	<time datetime="2017-08-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="http://www.icloudyin.com/?p=66" target="_blank" rel="external">原文:http://www.icloudyin.com/?p=66</a></p>
-<p>18位身份证号码组成：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">其他部分都和15位的相同。年份代码由原来的2位升级到4位。最后一位为校验位。</div><div class="line"></div><div class="line">## 校验规则：</div><div class="line">- 十七位数字本体码加权求和公式</div></pre></td></tr></table></figure></p>
-<p>S = Sum(Ai * Wi), i = 0, … , 16 ，先对前17位数字的权求和<br>Ai:表示第i位置上的身份证号码数字值<br>Wi:表示第i位置上的加权因子<br>Wi: 7 9 10 5 8 4 2 1 6 3 7 9 10 5 8 4 2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- 计算模</div></pre></td></tr></table></figure></p>
-<p>Y = mod(S, 11)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- 通过模得到对应的校验码</div></pre></td></tr></table></figure></p>
-<p>Y: 0 1 2 3 4 5 6 7 8 9 10<br>校验码: 1 0 X 9 8 7 6 5 4 3 2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## java</div><div class="line"></div><div class="line">```java</div><div class="line">static String getCheckCode(String idCard)&#123;</div><div class="line">        static String[] Wi = &#123; &quot;7&quot;, &quot;9&quot;, &quot;10&quot;, &quot;5&quot;, &quot;8&quot;, &quot;4&quot;, &quot;2&quot;, &quot;1&quot;, &quot;6&quot;, &quot;3&quot;, &quot;7&quot;,</div><div class="line">            &quot;9&quot;, &quot;10&quot;, &quot;5&quot;, &quot;8&quot;, &quot;4&quot;, &quot;2&quot; &#125;;</div><div class="line">        int sum = 0;</div><div class="line">        for( int i = 0 ; i &lt; 17 ; i ++)</div><div class="line">        &#123;</div><div class="line">            sum = sum + Integer.parseInt(String.valueOf(idCard.charAt(i))) * Integer.parseInt(String.valueOf(Wi[i]));</div><div class="line">        &#125;</div><div class="line">        int T  = sum % 11;</div><div class="line">        int R = (12 -T) % 11;</div><div class="line">        if( R == 10 )</div><div class="line">            return &quot;X&quot;;</div><div class="line">        else &#123;</div><div class="line">            return String.valueOf(R);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
-<h2><span id="python">python</span><a href="#python" class="header-anchor"></a></h2><pre><code>def check_identity_card(card):
-    wi = [&quot;7&quot;, &quot;9&quot;, &quot;10&quot;, &quot;5&quot;, &quot;8&quot;, &quot;4&quot;, &quot;2&quot;, &quot;1&quot;, &quot;6&quot;, &quot;3&quot;, &quot;7&quot;, &quot;9&quot;, &quot;10&quot;,&quot;5&quot;, &quot;8&quot;, &quot;4&quot;, &quot;2&quot;]
-    total = 0
-    card = list(card)
-    index = 0
-    for item in card:
-        total += ord(item) * int(wi[index])
-        index += 1 t = total % 11
-    r = (12 - t) % 11
-    if r == 10:
-        return &quot;X&quot;
-    else:
-        return r
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/05/algorithm-2017-08-05-identity-verify/">展开全文 >></a>
         </p>
       
 
@@ -755,10 +774,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -771,7 +786,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -783,15 +806,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">grep</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -839,11 +858,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
