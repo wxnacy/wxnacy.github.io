@@ -161,6 +161,103 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-python-2017-08-14-sqlalchemy-filter" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/14/python-2017-08-14-sqlalchemy-filter/">SQLAlchemy 各种查询语句写法</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/14/python-2017-08-14-sqlalchemy-filter/" class="archive-article-date">
+  	<time datetime="2017-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#and">and</a></li>
+<li><a href="#in">in</a></li>
+<li><a href="#or">or</a></li>
+<li><a href="#pai-xu">排序</a></li>
+<li><a href="#da-yu-xiao-yu">大于小于</a></li>
+<li><a href="#like">like</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+
+<h2><span id="and">and</span><a href="#and" class="header-anchor"></a></h2><p>filter 与 filter_by 语法稍有不同<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">User.query.filter_by(id=<span class="number">1</span>,name=<span class="string">'win'</span>).first()</div><div class="line">User.query.filter(User.id==<span class="number">1</span>,User.name == <span class="string">'win'</span>).first()</div></pre></td></tr></table></figure></p>
+<h2><span id="in">in</span><a href="#in" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sql = User.query.filter(User.id.in_([<span class="number">1</span>,<span class="number">2</span>]))</div><div class="line">print(sql)</div><div class="line"></div><div class="line">&gt; select * <span class="keyword">from</span> user where id <span class="keyword">in</span> (<span class="number">1</span>,<span class="number">2</span>)</div></pre></td></tr></table></figure>
+<h2><span id="or">or</span><a href="#or" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> or_</div><div class="line">sql = User.query.filter(or_(User.name == <span class="string">'winn'</span>,User.mobile == <span class="string">'183'</span>),User.email == <span class="string">'371'</span>)</div><div class="line">print(sql)</div><div class="line"></div><div class="line">&gt; select * <span class="keyword">from</span> user where (name = <span class="string">'winn'</span> <span class="keyword">or</span> mobile = <span class="string">'183'</span>) <span class="keyword">and</span> email= <span class="string">'371'</span></div></pre></td></tr></table></figure>
+<h2><span id="pai-xu">排序</span><a href="#pai-xu" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> desc</div><div class="line">User.query.order_by(create_ts).all() <span class="comment"># 根据创建时间正序</span></div><div class="line">User.query.order_by(desc(create_ts)).all() <span class="comment"># 根据创建时间倒序</span></div></pre></td></tr></table></figure>
+<h2><span id="da-yu-xiao-yu">大于小于</span><a href="#da-yu-xiao-yu" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">User.query.filter(User.age &gt;= <span class="number">12</span>,User.age &lt; <span class="number">23</span>).all()</div></pre></td></tr></table></figure>
+<h2><span id="like">like</span><a href="#like" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">User.query.filter(User.name.like(<span class="string">'%win%'</span>)).all()</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">sqlalchemy</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/14/python-2017-08-14-sqlalchemy-filter/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-ansible-2017-08-14-album-study-notes" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -556,87 +653,6 @@
 
 
   
-    <article id="post-mysql-2017-08-10-item-daily" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/10/mysql-2017-08-10-item-daily/">2017-08-10 新建collection_resource表，新建trigger更新collection资源总数</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/10/mysql-2017-08-10-item-daily/" class="archive-article-date">
-  	<time datetime="2017-08-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>今天练习的目标，新建collection_resource表，并新建trigger更新collection的资源数</p>
-</blockquote>
-<p>专辑：<a href="/?p=/doc/mysql/mysql_daily.md">mysql每天练习</a></p>
-<h2><span id="xin-jian-collection-resource">新建collection_resource</span><a href="#xin-jian-collection-resource" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">drop table if exists `collection_resource`;</div><div class="line">CREATE TABLE `collection_resource` (</div><div class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</div><div class="line">  `collection_id` int(11) NOT NULL,</div><div class="line">  `resource_id` int(11) NOT NULL,</div><div class="line">  `resource_type` varchar(32) NOT NULL,</div><div class="line">  PRIMARY KEY (`id`)</div><div class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT=&apos;合集资源对应表&apos;;</div></pre></td></tr></table></figure>
-<h2><span id="collection-biao-tian-jia-zi-yuan-shu-liang-zi-duan">collection表添加资源数量字段</span><a href="#collection-biao-tian-jia-zi-yuan-shu-liang-zi-duan" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table collection add column resource_count int(11) not null default 0 comment &apos;资源总数&apos;;</div></pre></td></tr></table></figure>
-<h2><span id="xin-jian-trigger">新建trigger</span><a href="#xin-jian-trigger" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">drop trigger if exists `insert_collection_resource`;</div><div class="line">delimiter $</div><div class="line">create trigger `insert_collection_resource` after insert on collection_resource for each row </div><div class="line">begin</div><div class="line">	declare count int;</div><div class="line">	select count(0) into count from collection where id = new.collection_id;</div><div class="line">	if (count &gt; 0) then </div><div class="line">		update collection set resource_count = resource_count + 1 where id = new.collection_id;</div><div class="line">	end if;</div><div class="line">end $</div><div class="line">delimiter ;</div></pre></td></tr></table></figure>
-<h2><span id="yun-xing">运行</span><a href="#yun-xing" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">insert into collection(name) values (&apos;合集&apos;);</div><div class="line">insert into collection_resource (collection_id,resource_id,resource_type) values(1,1,&apos;video&apos;);</div><div class="line">select * from collection;</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/10/mysql-2017-08-10-item-daily/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-mac-2017-08-10-clear-dns" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -687,85 +703,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/10/mac-2017-08-10-clear-dns/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-python-2017-08-10-pyenv-linux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/10/python-2017-08-10-pyenv-linux/">Linux 环境下安装 pyenv 和 virtualenv</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/10/python-2017-08-10-pyenv-linux/" class="archive-article-date">
-  	<time datetime="2017-08-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>废话不多直接上命令</p>
-<h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><p>CentOS:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ yum -y install git</div><div class="line">$ curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash</div><div class="line">$ yum -y install gcc readline readline-devel readline-static openssl \</div><div class="line">    openssl-devel openssl-static sqlite-devel bzip2-devel bzip2-libs</div></pre></td></tr></table></figure></p>
-<p>Ubuntu<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ apt-get update</div><div class="line">$ apt-get -y install git gcc make patch zlib1g.dev libgdbm-dev libssl-dev \</div><div class="line">    libsqlite3-dev libbz2-dev libreadline-dev</div><div class="line">$ git <span class="built_in">clone</span> https://github.com/pyenv/pyenv.git ~/.pyenv</div></pre></td></tr></table></figure></p>
-<h2><span id="pei-zhi-huan-jing-bian-liang">配置环境变量</span><a href="#pei-zhi-huan-jing-bian-liang" class="header-anchor"></a></h2><p>vim ~/.bash_profile<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> PYENV_ROOT=<span class="string">"<span class="variable">$HOME</span>/.pyenv"</span></div><div class="line"><span class="built_in">export</span> PATH=<span class="string">"<span class="variable">$PYENV_ROOT</span>/bin:<span class="variable">$PATH</span>"</span></div><div class="line"><span class="built_in">export</span> PYENV_VIRTUALENV_DISABLE_PROMPT=1</div><div class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv init -)</span>"</span></div><div class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv virtualenv-init -)</span>"</span></div></pre></td></tr></table></figure></p>
-<h2><span id="sheng-ji">升级</span><a href="#sheng-ji" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pyenv update</div></pre></td></tr></table></figure>
-<h2><span id="xie-zai">卸载</span><a href="#xie-zai" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rm -rf ~/.pyenv</div><div class="line">然后把~/.bash_profile环境变量配置中的添加的删掉</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/10/python-2017-08-10-pyenv-linux/">展开全文 >></a>
         </p>
       
 
@@ -881,20 +818,99 @@
 
 
   
-    <article id="post-mysql-2017-08-09-item-daily" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-python-2017-08-10-pyenv-linux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-item-daily/">2017-08-09 新建collection合集表，新建trigger完成更新用户文章数</a>
+      <a class="article-title" href="/2017/08/10/python-2017-08-10-pyenv-linux/">Linux 环境下安装 pyenv 和 virtualenv</a>
     </h1>
   
 
         
-        <a href="/2017/08/09/mysql-2017-08-09-item-daily/" class="archive-article-date">
-  	<time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
+        <a href="/2017/08/10/python-2017-08-10-pyenv-linux/" class="archive-article-date">
+  	<time datetime="2017-08-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>废话不多直接上命令</p>
+<h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><p>CentOS:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ yum -y install git</div><div class="line">$ curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash</div><div class="line">$ yum -y install gcc readline readline-devel readline-static openssl \</div><div class="line">    openssl-devel openssl-static sqlite-devel bzip2-devel bzip2-libs</div></pre></td></tr></table></figure></p>
+<p>Ubuntu<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ apt-get update</div><div class="line">$ apt-get -y install git gcc make patch zlib1g.dev libgdbm-dev libssl-dev \</div><div class="line">    libsqlite3-dev libbz2-dev libreadline-dev</div><div class="line">$ git <span class="built_in">clone</span> https://github.com/pyenv/pyenv.git ~/.pyenv</div></pre></td></tr></table></figure></p>
+<h2><span id="pei-zhi-huan-jing-bian-liang">配置环境变量</span><a href="#pei-zhi-huan-jing-bian-liang" class="header-anchor"></a></h2><p>vim ~/.bash_profile<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> PYENV_ROOT=<span class="string">"<span class="variable">$HOME</span>/.pyenv"</span></div><div class="line"><span class="built_in">export</span> PATH=<span class="string">"<span class="variable">$PYENV_ROOT</span>/bin:<span class="variable">$PATH</span>"</span></div><div class="line"><span class="built_in">export</span> PYENV_VIRTUALENV_DISABLE_PROMPT=1</div><div class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv init -)</span>"</span></div><div class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv virtualenv-init -)</span>"</span></div></pre></td></tr></table></figure></p>
+<h2><span id="sheng-ji">升级</span><a href="#sheng-ji" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pyenv update</div></pre></td></tr></table></figure>
+<h2><span id="xie-zai">卸载</span><a href="#xie-zai" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rm -rf ~/.pyenv</div><div class="line">然后把~/.bash_profile环境变量配置中的添加的删掉</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/10/python-2017-08-10-pyenv-linux/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-mysql-2017-08-10-item-daily" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/10/mysql-2017-08-10-item-daily/">2017-08-10 新建collection_resource表，新建trigger更新collection资源总数</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/10/mysql-2017-08-10-item-daily/" class="archive-article-date">
+  	<time datetime="2017-08-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-10</time>
 </a>
         
       </header>
@@ -902,22 +918,13 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>今天练习新建collection合集表，并在article中添加user_id字段，在user_data中添加article_count字段，并新建trigger <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">专辑：[mysql每天练习](/?p=/doc/mysql/mysql_daily.md)</div><div class="line"></div><div class="line"></div><div class="line">- 新建collection</div><div class="line">```mysql</div><div class="line">drop table if exists `collection`;</div><div class="line">create table `collection`(</div><div class="line">	id int(11) not null auto_increment,</div><div class="line">	name varchar(256) not null default &apos;&apos; comment &apos;合集名称&apos;,</div><div class="line">	is_del tinyint(1) not null default 0 comment &apos;是否删除&apos;,</div><div class="line">	create_ts timestamp not null default current_timestamp comment &apos;创建时间&apos;,</div><div class="line">	update_ts timestamp not null default current_timestamp on update current_timestamp comment &apos;修改时间&apos;,</div><div class="line">	primary key(`id`)</div><div class="line">)engine=InnoDB default charset=utf8mb4 comment &apos;合集表&apos;;</div></pre></td></tr></table></figure></p>
+<p>今天练习的目标，新建collection_resource表，并新建trigger更新collection的资源数</p>
 </blockquote>
-<ul>
-<li><p>article添加user_id</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table article add column user_id int(11) not null default 0 comment &apos;用户id&apos;;</div></pre></td></tr></table></figure>
-</li>
-<li><figure class="highlight plain"><figcaption><span>中添加```article_count```字段</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">```mysql</div><div class="line">alter table user_data add column article_count int(11) not null default 0 comment &apos;发布文章数量&apos;;</div></pre></td></tr></table></figure>
-</li>
-<li><p>新建trigger</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">drop trigger if exists `insert_article`;</div><div class="line">delimiter $</div><div class="line">create trigger `insert_article` after insert on article for each row </div><div class="line">begin</div><div class="line">	declare count int;</div><div class="line">	if (new.user_id &gt; 0) then</div><div class="line">		select count(0) into count from user_data where user_id = new.user_id;</div><div class="line">		if (count &gt; 0) then</div><div class="line">			update user_data set article_count = article_count +1 where user_id = new.user_id;</div><div class="line">		else</div><div class="line">			insert into user_data (user_id,article_count) values (new.user_id,1);</div><div class="line">		end if;</div><div class="line">	end if;</div><div class="line">end $</div><div class="line">delimiter ;</div></pre></td></tr></table></figure>
-</li>
-<li><p>运行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">insert into article (name,url,user_id) values (&apos;title&apos;,&apos;http://baidu.com&apos;,3);</div><div class="line">insert into article (name,url,user_id) values (&apos;title&apos;,&apos;http://baidu.com&apos;,3);</div><div class="line">select * from user_data where user_id = 3;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>运行后，article_count应该等于2</p>
+<p>专辑：<a href="/?p=/doc/mysql/mysql_daily.md">mysql每天练习</a></p>
+<h2><span id="xin-jian-collection-resource">新建collection_resource</span><a href="#xin-jian-collection-resource" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">drop table if exists `collection_resource`;</div><div class="line">CREATE TABLE `collection_resource` (</div><div class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</div><div class="line">  `collection_id` int(11) NOT NULL,</div><div class="line">  `resource_id` int(11) NOT NULL,</div><div class="line">  `resource_type` varchar(32) NOT NULL,</div><div class="line">  PRIMARY KEY (`id`)</div><div class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT=&apos;合集资源对应表&apos;;</div></pre></td></tr></table></figure>
+<h2><span id="collection-biao-tian-jia-zi-yuan-shu-liang-zi-duan">collection表添加资源数量字段</span><a href="#collection-biao-tian-jia-zi-yuan-shu-liang-zi-duan" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table collection add column resource_count int(11) not null default 0 comment &apos;资源总数&apos;;</div></pre></td></tr></table></figure>
+<h2><span id="xin-jian-trigger">新建trigger</span><a href="#xin-jian-trigger" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">drop trigger if exists `insert_collection_resource`;</div><div class="line">delimiter $</div><div class="line">create trigger `insert_collection_resource` after insert on collection_resource for each row </div><div class="line">begin</div><div class="line">	declare count int;</div><div class="line">	select count(0) into count from collection where id = new.collection_id;</div><div class="line">	if (count &gt; 0) then </div><div class="line">		update collection set resource_count = resource_count + 1 where id = new.collection_id;</div><div class="line">	end if;</div><div class="line">end $</div><div class="line">delimiter ;</div></pre></td></tr></table></figure>
+<h2><span id="yun-xing">运行</span><a href="#yun-xing" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">insert into collection(name) values (&apos;合集&apos;);</div><div class="line">insert into collection_resource (collection_id,resource_id,resource_type) values(1,1,&apos;video&apos;);</div><div class="line">select * from collection;</div></pre></td></tr></table></figure>
 
       
 
@@ -941,7 +948,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-item-daily/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/10/mysql-2017-08-10-item-daily/">展开全文 >></a>
         </p>
       
 
@@ -1086,6 +1093,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
@@ -1098,11 +1109,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1111,10 +1122,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1150,15 +1157,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">北京</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1170,15 +1177,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1186,11 +1189,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sqlalchemy</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">flask</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">sqlalchemy</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://wxnacy.com">
-  <title>网络请求工具 cURL | wxnacy 博客</title>
+  <title>如何解析地址参数 | wxnacy 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="cRUL 是一种命令行工具，作用是发出网络请求，然后得到和提取数据，显示在“标准输出”（stdout）上面。">
-<meta name="keywords" content="http,linux,curl">
+  <meta name="description" content="在 React 之前 html 页面想要获取当前地址参数，只能通过静态解析的方式在获取，列举几种语言的获取方式">
+<meta name="keywords" content="python,javascript,算法,java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="网络请求工具 cURL">
-<meta property="og:url" content="http://wxnacy.com/2017/08/16/linux-2017-08-16-curl/index.html">
+<meta property="og:title" content="如何解析地址参数">
+<meta property="og:url" content="http://wxnacy.com/2017/12/08/parse-url-params/index.html">
 <meta property="og:site_name" content="wxnacy 博客">
-<meta property="og:description" content="cRUL 是一种命令行工具，作用是发出网络请求，然后得到和提取数据，显示在“标准输出”（stdout）上面。">
+<meta property="og:description" content="在 React 之前 html 页面想要获取当前地址参数，只能通过静态解析的方式在获取，列举几种语言的获取方式">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-11-23T02:38:09.000Z">
+<meta property="og:updated_time" content="2017-12-08T09:00:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="网络请求工具 cURL">
-<meta name="twitter:description" content="cRUL 是一种命令行工具，作用是发出网络请求，然后得到和提取数据，显示在“标准输出”（stdout）上面。">
+<meta name="twitter:title" content="如何解析地址参数">
+<meta name="twitter:description" content="在 React 之前 html 页面想要获取当前地址参数，只能通过静态解析的方式在获取，列举几种语言的获取方式">
   
     <link rel="alternative" href="/atom.xml" title="wxnacy 博客" type="application/atom+xml">
   
@@ -161,51 +161,38 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-linux-2017-08-16-curl" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-parse-url-params" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      网络请求工具 cURL
+      如何解析地址参数
     </h1>
   
 
         
-        <a href="/2017/08/16/linux-2017-08-16-curl/" class="archive-article-date">
-  	<time datetime="2017-08-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
+        <a href="/2017/12/08/parse-url-params/" class="archive-article-date">
+  	<time datetime="2017-12-08T05:48:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-08</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>cRUL 是一种命令行工具，作用是发出网络请求，然后得到和提取数据，显示在<br>“标准输出”（stdout）上面。</p>
-</blockquote>
-<a id="more"></a>
-<h2><span id="cha-kan-wang-ye-yuan-ma">查看网页源码</span><a href="#cha-kan-wang-ye-yuan-ma" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl baidu.com</div></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"refresh"</span> <span class="attr">content</span>=<span class="string">"0;url=http://www.baidu.com/"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>如果要把这个网页保存下来，可以使用 <code>-o</code> 或 <code>--output</code> 参数，这就相当于使用 wget<br>命令了。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl -o file_name baidu.com</div></pre></td></tr></table></figure></p>
-<h2><span id="zi-dong-tiao-zhuan">自动跳转</span><a href="#zi-dong-tiao-zhuan" class="header-anchor"></a></h2><p>有的网址是自动跳转的。使用<code>-L</code>或<code>--location</code>参数，curl就会跳转到新的网址。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl -L baidu.com</div></pre></td></tr></table></figure></p>
-<h2><span id="xian-shi-tou-xin-xi">显示头信息</span><a href="#xian-shi-tou-xin-xi" class="header-anchor"></a></h2><p><code>-i</code> 或 <code>--include</code> 参数可以显示 <strong>http response</strong> 的头信息，连同网页代码一起。<br><code>-I</code> 或 <code>--head</code> 参数则是只显示 <strong>http response</strong> 的头信息。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl -i baidu.com</div></pre></td></tr></table></figure></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 200 OK</div><div class="line">Date: Wed, 16 Aug 2017 08:21:49 GMT</div><div class="line">Server: Apache</div><div class="line">Last-Modified: Tue, 12 Jan 2010 13:48:00 GMT</div><div class="line">ETag: "51-47cf7e6ee8400"</div><div class="line">Accept-Ranges: bytes</div><div class="line">Content-Length: 81</div><div class="line">Cache-Control: max-age=86400</div><div class="line">Expires: Thu, 17 Aug 2017 08:21:49 GMT</div><div class="line">Connection: Keep-Alive</div><div class="line">Content-Type: text/html</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"refresh"</span> <span class="attr">content</span>=<span class="string">"0;url=http://www.baidu.com/"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
-<h2><span id="xian-shi-tong-xin-guo-cheng">显示通信过程</span><a href="#xian-shi-tong-xin-guo-cheng" class="header-anchor"></a></h2><p><code>-v</code> 或 <code>--verbose</code> 参数可以显示一次 http 通信的整个过程，包括端口连接和<br><strong>http request</strong> 头信息。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl -v baidu.com</div></pre></td></tr></table></figure></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">* Rebuilt URL to: baidu.com/</div><div class="line">*   Trying 220.181.57.217...</div><div class="line">* Connected to baidu.com (220.181.57.217) port 80 (#0)</div><div class="line">&gt; GET / HTTP/1.1</div><div class="line">&gt; Host: baidu.com</div><div class="line">&gt; User-Agent: curl/7.43.0</div><div class="line">&gt; Accept: */*</div><div class="line">&gt;</div><div class="line"><span class="tag">&lt; <span class="attr">HTTP</span>/<span class="attr">1.1</span> <span class="attr">200</span> <span class="attr">OK</span></span></div><div class="line">&lt; Date: Wed, 16 Aug 2017 08:24:49 GMT</div><div class="line"><span class="tag">&lt; <span class="attr">Server:</span> <span class="attr">Apache</span></span></div><div class="line">&lt; Last-Modified: Tue, 12 Jan 2010 13:48:00 GMT</div><div class="line"><span class="tag">&lt; <span class="attr">ETag:</span> "<span class="attr">51-47cf7e6ee8400</span>"</span></div><div class="line">&lt; Accept-Ranges: bytes</div><div class="line"><span class="tag">&lt; <span class="attr">Content-Length:</span> <span class="attr">81</span></span></div><div class="line">&lt; Cache-Control: max-age=86400</div><div class="line"><span class="tag">&lt; <span class="attr">Expires:</span> <span class="attr">Thu</span>, <span class="attr">17</span> <span class="attr">Aug</span> <span class="attr">2017</span> <span class="attr">08:24:49</span> <span class="attr">GMT</span></span></div><div class="line">&lt; Connection: Keep-Alive</div><div class="line"><span class="tag">&lt; <span class="attr">Content-Type:</span> <span class="attr">text</span>/<span class="attr">html</span></span></div><div class="line">&lt;</div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"refresh"</span> <span class="attr">content</span>=<span class="string">"0;url=http://www.baidu.com/"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div><div class="line">* Connection #0 to host baidu.com left intact</div></pre></td></tr></table></figure>
-<p>也可以通过 <code>--trace</code> 或 <code>--trace-ascii</code> 命令查看更详细通信过程，执行后通过制定<br>的日志地址查看<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ curl --trace <span class="variable">$&#123;log_path&#125;</span> baidu.com</div><div class="line">$ curl --trace-ascii <span class="variable">$&#123;log_path&#125;</span> baidu.com</div></pre></td></tr></table></figure></p>
-<h2><span id="http-dong-ci">HTTP动词</span><a href="#http-dong-ci" class="header-anchor"></a></h2><p>curl默认的HTTP动词是GET，使用<code>-X</code>参数可以支持其他动词。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl -X POST baidu.com</div></pre></td></tr></table></figure>
-<h2><span id="zeng-jia-tou-xin-xi">增加头信息</span><a href="#zeng-jia-tou-xin-xi" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 使用-H 或 --header 可以起到这个作用</span></div><div class="line">$ curl localhost:8002/<span class="built_in">test</span> -H <span class="string">"Content-Type:application/json"</span></div></pre></td></tr></table></figure>
-<h2><span id="fa-song-biao-dan-xin-xi">发送表单信息</span><a href="#fa-song-biao-dan-xin-xi" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># GET方法比较简单，网址后直接跟参数</span></div><div class="line">$ curl localhost:8002/<span class="built_in">test</span>?data=xxx</div><div class="line"><span class="comment"># POST方法通过--data或-d参数实现</span></div><div class="line">$ curl -X POST localhost:8002/<span class="built_in">test</span> --data <span class="string">"name=xxx"</span> --data <span class="string">"password=xxx"</span></div><div class="line">$ curl -X POST localhost:8002/<span class="built_in">test</span> -H <span class="string">"Content-Type:application/x-www-form-urlencoded"</span> -d <span class="string">"name=win"</span></div><div class="line"><span class="comment"># 使用application/json 提交json数据</span></div><div class="line">$ curl -X POST localhost:8002/<span class="built_in">test</span> -H <span class="string">"Content-Type:application/json"</span> -d <span class="string">'&#123;"name":"wxnacy"&#125;'</span></div><div class="line"><span class="comment">#如果你的数据没有经过表单编码，还可以让curl为你编码，参数是`--data-urlencode`。</span></div><div class="line">$ curl -X POST localhost:8002/<span class="built_in">test</span> --data-urlencode <span class="string">"data=1 2"</span></div></pre></td></tr></table></figure>
-<h2><span id="wen-jian-shang-chuan">文件上传</span><a href="#wen-jian-shang-chuan" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ curl --form upload_field=@localfilename localhost:8002/<span class="built_in">test</span></div><div class="line">$ curl --form <span class="string">"upload_field=@new.txt;type=text/plain"</span> localhost:8002/<span class="built_in">test</span></div></pre></td></tr></table></figure>
-<h2><span id="referer-zi-duan">Referer字段</span><a href="#referer-zi-duan" class="header-anchor"></a></h2><p>需要添加request头信息referer标示从哪里跳转来的<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl localhost:8002/<span class="built_in">test</span> --referer <span class="variable">$&#123;from_url&#125;</span></div></pre></td></tr></table></figure></p>
-<h2><span id="user-agent-zi-duan">user-agent字段</span><a href="#user-agent-zi-duan" class="header-anchor"></a></h2><p>使用 <code>--user-agent</code> 或 <code>-A</code> 可以模拟发送 user-agent 字段<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl localhost:8002/<span class="built_in">test</span> --user-agent <span class="string">"device"</span></div></pre></td></tr></table></figure></p>
-<h2><span id="cookie">cookie</span><a href="#cookie" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 发送的cookie可以在response headers中看到</span></div><div class="line">$ curl localhost:8002/<span class="built_in">test</span> --cookie <span class="string">"name=ss"</span></div><div class="line"><span class="comment"># -c 可以保存服务器返回的cookies到文件中</span></div><div class="line">$ curl localhost:8002/<span class="built_in">test</span> -c <span class="variable">$&#123;cookie_file&#125;</span></div><div class="line"><span class="comment"># -b 可以使用这个文件作为cookie信息，进行后续的请求。</span></div><div class="line">$ curl localhost:8002/<span class="built_in">test</span> -b <span class="variable">$&#123;cookie_file&#125;</span></div></pre></td></tr></table></figure>
-<h2><span id="http-ren-zheng">HTTP认证</span><a href="#http-ren-zheng" class="header-anchor"></a></h2><p>有些网域需要HTTP认证，这时 cURL 需要用到<code>--user</code>或 <code>-u</code>参数。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 这时候服务器会在头信息中接收到Authorization字段，值为Basic + name:pass的base64加密数值</span></div><div class="line">$ curl localhost:8002/<span class="built_in">test</span> --user name:apss</div></pre></td></tr></table></figure></p>
-<h2><span id="can-kao-zi-liao">参考资料</span><a href="#can-kao-zi-liao" class="header-anchor"></a></h2><ul>
-<li><a href="http://www.ruanyifeng.com/blog/2011/09/curl.html" target="_blank" rel="external">curl网站开发指南</a></li>
+        <p>在 React 之前 html 页面想要获取当前地址参数，只能通过静态解析的方式在获取，列举几种语言的获取方式<br><a id="more"></a><div class="toc"></p>
+<!-- toc -->
+<ul>
+<li><a href="#javascript">Javascript</a></li>
+<li><a href="#python">Python</a></li>
+<li><a href="#java">Java</a></li>
 </ul>
+<!-- tocstop -->
+<p></div></p>
+<h2><span id="javascript">Javascript</span><a href="#javascript" class="header-anchor"></a></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getValue</span>(<span class="params">key</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> name = key + <span class="string">"="</span>;</div><div class="line">    <span class="keyword">var</span> str = <span class="built_in">window</span>.location.search;</div><div class="line">    <span class="keyword">var</span> beginIndex = str.indexOf(<span class="string">"?"</span> + name);</div><div class="line">    <span class="keyword">if</span> (beginIndex == <span class="number">-1</span>) &#123;</div><div class="line">        beginIndex = str.indexOf(<span class="string">"&amp;"</span> + name);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (beginIndex != <span class="number">-1</span>) &#123;</div><div class="line">        <span class="keyword">var</span> pos_start = beginIndex + name.length + <span class="number">1</span>;</div><div class="line">        <span class="keyword">var</span> pos_end = str.indexOf(<span class="string">"&amp;"</span>, pos_start);</div><div class="line">        <span class="keyword">if</span> (pos_end == <span class="number">-1</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="built_in">decodeURIComponent</span>(str.substring(pos_start));</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> <span class="built_in">decodeURIComponent</span>(str.substring(pos_start, pos_end));</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2><span id="python">Python</span><a href="#python" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_value</span><span class="params">(url, k)</span>:</span></div><div class="line">    <span class="string">"""获取地址中参数值"""</span></div><div class="line">    nk = <span class="string">'&#123;&#125;='</span>.format(k)</div><div class="line">    <span class="keyword">if</span> nk <span class="keyword">not</span> <span class="keyword">in</span> url:</div><div class="line">        <span class="keyword">return</span> <span class="keyword">None</span></div><div class="line"></div><div class="line">    b = url.find(nk) + len(nk)  <span class="comment"># 获取开始位置</span></div><div class="line">    e = url.find(<span class="string">'&amp;'</span>, b) <span class="keyword">if</span> url.find(<span class="string">'&amp;'</span>, b) != <span class="number">-1</span> <span class="keyword">else</span> len(url)    <span class="comment"># 结束位置</span></div><div class="line">    v = url[b:e]</div><div class="line">    <span class="keyword">return</span> v</div></pre></td></tr></table></figure>
+<h2><span id="java">Java</span><a href="#java" class="header-anchor"></a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getValue</span><span class="params">(String url, String key)</span></span>&#123;</div><div class="line">    String k = key + <span class="string">"="</span>;</div><div class="line">    <span class="keyword">int</span> begin = url.indexOf(k);</div><div class="line">    <span class="keyword">if</span>(begin == -<span class="number">1</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">    begin = begin + k.length();</div><div class="line">    <span class="keyword">int</span> end = url.indexOf(<span class="string">"&amp;"</span>, begin);</div><div class="line">    <span class="keyword">if</span>(end == -<span class="number">1</span>)&#123;</div><div class="line">        <span class="keyword">return</span> url.substring(begin);</div><div class="line">    &#125;<span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> url.substring(begin, end);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
 
@@ -219,15 +206,19 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">curl</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
@@ -246,18 +237,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/16/openresty-2017-08-16-install/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          openresty 安装
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/08/16/http-2017-08-16-basic/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">HTTP相关知识</div>
+    <a href="/2017/12/07/java-compile/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java 编译命令</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -284,7 +266,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">查看网页源码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">自动跳转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">显示头信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">显示通信过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">HTTP动词</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">增加头信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">7.</span> <span class="toc-text">发送表单信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">8.</span> <span class="toc-text">文件上传</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">9.</span> <span class="toc-text">Referer字段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">10.</span> <span class="toc-text">user-agent字段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">11.</span> <span class="toc-text">cookie</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">12.</span> <span class="toc-text">HTTP认证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">13.</span> <span class="toc-text">参考资料</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">Javascript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">Python</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">Java</span></a></li></ol>
                     </div>
                 </span>
             </div>

@@ -31,3 +31,26 @@ def get_random_str(str_len):
     res = [_create() for x in range(0, str_len)]
     return ''.join(res)
 ```
+
+## Java
+```java
+import java.util.Random;
+
+private final static char[] digits = {
+    '0', '1', '2', '3', '4', '5',
+    '6', '7', '8', '9', 'a', 'b',
+    'c', 'd', 'e', 'f', 'g', 'h',
+    'i', 'j', 'k', 'l', 'm', 'n',
+    'o', 'p', 'q', 'r', 's', 't',
+    'u', 'v', 'w', 'x', 'y', 'z'
+
+};
+public static String getRandom(int len){
+    char[] result = new char[len];
+    Random r = new Random();
+    for(int i = 0; i < len; i++){
+        result[i] = digits[Math.abs(r.nextInt(digits.length))];
+    }
+    return new String(result);
+}
+```
