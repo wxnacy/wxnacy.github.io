@@ -4,8 +4,11 @@ date: 2017-12-06 18:00:59
 tags: [算法, python, java]
 ---
 
+点击按钮获取一个 16 位的包含 `[0-9][a-z][A-Z][!@#$%^&*]` 的密码
+<button onClick="getRandom(16)">获取</button>: <span id="out"></span>
+<script  type="text/javascript" src="https://s3-ap-northeast-1.amazonaws.com/i.vego.tv/js/getrandom.js"> </script>
+<!-- more -->
 在实际开发中经常会用到随机数，这里介绍各种语言的实现方法
-<!-- more --><!-- toc -->
 ## Python
 ```python
 #!/usr/bin/env python
@@ -52,5 +55,25 @@ public static String getRandom(int len){
         result[i] = digits[Math.abs(r.nextInt(digits.length))];
     }
     return new String(result);
+}
+```
+
+## Javascript
+```javascript
+var digits = [
+    '0', '1', '2', '3', '4', '5',
+    '6', '7', '8', '9', 'a', 'b',
+    'c', 'd', 'e', 'f', 'g', 'h',
+    'i', 'j', 'k', 'l', 'm', 'n',
+    'o', 'p', 'q', 'r', 's', 't',
+    'u', 'v', 'w', 'x', 'y', 'z'
+
+];
+function getRandom(len){
+    var array = new Array(len);
+    for(var i = 0; i < len; i++){
+        array[i] = digits[parseInt(Math.random() * digits.length)];
+    }
+    return array.join('');
 }
 ```
