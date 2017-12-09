@@ -6,7 +6,6 @@ tags: [算法, python, java]
 
 点击按钮获取一个 16 位的包含 `[0-9][a-z][A-Z][!@#$%^&*]` 的密码
 <button onClick="getRandom(16)">获取</button>: <span id="out"></span>
-<script  type="text/javascript" src="https://s3-ap-northeast-1.amazonaws.com/i.vego.tv/js/getrandom.js"> </script>
 <!-- more -->
 在实际开发中经常会用到随机数，这里介绍各种语言的实现方法
 ## Python
