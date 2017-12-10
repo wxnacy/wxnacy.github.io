@@ -1,7 +1,7 @@
 ---
 title: 如何获取指定位数随机数
 date: 2017-12-06 18:00:59
-tags: [算法, python, java]
+tags: [算法, 工具, python, java, javascript]
 ---
 
 点击按钮获取一个 16 位的包含 `[0-9][a-z][A-Z][!@#$%^&*]` 的密码

@@ -64,6 +64,8 @@
 	        
 				<li><a href="/linux">Linux 练级手册</a></li>
 	        
+				<li><a href="/tool">在线工具</a></li>
+	        
 				<li><a href="/archives">归档</a></li>
 	        
 			</ul>
@@ -120,6 +122,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -136,15 +140,17 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 20%"><a href="/">主页</a></li>
+					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
 		        
-					<li style="width: 20%"><a href="/vim/">Vim 练级手册</a></li>
+					<li style="width: 16.666666666666668%"><a href="/vim/">Vim 练级手册</a></li>
 		        
-					<li style="width: 20%"><a href="/python">Python 练级手册</a></li>
+					<li style="width: 16.666666666666668%"><a href="/python">Python 练级手册</a></li>
 		        
-					<li style="width: 20%"><a href="/linux">Linux 练级手册</a></li>
+					<li style="width: 16.666666666666668%"><a href="/linux">Linux 练级手册</a></li>
 		        
-					<li style="width: 20%"><a href="/archives">归档</a></li>
+					<li style="width: 16.666666666666668%"><a href="/tool">在线工具</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/archives">归档</a></li>
 		        
 				</ul>
 			</nav>
@@ -160,6 +166,92 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-python-2017-08-10-pyenv-cmd" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/10/python-2017-08-10-pyenv-cmd/">pyenv 常用命令</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/10/python-2017-08-10-pyenv-cmd/" class="archive-article-date">
+  	<time datetime="2017-08-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2><span id="pyenv">pyenv</span><a href="#pyenv" class="header-anchor"></a></h2><h3><span id="cha-kan-ke-an-zhuang-ban-ben">查看可安装版本</span><a href="#cha-kan-ke-an-zhuang-ban-ben" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pyenv install -list</div></pre></td></tr></table></figure>
+<h3><span id="an-zhuang-mou-ge-ban-ben">安装某个版本</span><a href="#an-zhuang-mou-ge-ban-ben" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pyenv install -v 3.5.0</div></pre></td></tr></table></figure>
+<h3><span id="cha-kan-ben-di-ban-ben-lie-biao">查看本地版本列表</span><a href="#cha-kan-ben-di-ban-ben-lie-biao" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ pyenv versions</div><div class="line"></div><div class="line">* system (<span class="built_in">set</span> by /home/wxnacy/.pyenv/version) <span class="comment"># 系统python环境 *号代表当前环境版本</span></div><div class="line">  3.5.0 <span class="comment"># 刚下载的3.5.0版本</span></div></pre></td></tr></table></figure>
+<h3><span id="cha-kan-dang-qian-huan-jing-ban-ben">查看当前环境版本</span><a href="#cha-kan-dang-qian-huan-jing-ban-ben" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ pyenv version</div><div class="line">system (<span class="built_in">set</span> by /home/wxnacy/.pyenv/version)</div></pre></td></tr></table></figure>
+<h3><span id="she-zhi-quan-ju-wei-mou-yi-ge-huan-jing">设置全局为某一个环境</span><a href="#she-zhi-quan-ju-wei-mou-yi-ge-huan-jing" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ pyenv global 3.5.0</div><div class="line">$ pyenv version <span class="comment"># 查看当前环境</span></div><div class="line">3.5.0 (<span class="built_in">set</span> by /home/wxnacy/project/project_350/.python-version)</div></pre></td></tr></table></figure>
+<h3><span id="wei-xiang-mu-she-zhi-dan-du-huan-jing">为项目设置单独环境</span><a href="#wei-xiang-mu-she-zhi-dan-du-huan-jing" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> project</div><div class="line">$ pyenv <span class="built_in">local</span> 3.5.0 <span class="comment"># 使用local命令为某个目录单独设置目录</span></div><div class="line">$ pyenv version</div><div class="line">3.5.0 (<span class="built_in">set</span> by /home/wxnacy/project/project_350/.python-version)</div><div class="line"></div><div class="line">$ <span class="built_in">cd</span> ..</div><div class="line">$ pyenv version <span class="comment"># 退出目录查看环境没有改变</span></div><div class="line">system (<span class="built_in">set</span> by /home/wxnacy/.pyenv/version)</div></pre></td></tr></table></figure>
+<h2><span id="virtualenv">virtualenv</span><a href="#virtualenv" class="header-anchor"></a></h2><p>假如我们有多个项目都是用3.5.0的环境，但是又不想让他们公用一个环境该怎么办？<br>使用virtualenv可以为某一个python版本创建一个干净的虚拟机环境</p>
+<h3><span id="chuang-jian-xu-ni-ji">创建虚拟机</span><a href="#chuang-jian-xu-ni-ji" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ pyenv virtualenv 3.5.0 env_350</div><div class="line">$ pyenv versions</div><div class="line">* system (<span class="built_in">set</span> by /home/wxnacy/.pyenv/version)</div><div class="line">  3.5.0</div><div class="line">  3.5.0/envs/env_350</div><div class="line">  env_350</div></pre></td></tr></table></figure>
+<p>查看环境后我们发现多了两个环境<code>3.5.0/envs/env_350</code>和<code>env_350</code>，这两个是同一个</p>
+<h3><span id="zhi-ding-dang-qian-jin-cheng-huan-jing">指定当前进程环境</span><a href="#zhi-ding-dang-qian-jin-cheng-huan-jing" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pyenv activate env_350</div></pre></td></tr></table></figure>
+<p>该命令只能指定当前进程的环境，退出shell后重新进入，发现环境又变回之前的环境</p>
+<h3><span id="dang-qian-jin-xing-tui-chu-activate">当前进行退出activate</span><a href="#dang-qian-jin-xing-tui-chu-activate" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pynev deactivate</div></pre></td></tr></table></figure>
+<p>当然virtualenv生成的虚拟环境也可以配合<code>global</code>和<code>local</code>等pyenv命令配合使用</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/10/python-2017-08-10-pyenv-cmd/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-python-2017-08-10-pyenv-linux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -321,19 +413,19 @@
 
 
   
-    <article id="post-mysql-2017-08-09-prompt" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mysql-2017-08-09-select-format" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-prompt/">mysql prompt 提示符</a>
+      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-select-format/">mysql select 格式化输出</a>
     </h1>
   
 
         
-        <a href="/2017/08/09/mysql-2017-08-09-prompt/" class="archive-article-date">
+        <a href="/2017/08/09/mysql-2017-08-09-select-format/" class="archive-article-date">
   	<time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
 </a>
         
@@ -341,12 +433,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>原文：<a href="http://www.thegeekstuff.com/2010/02/mysql_ps1-6-examples-to-make-your-mysql-prompt-like-angelina-jolie/" target="_blank" rel="external">http://www.thegeekstuff.com/2010/02/mysql_ps1-6-examples-to-make-your-mysql-prompt-like-angelina-jolie/</a></p>
-<h2><span id="zai-ming-ling-xing-zhong-shi-yong">在命令行中使用</span><a href="#zai-ming-ling-xing-zhong-shi-yong" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mysql&gt; prompt \u@\d&gt;</div><div class="line">PROMPT set to &apos;\u@\d&gt; &apos;</div><div class="line">root@(none)&gt; use test</div><div class="line">Reading table information for completion of table and column names</div><div class="line">You can turn off this feature to get a quicker startup with -A</div><div class="line"></div><div class="line">Database changed</div><div class="line">root@test&gt;</div></pre></td></tr></table></figure>
-<h2><span id="zai-ming-ling-xing-can-shu-zhong-shi-yong">在命令行参数中使用</span><a href="#zai-ming-ling-xing-can-shu-zhong-shi-yong" class="header-anchor"></a></h2><p>需要使用双引号括起来<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wxnacy@wxnacydeMacBook-Pro: ~ $ mysql -u root -p --prompt=&quot;\u@\d&gt; &quot;    </div><div class="line">root@(none)&gt; use test;</div><div class="line">root@test&gt;</div></pre></td></tr></table></figure></p>
-<h3><span id="zai-bash-ceng-xiu-gai-mysql-ps1-bian-liang">在bash层修改 MYSQL_PS1 变量</span><a href="#zai-bash-ceng-xiu-gai-mysql-ps1-bian-liang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wxnacy@wxnacydeMacBook-Pro: ~ $ <span class="built_in">export</span> MYSQL_PS1=<span class="string">"\u@\d&gt; "</span>                              </div><div class="line">wxnacy@wxnacydeMacBook-Pro: ~ $ mysql -u root -p                            </div><div class="line">root@(none)&gt;</div></pre></td></tr></table></figure>
-<h2><span id="zai-etc-my-cnf-zhong-pei-zhi">在/etc/my.cnf中配置</span><a href="#zai-etc-my-cnf-zhong-pei-zhi" class="header-anchor"></a></h2><p>也可以在配置中一劳永逸<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[mysql]  </div><div class="line">prompt=\\u@\\d&gt;\\ <span class="comment"># 要多加一个反斜线\</span></div><div class="line">  </div><div class="line">又或者：  </div><div class="line">[mysql]  </div><div class="line">prompt=<span class="string">"\u@\d&gt; "</span></div></pre></td></tr></table></figure></p>
-<h3><span id="geng-duo-can-shu">更多参数</span><a href="#geng-duo-can-shu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">Option  Description  </div><div class="line">  </div><div class="line">\c  A counter that increments <span class="keyword">for</span> each statement you issue  </div><div class="line">\D  The full current date  </div><div class="line">\d  The default database  </div><div class="line">\h  The server host  </div><div class="line">\l  The current delimiter (new <span class="keyword">in</span> 5.0.25)  </div><div class="line">\m  Minutes of the current time  </div><div class="line">\n  A newline character  </div><div class="line">\O  The current month <span class="keyword">in</span> three-letter format (Jan, Feb, …)  </div><div class="line">\o  The current month <span class="keyword">in</span> numeric format  </div><div class="line">\P  am/pm  </div><div class="line">\p  The current TCP/IP port or socket file  </div><div class="line">\R  The current time, <span class="keyword">in</span> 24-hour military time (0–23)  </div><div class="line">\r  The current time, standard 12-hour time (1–12)  </div><div class="line">\S  Semicolon  </div><div class="line">\s  Seconds of the current time  </div><div class="line">\t  A tab character  </div><div class="line">\U  Your full user_name@host_name account name  </div><div class="line">   </div><div class="line">\u  Your user name  </div><div class="line">\v  The server version  </div><div class="line">\w  The current day of the week <span class="keyword">in</span> three-letter format (Mon, Tue, …)  </div><div class="line">\Y  The current year, four digits  </div><div class="line">\y  The current year, two digits  </div><div class="line">\_  A space  </div><div class="line">\   A space (a space follows the backslash)  </div><div class="line">\<span class="string">'  Single quote  </span></div><div class="line"><span class="string">\"  Double quote  </span></div><div class="line"><span class="string">\\  A literal “\” backslash character  </span></div><div class="line"><span class="string">\x  x, for any “x” not listed above</span></div></pre></td></tr></table></figure>
+        <h2><span id="shi-yong-g-shu-chu-jie-guo-an-xing-chui-zhi-xian-shi-jie-guo">使用\G输出结果按行垂直显示结果</span><a href="#shi-yong-g-shu-chu-jie-guo-an-xing-chui-zhi-xian-shi-jie-guo" class="header-anchor"></a></h2><p>当使用命令 select 结果，如果表属性特别多的时候，查看起来非常难受，在 select 语句<br>后使用<code>\G</code>(必须大写)，可以让结果按行垂直显示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select * from user\G;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">*************************** 1. row ***************************</div><div class="line">       id: 1</div><div class="line">     name: wxnacy</div><div class="line">   is_del: 0</div><div class="line">create_ts: 2017-08-08 07:46:42</div><div class="line">update_ts: 2017-08-08 07:46:42</div><div class="line">1 row in set (0.00 sec)</div></pre></td></tr></table></figure>
+<h2><span id="yi-html-ge-shi-shu-chu">以html格式输出</span><a href="#yi-html-ge-shi-shu-chu" class="header-anchor"></a></h2><p>使用mysql客户端的参数–html或者-T，则所有SQL的查询结果会自动生成为html的table代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ mysql -u root --html -p</div><div class="line">mysql&gt; select * from user;</div></pre></td></tr></table></figure></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">TABLE</span> <span class="attr">BORDER</span>=<span class="string">1</span>&gt;</span><span class="tag">&lt;<span class="name">TR</span>&gt;</span><span class="tag">&lt;<span class="name">TH</span>&gt;</span>id<span class="tag">&lt;/<span class="name">TH</span>&gt;</span><span class="tag">&lt;<span class="name">TH</span>&gt;</span>name<span class="tag">&lt;/<span class="name">TH</span>&gt;</span><span class="tag">&lt;<span class="name">TH</span>&gt;</span>is_del<span class="tag">&lt;/<span class="name">TH</span>&gt;</span><span class="tag">&lt;<span class="name">TH</span>&gt;</span>create_ts<span class="tag">&lt;/<span class="name">TH</span>&gt;</span> <span class="tag">&lt;<span class="name">TH</span>&gt;</span>update_ts<span class="tag">&lt;/<span class="name">TH</span>&gt;</span><span class="tag">&lt;/<span class="name">TR</span>&gt;</span><span class="tag">&lt;<span class="name">TR</span>&gt;</span><span class="tag">&lt;<span class="name">TD</span>&gt;</span>1<span class="tag">&lt;/<span class="name">TD</span>&gt;</span><span class="tag">&lt;<span class="name">TD</span>&gt;</span>wxnacy<span class="tag">&lt;/<span class="name">TD</span>&gt;</span><span class="tag">&lt;<span class="name">TD</span>&gt;</span>0<span class="tag">&lt;/<span class="name">TD</span>&gt;</span><span class="tag">&lt;<span class="name">TD</span>&gt;</span>2017-08-08 07:46:42<span class="tag">&lt;/<span class="name">TD</span>&gt;</span><span class="tag">&lt;<span class="name">TD</span>&gt;</span>2017-08-08 07:46:42<span class="tag">&lt;/<span class="name">TD</span>&gt;</span><span class="tag">&lt;/<span class="name">TR</span>&gt;</span><span class="tag">&lt;/<span class="name">TABLE</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2><span id="yi-xml-ge-shi-shu-chu">以xml格式输出</span><a href="#yi-xml-ge-shi-shu-chu" class="header-anchor"></a></h2><p>使用mysql客户端的参数–xml或者-X选项，可以将结果输出为xml格式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ mysql -u root --xml -p</div><div class="line">mysql&gt; select * from user;</div></pre></td></tr></table></figure></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0"?&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">resultset</span> <span class="attr">statement</span>=<span class="string">"select * from user;"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">row</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"id"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">field</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span>&gt;</span>wxnacy<span class="tag">&lt;/<span class="name">field</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"is_del"</span>&gt;</span>0<span class="tag">&lt;/<span class="name">field</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"create_ts"</span>&gt;</span>2017-08-08 07:46:42<span class="tag">&lt;/<span class="name">field</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"update_ts"</span>&gt;</span>2017-08-08 07:46:42<span class="tag">&lt;/<span class="name">field</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">row</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">resultset</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2><span id="shi-yong-pager-jin-ru-more-huo-less-cha-kan-jie-guo">使用pager进入more或less查看结果</span><a href="#shi-yong-pager-jin-ru-more-huo-less-cha-kan-jie-guo" class="header-anchor"></a></h2><p>当select查询结果很多时，一屏幕往往无法装下。使用pager命令后在进行select命令，可以进入类似linux中more或less查看文件的效果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mysql&gt; pager more</div><div class="line">PAGER set to &apos;more&apos;</div><div class="line">mysql&gt; select * from user;</div><div class="line">...</div><div class="line">mysql&gt; nopager #退出pager状态</div><div class="line">PAGER set to stdout</div></pre></td></tr></table></figure></p>
 
       
 
@@ -370,7 +463,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-prompt/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-select-format/">展开全文 >></a>
         </p>
       
 
@@ -552,19 +645,19 @@
 
 
   
-    <article id="post-mysql-2017-08-09-select-format" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mysql-2017-08-09-prompt" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-select-format/">mysql select 格式化输出</a>
+      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-prompt/">mysql prompt 提示符</a>
     </h1>
   
 
         
-        <a href="/2017/08/09/mysql-2017-08-09-select-format/" class="archive-article-date">
+        <a href="/2017/08/09/mysql-2017-08-09-prompt/" class="archive-article-date">
   	<time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
 </a>
         
@@ -572,13 +665,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2><span id="shi-yong-g-shu-chu-jie-guo-an-xing-chui-zhi-xian-shi-jie-guo">使用\G输出结果按行垂直显示结果</span><a href="#shi-yong-g-shu-chu-jie-guo-an-xing-chui-zhi-xian-shi-jie-guo" class="header-anchor"></a></h2><p>当使用命令 select 结果，如果表属性特别多的时候，查看起来非常难受，在 select 语句<br>后使用<code>\G</code>(必须大写)，可以让结果按行垂直显示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select * from user\G;</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">*************************** 1. row ***************************</div><div class="line">       id: 1</div><div class="line">     name: wxnacy</div><div class="line">   is_del: 0</div><div class="line">create_ts: 2017-08-08 07:46:42</div><div class="line">update_ts: 2017-08-08 07:46:42</div><div class="line">1 row in set (0.00 sec)</div></pre></td></tr></table></figure>
-<h2><span id="yi-html-ge-shi-shu-chu">以html格式输出</span><a href="#yi-html-ge-shi-shu-chu" class="header-anchor"></a></h2><p>使用mysql客户端的参数–html或者-T，则所有SQL的查询结果会自动生成为html的table代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ mysql -u root --html -p</div><div class="line">mysql&gt; select * from user;</div></pre></td></tr></table></figure></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">TABLE</span> <span class="attr">BORDER</span>=<span class="string">1</span>&gt;</span><span class="tag">&lt;<span class="name">TR</span>&gt;</span><span class="tag">&lt;<span class="name">TH</span>&gt;</span>id<span class="tag">&lt;/<span class="name">TH</span>&gt;</span><span class="tag">&lt;<span class="name">TH</span>&gt;</span>name<span class="tag">&lt;/<span class="name">TH</span>&gt;</span><span class="tag">&lt;<span class="name">TH</span>&gt;</span>is_del<span class="tag">&lt;/<span class="name">TH</span>&gt;</span><span class="tag">&lt;<span class="name">TH</span>&gt;</span>create_ts<span class="tag">&lt;/<span class="name">TH</span>&gt;</span> <span class="tag">&lt;<span class="name">TH</span>&gt;</span>update_ts<span class="tag">&lt;/<span class="name">TH</span>&gt;</span><span class="tag">&lt;/<span class="name">TR</span>&gt;</span><span class="tag">&lt;<span class="name">TR</span>&gt;</span><span class="tag">&lt;<span class="name">TD</span>&gt;</span>1<span class="tag">&lt;/<span class="name">TD</span>&gt;</span><span class="tag">&lt;<span class="name">TD</span>&gt;</span>wxnacy<span class="tag">&lt;/<span class="name">TD</span>&gt;</span><span class="tag">&lt;<span class="name">TD</span>&gt;</span>0<span class="tag">&lt;/<span class="name">TD</span>&gt;</span><span class="tag">&lt;<span class="name">TD</span>&gt;</span>2017-08-08 07:46:42<span class="tag">&lt;/<span class="name">TD</span>&gt;</span><span class="tag">&lt;<span class="name">TD</span>&gt;</span>2017-08-08 07:46:42<span class="tag">&lt;/<span class="name">TD</span>&gt;</span><span class="tag">&lt;/<span class="name">TR</span>&gt;</span><span class="tag">&lt;/<span class="name">TABLE</span>&gt;</span></div></pre></td></tr></table></figure>
-<h2><span id="yi-xml-ge-shi-shu-chu">以xml格式输出</span><a href="#yi-xml-ge-shi-shu-chu" class="header-anchor"></a></h2><p>使用mysql客户端的参数–xml或者-X选项，可以将结果输出为xml格式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ mysql -u root --xml -p</div><div class="line">mysql&gt; select * from user;</div></pre></td></tr></table></figure></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0"?&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">resultset</span> <span class="attr">statement</span>=<span class="string">"select * from user;"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">row</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"id"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">field</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span>&gt;</span>wxnacy<span class="tag">&lt;/<span class="name">field</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"is_del"</span>&gt;</span>0<span class="tag">&lt;/<span class="name">field</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"create_ts"</span>&gt;</span>2017-08-08 07:46:42<span class="tag">&lt;/<span class="name">field</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"update_ts"</span>&gt;</span>2017-08-08 07:46:42<span class="tag">&lt;/<span class="name">field</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">row</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">resultset</span>&gt;</span></div></pre></td></tr></table></figure>
-<h2><span id="shi-yong-pager-jin-ru-more-huo-less-cha-kan-jie-guo">使用pager进入more或less查看结果</span><a href="#shi-yong-pager-jin-ru-more-huo-less-cha-kan-jie-guo" class="header-anchor"></a></h2><p>当select查询结果很多时，一屏幕往往无法装下。使用pager命令后在进行select命令，可以进入类似linux中more或less查看文件的效果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mysql&gt; pager more</div><div class="line">PAGER set to &apos;more&apos;</div><div class="line">mysql&gt; select * from user;</div><div class="line">...</div><div class="line">mysql&gt; nopager #退出pager状态</div><div class="line">PAGER set to stdout</div></pre></td></tr></table></figure></p>
+        <p>原文：<a href="http://www.thegeekstuff.com/2010/02/mysql_ps1-6-examples-to-make-your-mysql-prompt-like-angelina-jolie/" target="_blank" rel="external">http://www.thegeekstuff.com/2010/02/mysql_ps1-6-examples-to-make-your-mysql-prompt-like-angelina-jolie/</a></p>
+<h2><span id="zai-ming-ling-xing-zhong-shi-yong">在命令行中使用</span><a href="#zai-ming-ling-xing-zhong-shi-yong" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mysql&gt; prompt \u@\d&gt;</div><div class="line">PROMPT set to &apos;\u@\d&gt; &apos;</div><div class="line">root@(none)&gt; use test</div><div class="line">Reading table information for completion of table and column names</div><div class="line">You can turn off this feature to get a quicker startup with -A</div><div class="line"></div><div class="line">Database changed</div><div class="line">root@test&gt;</div></pre></td></tr></table></figure>
+<h2><span id="zai-ming-ling-xing-can-shu-zhong-shi-yong">在命令行参数中使用</span><a href="#zai-ming-ling-xing-can-shu-zhong-shi-yong" class="header-anchor"></a></h2><p>需要使用双引号括起来<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wxnacy@wxnacydeMacBook-Pro: ~ $ mysql -u root -p --prompt=&quot;\u@\d&gt; &quot;    </div><div class="line">root@(none)&gt; use test;</div><div class="line">root@test&gt;</div></pre></td></tr></table></figure></p>
+<h3><span id="zai-bash-ceng-xiu-gai-mysql-ps1-bian-liang">在bash层修改 MYSQL_PS1 变量</span><a href="#zai-bash-ceng-xiu-gai-mysql-ps1-bian-liang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wxnacy@wxnacydeMacBook-Pro: ~ $ <span class="built_in">export</span> MYSQL_PS1=<span class="string">"\u@\d&gt; "</span>                              </div><div class="line">wxnacy@wxnacydeMacBook-Pro: ~ $ mysql -u root -p                            </div><div class="line">root@(none)&gt;</div></pre></td></tr></table></figure>
+<h2><span id="zai-etc-my-cnf-zhong-pei-zhi">在/etc/my.cnf中配置</span><a href="#zai-etc-my-cnf-zhong-pei-zhi" class="header-anchor"></a></h2><p>也可以在配置中一劳永逸<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[mysql]  </div><div class="line">prompt=\\u@\\d&gt;\\ <span class="comment"># 要多加一个反斜线\</span></div><div class="line">  </div><div class="line">又或者：  </div><div class="line">[mysql]  </div><div class="line">prompt=<span class="string">"\u@\d&gt; "</span></div></pre></td></tr></table></figure></p>
+<h3><span id="geng-duo-can-shu">更多参数</span><a href="#geng-duo-can-shu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">Option  Description  </div><div class="line">  </div><div class="line">\c  A counter that increments <span class="keyword">for</span> each statement you issue  </div><div class="line">\D  The full current date  </div><div class="line">\d  The default database  </div><div class="line">\h  The server host  </div><div class="line">\l  The current delimiter (new <span class="keyword">in</span> 5.0.25)  </div><div class="line">\m  Minutes of the current time  </div><div class="line">\n  A newline character  </div><div class="line">\O  The current month <span class="keyword">in</span> three-letter format (Jan, Feb, …)  </div><div class="line">\o  The current month <span class="keyword">in</span> numeric format  </div><div class="line">\P  am/pm  </div><div class="line">\p  The current TCP/IP port or socket file  </div><div class="line">\R  The current time, <span class="keyword">in</span> 24-hour military time (0–23)  </div><div class="line">\r  The current time, standard 12-hour time (1–12)  </div><div class="line">\S  Semicolon  </div><div class="line">\s  Seconds of the current time  </div><div class="line">\t  A tab character  </div><div class="line">\U  Your full user_name@host_name account name  </div><div class="line">   </div><div class="line">\u  Your user name  </div><div class="line">\v  The server version  </div><div class="line">\w  The current day of the week <span class="keyword">in</span> three-letter format (Mon, Tue, …)  </div><div class="line">\Y  The current year, four digits  </div><div class="line">\y  The current year, two digits  </div><div class="line">\_  A space  </div><div class="line">\   A space (a space follows the backslash)  </div><div class="line">\<span class="string">'  Single quote  </span></div><div class="line"><span class="string">\"  Double quote  </span></div><div class="line"><span class="string">\\  A literal “\” backslash character  </span></div><div class="line"><span class="string">\x  x, for any “x” not listed above</span></div></pre></td></tr></table></figure>
 
       
 
@@ -602,7 +694,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-select-format/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-prompt/">展开全文 >></a>
         </p>
       
 
@@ -722,19 +814,19 @@
 
 
   
-    <article id="post-ansible-2017-08-08-item-basic-get-started" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-ansible-2017-08-08-item-basic-playbooks" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/08/ansible-2017-08-08-item-basic-get-started/">ansible入门笔记1 Get Started</a>
+      <a class="article-title" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">ansible入门笔记2 Playbooks</a>
     </h1>
   
 
         
-        <a href="/2017/08/08/ansible-2017-08-08-item-basic-get-started/" class="archive-article-date">
+        <a href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/" class="archive-article-date">
   	<time datetime="2017-08-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
 </a>
         
@@ -744,36 +836,12 @@
       
         <p>专辑：<a href="/2017/08/14/ansible-2017-08-14-album-study-notes/">ansible学习笔记</a></p>
 <blockquote>
-<p>Ansilbe 是一个部署一群远程主机的工具。远程的主机可以是远程虚拟机或物理机，也<br>可以是本地主机。Ansilbe 是一个部署一群远程主机的工具。远程的主机可以是远程虚拟机<br>或物理机，也可以是本地主机。</p>
+<p>Playbooks 是 Ansible的配置,部署,编排语言.他们可以被描述为一个需要希望远程主机执行命令的方案,或者一组IT程序运行的命令集合.</p>
 </blockquote>
-<!-- move -->
-<div class="toc">
-
-<!-- toc -->
-<ul>
-<li><a href="#an-zhuang-ansible">安装ansible</a><ul>
-<li><a href="#ming-ling">命令</a></li>
-<li><a href="#pei-zhi-hosts">配置hosts</a></li>
-</ul>
-</li>
-<li><a href="#di-yi-tiao-ming-ling">第一条命令</a></li>
-<li><a href="#zhi-ding-hosts-wen-jian">指定hosts文件</a></li>
-</ul>
-<!-- tocstop -->
-</div>
-
-<h2><span id="an-zhuang-ansible">安装ansible</span><a href="#an-zhuang-ansible" class="header-anchor"></a></h2><h3><span id="ming-ling">命令</span><a href="#ming-ling" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install ansible</div></pre></td></tr></table></figure>
-<h3><span id="pei-zhi-hosts">配置hosts</span><a href="#pei-zhi-hosts" class="header-anchor"></a></h3><p>修改/etc/ansible/hosts 全局hosts文件，没有的话自己创建<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[wxnacy] <span class="comment"># 如果服务器使用密码登录就用这个方式保存密码，避免每次输入</span></div><div class="line">wxnacy.server.org ansible_ssh_pass=your_pass ansible_ssh_user=your_name</div><div class="line"></div><div class="line">[prod] <span class="comment"># 如果服务器使用sshkey登陆（推荐使用）</span></div><div class="line">prod.server.org ansible_ssh_user=your_name ansible_ssh_private_key_file=key_path</div></pre></td></tr></table></figure></p>
-<h2><span id="di-yi-tiao-ming-ling">第一条命令</span><a href="#di-yi-tiao-ming-ling" class="header-anchor"></a></h2><ul>
-<li>首先执行ping，查看是否可以连接服务器</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ ansible all -m ping</div><div class="line"></div><div class="line"></div><div class="line">wxnacy.server.org | SUCCESS =&gt; &#123;</div><div class="line">    <span class="string">"changed"</span>: <span class="literal">false</span>,</div><div class="line">    <span class="string">"ping"</span>: <span class="string">"pong"</span></div><div class="line">&#125;</div><div class="line">prod.server.org | SUCCESS =&gt; &#123;</div><div class="line">    <span class="string">"changed"</span>: <span class="literal">false</span>,</div><div class="line">    <span class="string">"ping"</span>: <span class="string">"pong"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>得到如上样式结果即为正确,另外执行 <code>ansible wxnacy -m ping</code> 可以针对某一个服务器<br>组进行操作</p>
-<ul>
-<li>现在我们用另一个命令看下是不是真的可以拿到远程服务器的信息</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ ansible prod -m shell -a <span class="string">"uname -a"</span></div><div class="line"></div><div class="line">prod.server.org | SUCCESS | rc=0 &gt;&gt;</div><div class="line">Linux ip-172-31-5-249 4.9.27-14.31.amzn1.x86_64 <span class="comment">#1 SMP Wed May 10 01:58:40 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux</span></div></pre></td></tr></table></figure>
-<h2><span id="zhi-ding-hosts-wen-jian">指定hosts文件</span><a href="#zhi-ding-hosts-wen-jian" class="header-anchor"></a></h2><p>在一些项目中，全局hosts配置不能满足需求，需要指定hosts命令，可以执行如下命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ansible my -i hosts_path -m ping</div></pre></td></tr></table></figure></p>
+<p>一个playbook就是一个YAML文件，所以playbook文件一般都以.yml结尾，一个playbook文件由一个或多个play组成，每个play定义了在一个或多个远程主机上执行的一系列的task，其中每个task一般就是调用一个ansible的模块，如调用copy模块复制文件到远程主机或调用shell模块执行命令。</p>
+<h2><span id="jian-dan-de-pei-zhi">简单的配置</span><a href="#jian-dan-de-pei-zhi" class="header-anchor"></a></h2><p>配置deploy.yml完成进入远程服务器的某个目录并执行git pull操作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- hosts: wxnacy <span class="comment"># 它会默认使用/etc/ansible/hosts 中配置的服务器组名 也可以单独设置hosts地址</span></div><div class="line">  tasks:</div><div class="line">  - name: <span class="built_in">cd</span> path and git pull <span class="comment"># 命令名称</span></div><div class="line">    shell: git pull <span class="comment"># 执行命令</span></div><div class="line">    args:</div><div class="line">      <span class="built_in">chdir</span>: ~/workdir <span class="comment"># 进入目录</span></div></pre></td></tr></table></figure></p>
+<p>运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ ansible-playbook deploy.yml</div><div class="line"></div><div class="line">PLAY [wxnacy] **********************************************************************************************************************************************************************************************</div><div class="line"></div><div class="line">TASK [<span class="built_in">cd</span> path and git pull] *************************************************************************************************************************************************************************************</div><div class="line">ok: [wxnacy.server.org]</div><div class="line"></div><div class="line"></div><div class="line">PLAY RECAP *************************************************************************************************************************************************************************************************</div><div class="line">wxnacy.server.org             : ok=2    changed=1    unreachable=0    failed=0</div></pre></td></tr></table></figure></p>
+<p>执行完运行命令ansible会在webservers组中依次执行tasks，返回以上样式结果极为成功，结果通过红黄绿三种颜色标明了不同的执行结果，红色表示有task执行失败，黄色表示改变了远程主机状态。</p>
 
       
 
@@ -797,7 +865,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/08/ansible-2017-08-08-item-basic-get-started/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">展开全文 >></a>
         </p>
       
 
@@ -890,87 +958,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/08/mysql-2017-08-08-item-daily/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ansible-2017-08-08-item-basic-playbooks" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">ansible入门笔记2 Playbooks</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/" class="archive-article-date">
-  	<time datetime="2017-08-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>专辑：<a href="/2017/08/14/ansible-2017-08-14-album-study-notes/">ansible学习笔记</a></p>
-<blockquote>
-<p>Playbooks 是 Ansible的配置,部署,编排语言.他们可以被描述为一个需要希望远程主机执行命令的方案,或者一组IT程序运行的命令集合.</p>
-</blockquote>
-<p>一个playbook就是一个YAML文件，所以playbook文件一般都以.yml结尾，一个playbook文件由一个或多个play组成，每个play定义了在一个或多个远程主机上执行的一系列的task，其中每个task一般就是调用一个ansible的模块，如调用copy模块复制文件到远程主机或调用shell模块执行命令。</p>
-<h2><span id="jian-dan-de-pei-zhi">简单的配置</span><a href="#jian-dan-de-pei-zhi" class="header-anchor"></a></h2><p>配置deploy.yml完成进入远程服务器的某个目录并执行git pull操作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- hosts: wxnacy <span class="comment"># 它会默认使用/etc/ansible/hosts 中配置的服务器组名 也可以单独设置hosts地址</span></div><div class="line">  tasks:</div><div class="line">  - name: <span class="built_in">cd</span> path and git pull <span class="comment"># 命令名称</span></div><div class="line">    shell: git pull <span class="comment"># 执行命令</span></div><div class="line">    args:</div><div class="line">      <span class="built_in">chdir</span>: ~/workdir <span class="comment"># 进入目录</span></div></pre></td></tr></table></figure></p>
-<p>运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ ansible-playbook deploy.yml</div><div class="line"></div><div class="line">PLAY [wxnacy] **********************************************************************************************************************************************************************************************</div><div class="line"></div><div class="line">TASK [<span class="built_in">cd</span> path and git pull] *************************************************************************************************************************************************************************************</div><div class="line">ok: [wxnacy.server.org]</div><div class="line"></div><div class="line"></div><div class="line">PLAY RECAP *************************************************************************************************************************************************************************************************</div><div class="line">wxnacy.server.org             : ok=2    changed=1    unreachable=0    failed=0</div></pre></td></tr></table></figure></p>
-<p>执行完运行命令ansible会在webservers组中依次执行tasks，返回以上样式结果极为成功，结果通过红黄绿三种颜色标明了不同的执行结果，红色表示有task执行失败，黄色表示改变了远程主机状态。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ansible</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">展开全文 >></a>
         </p>
       
 
@@ -1106,11 +1093,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1122,6 +1109,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -1130,15 +1121,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1147,6 +1130,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1170,11 +1157,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">

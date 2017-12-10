@@ -7,14 +7,19 @@
 from app.common import utils
 import os
 import sys
+import time
+from datetime import datetime
 
 if __name__ == "__main__":
-    cur_dir = os.getcwd()
-    print(cur_dir)                        # ==> 获取当前文件目录
-    #  print(os.listdir(cur_dir))              # ==> 获取目录下的所有文件
-    #  print(os.path.exists(cur_dir))
-    print(sys.argv)
-    print(__file__)
-    print(os.path.dirname('test/test_basic.py'))
-    print(os.path.abspath(''))
-    print(os.path.abspath(sys.argv[0]))
+    print(time.time())
+    utc = time.gmtime(time.time())
+    print(utc)
+    res = datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d %H:%M:%S")
+    print(res)
+    t = '2017-12-10 16:37:17'
+    t = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time()))
+    res = int(time.mktime(time.strptime(t, '%Y-%m-%d %H:%M:%S')))
+    print(res)
+    print(datetime.now().timestamp())
+    res = datetime.strptime(t, "%Y-%m-%d %H:%M:%S")
+    print(res)

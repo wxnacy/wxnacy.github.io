@@ -1,5 +1,48 @@
+Date.prototype.format=function(fmt) {
+    var o = {
+        "M+" : this.getMonth()+1, //月份
+        "d+" : this.getDate(), //日
+        "h+" : this.getHours()%12 == 0 ? 12 : this.getHours()%12, //小时
+        "H+" : this.getHours(), //小时
+        "m+" : this.getMinutes(), //分
+        "s+" : this.getSeconds(), //秒
+        "q+" : Math.floor((this.getMonth()+3)/3), //季度
+        "S" : this.getMilliseconds() //毫秒
+        };
+    var week = {
+        "0" : "/u65e5",
+        "1" : "/u4e00",
+        "2" : "/u4e8c",
+        "3" : "/u4e09",
+        "4" : "/u56db",
+        "5" : "/u4e94",
+        "6" : "/u516d"
+        };
+    if(/(y+)/.test(fmt)){
+            fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+        }
+    if(/(E+)/.test(fmt)){
+            fmt=fmt.replace(RegExp.$1, ((RegExp.$1.length>1) ? (RegExp.$1.length>2 ? "/u661f/u671f" : "/u5468") : "")+week[this.getDay()+""]);
+        }
+    for(var k in o){
+            if(new RegExp("("+ k +")").test(fmt)){
+                        fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+                    }
+        }
+    return fmt;
+};
 showTime();
-var timer = setInterval(showTime, 1000);
+begin();
+var timer;
+function doBegin() {
+    timer = setInterval(showTime, 1000);
+};
+function doEnd() {
+    clearInterval(timer);
+};
+function begin() {
+    timer = setInterval(showTime, 1000);
+};
 function doTsTrans(){
     console.log('do');
     var ts = document.getElementById('yts').value;
@@ -22,7 +65,8 @@ function doBjToTs2(){
 function doBjToTs1(){
     // YYYY-MM-dd HH:mm:ss to ts
     var bj = document.getElementById('ybj').value;
-    var now = new Date(bj.replace(/-/g, '/'));
+    // var now = new Date(bj.replace(/-/g, '/'));
+    var now = new Date(bj);
     document.getElementById('tts').innerHTML = Math.round(now.getTime()/1000);
 };
 function showTime() {
@@ -54,19 +98,7 @@ function bjToTs(y, M, d, h, m, s){
 };
 function tstrans(ts){
     var date = new Date(ts * 1000);//如果date为13位不需要乘1000
-    var y = date.getFullYear();
-    var M = date.getMonth() + 1;
-    var d = date.getDate();
-    var h = date.getHours();
-    var m = date.getMinutes();
-    var s = date.getSeconds();
-
-    M = M < 10 ? '0' + M : M;
-    d = d < 10 ? '0' + d : d;
-    h = h < 10 ? '0' + h : h;
-    m = m < 10 ? '0' + m : m;
-    s = s < 10 ? '0' + s : s;
-    return y + '-' + M + '-' + d + ' ' + h + ':' + m + ':' + s;
+    return date.format('yyyy-MM-dd HH:mm:ss');
 };
 function getUTCDate(){
     var date = new Date();
@@ -84,3 +116,4 @@ function getUTCDate(){
     s = s < 10 ? '0' + s : s;
     return y + '-' + M + '-' + d + ' ' + h + ':' + m + ':' + s;
 };
+console.log((new Date()).format('YYYY-MM-dd HH:mm:ss'));

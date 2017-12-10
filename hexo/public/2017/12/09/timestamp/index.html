@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>获取时间戳及世界时间转换 | wxnacy 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="现在的 Unix 时间戳: 现在的北京时间: 现在的 UTC 时间: 时间戳  秒 转为北京时间 北京时间(YYYY/MM/dd HH:mm:ss)  秒 转为时间戳 北京时间  年  月  日  时  分  秒 转为时间戳">
+  <meta name="description" content="现在的 Unix 时间戳:  开始 停止现在的北京时间: 现在的 UTC 时间: 时间戳  秒 转为北京时间 北京时间(YYYY/MM/dd HH:mm:ss)  秒 转为时间戳 北京时间  年  月  日  时  分  秒 转为时间戳">
 <meta name="keywords" content="javascript,算法,工具">
 <meta property="og:type" content="article">
 <meta property="og:title" content="获取时间戳及世界时间转换">
 <meta property="og:url" content="http://wxnacy.com/2017/12/09/timestamp/index.html">
 <meta property="og:site_name" content="wxnacy 博客">
-<meta property="og:description" content="现在的 Unix 时间戳: 现在的北京时间: 现在的 UTC 时间: 时间戳  秒 转为北京时间 北京时间(YYYY/MM/dd HH:mm:ss)  秒 转为时间戳 北京时间  年  月  日  时  分  秒 转为时间戳">
+<meta property="og:description" content="现在的 Unix 时间戳:  开始 停止现在的北京时间: 现在的 UTC 时间: 时间戳  秒 转为北京时间 北京时间(YYYY/MM/dd HH:mm:ss)  秒 转为时间戳 北京时间  年  月  日  时  分  秒 转为时间戳">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-12-09T14:17:41.000Z">
+<meta property="og:updated_time" content="2017-12-10T09:49:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="获取时间戳及世界时间转换">
-<meta name="twitter:description" content="现在的 Unix 时间戳: 现在的北京时间: 现在的 UTC 时间: 时间戳  秒 转为北京时间 北京时间(YYYY/MM/dd HH:mm:ss)  秒 转为时间戳 北京时间  年  月  日  时  分  秒 转为时间戳">
+<meta name="twitter:description" content="现在的 Unix 时间戳:  开始 停止现在的北京时间: 现在的 UTC 时间: 时间戳  秒 转为北京时间 北京时间(YYYY/MM/dd HH:mm:ss)  秒 转为时间戳 北京时间  年  月  日  时  分  秒 转为时间戳">
   
     <link rel="alternative" href="/atom.xml" title="wxnacy 博客" type="application/atom+xml">
   
@@ -65,6 +65,8 @@
 				<li><a href="/python">Python 练级手册</a></li>
 	        
 				<li><a href="/linux">Linux 练级手册</a></li>
+	        
+				<li><a href="/tool">在线工具</a></li>
 	        
 				<li><a href="/archives">归档</a></li>
 	        
@@ -122,6 +124,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -138,15 +142,17 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 20%"><a href="/">主页</a></li>
+					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
 		        
-					<li style="width: 20%"><a href="/vim/">Vim 练级手册</a></li>
+					<li style="width: 16.666666666666668%"><a href="/vim/">Vim 练级手册</a></li>
 		        
-					<li style="width: 20%"><a href="/python">Python 练级手册</a></li>
+					<li style="width: 16.666666666666668%"><a href="/python">Python 练级手册</a></li>
 		        
-					<li style="width: 20%"><a href="/linux">Linux 练级手册</a></li>
+					<li style="width: 16.666666666666668%"><a href="/linux">Linux 练级手册</a></li>
 		        
-					<li style="width: 20%"><a href="/archives">归档</a></li>
+					<li style="width: 16.666666666666668%"><a href="/tool">在线工具</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/archives">归档</a></li>
 		        
 				</ul>
 			</nav>
@@ -181,10 +187,38 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><link rel="stylesheet" type="text/css" href="/ts.css"><br>现在的 Unix 时间戳: <span id="ts"></span><br>现在的北京时间: <span id="bj"></span><br>现在的 UTC 时间: <span id="utc"></span><br>时间戳 <input id="yts" style="width: 110px;" value="1512823433"> 秒 <button onclick="doTsTrans()" style="width: 110;">转为北京时间</button> <span id="tbj"></span><br>北京时间(YYYY/MM/dd HH:mm:ss) <input id="ybj" style="width: 185px;" value="2017-12-09 21:23:52"> 秒 <button onclick="doBjToTs1()" style="width: 110;">转为时间戳</button> <span id="tts"></span><br>北京时间 <input id="y" style="width: 50px;" value="2017"> 年 <input id="M" class="m" value="12"> 月 <input id="d" class="m" value="9"> 日 <input id="h" class="m" value="21"> 时 <input id="m" class="m" value="23"> 分 <input id="s" class="m" value="52"> 秒 <button onclick="doBjToTs2()" style="width: 110;">转为时间戳</button> <span id="tts2"></span></p>
+        <p><link rel="stylesheet" type="text/css" href="/ts.css"><br>现在的 Unix 时间戳: <span id="ts"></span> <button onclick="doBegin()" style="width: 50;">开始</button> <button onclick="doEnd()" style="width: 50;">停止</button><br>现在的北京时间: <span id="bj"></span><br>现在的 UTC 时间: <span id="utc"></span><br>时间戳 <input id="yts" style="width: 110px;" value="1512823433"> 秒 <button onclick="doTsTrans()" style="width: 110;">转为北京时间</button> <span id="tbj"></span><br>北京时间(YYYY/MM/dd HH:mm:ss) <input id="ybj" style="width: 185px;" value="2017-12-09 21:23:52"> 秒 <button onclick="doBjToTs1()" style="width: 110;">转为时间戳</button> <span id="tts"></span><br>北京时间 <input id="y" style="width: 50px;" value="2017"> 年 <input id="M" class="m" value="12"> 月 <input id="d" class="m" value="9"> 日 <input id="h" class="m" value="21"> 时 <input id="m" class="m" value="23"> 分 <input id="s" class="m" value="52"> 秒 <button onclick="doBjToTs2()" style="width: 110;">转为时间戳</button> <span id="tts2"></span></p>
 <p><script async type="text/javascript" src="/ts.js"></script><br><a id="more"></a><br>最近在做时间相关的功能，涉及到换算各个时区，干脆写了一个时间戳和北京时间转换的一个小工具，如上。顺便总结下几种语言在时间方面的操作</p>
-<h2><span id="huo-qu-shi-jian-chuo">获取时间戳</span><a href="#huo-qu-shi-jian-chuo" class="header-anchor"></a></h2><h3><span id="javascript">javascript</span><a href="#javascript" class="header-anchor"></a></h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var timestamp = Date.parse(new Date());     # ==&gt; 1512825782000</div><div class="line">var timestamp = (new Date()).valueOf();     # ==&gt; 1512825782232</div><div class="line">var timestamp=new Date().getTime();         # ==&gt; 1512825782232</div></pre></td></tr></table></figure>
+<div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#huo-qu-shi-jian-chuo">获取时间戳</a><ul>
+<li><a href="#javascript">Javascript</a></li>
+<li><a href="#java">Java</a></li>
+</ul>
+</li>
+<li><a href="#shi-jian-chuo-zhuan-xi-tong-shi-jian">时间戳转系统时间</a><ul>
+<li><a href="#javascript-1">Javascript</a></li>
+</ul>
+</li>
+<li><a href="#xi-tong-shi-jian-zhuan-shi-jian-chuo">系统时间转时间戳</a><ul>
+<li><a href="#javascript-2">Javascript</a></li>
+</ul>
+</li>
+<li><a href="#can-kao">参考</a></li>
+</ul>
+<!-- tocstop -->
+<p></div></p>
+<h2><span id="huo-qu-shi-jian-chuo">获取时间戳</span><a href="#huo-qu-shi-jian-chuo" class="header-anchor"></a></h2><h3><span id="javascript">Javascript</span><a href="#javascript" class="header-anchor"></a></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> timestamp = <span class="built_in">Date</span>.parse(<span class="keyword">new</span> <span class="built_in">Date</span>());     <span class="comment">// ==&gt; 1512825782000</span></div><div class="line"><span class="keyword">var</span> timestamp = (<span class="keyword">new</span> <span class="built_in">Date</span>()).valueOf();     <span class="comment">// ==&gt; 1512825782232</span></div><div class="line"><span class="keyword">var</span> timestamp=<span class="keyword">new</span> <span class="built_in">Date</span>().getTime();         <span class="comment">// ==&gt; 1512825782232</span></div></pre></td></tr></table></figure>
 <p>三个方法都可以获取时间戳，不同的地方在于第一种方法精确到秒，毫秒为用 0 补全，剩下两种方法结果是一致的</p>
+<h3><span id="java">Java</span><a href="#java" class="header-anchor"></a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.Date;</div><div class="line"><span class="keyword">import</span> java.util.Calendar;</div><div class="line"></div><div class="line"></div><div class="line">System.currentTimeMillis()              <span class="comment">// 1 ==&gt; 1512896121862</span></div><div class="line"><span class="keyword">new</span> Date().getTime()                    <span class="comment">// 2 ==&gt; 1512896121862</span></div><div class="line">Calendar.getInstance().getTimeInMillis()<span class="comment">// 3 ==&gt; 1512896121862</span></div></pre></td></tr></table></figure>
+<p>三个方法返回的结果是一致的，都精确到毫秒数。效率方面方法 1 最快，因为是直接获取机器的时间。方法 3 最慢，因为需要处理时区的问题。</p>
+<h2><span id="shi-jian-chuo-zhuan-xi-tong-shi-jian">时间戳转系统时间</span><a href="#shi-jian-chuo-zhuan-xi-tong-shi-jian" class="header-anchor"></a></h2><h3><span id="javascript">Javascript</span><a href="#javascript" class="header-anchor"></a></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(timestamp * <span class="number">1000</span>);</div></pre></td></tr></table></figure>
+<p>这样获取到的时间是当前系统时区的时间，想要获取 UTC 时间需要手动算下偏移量<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> offset = <span class="keyword">new</span> <span class="built_in">Date</span>().getTimezoneOffset()     <span class="comment">// ==&gt; -480 分钟</span></div></pre></td></tr></table></figure></p>
+<p>这个方法返回当前时区和 UTC 时间的偏移量，<code>-480分钟</code> 代表当前时区减去 480 分钟，即为 UTC 时间<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> <span class="built_in">Date</span>((ts + offset * <span class="number">60</span>) * <span class="number">1000</span>)             <span class="comment">// ==&gt; UTC 时间</span></div></pre></td></tr></table></figure></p>
+<p>Javascript 没有时间格式化方法，需要自己扩展，这个方法是从网上找的，相对其他方法是比较好的，推荐使用。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Date</span>.prototype.format=<span class="function"><span class="keyword">function</span>(<span class="params">fmt</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> o = &#123;</div><div class="line">        <span class="string">"M+"</span> : <span class="keyword">this</span>.getMonth()+<span class="number">1</span>, <span class="comment">//月份</span></div><div class="line">        <span class="string">"d+"</span> : <span class="keyword">this</span>.getDate(), <span class="comment">//日</span></div><div class="line">        <span class="string">"h+"</span> : <span class="keyword">this</span>.getHours()%<span class="number">12</span> == <span class="number">0</span> ? <span class="number">12</span> : <span class="keyword">this</span>.getHours()%<span class="number">12</span>, <span class="comment">//小时</span></div><div class="line">        <span class="string">"H+"</span> : <span class="keyword">this</span>.getHours(), <span class="comment">//小时</span></div><div class="line">        <span class="string">"m+"</span> : <span class="keyword">this</span>.getMinutes(), <span class="comment">//分</span></div><div class="line">        <span class="string">"s+"</span> : <span class="keyword">this</span>.getSeconds(), <span class="comment">//秒</span></div><div class="line">        <span class="string">"q+"</span> : <span class="built_in">Math</span>.floor((<span class="keyword">this</span>.getMonth()+<span class="number">3</span>)/<span class="number">3</span>), <span class="comment">//季度</span></div><div class="line">        <span class="string">"S"</span> : <span class="keyword">this</span>.getMilliseconds() <span class="comment">//毫秒</span></div><div class="line">        &#125;;</div><div class="line">    <span class="keyword">var</span> week = &#123;</div><div class="line">        <span class="string">"0"</span> : <span class="string">"/u65e5"</span>,</div><div class="line">        <span class="string">"1"</span> : <span class="string">"/u4e00"</span>,</div><div class="line">        <span class="string">"2"</span> : <span class="string">"/u4e8c"</span>,</div><div class="line">        <span class="string">"3"</span> : <span class="string">"/u4e09"</span>,</div><div class="line">        <span class="string">"4"</span> : <span class="string">"/u56db"</span>,</div><div class="line">        <span class="string">"5"</span> : <span class="string">"/u4e94"</span>,</div><div class="line">        <span class="string">"6"</span> : <span class="string">"/u516d"</span></div><div class="line">        &#125;;</div><div class="line">    <span class="keyword">if</span>(<span class="regexp">/(y+)/</span>.test(fmt))&#123;</div><div class="line">            fmt=fmt.replace(<span class="built_in">RegExp</span>.$<span class="number">1</span>, (<span class="keyword">this</span>.getFullYear()+<span class="string">""</span>).substr(<span class="number">4</span> - <span class="built_in">RegExp</span>.$<span class="number">1.</span>length));</div><div class="line">        &#125;</div><div class="line">    <span class="keyword">if</span>(<span class="regexp">/(E+)/</span>.test(fmt))&#123;</div><div class="line">            fmt=fmt.replace(<span class="built_in">RegExp</span>.$<span class="number">1</span>, ((<span class="built_in">RegExp</span>.$<span class="number">1.</span>length&gt;<span class="number">1</span>) ? (<span class="built_in">RegExp</span>.$<span class="number">1.</span>length&gt;<span class="number">2</span> ? <span class="string">"/u661f/u671f"</span> : <span class="string">"/u5468"</span>) : <span class="string">""</span>)+week[<span class="keyword">this</span>.getDay()+<span class="string">""</span>]);</div><div class="line">        &#125;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> k <span class="keyword">in</span> o)&#123;</div><div class="line">            <span class="keyword">if</span>(<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"("</span>+ k +<span class="string">")"</span>).test(fmt))&#123;</div><div class="line">                        fmt = fmt.replace(<span class="built_in">RegExp</span>.$<span class="number">1</span>, (<span class="built_in">RegExp</span>.$<span class="number">1.</span>length==<span class="number">1</span>) ? (o[k]) : ((<span class="string">"00"</span>+ o[k]).substr((<span class="string">""</span>+ o[k]).length)));</div><div class="line">                    &#125;</div><div class="line">        &#125;</div><div class="line">    <span class="keyword">return</span> fmt;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h2><span id="xi-tong-shi-jian-zhuan-shi-jian-chuo">系统时间转时间戳</span><a href="#xi-tong-shi-jian-zhuan-shi-jian-chuo" class="header-anchor"></a></h2><h3><span id="javascript">Javascript</span><a href="#javascript" class="header-anchor"></a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Math.round(<span class="keyword">new</span> Date(<span class="string">'2017-12-10 10:21:12'</span>).getTime()/<span class="number">1000</span>)</div><div class="line">Math.round(<span class="keyword">new</span> Date(<span class="string">'2017/12/10 10:21:12'</span>).getTime()/<span class="number">1000</span>)</div></pre></td></tr></table></figure>
 <p><strong><em>未完待续</em></strong></p>
 <h2><span id="can-kao">参考</span><a href="#can-kao" class="header-anchor"></a></h2><p><a href="http://tool.chinaz.com/Tools/unixtime.aspx" target="_blank" rel="external">Unix时间戳转换工具</a></p>
 
@@ -227,6 +261,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2017/12/10/python-datetime/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Python 时间
+        
+      </div>
+    </a>
+  
   
     <a href="/2017/12/09/python-linux-cmd/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">Python 处理 Linux 命令</div>
@@ -256,7 +299,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">获取时间戳</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text">javascript</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">参考</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">获取时间戳</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text">Javascript</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.2.</span> <span class="toc-text">Java</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">时间戳转系统时间</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text">Javascript</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">系统时间转时间戳</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.1.</span> <span class="toc-text">Javascript</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -393,11 +436,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -409,6 +452,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -417,15 +464,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -434,6 +473,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -457,11 +500,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
