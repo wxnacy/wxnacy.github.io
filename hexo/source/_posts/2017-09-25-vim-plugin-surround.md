@@ -10,6 +10,7 @@ tags: [vim]
 
 <!-- more -->
 <!-- toc -->
+![/images/surround.gif](/images/surround.gif)
 ## 安装
 ### Pathogen
 ```bash

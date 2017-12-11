@@ -4,6 +4,7 @@ date: 2017-12-11 18:33:16
 tags: [算法, python]
 ---
 > [Twitter-Snowflake](https://github.com/twitter/snowflake) 算法产生的背景相当简单，为了满足Twitter每秒上万条消息的请求，每条消息都必须分配一条唯一的id，这些id还需要一些大致的顺序（方便客户端排序），并且在分布式系统中不同机器产生的id必须不同。
+
 <!-- more -->
 
 Snowflask 算法在工作中经常会用，平常做开发涉及到需要生成自增 id，也会第一个想到这个算法，具体的算法详解 [Twitter-Snowflake，64位自增ID算法详解 ](http://www.lanindex.com/twitter-snowflake%EF%BC%8C64%E4%BD%8D%E8%87%AA%E5%A2%9Eid%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/) 这篇文章做了详细介绍，我不在多做口舌，只是着重总结几种语言的实现方式，以便以后自己查阅。

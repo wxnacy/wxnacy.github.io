@@ -86,6 +86,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy/wxnacy.github.io" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="weibo" target="_blank" href="https://weibo.com/p/1005055812297428/home" title="weibo"><i class="icon-weibo"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 			</div>
@@ -131,6 +133,8 @@
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy/wxnacy.github.io" title="github"><i class="icon-github"></i></a>
 			        
+						<a class="weibo" target="_blank" href="https://weibo.com/p/1005055812297428/home" title="weibo"><i class="icon-weibo"></i></a>
+			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
 				</div>
@@ -166,6 +170,92 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-python-2017-08-10-pyenv-cmd" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/10/python-2017-08-10-pyenv-cmd/">pyenv 常用命令</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/10/python-2017-08-10-pyenv-cmd/" class="archive-article-date">
+  	<time datetime="2017-08-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2><span id="pyenv">pyenv</span><a href="#pyenv" class="header-anchor"></a></h2><h3><span id="cha-kan-ke-an-zhuang-ban-ben">查看可安装版本</span><a href="#cha-kan-ke-an-zhuang-ban-ben" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pyenv install -list</div></pre></td></tr></table></figure>
+<h3><span id="an-zhuang-mou-ge-ban-ben">安装某个版本</span><a href="#an-zhuang-mou-ge-ban-ben" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pyenv install -v 3.5.0</div></pre></td></tr></table></figure>
+<h3><span id="cha-kan-ben-di-ban-ben-lie-biao">查看本地版本列表</span><a href="#cha-kan-ben-di-ban-ben-lie-biao" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ pyenv versions</div><div class="line"></div><div class="line">* system (<span class="built_in">set</span> by /home/wxnacy/.pyenv/version) <span class="comment"># 系统python环境 *号代表当前环境版本</span></div><div class="line">  3.5.0 <span class="comment"># 刚下载的3.5.0版本</span></div></pre></td></tr></table></figure>
+<h3><span id="cha-kan-dang-qian-huan-jing-ban-ben">查看当前环境版本</span><a href="#cha-kan-dang-qian-huan-jing-ban-ben" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ pyenv version</div><div class="line">system (<span class="built_in">set</span> by /home/wxnacy/.pyenv/version)</div></pre></td></tr></table></figure>
+<h3><span id="she-zhi-quan-ju-wei-mou-yi-ge-huan-jing">设置全局为某一个环境</span><a href="#she-zhi-quan-ju-wei-mou-yi-ge-huan-jing" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ pyenv global 3.5.0</div><div class="line">$ pyenv version <span class="comment"># 查看当前环境</span></div><div class="line">3.5.0 (<span class="built_in">set</span> by /home/wxnacy/project/project_350/.python-version)</div></pre></td></tr></table></figure>
+<h3><span id="wei-xiang-mu-she-zhi-dan-du-huan-jing">为项目设置单独环境</span><a href="#wei-xiang-mu-she-zhi-dan-du-huan-jing" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> project</div><div class="line">$ pyenv <span class="built_in">local</span> 3.5.0 <span class="comment"># 使用local命令为某个目录单独设置目录</span></div><div class="line">$ pyenv version</div><div class="line">3.5.0 (<span class="built_in">set</span> by /home/wxnacy/project/project_350/.python-version)</div><div class="line"></div><div class="line">$ <span class="built_in">cd</span> ..</div><div class="line">$ pyenv version <span class="comment"># 退出目录查看环境没有改变</span></div><div class="line">system (<span class="built_in">set</span> by /home/wxnacy/.pyenv/version)</div></pre></td></tr></table></figure>
+<h2><span id="virtualenv">virtualenv</span><a href="#virtualenv" class="header-anchor"></a></h2><p>假如我们有多个项目都是用3.5.0的环境，但是又不想让他们公用一个环境该怎么办？<br>使用virtualenv可以为某一个python版本创建一个干净的虚拟机环境</p>
+<h3><span id="chuang-jian-xu-ni-ji">创建虚拟机</span><a href="#chuang-jian-xu-ni-ji" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ pyenv virtualenv 3.5.0 env_350</div><div class="line">$ pyenv versions</div><div class="line">* system (<span class="built_in">set</span> by /home/wxnacy/.pyenv/version)</div><div class="line">  3.5.0</div><div class="line">  3.5.0/envs/env_350</div><div class="line">  env_350</div></pre></td></tr></table></figure>
+<p>查看环境后我们发现多了两个环境<code>3.5.0/envs/env_350</code>和<code>env_350</code>，这两个是同一个</p>
+<h3><span id="zhi-ding-dang-qian-jin-cheng-huan-jing">指定当前进程环境</span><a href="#zhi-ding-dang-qian-jin-cheng-huan-jing" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pyenv activate env_350</div></pre></td></tr></table></figure>
+<p>该命令只能指定当前进程的环境，退出shell后重新进入，发现环境又变回之前的环境</p>
+<h3><span id="dang-qian-jin-xing-tui-chu-activate">当前进行退出activate</span><a href="#dang-qian-jin-xing-tui-chu-activate" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pynev deactivate</div></pre></td></tr></table></figure>
+<p>当然virtualenv生成的虚拟环境也可以配合<code>global</code>和<code>local</code>等pyenv命令配合使用</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/10/python-2017-08-10-pyenv-cmd/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-mysql-2017-08-10-item-daily" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -219,85 +309,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/10/mysql-2017-08-10-item-daily/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-python-2017-08-10-pyenv-linux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/10/python-2017-08-10-pyenv-linux/">Linux 环境下安装 pyenv 和 virtualenv</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/10/python-2017-08-10-pyenv-linux/" class="archive-article-date">
-  	<time datetime="2017-08-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>废话不多直接上命令</p>
-<h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><p>CentOS:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ yum -y install git</div><div class="line">$ curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash</div><div class="line">$ yum -y install gcc readline readline-devel readline-static openssl \</div><div class="line">    openssl-devel openssl-static sqlite-devel bzip2-devel bzip2-libs</div></pre></td></tr></table></figure></p>
-<p>Ubuntu<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ apt-get update</div><div class="line">$ apt-get -y install git gcc make patch zlib1g.dev libgdbm-dev libssl-dev \</div><div class="line">    libsqlite3-dev libbz2-dev libreadline-dev</div><div class="line">$ git <span class="built_in">clone</span> https://github.com/pyenv/pyenv.git ~/.pyenv</div></pre></td></tr></table></figure></p>
-<h2><span id="pei-zhi-huan-jing-bian-liang">配置环境变量</span><a href="#pei-zhi-huan-jing-bian-liang" class="header-anchor"></a></h2><p>vim ~/.bash_profile<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> PYENV_ROOT=<span class="string">"<span class="variable">$HOME</span>/.pyenv"</span></div><div class="line"><span class="built_in">export</span> PATH=<span class="string">"<span class="variable">$PYENV_ROOT</span>/bin:<span class="variable">$PATH</span>"</span></div><div class="line"><span class="built_in">export</span> PYENV_VIRTUALENV_DISABLE_PROMPT=1</div><div class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv init -)</span>"</span></div><div class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv virtualenv-init -)</span>"</span></div></pre></td></tr></table></figure></p>
-<h2><span id="sheng-ji">升级</span><a href="#sheng-ji" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pyenv update</div></pre></td></tr></table></figure>
-<h2><span id="xie-zai">卸载</span><a href="#xie-zai" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rm -rf ~/.pyenv</div><div class="line">然后把~/.bash_profile环境变量配置中的添加的删掉</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/10/python-2017-08-10-pyenv-linux/">展开全文 >></a>
         </p>
       
 
@@ -406,19 +417,19 @@
 
 
   
-    <article id="post-python-2017-08-10-pyenv-cmd" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-python-2017-08-10-pyenv-linux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/10/python-2017-08-10-pyenv-cmd/">pyenv 常用命令</a>
+      <a class="article-title" href="/2017/08/10/python-2017-08-10-pyenv-linux/">Linux 环境下安装 pyenv 和 virtualenv</a>
     </h1>
   
 
         
-        <a href="/2017/08/10/python-2017-08-10-pyenv-cmd/" class="archive-article-date">
+        <a href="/2017/08/10/python-2017-08-10-pyenv-linux/" class="archive-article-date">
   	<time datetime="2017-08-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-10</time>
 </a>
         
@@ -426,19 +437,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2><span id="pyenv">pyenv</span><a href="#pyenv" class="header-anchor"></a></h2><h3><span id="cha-kan-ke-an-zhuang-ban-ben">查看可安装版本</span><a href="#cha-kan-ke-an-zhuang-ban-ben" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pyenv install -list</div></pre></td></tr></table></figure>
-<h3><span id="an-zhuang-mou-ge-ban-ben">安装某个版本</span><a href="#an-zhuang-mou-ge-ban-ben" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pyenv install -v 3.5.0</div></pre></td></tr></table></figure>
-<h3><span id="cha-kan-ben-di-ban-ben-lie-biao">查看本地版本列表</span><a href="#cha-kan-ben-di-ban-ben-lie-biao" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ pyenv versions</div><div class="line"></div><div class="line">* system (<span class="built_in">set</span> by /home/wxnacy/.pyenv/version) <span class="comment"># 系统python环境 *号代表当前环境版本</span></div><div class="line">  3.5.0 <span class="comment"># 刚下载的3.5.0版本</span></div></pre></td></tr></table></figure>
-<h3><span id="cha-kan-dang-qian-huan-jing-ban-ben">查看当前环境版本</span><a href="#cha-kan-dang-qian-huan-jing-ban-ben" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ pyenv version</div><div class="line">system (<span class="built_in">set</span> by /home/wxnacy/.pyenv/version)</div></pre></td></tr></table></figure>
-<h3><span id="she-zhi-quan-ju-wei-mou-yi-ge-huan-jing">设置全局为某一个环境</span><a href="#she-zhi-quan-ju-wei-mou-yi-ge-huan-jing" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ pyenv global 3.5.0</div><div class="line">$ pyenv version <span class="comment"># 查看当前环境</span></div><div class="line">3.5.0 (<span class="built_in">set</span> by /home/wxnacy/project/project_350/.python-version)</div></pre></td></tr></table></figure>
-<h3><span id="wei-xiang-mu-she-zhi-dan-du-huan-jing">为项目设置单独环境</span><a href="#wei-xiang-mu-she-zhi-dan-du-huan-jing" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> project</div><div class="line">$ pyenv <span class="built_in">local</span> 3.5.0 <span class="comment"># 使用local命令为某个目录单独设置目录</span></div><div class="line">$ pyenv version</div><div class="line">3.5.0 (<span class="built_in">set</span> by /home/wxnacy/project/project_350/.python-version)</div><div class="line"></div><div class="line">$ <span class="built_in">cd</span> ..</div><div class="line">$ pyenv version <span class="comment"># 退出目录查看环境没有改变</span></div><div class="line">system (<span class="built_in">set</span> by /home/wxnacy/.pyenv/version)</div></pre></td></tr></table></figure>
-<h2><span id="virtualenv">virtualenv</span><a href="#virtualenv" class="header-anchor"></a></h2><p>假如我们有多个项目都是用3.5.0的环境，但是又不想让他们公用一个环境该怎么办？<br>使用virtualenv可以为某一个python版本创建一个干净的虚拟机环境</p>
-<h3><span id="chuang-jian-xu-ni-ji">创建虚拟机</span><a href="#chuang-jian-xu-ni-ji" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ pyenv virtualenv 3.5.0 env_350</div><div class="line">$ pyenv versions</div><div class="line">* system (<span class="built_in">set</span> by /home/wxnacy/.pyenv/version)</div><div class="line">  3.5.0</div><div class="line">  3.5.0/envs/env_350</div><div class="line">  env_350</div></pre></td></tr></table></figure>
-<p>查看环境后我们发现多了两个环境<code>3.5.0/envs/env_350</code>和<code>env_350</code>，这两个是同一个</p>
-<h3><span id="zhi-ding-dang-qian-jin-cheng-huan-jing">指定当前进程环境</span><a href="#zhi-ding-dang-qian-jin-cheng-huan-jing" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pyenv activate env_350</div></pre></td></tr></table></figure>
-<p>该命令只能指定当前进程的环境，退出shell后重新进入，发现环境又变回之前的环境</p>
-<h3><span id="dang-qian-jin-xing-tui-chu-activate">当前进行退出activate</span><a href="#dang-qian-jin-xing-tui-chu-activate" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pynev deactivate</div></pre></td></tr></table></figure>
-<p>当然virtualenv生成的虚拟环境也可以配合<code>global</code>和<code>local</code>等pyenv命令配合使用</p>
+        <p>废话不多直接上命令</p>
+<h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><p>CentOS:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ yum -y install git</div><div class="line">$ curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash</div><div class="line">$ yum -y install gcc readline readline-devel readline-static openssl \</div><div class="line">    openssl-devel openssl-static sqlite-devel bzip2-devel bzip2-libs</div></pre></td></tr></table></figure></p>
+<p>Ubuntu<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ apt-get update</div><div class="line">$ apt-get -y install git gcc make patch zlib1g.dev libgdbm-dev libssl-dev \</div><div class="line">    libsqlite3-dev libbz2-dev libreadline-dev</div><div class="line">$ git <span class="built_in">clone</span> https://github.com/pyenv/pyenv.git ~/.pyenv</div></pre></td></tr></table></figure></p>
+<h2><span id="pei-zhi-huan-jing-bian-liang">配置环境变量</span><a href="#pei-zhi-huan-jing-bian-liang" class="header-anchor"></a></h2><p>vim ~/.bash_profile<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> PYENV_ROOT=<span class="string">"<span class="variable">$HOME</span>/.pyenv"</span></div><div class="line"><span class="built_in">export</span> PATH=<span class="string">"<span class="variable">$PYENV_ROOT</span>/bin:<span class="variable">$PATH</span>"</span></div><div class="line"><span class="built_in">export</span> PYENV_VIRTUALENV_DISABLE_PROMPT=1</div><div class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv init -)</span>"</span></div><div class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv virtualenv-init -)</span>"</span></div></pre></td></tr></table></figure></p>
+<h2><span id="sheng-ji">升级</span><a href="#sheng-ji" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pyenv update</div></pre></td></tr></table></figure>
+<h2><span id="xie-zai">卸载</span><a href="#xie-zai" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rm -rf ~/.pyenv</div><div class="line">然后把~/.bash_profile环境变量配置中的添加的删掉</div></pre></td></tr></table></figure>
 
       
 
@@ -462,7 +466,162 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/10/python-2017-08-10-pyenv-cmd/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/10/python-2017-08-10-pyenv-linux/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-mysql-2017-08-09-skill" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-skill/">mysql 小技巧</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/09/mysql-2017-08-09-skill/" class="archive-article-date">
+  	<time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2><span id="shi-yong-tee-zhi-ding-shu-ru-ri-zhi">使用tee指定输入日志</span><a href="#shi-yong-tee-zhi-ding-shu-ru-ri-zhi" class="header-anchor"></a></h2><p>tee命令可以将mysql操作日志输出到指定文件中，如果文件已存在则追加。命令行参数可以使用–tee=file_path，命令中可以使用tee或\T,想要退出使用日志可以使用\t<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ mysql -u root -p --tee=mysql.log</div><div class="line">Logging to file &apos;mysql.log&apos;</div><div class="line">mysql&gt; tee mysql.log 或 \T mysql.log</div><div class="line">Logging to file &apos;mysql.log&apos;</div><div class="line">mysql&gt; \t mysql.log</div><div class="line">Outfile disabled</div></pre></td></tr></table></figure></p>
+<h2><span id="shi-yong-os-ming-ling">使用os命令</span><a href="#shi-yong-os-ming-ling" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mysql&gt; system uname;</div><div class="line">Darwin</div><div class="line">mysql&gt; \! uname;</div><div class="line">Darwin</div></pre></td></tr></table></figure>
+<h2><span id="zhi-xing-sql-wen-jian">执行sql文件</span><a href="#zhi-xing-sql-wen-jian" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; source mysql.sql</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-skill/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-mysql-2017-08-09-prompt" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-prompt/">mysql prompt 提示符</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/09/mysql-2017-08-09-prompt/" class="archive-article-date">
+  	<time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文：<a href="http://www.thegeekstuff.com/2010/02/mysql_ps1-6-examples-to-make-your-mysql-prompt-like-angelina-jolie/" target="_blank" rel="external">http://www.thegeekstuff.com/2010/02/mysql_ps1-6-examples-to-make-your-mysql-prompt-like-angelina-jolie/</a></p>
+<h2><span id="zai-ming-ling-xing-zhong-shi-yong">在命令行中使用</span><a href="#zai-ming-ling-xing-zhong-shi-yong" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mysql&gt; prompt \u@\d&gt;</div><div class="line">PROMPT set to &apos;\u@\d&gt; &apos;</div><div class="line">root@(none)&gt; use test</div><div class="line">Reading table information for completion of table and column names</div><div class="line">You can turn off this feature to get a quicker startup with -A</div><div class="line"></div><div class="line">Database changed</div><div class="line">root@test&gt;</div></pre></td></tr></table></figure>
+<h2><span id="zai-ming-ling-xing-can-shu-zhong-shi-yong">在命令行参数中使用</span><a href="#zai-ming-ling-xing-can-shu-zhong-shi-yong" class="header-anchor"></a></h2><p>需要使用双引号括起来<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wxnacy@wxnacydeMacBook-Pro: ~ $ mysql -u root -p --prompt=&quot;\u@\d&gt; &quot;    </div><div class="line">root@(none)&gt; use test;</div><div class="line">root@test&gt;</div></pre></td></tr></table></figure></p>
+<h3><span id="zai-bash-ceng-xiu-gai-mysql-ps1-bian-liang">在bash层修改 MYSQL_PS1 变量</span><a href="#zai-bash-ceng-xiu-gai-mysql-ps1-bian-liang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wxnacy@wxnacydeMacBook-Pro: ~ $ <span class="built_in">export</span> MYSQL_PS1=<span class="string">"\u@\d&gt; "</span>                              </div><div class="line">wxnacy@wxnacydeMacBook-Pro: ~ $ mysql -u root -p                            </div><div class="line">root@(none)&gt;</div></pre></td></tr></table></figure>
+<h2><span id="zai-etc-my-cnf-zhong-pei-zhi">在/etc/my.cnf中配置</span><a href="#zai-etc-my-cnf-zhong-pei-zhi" class="header-anchor"></a></h2><p>也可以在配置中一劳永逸<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[mysql]  </div><div class="line">prompt=\\u@\\d&gt;\\ <span class="comment"># 要多加一个反斜线\</span></div><div class="line">  </div><div class="line">又或者：  </div><div class="line">[mysql]  </div><div class="line">prompt=<span class="string">"\u@\d&gt; "</span></div></pre></td></tr></table></figure></p>
+<h3><span id="geng-duo-can-shu">更多参数</span><a href="#geng-duo-can-shu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">Option  Description  </div><div class="line">  </div><div class="line">\c  A counter that increments <span class="keyword">for</span> each statement you issue  </div><div class="line">\D  The full current date  </div><div class="line">\d  The default database  </div><div class="line">\h  The server host  </div><div class="line">\l  The current delimiter (new <span class="keyword">in</span> 5.0.25)  </div><div class="line">\m  Minutes of the current time  </div><div class="line">\n  A newline character  </div><div class="line">\O  The current month <span class="keyword">in</span> three-letter format (Jan, Feb, …)  </div><div class="line">\o  The current month <span class="keyword">in</span> numeric format  </div><div class="line">\P  am/pm  </div><div class="line">\p  The current TCP/IP port or socket file  </div><div class="line">\R  The current time, <span class="keyword">in</span> 24-hour military time (0–23)  </div><div class="line">\r  The current time, standard 12-hour time (1–12)  </div><div class="line">\S  Semicolon  </div><div class="line">\s  Seconds of the current time  </div><div class="line">\t  A tab character  </div><div class="line">\U  Your full user_name@host_name account name  </div><div class="line">   </div><div class="line">\u  Your user name  </div><div class="line">\v  The server version  </div><div class="line">\w  The current day of the week <span class="keyword">in</span> three-letter format (Mon, Tue, …)  </div><div class="line">\Y  The current year, four digits  </div><div class="line">\y  The current year, two digits  </div><div class="line">\_  A space  </div><div class="line">\   A space (a space follows the backslash)  </div><div class="line">\<span class="string">'  Single quote  </span></div><div class="line"><span class="string">\"  Double quote  </span></div><div class="line"><span class="string">\\  A literal “\” backslash character  </span></div><div class="line"><span class="string">\x  x, for any “x” not listed above</span></div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-prompt/">展开全文 >></a>
         </p>
       
 
@@ -572,19 +731,19 @@
 
 
   
-    <article id="post-mysql-2017-08-09-prompt" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mysql-2017-08-09-basic-index" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-prompt/">mysql prompt 提示符</a>
+      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-basic-index/">Mysql 索引的增删查</a>
     </h1>
   
 
         
-        <a href="/2017/08/09/mysql-2017-08-09-prompt/" class="archive-article-date">
+        <a href="/2017/08/09/mysql-2017-08-09-basic-index/" class="archive-article-date">
   	<time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
 </a>
         
@@ -592,13 +751,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>原文：<a href="http://www.thegeekstuff.com/2010/02/mysql_ps1-6-examples-to-make-your-mysql-prompt-like-angelina-jolie/" target="_blank" rel="external">http://www.thegeekstuff.com/2010/02/mysql_ps1-6-examples-to-make-your-mysql-prompt-like-angelina-jolie/</a></p>
-<h2><span id="zai-ming-ling-xing-zhong-shi-yong">在命令行中使用</span><a href="#zai-ming-ling-xing-zhong-shi-yong" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mysql&gt; prompt \u@\d&gt;</div><div class="line">PROMPT set to &apos;\u@\d&gt; &apos;</div><div class="line">root@(none)&gt; use test</div><div class="line">Reading table information for completion of table and column names</div><div class="line">You can turn off this feature to get a quicker startup with -A</div><div class="line"></div><div class="line">Database changed</div><div class="line">root@test&gt;</div></pre></td></tr></table></figure>
-<h2><span id="zai-ming-ling-xing-can-shu-zhong-shi-yong">在命令行参数中使用</span><a href="#zai-ming-ling-xing-can-shu-zhong-shi-yong" class="header-anchor"></a></h2><p>需要使用双引号括起来<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wxnacy@wxnacydeMacBook-Pro: ~ $ mysql -u root -p --prompt=&quot;\u@\d&gt; &quot;    </div><div class="line">root@(none)&gt; use test;</div><div class="line">root@test&gt;</div></pre></td></tr></table></figure></p>
-<h3><span id="zai-bash-ceng-xiu-gai-mysql-ps1-bian-liang">在bash层修改 MYSQL_PS1 变量</span><a href="#zai-bash-ceng-xiu-gai-mysql-ps1-bian-liang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wxnacy@wxnacydeMacBook-Pro: ~ $ <span class="built_in">export</span> MYSQL_PS1=<span class="string">"\u@\d&gt; "</span>                              </div><div class="line">wxnacy@wxnacydeMacBook-Pro: ~ $ mysql -u root -p                            </div><div class="line">root@(none)&gt;</div></pre></td></tr></table></figure>
-<h2><span id="zai-etc-my-cnf-zhong-pei-zhi">在/etc/my.cnf中配置</span><a href="#zai-etc-my-cnf-zhong-pei-zhi" class="header-anchor"></a></h2><p>也可以在配置中一劳永逸<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[mysql]  </div><div class="line">prompt=\\u@\\d&gt;\\ <span class="comment"># 要多加一个反斜线\</span></div><div class="line">  </div><div class="line">又或者：  </div><div class="line">[mysql]  </div><div class="line">prompt=<span class="string">"\u@\d&gt; "</span></div></pre></td></tr></table></figure></p>
-<h3><span id="geng-duo-can-shu">更多参数</span><a href="#geng-duo-can-shu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">Option  Description  </div><div class="line">  </div><div class="line">\c  A counter that increments <span class="keyword">for</span> each statement you issue  </div><div class="line">\D  The full current date  </div><div class="line">\d  The default database  </div><div class="line">\h  The server host  </div><div class="line">\l  The current delimiter (new <span class="keyword">in</span> 5.0.25)  </div><div class="line">\m  Minutes of the current time  </div><div class="line">\n  A newline character  </div><div class="line">\O  The current month <span class="keyword">in</span> three-letter format (Jan, Feb, …)  </div><div class="line">\o  The current month <span class="keyword">in</span> numeric format  </div><div class="line">\P  am/pm  </div><div class="line">\p  The current TCP/IP port or socket file  </div><div class="line">\R  The current time, <span class="keyword">in</span> 24-hour military time (0–23)  </div><div class="line">\r  The current time, standard 12-hour time (1–12)  </div><div class="line">\S  Semicolon  </div><div class="line">\s  Seconds of the current time  </div><div class="line">\t  A tab character  </div><div class="line">\U  Your full user_name@host_name account name  </div><div class="line">   </div><div class="line">\u  Your user name  </div><div class="line">\v  The server version  </div><div class="line">\w  The current day of the week <span class="keyword">in</span> three-letter format (Mon, Tue, …)  </div><div class="line">\Y  The current year, four digits  </div><div class="line">\y  The current year, two digits  </div><div class="line">\_  A space  </div><div class="line">\   A space (a space follows the backslash)  </div><div class="line">\<span class="string">'  Single quote  </span></div><div class="line"><span class="string">\"  Double quote  </span></div><div class="line"><span class="string">\\  A literal “\” backslash character  </span></div><div class="line"><span class="string">\x  x, for any “x” not listed above</span></div></pre></td></tr></table></figure>
-
+        <p>原文：<a href="http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html" target="_blank" rel="external">http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html</a><br>
+        
+          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-basic-index/#more">阅读全文 >></a>
+        
       
 
       
@@ -621,7 +777,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-prompt/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-basic-index/">展开全文 >></a>
         </p>
       
 
@@ -741,171 +897,19 @@
 
 
   
-    <article id="post-mysql-2017-08-09-basic-index" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-ansible-2017-08-08-item-basic-playbooks" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-basic-index/">Mysql 索引的增删查</a>
+      <a class="article-title" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">ansible入门笔记2 Playbooks</a>
     </h1>
   
 
         
-        <a href="/2017/08/09/mysql-2017-08-09-basic-index/" class="archive-article-date">
-  	<time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文：<a href="http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html" target="_blank" rel="external">http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html</a><br>
-        
-          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-basic-index/#more">阅读全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-basic-index/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-mysql-2017-08-09-skill" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-skill/">mysql 小技巧</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/09/mysql-2017-08-09-skill/" class="archive-article-date">
-  	<time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2><span id="shi-yong-tee-zhi-ding-shu-ru-ri-zhi">使用tee指定输入日志</span><a href="#shi-yong-tee-zhi-ding-shu-ru-ri-zhi" class="header-anchor"></a></h2><p>tee命令可以将mysql操作日志输出到指定文件中，如果文件已存在则追加。命令行参数可以使用–tee=file_path，命令中可以使用tee或\T,想要退出使用日志可以使用\t<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ mysql -u root -p --tee=mysql.log</div><div class="line">Logging to file &apos;mysql.log&apos;</div><div class="line">mysql&gt; tee mysql.log 或 \T mysql.log</div><div class="line">Logging to file &apos;mysql.log&apos;</div><div class="line">mysql&gt; \t mysql.log</div><div class="line">Outfile disabled</div></pre></td></tr></table></figure></p>
-<h2><span id="shi-yong-os-ming-ling">使用os命令</span><a href="#shi-yong-os-ming-ling" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mysql&gt; system uname;</div><div class="line">Darwin</div><div class="line">mysql&gt; \! uname;</div><div class="line">Darwin</div></pre></td></tr></table></figure>
-<h2><span id="zhi-xing-sql-wen-jian">执行sql文件</span><a href="#zhi-xing-sql-wen-jian" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; source mysql.sql</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-skill/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ansible-2017-08-08-item-basic-get-started" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/08/ansible-2017-08-08-item-basic-get-started/">ansible入门笔记1 Get Started</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/08/ansible-2017-08-08-item-basic-get-started/" class="archive-article-date">
+        <a href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/" class="archive-article-date">
   	<time datetime="2017-08-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
 </a>
         
@@ -915,36 +919,12 @@
       
         <p>专辑：<a href="/2017/08/14/ansible-2017-08-14-album-study-notes/">ansible学习笔记</a></p>
 <blockquote>
-<p>Ansilbe 是一个部署一群远程主机的工具。远程的主机可以是远程虚拟机或物理机，也<br>可以是本地主机。Ansilbe 是一个部署一群远程主机的工具。远程的主机可以是远程虚拟机<br>或物理机，也可以是本地主机。</p>
+<p>Playbooks 是 Ansible的配置,部署,编排语言.他们可以被描述为一个需要希望远程主机执行命令的方案,或者一组IT程序运行的命令集合.</p>
 </blockquote>
-<!-- move -->
-<div class="toc">
-
-<!-- toc -->
-<ul>
-<li><a href="#an-zhuang-ansible">安装ansible</a><ul>
-<li><a href="#ming-ling">命令</a></li>
-<li><a href="#pei-zhi-hosts">配置hosts</a></li>
-</ul>
-</li>
-<li><a href="#di-yi-tiao-ming-ling">第一条命令</a></li>
-<li><a href="#zhi-ding-hosts-wen-jian">指定hosts文件</a></li>
-</ul>
-<!-- tocstop -->
-</div>
-
-<h2><span id="an-zhuang-ansible">安装ansible</span><a href="#an-zhuang-ansible" class="header-anchor"></a></h2><h3><span id="ming-ling">命令</span><a href="#ming-ling" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install ansible</div></pre></td></tr></table></figure>
-<h3><span id="pei-zhi-hosts">配置hosts</span><a href="#pei-zhi-hosts" class="header-anchor"></a></h3><p>修改/etc/ansible/hosts 全局hosts文件，没有的话自己创建<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[wxnacy] <span class="comment"># 如果服务器使用密码登录就用这个方式保存密码，避免每次输入</span></div><div class="line">wxnacy.server.org ansible_ssh_pass=your_pass ansible_ssh_user=your_name</div><div class="line"></div><div class="line">[prod] <span class="comment"># 如果服务器使用sshkey登陆（推荐使用）</span></div><div class="line">prod.server.org ansible_ssh_user=your_name ansible_ssh_private_key_file=key_path</div></pre></td></tr></table></figure></p>
-<h2><span id="di-yi-tiao-ming-ling">第一条命令</span><a href="#di-yi-tiao-ming-ling" class="header-anchor"></a></h2><ul>
-<li>首先执行ping，查看是否可以连接服务器</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ ansible all -m ping</div><div class="line"></div><div class="line"></div><div class="line">wxnacy.server.org | SUCCESS =&gt; &#123;</div><div class="line">    <span class="string">"changed"</span>: <span class="literal">false</span>,</div><div class="line">    <span class="string">"ping"</span>: <span class="string">"pong"</span></div><div class="line">&#125;</div><div class="line">prod.server.org | SUCCESS =&gt; &#123;</div><div class="line">    <span class="string">"changed"</span>: <span class="literal">false</span>,</div><div class="line">    <span class="string">"ping"</span>: <span class="string">"pong"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>得到如上样式结果即为正确,另外执行 <code>ansible wxnacy -m ping</code> 可以针对某一个服务器<br>组进行操作</p>
-<ul>
-<li>现在我们用另一个命令看下是不是真的可以拿到远程服务器的信息</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ ansible prod -m shell -a <span class="string">"uname -a"</span></div><div class="line"></div><div class="line">prod.server.org | SUCCESS | rc=0 &gt;&gt;</div><div class="line">Linux ip-172-31-5-249 4.9.27-14.31.amzn1.x86_64 <span class="comment">#1 SMP Wed May 10 01:58:40 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux</span></div></pre></td></tr></table></figure>
-<h2><span id="zhi-ding-hosts-wen-jian">指定hosts文件</span><a href="#zhi-ding-hosts-wen-jian" class="header-anchor"></a></h2><p>在一些项目中，全局hosts配置不能满足需求，需要指定hosts命令，可以执行如下命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ansible my -i hosts_path -m ping</div></pre></td></tr></table></figure></p>
+<p>一个playbook就是一个YAML文件，所以playbook文件一般都以.yml结尾，一个playbook文件由一个或多个play组成，每个play定义了在一个或多个远程主机上执行的一系列的task，其中每个task一般就是调用一个ansible的模块，如调用copy模块复制文件到远程主机或调用shell模块执行命令。</p>
+<h2><span id="jian-dan-de-pei-zhi">简单的配置</span><a href="#jian-dan-de-pei-zhi" class="header-anchor"></a></h2><p>配置deploy.yml完成进入远程服务器的某个目录并执行git pull操作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- hosts: wxnacy <span class="comment"># 它会默认使用/etc/ansible/hosts 中配置的服务器组名 也可以单独设置hosts地址</span></div><div class="line">  tasks:</div><div class="line">  - name: <span class="built_in">cd</span> path and git pull <span class="comment"># 命令名称</span></div><div class="line">    shell: git pull <span class="comment"># 执行命令</span></div><div class="line">    args:</div><div class="line">      <span class="built_in">chdir</span>: ~/workdir <span class="comment"># 进入目录</span></div></pre></td></tr></table></figure></p>
+<p>运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ ansible-playbook deploy.yml</div><div class="line"></div><div class="line">PLAY [wxnacy] **********************************************************************************************************************************************************************************************</div><div class="line"></div><div class="line">TASK [<span class="built_in">cd</span> path and git pull] *************************************************************************************************************************************************************************************</div><div class="line">ok: [wxnacy.server.org]</div><div class="line"></div><div class="line"></div><div class="line">PLAY RECAP *************************************************************************************************************************************************************************************************</div><div class="line">wxnacy.server.org             : ok=2    changed=1    unreachable=0    failed=0</div></pre></td></tr></table></figure></p>
+<p>执行完运行命令ansible会在webservers组中依次执行tasks，返回以上样式结果极为成功，结果通过红黄绿三种颜色标明了不同的执行结果，红色表示有task执行失败，黄色表示改变了远程主机状态。</p>
 
       
 
@@ -968,7 +948,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/08/ansible-2017-08-08-item-basic-get-started/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">展开全文 >></a>
         </p>
       
 
@@ -1116,11 +1096,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1204,11 +1184,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1224,11 +1204,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">flask</a>
+                <a href="javascript:void(0)" class="js-tag color4">gunicorn</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">gunicorn</a>
+                <a href="javascript:void(0)" class="js-tag color1">flask</a>
               </li>
              
               <li class="article-tag-list-item">
