@@ -94,4 +94,8 @@ class Snowflake(object):
 
 if __name__ == '__main__':
     print(Snowflake(0).generate())
+    print(Snowflake(1).generate())
+    print(Snowflake(2).generate())
+    print(Snowflake(3).generate())
+    print(Snowflake(3, 1).generate())
     pass
