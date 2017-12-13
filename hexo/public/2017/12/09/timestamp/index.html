@@ -225,7 +225,7 @@
 <p>Javascript 没有时间格式化方法，需要自己扩展，这个方法是从网上找的，相对其他方法是比较好的，推荐使用。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Date</span>.prototype.format=<span class="function"><span class="keyword">function</span>(<span class="params">fmt</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> o = &#123;</div><div class="line">        <span class="string">"M+"</span> : <span class="keyword">this</span>.getMonth()+<span class="number">1</span>, <span class="comment">//月份</span></div><div class="line">        <span class="string">"d+"</span> : <span class="keyword">this</span>.getDate(), <span class="comment">//日</span></div><div class="line">        <span class="string">"h+"</span> : <span class="keyword">this</span>.getHours()%<span class="number">12</span> == <span class="number">0</span> ? <span class="number">12</span> : <span class="keyword">this</span>.getHours()%<span class="number">12</span>, <span class="comment">//小时</span></div><div class="line">        <span class="string">"H+"</span> : <span class="keyword">this</span>.getHours(), <span class="comment">//小时</span></div><div class="line">        <span class="string">"m+"</span> : <span class="keyword">this</span>.getMinutes(), <span class="comment">//分</span></div><div class="line">        <span class="string">"s+"</span> : <span class="keyword">this</span>.getSeconds(), <span class="comment">//秒</span></div><div class="line">        <span class="string">"q+"</span> : <span class="built_in">Math</span>.floor((<span class="keyword">this</span>.getMonth()+<span class="number">3</span>)/<span class="number">3</span>), <span class="comment">//季度</span></div><div class="line">        <span class="string">"S"</span> : <span class="keyword">this</span>.getMilliseconds() <span class="comment">//毫秒</span></div><div class="line">        &#125;;</div><div class="line">    <span class="keyword">var</span> week = &#123;</div><div class="line">        <span class="string">"0"</span> : <span class="string">"/u65e5"</span>,</div><div class="line">        <span class="string">"1"</span> : <span class="string">"/u4e00"</span>,</div><div class="line">        <span class="string">"2"</span> : <span class="string">"/u4e8c"</span>,</div><div class="line">        <span class="string">"3"</span> : <span class="string">"/u4e09"</span>,</div><div class="line">        <span class="string">"4"</span> : <span class="string">"/u56db"</span>,</div><div class="line">        <span class="string">"5"</span> : <span class="string">"/u4e94"</span>,</div><div class="line">        <span class="string">"6"</span> : <span class="string">"/u516d"</span></div><div class="line">        &#125;;</div><div class="line">    <span class="keyword">if</span>(<span class="regexp">/(y+)/</span>.test(fmt))&#123;</div><div class="line">            fmt=fmt.replace(<span class="built_in">RegExp</span>.$<span class="number">1</span>, (<span class="keyword">this</span>.getFullYear()+<span class="string">""</span>).substr(<span class="number">4</span> - <span class="built_in">RegExp</span>.$<span class="number">1.</span>length));</div><div class="line">        &#125;</div><div class="line">    <span class="keyword">if</span>(<span class="regexp">/(E+)/</span>.test(fmt))&#123;</div><div class="line">            fmt=fmt.replace(<span class="built_in">RegExp</span>.$<span class="number">1</span>, ((<span class="built_in">RegExp</span>.$<span class="number">1.</span>length&gt;<span class="number">1</span>) ? (<span class="built_in">RegExp</span>.$<span class="number">1.</span>length&gt;<span class="number">2</span> ? <span class="string">"/u661f/u671f"</span> : <span class="string">"/u5468"</span>) : <span class="string">""</span>)+week[<span class="keyword">this</span>.getDay()+<span class="string">""</span>]);</div><div class="line">        &#125;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> k <span class="keyword">in</span> o)&#123;</div><div class="line">            <span class="keyword">if</span>(<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"("</span>+ k +<span class="string">")"</span>).test(fmt))&#123;</div><div class="line">                        fmt = fmt.replace(<span class="built_in">RegExp</span>.$<span class="number">1</span>, (<span class="built_in">RegExp</span>.$<span class="number">1.</span>length==<span class="number">1</span>) ? (o[k]) : ((<span class="string">"00"</span>+ o[k]).substr((<span class="string">""</span>+ o[k]).length)));</div><div class="line">                    &#125;</div><div class="line">        &#125;</div><div class="line">    <span class="keyword">return</span> fmt;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
 <h2><span id="xi-tong-shi-jian-zhuan-shi-jian-chuo">系统时间转时间戳</span><a href="#xi-tong-shi-jian-zhuan-shi-jian-chuo" class="header-anchor"></a></h2><h3><span id="javascript">Javascript</span><a href="#javascript" class="header-anchor"></a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Math.round(<span class="keyword">new</span> Date(<span class="string">'2017-12-10 10:21:12'</span>).getTime()/<span class="number">1000</span>)</div><div class="line">Math.round(<span class="keyword">new</span> Date(<span class="string">'2017/12/10 10:21:12'</span>).getTime()/<span class="number">1000</span>)</div></pre></td></tr></table></figure>
 <h2><span id="qi-ta-yu-yan">其他语言</span><a href="#qi-ta-yu-yan" class="header-anchor"></a></h2><ul>
-<li><a href="/2017/12/10/python-datetime/">Python</a><br><strong><em>未完待续</em></strong><h2><span id="can-kao">参考</span><a href="#can-kao" class="header-anchor"></a></h2><a href="http://tool.chinaz.com/Tools/unixtime.aspx" target="_blank" rel="external">Unix时间戳转换工具</a></li>
+<li><a href="/2017/12/10/python-datetime/">Python</a><br><strong><em>未完待续</em></strong><h2><span id="can-kao">参考</span><a href="#can-kao" class="header-anchor"></a></h2><a href="http://tool.chinaz.com/Tools/unixtime.aspx" target="_blank" rel="noopener">Unix时间戳转换工具</a></li>
 </ul>
 
       
@@ -305,7 +305,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">获取时间戳</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text">Javascript</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.2.</span> <span class="toc-text">Java</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">时间戳转系统时间</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text">Javascript</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">系统时间转时间戳</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.1.</span> <span class="toc-text">Javascript</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">其他语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="huo-qu-shi-jian-chuo">&#x83B7;&#x53D6;&#x65F6;&#x95F4;&#x6233;</span><a href="#huo-qu-shi-jian-chuo" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text"><span id="javascript">Javascript</span><a href="#javascript" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.2.</span> <span class="toc-text"><span id="java">Java</span><a href="#java" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="shi-jian-chuo-zhuan-xi-tong-shi-jian">&#x65F6;&#x95F4;&#x6233;&#x8F6C;&#x7CFB;&#x7EDF;&#x65F6;&#x95F4;</span><a href="#shi-jian-chuo-zhuan-xi-tong-shi-jian" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text"><span id="javascript">Javascript</span><a href="#javascript" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="xi-tong-shi-jian-zhuan-shi-jian-chuo">&#x7CFB;&#x7EDF;&#x65F6;&#x95F4;&#x8F6C;&#x65F6;&#x95F4;&#x6233;</span><a href="#xi-tong-shi-jian-zhuan-shi-jian-chuo" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.1.</span> <span class="toc-text"><span id="javascript">Javascript</span><a href="#javascript" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text"><span id="qi-ta-yu-yan">&#x5176;&#x4ED6;&#x8BED;&#x8A00;</span><a href="#qi-ta-yu-yan" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text"><span id="can-kao">&#x53C2;&#x8003;</span><a href="#can-kao" class="header-anchor"></a></span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -454,6 +454,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -462,15 +466,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -486,11 +486,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
+                <a href="javascript:void(0)" class="js-tag color5">grep</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">grep</a>
+                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -522,15 +522,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">北京</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -542,19 +542,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">

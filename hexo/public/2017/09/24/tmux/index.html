@@ -192,7 +192,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p><a href="https://github.com/tmux/tmux/wiki" target="_blank" rel="external">Tmux</a> 是一个终端复用器: 可以激活多个终端或<br>窗口, 在每个终端都可以单独访问，每一个终端都可以访问，运行和控制各自的程序<br>.tmux 类似于screen，可以关闭窗口将程序放在后台运行，需要的时候再重新连接。</p>
+<p><a href="https://github.com/tmux/tmux/wiki" target="_blank" rel="noopener">Tmux</a> 是一个终端复用器: 可以激活多个终端或<br>窗口, 在每个终端都可以单独访问，每一个终端都可以访问，运行和控制各自的程序<br>.tmux 类似于screen，可以关闭窗口将程序放在后台运行，需要的时候再重新连接。</p>
 </blockquote>
 <a id="more"></a>
 <div class="toc">
@@ -235,11 +235,11 @@
 <h3><span id="mian-ban-cao-zuo">面板操作</span><a href="#mian-ban-cao-zuo" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="string">"           # 将当前面板上下分屏</span></div><div class="line"><span class="string">%           # 将当前面板左右分屏</span></div><div class="line"><span class="string">x           # 关闭当前分屏</span></div><div class="line"><span class="string">!           # 将当前面板置于新窗口,即新建一个窗口,其中仅包含当前面板</span></div><div class="line"><span class="string">Ctrl+方向键	# 以1个单元格为单位移动边缘以调整当前面板大小</span></div><div class="line"><span class="string">Alt+方向键	# 以5个单元格为单位移动边缘以调整当前面板大小</span></div><div class="line"><span class="string">空格键	    # 可以在默认面板布局中切换，试试就知道了</span></div><div class="line"><span class="string">q           # 显示面板编号</span></div><div class="line"><span class="string">o           # 选择当前窗口中下一个面板</span></div><div class="line"><span class="string">方向键	    # 移动光标选择对应面板</span></div><div class="line"><span class="string">&#123;           # 向前置换当前面板</span></div><div class="line"><span class="string">&#125;           # 向后置换当前面板</span></div><div class="line"><span class="string">Alt+o	    # 逆时针旋转当前窗口的面板</span></div><div class="line"><span class="string">Ctrl+o	    # 顺时针旋转当前窗口的面板</span></div><div class="line"><span class="string">z	        #tmux 1.8新特性，最大化当前所在面板</span></div></pre></td></tr></table></figure>
 <h2><span id="pei-zhi-wen-jian">配置文件</span><a href="#pei-zhi-wen-jian" class="header-anchor"></a></h2><p>Tmux 可以在 <code>~/.tmux.conf</code> 或 <code>/etc/.tmux.conf</code> 中配置快捷键等操作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 改变 prefix 快捷键为 &lt;C-a&gt;</span></div><div class="line">unbind C-b</div><div class="line"><span class="built_in">set</span> -g prefix C<span class="_">-a</span></div><div class="line"><span class="built_in">bind</span> C<span class="_">-a</span> send-prefix</div><div class="line"></div><div class="line"><span class="comment"># 绑定重新加载 ~/.tmux.conf 的快捷键</span></div><div class="line"><span class="built_in">bind</span> r <span class="built_in">source</span>-file ~/.tmux.conf ; display-message <span class="string">"Config reloaded.."</span></div><div class="line"></div><div class="line"><span class="built_in">set</span> -g default-terminal <span class="string">"screen-256color"</span>   <span class="comment"># use 256 colors</span></div><div class="line"><span class="built_in">set</span> -g display-time 5000                    <span class="comment"># status line messages display</span></div><div class="line"><span class="built_in">set</span> -g <span class="built_in">history</span>-limit 100000                 <span class="comment"># scrollback buffer n lines</span></div><div class="line"><span class="built_in">set</span> -g base-index 1                         <span class="comment"># 窗口索引从1开始，默认是0</span></div><div class="line"><span class="built_in">set</span> -g pane-base-index 1</div><div class="line">setw -g mode-keys vi                        <span class="comment"># use vi in copy mode</span></div><div class="line"><span class="comment"># set-option -g default-shell $SHELL</span></div><div class="line"></div><div class="line"><span class="comment"># 美化状态栏</span></div><div class="line"><span class="built_in">set</span>-option -g status on</div><div class="line"><span class="built_in">set</span>-option -g status-interval 2</div><div class="line"><span class="built_in">set</span>-option -g status-justify <span class="string">"centre"</span></div><div class="line"><span class="built_in">set</span>-option -g status-left-length 60</div><div class="line"><span class="built_in">set</span>-option -g status-right-length 90</div><div class="line"><span class="built_in">set</span>-option -g status-left <span class="string">"#(~/WebstormProjects/wxnacy.github.io/shells/tmux/plugin/tmux-powerline/powerline.sh left)"</span></div><div class="line"><span class="built_in">set</span>-option -g status-right <span class="string">"#(~/WebstormProjects/wxnacy.github.io/shells/tmux/plugin/tmux-powerline/powerline.sh right)"</span></div><div class="line"><span class="built_in">set</span>-window-option -g window-status-current-format <span class="string">"#[fg=colour235, bg=colour27]⮀#[fg=colour255, bg=colour27] #I ⮁ #W #[fg=colour27, bg=colour235]⮀"</span></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 分割窗口</span></div><div class="line">unbind <span class="string">'"'</span></div><div class="line"><span class="built_in">bind</span> - splitw -v    <span class="comment"># 垂直分割</span></div><div class="line">unbind %</div><div class="line"><span class="built_in">bind</span> | splitw -h    <span class="comment"># 水平分割</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 选择面板，更符合 Vim 习惯</span></div><div class="line"><span class="built_in">bind</span> k selectp -U</div><div class="line"><span class="built_in">bind</span> j selectp -D</div><div class="line"><span class="built_in">bind</span> h selectp -L</div><div class="line"><span class="built_in">bind</span> l selectp -R</div><div class="line"></div><div class="line"><span class="comment"># 使用 X 关闭 window</span></div><div class="line">unbind &amp;</div><div class="line"><span class="built_in">bind</span> X killw</div></pre></td></tr></table></figure></p>
 <h2><span id="can-kao-wen-xian">参考文献</span><a href="#can-kao-wen-xian" class="header-anchor"></a></h2><ul>
-<li><a href="http://kumu-linux.github.io/blog/2013/08/06/tmux/" target="_blank" rel="external">Linux下终端利器tmux</a></li>
-<li><a href="https://wiki.archlinux.org/index.php/Tmux_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="external">Tmux (简体中文)</a></li>
-<li><a href="http://cenalulu.github.io/linux/tmux/" target="_blank" rel="external">Tmux - Linux从业者必备利器</a></li>
-<li><a href="https://wiki.freebsdchina.org/software/t/tmux" target="_blank" rel="external">使用tmux</a></li>
-<li><a href="http://blog.jobbole.com/87584/" target="_blank" rel="external">Tmux 速成教程：技巧和调整</a></li>
+<li><a href="http://kumu-linux.github.io/blog/2013/08/06/tmux/" target="_blank" rel="noopener">Linux下终端利器tmux</a></li>
+<li><a href="https://wiki.archlinux.org/index.php/Tmux_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="noopener">Tmux (简体中文)</a></li>
+<li><a href="http://cenalulu.github.io/linux/tmux/" target="_blank" rel="noopener">Tmux - Linux从业者必备利器</a></li>
+<li><a href="https://wiki.freebsdchina.org/software/t/tmux" target="_blank" rel="noopener">使用tmux</a></li>
+<li><a href="http://blog.jobbole.com/87584/" target="_blank" rel="noopener">Tmux 速成教程：技巧和调整</a></li>
 </ul>
 
       
@@ -319,7 +319,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text">Mac</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.2.</span> <span class="toc-text">Centos</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text">Session</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text">windows</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.3.</span> <span class="toc-text">Panes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.4.</span> <span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">prefix 快捷键</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.1.</span> <span class="toc-text">基础操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.2.</span> <span class="toc-text">窗口操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.3.</span> <span class="toc-text">面板操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="an-zhuang">&#x5B89;&#x88C5;</span><a href="#an-zhuang" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text"><span id="mac">Mac</span><a href="#mac" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.2.</span> <span class="toc-text"><span id="centos">Centos</span><a href="#centos" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="shi-yong">&#x4F7F;&#x7528;</span><a href="#shi-yong" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text"><span id="session">Session</span><a href="#session" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text"><span id="windows">windows</span><a href="#windows" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.3.</span> <span class="toc-text"><span id="panes">Panes</span><a href="#panes" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.4.</span> <span class="toc-text"><span id="qi-ta">&#x5176;&#x4ED6;</span><a href="#qi-ta" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="prefix-kuai-jie-jian">prefix &#x5FEB;&#x6377;&#x952E;</span><a href="#prefix-kuai-jie-jian" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.1.</span> <span class="toc-text"><span id="ji-chu-cao-zuo">&#x57FA;&#x7840;&#x64CD;&#x4F5C;</span><a href="#ji-chu-cao-zuo" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.2.</span> <span class="toc-text"><span id="chuang-kou-cao-zuo">&#x7A97;&#x53E3;&#x64CD;&#x4F5C;</span><a href="#chuang-kou-cao-zuo" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.3.</span> <span class="toc-text"><span id="mian-ban-cao-zuo">&#x9762;&#x677F;&#x64CD;&#x4F5C;</span><a href="#mian-ban-cao-zuo" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text"><span id="pei-zhi-wen-jian">&#x914D;&#x7F6E;&#x6587;&#x4EF6;</span><a href="#pei-zhi-wen-jian" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text"><span id="can-kao-wen-xian">&#x53C2;&#x8003;&#x6587;&#x732E;</span><a href="#can-kao-wen-xian" class="header-anchor"></a></span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -468,6 +468,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -476,15 +480,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -500,11 +500,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
+                <a href="javascript:void(0)" class="js-tag color5">grep</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">grep</a>
+                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -536,15 +536,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">北京</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -556,19 +556,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">

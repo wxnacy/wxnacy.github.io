@@ -196,7 +196,7 @@
 <p>pathogen 更好的插件管理方案</p>
 </blockquote>
 <a id="more"></a>
-<p>改用 vim 做主开发工具有一段时间了，之前一直在用 <a href="https://github.com/VundleVim/Vundle.vim" target="_blank" rel="external">Vundle</a><br>管理插件回想起用 Vundle 装第一个插件，当时的痛苦现在还历历在目，对于一个新手来<br>说去哪里写 <code>:PluginInstall</code> 都折腾了好久 pathogen 可以将插件都集中管理到<br><strong><em>~/.vim/bundle</em></strong> 中，并且各个插件都拥有自己的目录（这点 Vundle 也可以做到），<br>他的优点在于只依赖与 git 来管理插件，无需在 vim 做过多的配置</p>
+<p>改用 vim 做主开发工具有一段时间了，之前一直在用 <a href="https://github.com/VundleVim/Vundle.vim" target="_blank" rel="noopener">Vundle</a><br>管理插件回想起用 Vundle 装第一个插件，当时的痛苦现在还历历在目，对于一个新手来<br>说去哪里写 <code>:PluginInstall</code> 都折腾了好久 pathogen 可以将插件都集中管理到<br><strong><em>~/.vim/bundle</em></strong> 中，并且各个插件都拥有自己的目录（这点 Vundle 也可以做到），<br>他的优点在于只依赖与 git 来管理插件，无需在 vim 做过多的配置</p>
 <h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ mkdir .vim &amp;&amp; <span class="built_in">cd</span> .vim</div><div class="line">$ mkdir bundle &amp;&amp; mkdir <span class="built_in">autoload</span> &amp;&amp; <span class="built_in">cd</span> bundle</div><div class="line">$ git <span class="built_in">clone</span> https://github.com/tpope/vim-pathogen.git</div><div class="line">$ cp vim-pathogen/<span class="built_in">autoload</span>/pathogen.vim ~/.vim/<span class="built_in">autoload</span>/</div></pre></td></tr></table></figure>
 <h2><span id="pei-zhi">配置</span><a href="#pei-zhi" class="header-anchor"></a></h2><p>在 <strong><em>~/.vimrc</em></strong> 文件里, <code>filetype plugin indent on</code> 之前的任何地方，加入这句<br>：<code>call pathogen#infect()</code></p>
 <p>这样 pathogen 就已经安装完成了，接下来我们下载一个插件看下效果</p>
@@ -275,7 +275,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">第一个插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">更新插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">删除插件</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="an-zhuang">&#x5B89;&#x88C5;</span><a href="#an-zhuang" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="pei-zhi">&#x914D;&#x7F6E;</span><a href="#pei-zhi" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="di-yi-ge-cha-jian">&#x7B2C;&#x4E00;&#x4E2A;&#x63D2;&#x4EF6;</span><a href="#di-yi-ge-cha-jian" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text"><span id="geng-xin-cha-jian">&#x66F4;&#x65B0;&#x63D2;&#x4EF6;</span><a href="#geng-xin-cha-jian" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text"><span id="shan-chu-cha-jian">&#x5220;&#x9664;&#x63D2;&#x4EF6;</span><a href="#shan-chu-cha-jian" class="header-anchor"></a></span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -424,6 +424,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -432,15 +436,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -456,11 +456,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
+                <a href="javascript:void(0)" class="js-tag color5">grep</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">grep</a>
+                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -492,15 +492,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">北京</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -512,19 +512,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">

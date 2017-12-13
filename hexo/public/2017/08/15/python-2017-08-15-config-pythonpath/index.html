@@ -255,18 +255,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/16/http-2017-08-16-basic/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/08/15/python-2017-08-15-gunicorn-run/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          HTTP相关知识
+          Python 使用 gunicorn 启动你的项目
         
       </div>
     </a>
   
   
-    <a href="/2017/08/15/linux-2017-08-15-nohup/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Linux 使用nohup在后台不挂断执行命令</div>
+    <a href="/2017/08/15/python-2017-08-15-flask-env-config/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Flask 如何配置多环境</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -293,7 +293,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">不太好的解决办法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">Python 从哪些路径导入模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text">主目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text">PYTHONPATH 目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.3.</span> <span class="toc-text">标准库目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.4.</span> <span class="toc-text">.pth 文件目录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">应用到当前项目</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="bu-tai-hao-de-jie-jue-ban-fa">&#x4E0D;&#x592A;&#x597D;&#x7684;&#x89E3;&#x51B3;&#x529E;&#x6CD5;</span><a href="#bu-tai-hao-de-jie-jue-ban-fa" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="python-cong-na-xie-lu-jing-dao-ru-mo-kuai">Python &#x4ECE;&#x54EA;&#x4E9B;&#x8DEF;&#x5F84;&#x5BFC;&#x5165;&#x6A21;&#x5757;</span><a href="#python-cong-na-xie-lu-jing-dao-ru-mo-kuai" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text"><span id="zhu-mu-lu">&#x4E3B;&#x76EE;&#x5F55;</span><a href="#zhu-mu-lu" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text"><span id="pythonpath-mu-lu">PYTHONPATH &#x76EE;&#x5F55;</span><a href="#pythonpath-mu-lu" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.3.</span> <span class="toc-text"><span id="biao-zhun-ku-mu-lu">&#x6807;&#x51C6;&#x5E93;&#x76EE;&#x5F55;</span><a href="#biao-zhun-ku-mu-lu" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.4.</span> <span class="toc-text"><span id="pth-wen-jian-mu-lu">.pth &#x6587;&#x4EF6;&#x76EE;&#x5F55;</span><a href="#pth-wen-jian-mu-lu" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="ying-yong-dao-dang-qian-xiang-mu">&#x5E94;&#x7528;&#x5230;&#x5F53;&#x524D;&#x9879;&#x76EE;</span><a href="#ying-yong-dao-dang-qian-xiang-mu" class="header-anchor"></a></span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -442,6 +442,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -450,15 +454,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -474,11 +474,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
+                <a href="javascript:void(0)" class="js-tag color5">grep</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">grep</a>
+                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -510,15 +510,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">北京</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -530,19 +530,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">

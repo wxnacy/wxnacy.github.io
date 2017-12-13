@@ -214,7 +214,7 @@
 <h2><span id="cookie">cookie</span><a href="#cookie" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 发送的cookie可以在response headers中看到</span></div><div class="line">$ curl localhost:8002/<span class="built_in">test</span> --cookie <span class="string">"name=ss"</span></div><div class="line"><span class="comment"># -c 可以保存服务器返回的cookies到文件中</span></div><div class="line">$ curl localhost:8002/<span class="built_in">test</span> -c <span class="variable">$&#123;cookie_file&#125;</span></div><div class="line"><span class="comment"># -b 可以使用这个文件作为cookie信息，进行后续的请求。</span></div><div class="line">$ curl localhost:8002/<span class="built_in">test</span> -b <span class="variable">$&#123;cookie_file&#125;</span></div></pre></td></tr></table></figure>
 <h2><span id="http-ren-zheng">HTTP认证</span><a href="#http-ren-zheng" class="header-anchor"></a></h2><p>有些网域需要HTTP认证，这时 cURL 需要用到<code>--user</code>或 <code>-u</code>参数。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 这时候服务器会在头信息中接收到Authorization字段，值为Basic + name:pass的base64加密数值</span></div><div class="line">$ curl localhost:8002/<span class="built_in">test</span> --user name:apss</div></pre></td></tr></table></figure></p>
 <h2><span id="can-kao-zi-liao">参考资料</span><a href="#can-kao-zi-liao" class="header-anchor"></a></h2><ul>
-<li><a href="http://www.ruanyifeng.com/blog/2011/09/curl.html" target="_blank" rel="external">curl网站开发指南</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2011/09/curl.html" target="_blank" rel="noopener">curl网站开发指南</a></li>
 </ul>
 
       
@@ -256,18 +256,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/16/shell-2017-08-16-zsh-install/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/08/16/http-2017-08-16-basic/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Zsh 与 oh-my-zsh 安装与使用
+          HTTP相关知识
         
       </div>
     </a>
   
   
-    <a href="/2017/08/16/openresty-2017-08-16-install/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">openresty 安装</div>
+    <a href="/2017/08/15/linux-2017-08-15-nohup/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux 使用nohup在后台不挂断执行命令</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -294,7 +294,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">查看网页源码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">自动跳转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">显示头信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">显示通信过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">HTTP动词</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">增加头信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">7.</span> <span class="toc-text">发送表单信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">8.</span> <span class="toc-text">文件上传</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">9.</span> <span class="toc-text">Referer字段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">10.</span> <span class="toc-text">user-agent字段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">11.</span> <span class="toc-text">cookie</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">12.</span> <span class="toc-text">HTTP认证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">13.</span> <span class="toc-text">参考资料</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="cha-kan-wang-ye-yuan-ma">&#x67E5;&#x770B;&#x7F51;&#x9875;&#x6E90;&#x7801;</span><a href="#cha-kan-wang-ye-yuan-ma" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="zi-dong-tiao-zhuan">&#x81EA;&#x52A8;&#x8DF3;&#x8F6C;</span><a href="#zi-dong-tiao-zhuan" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="xian-shi-tou-xin-xi">&#x663E;&#x793A;&#x5934;&#x4FE1;&#x606F;</span><a href="#xian-shi-tou-xin-xi" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text"><span id="xian-shi-tong-xin-guo-cheng">&#x663E;&#x793A;&#x901A;&#x4FE1;&#x8FC7;&#x7A0B;</span><a href="#xian-shi-tong-xin-guo-cheng" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text"><span id="http-dong-ci">HTTP&#x52A8;&#x8BCD;</span><a href="#http-dong-ci" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text"><span id="zeng-jia-tou-xin-xi">&#x589E;&#x52A0;&#x5934;&#x4FE1;&#x606F;</span><a href="#zeng-jia-tou-xin-xi" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">7.</span> <span class="toc-text"><span id="fa-song-biao-dan-xin-xi">&#x53D1;&#x9001;&#x8868;&#x5355;&#x4FE1;&#x606F;</span><a href="#fa-song-biao-dan-xin-xi" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">8.</span> <span class="toc-text"><span id="wen-jian-shang-chuan">&#x6587;&#x4EF6;&#x4E0A;&#x4F20;</span><a href="#wen-jian-shang-chuan" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">9.</span> <span class="toc-text"><span id="referer-zi-duan">Referer&#x5B57;&#x6BB5;</span><a href="#referer-zi-duan" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">10.</span> <span class="toc-text"><span id="user-agent-zi-duan">user-agent&#x5B57;&#x6BB5;</span><a href="#user-agent-zi-duan" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">11.</span> <span class="toc-text"><span id="cookie">cookie</span><a href="#cookie" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">12.</span> <span class="toc-text"><span id="http-ren-zheng">HTTP&#x8BA4;&#x8BC1;</span><a href="#http-ren-zheng" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">13.</span> <span class="toc-text"><span id="can-kao-zi-liao">&#x53C2;&#x8003;&#x8D44;&#x6599;</span><a href="#can-kao-zi-liao" class="header-anchor"></a></span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -443,6 +443,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -451,15 +455,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -475,11 +475,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
+                <a href="javascript:void(0)" class="js-tag color5">grep</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">grep</a>
+                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -511,15 +511,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">北京</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -531,19 +531,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">

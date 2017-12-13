@@ -210,7 +210,7 @@
 </ul>
 <!-- tocstop -->
 <p></div></p>
-<h2><span id="jian-dan-de-mian-shu-ru-mi-ma">简单的免输入密码</span><a href="#jian-dan-de-mian-shu-ru-mi-ma" class="header-anchor"></a></h2><p>在工作经常会使用 ssh、ftp、 mysql 等命令，但每次输入密码会让事情变的很枯燥，<br>重复的事情就要交给脚本去做，这时候我们需要用到 <strong><a href="http://expect.sourceforge.net/" target="_blank" rel="external">expect</a></strong> ，<br>下面我们通过一个例子 <em>mysql_login</em> 来说明</p>
+<h2><span id="jian-dan-de-mian-shu-ru-mi-ma">简单的免输入密码</span><a href="#jian-dan-de-mian-shu-ru-mi-ma" class="header-anchor"></a></h2><p>在工作经常会使用 ssh、ftp、 mysql 等命令，但每次输入密码会让事情变的很枯燥，<br>重复的事情就要交给脚本去做，这时候我们需要用到 <strong><a href="http://expect.sourceforge.net/" target="_blank" rel="noopener">expect</a></strong> ，<br>下面我们通过一个例子 <em>mysql_login</em> 来说明</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env expect</span></div><div class="line"><span class="built_in">set</span> password xxxxx</div><div class="line"><span class="built_in">set</span> name root</div><div class="line"></div><div class="line">spawn mysql -u<span class="variable">$name</span> -p</div><div class="line">expect <span class="string">"*assword:*"</span></div><div class="line">send <span class="string">"<span class="variable">$password</span>\r"</span></div><div class="line">interact</div></pre></td></tr></table></figure>
 <p>上边这段脚本是在登录本地 mysql 时，无需输入密码就自动登录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ expect mysql_login</div></pre></td></tr></table></figure></p>
 <p>执行代码不能用 <em>sh file</em> 而是 <em>expect mysql_login</em> ，如果你在文件开头加上<br><code>#!/usr/bin/env expect</code> 也可以用 <code>./mysql_login</code> 来执行</p>
@@ -226,8 +226,8 @@
 <h3><span id="du-qu-she-zhi-huan-jing-bian-liang">读取设置环境变量</span><a href="#du-qu-she-zhi-huan-jing-bian-liang" class="header-anchor"></a></h3><p>不同于 bash 通过 export 和 echo 在设置和输出环境变量<br>expect 需要通过 <strong>set</strong> 和 <strong>puts</strong> 进行设置和输出<br>并且需要变量名需要用 <strong>env()</strong> 包起来<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">wxnacy@wxnacydeMacBook-Pro ~/W/w/s/mysql&gt; expect</div><div class="line">expect1.1&gt; <span class="built_in">set</span> env(NAME) <span class="string">"wxnacy"</span>       <span class="comment"># 设置环境变量，NAME 就是在 bash 中用到的环境变量</span></div><div class="line">wxnacy</div><div class="line">expect1.2&gt; puts <span class="variable">$env</span>(NAME)              <span class="comment"># 打印环境变量</span></div><div class="line">wxnacy</div></pre></td></tr></table></figure></p>
 <h3><span id="liu-cheng-kong-zhi-if">流程控制 if</span><a href="#liu-cheng-kong-zhi-if" class="header-anchor"></a></h3><p>与绝大多数语言一样 expect 也可以通过 <strong>if</strong> 来控制程序流程，与绝大多数语言不同<br>的是 expect 中 <strong>if</strong> 的条件语句是包含在大括号中的，如：<code>if { name == &quot;wxnacy&quot; }</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> &#123; <span class="variable">$argc</span> &lt; 1 &#125; &#123;</div><div class="line">    send_user <span class="string">'Usage: ./mysql_login arg1'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h2><span id="can-kao-wen-xian">参考文献</span><a href="#can-kao-wen-xian" class="header-anchor"></a></h2><ul>
-<li><a href="http://xstarcd.github.io/wiki/shell/expect.html" target="_blank" rel="external">expect - 自动交互脚本</a></li>
-<li><a href="http://blog.51niux.com/?id=55" target="_blank" rel="external">expect使用详解</a></li>
+<li><a href="http://xstarcd.github.io/wiki/shell/expect.html" target="_blank" rel="noopener">expect - 自动交互脚本</a></li>
+<li><a href="http://blog.51niux.com/?id=55" target="_blank" rel="noopener">expect使用详解</a></li>
 </ul>
 
       
@@ -265,18 +265,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/09/15/mysql-2017-09-15-tmp-mysql-sock/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/09/17/blog-to-hexo/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Mysql &#39;/tmp/mysql.sock&#39; 错误类型解决方法
+          博客迁移到 hexo
         
       </div>
     </a>
   
   
-    <a href="/2017/09/12/nodejs-2017-09-12-npm/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">npm 使用</div>
+    <a href="/2017/09/15/mysql-2017-09-15-tmp-mysql-sock/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mysql &#39;/tmp/mysql.sock&#39; 错误类型解决方法</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -303,7 +303,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">简单的免输入密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">其他用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text">传入参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text">读取设置环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.3.</span> <span class="toc-text">流程控制 if</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">参考文献</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="jian-dan-de-mian-shu-ru-mi-ma">&#x7B80;&#x5355;&#x7684;&#x514D;&#x8F93;&#x5165;&#x5BC6;&#x7801;</span><a href="#jian-dan-de-mian-shu-ru-mi-ma" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="qi-ta-yong-fa">&#x5176;&#x4ED6;&#x7528;&#x6CD5;</span><a href="#qi-ta-yong-fa" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text"><span id="chuan-ru-can-shu">&#x4F20;&#x5165;&#x53C2;&#x6570;</span><a href="#chuan-ru-can-shu" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text"><span id="du-qu-she-zhi-huan-jing-bian-liang">&#x8BFB;&#x53D6;&#x8BBE;&#x7F6E;&#x73AF;&#x5883;&#x53D8;&#x91CF;</span><a href="#du-qu-she-zhi-huan-jing-bian-liang" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.3.</span> <span class="toc-text"><span id="liu-cheng-kong-zhi-if">&#x6D41;&#x7A0B;&#x63A7;&#x5236; if</span><a href="#liu-cheng-kong-zhi-if" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="can-kao-wen-xian">&#x53C2;&#x8003;&#x6587;&#x732E;</span><a href="#can-kao-wen-xian" class="header-anchor"></a></span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -452,6 +452,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -460,15 +464,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -484,11 +484,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
+                <a href="javascript:void(0)" class="js-tag color5">grep</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">grep</a>
+                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -520,15 +520,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">北京</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -540,19 +540,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
