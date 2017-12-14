@@ -77,12 +77,14 @@ router.post('batch_screen_shot','/batch_screen_shot',(ctx,next) => {
 
 });
 
-router.get('test','/test',(ctx,next) => {
+router.get('test','/api',(ctx,next) => {
     ctx.response.header['Content-Type']= 'application/json;charset=utf8';
     ctx.response.body = ctx.request.query;
     ctx.response.body = {
         query: ctx.request.query,
-        bodys: ctx.request.body
+        bodys: ctx.request.body,
+        "name": "wxnacy"
+
     }
 })
 
@@ -91,7 +93,7 @@ app
     .use(cors())
     .use(router.routes())
     .use(router.allowedMethods());
-app.listen(4001,() => {
-    console.log('listen to 0.0.0.0:4001');
+app.listen(5000,() => {
+    console.log('listen to 0.0.0.0:5000');
 });
 
