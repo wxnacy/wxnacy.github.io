@@ -11,7 +11,7 @@ tags: [算法, 工具, javascript]
 北京时间(YYYY/MM/dd HH:mm:ss) <input id='ybj' style="width: 185px;" value="2017-12-09 21:23:52"> 秒 <button onClick="doBjToTs1()" style="width: 110;">转为时间戳</button> <span id='tts' ></span>
 北京时间 <input id='y' style="width: 50px;" value="2017"> 年 <input id='M' class='m' value="12"> 月 <input id='d' class='m' value="9"> 日 <input id='h' class='m' value="21"> 时 <input id='m' class='m' value="23"> 分 <input id='s' class='m' value="52"> 秒 <button onClick="doBjToTs2()" style="width: 110;">转为时间戳</button> <span id='tts2' ></span>
 
-<script async type="text/javascript" src="/js/ts.js"></script>
+<script async type="text/javascript" src="/js/ts.min.js"></script>
 <!-- more -->
 最近在做时间相关的功能，涉及到换算各个时区，干脆写了一个时间戳和北京时间转换的一个小工具，如上。顺便总结下几种语言在时间方面的操作
 <!-- toc -->
