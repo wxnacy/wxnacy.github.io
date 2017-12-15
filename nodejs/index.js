@@ -5,6 +5,7 @@ const app = new Koa();
 const router = require('koa-router')();
 // const ss = require('./src/screenshot.js');
 const json = require('./src/json');
+const mysql = require('./src/mysql-util.js');
 const Q = require('q');
 
 router.post('jsonParser','/json/parser',(ctx,next) => {
@@ -77,6 +78,36 @@ router.post('batch_screen_shot','/batch_screen_shot',(ctx,next) => {
 
 });
 
+
+router.post('create_visit','/api/visit',(ctx,next) => {
+    ctx.response.header['Content-Type']= 'application/json;charset=utf8';
+    ctx.response.body = ctx.request.query;
+    let sql = 'select * from visit_log limit 5;'
+    const defer = Q.defer();
+    mysql.query(sql, []).then(res => {
+        ctx.response.body = {
+            "status": 200
+        }
+        defer.resolve();
+    })
+    return defer.promise;
+})
+
+router.get('test','/api/visit',(ctx,next) => {
+    ctx.response.header['Content-Type']= 'application/json;charset=utf8';
+    ctx.response.body = ctx.request.query;
+    let sql = 'select * from visit_log order by id desc limit 5;'
+    const defer = Q.defer();
+    mysql.query(sql, []).then(res => {
+        ctx.response.body = {
+            query: ctx.request.query,
+            bodys: ctx.request.body,
+            "name": res
+        }
+        defer.resolve();
+    })
+    return defer.promise;
+})
 router.get('test','/api',(ctx,next) => {
     ctx.response.header['Content-Type']= 'application/json;charset=utf8';
     ctx.response.body = ctx.request.query;
@@ -84,7 +115,6 @@ router.get('test','/api',(ctx,next) => {
         query: ctx.request.query,
         bodys: ctx.request.body,
         "name": "wxnacy"
-
     }
 })
 
