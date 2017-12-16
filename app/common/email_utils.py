@@ -49,7 +49,7 @@ class Email():
             print(e)
 
     def send(self, receivers, subject, message):
-        message = MIMEText(message, 'plain', 'utf-8')
+        message = MIMEText(message, 'html', 'utf-8')
         message['From'] = Header(self.sender_name, 'utf-8')
         # message['To'] = Header('wen', 'utf-8')
         message['Subject'] = Header(subject, 'utf-8')
@@ -63,22 +63,22 @@ class SendCloud():
 if __name__ == '__main__':
     #  e = Email()
     e1 = 'info@gochinatv.com'
-    #  e = Email(user=e1, password='Vegobeijing2017', sender=e1, sender_name=e1)
+    e = Email(user=e1, password='Vegobeijing2017', sender=e1, sender_name=e1)
     emails = ['371032668@qq.com','18311233541@163.com',
             'wenxiaoning@gochinatv.com']
-    #  e.send(emails,'邀请您','<div>欢迎您</div>')
+    e.send(emails,'邀请您','<div>欢迎您</div>')
 
     url="http://api.sendcloud.net/apiv2/mail/send"
 
 # 您需要登录SendCloud创建API_USER，使用API_USER和API_KEY才可以进行邮件的发送。
-    params = {"apiUser": "wxnacy_test_n8D5XX", \
-        "apiKey" : "qIfsR43BYe4W8635",\
-        "from" : e1, \
-        "fromName" : "wxnacy", \
-        "to" : emails[0], \
-        "subject" : "来自SendCloud的第一封邮件！", \
-        "html": "你太棒了！你已成功的从SendCloud发送了一封测试邮件，接下来快登录前台去完善账户信息吧！", \
-                            }
+    #  params = {"apiUser": "wxnacy_test_n8D5XX", \
+        #  "apiKey" : "qIfsR43BYe4W8635",\
+        #  "from" : e1, \
+        #  "fromName" : "wxnacy", \
+        #  "to" : emails[0], \
+        #  "subject" : "来自SendCloud的第一封邮件！", \
+        #  "html": "你太棒了！你已成功的从SendCloud发送了一封测试邮件，接下来快登录前台去完善账户信息吧！", \
+                            #  }
 
-    r = requests.post(url, files={}, data=params)
-    print(r.text)
+    #  r = requests.post(url, files={}, data=params)
+    #  print(r.text)

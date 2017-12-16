@@ -50,3 +50,15 @@ function getRandom(len){
     document.getElementById('out').innerHTML = res;
     return array.join('');
 };
+function create_visit(){
+    console.log(window.location.search);
+    console.log(document.getElementById('busuanzi_value_page_pv').value);
+    fetch('/api/visit', {
+        "method": "POST"
+    }).then(function(res){
+        return res.json()
+    }).then(function(data){
+        console.log(data);
+    })
+};
+create_visit();

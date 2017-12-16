@@ -1,6 +1,6 @@
 var Q      = require('q');
 var mysql  = require('mysql');
-var config = require('../local_mysql.json')
+var config = require('../local_config.json').mysql;
 
 
 var query = function(sql,kwargs){

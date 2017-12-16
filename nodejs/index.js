@@ -78,14 +78,16 @@ router.post('batch_screen_shot','/batch_screen_shot',(ctx,next) => {
 
 });
 
-
 router.post('create_visit','/api/visit',(ctx,next) => {
     ctx.response.header['Content-Type']= 'application/json;charset=utf8';
     ctx.response.body = ctx.request.query;
     let sql = 'select * from visit_log limit 5;'
+    let headers = ctx.request.headers;
+
     const defer = Q.defer();
     mysql.query(sql, []).then(res => {
         ctx.response.body = {
+            "headers": headers,
             "status": 200
         }
         defer.resolve();
