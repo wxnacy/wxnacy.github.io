@@ -18,7 +18,6 @@ function getValue(key) {
     }
 }
 
-console.log(getValue('n'));
 Date.prototype.format=function(fmt) {
     var o = {
         "M+" : this.getMonth()+1, //月份
@@ -52,8 +51,10 @@ Date.prototype.format=function(fmt) {
         }
     return fmt;
 };
-// console.log((new Date()).format('yyyy-MM-dd HH:mm:ss'));
-// console.log((new Date()).format('yyyy-MM-dd E HH:mm:ss'));
-// console.log((new Date()).format('yyyy-MM-dd EE HH:mm:ss'));
 
-console.log(new Date('2014 07 10 10:21:12'));
+fetch('http://ip-api.com/json')
+    .then(function(response){
+        return response.json();
+    }).then(function(data){
+        console.log(data.query);
+    })
