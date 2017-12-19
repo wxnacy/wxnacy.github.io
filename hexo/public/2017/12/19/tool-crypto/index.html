@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="wxnacy 博客">
 <meta property="og:description" content="签名和加解密平常偶尔会用到，又不想每次都去 google 找，干脆自己写了一个在线工具。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-12-19T10:02:51.000Z">
+<meta property="og:updated_time" content="2017-12-19T12:54:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MD5，SHA，HMAC ，AES 在线加密计算">
 <meta name="twitter:description" content="签名和加解密平常偶尔会用到，又不想每次都去 google 找，干脆自己写了一个在线工具。">
@@ -196,7 +196,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>签名和加解密平常偶尔会用到，又不想每次都去 google 找，干脆自己写了一个在线工具。<br><a id="more"></a><br>文本： <textarea id="msg" style="width: 50%">message</textarea><br><br><br>KEY: <input id="key" value="message_key" style="width: 30%"></p>
-<button id="encrypt" onclick="create_crypto('default')">签名</button> <button id="encryptHmac" onclick="create_crypto('hmac')">HMAC 签名</button> <button id="encryptAES" onclick="create_crypto('aes_encrypt')">AES 加密</button> <button id="decryptAES" onclick="create_crypto('aes_decrypt')">AES 解密</button>
+<button id="encrypt" onclick="create_crypto('default')">签名</button> <button id="encryptHmac" onclick="create_crypto('hmac')">HMAC 签名</button> <button id="encryptAES" onclick="create_crypto('aes_encrypt')">AES 加密</button> <button id="decryptAES" onclick="create_crypto('aes_decrypt')">AES 解密</button> <button id="encryptDES" onclick="create_crypto('des_encrypt')">DES 加密</button> <button id="decryptDES" onclick="create_crypto('des_decrypt')">DES 解密</button> <button id="encryptTDES" onclick="create_crypto('tdes_encrypt')">TripleDES 加密</button> <button id="decryptTDES" onclick="create_crypto('tdes_decrypt')">TripleDES 解密</button> <button id="encryptRabbit" onclick="create_crypto('rabbit_encrypt')">Rabbit 加密</button> <button id="decryptRabbit" onclick="create_crypto('rabbit_decrypt')">Rabbit 解密</button>
+
+
+
 
 <div id="hash" style="display: none"><br>MD5<br><span id="md5"></span><br>SHA1<br><span id="sha1"></span><br>SHA256<br><span id="sha256"></span><br>SHA512<br><span id="sha512"></span><br></div>
 
@@ -400,11 +403,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -412,11 +415,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -428,11 +435,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -448,11 +451,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">grep</a>
+                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
+                <a href="javascript:void(0)" class="js-tag color5">grep</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -504,11 +507,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color2">expect</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">expect</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -520,11 +523,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sqlalchemy</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color1">sqlalchemy</a>
               </li>
              
               <li class="article-tag-list-item">

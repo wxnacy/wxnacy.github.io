@@ -113,11 +113,24 @@ router.post('crypto','/api/crypto',(ctx,next) => {
         }
 
     } else if( type == 'aes_encrypt' ){
-        res = {
-            "result": CryptoJS.AES.encrypt(content, key).toString()
-        }
+        res['result'] = CryptoJS.AES.encrypt(content, key).toString()
     } else if( type == 'aes_decrypt' ){
         res['result'] = CryptoJS.AES.decrypt(content, key)
+            .toString(CryptoJS.enc.Utf8);
+    } else if( type == 'des_encrypt' ){
+        res['result'] = CryptoJS.DES.encrypt(content, key).toString()
+    } else if( type == 'des_decrypt' ){
+        res['result'] = CryptoJS.DES.decrypt(content, key)
+            .toString(CryptoJS.enc.Utf8);
+    } else if( type == 'tdes_encrypt' ){
+        res['result'] = CryptoJS.TripleDES.encrypt(content, key).toString()
+    } else if( type == 'tdes_decrypt' ){
+        res['result'] = CryptoJS.TripleDES.decrypt(content, key)
+            .toString(CryptoJS.enc.Utf8);
+    } else if( type == 'rabbit_encrypt' ){
+        res['result'] = CryptoJS.Rabbit.encrypt(content, key).toString()
+    } else if( type == 'rabbit_decrypt' ){
+        res['result'] = CryptoJS.Rabbit.decrypt(content, key)
             .toString(CryptoJS.enc.Utf8);
     }else {
         res = {

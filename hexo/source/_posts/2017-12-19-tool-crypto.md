@@ -9,7 +9,10 @@ tags: [算法]
 文本： <textarea id="msg" style="width: 50%">message</textarea>
 <br/>
 KEY: <input id="key" value="message_key" style="width: 30%"/>
-<button id="encrypt" onClick="create_crypto('default')">签名</button> <button id="encryptHmac" onClick="create_crypto('hmac')">HMAC 签名</button> <button id="encryptAES" onClick="create_crypto('aes_encrypt')">AES 加密</button> <button id="decryptAES" onClick="create_crypto('aes_decrypt')">AES 解密</button>
+<button id="encrypt" onClick="create_crypto('default')">签名</button> <button id="encryptHmac" onClick="create_crypto('hmac')">HMAC 签名</button> <button id="encryptAES" onClick="create_crypto('aes_encrypt')">AES 加密</button> <button id="decryptAES" onClick="create_crypto('aes_decrypt')">AES 解密</button> <button id="encryptDES" onClick="create_crypto('des_encrypt')">DES 加密</button> <button id="decryptDES" onClick="create_crypto('des_decrypt')">DES 解密</button> <button id="encryptTDES" onClick="create_crypto('tdes_encrypt')">TripleDES 加密</button> <button id="decryptTDES" onClick="create_crypto('tdes_decrypt')">TripleDES 解密</button> <button id="encryptRabbit" onClick="create_crypto('rabbit_encrypt')">Rabbit 加密</button> <button id="decryptRabbit" onClick="create_crypto('rabbit_decrypt')">Rabbit 解密</button>
+
+
+
 
 <div id="hash" style="display: none">
 MD5
