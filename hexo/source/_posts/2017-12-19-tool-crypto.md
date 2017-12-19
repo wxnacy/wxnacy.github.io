@@ -1,9 +1,11 @@
 ---
-title: MD5，SHA，HMAC 在线加密计算
+title: MD5，SHA，HMAC ，AES 在线加密计算
 date: 2017-12-19 15:03:03
 tags: [算法]
 ---
 
+签名和加解密平常偶尔会用到，又不想每次都去 google 找，干脆自己写了一个在线工具。
+<!-- more -->
 文本： <textarea id="msg" style="width: 50%">message</textarea>
 <br/>
 KEY: <input id="key" value="message_key" style="width: 30%"/>
