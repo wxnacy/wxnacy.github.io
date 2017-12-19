@@ -6,6 +6,7 @@ const router = require('koa-router')();
 // const ss = require('./src/screenshot.js');
 const json = require('./src/json');
 const mysql = require('./src/mysql-util.js');
+const utils = require('./src/utils.js');
 const Q = require('q');
 const CryptoJS = require("crypto-js");
 
@@ -99,6 +100,15 @@ router.post('create_visit','/api/visit',(ctx,next) => {
 router.post('crypto','/api/crypto',(ctx,next) => {
     ctx.response.header['Content-Type']= 'application/json;charset=utf8';
     let body = ctx.request.body;
+    let flag = utils.check_sign(body);
+    if( !flag ){
+
+        ctx.response.body = {
+            "status": 403,
+            "message": "error request"
+        }
+        return;
+    }
     let content = body.content;
     let key = body.key;
     let type = body.type;

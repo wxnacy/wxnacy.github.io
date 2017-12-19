@@ -37,7 +37,7 @@ var special = [
     '!', '@', '#', '$', '%', '^',
     '&','*'
 ];
-function getRandom(len){
+function getRandomFunc(len){
     var array = new Array(len);
     array[0] = LETTER[parseInt(Math.random() * LETTER.length)];
     array[1] = letter[parseInt(Math.random() * letter.length)];
@@ -47,8 +47,43 @@ function getRandom(len){
         array[i] = digits[parseInt(Math.random() * digits.length)];
     }
     var res = array.join('');
-    document.getElementById('out').innerHTML = res;
     return array.join('');
+};
+function getRandom(len){
+    var res = getRandomFunc(len);
+    document.getElementById('out').innerHTML = res;
+};
+var SECRET_KEY = '5f71fbb6f071d5dc2a4221bb1f891492'
+function sortDict(dict) {
+    keys = Object.keys(dict);
+    keys.sort();
+    newDict = {};
+    keys.forEach(function(d, i){
+        newDict[d] = dict[d];
+    })
+    return newDict;
+};
+function create_sign(data, ts, rs) {
+    data = sortDict(data);
+    params = "";
+    for(var k in data){
+        params = params + k + "=" + data[k] + '&';
+    }
+    params = params + "ts=" + ts + "&";
+    params = params + "rs=" + rs;
+    sign = CryptoJS.HmacSHA1(params, SECRET_KEY).toString().toUpperCase();
+    console.log(params);
+    console.log(sign);
+    return sign;
+};
+function encryptParams(data) {
+    var ts = new Date().getTime();
+    var rs = getRandomFunc(10);
+    var sign = create_sign(data, ts, rs);
+    data['ts'] = ts;
+    data['rs'] = rs;
+    data['sign'] = sign;
+    return data;
 };
 function create_visit(){
     console.log(window.location.search);
@@ -69,11 +104,11 @@ function create_crypto(type) {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
+        body: JSON.stringify(encryptParams({
             content: content,
             type: type,
             key: key
-        })
+        }))
     }).then(function(res){
         return res.json();
     }).then(function(data){
@@ -95,3 +130,6 @@ function create_crypto(type) {
 };
 // create_crypto();
 // create_visit();
+var params = {"w": 3, "a": 1, "z": 10};
+var data = encryptParams(params)
+console.log(data);
