@@ -61,4 +61,37 @@ function create_visit(){
         console.log(data);
     })
 };
-create_visit();
+function create_crypto(type) {
+    var content = document.getElementById("msg").value;
+    var key = document.getElementById("key").value;
+    fetch('/api/crypto', {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            content: content,
+            type: type,
+            key: key
+        })
+    }).then(function(res){
+        return res.json();
+    }).then(function(data){
+        console.log(data);
+        body = data.data;
+        if( type == 'default' || type == 'hmac'){
+            document.getElementById("crypto").style.display = 'none';
+            document.getElementById("hash").style.display = 'block';
+            document.getElementById("md5").innerHTML = body.md5;
+            document.getElementById("sha1").innerHTML = body.sha1;
+            document.getElementById("sha256").innerHTML = body.sha256;
+            document.getElementById("sha512").innerHTML = body.sha512;
+        } else {
+            document.getElementById('hash').style.display = 'none';
+            document.getElementById('crypto').style.display = 'block';
+            document.getElementById("result").innerHTML = body.result;
+        }
+    });
+};
+// create_crypto();
+// create_visit();

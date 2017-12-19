@@ -7,6 +7,7 @@ const router = require('koa-router')();
 const json = require('./src/json');
 const mysql = require('./src/mysql-util.js');
 const Q = require('q');
+const CryptoJS = require("crypto-js");
 
 router.post('jsonParser','/json/parser',(ctx,next) => {
     const body = ctx.request.body;
@@ -95,6 +96,44 @@ router.post('create_visit','/api/visit',(ctx,next) => {
     return defer.promise;
 })
 
+router.post('crypto','/api/crypto',(ctx,next) => {
+    ctx.response.header['Content-Type']= 'application/json;charset=utf8';
+    let body = ctx.request.body;
+    let content = body.content;
+    let key = body.key;
+    let type = body.type;
+    let res = {};
+    console.log(body);
+    if( type == 'hmac' ){
+        res = {
+            "md5": CryptoJS.HmacMD5(content, key).toString(),
+            "sha1": CryptoJS.HmacSHA1(content, key).toString(),
+            "sha256": CryptoJS.HmacSHA256(content, key).toString(),
+            "sha512": CryptoJS.HmacSHA512(content, key).toString(),
+        }
+
+    } else if( type == 'aes_encrypt' ){
+        res = {
+            "result": CryptoJS.AES.encrypt(content, key).toString()
+        }
+    } else if( type == 'aes_decrypt' ){
+        res['result'] = CryptoJS.AES.decrypt(content, key)
+            .toString(CryptoJS.enc.Utf8);
+    }else {
+        res = {
+            "md5": CryptoJS.MD5(content).toString(),
+            "sha1": CryptoJS.SHA1(content).toString(),
+            "sha256": CryptoJS.SHA256(content).toString(),
+            "sha512": CryptoJS.SHA512(content).toString(),
+        }
+    }
+    ctx.response.body = {
+        "data": res,
+        "status": 200,
+        "message": ""
+    }
+})
+
 router.get('test','/api/visit',(ctx,next) => {
     ctx.response.header['Content-Type']= 'application/json;charset=utf8';
     ctx.response.body = ctx.request.query;
@@ -110,6 +149,7 @@ router.get('test','/api/visit',(ctx,next) => {
     })
     return defer.promise;
 })
+
 router.get('test','/api',(ctx,next) => {
     ctx.response.header['Content-Type']= 'application/json;charset=utf8';
     ctx.response.body = ctx.request.query;
