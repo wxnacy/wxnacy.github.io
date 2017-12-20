@@ -116,4 +116,4 @@ function getUTCDate(){
     s = s < 10 ? '0' + s : s;
     return y + '-' + M + '-' + d + ' ' + h + ':' + m + ':' + s;
 };
-console.log((new Date()).format('YYYY-MM-dd HH:mm:ss'));
+// console.log((new Date()).format('YYYY-MM-dd HH:mm:ss'));

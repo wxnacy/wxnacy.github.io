@@ -85,16 +85,30 @@ function encryptParams(data) {
     data['sign'] = sign;
     return data;
 };
+function get_page_pv() {
+    var pv =  document.getElementById('busuanzi_value_page_pv').innerHTML;
+    return pv;
+}
+var pagePvTimer;
+// pagePvTimer = setInterval(create_visit, 1000);
 function create_visit(){
     console.log(window.location.search);
-    console.log(document.getElementById('busuanzi_value_page_pv').value);
-    fetch('/api/visit', {
-        "method": "POST"
-    }).then(function(res){
-        return res.json()
-    }).then(function(data){
-        console.log(data);
-    })
+    console.log(document.getElementById('busuanzi_value_page_pv').innerHTML);
+    var pv = get_page_pv();
+    console.log('time');
+    if( pv != '' && pv != 'undefined' ){
+        clearInterval(pagePvTimer);
+        console.log(pv);
+        fetch('/api/visit', {
+            "method": "POST"
+        }).then(function(res){
+            return res.json()
+        }).then(function(data){
+            console.log(data);
+        })
+    }
+
+
 };
 function create_crypto(type) {
     var content = document.getElementById("msg").value;
@@ -130,6 +144,7 @@ function create_crypto(type) {
 };
 // create_crypto();
 // create_visit();
-var params = {"w": 3, "a": 1, "z": 10};
-var data = encryptParams(params)
-console.log(data);
+// console.log(get_page_pv());
+// var params = {"w": 3, "a": 1, "z": 10};
+// var data = encryptParams(params)
+// console.log(data);

@@ -32,3 +32,7 @@ SHA512
 
 - **签名** 现在支持的签名为 MD5，SHA1，SHA256，SHA512，以及 Hmac 加密签名
 - **加密／解密** 现在支持 AES 算法的加解密
+
+## 参考
+- [https://1024tools.com/hmac](https://1024tools.com/hmac)
+- [http://www.yuangongju.com/encrypt](http://www.yuangongju.com/encrypt)
