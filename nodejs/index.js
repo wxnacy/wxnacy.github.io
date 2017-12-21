@@ -84,19 +84,40 @@ router.put('put_page_view','/api/blog/page_view',(ctx,next) => {
     ctx.response.header['Content-Type']= 'application/json;charset=utf8';
     let body = ctx.request.body;
     let headers = ctx.request.headers;
+    let route = body.route;
+    if( route.lastIndexOf('/') ){
+        route = route.substr(0, route.length-1);
+    }
+    let page_view = body.page_view;
     console.log(body);
     console.log(headers);
 
-    // const defer = Q.defer();
-    // mysql.query(sql, []).then(res => {
-        // ctx.response.body = {
-            // "headers": headers,
-            // "status": 200
-        // }
-        // defer.resolve();
-    // })
-    // return defer.promise;
-    return 'Hello World '
+    const defer = Q.defer();
+    let sql = "insert into blog (route, page_view) values (?, ?)"
+    mysql.query("select * from blog where route = ?", [route])
+        .then(res => {
+            if( res.length > 0 ){
+                return res
+            } else {
+                mysql.query(sql, [route, page_view])
+                    .then(res => {
+                        ctx.response.body = {
+                            "status": 200
+                        }
+                        defer.resolve();
+                    })
+            }
+        }).then(res => {
+            sql = "update blog set page_view = ? where id = ?"
+            mysql.query(sql, [page_view, res[0].id])
+                .then(res => {
+                        ctx.response.body = {
+                            "status": 200
+                        }
+                        defer.resolve();
+                })
+        })
+    return defer.promise;
 })
 
 router.post('crypto','/api/crypto',(ctx,next) => {

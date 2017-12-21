@@ -96,4 +96,5 @@ Math.round(new Date('2017/12/10 10:21:12').getTime()/1000)
 - [Python](/2017/12/10/python-datetime/)
 ***未完待续***
 ## 参考
-[Unix时间戳转换工具](http://tool.chinaz.com/Tools/unixtime.aspx)
+- [Unix时间戳转换工具](http://tool.chinaz.com/Tools/unixtime.aspx)
+- [世界时区查询](https://time.artjoey.com/cn/)

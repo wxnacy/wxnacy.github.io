@@ -2,7 +2,6 @@ var Q      = require('q');
 var mysql  = require('mysql');
 var config = require('../local_config.json').mysql;
 
-
 var query = function(sql,kwargs){
   var d = Q.defer();
   var conn = mysql.createConnection(config);
@@ -18,3 +17,6 @@ var query = function(sql,kwargs){
 
 module.exports.query = query
 
+let sql = 'select * from blog;'
+let res = query(sql, [])
+console.log(res);
