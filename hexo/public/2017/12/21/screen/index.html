@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://wxnacy.com">
-  <title>Archives | wxnacy 博客</title>
+  <title>Linux 多窗口工具 Screen | wxnacy 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="python linux nodejs vim git">
-<meta property="og:type" content="website">
-<meta property="og:title" content="wxnacy 博客">
-<meta property="og:url" content="http://wxnacy.com/archives/page/4/index.html">
+  <meta name="description" content="在写这篇文章的时候，我意识到我可能在总结一些过时的东西。">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 多窗口工具 Screen">
+<meta property="og:url" content="http://wxnacy.com/2017/12/21/screen/index.html">
 <meta property="og:site_name" content="wxnacy 博客">
-<meta property="og:description" content="python linux nodejs vim git">
+<meta property="og:description" content="在写这篇文章的时候，我意识到我可能在总结一些过时的东西。">
 <meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2017-12-21T02:57:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wxnacy 博客">
-<meta name="twitter:description" content="python linux nodejs vim git">
+<meta name="twitter:title" content="Linux 多窗口工具 Screen">
+<meta name="twitter:description" content="在写这篇文章的时候，我意识到我可能在总结一些过时的东西。">
   
     <link rel="alternative" href="/atom.xml" title="wxnacy 博客" type="application/atom+xml">
   
@@ -173,411 +175,167 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-screen" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux 多窗口工具 Screen
+    </h1>
+  
+
+        
+        <a href="/2017/12/21/screen/" class="archive-article-date">
+  	<time datetime="2017-12-21T01:25:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-21</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在写这篇文章的时候，我意识到我可能在总结一些过时的东西。<br><a id="more"></a><div class="toc"></p>
+<!-- toc -->
+<ul>
+<li><a href="#xia-zai">下载</a></li>
+<li><a href="#chuang-jian-chuang-kou">创建窗口</a></li>
+<li><a href="#duan-kai">断开</a></li>
+<li><a href="#chong-lian">重连</a></li>
+<li><a href="#chuang-jian-zhi-ding-ming-zi-chuang-kou">创建指定名字窗口</a></li>
+<li><a href="#qiang-zhi-duan-kai">强制断开</a></li>
+<li><a href="#xiang-tong-ming-zi-dai-lai-de-ma-fan">相同名字带来的麻烦</a></li>
+</ul>
+<!-- tocstop -->
+<p></div></p>
+<blockquote>
+<p>GNU Screen是一款由GNU计划开发的用于命令行终端切换的自由软件。用户可以通过该软件同时连接多个本地或远程的命令行会话，并在其间自由切换。</p>
+</blockquote>
+<p>Screen 可以多开窗口并灵活切换，然而这一点它不如 <a href="/2017/09/24/tmux/">Tmux</a> 灵活和可扩展。因为每个窗口之间进程互不影响，它也可以起到在后台运行程序的作用，然后这一点它又不如 <a href="/2017/08/15/linux-2017-08-15-nohup/">nohup</a> 来的方便。比上不足比下有余，然而及时是过时，但是没有被淘汰，那就有总结的必要，也正因为此，我们只来谈谈最常用的部分。</p>
+<h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><p>CentOS<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yum install screen</div></pre></td></tr></table></figure></p>
+<p>Ubuntu<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ apt install screen</div></pre></td></tr></table></figure></p>
+<p>MacOS<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install screen</div></pre></td></tr></table></figure></p>
+<h2><span id="chuang-jian-chuang-kou">创建窗口</span><a href="#chuang-jian-chuang-kou" class="header-anchor"></a></h2><p>输入命令 <code>screen</code> 既可以创建新窗口<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ screen</div><div class="line">$ screen -ls</div></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">There is a screen on:</div><div class="line">    67784.ttys036.wxnacydeMacBook-Pro    (Attached)</div><div class="line">1 Socket <span class="keyword">in</span> /tmp/uscreens/S-wxnacy.</div></pre></td></tr></table></figure>
+<p>进入窗口后，界面就像重新打开一次终端，初次外并无区别，随后执行 <code>screen -ls</code> 列出当前存在的窗口，会发现 <code>&lt;pid&gt;.&lt;session-name&gt; &lt;status&gt;</code> 样式的列表，<code>Attached</code> 代表该窗口处于连接状态。</p>
+<h2><span id="duan-kai">断开</span><a href="#duan-kai" class="header-anchor"></a></h2><p>输入如下命令或键入 <code>C-a d (ctrl-a d)</code> 即可断开当前窗口<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ screen -d</div></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[detached from 67784.ttys036.wxnacydeMacBook-Pro]</div></pre></td></tr></table></figure>
+<p>出现如上字样，即从窗口断开，此时键入 <code>screen -ls</code> 会发现窗口状态变为 <code>Detached</code></p>
+<h2><span id="chong-lian">重连</span><a href="#chong-lian" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ screen -r 67784</div><div class="line">$ screen -r ttys036.wxnacydeMacBook-Pro</div></pre></td></tr></table></figure>
+<p>使用 <code>-r</code> 命令即可重连窗口，后面可以跟 <code>pid</code> 或 <code>screen-name</code>，第二种方式好像名字太长了，下面我们介绍创建指定名字的窗口</p>
+<h2><span id="chuang-jian-zhi-ding-ming-zi-chuang-kou">创建指定名字窗口</span><a href="#chuang-jian-zhi-ding-ming-zi-chuang-kou" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ screen -S wxnacy</div></pre></td></tr></table></figure>
+<p>使用 <code>-S</code> 参数既可创建指定名称的窗口，此时查看屏幕列表会发现如下列表<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">There is a screen on:</div><div class="line">    67784.ttys036.wxnacydeMacBook-Pro    (Detached)</div><div class="line">    76023.wxnacy    (Attached)</div><div class="line">1 Socket <span class="keyword">in</span> /tmp/uscreens/S-wxnacy.</div></pre></td></tr></table></figure></p>
+<p>由此可见我们应该更多的使用这种方式创建窗口</p>
+<h2><span id="qiang-zhi-duan-kai">强制断开</span><a href="#qiang-zhi-duan-kai" class="header-anchor"></a></h2><p>如果在服务器与其他人共享一个账号，其他人也可以链接你创建的 screen 如果他忘记退出，或者你是非正常退出的终端，下次链接就会失败<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">There is a screen on:</div><div class="line">    17814.wxnacy    (Attached)</div><div class="line">There is no screen to be resumed matching 17814.</div></pre></td></tr></table></figure></p>
+<p>显示该正在连接，不能在连接，这时候如果不考虑其他情况，可以强行将屏幕断开链接<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ screen -d wxnacy</div></pre></td></tr></table></figure></p>
+<p>这样其他人会自动断开连接。</p>
+<h2><span id="xiang-tong-ming-zi-dai-lai-de-ma-fan">相同名字带来的麻烦</span><a href="#xiang-tong-ming-zi-dai-lai-de-ma-fan" class="header-anchor"></a></h2><p><code>-S</code> 很方便，用不好也很麻烦，因为如果我忘了之前生成功一个 wxnacy 名字的屏幕，再次执行该命令，会再次生成一个相同名字的屏幕，但是 pid 会不同<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">There is a screen on:</div><div class="line">    67784.wxnacy    (Attached)</div><div class="line">    76023.wxnacy    (Attached)</div><div class="line">1 Socket <span class="keyword">in</span> /tmp/uscreens/S-wxnacy.</div></pre></td></tr></table></figure></p>
+<p>下次重连使用 <code>screen -r wxnacy</code> 就会报错<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">There are several suitable screens on:</div><div class="line">    67784.wxnacy    (Attached)</div><div class="line">    76023.wxnacy    (Attached)</div><div class="line">Type <span class="string">"screen [-d] -r [pid.]tty.host"</span> to resume one of them.</div></pre></td></tr></table></figure></p>
+<p>程序提示使用 <code>67784.wxnacy</code> 的方式进入或断开连接，我们先断开，在连接，成功了。</p>
+<p>但这样太麻烦了，还是换成不同的名字比较好，需要删除一个屏幕，这时候分两种情况，连接状态和断开状态。</p>
+<p>首先如何判断现在是否处于屏幕连接中，前面提到，外观上两者区别不大，此时可以使用组合键 <code>C-a w</code> ，如果处于连接状态，左下角会显示，所有窗口列表。</p>
+<p>连接中<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">exit</span> [screen -X quit]</div></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[screen is terminating]</div></pre></td></tr></table></figure>
+<p>非常简单，使用 <code>exit</code> 就可以删除当前屏幕，第二种可以，但是何必多输入这么命令呢</p>
+<p>断开连接<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ screen -r [-S] 67784.wxnacy -X quit</div></pre></td></tr></table></figure></p>
+<p>说白了，就是先连接，在执行 <code>-X quit</code> 删除，是的，连接命令后可以直接跟上想要在屏幕中执行的命令，但是 <code>exit</code> 在这时候无效。</p>
+<p>了解了这些东西就可以使用它工作了，如果你有更高的需求可以参看这篇<a href="http://man.linuxde.net/screen" target="_blank" rel="noopener">文章</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/21/pyenv-mac/" class="archive-article-date">
-  	<time datetime="2017-11-21T14:18:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/21/pyenv-mac/">Mac 环境下安装 pyenv 和 virtualenv</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">mac</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">pyenv</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/k8s-minikube/" class="archive-article-date">
-  	<time datetime="2017-10-31T03:32:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/12/20/cryptojs/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Node 使用 crypto-js 进行散列和加解密算法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/k8s-minikube/">k8s-minikube</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="xia-zai">&#x4E0B;&#x8F7D;</span><a href="#xia-zai" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="chuang-jian-chuang-kou">&#x521B;&#x5EFA;&#x7A97;&#x53E3;</span><a href="#chuang-jian-chuang-kou" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="duan-kai">&#x65AD;&#x5F00;</span><a href="#duan-kai" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text"><span id="chong-lian">&#x91CD;&#x8FDE;</span><a href="#chong-lian" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text"><span id="chuang-jian-zhi-ding-ming-zi-chuang-kou">&#x521B;&#x5EFA;&#x6307;&#x5B9A;&#x540D;&#x5B57;&#x7A97;&#x53E3;</span><a href="#chuang-jian-zhi-ding-ming-zi-chuang-kou" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text"><span id="qiang-zhi-duan-kai">&#x5F3A;&#x5236;&#x65AD;&#x5F00;</span><a href="#qiang-zhi-duan-kai" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">7.</span> <span class="toc-text"><span id="xiang-tong-ming-zi-dai-lai-de-ma-fan">&#x76F8;&#x540C;&#x540D;&#x5B57;&#x5E26;&#x6765;&#x7684;&#x9EBB;&#x70E6;</span><a href="#xiang-tong-ming-zi-dai-lai-de-ma-fan" class="header-anchor"></a></span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/13/need-learn/" class="archive-article-date">
-  	<time datetime="2017-10-13T06:22:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-13</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/13/need-learn/">生命不息，学习不止</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/13/vim-plugin-ctrlsf/" class="archive-article-date">
-  	<time datetime="2017-10-13T06:19:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/13/vim-plugin-ctrlsf/">Vim 插件 CtrlSF 全局搜索文件</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vim</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">搜索</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/13/vim-plugin-ack/" class="archive-article-date">
-  	<time datetime="2017-10-13T06:19:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/13/vim-plugin-ack/">Vim 插件 Ack 全局搜索文件</a>
-    </h1>
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'true'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vim</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">搜索</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/13/vim-plugin-easygrep/" class="archive-article-date">
-  	<time datetime="2017-10-13T06:19:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/13/vim-plugin-easygrep/">Vim 插件 EasyGrep 全局搜索文件</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vim</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">grep</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">搜索</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/13/vim-grep/" class="archive-article-date">
-  	<time datetime="2017-10-13T02:49:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/13/vim-grep/">Vim 高级功能 vimgrep 全局搜索文件</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vim</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">grep</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/04/tmux-plugin-resurect-continuum/" class="archive-article-date">
-  	<time datetime="2017-10-04T01:44:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/04/tmux-plugin-resurect-continuum/">Tmux 插件 resurect &amp; continuum 会话定时保存</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tmux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/25/vim-plugin-nerdcommenter/" class="archive-article-date">
-  	<time datetime="2017-09-25T09:49:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/25/vim-plugin-nerdcommenter/">Vim 插件 nerdcommenter 快速注释</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vim</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/25/vim-plugin-solarize/" class="archive-article-date">
-  	<time datetime="2017-09-25T07:54:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/25/vim-plugin-solarize/">Vim 插件 vim-colors-solarized 主题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vim</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/3/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/page/5/">5</a><a class="page-number" href="/archives/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/13/">13</a><a class="extend next" rel="next" href="/archives/page/5/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -615,8 +373,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
