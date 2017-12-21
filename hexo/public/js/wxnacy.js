@@ -72,8 +72,6 @@ function create_sign(data, ts, rs) {
     params = params + "ts=" + ts + "&";
     params = params + "rs=" + rs;
     sign = CryptoJS.HmacSHA1(params, SECRET_KEY).toString().toUpperCase();
-    console.log(params);
-    console.log(sign);
     return sign;
 };
 function encryptParams(data) {
@@ -90,21 +88,24 @@ function get_page_pv() {
     return pv;
 }
 var pagePvTimer;
-// pagePvTimer = setInterval(create_visit, 1000);
+pagePvTimer = setInterval(create_visit, 1000);
 function create_visit(){
-    console.log(window.location.search);
-    console.log(document.getElementById('busuanzi_value_page_pv').innerHTML);
     var pv = get_page_pv();
-    console.log('time');
     if( pv != '' && pv != 'undefined' ){
         clearInterval(pagePvTimer);
-        console.log(pv);
-        fetch('/api/visit', {
-            "method": "POST"
+        var params = encryptParams({
+            route: window.location.pathname,
+            page_view: pv
+        });
+        fetch('/api/blog/page_view', {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(params)
         }).then(function(res){
             return res.json()
         }).then(function(data){
-            console.log(data);
         })
     }
 
