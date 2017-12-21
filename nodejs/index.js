@@ -80,21 +80,23 @@ router.post('batch_screen_shot','/batch_screen_shot',(ctx,next) => {
 
 });
 
-router.post('create_visit','/api/visit',(ctx,next) => {
+router.put('put_page_view','/api/blog/page_view',(ctx,next) => {
     ctx.response.header['Content-Type']= 'application/json;charset=utf8';
-    ctx.response.body = ctx.request.query;
-    let sql = 'select * from visit_log limit 5;'
+    let body = ctx.request.body;
     let headers = ctx.request.headers;
+    console.log(body);
+    console.log(headers);
 
-    const defer = Q.defer();
-    mysql.query(sql, []).then(res => {
-        ctx.response.body = {
-            "headers": headers,
-            "status": 200
-        }
-        defer.resolve();
-    })
-    return defer.promise;
+    // const defer = Q.defer();
+    // mysql.query(sql, []).then(res => {
+        // ctx.response.body = {
+            // "headers": headers,
+            // "status": 200
+        // }
+        // defer.resolve();
+    // })
+    // return defer.promise;
+    return 'Hello World '
 })
 
 router.post('crypto','/api/crypto',(ctx,next) => {
