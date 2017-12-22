@@ -98,3 +98,4 @@ Math.round(new Date('2017/12/10 10:21:12').getTime()/1000)
 ## 参考
 - [Unix时间戳转换工具](http://tool.chinaz.com/Tools/unixtime.aspx)
 - [世界时区查询](https://time.artjoey.com/cn/)
+- [世界协调时间](http://zh.thetimenow.com/utc/coordinated_universal_time)

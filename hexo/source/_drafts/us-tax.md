@@ -1,0 +1,75 @@
+---
+title: 关于美国税收
+tags: [ 工具 ]
+---
+
+活得越久，你就会越觉得活在中国是幸福的，大部分人不知道还有购物税这个东西，至少他们没有意识到有这个东西存在。所以我们不用像美国人一样购物时，要快速心算一遍算上税这个商品要多少钱，是的，他们商品的标价并不是最后价钱，需要再算上税，原来所见即所得也是很幸福的。
+<!-- more --><!-- toc -->
+那美国的税是怎么算的
+
+> 美国各地的消费税由两个部分组成：州消费税 (State Sales Tax) + 地方消费税 (Local Sales Tax) = 综合消费税 (Combined Sales Tax)。州消费税由州政府制定为固定，而地方消费税则由各县市政府制定，也就是说，同一州的两个城市可能会有不同的消费税。
+
+美国各地的税率可以参考该网站 [Sales Tax Rates](http://www.sale-tax.com/)
+## 邮编
+那如果你要做一个美国电商平台，该怎么计算用户应该付多少税呢（是的，这依然一篇技术博客），因为税收跟地址有非常大的关系，那可以作为最好的比对依据就是**[邮编 ](https://www.youbianku.com/%E7%BE%8E%E5%9B%BD)**
+
+在这方面有专业的[官方网站](https://www.unitedstateszipcodes.org/)可用
+![/images/zip-code.png](/images/zip-code.png)
+他们提供了专业的[数据库](https://www.unitedstateszipcodes.org/zip-code-database/)文件，有收费也有免费，你可以根据自己需求使用。
+
+## 获取税率
+[Taxjar](https://www.taxjar.com) 是一款根据邮编查询税率的第三方服务，亚马逊、PayPal、Stripe 等国外购物或支付平台都有接入，我们可以通过[开发者平台 ](https://developers.taxjar.com/api/reference/)接入，需要注册拿到 `api-key`，这步不在赘述。
+本文以 Python 为例演示
+下载
+```bash
+$ sudo pip install taxjar
+```
+初始化
+```python
+import taxjar
+client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
+```
+通过邮编和城市位置获取税率
+```python
+# United States (ZIP+4)
+rates = client.rates_for_location('90404-3370')
+
+# United States (ZIP w/ Optional Params)
+rates = client.rates_for_location('90404', {
+    'city': 'SANTA MONICA',
+    'country': 'US'
+})
+
+# International Examples (Requires City and Country)
+rates = client.rates_for_location('V5K0A1', {
+    'city': 'VANCOUVER',
+    'country': 'CA'
+})
+
+rates = client.rates_for_location('00150', {
+    'city': 'HELSINKI',
+    'country': 'FI'
+})
+```
+结果样例
+```python
+<TaxJarRate {
+    'city': 'SANTA MONICA',
+    'zip': '90404',
+    'combined_district_rate': 0.025,
+    'state_rate': 0.0625,
+    'city_rate': 0,
+    'county': 'LOS ANGELES',
+    'state': 'CA',
+    'combined_rate': 0.0975,
+    'county_rate': 0.01,
+    'freight_taxable': False
+}>
+```
+结果中包含州和地方的税率，东西很多，该取哪个值呢。
+> Combined Rate: Overall Sale Tax rate which includes the State, County, City and District portions. This is the rate that should be used to determine how much Sales Tax to collect for an order
+
+根据文档的描述，我们取综合税率 `combined_rate` 即可，拿到这个结果就可以进行工作了，如果需要 Python 的更多用法，见[文档 ](https://github.com/taxjar/taxjar-python)
+## 参考
+- [Sales Tax Rates](http://www.sale-tax.com/)
+- [美國哪州消費購物最划算？美國免稅州及各州消費稅率查詢一覽表（2017最新）](https://www.guruin.com/articles/1363)
