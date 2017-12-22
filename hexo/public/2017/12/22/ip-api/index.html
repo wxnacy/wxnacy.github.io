@@ -6,20 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://wxnacy.com">
-  <title>Mysql 索引的增删查 | wxnacy 博客</title>
+  <title>推荐几款获取当前 ip 的免费 api 接口 | wxnacy 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="原文：http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html">
-<meta name="keywords" content="mysql">
+  <meta name="description" content="平常工作中经常需要查询当前 ip 地址，开发中也需要通过 ip 获取一些位置信息，在这里记录几款可以使用的免费 api 接口。">
+<meta name="keywords" content="工具">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mysql 索引的增删查">
-<meta property="og:url" content="http://wxnacy.com/2017/08/09/mysql-2017-08-09-basic-index/index.html">
+<meta property="og:title" content="推荐几款获取当前 ip 的免费 api 接口">
+<meta property="og:url" content="http://wxnacy.com/2017/12/22/ip-api/index.html">
 <meta property="og:site_name" content="wxnacy 博客">
-<meta property="og:description" content="原文：http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html">
+<meta property="og:description" content="平常工作中经常需要查询当前 ip 地址，开发中也需要通过 ip 获取一些位置信息，在这里记录几款可以使用的免费 api 接口。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-12-06T02:56:46.000Z">
+<meta property="og:image" content="http://wxnacy.com/images/ip-api.png">
+<meta property="og:image" content="http://wxnacy.com/images/ipapico.png">
+<meta property="og:updated_time" content="2017-12-22T03:06:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mysql 索引的增删查">
-<meta name="twitter:description" content="原文：http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html">
+<meta name="twitter:title" content="推荐几款获取当前 ip 的免费 api 接口">
+<meta name="twitter:description" content="平常工作中经常需要查询当前 ip 地址，开发中也需要通过 ip 获取一些位置信息，在这里记录几款可以使用的免费 api 接口。">
+<meta name="twitter:image" content="http://wxnacy.com/images/ip-api.png">
   
     <link rel="alternative" href="/atom.xml" title="wxnacy 博客" type="application/atom+xml">
   
@@ -175,60 +178,46 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-mysql-2017-08-09-basic-index" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-ip-api" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Mysql 索引的增删查
+      推荐几款获取当前 ip 的免费 api 接口
     </h1>
   
 
         
-        <a href="/2017/08/09/mysql-2017-08-09-basic-index/" class="archive-article-date">
-  	<time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
+        <a href="/2017/12/22/ip-api/" class="archive-article-date">
+  	<time datetime="2017-12-22T02:15:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>原文：<a href="http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html" target="_blank" rel="noopener">http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html</a><br><a id="more"></a><div class="toc"></p>
+        <p>平常工作中经常需要查询当前 ip 地址，开发中也需要通过 ip 获取一些位置信息，在这里记录几款可以使用的免费 api 接口。<br><a id="more"></a><div class="toc"></p>
 <!-- toc -->
 <ul>
-<li><a href="#suo-yin-lei-xing">索引类型</a></li>
-<li><a href="#chuang-jian-suo-yin">创建索引</a><ul>
-<li><a href="#alter-table">alter table</a></li>
-<li><a href="#create-table">create table</a></li>
-</ul>
-</li>
-<li><a href="#shan-chu-suo-yin">删除索引</a></li>
-<li><a href="#cha-kan-suo-yin">查看索引</a></li>
+<li><a href="#ip-api">ip-api</a></li>
+<li><a href="#ipapi">ipapi</a></li>
+<li><a href="#qi-ta">其他</a></li>
 </ul>
 <!-- tocstop -->
 <p></div></p>
-<h2><span id="suo-yin-lei-xing">索引类型</span><a href="#suo-yin-lei-xing" class="header-anchor"></a></h2><p>在创建索引时，可以规定索引能否包含重复值。如果不包含，则索引应该创建为PRIMARY KEY或UNIQUE索引。对于单列惟一性索引，这保证单列不包含重复的值。对于多列惟一性索引，保证多个值的组合不重复。 PRIMARY KEY索引和UNIQUE索引非常类似。事实上，PRIMARY KEY索引仅是一个具有名称PRIMARY的UNIQUE索引。这表示一个表只能包含一个PRIMARY KEY，因为一个表中不可能具有两个同名的索引。下面的SQL语句对students表在sid上添加PRIMARY KEY索引。</p>
-<h2><span id="chuang-jian-suo-yin">创建索引</span><a href="#chuang-jian-suo-yin" class="header-anchor"></a></h2><p>在执行CREATE TABLE语句时可以创建索引，也可以单独用CREATE INDEX或ALTER TABLE来为表增加索引。</p>
-<h3><span id="alter-table">alter table</span><a href="#alter-table" class="header-anchor"></a></h3><p>其中table_name是要增加索引的表名，column_list指出对哪些列进行索引，多列时各列之间用逗号分隔。索引名index_name可选，缺省时，MySQL将根据第一个索引列赋一个名称。另外，ALTER TABLE允许在单个语句中更改多个表，因此可以在同时创建多个索引。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">alter table table_name add index index_name (column_list);</div><div class="line">alter table table_name add unique index_name (column_list);</div><div class="line">alter table table_name add primary key (column_list);</div></pre></td></tr></table></figure></p>
-<h3><span id="create-table">create table</span><a href="#create-table" class="header-anchor"></a></h3><p>CREATE INDEX可对表增加普通索引或UNIQUE索引。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">create index index_name on table_name (column_list);</div><div class="line">create unique index index_name on table_name (column_list);</div></pre></td></tr></table></figure></p>
-<h2><span id="shan-chu-suo-yin">删除索引</span><a href="#shan-chu-suo-yin" class="header-anchor"></a></h2><p>可利用ALTER TABLE或DROP INDEX语句来删除索引。类似于CREATE INDEX语句，DROP INDEX可以在ALTER TABLE内部作为一条语句处理，语法如下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">drop index index_name on table_name;</div><div class="line">alter table_name drop index index_name;</div><div class="line">alter table_name drop primary key;</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">其中，前两条语句是等价的，删除掉table_name中的索引index_name。</div><div class="line">第3条语句只在删除PRIMARY KEY索引时使用，因为一个表只可能有一个PRIMARY KEY索引，因此不需要指定索引名。</div><div class="line">如果没有创建PRIMARY KEY索引，但表具有一个或多个UNIQUE索引，则MySQL将删除第一个UNIQUE索引。</div><div class="line">如果从表中删除了某列，则索引会受到影响。对于多列组合的索引</div><div class="line">如果删除其中的某列，则该列也会从索引中删除。如果删除组成索引的所有列，则整个索引将被删除。</div></pre></td></tr></table></figure>
-<h2><span id="cha-kan-suo-yin">查看索引</span><a href="#cha-kan-suo-yin" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">show index from table_name;</div><div class="line">show keys from table_name;</div></pre></td></tr></table></figure>
+<h2><span id="ip-api">ip-api</span><a href="#ip-api" class="header-anchor"></a></h2><p>ip-api 是我最早找过的服务，<a href="http://ip-api.com/" target="_blank" rel="noopener">官网</a>可以查询当前访问的 ip 位置等信息。<br><img src="/images/ip-api.png" alt="/images/ip-api.png"><br>接口文档为 <a href="http://ip-api.com/docs/api:json" target="_blank" rel="noopener">http://ip-api.com/docs/api:json</a></p>
+<p>访问非常简单<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl http://ip-api.com/json</div></pre></td></tr></table></figure></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"as"</span>: <span class="string">"AS22552 eSited Solutions"</span>,</div><div class="line">    <span class="attr">"city"</span>: <span class="string">"Orlando"</span>,</div><div class="line">    <span class="attr">"country"</span>: <span class="string">"United States"</span>,</div><div class="line">    <span class="attr">"countryCode"</span>: <span class="string">"US"</span>,</div><div class="line">    <span class="attr">"isp"</span>: <span class="string">"eSited Solutions"</span>,</div><div class="line">    <span class="attr">"lat"</span>: <span class="number">28.5106</span>,</div><div class="line">    <span class="attr">"lon"</span>: <span class="number">-81.1976</span>,</div><div class="line">    <span class="attr">"org"</span>: <span class="string">"eSited Solutions"</span>,</div><div class="line">    <span class="attr">"query"</span>: <span class="string">"104.222.246.242"</span>,</div><div class="line">    <span class="attr">"region"</span>: <span class="string">"FL"</span>,</div><div class="line">    <span class="attr">"regionName"</span>: <span class="string">"Florida"</span>,</div><div class="line">    <span class="attr">"status"</span>: <span class="string">"success"</span>,</div><div class="line">    <span class="attr">"timezone"</span>: <span class="string">"America/New_York"</span>,</div><div class="line">    <span class="attr">"zip"</span>: <span class="string">"32825"</span></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>除了 ip 信息，还有当前位置的很多信息，虽然只能获取服务器的精准经纬度，但是在很多情况下已经很有用了。这个接口唯一的不足是不支持 https，所幸有支持的。</p>
+<h2><span id="ipapi">ipapi</span><a href="#ipapi" class="header-anchor"></a></h2><p><a href="https://ipapi.co/" target="_blank" rel="noopener">ipapi</a> 跟上边基本一样，官网要漂亮点<br><img src="/images/ipapico.png" alt="/images/ipapi.png"><br><a href="https://ipapi.co/api/?shell#introduction" target="_blank" rel="noopener">api</a> 文档也有更好的支持，关键是支持 https<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl <span class="string">'https://ipapi.co/json/'</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"ip"</span>: <span class="string">"104.222.246.242"</span>,</div><div class="line">    <span class="attr">"city"</span>: <span class="string">"Orlando"</span>,</div><div class="line">    <span class="attr">"region"</span>: <span class="string">"Florida"</span>,</div><div class="line">    <span class="attr">"region_code"</span>: <span class="string">"FL"</span>,</div><div class="line">    <span class="attr">"country"</span>: <span class="string">"US"</span>,</div><div class="line">    <span class="attr">"country_name"</span>: <span class="string">"United States"</span>,</div><div class="line">    <span class="attr">"postal"</span>: <span class="string">"32825"</span>,</div><div class="line">    <span class="attr">"latitude"</span>: <span class="number">28.5106</span>,</div><div class="line">    <span class="attr">"longitude"</span>: <span class="number">-81.1976</span>,</div><div class="line">    <span class="attr">"timezone"</span>: <span class="string">"America/New_York"</span>,</div><div class="line">    <span class="attr">"asn"</span>: <span class="string">"AS22552"</span>,</div><div class="line">    <span class="attr">"org"</span>: <span class="string">"eSited Solutions"</span></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>拿到的结果基本一致，看你的需求选择哪个吧，这两个都不需要 <code>secret-key</code> 即可使用，但也有限制，应该是根据 ip 来做的。</p>
+<h2><span id="qi-ta">其他</span><a href="#qi-ta" class="header-anchor"></a></h2><p>另外还有一些其他推荐，但使用起来都没有这两个方便</p>
 <ul>
-<li><strong>Table</strong>: 表的名称。</li>
-<li><strong>Non_unique</strong>: 如果索引不能包括重复词，则为0。如果可以，则为1。</li>
-<li><strong>Key_name</strong>: 索引的名称。</li>
-<li><strong>Seq_in_index</strong>: 索引中的列序列号，从1开始。</li>
-<li><strong>Column_name</strong>: 列名称。</li>
-<li><strong>Collation</strong>: 列以什么方式存储在索引中。在MySQL中，有值‘A’（升序）或NULL（无分类）。</li>
-<li><strong>Cardinality</strong>: 索引中唯一值的数目的估计值。通过运行ANALYZE TABLE或myisamchk -a可以更新。基数根据被存储为整数的统计数据来计数，所以即使对于小型表，该值也没有必要是精确的。基数越大，当进行联合时，MySQL使用该索引的机会就越大。</li>
-<li><strong>Sub_part</strong>: 如果列只是被部分地编入索引，则为被编入索引的字符的数目。如果整列被编入索引，则为NULL。</li>
-<li><strong>Packed</strong>: 指示关键字如何被压缩。如果没有被压缩，则为NULL。</li>
-<li><strong>Null</strong>: 如果列含有NULL，则含有YES。如果没有，则该列含有NO。</li>
-<li><strong>Index_type</strong>: 用过的索引方法（BTREE, FULLTEXT, HASH, RTREE）。</li>
-<li><strong>Comment</strong>: 备注</li>
+<li><a href="https://www.whatismyip.com/" target="_blank" rel="noopener">whatismyip</a></li>
+<li><a href="https://zh-hans.ipshu.com/ipv4/124.95.0.91" target="_blank" rel="noopener">ip 地址</a></li>
 </ul>
 
       
@@ -243,7 +232,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
         		</li>
       		
 		</ul>
@@ -262,18 +251,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/09/mysql-2017-08-09-select-format/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          mysql select 格式化输出
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/08/09/mysql-2017-08-09-item-daily/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">2017-08-09 新建collection合集表，新建trigger完成更新用户文章数</div>
+    <a href="/2017/12/21/screen/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux 多窗口工具 Screen</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -300,7 +280,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="suo-yin-lei-xing">&#x7D22;&#x5F15;&#x7C7B;&#x578B;</span><a href="#suo-yin-lei-xing" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="chuang-jian-suo-yin">&#x521B;&#x5EFA;&#x7D22;&#x5F15;</span><a href="#chuang-jian-suo-yin" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text"><span id="alter-table">alter table</span><a href="#alter-table" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text"><span id="create-table">create table</span><a href="#create-table" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="shan-chu-suo-yin">&#x5220;&#x9664;&#x7D22;&#x5F15;</span><a href="#shan-chu-suo-yin" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text"><span id="cha-kan-suo-yin">&#x67E5;&#x770B;&#x7D22;&#x5F15;</span><a href="#cha-kan-suo-yin" class="header-anchor"></a></span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="ip-api">ip-api</span><a href="#ip-api" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="ipapi">ipapi</span><a href="#ipapi" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="qi-ta">&#x5176;&#x4ED6;</span><a href="#qi-ta" class="header-anchor"></a></span></a></li></ol>
                     </div>
                 </span>
             </div>

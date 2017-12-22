@@ -6,20 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://wxnacy.com">
-  <title>Mysql 索引的增删查 | wxnacy 博客</title>
+  <title>Archives: 2017 | wxnacy 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="原文：http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html">
-<meta name="keywords" content="mysql">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Mysql 索引的增删查">
-<meta property="og:url" content="http://wxnacy.com/2017/08/09/mysql-2017-08-09-basic-index/index.html">
+  <meta name="description" content="python linux nodejs vim git">
+<meta property="og:type" content="website">
+<meta property="og:title" content="wxnacy 博客">
+<meta property="og:url" content="http://wxnacy.com/archives/2017/page/13/index.html">
 <meta property="og:site_name" content="wxnacy 博客">
-<meta property="og:description" content="原文：http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html">
+<meta property="og:description" content="python linux nodejs vim git">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-12-06T02:56:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mysql 索引的增删查">
-<meta name="twitter:description" content="原文：http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html">
+<meta name="twitter:title" content="wxnacy 博客">
+<meta name="twitter:description" content="python linux nodejs vim git">
   
     <link rel="alternative" href="/atom.xml" title="wxnacy 博客" type="application/atom+xml">
   
@@ -175,166 +173,63 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-mysql-2017-08-09-basic-index" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Mysql 索引的增删查
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/08/04/git-2017-08-04-basic-cmd/" class="archive-article-date">
+  	<time datetime="2017-08-03T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-04</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/08/04/git-2017-08-04-basic-cmd/">Git 常用命令</a>
     </h1>
   
 
-        
-        <a href="/2017/08/09/mysql-2017-08-09-basic-index/" class="archive-article-date">
-  	<time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文：<a href="http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html" target="_blank" rel="noopener">http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html</a><br><a id="more"></a><div class="toc"></p>
-<!-- toc -->
-<ul>
-<li><a href="#suo-yin-lei-xing">索引类型</a></li>
-<li><a href="#chuang-jian-suo-yin">创建索引</a><ul>
-<li><a href="#alter-table">alter table</a></li>
-<li><a href="#create-table">create table</a></li>
-</ul>
-</li>
-<li><a href="#shan-chu-suo-yin">删除索引</a></li>
-<li><a href="#cha-kan-suo-yin">查看索引</a></li>
-</ul>
-<!-- tocstop -->
-<p></div></p>
-<h2><span id="suo-yin-lei-xing">索引类型</span><a href="#suo-yin-lei-xing" class="header-anchor"></a></h2><p>在创建索引时，可以规定索引能否包含重复值。如果不包含，则索引应该创建为PRIMARY KEY或UNIQUE索引。对于单列惟一性索引，这保证单列不包含重复的值。对于多列惟一性索引，保证多个值的组合不重复。 PRIMARY KEY索引和UNIQUE索引非常类似。事实上，PRIMARY KEY索引仅是一个具有名称PRIMARY的UNIQUE索引。这表示一个表只能包含一个PRIMARY KEY，因为一个表中不可能具有两个同名的索引。下面的SQL语句对students表在sid上添加PRIMARY KEY索引。</p>
-<h2><span id="chuang-jian-suo-yin">创建索引</span><a href="#chuang-jian-suo-yin" class="header-anchor"></a></h2><p>在执行CREATE TABLE语句时可以创建索引，也可以单独用CREATE INDEX或ALTER TABLE来为表增加索引。</p>
-<h3><span id="alter-table">alter table</span><a href="#alter-table" class="header-anchor"></a></h3><p>其中table_name是要增加索引的表名，column_list指出对哪些列进行索引，多列时各列之间用逗号分隔。索引名index_name可选，缺省时，MySQL将根据第一个索引列赋一个名称。另外，ALTER TABLE允许在单个语句中更改多个表，因此可以在同时创建多个索引。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">alter table table_name add index index_name (column_list);</div><div class="line">alter table table_name add unique index_name (column_list);</div><div class="line">alter table table_name add primary key (column_list);</div></pre></td></tr></table></figure></p>
-<h3><span id="create-table">create table</span><a href="#create-table" class="header-anchor"></a></h3><p>CREATE INDEX可对表增加普通索引或UNIQUE索引。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">create index index_name on table_name (column_list);</div><div class="line">create unique index index_name on table_name (column_list);</div></pre></td></tr></table></figure></p>
-<h2><span id="shan-chu-suo-yin">删除索引</span><a href="#shan-chu-suo-yin" class="header-anchor"></a></h2><p>可利用ALTER TABLE或DROP INDEX语句来删除索引。类似于CREATE INDEX语句，DROP INDEX可以在ALTER TABLE内部作为一条语句处理，语法如下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">drop index index_name on table_name;</div><div class="line">alter table_name drop index index_name;</div><div class="line">alter table_name drop primary key;</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">其中，前两条语句是等价的，删除掉table_name中的索引index_name。</div><div class="line">第3条语句只在删除PRIMARY KEY索引时使用，因为一个表只可能有一个PRIMARY KEY索引，因此不需要指定索引名。</div><div class="line">如果没有创建PRIMARY KEY索引，但表具有一个或多个UNIQUE索引，则MySQL将删除第一个UNIQUE索引。</div><div class="line">如果从表中删除了某列，则索引会受到影响。对于多列组合的索引</div><div class="line">如果删除其中的某列，则该列也会从索引中删除。如果删除组成索引的所有列，则整个索引将被删除。</div></pre></td></tr></table></figure>
-<h2><span id="cha-kan-suo-yin">查看索引</span><a href="#cha-kan-suo-yin" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">show index from table_name;</div><div class="line">show keys from table_name;</div></pre></td></tr></table></figure>
-<ul>
-<li><strong>Table</strong>: 表的名称。</li>
-<li><strong>Non_unique</strong>: 如果索引不能包括重复词，则为0。如果可以，则为1。</li>
-<li><strong>Key_name</strong>: 索引的名称。</li>
-<li><strong>Seq_in_index</strong>: 索引中的列序列号，从1开始。</li>
-<li><strong>Column_name</strong>: 列名称。</li>
-<li><strong>Collation</strong>: 列以什么方式存储在索引中。在MySQL中，有值‘A’（升序）或NULL（无分类）。</li>
-<li><strong>Cardinality</strong>: 索引中唯一值的数目的估计值。通过运行ANALYZE TABLE或myisamchk -a可以更新。基数根据被存储为整数的统计数据来计数，所以即使对于小型表，该值也没有必要是精确的。基数越大，当进行联合时，MySQL使用该索引的机会就越大。</li>
-<li><strong>Sub_part</strong>: 如果列只是被部分地编入索引，则为被编入索引的字符的数目。如果整列被编入索引，则为NULL。</li>
-<li><strong>Packed</strong>: 指示关键字如何被压缩。如果没有被压缩，则为NULL。</li>
-<li><strong>Null</strong>: 如果列含有NULL，则含有YES。如果没有，则该列含有NO。</li>
-<li><strong>Index_type</strong>: 用过的索引方法（BTREE, FULLTEXT, HASH, RTREE）。</li>
-<li><strong>Comment</strong>: 备注</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/08/09/mysql-2017-08-09-select-format/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          mysql select 格式化输出
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/08/09/mysql-2017-08-09-item-daily/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">2017-08-09 新建collection合集表，新建trigger完成更新用户文章数</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="suo-yin-lei-xing">&#x7D22;&#x5F15;&#x7C7B;&#x578B;</span><a href="#suo-yin-lei-xing" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="chuang-jian-suo-yin">&#x521B;&#x5EFA;&#x7D22;&#x5F15;</span><a href="#chuang-jian-suo-yin" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text"><span id="alter-table">alter table</span><a href="#alter-table" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text"><span id="create-table">create table</span><a href="#create-table" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="shan-chu-suo-yin">&#x5220;&#x9664;&#x7D22;&#x5F15;</span><a href="#shan-chu-suo-yin" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text"><span id="cha-kan-suo-yin">&#x67E5;&#x770B;&#x7D22;&#x5F15;</span><a href="#cha-kan-suo-yin" class="header-anchor"></a></span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-    <section id="comments">
-      <div id="disqus_thread"></div>
-        <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'true'; // required: replace example with your forum shortname
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-      </script>
-      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </section>
-  
-
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/2017/page/12/">&laquo; Prev</a><a class="page-number" href="/archives/2017/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2017/page/11/">11</a><a class="page-number" href="/archives/2017/page/12/">12</a><span class="page-number current">13</span>
+    </nav>
   
 
 
@@ -372,8 +267,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
