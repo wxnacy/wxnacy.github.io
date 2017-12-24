@@ -108,8 +108,17 @@ router.put('put_page_view','/api/blog/page_view',(ctx,next) => {
                     })
             }
         }).then(res => {
+            let id = res[0].id;
+            let pv = res[0].page_view;
+            if( pv >= page_view ){
+                ctx.response.body = {
+                    "status": 200
+                }
+                defer.resolve();
+                return defer.promise;
+            }
             sql = "update blog set page_view = ? where id = ?"
-            mysql.query(sql, [page_view, res[0].id])
+            mysql.query(sql, [page_view, id])
                 .then(res => {
                         ctx.response.body = {
                             "status": 200
