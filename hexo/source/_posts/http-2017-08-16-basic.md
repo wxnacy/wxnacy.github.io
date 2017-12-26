@@ -4,6 +4,8 @@ date: 2017-08-16
 tags: [http]
 ---
 
+### Content-length
+返回数据的大小，单位 bytes
 
 ## Content-Type
 ### 常用
