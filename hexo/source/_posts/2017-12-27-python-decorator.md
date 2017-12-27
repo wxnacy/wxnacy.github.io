@@ -1,7 +1,10 @@
 ---
 title: Python 装饰器 decorator
-tags: [python]
+tags:
+  - python
+date: 2017-12-27 09:12:51
 ---
+
 
 为什么会用到装饰器？
 <!-- more --><!-- toc -->

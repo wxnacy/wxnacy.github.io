@@ -10,3 +10,4 @@ create table `blog`(
   primary key(`id`)
 ) engine=InnoDB default charset=utf8mb4 COMMENT '博客';
 
+alter table `blog` add column name varchar(256) not null default '';
