@@ -1,39 +1,39 @@
 'use strict';
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
+const config = require('../local_config.json');
 const mysql = require('./mysql-util.js')
+const sequelize = mysql.sequelize;
+const Sequelize = mysql.Sequelize;
+const HTTPS = config.https
 
-const HTTPS = 'https://wxnacy.com'
+const Blog = sequelize.define('blog', {
+    id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true, },
+    route: { type: Sequelize.STRING, defaultValue: '' },
+    name: { type: Sequelize.STRING, defaultValue: '' },
+    page_view: { type: Sequelize.INTEGER, defaultValue: 0 },
+    ext: { type: Sequelize.JSON, defaultValue: {} },
+    is_del: { type: Sequelize.INTEGER, defaultValue: 0 },
+});
 
-function Blog(id, route){
-    this.id=id;
-    this.route=route;
-};
-
-Blog.prototype.refresh = () => {
-    console.log(this.id, this.route);
-    this.id = 22;
-    this.route = '/2017/11/27/make-time-firends';
-    console.log(this.route);
+Blog.prototype.refresh = function(){
     let url = `${HTTPS}${this.route}`
-    console.log(url);
-    // url = 'https://wxnacy.com/2017/11/27/make-time-firends/'
-    fetch(url).then(res => res.text())
+    return fetch(url).then(res => res.text())
         .then(text => {
             const $ = cheerio.load(text);
             let title = $('meta[property="og:title"]').attr('content');
             return {"title": title};
         }).then(data => {
-            let sql = 'update blog set name = ? where id = ?';
-            return mysql.query(sql, [data['title'], this.id])
+            this.name = data['title']
+            return this.save()
         }).then(res => {
-            console.log(res);
+            sequelize.close()
         }).catch(e => {
             console.log(e);
-        })
-    console.log(url);
-}
+            sequelize.close()
+        });
+};
 
-let blog = new Blog(22, 'sss');
+module.exports.Blog = Blog;
 
-blog.refresh()
+

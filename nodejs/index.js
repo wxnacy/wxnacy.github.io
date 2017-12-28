@@ -9,6 +9,11 @@ const mysql = require('./src/mysql-util.js');
 const utils = require('./src/utils.js');
 const Q = require('q');
 const CryptoJS = require("crypto-js");
+const sequelize = mysql.sequelize;
+const Sequelize = mysql.Sequelize;
+const models = require('../src/models.js')
+const Blog = models.Blog;
+
 
 router.post('jsonParser','/json/parser',(ctx,next) => {
     const body = ctx.request.body;
@@ -93,6 +98,7 @@ router.put('put_page_view','/api/blog/page_view',(ctx,next) => {
     console.log(headers);
 
     const defer = Q.defer();
+
     let sql = "insert into blog (route, page_view) values (?, ?)"
     mysql.query("select * from blog where route = ?", [route])
         .then(res => {

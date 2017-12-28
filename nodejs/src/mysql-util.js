@@ -14,9 +14,28 @@ var query = function(sql,kwargs){
   })
   return d.promise;
 }
+const Sequelize = require('sequelize');
+const sequelize = new Sequelize(config.database, config.user, config.password, {
+    host: config.host,
+    dialect: 'mysql',
+    pool: {
+        max: 100,
+        min: 0,
+        acquire: 30000,
+        idle: 10000
+    },
+    define: {
+        timestamps: false, // true by default
+        // createAt: 'create_ts',
+        // updateAt: 'update_ts',
+        freezeTableName: true,
+    }
+});
 
 module.exports.query = query
+module.exports.sequelize = sequelize
+module.exports.Sequelize = Sequelize
 
-let sql = 'select * from blog;'
-let res = query(sql, [])
-console.log(res);
+// let sql = 'select * from blog;'
+// let res = query(sql, [])
+// console.log(res);
