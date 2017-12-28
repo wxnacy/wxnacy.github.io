@@ -16,6 +16,19 @@ const Blog = sequelize.define('blog', {
     is_del: { type: Sequelize.INTEGER, defaultValue: 0 },
 });
 
+/**
+ * 刷新阅读量
+ */
+Blog.prototype.refreshPV = function(pv) {
+    if( this.page_view < pv   ){
+        this.page_view = pv
+    }
+    return this.save()
+}
+
+/**
+ * 刷新字段信息
+ */
 Blog.prototype.refresh = function(){
     let url = `${HTTPS}${this.route}`
     return fetch(url).then(res => res.text())
@@ -26,11 +39,6 @@ Blog.prototype.refresh = function(){
         }).then(data => {
             this.name = data['title']
             return this.save()
-        }).then(res => {
-            sequelize.close()
-        }).catch(e => {
-            console.log(e);
-            sequelize.close()
         });
 };
 

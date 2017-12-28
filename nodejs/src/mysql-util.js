@@ -25,10 +25,10 @@ const sequelize = new Sequelize(config.database, config.user, config.password, {
         idle: 10000
     },
     define: {
-        timestamps: false, // true by default
-        // createAt: 'create_ts',
-        // updateAt: 'update_ts',
         freezeTableName: true,
+        timestamps: true, // true by default
+        createdAt: 'create_ts',
+        updatedAt: 'update_ts',
     }
 });
 

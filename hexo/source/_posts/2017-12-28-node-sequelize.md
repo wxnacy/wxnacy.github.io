@@ -100,7 +100,7 @@ SELECT `id`, `name`, `create_ts`, `createdAt`, `updatedAt` FROM `tests` AS `test
 - **tableName** 自定义表名
 - **timestamps** 控制是否添加（createAt，updateAt）两个字段，默认 true
 - **createdAt** 如果 `timestamps` 等于 true，可以设置这个参数，false 为不添加，或者可以为它设置别名，比如 `create_ts`
-- **updateAt** 同上
+- **updatedAt** 同上
 - **deletedAt** 同上
 我知道你想说什么，如果每个 Model 都这样设置那是要累死的，所以他必须要有一个可以设置全局的地方，比如
 ```javascript
@@ -158,6 +158,20 @@ Test.build({name: "wxnacy"}).save()
 Test.findById(1).then(test => {console.log(test.toJSON());})
 Test.findOne({name: "wxnacy"})
 Test.findAll({where: {id: [1, 2, 3]}})
+Test.findAll({
+    where: {
+        id: [1, 2, 3],
+        name: "wxnacy",
+        name: {
+            [Op.like]: 'wxn'
+        },
+    },
+    order: [
+        ['id'],
+        ['create_ts', 'DESC']
+    ],
+    limit: 10
+})
 Test.all()
 Test.findById(1).then(item => {
     item.name = 'winn'
@@ -168,5 +182,6 @@ Test.findOrCreate({where: {name: "wxnacy"}, defaults: {}})
         console.log(blog.get({plain: true}));
         console.log(created);
     })
+
 ```
 Model 更多使用方法见[文档](http://docs.sequelizejs.com/manual/tutorial/models-usage.html)

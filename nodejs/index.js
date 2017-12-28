@@ -11,7 +11,8 @@ const Q = require('q');
 const CryptoJS = require("crypto-js");
 const sequelize = mysql.sequelize;
 const Sequelize = mysql.Sequelize;
-const models = require('../src/models.js')
+const Op = Sequelize.Op
+const models = require('./src/models.js')
 const Blog = models.Blog;
 
 
@@ -99,40 +100,62 @@ router.put('put_page_view','/api/blog/page_view',(ctx,next) => {
 
     const defer = Q.defer();
 
-    let sql = "insert into blog (route, page_view) values (?, ?)"
-    mysql.query("select * from blog where route = ?", [route])
-        .then(res => {
-            if( res.length > 0 ){
-                return res
-            } else {
-                mysql.query(sql, [route, page_view])
-                    .then(res => {
-                        ctx.response.body = {
-                            "status": 200
-                        }
-                        defer.resolve();
-                    })
+    Blog.findOrCreate({where: {route: route}, defaults: {page_view: page_view}})
+        .spread((blog, created) => {
+            return blog.refreshPV(page_view)
+        }).then(blog => {
+            if( blog.name == '' ){
+                return blog.refresh()
             }
-        }).then(res => {
-            let id = res[0].id;
-            let pv = res[0].page_view;
-            if( pv >= page_view ){
-                ctx.response.body = {
-                    "status": 200
-                }
-                defer.resolve();
-                return defer.promise;
+        }).then(() => {
+            ctx.response.body = {
+                "status": 200
             }
-            sql = "update blog set page_view = ? where id = ?"
-            mysql.query(sql, [page_view, id])
-                .then(res => {
-                        ctx.response.body = {
-                            "status": 200
-                        }
-                        defer.resolve();
-                })
+            defer.resolve();
+        }).catch(e => {
+            console.log(e);
+            ctx.response.body = {
+                "status": 500,
+                "message": e
+            }
+            defer.resolve();
         })
     return defer.promise;
+
+    // let sql = "insert into blog (route, page_view) values (?, ?)"
+    // mysql.query("select * from blog where route = ?", [route])
+        // .then(res => {
+            // if( res.length > 0 ){
+                // return res
+            // } else {
+                // mysql.query(sql, [route, page_view])
+                    // .then(res => {
+                        // ctx.response.body = {
+                            // "status": 200
+                        // }
+                        // defer.resolve();
+                    // })
+            // }
+        // }).then(res => {
+            // let id = res[0].id;
+            // let pv = res[0].page_view;
+            // if( pv >= page_view ){
+                // ctx.response.body = {
+                    // "status": 200
+                // }
+                // defer.resolve();
+                // return defer.promise;
+            // }
+            // sql = "update blog set page_view = ? where id = ?"
+            // mysql.query(sql, [page_view, id])
+                // .then(res => {
+                        // ctx.response.body = {
+                            // "status": 200
+                        // }
+                        // defer.resolve();
+                // })
+        // })
+    // return defer.promise;
 })
 
 router.post('crypto','/api/crypto',(ctx,next) => {
@@ -211,6 +234,37 @@ router.get('test','/api/visit',(ctx,next) => {
     return defer.promise;
 })
 
+router.get('blog_top','/api/blog/top',(ctx,next) => {
+    ctx.response.header['Content-Type']= 'application/json;charset=utf8';
+    const defer = Q.defer();
+    Blog.findAll({
+        where: {
+            route: {
+                [Op.like]: '/2017/%'
+            }
+        },
+        order: [['page_view','DESC']],
+        limit: 10
+    }).then(items => {
+        let lines = []
+        items.forEach(d => {
+            if( d.name == '' ){
+                d.refresh()
+            }
+            let line = `- [${d.name}](${d.route})`
+            lines.push(line)
+        })
+        let res = lines.join('\n')
+        console.log(res);
+        ctx.response.body = {
+            "status": 200,
+            "data": res
+        }
+        defer.resolve()
+    })
+    return defer.promise;
+
+})
 router.get('test','/api',(ctx,next) => {
     ctx.response.header['Content-Type']= 'application/json;charset=utf8';
     ctx.response.body = ctx.request.query;

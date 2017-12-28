@@ -2,6 +2,7 @@
 const mysql = require('../src/mysql-util.js')
 const sequelize = mysql.sequelize;
 const Sequelize = mysql.Sequelize;
+const Op = Sequelize.Op;
 const models = require('../src/models.js')
 const Blog = models.Blog;
 
@@ -14,9 +15,10 @@ const Test = sequelize.define('test', {
     name: {
         type: Sequelize.STRING
     },
-    create_ts: {
-        type: Sequelize.DATE
-    }
+}, {
+    timestamps: true,
+    updatedAt: false,
+    createdAt: 'create_ts'
 });
 
 // Test.build({name: "ning"}).save().then(() => {sequelize.close()})
@@ -39,6 +41,14 @@ const Test = sequelize.define('test', {
     // sequelize.close()
 // })
 
+Blog.findById(23).then(blog => {
+    console.log(blog);
+    sequelize.close()
+}).catch(e => {
+    console.log(e);
+    sequelize.close()
+})
+
 // Blog.findById(23).then(blog => {
     // // console.log(blog.toJSON());
     // return blog.refresh()
@@ -52,13 +62,33 @@ const Test = sequelize.define('test', {
 // })
 //
 
-Blog.findOrCreate({where: {route: "test"}, defaults: {page_view: 10}})
-    .spread((blog, created) => {
-        console.log(blog.get({plain: true}).id, created);
-        console.log(blog.toJSON().id);
-        sequelize.close()
-    })
-    // .then(res => {
-        // console.log();
+// Blog.findOrCreate({where: {route: "test"}, defaults: {page_view: 10}})
+    // .spread((blog, created) => {
+        // console.log(blog.get({plain: true}).id, created);
+        // console.log(blog.toJSON().id);
         // sequelize.close()
     // })
+    // // .then(res => {
+        // // console.log();
+        // // sequelize.close()
+    // // })
+//
+
+Blog.findAll({
+    where: {
+        route: {
+            [Op.like]: '/2017/%'
+        }
+    },
+    order: [['page_view','DESC']],
+    limit: 10
+    }) .then(items => {
+        let lines = []
+        items.forEach(d => {
+            d.refresh()
+            let line = `- [${d.name}](${d.route})`
+            lines.push(line)
+        })
+        let res = lines.join('\n')
+        console.log(res);
+    })
