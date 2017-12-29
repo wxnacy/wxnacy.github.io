@@ -1,11 +1,12 @@
 'use strict';
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
-const config = require('../local_config.json');
+const config = require('../config.js');
+const env_config = config.env_config;
 const mysql = require('./mysql-util.js')
 const sequelize = mysql.sequelize;
 const Sequelize = mysql.Sequelize;
-const HTTPS = config.https
+const HTTPS = env_config.https
 
 const Blog = sequelize.define('blog', {
     id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true, },

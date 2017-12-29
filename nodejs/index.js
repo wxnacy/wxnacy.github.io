@@ -3,7 +3,6 @@ const kbp = require('koa-bodyparser');
 const cors = require('koa-cors');
 const app = new Koa();
 const router = require('koa-router')();
-// const ss = require('./src/screenshot.js');
 const json = require('./src/json');
 const mysql = require('./src/mysql-util.js');
 const utils = require('./src/utils.js');

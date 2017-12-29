@@ -1,6 +1,6 @@
 var Q      = require('q');
 var mysql  = require('mysql');
-var config = require('../local_config.json').mysql;
+const config = require('../config.js').env_config.mysql;
 
 var query = function(sql,kwargs){
   var d = Q.defer();
