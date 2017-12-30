@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://wxnacy.com">
-  <title>Archives: 2017/8 | wxnacy 博客</title>
+  <title>Vim 如何编写插件：Hello World | wxnacy 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="python linux nodejs vim git">
-<meta property="og:type" content="website">
-<meta property="og:title" content="wxnacy 博客">
-<meta property="og:url" content="http://wxnacy.com/archives/2017/08/page/3/index.html">
+  <meta name="description" content="从 8 月开始使用 Vim 已经 4 个多月了，从开始的笨拙查找按键，到后来健“指”如飞，再到开始编写插件，现在我已经离不开 Vim 了，我只需要几个按键就可以完成别人鼠标键盘配合半天才能完成的操作。">
+<meta name="keywords" content="vim">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vim 如何编写插件：Hello World">
+<meta property="og:url" content="http://wxnacy.com/2017/12/30/vim-plugin-write-helloworld/index.html">
 <meta property="og:site_name" content="wxnacy 博客">
-<meta property="og:description" content="python linux nodejs vim git">
+<meta property="og:description" content="从 8 月开始使用 Vim 已经 4 个多月了，从开始的笨拙查找按键，到后来健“指”如飞，再到开始编写插件，现在我已经离不开 Vim 了，我只需要几个按键就可以完成别人鼠标键盘配合半天才能完成的操作。">
 <meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2017-12-30T10:15:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wxnacy 博客">
-<meta name="twitter:description" content="python linux nodejs vim git">
+<meta name="twitter:title" content="Vim 如何编写插件：Hello World">
+<meta name="twitter:description" content="从 8 月开始使用 Vim 已经 4 个多月了，从开始的笨拙查找按键，到后来健“指”如飞，再到开始编写插件，现在我已经离不开 Vim 了，我只需要几个按键就可以完成别人鼠标键盘配合半天才能完成的操作。">
   
     <link rel="alternative" href="/atom.xml" title="wxnacy 博客" type="application/atom+xml">
   
@@ -179,413 +181,143 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-vim-plugin-write-helloworld" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Vim 如何编写插件：Hello World
+    </h1>
+  
+
+        
+        <a href="/2017/12/30/vim-plugin-write-helloworld/" class="archive-article-date">
+  	<time datetime="2017-12-30T08:28:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-30</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>从 8 月开始使用 Vim 已经 4 个多月了，从开始的笨拙查找按键，到后来健“指”如飞，再到开始编写插件，现在我已经离不开 Vim 了，我只需要几个按键就可以完成别人鼠标键盘配合半天才能完成的操作。<br><a id="more"></a><div class="toc"></p>
+<!-- toc -->
+<ul>
+<li><a href="#hello-world">Hello World</a></li>
+<li><a href="#you-hua">优化</a></li>
+<li><a href="#zhu-yi">注意</a></li>
+</ul>
+<!-- tocstop -->
+<p></div><br>两个月前，因为工作的原因我编写了插件 <a href="https://github.com/wxnacy/vim-mysql" target="_blank" rel="noopener">vim-mysql</a> ，我可以执行文本中某一行或者选中的一段完整语句。为什么要造“轮子”呢？即使现在的数据库软件再强大，它也是为大多人设计的，为了方便我就是需要一些独特的功能，所以可以编写一个自己用的工具很重要。<br>今天开始我们来探讨下，如何在 Vim 中编写插件</p>
+<h2><span id="hello-world">Hello World</span><a href="#hello-world" class="header-anchor"></a></h2><p>又是 Hello World ，没错，学什么开始都是 Hello World 。首先明确目标，今天要达到的目标是，用 Vim 打开任意文件后，通过简短指令输出 <code>Hello World</code><br>首先在任意位置建立文件，如 <code>~/helloworld.vim</code><br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>! <span class="title">HelloWorld</span><span class="params">()</span></span></div><div class="line">    <span class="keyword">echo</span> <span class="string">'Hello World'</span></div><div class="line"><span class="keyword">endfunction</span></div></pre></td></tr></table></figure></p>
+<p>在 <code>~/.vimrc</code> 中做链接，指定 Vim 再启动时运行该文件<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">source</span> ~/helloworld.<span class="keyword">vim</span></div></pre></td></tr></table></figure></p>
+<p>执行 <code>:source ~/.vimrc</code> 使配置生效，或者干脆退出文件，再重新进入即可，随后执行 <code>call HelloWorld()</code> 并回车，既可以看到屏幕下方输出 <code>Hello World</code>，就是这么简单。</p>
+<h2><span id="you-hua">优化</span><a href="#you-hua" class="header-anchor"></a></h2><p>任务是完成了，但是还可以在处理的更好一点，比如我改变一下插件的位置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~/.vim/plugin/helloworld.vim</div></pre></td></tr></table></figure></p>
+<p>同时我去掉这句 <code>source ~/helloworld.vim</code> ，你在此重复上边的执行操作，同样可以生效，因为他可以自动查找该文件夹的脚本自动导入。<br>再比如，我可以在插件里加上如下配置<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>! <span class="title">HelloWorld</span><span class="params">()</span></span></div><div class="line">    <span class="keyword">echo</span> <span class="string">'Hello World'</span></div><div class="line"><span class="keyword">endfunction</span></div><div class="line">command! -nargs=<span class="number">0</span> HW <span class="keyword">call</span> HelloWorld()</div><div class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;leader&gt;</span>hw :<span class="keyword">call</span> HelloWorld()</div></pre></td></tr></table></figure></p>
+<p>让代码生效后，我只需要执行 <code>:HW</code> 或者 <code>&lt;leader&gt;hw</code> 即可完成命令的调用。<code>-nargs=0</code> 表示命令行后边不跟参数，<code>&lt;leader&gt;</code> 键我在 <a href="/2017/12/01/vim-mappings/#leader">Vim 高级功能 Mapping 映射</a> 文章中有详细讲解。</p>
+<h2><span id="zhu-yi">注意</span><a href="#zhu-yi" class="header-anchor"></a></h2><p>有这么几点需要注意</p>
+<ul>
+<li><code>HelloWorld</code> 函数名首字母必须大写</li>
+<li><code>HW</code> command 执行的命令，首字母必须大写</li>
+<li><code>helloworld.vim</code> 插件名比如用 <code>.vim</code> 后缀<br>还有就是在命令中频繁出现的 <code>!</code>，因为每次启动 Vim 都会执行插件里的代码，它的作用就是避免重复执行。现在不加它没有什么影响，但是如果你的插件越来越多，你会慢慢感觉到卡，那时候你都不知道哪里出的问题，所以我建议从一开始就养成好习惯。</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/15/python-2017-08-15-flask-hello-world/" class="archive-article-date">
-  	<time datetime="2017-08-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/15/python-2017-08-15-flask-hello-world/">Flask 运行 Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">flask</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vim</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/14/ansible-2017-08-14-album-study-notes/" class="archive-article-date">
-  	<time datetime="2017-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-14</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/12/29/linux-device-space/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux 分析磁盘空间</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/14/ansible-2017-08-14-album-study-notes/">ansible学习笔记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ansible</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="hello-world">Hello World</span><a href="#hello-world" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="you-hua">&#x4F18;&#x5316;</span><a href="#you-hua" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="zhu-yi">&#x6CE8;&#x610F;</span><a href="#zhu-yi" class="header-anchor"></a></span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/14/python-2017-08-14-sqlalchemy-filter/" class="archive-article-date">
-  	<time datetime="2017-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-14</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/14/python-2017-08-14-sqlalchemy-filter/">SQLAlchemy 各种查询语句写法</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">sqlalchemy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/13/movie-2017-08-13-MCU/" class="archive-article-date">
-  	<time datetime="2017-08-12T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/13/movie-2017-08-13-MCU/">漫威电影宇宙合集 更新到《蜘蛛侠：返校季》</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">movie</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/12/mysql-2017-08-12-item-daily/" class="archive-article-date">
-  	<time datetime="2017-08-11T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/12/mysql-2017-08-12-item-daily/">2017-08-12 新建等级表，完善`insert_user_event`</a>
-    </h1>
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'true'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/11/python-2017-08-11-os-file/" class="archive-article-date">
-  	<time datetime="2017-08-10T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/11/python-2017-08-11-os-file/">Python 操作目录文件相关命令</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/11/mysql-2017-08-11-item-daily/" class="archive-article-date">
-  	<time datetime="2017-08-10T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/11/mysql-2017-08-11-item-daily/">2017-08-11 新建用户行为表，新建trigger完成用户总分数更新</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/10/python-2017-08-10-pyenv-cmd/" class="archive-article-date">
-  	<time datetime="2017-08-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/10/python-2017-08-10-pyenv-cmd/">pyenv 常用命令</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/10/mysql-2017-08-10-item-daily/" class="archive-article-date">
-  	<time datetime="2017-08-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/10/mysql-2017-08-10-item-daily/">2017-08-10 新建collection_resource表，新建trigger更新collection资源总数</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/10/mac-2017-08-10-clear-dns/" class="archive-article-date">
-  	<time datetime="2017-08-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/10/mac-2017-08-10-clear-dns/">mac清除DNS缓存</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">mac</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2017/08/page/2/">&laquo; Prev</a><a class="page-number" href="/archives/2017/08/">1</a><a class="page-number" href="/archives/2017/08/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/2017/08/page/4/">4</a><a class="page-number" href="/archives/2017/08/page/5/">5</a><a class="extend next" rel="next" href="/archives/2017/08/page/4/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -623,8 +355,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
