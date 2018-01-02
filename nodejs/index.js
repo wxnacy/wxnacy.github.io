@@ -13,6 +13,9 @@ const Sequelize = mysql.Sequelize;
 const Op = Sequelize.Op
 const models = require('./src/models.js')
 const Blog = models.Blog;
+const middleware = require('./src/middlewares.js')
+const requestLog = middleware.requestLog
+const checkSign = middleware.checkSign
 
 
 router.post('jsonParser','/json/parser',(ctx,next) => {
@@ -160,20 +163,10 @@ router.put('put_page_view','/api/blog/page_view',(ctx,next) => {
 router.post('crypto','/api/crypto',(ctx,next) => {
     ctx.response.header['Content-Type']= 'application/json;charset=utf8';
     let body = ctx.request.body;
-    let flag = utils.check_sign(body);
-    if( !flag ){
-
-        ctx.response.body = {
-            "status": 403,
-            "message": "error request"
-        }
-        return;
-    }
     let content = body.content;
     let key = body.key;
     let type = body.type;
     let res = {};
-    console.log(body);
     if( type == 'hmac' ){
         res = {
             "md5": CryptoJS.HmacMD5(content, key).toString(),
@@ -277,6 +270,8 @@ router.get('test','/api',(ctx,next) => {
 app
     .use(kbp())
     .use(cors())
+    .use(checkSign)
+    .use(requestLog)
     .use(router.routes())
     .use(router.allowedMethods());
 app.listen(5000,() => {
