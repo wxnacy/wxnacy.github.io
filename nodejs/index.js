@@ -277,6 +277,6 @@ app
     .use(router.routes())
     .use(router.allowedMethods());
 app.listen(5000,() => {
-    console.log('listen to 0.0.0.0:5000');
+    log.info('listen to 0.0.0.0:5000');
 });
 

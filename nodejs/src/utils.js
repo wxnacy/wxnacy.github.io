@@ -10,8 +10,6 @@ function create_sign(data, ts, rs) {
     params = params + `ts=${ts}&`;
     params = params + `rs=${rs}`;
     sign = CryptoJS.HmacSHA1(params, SECRET_KEY).toString().toUpperCase();
-    console.log(params);
-    console.log(sign);
     return sign;
 };
 
@@ -59,10 +57,10 @@ module.exports.check_sign = check_sign;
 // console.log(res);
 // console.log(delete res.w);
 // console.log(res);
-var params = {"w": 3, "a": 1, "z": 10};
-var data = encryptParams(params)
-params['ts'] = 1513691726035
-params['rs'] = "ssd8wifhsd8fhf"
-params['sign'] = "7D8A9EEADD7FE35A8BF309B554ACFAC00B016F49"
-console.log(check_sign(params));
-create_sign({"w": 3, "a": 1, "z": 10}, new Date().getTime(), 'sd7f92fh23hf')
+// var params = {"w": 3, "a": 1, "z": 10};
+// var data = encryptParams(params)
+// params['ts'] = 1513691726035
+// params['rs'] = "ssd8wifhsd8fhf"
+// params['sign'] = "7D8A9EEADD7FE35A8BF309B554ACFAC00B016F49"
+// console.log(check_sign(params));
+// create_sign({"w": 3, "a": 1, "z": 10}, new Date().getTime(), 'sd7f92fh23hf')
