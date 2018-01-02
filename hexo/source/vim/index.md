@@ -18,6 +18,7 @@ date: 2017-09-20 18:02:20
 - [Vim 插件 vim-mysql 快速运行 sql](https://github.com/wxnacy/vim-mysql)
 ### 编写插件
 - [Vim 如何编写插件：Hello World](/2017/12/30/vim-plugin-write-helloworld/)
+- [Vim 如何编写插件：使用 Python 编写插件](/2018/01/02/vim-plugin-py-write/)
 ### 插件管理
 - [Vim 插件 pathogen 插件管理](/2017/09/20/vim-plugin-pathogen)
 ### 功能
@@ -46,3 +47,5 @@ date: 2017-09-20 18:02:20
 - [Vim 与系统剪切板交互](http://blog.fooleap.org/using-vim-with-clipboard-on-archlinux.html)
 - [笨方法学 Vimscript](http://learnvimscriptthehardway.onefloweroneworld.com/)
 - [Learn Vimscript the Hard Way](http://learnvimscriptthehardway.stevelosh.com/)
+- [Vim scripting cheatsheet](https://devhints.io/vimscript)
+- [Vim help files](http://vimhelp.appspot.com/)

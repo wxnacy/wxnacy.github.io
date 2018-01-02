@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="wxnacy 博客">
 <meta property="og:description" content="从 8 月开始使用 Vim 已经 4 个多月了，从开始的笨拙查找按键，到后来健“指”如飞，再到开始编写插件，现在我已经离不开 Vim 了，我只需要几个按键就可以完成别人鼠标键盘配合半天才能完成的操作。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-12-30T10:15:29.000Z">
+<meta property="og:updated_time" content="2018-01-02T10:27:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vim 如何编写插件：Hello World">
 <meta name="twitter:description" content="从 8 月开始使用 Vim 已经 4 个多月了，从开始的笨拙查找按键，到后来健“指”如飞，再到开始编写插件，现在我已经离不开 Vim 了，我只需要几个按键就可以完成别人鼠标键盘配合半天才能完成的操作。">
@@ -206,6 +206,7 @@
 <ul>
 <li><a href="#hello-world">Hello World</a></li>
 <li><a href="#you-hua">优化</a></li>
+<li><a href="#chuan-can">传参</a></li>
 <li><a href="#zhu-yi">注意</a></li>
 </ul>
 <!-- tocstop -->
@@ -216,6 +217,11 @@
 <h2><span id="you-hua">优化</span><a href="#you-hua" class="header-anchor"></a></h2><p>任务是完成了，但是还可以在处理的更好一点，比如我改变一下插件的位置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~/.vim/plugin/helloworld.vim</div></pre></td></tr></table></figure></p>
 <p>同时我去掉这句 <code>source ~/helloworld.vim</code> ，你在此重复上边的执行操作，同样可以生效，因为他可以自动查找该文件夹的脚本自动导入。<br>再比如，我可以在插件里加上如下配置<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>! <span class="title">HelloWorld</span><span class="params">()</span></span></div><div class="line">    <span class="keyword">echo</span> <span class="string">'Hello World'</span></div><div class="line"><span class="keyword">endfunction</span></div><div class="line">command! -nargs=<span class="number">0</span> HW <span class="keyword">call</span> HelloWorld()</div><div class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;leader&gt;</span>hw :<span class="keyword">call</span> HelloWorld()</div></pre></td></tr></table></figure></p>
 <p>让代码生效后，我只需要执行 <code>:HW</code> 或者 <code>&lt;leader&gt;hw</code> 即可完成命令的调用。<code>-nargs=0</code> 表示命令行后边不跟参数，<code>&lt;leader&gt;</code> 键我在 <a href="/2017/12/01/vim-mappings/#leader">Vim 高级功能 Mapping 映射</a> 文章中有详细讲解。</p>
+<h2><span id="chuan-can">传参</span><a href="#chuan-can" class="header-anchor"></a></h2><p>在 VimScript 中传参是很别扭的<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:HW name age</div></pre></td></tr></table></figure></p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>! <span class="title">HelloWorld</span><span class="params">(cmd, args)</span></span></div><div class="line">    <span class="keyword">echo</span> <span class="variable">a:cmd</span>      <span class="comment">" ==&gt; grep</span></div><div class="line">    <span class="keyword">echo</span> <span class="variable">a:args</span>     <span class="comment">" ==&gt; name age</span></div><div class="line">    <span class="keyword">echo</span> <span class="variable">a:args</span>[<span class="number">0</span>]  <span class="comment">" ==&gt; name</span></div><div class="line"><span class="keyword">endfunction</span></div><div class="line">command! -nargs=* HW <span class="keyword">call</span> HelloWorld(<span class="string">'grep'</span>, <span class="symbol">&lt;q-args&gt;</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>! <span class="title">HelloWorld</span><span class="params">(...)</span></span></div><div class="line">    <span class="keyword">echo</span> <span class="variable">a:000</span>  <span class="comment">" ==&gt; name age</span></div><div class="line">    <span class="keyword">echo</span> <span class="variable">a:0</span>    <span class="comment">" ==&gt; name</span></div><div class="line">    <span class="keyword">echo</span> <span class="variable">a:1</span>    <span class="comment">" ==&gt; age</span></div><div class="line"><span class="keyword">endfunction</span></div><div class="line">command! -nargs=* HW <span class="keyword">call</span> HelloWorld(<span class="symbol">&lt;q-args&gt;</span>)</div></pre></td></tr></table></figure>
+<p>这是固定参数加可变参数，已经完成可变参数的两种用法，<code>a:</code> 是参数前边必须加的。</p>
+<p><code>-nargs</code> 后可以跟的参数为 <code>0, 1, +, *, ?</code> 这些符号都可以当作正则表达式来理解，具体含义你可以查看文档 <code>:h command-nargs</code></p>
 <h2><span id="zhu-yi">注意</span><a href="#zhu-yi" class="header-anchor"></a></h2><p>有这么几点需要注意</p>
 <ul>
 <li><code>HelloWorld</code> 函数名首字母必须大写</li>
@@ -292,7 +298,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="hello-world">Hello World</span><a href="#hello-world" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="you-hua">&#x4F18;&#x5316;</span><a href="#you-hua" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="zhu-yi">&#x6CE8;&#x610F;</span><a href="#zhu-yi" class="header-anchor"></a></span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="hello-world">Hello World</span><a href="#hello-world" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="you-hua">&#x4F18;&#x5316;</span><a href="#you-hua" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="chuan-can">&#x4F20;&#x53C2;</span><a href="#chuan-can" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text"><span id="zhu-yi">&#x6CE8;&#x610F;</span><a href="#zhu-yi" class="header-anchor"></a></span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -464,7 +470,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -472,7 +478,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -484,15 +490,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -516,11 +522,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -560,11 +566,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://wxnacy.com">
-  <title>HTTP相关知识 | wxnacy 博客</title>
+  <title>Vim 如何编写插件：使用 Python 编写插件 | wxnacy 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Content-length返回数据的大小，单位 bytes Content-Type常用 application/octet-stream application/json application/javascript application/xml application/x-www-form-urlencoded text/plain text/xml text/html image/jpe">
-<meta name="keywords" content="http">
+  <meta name="description" content="前两天我讨论了怎么使用 Vim 编写最简单的插件 Hello World，今天聊聊怎么使用 Python 辅助插件开发，这在辅助开发插件时很有用。">
+<meta name="keywords" content="vim">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HTTP相关知识">
-<meta property="og:url" content="http://wxnacy.com/2017/08/16/http-2017-08-16-basic/index.html">
+<meta property="og:title" content="Vim 如何编写插件：使用 Python 编写插件">
+<meta property="og:url" content="http://wxnacy.com/2018/01/02/vim-plugin-py-write/index.html">
 <meta property="og:site_name" content="wxnacy 博客">
-<meta property="og:description" content="Content-length返回数据的大小，单位 bytes Content-Type常用 application/octet-stream application/json application/javascript application/xml application/x-www-form-urlencoded text/plain text/xml text/html image/jpe">
+<meta property="og:description" content="前两天我讨论了怎么使用 Vim 编写最简单的插件 Hello World，今天聊聊怎么使用 Python 辅助插件开发，这在辅助开发插件时很有用。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-12-26T03:14:09.000Z">
+<meta property="og:updated_time" content="2018-01-02T11:03:41.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HTTP相关知识">
-<meta name="twitter:description" content="Content-length返回数据的大小，单位 bytes Content-Type常用 application/octet-stream application/json application/javascript application/xml application/x-www-form-urlencoded text/plain text/xml text/html image/jpe">
+<meta name="twitter:title" content="Vim 如何编写插件：使用 Python 编写插件">
+<meta name="twitter:description" content="前两天我讨论了怎么使用 Vim 编写最简单的插件 Hello World，今天聊聊怎么使用 Python 辅助插件开发，这在辅助开发插件时很有用。">
   
     <link rel="alternative" href="/atom.xml" title="wxnacy 博客" type="application/atom+xml">
   
@@ -181,40 +181,49 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-http-2017-08-16-basic" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-vim-plugin-py-write" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      HTTP相关知识
+      Vim 如何编写插件：使用 Python 编写插件
     </h1>
   
 
         
-        <a href="/2017/08/16/http-2017-08-16-basic/" class="archive-article-date">
-  	<time datetime="2017-08-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
+        <a href="/2018/01/02/vim-plugin-py-write/" class="archive-article-date">
+  	<time datetime="2018-01-02T07:59:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-02</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3><span id="content-length">Content-length</span><a href="#content-length" class="header-anchor"></a></h3><p>返回数据的大小，单位 bytes</p>
-<h2><span id="content-type">Content-Type</span><a href="#content-type" class="header-anchor"></a></h2><h3><span id="chang-yong">常用</span><a href="#chang-yong" class="header-anchor"></a></h3><ul>
-<li>application/octet-stream</li>
-<li>application/json</li>
-<li>application/javascript</li>
-<li>application/xml</li>
-<li>application/x-www-form-urlencoded</li>
-<li>text/plain</li>
-<li>text/xml</li>
-<li>text/html</li>
-<li>image/jpeg</li>
-<li>image/jpeg</li>
-<li>multipart/form-data<br>详细内容:<a href="http://tool.oschina.net/commons" target="_blank" rel="noopener">http://tool.oschina.net/commons</a></li>
+        <p>前两天我讨论了怎么使用 Vim 编写最简单的插件 Hello World，今天聊聊怎么使用 Python 辅助插件开发，这在辅助开发插件时很有用。<br><a id="more"></a><div class="toc"></p>
+<!-- toc -->
+<ul>
+<li><a href="#hello-world">Hello World</a></li>
+<li><a href="#chuan-can">传参</a></li>
+<li><a href="#vim-mo-kuai">vim 模块</a></li>
 </ul>
+<!-- tocstop -->
+<p></div><br>VimScript 语言非常小众，在处理一些数据时也不如我们常见的语言，如：Python／Ruby 等方便<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vim --version</div></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">VIM - Vi IMproved 8.0 (2016 Sep 12, compiled Feb 12 2017 23:20:31)</div><div class="line">MacOS X (unix) version</div><div class="line">Included patches: 1-329</div><div class="line">Compiled by Homebrew</div><div class="line">Huge version without GUI.  Features included (+) or not (-):</div><div class="line">+acl             +file_in_path    +mouse_sgr       +tag_old_static</div><div class="line">+arabic          +find_in_path    -mouse_sysmouse  -tag_any_white</div><div class="line">+autocmd         +<span class="built_in">float</span>           +mouse_urxvt     -tcl</div><div class="line">-balloon_eval    +folding         +mouse_xterm     +termguicolors</div><div class="line">-browse          -footer          +multi_byte      +terminfo</div><div class="line">++builtin_terms  +fork()          +multi_lang      +termresponse</div><div class="line">+byte_offset     -gettext         -mzscheme        +textobjects</div><div class="line">+channel         -hangul_input    +netbeans_intg   +timers</div><div class="line">+cindent         +iconv           +num64           +title</div><div class="line">-clientserver    +insert_expand   +packages        -toolbar</div><div class="line">+clipboard       +job             +path_extra      +user_commands</div><div class="line">+cmdline_compl   +jumplist        +perl            +vertsplit</div><div class="line">+cmdline_hist    +keymap          +persistent_undo +virtualedit</div><div class="line">+cmdline_info    +lambda          +postscript      +visual</div><div class="line">+comments        +langmap         +printer         +visualextra</div><div class="line">+conceal         +libcall         +profile         +viminfo</div><div class="line">+cryptv          +linebreak       +python          +vreplace</div><div class="line">+cscope          +lispindent      -python3         +wildignore</div><div class="line">+cursorbind      +listcmds        +quickfix        +wildmenu</div><div class="line">+cursorshape     +localmap        +reltime         +windows</div><div class="line">+dialog_con      -lua             +rightleft       +writebackup</div><div class="line">+diff            +menu            +ruby            -X11</div><div class="line">+digraphs        +mksession       +scrollbind      -xfontset</div><div class="line">-dnd             +modify_fname    +signs           -xim</div><div class="line">-ebcdic          +mouse           +smartindent     -xpm</div><div class="line">+emacs_tags      -mouseshape      +startuptime     -xsmp</div><div class="line">+<span class="built_in">eval</span>            +mouse_dec       +statusline      -xterm_clipboard</div><div class="line">+ex_extra        -mouse_gpm       -sun_workshop    -xterm_save</div><div class="line">+extra_search    -mouse_jsbterm   +syntax</div><div class="line">+farsi           +mouse_netterm   +tag_binary</div></pre></td></tr></table></figure>
+<p>执行查看版本命令可以看到它支持的语言列表，Python 就在其中。</p>
+<p>之所以选择 Python 语言，除了现在我主用 Python 开发外，主要是因为它的入门比大多书语言都比较简单，并且功能强大。GitHub 上很多开源插件都是 Python 辅助开发的，另外现在大火的人工智能，Python 也是首选的开发语言。</p>
+<h2><span id="hello-world">Hello World</span><a href="#hello-world" class="header-anchor"></a></h2><p>如果你还没有看前篇 <a href="/2017/12/30/vim-plugin-write-helloworld/">Vim 如何编写插件：Hello World</a> ，建议先看下，不然可能不知道再说什么。<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">python</span> &lt;&lt; EOF</div><div class="line">def helloworld():</div><div class="line">    <span class="keyword">print</span>(<span class="string">"Hello World"</span>)</div><div class="line">EOF</div><div class="line"></div><div class="line">command! -nargs=<span class="number">0</span> Hw exec(<span class="string">'py helloworld()'</span>)</div></pre></td></tr></table></figure></p>
+<p>我们同样是从 Hello World 来说</p>
+<p>首先我们可以看到 Python 的函数是包在 <code>python &lt;&lt; EOF ... EOF</code> 中的，这是一个标准写法，告诉 Vim 这是一个 Python 方法，<code>EOF</code> 不是固定的，换成任意字符都可，前后统一即可</p>
+<p>在执行时，使用 <code>exec</code> 函数执行 Python 命令 <code>py helloworld()</code></p>
+<p>它跟 VimScript 写插件就在这两点不同，剩下的就可以像 Python 一样愉快的开发了。</p>
+<p>如果你的 Vim 版本是小于 8 ，可能支持的语言列表这样的 <code>... -python, +python3</code> ，这是告诉你支持 Python3 ，不支持 Python，不用奇怪，在 Python 中 3 和以前的版本的变化很大，很多时候可以当两种语言处理。这时我们需要做如下改变。<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">python3</span> &lt;&lt; EOF</div><div class="line">def helloworld():</div><div class="line">    <span class="keyword">print</span>(<span class="string">"Hello World"</span>)</div><div class="line">EOF</div><div class="line"></div><div class="line">command! -nargs=<span class="number">0</span> Hw exec(<span class="string">'py3 helloworld()'</span>)</div></pre></td></tr></table></figure></p>
+<h2><span id="chuan-can">传参</span><a href="#chuan-can" class="header-anchor"></a></h2><p>看过上一章的传参，这里就很好理解了<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:Hw name age</div></pre></td></tr></table></figure></p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">python</span> &lt;&lt; EOF</div><div class="line">def helloworld(*<span class="keyword">args</span>):</div><div class="line">    <span class="keyword">print</span>(<span class="keyword">args</span>)     <span class="comment">" ==&gt; (name, age, )</span></div><div class="line">EOF</div><div class="line"></div><div class="line">command! -nargs=* Hw exec(<span class="string">'py helloworld(&lt;q-args&gt;)'</span>)</div></pre></td></tr></table></figure>
+<p>通过对比发现，不管各方面，使用一个趁手的第三方语言来开发都要更方便一点。</p>
+<h2><span id="vim-mo-kuai">vim 模块</span><a href="#vim-mo-kuai" class="header-anchor"></a></h2><p>在 Vim 中 Python 有个特殊模块 vim<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">python</span> &lt;&lt; EOF</div><div class="line">import <span class="keyword">vim</span></div><div class="line">def helloworld():</div><div class="line">    <span class="keyword">print</span>(<span class="keyword">vim</span>.current.<span class="keyword">buffer</span>)   <span class="comment">" 当前缓冲区</span></div><div class="line">    <span class="keyword">vim</span>.<span class="keyword">command</span>(<span class="keyword">vim</span>-cmd)        <span class="comment">" 执行 vim 命令</span></div><div class="line">EOF</div><div class="line">command! -nargs=<span class="number">0</span> Hw exec(<span class="string">'py helloworld()'</span>)</div></pre></td></tr></table></figure></p>
+<p>这个模块可以很方便的在 Python 中处理 Vim 的信息和指令，更多用法见文档 <code>:h python-vim</code></p>
 
       
 
@@ -228,7 +237,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vim</a>
         		</li>
       		
 		</ul>
@@ -247,18 +256,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/16/shell-2017-08-16-zsh-install/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Zsh 与 oh-my-zsh 安装与使用
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/08/15/python-2017-08-15-gunicorn-run/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Python 使用 gunicorn 启动你的项目</div>
+    <a href="/2018/01/01/2018-begin/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">2018 年，对自己的要求</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -285,7 +285,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="content-length">Content-length</span><a href="#content-length" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number"></span> <span class="toc-text"><span id="content-type">Content-Type</span><a href="#content-type" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="chang-yong">&#x5E38;&#x7528;</span><a href="#chang-yong" class="header-anchor"></a></span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="hello-world">Hello World</span><a href="#hello-world" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="chuan-can">&#x4F20;&#x53C2;</span><a href="#chuan-can" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="vim-mo-kuai">vim &#x6A21;&#x5757;</span><a href="#vim-mo-kuai" class="header-anchor"></a></span></a></li></ol>
                     </div>
                 </span>
             </div>

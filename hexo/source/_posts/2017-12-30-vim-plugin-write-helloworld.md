@@ -36,6 +36,31 @@ command! -nargs=0 HW call HelloWorld()
 nnoremap <leader>hw :call HelloWorld()
 ```
 让代码生效后，我只需要执行 `:HW` 或者 `<leader>hw` 即可完成命令的调用。`-nargs=0` 表示命令行后边不跟参数，`<leader>` 键我在 [Vim 高级功能 Mapping 映射](/2017/12/01/vim-mappings/#leader) 文章中有详细讲解。
+## 传参
+在 VimScript 中传参是很别扭的
+```vim
+:HW name age
+```
+```vim
+function! HelloWorld(cmd, args)
+    echo a:cmd      " ==> grep
+    echo a:args     " ==> name age
+    echo a:args[0]  " ==> name
+endfunction
+command! -nargs=* HW call HelloWorld('grep', <q-args>)
+```
+```vim
+function! HelloWorld(...)
+    echo a:000  " ==> name age
+    echo a:0    " ==> name
+    echo a:1    " ==> age
+endfunction
+command! -nargs=* HW call HelloWorld(<q-args>)
+```
+这是固定参数加可变参数，已经完成可变参数的两种用法，`a:` 是参数前边必须加的。
+
+`-nargs` 后可以跟的参数为 `0, 1, +, *, ?` 这些符号都可以当作正则表达式来理解，具体含义你可以查看文档 `:h command-nargs`
+
 ## 注意
 有这么几点需要注意
 - `HelloWorld` 函数名首字母必须大写
