@@ -1,19 +1,20 @@
 const utils = require('./utils.js')
+const log = require('../config.js').log
 
 module.exports.requestLog = async (ctx, next) => {
     try {
         let req = ctx.request
         let header = req.header
-        let prefix = `[${new Date()}][${req.method} ${req.url}]`
+        let prefix = `[${req.method} ${req.url}]`
         for(let k in header){
-            console.log(`${prefix} header ${k}: ${header[k]}`);
+            log.info(`${prefix} header ${k}: ${header[k]}`);
         }
         let begin = Date.now()
         await next();
         let cased = Date.now() - begin
         let res = ctx.response
-        console.log(`${prefix} return ${res.status} ${res.message}`);
-        console.log(`${prefix} end time cased ${cased}`);
+        log.info(`${prefix} return ${res.status} ${res.message}`);
+        log.info(`${prefix} end time cased ${cased}`);
     } catch( e ){
         s = e.status || 500
         ctx.body = {

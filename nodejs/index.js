@@ -16,6 +16,8 @@ const Blog = models.Blog;
 const middleware = require('./src/middlewares.js')
 const requestLog = middleware.requestLog
 const checkSign = middleware.checkSign
+const config = require('./config.js')
+const log = config.log
 
 
 router.post('jsonParser','/json/parser',(ctx,next) => {
@@ -247,7 +249,7 @@ router.get('blog_top','/api/blog/top',(ctx,next) => {
             lines.push(line)
         })
         let res = lines.join('\n')
-        console.log(res);
+        log.info(res)
         ctx.response.body = {
             "status": 200,
             "data": res
