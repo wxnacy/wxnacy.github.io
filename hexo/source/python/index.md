@@ -8,6 +8,7 @@ date: 2017-11-21 21:07:36
 - [Python编码Yes or No.pdf](http://pan.baidu.com/s/1skNCT7v) 密码:5tta
 - [时间](/2017/12/10/python-datetime/)
 - [列表 List](/2017/11/24/python-list/)
+- [格式化函数 format](/2018/01/03/python-format/)
 - [处理 Linux 命令](/2017/12/09/python-linux-cmd/)
 - [操作目录文件相关命令](/2017/08/11/python-2017-08-11-os-file/)
 - [SQLAlchemy 各种查询语句写法](/2017/08/14/python-2017-08-14-sqlalchemy-filter/)
@@ -37,3 +38,5 @@ date: 2017-11-21 21:07:36
 - [获取本地或网络图片的宽高](/2017/08/22/python-2017-08-22-get-image-size/)
 - [Linux 执行 pip 报错 command not found](/2017/08/18/python-2017-08-18-pip-not-found/)
 
+## 参考资料
+- [PyFormat](https://pyformat.info/)

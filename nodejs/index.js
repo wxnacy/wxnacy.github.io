@@ -126,40 +126,6 @@ router.put('put_page_view','/api/blog/page_view',(ctx,next) => {
         })
     return defer.promise;
 
-    // let sql = "insert into blog (route, page_view) values (?, ?)"
-    // mysql.query("select * from blog where route = ?", [route])
-        // .then(res => {
-            // if( res.length > 0 ){
-                // return res
-            // } else {
-                // mysql.query(sql, [route, page_view])
-                    // .then(res => {
-                        // ctx.response.body = {
-                            // "status": 200
-                        // }
-                        // defer.resolve();
-                    // })
-            // }
-        // }).then(res => {
-            // let id = res[0].id;
-            // let pv = res[0].page_view;
-            // if( pv >= page_view ){
-                // ctx.response.body = {
-                    // "status": 200
-                // }
-                // defer.resolve();
-                // return defer.promise;
-            // }
-            // sql = "update blog set page_view = ? where id = ?"
-            // mysql.query(sql, [page_view, id])
-                // .then(res => {
-                        // ctx.response.body = {
-                            // "status": 200
-                        // }
-                        // defer.resolve();
-                // })
-        // })
-    // return defer.promise;
 })
 
 router.post('crypto','/api/crypto',(ctx,next) => {
@@ -262,10 +228,12 @@ router.get('blog_top','/api/blog/top',(ctx,next) => {
 router.get('test','/api',(ctx,next) => {
     ctx.response.header['Content-Type']= 'application/json;charset=utf8';
     ctx.response.body = ctx.request.query;
+    log.info(ctx.cookies.get('name'))
     ctx.response.body = {
         query: ctx.request.query,
         bodys: ctx.request.body,
-        "name": "wxnacy"
+        cookies: ctx.cookie,
+        "name": "wxnacys"
     }
 })
 
