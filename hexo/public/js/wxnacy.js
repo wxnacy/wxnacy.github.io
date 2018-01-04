@@ -178,7 +178,6 @@ function doEnterSearch() {
     if( e.key == 'Enter' ){
         doSearchByGoogle()
     }
-
 }
 var pagePvTimer;
 pagePvTimer = setInterval(create_visit, 1000);
