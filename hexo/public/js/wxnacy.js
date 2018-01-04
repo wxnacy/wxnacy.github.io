@@ -87,8 +87,6 @@ function get_page_pv() {
     var pv =  document.getElementById('busuanzi_value_page_pv').innerHTML;
     return pv;
 }
-var pagePvTimer;
-pagePvTimer = setInterval(create_visit, 1000);
 function create_visit(){
     var pv = get_page_pv();
     if( pv != '' && pv != 'undefined' ){
@@ -143,6 +141,51 @@ function create_crypto(type) {
         }
     });
 };
+var getAccessToken = function(){
+    var us = Cookies.get('_US')
+    if( us != null && us != undefined && us != '' && us != 'null' ){
+        console.log('cookies', us);
+        return Promise.resolve(us)
+    }
+    return new Promise(function(resolve, reject) {
+        fetch('/api/access_token')
+            .then(function(res){
+                return res.json()
+            }).then(function(data){
+                console.log('fetch;', data);
+                var us = data.data
+                Cookies.set('_US', us)
+                resolve(us)
+            }).catch(function(e){
+                console.log(e);
+                reject(e)
+            })
+    })
+}
+function doSearchByGoogle() {
+    var value = document.getElementById('w-search').value
+    if( value == '' ){
+        return
+    }
+    value = 'site:https://wxnacy.com ' + value
+    value = encodeURIComponent(value)
+    var url = 'https://www.google.com/search?q=' + value
+    window.open(url,'_blank');
+}
+
+function doEnterSearch() {
+    var e = window.event
+    if( e.key == 'Enter' ){
+        doSearchByGoogle()
+    }
+
+}
+var pagePvTimer;
+pagePvTimer = setInterval(create_visit, 1000);
+// getAccessToken().then(function(res){
+    // console.log("access", res);
+// })
+
 // create_crypto();
 // create_visit();
 // console.log(get_page_pv());

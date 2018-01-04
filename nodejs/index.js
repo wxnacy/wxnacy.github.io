@@ -18,38 +18,10 @@ const requestLog = middleware.requestLog
 const checkSign = middleware.checkSign
 const config = require('./config.js')
 const log = config.log
+const BaseResponse = config.BaseResponse
+const bp = new BaseResponse()
+const UserSecret = config.UserSecret
 
-
-router.post('jsonParser','/json/parser',(ctx,next) => {
-    const body = ctx.request.body;
-    let data = body.data;
-    let res = json.parser(data);
-    ctx.response.body = {
-        data: res,
-        status: 200,
-        message: ""
-    };
-    // const defer = Q.defer();
-    // console.log(file_name)
-    // console.log(url)
-    // ss.createScreenShot(file_name,url, width, height).then(res => {
-        // console.log(res)
-        // ctx.response.body = {
-            // data: {
-                // file_name: res,
-                // url: `http://tmdmenuimg.gochinatv.com/screen_shot/${res}`
-
-            // },
-            // status: 200,
-            // message: ""
-        // };
-        // defer.resolve();
-
-    // })
-    // return defer.promise;
-
-
-});
 
 router.post('batch_screen_shot','/batch_screen_shot',(ctx,next) => {
     const body = ctx.request.body;
@@ -225,16 +197,21 @@ router.get('blog_top','/api/blog/top',(ctx,next) => {
     return defer.promise;
 
 })
+
 router.get('test','/api',(ctx,next) => {
-    ctx.response.header['Content-Type']= 'application/json;charset=utf8';
     ctx.response.body = ctx.request.query;
     log.info(ctx.cookies.get('name'))
-    ctx.response.body = {
-        query: ctx.request.query,
-        bodys: ctx.request.body,
-        cookies: ctx.cookie,
-        "name": "wxnacys"
-    }
+    bp.ok(ctx, {
+        header: ctx.header
+    })
+})
+
+
+router.get('access-token','/api/access_token',(ctx,next) => {
+    let us = new UserSecret({
+        ip: ctx.request.ip, ua: ctx.request.header['user-agent']})
+    let res = us.encrypt()
+    bp.ok(ctx, res)
 })
 
 app
@@ -244,7 +221,7 @@ app
     .use(requestLog)
     .use(router.routes())
     .use(router.allowedMethods());
-app.listen(5000,() => {
+app.listen(5000,'0.0.0.0', () => {
     log.info('listen to 0.0.0.0:5000');
 });
 
