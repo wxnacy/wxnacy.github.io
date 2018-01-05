@@ -5,7 +5,7 @@ tags: [工具, javascript]
 ---
 
 Google 大法好啊
-<!-- more --><!-- toc -->
+<!-- more -->
 个人建站动不动就自己写搜索引擎的时代已经一去不复返了，现在各种搜索服务应接不暇，收费的免费的，一抓一大把，而如果巧用 Google 的搜索功能，你连 API 都不用接入，就可以做搜索。
 
 把 `site:https://wxnacy.com python` 复制到 Google 搜索框，或者直接点击下面的连接

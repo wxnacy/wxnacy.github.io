@@ -162,6 +162,9 @@ var getAccessToken = function(){
             })
     })
 }
+/**
+ * 搜索
+ */
 function doSearchByGoogle() {
     var value = document.getElementById('w-search').value
     if( value == '' ){
@@ -172,12 +175,27 @@ function doSearchByGoogle() {
     var url = 'https://www.google.com/search?q=' + value
     window.open(url,'_blank');
 }
-
+/**
+ * 回车搜索
+ */
 function doEnterSearch() {
     var e = window.event
     if( e.key == 'Enter' ){
         doSearchByGoogle()
     }
+}
+
+function doUrlencode(type) {
+    var plain = document.getElementById('plain')
+    var value = plain.value
+    if( type == 'encode' ){
+        value = encodeURIComponent(value)
+        plain.value = value
+    } else if( type == 'decode' ){
+        value = decodeURIComponent(value)
+        plain.value = value
+    }
+
 }
 var pagePvTimer;
 pagePvTimer = setInterval(create_visit, 1000);

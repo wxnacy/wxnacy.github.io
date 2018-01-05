@@ -185,6 +185,103 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-python-2017-08-14-sqlalchemy-filter" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/14/python-2017-08-14-sqlalchemy-filter/">SQLAlchemy 各种查询语句写法</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/14/python-2017-08-14-sqlalchemy-filter/" class="archive-article-date">
+  	<time datetime="2017-08-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#and">and</a></li>
+<li><a href="#in">in</a></li>
+<li><a href="#or">or</a></li>
+<li><a href="#pai-xu">排序</a></li>
+<li><a href="#da-yu-xiao-yu">大于小于</a></li>
+<li><a href="#like">like</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+
+<h2><span id="and">and</span><a href="#and" class="header-anchor"></a></h2><p>filter 与 filter_by 语法稍有不同<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">User.query.filter_by(id=<span class="number">1</span>,name=<span class="string">'win'</span>).first()</div><div class="line">User.query.filter(User.id==<span class="number">1</span>,User.name == <span class="string">'win'</span>).first()</div></pre></td></tr></table></figure></p>
+<h2><span id="in">in</span><a href="#in" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sql = User.query.filter(User.id.in_([<span class="number">1</span>,<span class="number">2</span>]))</div><div class="line">print(sql)</div><div class="line"></div><div class="line">&gt; select * <span class="keyword">from</span> user where id <span class="keyword">in</span> (<span class="number">1</span>,<span class="number">2</span>)</div></pre></td></tr></table></figure>
+<h2><span id="or">or</span><a href="#or" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> or_</div><div class="line">sql = User.query.filter(or_(User.name == <span class="string">'winn'</span>,User.mobile == <span class="string">'183'</span>),User.email == <span class="string">'371'</span>)</div><div class="line">print(sql)</div><div class="line"></div><div class="line">&gt; select * <span class="keyword">from</span> user where (name = <span class="string">'winn'</span> <span class="keyword">or</span> mobile = <span class="string">'183'</span>) <span class="keyword">and</span> email= <span class="string">'371'</span></div></pre></td></tr></table></figure>
+<h2><span id="pai-xu">排序</span><a href="#pai-xu" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> desc</div><div class="line">User.query.order_by(create_ts).all() <span class="comment"># 根据创建时间正序</span></div><div class="line">User.query.order_by(desc(create_ts)).all() <span class="comment"># 根据创建时间倒序</span></div></pre></td></tr></table></figure>
+<h2><span id="da-yu-xiao-yu">大于小于</span><a href="#da-yu-xiao-yu" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">User.query.filter(User.age &gt;= <span class="number">12</span>,User.age &lt; <span class="number">23</span>).all()</div></pre></td></tr></table></figure>
+<h2><span id="like">like</span><a href="#like" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">User.query.filter(User.name.like(<span class="string">'%win%'</span>)).all()</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">sqlalchemy</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/14/python-2017-08-14-sqlalchemy-filter/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-movie-2017-08-13-MCU" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -666,6 +763,85 @@
 
 
   
+    <article id="post-mac-2017-08-10-clear-dns" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/10/mac-2017-08-10-clear-dns/">mac清除DNS缓存</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/10/mac-2017-08-10-clear-dns/" class="archive-article-date">
+  	<time datetime="2017-08-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文：<a href="https://support.apple.com/zh-cn/HT202516" target="_blank" rel="noopener">https://support.apple.com/zh-cn/HT202516</a></p>
+<h2><span id="guan-yu-dns-huan-cun">关于 DNS 缓存</span><a href="#guan-yu-dns-huan-cun" class="header-anchor"></a></h2><p>OS X 会将已解析的 DNS 查询的本地缓存保留一段时间，保留时间由 DNS 服务器定义。有时可能需要立即还原缓存设置并重新查询 DNS 服务器。例如，如果您是网络或服务器管理员且您的 DNS 服务器上的条目最近有更改，您可能需要执行此操作。<br>如果您的 Mac 使用的不是您服务器上的最新 DNS 条目，您可重新启动 Mac 以更新其缓存的信息。如果您需要更新使用 OS X 的服务器上的 DNS 条目但又不能重新启动服务器，请使用以下适用于您所使用的 OS X 版本的命令。</p>
+<h2><span id="os-x-yosemite-ji-geng-xin-ji-xing">OS X Yosemite及更新机型</span><a href="#os-x-yosemite-ji-geng-xin-ji-xing" class="header-anchor"></a></h2><p>在 OS X v10.10.4 或更高版本中，请使用以下“终端”命令来还原 DNS 缓存设置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo killall -HUP mDNSResponder</div></pre></td></tr></table></figure></p>
+<p>在 OS X v10.10 至 v10.10.3 中，请使用以下“终端”命令来还原 DNS 缓存设置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo discoveryutil mdnsflushcache</div></pre></td></tr></table></figure></p>
+<h2><span id="os-x-mavericks-mountain-lion-he-lion">OS X Mavericks、Mountain Lion 和 Lion</span><a href="#os-x-mavericks-mountain-lion-he-lion" class="header-anchor"></a></h2><p>在 OS X v10.9.5 及更低版本中，请使用以下“终端”命令来还原 DNS 缓存设置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo killall -HUP mDNSResponder</div></pre></td></tr></table></figure></p>
+<h2><span id="mac-os-x-snow-leopard">Mac OS X Snow Leopard</span><a href="#mac-os-x-snow-leopard" class="header-anchor"></a></h2><p>在 OS X v10.6 至 v10.6.8 中，请使用以下“终端”命令来还原 DNS 缓存设置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo dscacheutil -flushcache</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">mac</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/10/mac-2017-08-10-clear-dns/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-mysql-2017-08-10-item-daily" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -747,85 +923,6 @@
 
 
   
-    <article id="post-mac-2017-08-10-clear-dns" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/10/mac-2017-08-10-clear-dns/">mac清除DNS缓存</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/10/mac-2017-08-10-clear-dns/" class="archive-article-date">
-  	<time datetime="2017-08-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文：<a href="https://support.apple.com/zh-cn/HT202516" target="_blank" rel="noopener">https://support.apple.com/zh-cn/HT202516</a></p>
-<h2><span id="guan-yu-dns-huan-cun">关于 DNS 缓存</span><a href="#guan-yu-dns-huan-cun" class="header-anchor"></a></h2><p>OS X 会将已解析的 DNS 查询的本地缓存保留一段时间，保留时间由 DNS 服务器定义。有时可能需要立即还原缓存设置并重新查询 DNS 服务器。例如，如果您是网络或服务器管理员且您的 DNS 服务器上的条目最近有更改，您可能需要执行此操作。<br>如果您的 Mac 使用的不是您服务器上的最新 DNS 条目，您可重新启动 Mac 以更新其缓存的信息。如果您需要更新使用 OS X 的服务器上的 DNS 条目但又不能重新启动服务器，请使用以下适用于您所使用的 OS X 版本的命令。</p>
-<h2><span id="os-x-yosemite-ji-geng-xin-ji-xing">OS X Yosemite及更新机型</span><a href="#os-x-yosemite-ji-geng-xin-ji-xing" class="header-anchor"></a></h2><p>在 OS X v10.10.4 或更高版本中，请使用以下“终端”命令来还原 DNS 缓存设置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo killall -HUP mDNSResponder</div></pre></td></tr></table></figure></p>
-<p>在 OS X v10.10 至 v10.10.3 中，请使用以下“终端”命令来还原 DNS 缓存设置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo discoveryutil mdnsflushcache</div></pre></td></tr></table></figure></p>
-<h2><span id="os-x-mavericks-mountain-lion-he-lion">OS X Mavericks、Mountain Lion 和 Lion</span><a href="#os-x-mavericks-mountain-lion-he-lion" class="header-anchor"></a></h2><p>在 OS X v10.9.5 及更低版本中，请使用以下“终端”命令来还原 DNS 缓存设置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo killall -HUP mDNSResponder</div></pre></td></tr></table></figure></p>
-<h2><span id="mac-os-x-snow-leopard">Mac OS X Snow Leopard</span><a href="#mac-os-x-snow-leopard" class="header-anchor"></a></h2><p>在 OS X v10.6 至 v10.6.8 中，请使用以下“终端”命令来还原 DNS 缓存设置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo dscacheutil -flushcache</div></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">mac</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/10/mac-2017-08-10-clear-dns/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-mysql-2017-08-09-skill" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -873,82 +970,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-skill/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-mysql-2017-08-09-basic-index" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-basic-index/">Mysql 索引的增删查</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/09/mysql-2017-08-09-basic-index/" class="archive-article-date">
-  	<time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文：<a href="http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html" target="_blank" rel="noopener">http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html</a><br>
-        
-          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-basic-index/#more">阅读全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-basic-index/">展开全文 >></a>
         </p>
       
 
@@ -1112,6 +1133,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -1120,7 +1145,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1128,11 +1153,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1140,7 +1161,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1152,11 +1173,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">grep</a>
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">搜索</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">grep</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1173,10 +1198,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
