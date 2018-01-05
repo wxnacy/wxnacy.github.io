@@ -1,4 +1,5 @@
 const config = require('../local_config.json').local.twitter
+console.log(config);
 const Twitter = require('twitter-node-client').Twitter;
 const twitter = new Twitter(config)
 const TWITTER_BASE_URL = 'https://api.twitter.com/1.1';
@@ -17,7 +18,7 @@ const success = function (data) {
     // text: 'This is easy.'
 // }, error, success);
 
-// twitter.getUserTimeline({ screen_name: 'BoyCook', count: '10' }, error, success)
+twitter.getUserTimeline({ screen_name: 'BoyCook', count: '10' }, error, success)
 // twitter.doRequest(`${TWITTER_BASE_URL}/direct_messages/events/list.json`, error, success)
 // twitter.getUser('2510838212', error, success)
-twitter.getSearch({'q':'#haiku','count': 10}, error, success);
+// twitter.getSearch({'q':'#haiku','count': 10}, error, success);

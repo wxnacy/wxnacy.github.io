@@ -6,7 +6,7 @@ tags: [工具, javascript]
 
 昨天做 Google 搜索时需要对 url 参数进行 URLEncode 编码，发现还没有这个功能，按照惯例，赶紧写一个。
 <!-- more -->
-<textarea id="plain" style="width: 600px; height: 200px"></textarea>
+<textarea id="plain" style="width: 100%; height: 200px"></textarea>
 <button onClick="doUrlencode('encode')">编码</button>
 <button onClick="doUrlencode('decode')">解码</button>
 
