@@ -206,7 +206,7 @@ let g:syntastic_stl_format = '[%E{E:%fe #%e}%B{, }%W{W:%fw #%w}]'
 let g:syntastic_python_checkers=['pyflakes'] " 使用pyflakes,速度比pylint快
 let g:syntastic_javascript_checkers = ['jsl', 'jshint']
 let g:syntastic_html_checkers=['tidy', 'jshint']
-let g:syntastic_java_javac_classpath = '~/IdeaProjects/HelloWorld/src'
+" let g:syntastic_java_javac_classpath = '~/IdeaProjects/HelloWorld/src'
 " " 修改高亮的背景色, 适应主题
 highlight SyntasticErrorSign guifg=white guibg=black
 

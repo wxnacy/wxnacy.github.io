@@ -197,6 +197,44 @@ function doUrlencode(type) {
     }
 
 }
+
+/**
+ * 转换单位
+ */
+function doConvertSize() {
+    var e = window.event
+    var dom = e.path[0]
+    var id = dom.id
+    var value = dom.value
+    if( isNaN(value) ){
+        dom.value = value.replace(/\D+/g, '')
+    }
+    value = dom.value
+    if( value == ''){
+        return
+    }
+    value = parseFloat(value)
+    var DOMS = ['bytes', 'kb', 'mb', 'gb', 'tb']
+    var bytes = 0
+    if( id == 'bit' ){
+        bytes = value / 8
+    } else if( id == 'bytes' ){
+        bytes = value
+    } else if( id == 'kb' ){
+        bytes = value * Math.pow(1024, 1)
+    } else if( id == 'mb' ){
+        bytes = value * Math.pow(1024, 2)
+    } else if( id == 'gb' ){
+        bytes = value * Math.pow(1024, 3)
+    } else if( id == 'tb' ){
+        bytes = value * Math.pow(1024, 4)
+    }
+    var bit = bytes * 8
+    document.getElementById('bit').value = bit
+    for(var i = 0; i < DOMS.length; i++){
+        document.getElementById(DOMS[i]).value = bytes / Math.pow(1024, i)
+    }
+}
 var pagePvTimer;
 pagePvTimer = setInterval(create_visit, 1000);
 // getAccessToken().then(function(res){
