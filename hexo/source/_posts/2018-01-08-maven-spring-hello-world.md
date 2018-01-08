@@ -1,7 +1,12 @@
 ---
 title: 使用 Maven 构建 SpringMVC ：Hello World
-tags: [java, maven, spring]
+tags:
+  - java
+  - maven
+  - spring
+date: 2018-01-08 09:41:30
 ---
+
 
 本文简单介绍如何使用 Maven 框架搭建并配置 StringMVC，完成输入 Hello World 的功能。
 <!-- more --><!-- toc -->
