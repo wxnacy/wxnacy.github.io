@@ -235,6 +235,18 @@ function doConvertSize() {
         document.getElementById(DOMS[i]).value = bytes / Math.pow(1024, i)
     }
 }
+function onlyNum() {
+    if(!(event.keyCode==46)&&!(event.keyCode==8)&&!(event.keyCode==37)&&!(event.keyCode==39))
+    if(!((event.keyCode>=48&&event.keyCode<=57)||(event.keyCode>=96&&event.keyCode<=105)))
+    event.returnValue=false;
+}
+function checkNaN(){
+    var value = window.event.path[0].value
+    console.log(value);
+    if( isNaN(value) ){
+        event.returnValue = false;
+    }
+}
 var pagePvTimer;
 pagePvTimer = setInterval(create_visit, 1000);
 // getAccessToken().then(function(res){

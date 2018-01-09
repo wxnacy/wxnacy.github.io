@@ -1,7 +1,10 @@
 ---
 title: Git 解决 refusing to merge unrelated histories 错误
-tags: [git]
+tags:
+  - git
+date: 2018-01-09 09:03:54
 ---
+
 
 在昨天写 Maven 构建项目文章的时候，因为要把 demo 放到 GitHub 上，结果在 `pull` 代码的时候报错
 <!-- more -->

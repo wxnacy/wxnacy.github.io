@@ -290,6 +290,87 @@
 
 
   
+    <article id="post-ansible-2017-08-08-item-basic-playbooks" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">ansible入门笔记2 Playbooks</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/" class="archive-article-date">
+  	<time datetime="2017-08-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>专辑：<a href="/2017/08/14/ansible-2017-08-14-album-study-notes/">ansible学习笔记</a></p>
+<blockquote>
+<p>Playbooks 是 Ansible的配置,部署,编排语言.他们可以被描述为一个需要希望远程主机执行命令的方案,或者一组IT程序运行的命令集合.</p>
+</blockquote>
+<p>一个playbook就是一个YAML文件，所以playbook文件一般都以.yml结尾，一个playbook文件由一个或多个play组成，每个play定义了在一个或多个远程主机上执行的一系列的task，其中每个task一般就是调用一个ansible的模块，如调用copy模块复制文件到远程主机或调用shell模块执行命令。</p>
+<h2><span id="jian-dan-de-pei-zhi">简单的配置</span><a href="#jian-dan-de-pei-zhi" class="header-anchor"></a></h2><p>配置deploy.yml完成进入远程服务器的某个目录并执行git pull操作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- hosts: wxnacy <span class="comment"># 它会默认使用/etc/ansible/hosts 中配置的服务器组名 也可以单独设置hosts地址</span></div><div class="line">  tasks:</div><div class="line">  - name: <span class="built_in">cd</span> path and git pull <span class="comment"># 命令名称</span></div><div class="line">    shell: git pull <span class="comment"># 执行命令</span></div><div class="line">    args:</div><div class="line">      <span class="built_in">chdir</span>: ~/workdir <span class="comment"># 进入目录</span></div></pre></td></tr></table></figure></p>
+<p>运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ ansible-playbook deploy.yml</div><div class="line"></div><div class="line">PLAY [wxnacy] **********************************************************************************************************************************************************************************************</div><div class="line"></div><div class="line">TASK [<span class="built_in">cd</span> path and git pull] *************************************************************************************************************************************************************************************</div><div class="line">ok: [wxnacy.server.org]</div><div class="line"></div><div class="line"></div><div class="line">PLAY RECAP *************************************************************************************************************************************************************************************************</div><div class="line">wxnacy.server.org             : ok=2    changed=1    unreachable=0    failed=0</div></pre></td></tr></table></figure></p>
+<p>执行完运行命令ansible会在webservers组中依次执行tasks，返回以上样式结果极为成功，结果通过红黄绿三种颜色标明了不同的执行结果，红色表示有task执行失败，黄色表示改变了远程主机状态。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ansible</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-mysql-2017-08-07-item-daily" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -553,82 +634,6 @@
 
 
   
-    <article id="post-js-2017-08-05-screen-wh" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/05/js-2017-08-05-screen-wh/">js和css获取屏幕大小</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/05/js-2017-08-05-screen-wh/" class="archive-article-date">
-  	<time datetime="2017-08-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="https://segmentfault.com/q/1010000004605042" target="_blank" rel="noopener">原文：https://segmentfault.com/q/1010000004605042</a></p>
-<h2><span id="js">js</span><a href="#js" class="header-anchor"></a></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getScreenInfo</span>(<span class="params"></span>) </span></div><div class="line"><span class="function"></span>&#123; </div><div class="line">    <span class="keyword">var</span> s = <span class="string">""</span>; </div><div class="line">    s = <span class="string">" 网页可见区域宽："</span> <span class="built_in">document</span>.body.clientWidth; </div><div class="line">    s = <span class="string">" 网页可见区域高："</span> <span class="built_in">document</span>.body.clientHeight; </div><div class="line">    s = <span class="string">" 网页可见区域宽："</span> <span class="built_in">document</span>.body.offsetWidth <span class="string">" (包括边线和滚动条的宽)"</span>; </div><div class="line">    s = <span class="string">" 网页可见区域高："</span> <span class="built_in">document</span>.body.offsetHeight <span class="string">" (包括边线的宽)"</span>; </div><div class="line">    s = <span class="string">" 网页正文全文宽："</span> <span class="built_in">document</span>.body.scrollWidth; </div><div class="line">    s = <span class="string">" 网页正文全文高："</span> <span class="built_in">document</span>.body.scrollHeight; </div><div class="line">    s = <span class="string">" 网页被卷去的高(ff)："</span> <span class="built_in">document</span>.body.scrollTop; </div><div class="line">    s = <span class="string">" 网页被卷去的高(ie)："</span> <span class="built_in">document</span>.documentElement.scrollTop; </div><div class="line">    s = <span class="string">" 网页被卷去的左："</span> <span class="built_in">document</span>.body.scrollLeft; </div><div class="line">    s = <span class="string">" 网页正文部分上："</span> <span class="built_in">window</span>.screenTop; </div><div class="line">    s = <span class="string">" 网页正文部分左："</span> <span class="built_in">window</span>.screenLeft; </div><div class="line">    s = <span class="string">" 屏幕分辨率的高："</span> <span class="built_in">window</span>.screen.height; </div><div class="line">    s = <span class="string">" 屏幕分辨率的宽："</span> <span class="built_in">window</span>.screen.width; </div><div class="line">    s = <span class="string">" 屏幕可用工作区高度："</span> <span class="built_in">window</span>.screen.availHeight; </div><div class="line">    s = <span class="string">" 屏幕可用工作区宽度："</span> <span class="built_in">window</span>.screen.availWidth;</div><div class="line">    s = <span class="string">" 你的屏幕设置是 "</span> <span class="built_in">window</span>.screen.colorDepth <span class="string">" 位彩色"</span>; </div><div class="line">    s = <span class="string">" 你的屏幕设置 "</span> <span class="built_in">window</span>.screen.deviceXDPI <span class="string">" 像素/英寸"</span>; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2><span id="css-pan-duan">css判断</span><a href="#css-pan-duan" class="header-anchor"></a></h2><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 小屏幕（平板，大于等于 768px） */</span></div><div class="line">@<span class="keyword">media</span> (min-width: <span class="number">768px</span>) &#123; ... &#125;</div><div class="line"></div><div class="line"><span class="comment">/* 中等屏幕（桌面显示器，大于等于 992px） */</span></div><div class="line">@<span class="keyword">media</span> (min-width: <span class="number">992px</span>) &#123; ... &#125;</div><div class="line"></div><div class="line"><span class="comment">/* 大屏幕（大桌面显示器，大于等于 1200px） */</span></div><div class="line">@<span class="keyword">media</span> (min-width: <span class="number">1200px</span>) &#123; ... &#125;</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/05/js-2017-08-05-screen-wh/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-algorithm-2017-08-05-bank-verify" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -682,6 +687,82 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/05/algorithm-2017-08-05-bank-verify/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-js-2017-08-05-screen-wh" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/05/js-2017-08-05-screen-wh/">js和css获取屏幕大小</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/05/js-2017-08-05-screen-wh/" class="archive-article-date">
+  	<time datetime="2017-08-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://segmentfault.com/q/1010000004605042" target="_blank" rel="noopener">原文：https://segmentfault.com/q/1010000004605042</a></p>
+<h2><span id="js">js</span><a href="#js" class="header-anchor"></a></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getScreenInfo</span>(<span class="params"></span>) </span></div><div class="line"><span class="function"></span>&#123; </div><div class="line">    <span class="keyword">var</span> s = <span class="string">""</span>; </div><div class="line">    s = <span class="string">" 网页可见区域宽："</span> <span class="built_in">document</span>.body.clientWidth; </div><div class="line">    s = <span class="string">" 网页可见区域高："</span> <span class="built_in">document</span>.body.clientHeight; </div><div class="line">    s = <span class="string">" 网页可见区域宽："</span> <span class="built_in">document</span>.body.offsetWidth <span class="string">" (包括边线和滚动条的宽)"</span>; </div><div class="line">    s = <span class="string">" 网页可见区域高："</span> <span class="built_in">document</span>.body.offsetHeight <span class="string">" (包括边线的宽)"</span>; </div><div class="line">    s = <span class="string">" 网页正文全文宽："</span> <span class="built_in">document</span>.body.scrollWidth; </div><div class="line">    s = <span class="string">" 网页正文全文高："</span> <span class="built_in">document</span>.body.scrollHeight; </div><div class="line">    s = <span class="string">" 网页被卷去的高(ff)："</span> <span class="built_in">document</span>.body.scrollTop; </div><div class="line">    s = <span class="string">" 网页被卷去的高(ie)："</span> <span class="built_in">document</span>.documentElement.scrollTop; </div><div class="line">    s = <span class="string">" 网页被卷去的左："</span> <span class="built_in">document</span>.body.scrollLeft; </div><div class="line">    s = <span class="string">" 网页正文部分上："</span> <span class="built_in">window</span>.screenTop; </div><div class="line">    s = <span class="string">" 网页正文部分左："</span> <span class="built_in">window</span>.screenLeft; </div><div class="line">    s = <span class="string">" 屏幕分辨率的高："</span> <span class="built_in">window</span>.screen.height; </div><div class="line">    s = <span class="string">" 屏幕分辨率的宽："</span> <span class="built_in">window</span>.screen.width; </div><div class="line">    s = <span class="string">" 屏幕可用工作区高度："</span> <span class="built_in">window</span>.screen.availHeight; </div><div class="line">    s = <span class="string">" 屏幕可用工作区宽度："</span> <span class="built_in">window</span>.screen.availWidth;</div><div class="line">    s = <span class="string">" 你的屏幕设置是 "</span> <span class="built_in">window</span>.screen.colorDepth <span class="string">" 位彩色"</span>; </div><div class="line">    s = <span class="string">" 你的屏幕设置 "</span> <span class="built_in">window</span>.screen.deviceXDPI <span class="string">" 像素/英寸"</span>; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2><span id="css-pan-duan">css判断</span><a href="#css-pan-duan" class="header-anchor"></a></h2><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 小屏幕（平板，大于等于 768px） */</span></div><div class="line">@<span class="keyword">media</span> (min-width: <span class="number">768px</span>) &#123; ... &#125;</div><div class="line"></div><div class="line"><span class="comment">/* 中等屏幕（桌面显示器，大于等于 992px） */</span></div><div class="line">@<span class="keyword">media</span> (min-width: <span class="number">992px</span>) &#123; ... &#125;</div><div class="line"></div><div class="line"><span class="comment">/* 大屏幕（大桌面显示器，大于等于 1200px） */</span></div><div class="line">@<span class="keyword">media</span> (min-width: <span class="number">1200px</span>) &#123; ... &#125;</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/05/js-2017-08-05-screen-wh/">展开全文 >></a>
         </p>
       
 
@@ -1086,14 +1167,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
@@ -1106,7 +1179,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1122,11 +1203,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1222,11 +1303,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">gunicorn</a>
+                <a href="javascript:void(0)" class="js-tag color1">flask</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">flask</a>
+                <a href="javascript:void(0)" class="js-tag color4">gunicorn</a>
               </li>
              
               <li class="article-tag-list-item">
