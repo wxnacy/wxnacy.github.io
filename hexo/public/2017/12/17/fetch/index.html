@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="wxnacy 博客">
 <meta property="og:description" content="Fetch API提供了一个获取资源的接口(包括跨网络)。任何使用过 XMLHttpRequest 的人都会熟悉它，但是新的API提供了更强大和更灵活的功能集。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-12-18T13:05:18.000Z">
+<meta property="og:updated_time" content="2018-01-13T03:52:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Javascript 网络请求 Fetch Api">
 <meta name="twitter:description" content="Fetch API提供了一个获取资源的接口(包括跨网络)。任何使用过 XMLHttpRequest 的人都会熟悉它，但是新的API提供了更强大和更灵活的功能集。">
@@ -212,6 +212,7 @@
 <ul>
 <li><a href="#kai-shi">开始</a></li>
 <li><a href="#geng-duo-yong-fa">更多用法</a></li>
+<li><a href="#feng-zhuang">封装</a></li>
 <li><a href="#can-kao-wen-xian">参考文献</a></li>
 </ul>
 <!-- tocstop -->
@@ -225,6 +226,8 @@
 <p>Form 表单提交<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> form = <span class="built_in">document</span>.querySelector(<span class="string">'form'</span>)</div><div class="line"></div><div class="line">fetch(<span class="string">'/users'</span>, &#123;</div><div class="line">    method: <span class="string">'POST'</span>,</div><div class="line">    body: <span class="keyword">new</span> FormData(form)</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
 <p>JSON 数据提交<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">fetch(<span class="string">'/users'</span>, &#123;</div><div class="line">    method: <span class="string">'POST'</span>,</div><div class="line">    headers: &#123;</div><div class="line">        <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span></div><div class="line">    &#125;,</div><div class="line">    body: JSON.stringify(&#123;</div><div class="line">        name: <span class="string">'Hubot'</span>,</div><div class="line">        login: <span class="string">'hubot'</span>,</div><div class="line">    &#125;)</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
 <p>更多使用见<a href="https://github.com/github/fetch#caveats" target="_blank" rel="noopener">文档</a><br>在 Node 中使用 fetch <a href="https://github.com/bitinn/node-fetch" target="_blank" rel="noopener">node-fetch</a></p>
+<h2><span id="feng-zhuang">封装</span><a href="#feng-zhuang" class="header-anchor"></a></h2><p>Fetch 用法很简洁，但每次都写几次 <code>then, catch</code> 也会很烦，我们可以对他进行简单封装，让每次使用不那么麻烦。这里只是提供一种思路，因为每个项目设计到的情况都有少许不同<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fetchGet</span>(<span class="params">url</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> fetchRequest(url, <span class="string">'GET'</span>)</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fetchPost</span>(<span class="params">url, params</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> fetchRequest(url, <span class="string">'POST'</span>, params)</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fetchRequest</span>(<span class="params">url, method, params</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> headers = &#123;</div><div class="line">        <span class="string">"authorization"</span>: <span class="string">"XXXXXXXXX"</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>( method.toLowerCase() == <span class="string">'post'</span> )&#123;</div><div class="line">        headers[<span class="string">'Content-Type'</span>]= <span class="string">'application/json'</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</div><div class="line">        fetch(url, &#123;</div><div class="line">            method: method,</div><div class="line">            headers: headers,</div><div class="line">            body: <span class="built_in">JSON</span>.stringify(params)</div><div class="line">        &#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</div><div class="line">            <span class="keyword">return</span> res.json()</div><div class="line">        &#125;).then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</div><div class="line">            resolve(data)</div><div class="line">        &#125;).catch(<span class="function"><span class="params">e</span> =&gt;</span> &#123;</div><div class="line">            <span class="built_in">console</span>.log(e);</div><div class="line">            <span class="comment">// 需要统一的处理错误方式，避免每次都catch</span></div><div class="line">        &#125;)</div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 使用</span></div><div class="line">fetchGet(<span class="string">'http://ip-api.com/json'</span>)</div><div class="line">.then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(data);</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>fetch 方法返回的是 Promise ，我们的封装方法也要返回 Promise，我只返回 JSON 数据，catch 的数据集中处理。</p>
 <h2><span id="can-kao-wen-xian">参考文献</span><a href="#can-kao-wen-xian" class="header-anchor"></a></h2><ul>
 <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API#Fetch_%E6%8E%A5%E5%8F%A3" target="_blank" rel="noopener">Fetch API</a></li>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch" target="_blank" rel="noopener">Using Fetch</a></li>
@@ -300,7 +303,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="kai-shi">&#x5F00;&#x59CB;</span><a href="#kai-shi" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="geng-duo-yong-fa">&#x66F4;&#x591A;&#x7528;&#x6CD5;</span><a href="#geng-duo-yong-fa" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="can-kao-wen-xian">&#x53C2;&#x8003;&#x6587;&#x732E;</span><a href="#can-kao-wen-xian" class="header-anchor"></a></span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="kai-shi">&#x5F00;&#x59CB;</span><a href="#kai-shi" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="geng-duo-yong-fa">&#x66F4;&#x591A;&#x7528;&#x6CD5;</span><a href="#geng-duo-yong-fa" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="feng-zhuang">&#x5C01;&#x88C5;</span><a href="#feng-zhuang" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text"><span id="can-kao-wen-xian">&#x53C2;&#x8003;&#x6587;&#x732E;</span><a href="#can-kao-wen-xian" class="header-anchor"></a></span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -457,11 +460,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -485,15 +488,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -501,7 +496,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -510,6 +509,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -525,11 +528,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">api</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">api</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -561,10 +564,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
@@ -573,15 +572,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">curl</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">expect</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color2">expect</a>
               </li>
              
               <li class="article-tag-list-item">
