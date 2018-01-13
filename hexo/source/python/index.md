@@ -8,6 +8,7 @@ date: 2017-11-21 21:07:36
 - [Python编码Yes or No.pdf](http://pan.baidu.com/s/1skNCT7v) 密码:5tta
 - [时间](/2017/12/10/python-datetime/)
 - [列表 List](/2017/11/24/python-list/)
+- [isinstance 函数判断对象类型](/2018/01/13/python-isinstance/)
 - [格式化函数 format](/2018/01/03/python-format/)
 - [处理 Linux 命令](/2017/12/09/python-linux-cmd/)
 - [操作目录文件相关命令](/2017/08/11/python-2017-08-11-os-file/)
