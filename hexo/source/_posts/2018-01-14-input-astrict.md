@@ -1,7 +1,10 @@
 ---
 title: Javascript input 输入限制
-tags: [javascript]
+tags:
+  - javascript
+date: 2018-01-14 10:55:45
 ---
+
 
 平常开发后台需要限制 input 域输入内容，如只允许数字，这里简单介绍几种常见限制。
 <!-- more --><!-- toc -->
