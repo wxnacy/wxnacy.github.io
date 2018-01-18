@@ -185,6 +185,111 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-ansible-2017-08-08-item-basic-get-started" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/08/ansible-2017-08-08-item-basic-get-started/">ansible入门笔记1 Get Started</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/08/ansible-2017-08-08-item-basic-get-started/" class="archive-article-date">
+  	<time datetime="2017-08-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>专辑：<a href="/2017/08/14/ansible-2017-08-14-album-study-notes/">ansible学习笔记</a></p>
+<blockquote>
+<p>Ansilbe 是一个部署一群远程主机的工具。远程的主机可以是远程虚拟机或物理机，也<br>可以是本地主机。Ansilbe 是一个部署一群远程主机的工具。远程的主机可以是远程虚拟机<br>或物理机，也可以是本地主机。</p>
+</blockquote>
+<!-- move -->
+<div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#an-zhuang-ansible">安装ansible</a><ul>
+<li><a href="#ming-ling">命令</a></li>
+<li><a href="#pei-zhi-hosts">配置hosts</a></li>
+</ul>
+</li>
+<li><a href="#di-yi-tiao-ming-ling">第一条命令</a></li>
+<li><a href="#zhi-ding-hosts-wen-jian">指定hosts文件</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+
+<h2><span id="an-zhuang-ansible">安装ansible</span><a href="#an-zhuang-ansible" class="header-anchor"></a></h2><h3><span id="ming-ling">命令</span><a href="#ming-ling" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install ansible</div></pre></td></tr></table></figure>
+<h3><span id="pei-zhi-hosts">配置hosts</span><a href="#pei-zhi-hosts" class="header-anchor"></a></h3><p>修改/etc/ansible/hosts 全局hosts文件，没有的话自己创建<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[wxnacy] <span class="comment"># 如果服务器使用密码登录就用这个方式保存密码，避免每次输入</span></div><div class="line">wxnacy.server.org ansible_ssh_pass=your_pass ansible_ssh_user=your_name</div><div class="line"></div><div class="line">[prod] <span class="comment"># 如果服务器使用sshkey登陆（推荐使用）</span></div><div class="line">prod.server.org ansible_ssh_user=your_name ansible_ssh_private_key_file=key_path</div></pre></td></tr></table></figure></p>
+<h2><span id="di-yi-tiao-ming-ling">第一条命令</span><a href="#di-yi-tiao-ming-ling" class="header-anchor"></a></h2><ul>
+<li>首先执行ping，查看是否可以连接服务器</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ ansible all -m ping</div><div class="line"></div><div class="line"></div><div class="line">wxnacy.server.org | SUCCESS =&gt; &#123;</div><div class="line">    <span class="string">"changed"</span>: <span class="literal">false</span>,</div><div class="line">    <span class="string">"ping"</span>: <span class="string">"pong"</span></div><div class="line">&#125;</div><div class="line">prod.server.org | SUCCESS =&gt; &#123;</div><div class="line">    <span class="string">"changed"</span>: <span class="literal">false</span>,</div><div class="line">    <span class="string">"ping"</span>: <span class="string">"pong"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>得到如上样式结果即为正确,另外执行 <code>ansible wxnacy -m ping</code> 可以针对某一个服务器<br>组进行操作</p>
+<ul>
+<li>现在我们用另一个命令看下是不是真的可以拿到远程服务器的信息</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ ansible prod -m shell -a <span class="string">"uname -a"</span></div><div class="line"></div><div class="line">prod.server.org | SUCCESS | rc=0 &gt;&gt;</div><div class="line">Linux ip-172-31-5-249 4.9.27-14.31.amzn1.x86_64 <span class="comment">#1 SMP Wed May 10 01:58:40 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux</span></div></pre></td></tr></table></figure>
+<h2><span id="zhi-ding-hosts-wen-jian">指定hosts文件</span><a href="#zhi-ding-hosts-wen-jian" class="header-anchor"></a></h2><p>在一些项目中，全局hosts配置不能满足需求，需要指定hosts命令，可以执行如下命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ansible my -i hosts_path -m ping</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ansible</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/08/ansible-2017-08-08-item-basic-get-started/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-mysql-2017-08-07-item-daily" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -539,82 +644,6 @@
 
 
   
-    <article id="post-js-2017-08-05-screen-wh" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/05/js-2017-08-05-screen-wh/">js和css获取屏幕大小</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/05/js-2017-08-05-screen-wh/" class="archive-article-date">
-  	<time datetime="2017-08-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="https://segmentfault.com/q/1010000004605042" target="_blank" rel="noopener">原文：https://segmentfault.com/q/1010000004605042</a></p>
-<h2><span id="js">js</span><a href="#js" class="header-anchor"></a></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getScreenInfo</span>(<span class="params"></span>) </span></div><div class="line"><span class="function"></span>&#123; </div><div class="line">    <span class="keyword">var</span> s = <span class="string">""</span>; </div><div class="line">    s = <span class="string">" 网页可见区域宽："</span> <span class="built_in">document</span>.body.clientWidth; </div><div class="line">    s = <span class="string">" 网页可见区域高："</span> <span class="built_in">document</span>.body.clientHeight; </div><div class="line">    s = <span class="string">" 网页可见区域宽："</span> <span class="built_in">document</span>.body.offsetWidth <span class="string">" (包括边线和滚动条的宽)"</span>; </div><div class="line">    s = <span class="string">" 网页可见区域高："</span> <span class="built_in">document</span>.body.offsetHeight <span class="string">" (包括边线的宽)"</span>; </div><div class="line">    s = <span class="string">" 网页正文全文宽："</span> <span class="built_in">document</span>.body.scrollWidth; </div><div class="line">    s = <span class="string">" 网页正文全文高："</span> <span class="built_in">document</span>.body.scrollHeight; </div><div class="line">    s = <span class="string">" 网页被卷去的高(ff)："</span> <span class="built_in">document</span>.body.scrollTop; </div><div class="line">    s = <span class="string">" 网页被卷去的高(ie)："</span> <span class="built_in">document</span>.documentElement.scrollTop; </div><div class="line">    s = <span class="string">" 网页被卷去的左："</span> <span class="built_in">document</span>.body.scrollLeft; </div><div class="line">    s = <span class="string">" 网页正文部分上："</span> <span class="built_in">window</span>.screenTop; </div><div class="line">    s = <span class="string">" 网页正文部分左："</span> <span class="built_in">window</span>.screenLeft; </div><div class="line">    s = <span class="string">" 屏幕分辨率的高："</span> <span class="built_in">window</span>.screen.height; </div><div class="line">    s = <span class="string">" 屏幕分辨率的宽："</span> <span class="built_in">window</span>.screen.width; </div><div class="line">    s = <span class="string">" 屏幕可用工作区高度："</span> <span class="built_in">window</span>.screen.availHeight; </div><div class="line">    s = <span class="string">" 屏幕可用工作区宽度："</span> <span class="built_in">window</span>.screen.availWidth;</div><div class="line">    s = <span class="string">" 你的屏幕设置是 "</span> <span class="built_in">window</span>.screen.colorDepth <span class="string">" 位彩色"</span>; </div><div class="line">    s = <span class="string">" 你的屏幕设置 "</span> <span class="built_in">window</span>.screen.deviceXDPI <span class="string">" 像素/英寸"</span>; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2><span id="css-pan-duan">css判断</span><a href="#css-pan-duan" class="header-anchor"></a></h2><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 小屏幕（平板，大于等于 768px） */</span></div><div class="line">@<span class="keyword">media</span> (min-width: <span class="number">768px</span>) &#123; ... &#125;</div><div class="line"></div><div class="line"><span class="comment">/* 中等屏幕（桌面显示器，大于等于 992px） */</span></div><div class="line">@<span class="keyword">media</span> (min-width: <span class="number">992px</span>) &#123; ... &#125;</div><div class="line"></div><div class="line"><span class="comment">/* 大屏幕（大桌面显示器，大于等于 1200px） */</span></div><div class="line">@<span class="keyword">media</span> (min-width: <span class="number">1200px</span>) &#123; ... &#125;</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/05/js-2017-08-05-screen-wh/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-algorithm-2017-08-05-bank-verify" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -668,6 +697,82 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/05/algorithm-2017-08-05-bank-verify/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-js-2017-08-05-screen-wh" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/05/js-2017-08-05-screen-wh/">js和css获取屏幕大小</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/05/js-2017-08-05-screen-wh/" class="archive-article-date">
+  	<time datetime="2017-08-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://segmentfault.com/q/1010000004605042" target="_blank" rel="noopener">原文：https://segmentfault.com/q/1010000004605042</a></p>
+<h2><span id="js">js</span><a href="#js" class="header-anchor"></a></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getScreenInfo</span>(<span class="params"></span>) </span></div><div class="line"><span class="function"></span>&#123; </div><div class="line">    <span class="keyword">var</span> s = <span class="string">""</span>; </div><div class="line">    s = <span class="string">" 网页可见区域宽："</span> <span class="built_in">document</span>.body.clientWidth; </div><div class="line">    s = <span class="string">" 网页可见区域高："</span> <span class="built_in">document</span>.body.clientHeight; </div><div class="line">    s = <span class="string">" 网页可见区域宽："</span> <span class="built_in">document</span>.body.offsetWidth <span class="string">" (包括边线和滚动条的宽)"</span>; </div><div class="line">    s = <span class="string">" 网页可见区域高："</span> <span class="built_in">document</span>.body.offsetHeight <span class="string">" (包括边线的宽)"</span>; </div><div class="line">    s = <span class="string">" 网页正文全文宽："</span> <span class="built_in">document</span>.body.scrollWidth; </div><div class="line">    s = <span class="string">" 网页正文全文高："</span> <span class="built_in">document</span>.body.scrollHeight; </div><div class="line">    s = <span class="string">" 网页被卷去的高(ff)："</span> <span class="built_in">document</span>.body.scrollTop; </div><div class="line">    s = <span class="string">" 网页被卷去的高(ie)："</span> <span class="built_in">document</span>.documentElement.scrollTop; </div><div class="line">    s = <span class="string">" 网页被卷去的左："</span> <span class="built_in">document</span>.body.scrollLeft; </div><div class="line">    s = <span class="string">" 网页正文部分上："</span> <span class="built_in">window</span>.screenTop; </div><div class="line">    s = <span class="string">" 网页正文部分左："</span> <span class="built_in">window</span>.screenLeft; </div><div class="line">    s = <span class="string">" 屏幕分辨率的高："</span> <span class="built_in">window</span>.screen.height; </div><div class="line">    s = <span class="string">" 屏幕分辨率的宽："</span> <span class="built_in">window</span>.screen.width; </div><div class="line">    s = <span class="string">" 屏幕可用工作区高度："</span> <span class="built_in">window</span>.screen.availHeight; </div><div class="line">    s = <span class="string">" 屏幕可用工作区宽度："</span> <span class="built_in">window</span>.screen.availWidth;</div><div class="line">    s = <span class="string">" 你的屏幕设置是 "</span> <span class="built_in">window</span>.screen.colorDepth <span class="string">" 位彩色"</span>; </div><div class="line">    s = <span class="string">" 你的屏幕设置 "</span> <span class="built_in">window</span>.screen.deviceXDPI <span class="string">" 像素/英寸"</span>; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2><span id="css-pan-duan">css判断</span><a href="#css-pan-duan" class="header-anchor"></a></h2><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 小屏幕（平板，大于等于 768px） */</span></div><div class="line">@<span class="keyword">media</span> (min-width: <span class="number">768px</span>) &#123; ... &#125;</div><div class="line"></div><div class="line"><span class="comment">/* 中等屏幕（桌面显示器，大于等于 992px） */</span></div><div class="line">@<span class="keyword">media</span> (min-width: <span class="number">992px</span>) &#123; ... &#125;</div><div class="line"></div><div class="line"><span class="comment">/* 大屏幕（大桌面显示器，大于等于 1200px） */</span></div><div class="line">@<span class="keyword">media</span> (min-width: <span class="number">1200px</span>) &#123; ... &#125;</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/05/js-2017-08-05-screen-wh/">展开全文 >></a>
         </p>
       
 
@@ -989,23 +1094,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1017,11 +1114,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1033,11 +1134,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">grep</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
               </li>
              
               <li class="article-tag-list-item">
