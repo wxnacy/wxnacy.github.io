@@ -118,3 +118,5 @@ servlet.xml 增加一些配置
 </mvc:annotation-driven>
 ```
 就这么简单，再次启动项目，即可看到效果。
+
+demo 地址：https://github.com/wxnacy/study/tree/master/java/SpringMVC-ReturnJson
