@@ -1,11 +1,7 @@
 ---
 title: 使用 Maven 构建 StringBoot：Hello World
-tags:
-  - maven
-  - springboot
-date: 2018-01-20 20:18:36
+tags: [maven, springboot]
 ---
-
 
 其实在用了 Python、Ruby 等语言后，再也回不去 Java 的一个很大原因，就是它的配置太多了，在用最受欢迎的 Spring 来做一个简单的 Hello World 输出，也要成吨的配置，这让脱了裤子的我们顿时没了兴致，但是 StringBoot 解决了这个问题。
 <!-- more --><!-- toc -->
@@ -297,6 +293,3 @@ $ curl http://localhost:8080
 ```bash
 Hello World
 ```
-## 参考
-- [Building an Application with Spring Boot](https://spring.io/guides/gs/spring-boot/)
-- [Spring Boot 基础](https://www.ibm.com/developerworks/cn/java/j-spring-boot-basics-perry/index.html)
