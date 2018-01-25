@@ -5,7 +5,6 @@ tags:
 date: 2018-01-24 21:06:15
 ---
 
-
 [SQLAlchemy](https://www.sqlalchemy.org/) 是 Python 操作数据库的 ORM 框架。可以很方便的执行常用数据库操作，以及复杂的 SQL 语句。
 <!-- more --><!-- toc -->
 ## 下载
@@ -231,7 +230,7 @@ print(book) # > Book[id:2, name=new book]
 ```
 利用的 `session` 的 `filter()` 方法，直接传入 `text()` 包装过的 SQL，再通过 `params()` 方法传入参数，得到的结果直接用映射类 `Book` 来接受，这样的“半土半洋”的查询方式才是真正的王道。
 
-还有很多需要说的，比如 `flask_sqlalchemy` 的使用，以后我会慢慢更新上
+在 FLask 框架中使用 SQLAlchemy 可以使用 `Flask_SQLAlchemy` 依赖，详情见 [Flask SQLAlchemy 框架的使用](/2018/01/25/flask-sqlalchemy/)
 
 
 ## 参考

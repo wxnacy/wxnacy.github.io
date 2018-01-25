@@ -25,6 +25,7 @@ date: 2017-11-21 21:07:36
 
 ### Flask
 - [Hello World](/2017/08/15/python-2017-08-15-flask-hello-world/)
+- [SQLAlchemy 框架的使用](/2018/01/25/flask-sqlalchemy/)
 - [配置多环境](/2017/08/15/python-2017-08-15-flask-env-config/)
 ### pyenv
 > [pyenv](https://github.com/yyuu/pyenv) 是一款特别好用的Python版本管理器，

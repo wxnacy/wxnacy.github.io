@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="wxnacy 博客">
 <meta property="og:description" content="SQLAlchemy 是 Python 操作数据库的 ORM 框架。可以很方便的执行常用数据库操作，以及复杂的 SQL 语句。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-01-24T13:06:15.000Z">
+<meta property="og:updated_time" content="2018-01-25T10:36:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python SQLAlchemy 数据库 ORM 框架">
 <meta name="twitter:description" content="SQLAlchemy 是 Python 操作数据库的 ORM 框架。可以很方便的执行常用数据库操作，以及复杂的 SQL 语句。">
@@ -242,7 +242,7 @@
 <p>这两种方式都可以解决问题，但是我心里总觉得别扭，直到看到下面的用法</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> text</div><div class="line"><span class="comment"># where id = 2 and name = 'new book'</span></div><div class="line">book = session.query(Book).filter(text(<span class="string">"id = :id and name = :name"</span>)).params(id=<span class="number">2</span>, name=<span class="string">"new book"</span>).first()</div><div class="line">print(book) <span class="comment"># &gt; Book[id:2, name=new book]</span></div></pre></td></tr></table></figure>
 <p>利用的 <code>session</code> 的 <code>filter()</code> 方法，直接传入 <code>text()</code> 包装过的 SQL，再通过 <code>params()</code> 方法传入参数，得到的结果直接用映射类 <code>Book</code> 来接受，这样的“半土半洋”的查询方式才是真正的王道。</p>
-<p>还有很多需要说的，比如 <code>flask_sqlalchemy</code> 的使用，以后我会慢慢更新上</p>
+<p>在 FLask 框架中使用 SQLAlchemy 可以使用 <code>Flask_SQLAlchemy</code> 依赖，详情见 <a href="/2018/01/25/flask-sqlalchemy/">Flask SQLAlchemy 框架的使用</a></p>
 <h2><span id="can-kao">参考</span><a href="#can-kao" class="header-anchor"></a></h2><ul>
 <li><a href="http://docs.sqlalchemy.org/en/latest/intro.html#documentation-overview" target="_blank" rel="noopener">SQLAlchemy 1.2 Documentation</a></li>
 </ul>
@@ -277,6 +277,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/01/25/flask-sqlalchemy/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Flask SQLAlchemy 框架的使用
+        
+      </div>
+    </a>
   
   
     <a href="/2018/01/23/python-apscheduler/" id="article-nav-older" class="article-nav-link-wrap">
@@ -472,10 +481,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
@@ -484,7 +489,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -496,15 +501,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
