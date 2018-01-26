@@ -86,3 +86,6 @@ $ curl localhost:5000/book/94
     "name": "wxnacy"
 }
 ```
+
+## 参考
+- [Flask SQLAlchemy](http://flask-sqlalchemy.pocoo.org/2.3/)
