@@ -194,3 +194,4 @@ foo({"data": {"id": 10, "name": "wxnacy"}, "meta": {"Content-Type": "application
 
 ## 参考
 - [Flask-Restless](https://flask-restless.readthedocs.io/en/stable/)
+- [Request preprocessors and postprocessors](https://flask-restless.readthedocs.io/en/latest/processors.html)
