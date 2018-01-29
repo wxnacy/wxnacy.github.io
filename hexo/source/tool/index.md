@@ -9,3 +9,4 @@ date: 2017-12-10 08:01:08
 - [UrlEncode/UrlDecode 编解码](/2018/01/05/urlencode/)
 - [filesize 转换](/2018/01/06/convert-size/)
 - [JSON Format 工具](/2018/01/27/json-formatter/)
+- [二维码生成器](/2018/01/28/qrcode-marker/)
