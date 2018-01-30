@@ -298,18 +298,13 @@ class Config(BaseModel,db.Model):
             cls.create(**kwargs)
 
 
-
-
-
-if __name__ == "__main__":
-    begin = datetime.now().timestamp()
-    #  res = Article.get_timeline_md()
-    #  print(res)
-    #  Article.sync_data()
-    #  Article.sync_timeline()
-    #  res = Category.get_md('python',1)
-    #  print(res)
-    vc = VisitLog.get_count_by_url('/git/2017/08/04/basic-cmd')
-    print(vc)
-    end = datetime.now().timestamp()
-    print('timed case: {}'.format(end-begin))
+class Code(BaseModel,db.Model):
+    __tablename__ = 'code'
+    id = db.Column(db.BIGINT,primary_key=True)
+    name = db.Column(db.String,default="")
+    description = db.Column(db.String,default="")
+    type = db.Column(db.String,default="")
+    code = db.Column(db.JSON,default={})
+    is_available = db.Column(db.INT,default=1)
+    create_ts = db.Column(db.TIMESTAMP,default=datetime.now())
+    update_ts = db.Column(db.TIMESTAMP,default=datetime.now())

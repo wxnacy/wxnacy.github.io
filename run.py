@@ -11,6 +11,7 @@ from app.run import app
 from app.models import Article
 from app.views.index import index_bp
 from app.views.api import api_bp
+from app.views.code import code_bp
 from datetime import datetime
 from flask import g
 from flask import request
@@ -69,3 +70,4 @@ def after_request(response):
 # api
 app.register_blueprint(index_bp)
 app.register_blueprint(api_bp)
+app.register_blueprint(code_bp, url_prefix='/api/v1')

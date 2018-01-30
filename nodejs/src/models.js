@@ -43,6 +43,15 @@ Blog.prototype.refresh = function(){
         });
 };
 
+const Code = sequelize.define('code', {
+    id: { type: Sequelize.STRING, primaryKey: true },
+    name: { type: Sequelize.STRING, defaultValue: '' },
+    description: { type: Sequelize.STRING, defaultValue: '' },
+    type: { type: Sequelize.STRING, defaultValue: '' },
+    code: { type: Sequelize.JSON, defaultValue: {} },
+    is_available: { type: Sequelize.INTEGER, defaultValue: 1 },
+});
+
 module.exports.Blog = Blog;
 
 

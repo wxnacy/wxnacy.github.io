@@ -36,6 +36,9 @@ class BaseObject(object):
     def to_json(self):
         return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True)
 
+    def format(self):
+        return self.to_dict()
+
     def __str__(self):
         return self.to_json()
 
@@ -113,17 +116,21 @@ class BaseModel(BaseObject):
         return self
 
     @classmethod
+    def query_by_id(cls, id):
+        return cls.query.filter_by(id=id).first()
+
+    @classmethod
     def query_item(cls, **params):
         if not params:
             params = {}
-        params['is_del'] = 0
+        params['is_available'] = 1
         return cls.query.filter_by(**params).first()
 
     @classmethod
     def query_paginate(cls, page, per_page, **params):
         if not params:
             params = {}
-        params['is_del'] = 0
+        params['is_available'] = 1
         return cls.query.filter_by(**params).order_by(
             desc(cls.create_ts)).paginate(page, per_page, False)
 
@@ -131,30 +138,30 @@ class BaseModel(BaseObject):
     def query_items(cls, **params):
         if not params:
             params = {}
-        params['is_del'] = 0
+        params['is_available'] = 1
         return cls.query.filter_by(**params).all()
 
     @classmethod
     def query_count(cls, **params):
         if not params:
             params = {}
-        params['is_del'] = 0
+        params['is_available'] = 1
         return cls.query.filter_by(**params).count()
 
     @classmethod
     def delete(cls, **params):
-        item = cls.query.filter_by(**params).update(dict(is_del=1))
+        item = cls.query.filter_by(**params).update(dict(is_available=0))
         db.session.commit()
         return item
 
     def delete_self(self):
-        self.is_del = 1
+        self.is_available = 0
         db.session.commit()
         return self
 
     @classmethod
     def update_by_id(cls, id, **params):
-        item = cls.query.filter_by(id=id, is_del=0).update(params)
+        item = cls.query.filter_by(id=id, is_available=1).update(params)
         db.session.commit()
         return item
 

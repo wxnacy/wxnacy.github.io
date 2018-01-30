@@ -13,6 +13,7 @@ const Sequelize = mysql.Sequelize;
 const Op = Sequelize.Op
 const models = require('./src/models.js')
 const Blog = models.Blog;
+const Code = models.Code;
 const middleware = require('./src/middlewares.js')
 const requestLog = middleware.requestLog
 const checkSign = middleware.checkSign
@@ -194,6 +195,26 @@ router.get('blog_top','/api/blog/top',(ctx,next) => {
         }
         defer.resolve()
     })
+    return defer.promise;
+})
+
+router.post('create_code','/api/code',(ctx,next) => {
+    ctx.response.header['Content-Type']= 'application/json;charset=utf8';
+    let body = ctx.request.body;
+    const defer = Q.defer();
+
+    Code.create(body).then(code => {
+        log.info(code)
+        defer.resolve();
+    }).catch(e => {
+        console.log(e);
+        ctx.response.body = {
+            "status": 500,
+            "message": e
+        }
+        defer.resolve();
+    })
+
     return defer.promise;
 
 })
