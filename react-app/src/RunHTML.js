@@ -23,7 +23,9 @@ const defaultHtml = `<!DOCTYPE html>
 const defaultJS = `console.log("log")`
 const defaultCss = `p {color: red}`
 const defaultIframe = `<style>${defaultCss}</style>${defaultHtml}<script>${defaultJS}</script>`
+const HTTP_HEAD = 'http://localhost:8002'
 export default class RunHTML extends React.Component {
+
     constructor(props) {
         super(props);
         // this.state = {
@@ -65,7 +67,7 @@ export default class RunHTML extends React.Component {
             code: code
         }
 
-        fetchPost('http://localhost:4001/api/v1/code', data).then(data => {
+        fetchPost(`${HTTP_HEAD}/api/v1/code`, data).then(data => {
             console.log(data);
             let id = data.data.id
             window.location.href = `/runhtml/${id}`
@@ -74,7 +76,7 @@ export default class RunHTML extends React.Component {
     }
 
     fetchData(id) {
-        fetchGet(`http://localhost:4001/api/v1/code/${id}`).then(data => {
+        fetchGet(`${HTTP_HEAD}/api/v1/code/${id}`).then(data => {
             console.log(data);
             let code = data.data.code
             this.setState({
