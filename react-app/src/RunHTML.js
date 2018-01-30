@@ -23,7 +23,8 @@ const defaultHtml = `<!DOCTYPE html>
 const defaultJS = `console.log("log")`
 const defaultCss = `p {color: red}`
 const defaultIframe = `<style>${defaultCss}</style>${defaultHtml}<script>${defaultJS}</script>`
-const HTTP_HEAD = 'http://localhost:8002'
+// const HTTP_HEAD = 'http://localhost:8002'
+const HTTP_HEAD = 'https://wxnacy.com'
 export default class RunHTML extends React.Component {
 
     constructor(props) {
