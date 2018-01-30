@@ -50,11 +50,8 @@ static String getCheckCode(String idCard){
 
 
 ## python
-```python
-#!/usr/bin/env python
-# -*- coding:utf-8 -*-
-# Author: wxnacy(wxnacy@gmail.com)
 
+```python
 def check_identity_card(card):
     wi = ["7", "9", "10", "5", "8", "4", "2", "1", "6", "3", "7", "9", "10","5", "8", "4", "2"]
     total = 0
@@ -62,11 +59,11 @@ def check_identity_card(card):
     index = 0
     for item in card:
         total += ord(item) * int(wi[index])
-        index += 1     t = total % 11
+        index += 1
+        t = total % 11
     r = (12 - t) % 11
     if r == 10:
         return "X"
     else:
         return r
- 
 ```
