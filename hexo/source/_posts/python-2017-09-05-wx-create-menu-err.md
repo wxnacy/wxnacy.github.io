@@ -1,7 +1,7 @@
 ---
 title: Python 微信公众号接口创建菜单编码问题
 date: 2017-09-05
-tags: [python]
+tags: [python, 微信]
 ---
 
 > 错误 {"errcode":40033,"errmsg":"invalid charset. please check your request, if include \\uxxxx will create fail!"}

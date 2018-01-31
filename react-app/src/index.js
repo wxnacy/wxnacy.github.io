@@ -2,13 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'element-theme-default';
 import registerServiceWorker from './registerServiceWorker';
-import {BrowserRouter, Route} from 'react-router-dom'
-import RunHTML from './RunHTML.js'
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import asyncComponent from './AsyncComponent';
+
+const RunHTML = asyncComponent(() => import('./RunHTML'));
 
 ReactDOM.render(
   <BrowserRouter>
-    <div>
+    <Switch>
         <Route path="/runhtml/:id" component={RunHTML}/>
-    </div>
+        <Route path="/wapi/:id" component={RunHTML}/>
+    </Switch>
   </BrowserRouter>, document.getElementById('root'));
 registerServiceWorker();
