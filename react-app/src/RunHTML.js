@@ -3,6 +3,7 @@ import { Button, Layout, Tabs  } from 'element-react';
 import brace from 'brace';
 import AceEditor from 'react-ace';
 import { fetchPost, fetchGet } from './utils.js'
+import asyncComponent from './AsyncComponent';
 
 import 'brace/mode/css';
 import 'brace/mode/html';
