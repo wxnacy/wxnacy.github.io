@@ -16,3 +16,6 @@ $ open ~    # 打开用户目录
 ```bash
 $ open ~/Documents    # 打开指定文件夹
 ```
+```bash
+$ open ~/Documents/test.jpg    # 打开指定文件
+```

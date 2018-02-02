@@ -196,11 +196,11 @@ export default class RunHTML extends React.Component {
             <Button onClick={ this.run.bind(this) } type="success">运行</Button>
             <Button onClick={ this.save.bind(this) } type="primary"><i className="el-icon-upload "></i></Button>
             <div>
-                <iframe id="preview" frameBorder="no" border="0" 
+                <iframe id="preview" frameBorder="no" border="0"
                     style={{width: "100%", height: "700px"}} ></iframe>
             </div>
             <div id="log">
-            
+
             </div>
             </Layout.Col>
             </Layout.Row>
