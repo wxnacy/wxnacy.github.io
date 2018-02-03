@@ -181,6 +181,164 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-js-2017-08-05-screen-wh" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/05/js-2017-08-05-screen-wh/">js和css获取屏幕大小</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/05/js-2017-08-05-screen-wh/" class="archive-article-date">
+  	<time datetime="2017-08-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://segmentfault.com/q/1010000004605042" target="_blank" rel="noopener">原文：https://segmentfault.com/q/1010000004605042</a></p>
+<h2><span id="js">js</span><a href="#js" class="header-anchor"></a></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getScreenInfo</span>(<span class="params"></span>) </span></div><div class="line"><span class="function"></span>&#123; </div><div class="line">    <span class="keyword">var</span> s = <span class="string">""</span>; </div><div class="line">    s = <span class="string">" 网页可见区域宽："</span> <span class="built_in">document</span>.body.clientWidth; </div><div class="line">    s = <span class="string">" 网页可见区域高："</span> <span class="built_in">document</span>.body.clientHeight; </div><div class="line">    s = <span class="string">" 网页可见区域宽："</span> <span class="built_in">document</span>.body.offsetWidth <span class="string">" (包括边线和滚动条的宽)"</span>; </div><div class="line">    s = <span class="string">" 网页可见区域高："</span> <span class="built_in">document</span>.body.offsetHeight <span class="string">" (包括边线的宽)"</span>; </div><div class="line">    s = <span class="string">" 网页正文全文宽："</span> <span class="built_in">document</span>.body.scrollWidth; </div><div class="line">    s = <span class="string">" 网页正文全文高："</span> <span class="built_in">document</span>.body.scrollHeight; </div><div class="line">    s = <span class="string">" 网页被卷去的高(ff)："</span> <span class="built_in">document</span>.body.scrollTop; </div><div class="line">    s = <span class="string">" 网页被卷去的高(ie)："</span> <span class="built_in">document</span>.documentElement.scrollTop; </div><div class="line">    s = <span class="string">" 网页被卷去的左："</span> <span class="built_in">document</span>.body.scrollLeft; </div><div class="line">    s = <span class="string">" 网页正文部分上："</span> <span class="built_in">window</span>.screenTop; </div><div class="line">    s = <span class="string">" 网页正文部分左："</span> <span class="built_in">window</span>.screenLeft; </div><div class="line">    s = <span class="string">" 屏幕分辨率的高："</span> <span class="built_in">window</span>.screen.height; </div><div class="line">    s = <span class="string">" 屏幕分辨率的宽："</span> <span class="built_in">window</span>.screen.width; </div><div class="line">    s = <span class="string">" 屏幕可用工作区高度："</span> <span class="built_in">window</span>.screen.availHeight; </div><div class="line">    s = <span class="string">" 屏幕可用工作区宽度："</span> <span class="built_in">window</span>.screen.availWidth;</div><div class="line">    s = <span class="string">" 你的屏幕设置是 "</span> <span class="built_in">window</span>.screen.colorDepth <span class="string">" 位彩色"</span>; </div><div class="line">    s = <span class="string">" 你的屏幕设置 "</span> <span class="built_in">window</span>.screen.deviceXDPI <span class="string">" 像素/英寸"</span>; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2><span id="css-pan-duan">css判断</span><a href="#css-pan-duan" class="header-anchor"></a></h2><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 小屏幕（平板，大于等于 768px） */</span></div><div class="line">@<span class="keyword">media</span> (min-width: <span class="number">768px</span>) &#123; ... &#125;</div><div class="line"></div><div class="line"><span class="comment">/* 中等屏幕（桌面显示器，大于等于 992px） */</span></div><div class="line">@<span class="keyword">media</span> (min-width: <span class="number">992px</span>) &#123; ... &#125;</div><div class="line"></div><div class="line"><span class="comment">/* 大屏幕（大桌面显示器，大于等于 1200px） */</span></div><div class="line">@<span class="keyword">media</span> (min-width: <span class="number">1200px</span>) &#123; ... &#125;</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/05/js-2017-08-05-screen-wh/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-algorithm-2017-08-05-bank-verify" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/05/algorithm-2017-08-05-bank-verify/">银行卡校验规则(Luhn算法)</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/05/algorithm-2017-08-05-bank-verify/" class="archive-article-date">
+  	<time datetime="2017-08-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://www.icloudyin.com/?p=61" target="_blank" rel="noopener">原文:http://www.icloudyin.com/?p=61</a></p>
+<ul>
+<li>检验数字算法（Luhn Check Digit Algorithm），也叫做模数10公式，是一种简单的算法，用于验证银行卡、信用卡号码的有效性的算法。对所有大型信用卡公司发行的信用卡都起作用，这些公司包括美国Express、护照、万事达卡、Discover和用餐者俱乐部等。这种算法最初是在20世纪60年代由一组数学家制定，现在Luhn检验数字算法属于大众，任何人都可以使用它。</li>
+<li>将卡号上的每个数字乘上其权重（weight），如果卡号上的数字个数是偶数，那么第一个数字的权重就是2，若是奇数，那么权重就给1，剩下来的数字，根据第一个数字依序给定。例如某信用卡卡号的数字个数为偶数，那么从第一个数字开始的权重依序为 2、1、2、1、2、1 …。</li>
+<li>如果数字乘上自己的权重后比9还大，那么就从这加权数字里扣除9。</li>
+<li>接下来将所有处理过的加权数字全部加总起来，并且除以10，取其余数。</li>
+</ul>
+<h2><span id="java">java</span><a href="#java" class="header-anchor"></a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">	<span class="keyword">boolean</span> even = <span class="keyword">true</span>;</div><div class="line">	<span class="keyword">for</span> ( <span class="keyword">int</span> index = digits.size() - <span class="number">1</span>; index &gt;= <span class="number">0</span>; index-- ) &#123;</div><div class="line">		<span class="keyword">int</span> digit = digits.get( index );</div><div class="line"></div><div class="line">		<span class="keyword">if</span> ( even ) &#123;</div><div class="line">			digit &lt;&lt;= <span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> ( digit &gt; <span class="number">9</span> ) &#123;</div><div class="line">			digit -= <span class="number">9</span>;</div><div class="line">		&#125;</div><div class="line">		sum += digit;</div><div class="line">		even = !even;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> ( <span class="number">10</span> - ( sum % <span class="number">10</span> ) ) % <span class="number">10</span>;</div></pre></td></tr></table></figure>
+<h2><span id="python">python</span><a href="#python" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_bank_card</span><span class="params">(card_num)</span>:</span></div><div class="line">    <span class="string">"""检查银行卡的合法性"""</span></div><div class="line">    total = <span class="number">0</span></div><div class="line">    even = <span class="keyword">True</span></div><div class="line">    <span class="keyword">if</span> isinstance(card_num, int):</div><div class="line">        card_num = str(card_num)</div><div class="line">    check_num = card_num[<span class="number">-1</span>]</div><div class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> card_num[<span class="number">-2</span>::<span class="number">-1</span>]:</div><div class="line">        item = int(item)</div><div class="line">        <span class="keyword">if</span> even:</div><div class="line">            item &lt;&lt;= <span class="number">1</span></div><div class="line">        <span class="keyword">if</span> item &gt; <span class="number">9</span>:</div><div class="line">            item -= <span class="number">9</span></div><div class="line">        total += item</div><div class="line">        even = <span class="keyword">not</span> even</div><div class="line">    <span class="keyword">return</span> int(check_num) <span class="keyword">is</span> (<span class="number">10</span> - (total % <span class="number">10</span>)) % <span class="number">10</span></div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/05/algorithm-2017-08-05-bank-verify/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-algorithm-2017-08-05-identity-verify" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -240,82 +398,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/05/algorithm-2017-08-05-identity-verify/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-js-2017-08-05-screen-wh" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/05/js-2017-08-05-screen-wh/">js和css获取屏幕大小</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/05/js-2017-08-05-screen-wh/" class="archive-article-date">
-  	<time datetime="2017-08-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="https://segmentfault.com/q/1010000004605042" target="_blank" rel="noopener">原文：https://segmentfault.com/q/1010000004605042</a></p>
-<h2><span id="js">js</span><a href="#js" class="header-anchor"></a></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getScreenInfo</span>(<span class="params"></span>) </span></div><div class="line"><span class="function"></span>&#123; </div><div class="line">    <span class="keyword">var</span> s = <span class="string">""</span>; </div><div class="line">    s = <span class="string">" 网页可见区域宽："</span> <span class="built_in">document</span>.body.clientWidth; </div><div class="line">    s = <span class="string">" 网页可见区域高："</span> <span class="built_in">document</span>.body.clientHeight; </div><div class="line">    s = <span class="string">" 网页可见区域宽："</span> <span class="built_in">document</span>.body.offsetWidth <span class="string">" (包括边线和滚动条的宽)"</span>; </div><div class="line">    s = <span class="string">" 网页可见区域高："</span> <span class="built_in">document</span>.body.offsetHeight <span class="string">" (包括边线的宽)"</span>; </div><div class="line">    s = <span class="string">" 网页正文全文宽："</span> <span class="built_in">document</span>.body.scrollWidth; </div><div class="line">    s = <span class="string">" 网页正文全文高："</span> <span class="built_in">document</span>.body.scrollHeight; </div><div class="line">    s = <span class="string">" 网页被卷去的高(ff)："</span> <span class="built_in">document</span>.body.scrollTop; </div><div class="line">    s = <span class="string">" 网页被卷去的高(ie)："</span> <span class="built_in">document</span>.documentElement.scrollTop; </div><div class="line">    s = <span class="string">" 网页被卷去的左："</span> <span class="built_in">document</span>.body.scrollLeft; </div><div class="line">    s = <span class="string">" 网页正文部分上："</span> <span class="built_in">window</span>.screenTop; </div><div class="line">    s = <span class="string">" 网页正文部分左："</span> <span class="built_in">window</span>.screenLeft; </div><div class="line">    s = <span class="string">" 屏幕分辨率的高："</span> <span class="built_in">window</span>.screen.height; </div><div class="line">    s = <span class="string">" 屏幕分辨率的宽："</span> <span class="built_in">window</span>.screen.width; </div><div class="line">    s = <span class="string">" 屏幕可用工作区高度："</span> <span class="built_in">window</span>.screen.availHeight; </div><div class="line">    s = <span class="string">" 屏幕可用工作区宽度："</span> <span class="built_in">window</span>.screen.availWidth;</div><div class="line">    s = <span class="string">" 你的屏幕设置是 "</span> <span class="built_in">window</span>.screen.colorDepth <span class="string">" 位彩色"</span>; </div><div class="line">    s = <span class="string">" 你的屏幕设置 "</span> <span class="built_in">window</span>.screen.deviceXDPI <span class="string">" 像素/英寸"</span>; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2><span id="css-pan-duan">css判断</span><a href="#css-pan-duan" class="header-anchor"></a></h2><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 小屏幕（平板，大于等于 768px） */</span></div><div class="line">@<span class="keyword">media</span> (min-width: <span class="number">768px</span>) &#123; ... &#125;</div><div class="line"></div><div class="line"><span class="comment">/* 中等屏幕（桌面显示器，大于等于 992px） */</span></div><div class="line">@<span class="keyword">media</span> (min-width: <span class="number">992px</span>) &#123; ... &#125;</div><div class="line"></div><div class="line"><span class="comment">/* 大屏幕（大桌面显示器，大于等于 1200px） */</span></div><div class="line">@<span class="keyword">media</span> (min-width: <span class="number">1200px</span>) &#123; ... &#125;</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/05/js-2017-08-05-screen-wh/">展开全文 >></a>
         </p>
       
 
@@ -629,19 +711,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">springboot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -673,11 +751,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -690,6 +768,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">

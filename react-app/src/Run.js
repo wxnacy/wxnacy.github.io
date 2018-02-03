@@ -66,7 +66,7 @@ export default class RunHTML extends React.Component {
         fetchPost(`${HTTP_HEAD}/api/v1/code`, data).then(data => {
             console.log(data);
             let id = data.data.id
-            window.location.href = `/runhtml/${id}`
+            window.location.href = `/run/${id}`
         })
 
     }
@@ -99,18 +99,6 @@ export default class RunHTML extends React.Component {
         }
     }
 
-    // onChangeHtml(newValue, id) {
-        // console.log(this.state);
-    // }
-
-    // onChangeJS(newValue) {
-        // console.log(newValue);
-        // this.setState({jsText: newValue});
-    // }
-    // onChangeCss(newValue) {
-        // console.log(newValue);
-        // this.setState({cssText: newValue});
-    // }
 
     onChange(newValue, mode) {
         if( mode === "html" ){
