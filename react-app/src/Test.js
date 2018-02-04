@@ -2,6 +2,8 @@ import React from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AceEditor from 'react-ace';
+import Input from './component/Input'
+import Button from './component/Button'
 
 import 'brace/mode/css';
 import 'brace/mode/html';
@@ -31,10 +33,15 @@ export default class Test extends React.Component {
                 value: value,
             });
         };
+    onChangeInput(value) {
+        this.setState({ value: value })
+    }
 
     render() {
         return (
         <MuiThemeProvider>
+            <Input value={ this.state.value } onChange={ this.onChangeInput.bind(this) }/>
+            <Button>点击</Button>
             <div style={{"height": "100% !important"}}>
                 <div style={{"float": "left", "width": "50%" }}>
             <Tabs sytle={{"height": "100%"}}

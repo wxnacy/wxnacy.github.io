@@ -1,9 +1,10 @@
-import React from 'react';
-import { Button, Layout, Tabs  } from 'element-react';
+import React, { PureComponent } from 'react';
+import { Layout, Tabs } from 'element-react';
 import brace from 'brace';
 import AceEditor from 'react-ace';
 import { fetchPost, fetchGet } from './utils.js'
-import asyncComponent from './AsyncComponent';
+import Input from './component/Input'
+import Button from './component/Button'
 
 import 'brace/mode/css';
 import 'brace/mode/html';
@@ -26,20 +27,28 @@ const defaultCss = `p {color: red}`
 const defaultIframe = `<style>${defaultCss}</style>${defaultHtml}<script>${defaultJS}</script>`
 // const HTTP_HEAD = 'http://localhost:8002'
 const HTTP_HEAD = 'https://wxnacy.com'
-export default class RunHTML extends React.Component {
+export default class Run extends PureComponent {
 
     constructor(props) {
         super(props);
         this.state = {
             htmlText:'',
             jsText: '',
-            cssText: ''
+            cssText: '',
+            name: "",
+            description: ""
+        }
+        this.id = this.props.match.params.id || "";
+    }
+
+    initData() {
+        if( this.id ){
+            this.fetchData(this.id)
         }
     }
 
     componentDidMount() {
-        let id = this.props.match.params.id
-        this.fetchData(id)
+        this.initData()
     }
 
     run() {
@@ -59,7 +68,8 @@ export default class RunHTML extends React.Component {
             css: encodeURIComponent(this.state.cssText)
         }
         let data = {
-            name: "",
+            name: this.state.name,
+            description: this.state.description,
             code: code
         }
 
@@ -74,11 +84,14 @@ export default class RunHTML extends React.Component {
     fetchData(id) {
         fetchGet(`${HTTP_HEAD}/api/v1/code/${id}`).then(data => {
             console.log(data);
-            let code = data.data.code
+            data = data.data
+            let code = data.code
             this.setState({
                 htmlText: decodeURIComponent(code.html),
                 jsText: decodeURIComponent(code.js),
                 cssText: decodeURIComponent(code.css),
+                name: data.name,
+                description: data.description
             })
             console.log(this.state)
             this.run()
@@ -86,17 +99,7 @@ export default class RunHTML extends React.Component {
     }
 
     onLoad(editor, a) {
-        let id = this.props.match.params.id
-        this.fetchData(id)
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-        // https://github.com/securingsincity/react-ace/issues/181
-        if (this.state.htmlText !== nextState.htmlText) {
-            return false
-        } else {
-            return true;
-        }
+        this.initData()
     }
 
 
@@ -110,6 +113,10 @@ export default class RunHTML extends React.Component {
         }
         console.log(newValue, mode);
 
+    }
+
+    onSelectInput(value) {
+        console.log("input ", value);
     }
 
 
@@ -139,32 +146,46 @@ export default class RunHTML extends React.Component {
         )
     }
 
+    onNameChange(value) {
+        this.setState({name: value})
+    }
+    onDescChange(value) {
+        this.setState({description: value})
+    }
+
+
     render() {
         const {htmlText, cssText, jsText} = this.state
         return (
-            <Layout.Row gutter="20">
-            <Layout.Col span="12">
-            <Tabs type="card" value="1">
-                <Tabs.Pane label="html" name="1">
-                    { this.initEditor("html", this.state.htmlText) }
-                </Tabs.Pane>
-                <Tabs.Pane label="js" name="2">
-                    { this.initEditor("javascript", this.state.jsText) }
-                </Tabs.Pane>
-                <Tabs.Pane label="css" name="3">
-                    { this.initEditor("css", this.state.cssText) }
-                </Tabs.Pane>
-            </Tabs>
-            </Layout.Col>
-            <Layout.Col span="12">
-                <Button onClick={ this.run.bind(this) } type="success">运行</Button>
-                <Button onClick={ this.save.bind(this) } type="primary"><i className="el-icon-upload "></i></Button>
-            <div >
-                <iframe id="preview" frameBorder="no" border="0"
-                    style={{width: "100%", height: "700px"}} ></iframe>
+            <div>
+                <div style={{ float: "left", width: "15%" }}>
+                    title
+                    <Input placeholder="名称" value={ this.state.name } onChange={ this.onNameChange.bind(this) }/>
+                    description
+                    <Input placeholder="描述" type="textarea" value={this.state.description} onChange={ this.onDescChange.bind(this) }/>
+                </div>
+                <div style={{ float: "left", width: "40%" }}>
+                    <Tabs type="card" value="1">
+                        <Tabs.Pane label="html" name="1">
+                            { this.initEditor("html", this.state.htmlText) }
+                        </Tabs.Pane>
+                        <Tabs.Pane label="js" name="2">
+                            { this.initEditor("javascript", this.state.jsText) }
+                        </Tabs.Pane>
+                        <Tabs.Pane label="css" name="3">
+                            { this.initEditor("css", this.state.cssText) }
+                        </Tabs.Pane>
+                    </Tabs>
+                </div>
+                <div style={{ float: "left", width: "40%" }}>
+                    <Button onClick={ this.run.bind(this) } >运行</Button>
+                    <Button onClick={ this.save.bind(this) } >保存</Button>
+                    <div >
+                        <iframe id="preview" frameBorder="no" border="0"
+                            style={{width: "100%", height: "700px"}} ></iframe>
+                    </div>
+                </div>
             </div>
-            </Layout.Col>
-            </Layout.Row>
         )
     }
 }
