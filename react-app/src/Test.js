@@ -4,6 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AceEditor from 'react-ace';
 import Input from './component/Input'
 import Button from './component/Button'
+import './component/Tab.css'
 
 import 'brace/mode/css';
 import 'brace/mode/html';
@@ -42,8 +43,36 @@ export default class Test extends React.Component {
         <MuiThemeProvider>
             <Input value={ this.state.value } onChange={ this.onChangeInput.bind(this) }/>
             <Button>点击</Button>
+                    <Tabs type="card" value="1">
+                        <Tabs.Pane label="html" name="1">
+                        </Tabs.Pane>
+                        <Tabs.Pane label="js" name="2">
+                        </Tabs.Pane>
+                        <Tabs.Pane label="css" name="3">
+                        </Tabs.Pane>
+                    </Tabs>
+            <div className="tabs">
+                <div className="tab">
+                <input type="radio" id="tab-1" name="tab-group-1" checked/>
+                <label htmlFor="tab-1">Tab One</label>
+
+                <div className="content">
+                <p>Stuff htmlFor Tab One</p>
+                </div>
+                </div>
+                <div className="tab">
+                <input type="radio" id="tab-2" name="tab-group-1" checked/>
+                <label htmlFor="tab-2">Tab One</label>
+
+                <div className="content">
+                <p>Stuff for Tab One</p>
+                </div>
+                </div>
+            </div>
+
             <div style={{"height": "100% !important"}}>
                 <div style={{"float": "left", "width": "50%" }}>
+
             <Tabs sytle={{"height": "100%"}}
                             value={this.state.value}
                             onChange={this.handleChange}

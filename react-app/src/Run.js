@@ -10,6 +10,7 @@ import 'brace/mode/css';
 import 'brace/mode/html';
 import 'brace/mode/javascript';
 import 'brace/theme/monokai';
+import './component/Tab.css'
 
 const defaultHtml = `<!DOCTYPE html>
 <html lang="en">
@@ -165,17 +166,31 @@ export default class Run extends PureComponent {
                     <Input placeholder="描述" type="textarea" value={this.state.description} onChange={ this.onDescChange.bind(this) }/>
                 </div>
                 <div style={{ float: "left", width: "40%" }}>
-                    <Tabs type="card" value="1">
-                        <Tabs.Pane label="html" name="1">
-                            { this.initEditor("html", this.state.htmlText) }
-                        </Tabs.Pane>
-                        <Tabs.Pane label="js" name="2">
-                            { this.initEditor("javascript", this.state.jsText) }
-                        </Tabs.Pane>
-                        <Tabs.Pane label="css" name="3">
+
+                    <div className="tabs">
+                        <div className="tab">
+                            <input type="radio" id="tab-1" name="tab-group-1" checked/>
+                            <label htmlFor="tab-1">Tab One</label>
+                            <div className="content">
+                                { this.initEditor("html", this.state.htmlText) }
+                            </div>
+                        </div>
+                        <div className="tab">
+                            <input type="radio" id="tab-2" name="tab-group-1" />
+                            <label htmlFor="tab-2">tab js</label>
+                            <div className="content">
+                                { this.initEditor("javascript", this.state.jsText) }
+                            </div>
+                        </div>
+                        <div className="tab">
+                            <input type="radio" id="tab-3" name="tab-group-1" />
+                            <label htmlFor="tab-3">Tab One</label>
+                            <div className="content">
                             { this.initEditor("css", this.state.cssText) }
-                        </Tabs.Pane>
-                    </Tabs>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
                 <div style={{ float: "left", width: "40%" }}>
                     <Button onClick={ this.run.bind(this) } >运行</Button>
@@ -185,6 +200,7 @@ export default class Run extends PureComponent {
                             style={{width: "100%", height: "700px"}} ></iframe>
                     </div>
                 </div>
+                  
             </div>
         )
     }

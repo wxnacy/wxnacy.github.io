@@ -5,11 +5,8 @@ import registerServiceWorker from './registerServiceWorker';
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import asyncComponent from './AsyncComponent';
 
-// const RunHTML = asyncComponent(() => import('./RunHTML'));
 const Run = asyncComponent(() => import('./Run'));
 const Test = asyncComponent(() => import('./Test'));
-// const Wapi = asyncComponent(() => import('./Wapi'));
-// import Wapi from './Wapi'
 
 ReactDOM.render(
   <BrowserRouter>
