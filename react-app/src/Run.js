@@ -45,6 +45,12 @@ export default class Run extends PureComponent {
     initData() {
         if( this.id ){
             this.fetchData(this.id)
+        } else {
+            this.setState({
+                htmlText: defaultHtml,
+                jsText: defaultJS,
+                cssText: defaultCss
+            })
         }
     }
 

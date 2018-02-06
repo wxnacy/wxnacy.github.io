@@ -17,7 +17,7 @@
 <meta property="og:description" content="现在越来越多的网页采用前端渲染页面，这给抓取工作带来了很大的麻烦，通过往常的方法只会拿到一堆 js 方法或者 api 接口，我们当然不想每个网站都去这么费劲的探索他们的 api。">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="http://wxnacy.com/images/ins.png">
-<meta property="og:updated_time" content="2018-02-05T10:45:55.000Z">
+<meta property="og:updated_time" content="2018-02-06T03:24:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Node 使用 puppeteer 抓取动态页面">
 <meta name="twitter:description" content="现在越来越多的网页采用前端渲染页面，这给抓取工作带来了很大的麻烦，通过往常的方法只会拿到一堆 js 方法或者 api 接口，我们当然不想每个网站都去这么费劲的探索他们的 api。">
@@ -228,6 +228,9 @@
 <p>这时我们直接使用它既可<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> avatarSelector = <span class="string">'#react-root &gt; section &gt; main &gt; article &gt; header &gt; div &gt; div &gt; div &gt; img'</span></div><div class="line"><span class="keyword">let</span> avatarDom = <span class="built_in">document</span>.querySelector(avatarSelector)</div><div class="line">avatar = avatarDom.src</div></pre></td></tr></table></figure></p>
 <p>这样我们可以非常方便的分析某个 dom 元素，当然这样的粘贴复制不是万能的，很多时候我们还需要通过分析页面样式来找到更优的解析方式。</p>
 <p>完整的使用方式如下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">'puppeteer'</span>);</div><div class="line"></div><div class="line">(<span class="keyword">async</span> () =&gt; &#123;</div><div class="line">	<span class="keyword">const</span> browser = <span class="keyword">await</span> puppeteer.launch(&#123;<span class="attr">headless</span>: <span class="literal">false</span>&#125;);</div><div class="line">	<span class="keyword">const</span> page = <span class="keyword">await</span> browser.newPage();</div><div class="line">    <span class="keyword">await</span> page.setJavaScriptEnabled(<span class="literal">true</span>);</div><div class="line">	<span class="keyword">await</span> page.goto(<span class="string">'https://www.instagram.com/nike/'</span>);</div><div class="line"></div><div class="line">	<span class="comment">// Get the "viewport" of the page, as reported by the page.</span></div><div class="line">	<span class="keyword">const</span> dimensions = <span class="keyword">await</span> page.evaluate(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">        <span class="comment">// avatar</span></div><div class="line">        <span class="keyword">let</span> avatarSelector = <span class="string">'#react-root &gt; section &gt; main &gt; article &gt; header &gt; div &gt; div &gt; div &gt; img'</span></div><div class="line">        <span class="keyword">let</span> avatarDom = <span class="built_in">document</span>.querySelector(avatarSelector)</div><div class="line">        <span class="keyword">let</span> avatar = <span class="string">''</span></div><div class="line">        <span class="keyword">if</span>( avatarDom )&#123;</div><div class="line">            avatar = avatarDom.src</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// name</span></div><div class="line">        <span class="keyword">let</span> nameSelector = <span class="string">'#react-root &gt; section &gt; main &gt; article &gt; header &gt; section &gt; div._ienqf &gt; h1'</span></div><div class="line">        <span class="keyword">let</span> nameDom = <span class="built_in">document</span>.querySelector(nameSelector)</div><div class="line">        <span class="keyword">let</span> name = <span class="string">''</span></div><div class="line">        <span class="keyword">if</span>( nameDom )&#123;</div><div class="line">            name = nameDom.innerText;</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">		<span class="keyword">return</span> &#123;</div><div class="line">            avatar: avatar,</div><div class="line">            name: name,</div><div class="line">		&#125;;</div><div class="line">	&#125;);</div><div class="line"></div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'Dimensions:'</span>, dimensions);</div><div class="line"></div><div class="line">	<span class="keyword">await</span> browser.close();</div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
+<ul>
+<li><a href="https://developers.google.com/web/updates/2017/04/headless-chrome" target="_blank" rel="noopener">Getting Started with Headless Chrome</a></li>
+</ul>
 
       
 
@@ -259,6 +262,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/02/06/pm2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Node 生产环境部署神器 PM2
+        
+      </div>
+    </a>
   
   
     <a href="/2018/02/04/react-ace-onchange-setstate/" id="article-nav-older" class="article-nav-link-wrap">
@@ -450,19 +462,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -478,15 +490,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -494,7 +502,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -506,11 +514,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -519,6 +527,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -586,11 +598,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">

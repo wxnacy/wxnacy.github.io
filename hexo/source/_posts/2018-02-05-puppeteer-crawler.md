@@ -104,3 +104,4 @@ const puppeteer = require('puppeteer');
 	await browser.close();
 })();
 ```
+- [Getting Started with Headless Chrome](https://developers.google.com/web/updates/2017/04/headless-chrome)
