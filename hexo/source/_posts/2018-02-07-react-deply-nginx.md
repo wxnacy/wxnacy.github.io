@@ -1,7 +1,10 @@
 ---
 title: React 发布到 Nginx 中
-tags: [react]
+tags:
+  - react
+date: 2018-02-07 22:02:46
 ---
+
 
 在开发 React 时使用 [create-react-app](https://github.com/facebook/create-react-app) 是非常方便的，它封装的打包功能，让发布 React 应用非常的方便
 <!-- more -->
