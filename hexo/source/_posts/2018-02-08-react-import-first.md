@@ -1,7 +1,10 @@
 ---
 title: React 解决 import/first 报错
-tags: [react]
+tags:
+  - react
+date: 2018-02-08 15:59:27
 ---
+
 
 基础错误，默写 20 遍
 <!-- more -->

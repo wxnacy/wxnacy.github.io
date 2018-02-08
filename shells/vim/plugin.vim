@@ -239,11 +239,6 @@ map <Leader><Leader>l <Plug>(easymotion-lineforward)
 " 重复上一次操作, 类似repeat插件, 很强大
 map <Leader><Leader>. <Plug>(easymotion-repeat)
 
-"===============================
-" expand-region
-"===============================
-" vmap v <Plug>(expand_region_expand)
-" vmap V <Plug>(expand_region_shrink)
 
 "===============================
 " ale 配置
