@@ -31,6 +31,7 @@ git submodule add --force https://github.com/mileszs/ack.vim.git shells/vim/bund
 git submodule add --force https://github.com/dyng/ctrlsf.vim.git shells/vim/bundle/ctrlsf.vim                          # 搜索增强
 git submodule add --force https://github.com/artur-shaik/vim-javacomplete2.git shells/vim/bundle/vim-javacomplete2     # java 代码不全
 git submodule add --force https://github.com/pangloss/vim-javascript.git shells/vim/bundle/vim-javascript              # javascript 语法高亮
+git submodule add --force https://github.com/mxw/vim-jsx.git shells/vim/bundle/vim-jsx                                 # react 语法高亮
 
 
 

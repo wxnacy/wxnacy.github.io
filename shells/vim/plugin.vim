@@ -242,8 +242,8 @@ map <Leader><Leader>. <Plug>(easymotion-repeat)
 "===============================
 " expand-region
 "===============================
-vmap v <Plug>(expand_region_expand)
-vmap V <Plug>(expand_region_shrink)
+" vmap v <Plug>(expand_region_expand)
+" vmap V <Plug>(expand_region_shrink)
 
 "===============================
 " ale 配置
@@ -336,3 +336,8 @@ nmap <Leader><Leader>a :Ack<space>-i<space>
 "===============================
 nmap <Leader><Leader>c :CtrlSF<space>
 
+"===============================
+" vim-jsx 配置
+"===============================
+let g:jsx_ext_required = 0
+let g:jsx_pragma_required = 1

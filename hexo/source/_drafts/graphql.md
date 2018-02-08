@@ -5,7 +5,7 @@ tags:
 
 
 ```bash
-pip install "graphene>=2.0"
-pip install graphene_sqlalchemy
-pip install Flask-GraphQL
+sudo pip install "graphene>=2.0"
+sudo pip install graphene_sqlalchemy
+sudo pip install Flask-GraphQL
 ```
