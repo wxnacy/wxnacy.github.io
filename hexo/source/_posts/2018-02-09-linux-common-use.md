@@ -1,7 +1,10 @@
 ---
 title: Linux 常用 Shell 语法
-tags: [linux]
+tags:
+  - linux
+date: 2018-02-09 15:16:50
 ---
+
 
 记录一些常用的 Shell 语法
 <!-- more --><!-- toc -->

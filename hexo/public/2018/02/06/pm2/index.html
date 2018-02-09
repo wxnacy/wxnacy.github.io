@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://wxnacy.com/images/pm2-monit.png">
 <meta property="og:image" content="http://wxnacy.com/images/pm2-monitor.png">
 <meta property="og:image" content="http://wxnacy.com/images/pm2-key.png">
-<meta property="og:updated_time" content="2018-02-06T10:21:27.000Z">
+<meta property="og:updated_time" content="2018-02-09T02:51:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Node 生产环境部署神器 PM2">
 <meta name="twitter:description" content="今天偶然发现一个部署 Node 生产环境的神器，pm2.5，哦，不，是PM2">
@@ -212,6 +212,7 @@
 <ul>
 <li><a href="#xia-zai">下载</a></li>
 <li><a href="#chuang-jian-ying-yong">创建应用</a></li>
+<li><a href="#pei-zhi-wen-jian">配置文件</a></li>
 <li><a href="#mu-lu-wen-jian">目录文件</a></li>
 <li><a href="#ying-yong-lie-biao">应用列表</a></li>
 <li><a href="#cha-kan-ri-zhi">查看日志</a></li>
@@ -237,6 +238,9 @@
 <h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install pm2 -g</div></pre></td></tr></table></figure>
 <h2><span id="chuang-jian-ying-yong">创建应用</span><a href="#chuang-jian-ying-yong" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pm2 start index.js    <span class="comment"># 快速启动应用</span></div></pre></td></tr></table></figure>
 <p><img src="/images/pm2-list.png" alt="/images/pm2-list.png"><br>当看到类似的信息，并且 <code>status=online</code> 时，代表应用启动成功<br>更多命令如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ pm2 start | restart | stop index.js       <span class="comment"># 启动、重启、停止</span></div><div class="line">$ pm2 start app.py                          <span class="comment"># 使用 python 命令启动脚本</span></div><div class="line">$ pm2 start index.js -n index               <span class="comment"># 启动并指定进程名</span></div><div class="line">$ pm2 start index.js --watch                <span class="comment"># “热启动” 应用</span></div><div class="line"><span class="comment"># --ignore-watch 可以排除再热启动时需要检测的文件，也可以是正则</span></div><div class="line">$ pm2 start index.js -i max                 <span class="comment"># 启动并根据 CPU 开启相应进程数</span></div><div class="line"><span class="comment"># 也可以用 -i 2 手动设置</span></div><div class="line">$ pm2 delete &lt;app_name|id|<span class="string">'all'</span>|json_conf&gt;  <span class="comment"># 删除应用</span></div></pre></td></tr></table></figure></p>
+<h2><span id="pei-zhi-wen-jian">配置文件</span><a href="#pei-zhi-wen-jian" class="header-anchor"></a></h2><p>pm2 的启动参数有很多，每次输入这些参数也是很烦人的，我们可以将这些参数放到配置文件中，然后直接启动配置文件即可，创建文件 <code>pm2_config.json</code><br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"apps"</span> : [&#123;</div><div class="line">        <span class="attr">"name"</span>        : <span class="string">"tmdapi"</span>,</div><div class="line">        <span class="attr">"script"</span>      : <span class="string">"./run_api.py"</span>,</div><div class="line">        <span class="attr">"interpreter"</span> : <span class="string">"/Users/wxnacy/.pyenv/shims/python"</span>,</div><div class="line">        <span class="attr">"watch"</span>       : <span class="literal">true</span>,</div><div class="line">        <span class="attr">"ignore_watch"</span> : ['winn', 'tests', 'db'],</div><div class="line">    &#125;]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pm2 start pm2_config.json</div></pre></td></tr></table></figure>
+<p>文件格式支持很多种，如 <code>yml, js, json5</code>，更多配置见<a href="http://pm2.keymetrics.io/docs/usage/application-declaration/#attributes-available" target="_blank" rel="noopener">文档</a></p>
 <h2><span id="mu-lu-wen-jian">目录文件</span><a href="#mu-lu-wen-jian" class="header-anchor"></a></h2><p>pm2 启动一次后就会生成如下目录，相关日志、pid、配置等都在其中</p>
 <ul>
 <li>$HOME/.pm2 will contain all PM2 related files</li>
@@ -341,7 +345,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="xia-zai">&#x4E0B;&#x8F7D;</span><a href="#xia-zai" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="chuang-jian-ying-yong">&#x521B;&#x5EFA;&#x5E94;&#x7528;</span><a href="#chuang-jian-ying-yong" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="mu-lu-wen-jian">&#x76EE;&#x5F55;&#x6587;&#x4EF6;</span><a href="#mu-lu-wen-jian" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text"><span id="ying-yong-lie-biao">&#x5E94;&#x7528;&#x5217;&#x8868;</span><a href="#ying-yong-lie-biao" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text"><span id="cha-kan-ri-zhi">&#x67E5;&#x770B;&#x65E5;&#x5FD7;</span><a href="#cha-kan-ri-zhi" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text"><span id="jian-kong">&#x76D1;&#x63A7;</span><a href="#jian-kong" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">6.1.</span> <span class="toc-text"><span id="keymetrics">keymetrics</span><a href="#keymetrics" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">7.</span> <span class="toc-text"><span id="zi-qi-dong">&#x81EA;&#x542F;&#x52A8;</span><a href="#zi-qi-dong" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">8.</span> <span class="toc-text"><span id="bei-fen-he-hui-fu">&#x5907;&#x4EFD;&#x548C;&#x6062;&#x590D;</span><a href="#bei-fen-he-hui-fu" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">9.</span> <span class="toc-text"><span id="qi-ta-chang-yong-ming-ling">&#x5176;&#x4ED6;&#x5E38;&#x7528;&#x547D;&#x4EE4;</span><a href="#qi-ta-chang-yong-ming-ling" class="header-anchor"></a></span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="xia-zai">&#x4E0B;&#x8F7D;</span><a href="#xia-zai" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="chuang-jian-ying-yong">&#x521B;&#x5EFA;&#x5E94;&#x7528;</span><a href="#chuang-jian-ying-yong" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="pei-zhi-wen-jian">&#x914D;&#x7F6E;&#x6587;&#x4EF6;</span><a href="#pei-zhi-wen-jian" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text"><span id="mu-lu-wen-jian">&#x76EE;&#x5F55;&#x6587;&#x4EF6;</span><a href="#mu-lu-wen-jian" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text"><span id="ying-yong-lie-biao">&#x5E94;&#x7528;&#x5217;&#x8868;</span><a href="#ying-yong-lie-biao" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text"><span id="cha-kan-ri-zhi">&#x67E5;&#x770B;&#x65E5;&#x5FD7;</span><a href="#cha-kan-ri-zhi" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">7.</span> <span class="toc-text"><span id="jian-kong">&#x76D1;&#x63A7;</span><a href="#jian-kong" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">7.1.</span> <span class="toc-text"><span id="keymetrics">keymetrics</span><a href="#keymetrics" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">8.</span> <span class="toc-text"><span id="zi-qi-dong">&#x81EA;&#x542F;&#x52A8;</span><a href="#zi-qi-dong" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">9.</span> <span class="toc-text"><span id="bei-fen-he-hui-fu">&#x5907;&#x4EFD;&#x548C;&#x6062;&#x590D;</span><a href="#bei-fen-he-hui-fu" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">10.</span> <span class="toc-text"><span id="qi-ta-chang-yong-ming-ling">&#x5176;&#x4ED6;&#x5E38;&#x7528;&#x547D;&#x4EE4;</span><a href="#qi-ta-chang-yong-ming-ling" class="header-anchor"></a></span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -502,15 +506,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -522,6 +526,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -530,23 +538,23 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -562,11 +570,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
+                <a href="javascript:void(0)" class="js-tag color5">grep</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">grep</a>
+                <a href="javascript:void(0)" class="js-tag color3">搜索</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -574,11 +582,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">api</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">api</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -590,11 +598,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">jinja2</a>
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+                <a href="javascript:void(0)" class="js-tag color2">jinja2</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -610,19 +618,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">正则</a>
+                <a href="javascript:void(0)" class="js-tag color3">ansible</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ansible</a>
+                <a href="javascript:void(0)" class="js-tag color3">正则</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -654,11 +658,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">flask</a>
+                <a href="javascript:void(0)" class="js-tag color1">sqlalchemy</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sqlalchemy</a>
+                <a href="javascript:void(0)" class="js-tag color1">flask</a>
               </li>
              
               <li class="article-tag-list-item">
