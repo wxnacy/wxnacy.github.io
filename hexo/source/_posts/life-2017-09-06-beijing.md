@@ -9,3 +9,4 @@ tags: [生活, 北京]
 - [社保查询](http://www.bjrbj.gov.cn/csibiz/indinfo/login.jsp)
 - [居住证](https://www.bjjzzpt.com)
 - [工作居住证](http://www.bjrbj.gov.cn/bsfw/zxbs/201507/t20150714_51306.html)
+- [地税打印](http://shiju.tax861.gov.cn/bjds/zwgk/bmfw/lxfs/index.asp)
