@@ -1,7 +1,11 @@
 ---
 title: Python 中使用 Graphql 返回 JSON 类型
-tags: [graphql, python]
+tags:
+  - graphql
+  - python
+date: 2018-02-14 19:34:16
 ---
+
 
 在使用 Graphql 在 Python 中的模块 Graphene 时，发现默认返回类型没有 JSON 格式，通过网上资料发现需要自己补充该类型才可以。
 <!-- more --><!-- toc -->
