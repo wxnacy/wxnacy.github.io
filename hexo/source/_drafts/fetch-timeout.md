@@ -44,3 +44,5 @@ const TO = setTimeout(function() {
 }, timeout);
 ```
 在执行 `setTimeout()` 中的函数时，抛出异常，强行中断 `fetch` 动作，也就达到了 timeout 的效果，另外在 `Promise` 外面在封装一层，使方法调用起来更加方便。
+
+- [JavaScript fetch with Timeout](https://davidwalsh.name/fetch-timeout)
