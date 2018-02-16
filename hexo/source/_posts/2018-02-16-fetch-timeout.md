@@ -1,7 +1,10 @@
 ---
 title: Javascript 给 Fetch 加上 Timeout
-tags: [javascript]
+tags:
+  - javascript
+date: 2018-02-16 19:34:53
 ---
+
 
 使用 `setTimeout()` 函数给 Fetch Api 加上 timeout 效果
 <!-- more -->
