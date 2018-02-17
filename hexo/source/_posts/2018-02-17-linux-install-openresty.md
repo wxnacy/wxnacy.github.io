@@ -1,7 +1,10 @@
 ---
 title: Linux 安装 openresty
-tags: [linux]
+tags:
+  - linux
+date: 2018-02-17 21:19:33
 ---
+
 
 Linux 系统在安装 openresty 时，无法直接用 `yum, apt` 等安装包工具，需要手动添加 openresty 的仓库。
 <!-- more --><!-- toc -->
