@@ -9,3 +9,5 @@ tags:
 - [Vim](/vim)
 - [Tmux](/tmux)
 - ***Byobu*** Tmux 的再封装
+- [alphabetPy](https://github.com/RayZhao1998/alphabetPy) 命令行字体
+- [GOOGLE搜索从入门到精通v3.0](http://www.being.org.cn/tool/google.htm)

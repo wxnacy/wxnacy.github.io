@@ -1,4 +1,3 @@
-
 setlocal omnifunc=javacomplete#Complete
 iabbrev <buffer> class public class{}<esc>i<cr><esc>k$Fsli
 iabbrev <buffer> main public static void main(String args[]){}<esc>i<cr>

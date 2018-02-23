@@ -11,10 +11,10 @@ iabbrev <buffer> `p ```python<cr>```<esc>O#!/usr/bin/env python<cr>
 iabbrev <buffer> `j ```java<cr>```<esc>O
 iabbrev <buffer> `v ```vim<cr>```<esc>O
 iabbrev <buffer> `m ```mysql<cr>```<esc>O
+iabbrev <buffer> `h ```html<cr>```<esc>O
+iabbrev <buffer> `c ```css<cr>```<esc>O
 
 iabbrev <buffer> mt <!-- more --><!-- toc --><cr>
-iabbrev <buffer> mt <!-- more --><!-- toc --><cr>
-
 
 
 iabbrev <buffer> pi <!-- more --><cr><!-- toc --><cr>## 安装<cr> ### Pathogen
