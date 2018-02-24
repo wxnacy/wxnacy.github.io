@@ -1,0 +1,86 @@
+---
+title: Splinter 用于测试web应用程序的 Python 工具
+tags: [python]
+---
+
+[Splinter](https://github.com/cobrateam/splinter) 是一个用于测试 web 应用程序的工具，它具有查找元素、表单操作和其他浏览器操作的简单功能。
+<!-- more --><!-- toc -->
+## 安装
+```bash
+$ pip install splinter
+```
+运行还需要安装 WebDriver，ChromeDriver 安装可以看[这里](/2018/02/23/chromedriver/)，其他浏览器见[这里](https://splinter.readthedocs.io/en/latest/#browser-based-drivers)
+
+## 快速入门
+我在官方的例子上做了下修改，现在运行下，然后我们再来分析它做了什么
+```python
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+# Author: wxnacy(wxnacy@gmail.com)
+
+from splinter import Browser
+
+browser = Browser(driver_name='chrome')
+browser.driver.set_window_size(1920, 1080)
+browser.visit('http://google.com')
+browser.fill('q', 'splinter - python acceptance testing for web applications')
+browser.find_by_name('btnK').click()
+html = browser.html
+print(html)
+image = browser.screenshot(name='/Users/wxnacy/PycharmProjects/study/python/splinter_demo/screenshot', suffix='.jpg')
+print(image)
+
+if browser.is_text_present('splinter.readthedocs.io'):
+    print("Yes, the official website was found!")
+else:
+    print("No, it wasn't found... We need to improve our SEO techniques")
+
+browser.quit()
+```
+下面我们来分析下，这个例子都做了什么
+- 创建实例，并指定浏览器为 `chrome`，如果不指定默认为 `foxfire`，如果你本地的 driver 没有在环境变量中，还需要 `executable_path` 参数来制定 driver 地址
+```python
+browser = Browser(driver_name='chrome')
+```
+- 设置打开浏览器的大小，不设置打开一个默认大小的浏览器
+```python
+browser.driver.set_window_size(1920, 1080)
+```
+- 访问指定地址
+```python
+browser.visit('http://google.com')
+```
+- 在 `name=q` 的域内输入内容
+```python
+browser.fill('q', 'splinter - python acceptance testing for web applications')
+```
+- 找到 `name=btnK` 按钮，并点击，这是一个链式操作
+```python
+browser.find_by_name('btnK').click()
+```
+- 打印此时页面的 document，这时打印出来的是浏览器加载完动态效果的代码
+```python
+html = browser.html
+print(html)
+```
+- 截图，在制定的文件名后加一个随机字符串并截图，后缀默认为 `.png`，方法返回最终的图片地址
+```python
+browser.screenshot(name='/Users/wxnacy/PycharmProjects/study/python/splinter_demo/screenshot', suffix='.jpg')
+```
+- 判断页面的文字中是否包含某个文字
+```python
+if browser.is_text_present('splinter.readthedocs.io'):
+    print("Yes, the official website was found!")
+else:
+    print("No, it wasn't found... We need to improve our SEO techniques")
+```
+- 最后关闭浏览器
+```python
+browser.quit()
+```
+关于浏览器和页面操作还有很多方法，详见 [API 文档](http://splinter.readthedocs.io/en/latest/api/driver-and-element-api.html)
+
+- [Splinter](http://splinter.readthedocs.io/en/latest/index.html)
+- [API Documentation](http://splinter.readthedocs.io/en/latest/api/)
+- [Selenium](https://github.com/SeleniumHQ/selenium)
+- [Selenium Client Driver](http://seleniumhq.github.io/selenium/docs/api/py/)
