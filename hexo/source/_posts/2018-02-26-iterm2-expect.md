@@ -1,7 +1,11 @@
 ---
 title: iTerm2 使用 expect 无密码登录服务器
-tags: [iterm, expect]
+tags:
+  - iterm
+  - expect
+date: 2018-02-26 11:43:05
 ---
+
 
 之前介绍过[使用 expect 交互免输入密码](/2017/09/15/linux-2017-09-15-expect/)，你也可以跟 iTerm 配合在进行无密码登录服务器
 <!-- more -->
