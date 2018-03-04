@@ -1,7 +1,10 @@
 ---
 title: Javascript onkeydown onkeypress onkeyup 区别
-tags: [javascript]
+tags:
+  - javascript
+date: 2018-03-04 21:17:18
 ---
+
 
 onkeydown onkeypress onkeyup 区别
 <!-- more --><!-- toc -->
