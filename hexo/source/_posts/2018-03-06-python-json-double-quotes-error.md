@@ -1,7 +1,10 @@
 ---
 title: Python 解析单引号 JSON 格式数据报错
-tags: [python]
+tags:
+  - python
+date: 2018-03-06 10:28:12
 ---
+
 
 > JSONDecodeError Expecting property name enclosed in double quotes line 1 column 2 (char 1)
 
