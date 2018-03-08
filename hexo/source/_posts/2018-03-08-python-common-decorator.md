@@ -1,7 +1,10 @@
 ---
 title: Python 常用装饰器
-tags: [python]
+tags:
+  - python
+date: 2018-03-08 10:01:36
 ---
+
 
 收录一些常用的装饰器
 <!-- more --><!-- toc -->
