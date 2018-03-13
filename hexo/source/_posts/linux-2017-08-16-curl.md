@@ -1,11 +1,10 @@
 ---
 title: 网络请求工具 cURL
 date: 2017-08-16
-tags: [linux, curl, http]
+tags: [linux, http]
 ---
 
-> cRUL 是一种命令行工具，作用是发出网络请求，然后得到和提取数据，显示在
-"标准输出"（stdout）上面。
+> cRUL 是一种命令行工具，作用是发出网络请求，然后得到和提取数据，显示在 "标准输出"（stdout）上面。
 
 <!-- more -->
 ## 查看网页源码
@@ -17,8 +16,7 @@ $ curl baidu.com
 <meta http-equiv="refresh" content="0;url=http://www.baidu.com/">
 </html>
 ```
-如果要把这个网页保存下来，可以使用 `-o` 或 `--output` 参数，这就相当于使用 wget
-命令了。
+如果要把这个网页保存下来，可以使用 `-o` 或 `--output` 参数，这就相当于使用 wget 命令了。
 ```bash
 $ curl -o file_name baidu.com
 ```
@@ -143,7 +141,6 @@ $ curl localhost:8002/test -c ${cookie_file}
 # -b 可以使用这个文件作为cookie信息，进行后续的请求。
 $ curl localhost:8002/test -b ${cookie_file}
 ```
-
 
 
 ## HTTP认证

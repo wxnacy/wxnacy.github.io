@@ -1,7 +1,7 @@
 ---
 title: Vim 插件 Ack 全局搜索文件
 date: 2017-10-13 14:19:26
-tags: [vim, 搜索]
+tags: [vim]
 ---
 
 [专辑：Vim 练级手册](/vim)

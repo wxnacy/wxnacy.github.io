@@ -1,7 +1,7 @@
 ---
 title: Linux 搜索命令 grep
 date: 2017-09-11
-tags: [linux, 搜索]
+tags: [linux]
 ---
 
 > 文件搜索用 find，文本搜索用 grep
