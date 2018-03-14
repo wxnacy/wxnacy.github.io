@@ -1,7 +1,7 @@
 ---
 title: Python 使用 gunicorn 启动你的项目
 date: 2017-08-15
-tags: [python, gunicorn]
+tags: [python]
 ---
 
 > 虽然 Python 自带服务器服务，但是最多只能用作开发环境调试用，在生产环境中如同

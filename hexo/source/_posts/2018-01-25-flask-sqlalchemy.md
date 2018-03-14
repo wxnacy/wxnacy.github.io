@@ -1,7 +1,7 @@
 ---
 title: Flask SQLAlchemy 框架的使用
 date: 2018-01-25 18:13:01
-tags: [python]
+tags: [python, flask]
 ---
 
 昨天介绍了 SQLAlchemy 的使用，今天介绍下在 Flask 框架中如何使用它。
