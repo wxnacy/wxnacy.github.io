@@ -11,6 +11,7 @@ from app.config import db
 from app.config import BaseConfig
 from app.config import logger
 from app.models import Article
+from app import models
 
 
 from app.views.index import index_bp
@@ -20,9 +21,12 @@ from flask import g
 from flask import request
 from flask_restless import APIManager
 from datetime import datetime
+
 import traceback
 import time
 import os
+import inspect
+import importlib
 
 
 @app.before_request
@@ -71,17 +75,36 @@ def after_request(response):
     return response
 
 # api
-app.register_blueprint(index_bp)
-app.register_blueprint(api_bp)
-app.register_blueprint(code_bp, url_prefix='/api/v1')
 
-# restful
-URL_PREFIX = '/api/restful' # BaseConfig.APPLICATION_ROOT_RESTFUL
+views_path = '{}/app/views/'.format(os.getcwd())
+views_files = list(filter(lambda x: not x.startswith('__'),
+    os.listdir(views_path)))
+for path in views_files:
+    module_name = 'app.views.{}'.format(path[0:-3])
+    print(module_name)
+    views_module = importlib.import_module(module_name)
+    for name, obj in inspect.getmembers(views_module):
+        if obj.__class__.__name__ == 'Blueprint':
+            app.register_blueprint(obj, url_prefix = '/api/v1')
+
+# restless
 manager = APIManager(app, flask_sqlalchemy_db=db)
-manager.create_api(Article, url_prefix=URL_PREFIX, methods=['GET','POST'])
+restful_params = dict(
+    methods=['GET'],
+    results_per_page=10,
+    allow_functions=True,
+    url_prefix = '/api/restless'
+)
 
+for name, obj in inspect.getmembers(models):
+    if inspect.isclass(obj) and '__tablename__' in dir(obj):
+        manager.create_api(obj, **restful_params)
 
 @app.errorhandler(Exception)
 def app_error_handler(e):
     app.logger.error(traceback.format_exc())
     return BaseResponse.return_internal_server_error(str(e))
+
+
+
+logger.debug(os.getcwd())

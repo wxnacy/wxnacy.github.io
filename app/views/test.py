@@ -21,7 +21,7 @@ import re
 
 RE_DATE = re.compile('\d{4}/\d{2}/\d{2}')
 
-index_bp = Blueprint('index', __name__)
+index_bp = Blueprint('test', __name__)
 
 def visit_log(func):
     @wraps(func)
