@@ -1,7 +1,10 @@
 ---
 title: Python 字符串大小写转换
-tags: [python]
+tags:
+  - python
+date: 2018-03-17 19:51:20
 ---
+
 
 ```python
 str = "www.wxnacy.com"

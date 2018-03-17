@@ -4,7 +4,7 @@
 __author__ = "wxnacy(wxnacy@gmail.com)"
 __copyright__ = "Copyright of wxnacy (2017)."
 
-from app.common.base import BaseModel
+from app.common.base import BaseModel as BM
 from app.common.md import Markdown
 from app.common.security import Md5
 from app.config import db
@@ -13,6 +13,7 @@ from datetime import datetime
 from sqlalchemy.orm import backref as b
 from sqlalchemy import desc
 from sqlalchemy import or_
+from sqlalchemy import text
 from flask import request
 import os
 import re
@@ -22,6 +23,14 @@ FILE_LIST = os.listdir(BaseConfig.ARTICLE_DIR)
 FILE_LIST = list(filter(lambda x: not x.startswith('.'),FILE_LIST))
 
 RE_DATE = re.compile(u"\d{4}-\d{2}-\d{2}")  # 正则时间类型
+
+class BaseModel(BM):
+
+    @classmethod
+    def create(cls, **params):
+        params['id'] = AutoId.generate_id()
+        item = super().create(**params)
+        return item
 
 
 class Crawler(BaseModel, db.Model):
@@ -300,7 +309,7 @@ class Config(BaseModel,db.Model):
 
 class Code(BaseModel,db.Model):
     __tablename__ = 'code'
-    id = db.Column(db.BIGINT,primary_key=True)
+    id = db.Column(db.String,primary_key=True)
     name = db.Column(db.String,default="")
     description = db.Column(db.String,default="")
     type = db.Column(db.String,default="")
@@ -308,3 +317,17 @@ class Code(BaseModel,db.Model):
     is_available = db.Column(db.INT,default=1)
     create_ts = db.Column(db.TIMESTAMP,default=datetime.now())
     update_ts = db.Column(db.TIMESTAMP,default=datetime.now())
+
+class AutoId(BaseModel, db.Model):
+    __tablename__ = 'auto_id'
+    id = db.Column(db.INT,primary_key=True)
+    shard_id = db.Column(db.INT, default = 0)
+    item_id = db.Column(db.INT, default = 1)
+
+    @classmethod
+    def generate_id(cls, shard_id = 0, item_id = 1):
+        sql = 'select func_auto_id(:shard, :item)'
+        res = db.engine.execute(text(sql), shard = shard_id,
+            item = item_id).fetchall()
+        return res[0][0]
+

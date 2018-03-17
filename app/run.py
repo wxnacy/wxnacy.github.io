@@ -12,6 +12,7 @@ from app.config import BaseConfig
 from app.config import logger
 from app.models import Article
 from app import models
+from app.schema import schema
 
 
 from app.views.index import index_bp
@@ -20,6 +21,7 @@ from app.views.code import code_bp
 from flask import g
 from flask import request
 from flask_restless import APIManager
+from flask_graphql import GraphQLView
 from datetime import datetime
 
 import traceback
@@ -100,6 +102,10 @@ for name, obj in inspect.getmembers(models):
     if inspect.isclass(obj) and '__tablename__' in dir(obj):
         manager.create_api(obj, **restful_params)
 
+''' for graphql'''
+app.add_url_rule('/api/graphql',
+    view_func=GraphQLView.as_view('graphql', schema=schema, graphiql=True))
+
 @app.errorhandler(Exception)
 def app_error_handler(e):
     app.logger.error(traceback.format_exc())
@@ -107,4 +113,4 @@ def app_error_handler(e):
 
 
 
-logger.debug(os.getcwd())
+
