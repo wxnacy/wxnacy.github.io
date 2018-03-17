@@ -5,6 +5,7 @@ __author__ = "wxnacy(wxnacy@gmail.com)"
 __copyright__ = "Copyright of wxnacy (2017)."
 
 from app.common.base import BaseModel as BM
+from app.common.base import BaseDB
 from app.common.md import Markdown
 from app.common.security import Md5
 from app.config import db
@@ -326,8 +327,10 @@ class AutoId(BaseModel, db.Model):
 
     @classmethod
     def generate_id(cls, shard_id = 0, item_id = 1):
-        sql = 'select func_auto_id(:shard, :item)'
-        res = db.engine.execute(text(sql), shard = shard_id,
-            item = item_id).fetchall()
-        return res[0][0]
+        sql = 'select func_auto_id(%s, %s) as id'
+        res = BaseDB.query(sql, [shard_id, item_id])
+        return res[0]['id']
 
+class Test(BaseModel, db.Model):
+    __tablename__ = 'test'
+    id = db.Column(db.INT,primary_key=True)

@@ -5,21 +5,15 @@ __author__ = "wxnacy(wxnacy@gmail.com)"
 __copyright__ = "Copyright of wxnacy (2017)."
 
 from app.common.base import BaseResponse
-from app.models import VisitUser as VU
+from app.models import AutoId
 from functools import wraps
 from flask import Blueprint
 
 api_bp = Blueprint('api', __name__)
 
-def visit_log(func):
-    @wraps(func)
-    def _w(*args, **kwargs):
-        VU.log()
-        return func(*args, **kwargs)
-    return _w
 
-@api_bp.route('/api/visit', methods=['POST'])
-@visit_log
-def visit():
-    ''''''
-    return BaseResponse.return_success()
+@api_bp.route('/auto_id/<int:shard_id>/<int:item_id>', methods=['POST'])
+def create_auto_id(shard_id, item_id):
+    '''生成id'''
+    id = AutoId.generate_id(shard_id, item_id)
+    return BaseResponse.return_success({"id": id})

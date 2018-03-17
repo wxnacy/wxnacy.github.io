@@ -79,8 +79,11 @@ def after_request(response):
 # api
 
 views_path = '{}/app/views/'.format(os.getcwd())
-views_files = list(filter(lambda x: not x.startswith('__'),
+logger.debug(views_path)
+views_files = list(filter(
+    lambda x: not x.startswith('__') and '.swp' not in x and '.swo' not in x,
     os.listdir(views_path)))
+logger.debug(views_files)
 for path in views_files:
     module_name = 'app.views.{}'.format(path[0:-3])
     print(module_name)

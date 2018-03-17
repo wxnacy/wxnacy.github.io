@@ -12,16 +12,18 @@ import ast
 import pickle
 from app.models import AutoId
 from app.models import Code
+from app.models import Test
+from app.config import db
+from sqlalchemy import text
 
 def md5(text):
     return hashlib.md5(text.encode("utf-8")).hexdigest()
 
-a = 1 << 8
-b = 1 << 8
-c = 1 << 35
-print(c)
-print((a << 44) + (b << 36) + c)
+if __name__ == "__main__":
+    for i in range(10):
+        Test.create()
+    db.session.commit()
+    sql = 'select * from auto_id'
+    res = db.engine.execute(text(sql)).fetchall()
+    print(res)
 
-res = AutoId.generate_id()
-print(res)
-Code.create(name='test')
