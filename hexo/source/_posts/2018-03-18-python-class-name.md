@@ -1,7 +1,10 @@
 ---
 title: Python 获取 class 名字
-tags: [python]
+tags:
+  - python
+date: 2018-03-18 09:54:17
 ---
+
 
 ```python
 #!/usr/bin/env python
