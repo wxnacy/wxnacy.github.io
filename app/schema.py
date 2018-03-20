@@ -113,7 +113,6 @@ class Query(graphene.ObjectType):
         id = graphene.String()
     )
 
-
     test = graphene.Field(JSON)
 
     def resolve_test(self, info):
