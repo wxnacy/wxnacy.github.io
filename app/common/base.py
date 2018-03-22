@@ -32,7 +32,7 @@ class BaseObject(object):
             setattr(self, k, v)
 
     def to_dict(self):
-        return eval(self.to_json())
+        return json.loads(self.to_json())
 
     def to_json(self):
         return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True)
