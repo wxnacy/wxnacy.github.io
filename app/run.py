@@ -41,27 +41,42 @@ def before_request():
         _args = request.json
     else:
         _args = request.args
-    logger.debug(
-        '{}_{} begin \nargs:{}\ndata:{}\nheaders:\n{}'.format(
-            request.method, request.url, _args,
-            request.data, ''.join(
-                ['header {}: {}\n'.format(k, v) for k, v in
-                 request.headers])
-        )
-    )
+    try:
+        data = request.data
+        logger.debug('data   %s', data)
+        args = request.args or {}
+        logger.debug('args   %s', args)
+        json_data = request.json or {}
+        logger.debug('json   %s', json_data)
+        form_data = request.form or {}
+        logger.debug('form   %s', form_data)
+        h_data = request.headers or {}
+        for k, v in h_data:
+            logger.debug('header %s: %s', k, v)
+    except Exception as e:
+        logger.error('params %s', e)
+        logger.error(traceback.format_exc())
+    #  logger.debug(
+        #  '{}_{} begin \nargs:{}\ndata:{}\nheaders:\n{}'.format(
+            #  request.method, request.url, _args,
+            #  request.data, ''.join(
+                #  ['header {}: {}\n'.format(k, v) for k, v in
+                 #  request.headers])
+        #  )
+    #  )
     g.ip = request.remote_addr
-    categorys = [
-            dict(category='category',name='分类')
-            ]
-    g.categorys = []
-    cate_html = []
-    for cg in categorys:
-        cate_html.append(
-            '<li><a href="/{}">{}</a></li>'.format(cg[ 'category' ], cg[ 'name' ]))
+    #  categorys = [
+            #  dict(category='category',name='分类')
+            #  ]
+    #  g.categorys = []
+    #  cate_html = []
+    #  for cg in categorys:
+        #  cate_html.append(
+            #  '<li><a href="/{}">{}</a></li>'.format(cg[ 'category' ], cg[ 'name' ]))
 
-    g.header = '<span><a href="/">wxnacy 博客 </a></span><nav><ul>{}</ul></nav>'.format(
-    ''.join(cate_html))
-    g.footer = ' © 2017 wxnacy.com 版权所有 <a href="http://www.miitbeian.gov.cn/" target="_blank">京ICP备15062634号-3</a>'
+    #  g.header = '<span><a href="/">wxnacy 博客 </a></span><nav><ul>{}</ul></nav>'.format(
+    #  ''.join(cate_html))
+    #  g.footer = ' © 2017 wxnacy.com 版权所有 <a href="http://www.miitbeian.gov.cn/" target="_blank">京ICP备15062634号-3</a>'
 
 
 @app.after_request
@@ -69,11 +84,7 @@ def after_request(response):
     if not hasattr(g, 'request_start_time'):
         return response
     elapsed = datetime.utcnow().timestamp() - g.request_start_time
-    req_info = '{}_{} end time_used:{}'.format(
-        request.method,
-        request.url, elapsed
-    )
-    logger.debug(req_info)
+    logger.debug('end    time_used: %s', elapsed)
     return response
 
 # api
@@ -83,14 +94,15 @@ logger.debug(views_path)
 views_files = list(filter(
     lambda x: not x.startswith('__') and '.swp' not in x and '.swo' not in x,
     os.listdir(views_path)))
-logger.debug(views_files)
 for path in views_files:
     module_name = 'app.views.{}'.format(path[0:-3])
-    print(module_name)
     views_module = importlib.import_module(module_name)
     for name, obj in inspect.getmembers(views_module):
         if obj.__class__.__name__ == 'Blueprint':
-            app.register_blueprint(obj, url_prefix = '/api/v1')
+            url_prefix = '/api/v1'
+            if name == 'admin_bp':
+                url_prefix = '/admin'
+            app.register_blueprint(obj, url_prefix = url_prefix)
 
 # restless
 manager = APIManager(app, flask_sqlalchemy_db=db)
@@ -113,7 +125,5 @@ app.add_url_rule('/api/graphql',
 def app_error_handler(e):
     app.logger.error(traceback.format_exc())
     return BaseResponse.return_internal_server_error(str(e))
-
-
 
 

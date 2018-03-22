@@ -331,6 +331,31 @@ class AutoId(BaseModel, db.Model):
         res = BaseDB.query(sql, [shard_id, item_id])
         return res[0]['id']
 
+class User(BaseModel, db.Model):
+    __tablename__ = 'user'
+    id = db.Column(db.INT, primary_key=True)
+    name = db.Column(db.String, default = '')
+    email = db.Column(db.String, default = '')
+    mobile = db.Column(db.String, default = '')
+    password = db.Column(db.String, default = '')
+    status = db.Column(db.String, default = '')
+    type = db.Column(db.String, default = '')
+    ext_property = db.Column(db.JSON, default={})
+    is_available = db.Column(db.INT, default=1)
+    create_ts = db.Column(db.TIMESTAMP, default=datetime.now())
+    update_ts = db.Column(db.TIMESTAMP, default=datetime.now())
+
+class VisitorLog(BaseModel, db.Model):
+    __tablename__ = 'visitor_log'
+    id = db.Column(db.INT, primary_key=True)
+    ip = db.Column(db.String, default = '')
+    url = db.Column(db.String, default = '')
+    user_agent = db.Column(db.String, default = '')
+    ext_property = db.Column(db.JSON, default={})
+    is_available = db.Column(db.INT, default=1)
+    create_ts = db.Column(db.TIMESTAMP, default=datetime.now())
+    update_ts = db.Column(db.TIMESTAMP, default=datetime.now())
+
 class Test(BaseModel, db.Model):
     __tablename__ = 'test'
     id = db.Column(db.INT,primary_key=True)

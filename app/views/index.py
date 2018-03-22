@@ -23,17 +23,17 @@ RE_DATE = re.compile('\d{4}/\d{2}/\d{2}')
 
 index_bp = Blueprint('index', __name__)
 
-def visit_log(func):
-    @wraps(func)
-    def _w(*args, **kwargs):
-        VU.log()
-        return func(*args, **kwargs)
-    return _w
+#  def visit_log(func):
+    #  @wraps(func)
+    #  def _w(*args, **kwargs):
+        #  VU.log()
+        #  return func(*args, **kwargs)
+    #  return _w
 
-@index_bp.route('/json')
-@visit_log
-def index():
-    '''首页'''
-    article = []
-    md = Article.get_timeline_md()
-    return render_template('index.html', article=md)
+#  @index_bp.route('/json')
+#  @visit_log
+#  def index():
+    #  '''首页'''
+    #  article = []
+    #  md = Article.get_timeline_md()
+    #  return render_template('index.html', article=md)

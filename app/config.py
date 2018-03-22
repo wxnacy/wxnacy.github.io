@@ -7,6 +7,7 @@ __copyright__ = "Copyright of wxnacy (2017)."
 from app.common.id import Snowflake
 from datetime import date
 from flask import Flask
+from flask import request
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.contrib.fixers import ProxyFix
@@ -56,28 +57,36 @@ def create_app(flask_config_name=None):
     config_name = CONFIG_NAME_MAPPER[config_mapper_name]
     app.config.from_object(config_name)
 
-    # 日志
-    fmt = '[%(asctime)s] [%(levelname)s] %(message)s [in %(pathname)s:%(lineno)d]'
-    #file_handler = logging.FileHandler('wxnacy.log')
-    #file_handler.setLevel(logging.DEBUG)
-    #file_handler.setFormatter(Formatter(fmt))
-    stream_handler = logging.StreamHandler()
-    stream_handler.setFormatter(Formatter(fmt))
-    #  hdlr = logging.handlers.RotatingFileHandler('wxnacy.log',
-                                            #  'a', 10*1024*1024, 1)
-    #  hdlr.setFormatter(Formatter(fmt))
-    #  hdlr.setLevel(logging.DEBUG)
-    #  app.logger.addHandler(hdlr)
-    app.logger.addHandler(stream_handler)
-    # app.logger.addHandler(file_handler)
-    app.logger.setLevel(logging.DEBUG)
-
     app.logger.debug('-------------------------init app-------------------------')
     return app
+
+class RequestFormatter(Formatter):
+    def format(self, record):
+        try:
+            record.url = '{} {}'.format(request.method, request.path)
+        except Exception as e:
+            record.url = ''
+        return super().format(record)
+
+def create_logger():
+    fmt = '[%(asctime)s] [%(filename)s:%(lineno)d\t] [%(levelname)s] '\
+            '[%(url)s\t] %(message)s '
+    fmt = RequestFormatter(fmt)
+    stream_handler = logging.StreamHandler()
+    stream_handler.setFormatter(fmt)
+    app.logger.addHandler(stream_handler)
+    app.logger.setLevel(logging.DEBUG)
+
+    #  file_handler = logging.handlers.RotatingFileHandler(
+        #  'log/tmd.log', maxBytes=104857600, backupCount=20
+            #  )
+    #  file_handler.setFormatter(fmt)
+    #  app.logger.addHandler(file_handler)
+    return app.logger
 
 
 app = create_app()
 CORS(app)
-logger = app.logger
+logger = create_logger()
 db = SQLAlchemy(app)
 snowflake = Snowflake(0)

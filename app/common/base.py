@@ -8,6 +8,7 @@ __copyright__ = "Copyright of wxnacy (2017)."
 from app.config import app
 from app.config import db
 from app.config import snowflake
+from app.config import logger
 from app.common.security import AESecurity
 from datetime import datetime, date
 from flask import make_response
@@ -244,6 +245,20 @@ class BaseResponse(BaseObject):
 
     @classmethod
     def return_response(cls, data={}, status=200, message="", headers={}):
+        try:
+            logger.debug('return %s %s', status, message)
+        except:
+            logger.error(traceback.format_exc())
+
+        try:
+            filters = request.args.get('filters')
+            if filters:
+                fd = BaseDict(data).filter(*filters.split(','))
+                data = fd
+        except:
+            logger.error(traceback.format_exc())
+            data = data
+
         res = cls(
             data=data,
             status=status,

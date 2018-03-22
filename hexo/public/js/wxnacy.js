@@ -106,8 +106,6 @@ function create_visit(){
         }).then(function(data){
         })
     }
-
-
 };
 function create_crypto(type) {
     var content = document.getElementById("msg").value;
@@ -247,11 +245,86 @@ function checkNaN(){
         event.returnValue = false;
     }
 }
+function visitor(){
+    // fetch('http://ip-api.com/json').then(function(res){
+        // return res.json()
+    // }).then(function(data){
+        // console.log(data);
+        // params = {
+            // ip: data.query,
+            // url: window.location.href,
+            // ext_property: data
+        // }
+        // console.log(params);
+        // fetch('/api/v1/visitor', {
+            // method: "POST",
+            // headers: {
+                // 'Content-Type': 'application/json'
+            // },
+            // body: JSON.stringify(params)
+        // }).then(function(res){
+            // return res.json()
+        // }).then(function(data){
+            // console.log(data);
+        // }).catch(function(e){
+            // console.log(e);
+        // })
+    // })
+
+    fetchGet('https://ipapi.co/json/').then(function(data){
+        console.log(data);
+        console.log(document.referrer);
+        console.log(document);
+        params = {
+            ip: data.ip,
+            url: window.location.href,
+            referrer: document.referrer,
+            ext_property: {
+                ext1: data,
+                ext2: window.location
+            }
+        }
+        fetchPost('/api/v1/visitor_log',params).then(function(data){
+            console.log(data);
+        })
+    })
+}
+function fetchGet(url) {
+    return fetchRequest(url, 'GET')
+}
+function fetchPost(url, params) {
+    return fetchRequest(url, 'POST', params)
+}
+function fetchRequest(url, method, params) {
+    var headers = {
+        "authorization": "XXXXXXXXX"
+    }
+    if( method.toLowerCase() == 'post' ){
+        headers['Content-Type']= 'application/json'
+    }
+    return new Promise(function(resolve, reject) {
+        fetch(url, {
+            method: method,
+            headers: headers,
+            body: JSON.stringify(params)
+        }).then(function(res){
+            return res.json()
+        }).then(function(data){
+            resolve(data)
+        }).catch(function(e){
+            console.log(e);
+            reject(e)
+            // 需要统一的处理错误方式，避免每次都catch
+        })
+    })
+}
 var pagePvTimer;
 pagePvTimer = setInterval(create_visit, 1000);
+visitor()
 // getAccessToken().then(function(res){
     // console.log("access", res);
 // })
+
 
 // create_crypto();
 // create_visit();
