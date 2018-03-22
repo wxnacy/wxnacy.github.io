@@ -272,9 +272,6 @@ function visitor(){
     // })
 
     fetchGet('https://ipapi.co/json/').then(function(data){
-        console.log(data);
-        console.log(document.referrer);
-        console.log(document);
         params = {
             ip: data.ip,
             url: window.location.href,

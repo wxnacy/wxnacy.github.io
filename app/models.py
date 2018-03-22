@@ -350,6 +350,7 @@ class VisitorLog(BaseModel, db.Model):
     id = db.Column(db.INT, primary_key=True)
     ip = db.Column(db.String, default = '')
     url = db.Column(db.String, default = '')
+    referrer = db.Column(db.String, default = '')
     user_agent = db.Column(db.String, default = '')
     ext_property = db.Column(db.JSON, default={})
     is_available = db.Column(db.INT, default=1)
