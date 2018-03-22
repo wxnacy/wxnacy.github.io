@@ -234,6 +234,51 @@ def distance_between_points(lat1, lon1, lat2, lon2):
     r = 6371  # 地球平均半径，单位为公里
     return c * r * 1000     # 结果单位米
 
+#  DEV_MAC = 'Macintosh'
+#  DEV_WIN = 'Windows'
+#  DEV_LINUX = 'Linux'
+#  DEV_IPHONE = 'iPhone'
+#  DEV_ANDROID = 'Android'
+
+#  SYS_ANDROID = 'Android'
+#  SYS_IOS = 'IOS'
+#  SYS_LINUX = 'Linux'
+#  SYS_MAC = 'Mac OS'
+#  SYS_WIN = 'Windows 7'
+#  SYS_LINUX = 'Linux'
+
+#  BROWSER_CHROME = 'Chrome'
+#  BROWSER_UC = 'UCBrowser'
+#  def parse_user_agent(ua):
+    #  device = ''
+    #  system = ''
+    #  browser = ''
+    #  if DEV_MAC in ua:
+        #  device = DEV_MAC
+        #  system = 'Mac OS'
+    #  elif DEV_WIN in ua:
+        #  device = DEV_WIN
+        #  if ua.index('Windows NT'):
+            #  system = 'Windows 7'
+    #  elif DEV_IPHONE in ua:
+        #  device = DEV_IPHONE
+        #  system = SYS_IOS
+    #  elif DEV_ANDROID in ua:
+        #  device = DEV_ANDROID
+        #  system = SYS_ANDROID
+    #  elif DEV_LINUX in ua:
+        #  device = DEV_LINUX
+        #  system = SYS_LINUX
+
+    #  if BROWSER_UC in ua:
+        #  browser = BROWSER_UC
+    #  elif BROWSER_CHROME in ua:
+        #  browser = BROWSER_CHROME
+
+    #  res = dict(
+        #  device = device, system = system, browser = browser
+    #  )
+    #  return res
 
 
 if __name__ == '__main__':

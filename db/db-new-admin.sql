@@ -30,3 +30,9 @@ create table `visitor_log`(
   update_ts timestamp not null default current_timestamp on update current_timestamp comment '修改时间',
   primary key(`id`)
 ) engine=InnoDB default charset=utf8mb4 COMMENT '访问记录';
+
+alter table `visitor_log` add column browser varchar(32) not null default '' comment '浏览器';
+alter table `visitor_log` add column os varchar(64) not null default '' comment '系统';
+alter table `visitor_log` add column device varchar(64) not null default '' comment '设备';
+alter table `visitor_log` add column device_type varchar(64) not null default '' comment '设备类型 mobile pc tablet';
+alter table `visitor_log` add column is_bot tinyint(1) not null default '0' comment '是否为机器人';
