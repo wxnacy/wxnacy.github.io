@@ -12,7 +12,6 @@ from functools import wraps
 from flask import Blueprint
 from flask import request
 import json
-from user_agents import parse
 
 api_bp = Blueprint('api', __name__)
 
@@ -30,18 +29,5 @@ def create_visitor_log():
     headers = request.headers
     ua = headers.get('user_agent')
     args['user_agent'] = ua
-    ua = parse(ua)
-    args['os'] = ua.os.family
-    args['device'] = ua.device.family
-    args['browser'] = ua.browser.family
-    device_type = 'pc'
-    if ua.is_mobile:
-        device_type = 'mobile'
-    elif ua.is_tablet:
-        device_type = 'tablet'
-    args['device_type'] = device_type
-    #  args['is_bot'] = 1 if ua.is_bot else 0
-    args['is_bot'] = ua.is_bot
-    logger.debug(args)
-    res = VisitorLog.create(**args)
+    res = VisitorLog.visit(**args)
     return BaseResponse.return_success(res.format())

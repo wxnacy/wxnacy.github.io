@@ -10,12 +10,14 @@ from app.common.md import Markdown
 from app.common.security import Md5
 from app.config import db
 from app.config import BaseConfig
+from app.config import logger
 from datetime import datetime
 from sqlalchemy.orm import backref as b
 from sqlalchemy import desc
 from sqlalchemy import or_
 from sqlalchemy import text
 from flask import request
+from user_agents import parse
 import os
 import re
 
@@ -356,11 +358,31 @@ class VisitorLog(BaseModel, db.Model):
     device = db.Column(db.String, default = '')
     device_type = db.Column(db.String, default = '')
     browser = db.Column(db.String, default = '')
+    md5 = db.Column(db.String, default = '')
     is_bot = db.Column(db.INT, default=0)
     ext_property = db.Column(db.JSON, default={})
     is_available = db.Column(db.INT, default=1)
     create_ts = db.Column(db.TIMESTAMP, default=datetime.now())
     update_ts = db.Column(db.TIMESTAMP, default=datetime.now())
+
+    @classmethod
+    def visit(cls, **kw):
+        ua = kw['user_agent']
+        ua = parse(ua)
+        kw['os'] = ua.os.family
+        kw['device'] = ua.device.family
+        kw['browser'] = ua.browser.family
+        device_type = 'pc'
+        if ua.is_mobile:
+            device_type = 'mobile'
+        elif ua.is_tablet:
+            device_type = 'tablet'
+        kw['device_type'] = device_type
+        kw['is_bot'] = ua.is_bot
+        kw['md5'] = Md5.encrypt('{};{}'.format(kw['ip'], kw['user_agent']))
+
+        res = VisitorLog.create(**kw)
+        return res
 
 class Test(BaseModel, db.Model):
     __tablename__ = 'test'

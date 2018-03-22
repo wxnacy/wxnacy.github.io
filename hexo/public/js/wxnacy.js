@@ -276,10 +276,7 @@ function visitor(){
             ip: data.ip,
             url: window.location.href,
             referrer: document.referrer,
-            ext_property: {
-                ext1: data,
-                ext2: window.location
-            }
+            ext_property: data
         }
         fetchPost('/api/v1/visitor_log',params).then(function(data){
             console.log(data);
