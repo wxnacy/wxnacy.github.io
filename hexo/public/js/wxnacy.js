@@ -312,8 +312,8 @@ function fetchRequest(url, method, params) {
         })
     })
 }
-var pagePvTimer;
-pagePvTimer = setInterval(create_visit, 1000);
+// var pagePvTimer;
+// pagePvTimer = setInterval(create_visit, 1000);
 visitor()
 // getAccessToken().then(function(res){
     // console.log("access", res);

@@ -165,11 +165,13 @@ class BaseModel(BaseObject):
 
     @classmethod
     def update_by_id(cls, id, **params):
+        params['update_ts'] = datetime.now()
         item = cls.query.filter_by(id=id, is_available=1).update(params)
         db.session.commit()
         return item
 
     def update_self(self):
+        self.update_ts = datetime.now()
         db.session.commit()
         return self
 

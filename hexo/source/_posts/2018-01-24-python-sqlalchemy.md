@@ -163,6 +163,12 @@ filter_by().order_by(desc(Book.id))
 # limit 4
 filter_by().limit(4)
 ```
+### 函数使用
+group by
+```python
+from sqlalchemy import func
+session.query(Book.name, func.count(Book.name)).group_by(Book.name).all()
+```
 ### 批量插入
 ```python
 # insert into book (name) values ('wxnacy');

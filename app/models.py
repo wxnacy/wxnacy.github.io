@@ -22,7 +22,8 @@ from flask import request
 from user_agents import parse
 import os
 import re
-import time
+import requests
+from bs4 import BeautifulSoup
 
 
 FILE_LIST = os.listdir(BaseConfig.ARTICLE_DIR)
@@ -168,131 +169,7 @@ class Category(BaseModel,db.Model):
         db.session.commit()
 
 
-class Article(BaseModel,db.Model):
-    __tablename__ = 'article'
-    id = db.Column(db.BIGINT,primary_key=True)
-    name = db.Column(db.String,default="")
-    file_name = db.Column(db.String)
-    publish_date = db.Column(db.DATE)
-    category = db.Column(db.String,default="")
-    view_count = db.Column(db.INT,default=0,doc="观看数量")
-    route = db.Column(db.String,default="")
-    content = db.Column(db.String,default="")
-    ext = db.Column(db.JSON,default={})
-    is_del = db.Column(db.INT,default=0)
-    create_ts = db.Column(db.TIMESTAMP,default=datetime.now())
-    update_ts = db.Column(db.TIMESTAMP,default=datetime.now())
 
-    @classmethod
-    def search(cls,q):
-        s = '%{}%'.format(q)
-        items = Article.query.filter(or_(
-                Article.name.like(s),Article.content.like(s)
-            ),Article.is_del==0).order_by(desc(Article.publish_date)).all()
-
-        md = []
-        for i in items:
-            md.append('- [{}]({})'.format(i.name,i.route))
-
-        content = '# 搜素：{}\n{}'.format(q,'\n'.join(md))
-        return Markdown(content=content)
-
-
-    @classmethod
-    def sync_data(cls):
-        file_list = os.listdir(BaseConfig.ARTICLE_DIR)
-        file_list= list(filter(lambda x: not x.startswith('.'),file_list))
-
-        Article.query.update(dict(is_del=1),synchronize_session=False)
-        Category.query.update(dict(is_del=1),synchronize_session=False)
-        cgs = {}
-        timeline = {}
-        def _save(o):
-            md = Markdown(o)
-            d = re.findall(RE_DATE,o)[0]
-            category = o.split('-')[0]
-            vc = VisitLog.get_count_by_url(md.route)
-            a = cls(name=md.title,file_name=o,content=md.content,
-                    publish_date=d,category=category,route=md.route,
-                    view_count=vc)
-            db.session.add(a)
-            # category
-            if category not in cgs:
-                cgs[category] = []
-            cgs[category].append('- [{}]({})'.format(md.title,md.route))
-            # timeline
-            if d not in timeline:
-                timeline[d] = []
-            timeline[d].append('- [{}]({})'.format(md.title,md.route))
-
-        [_save(o) for o in file_list]
-
-        # 将category format并放入到session中
-        for k,v in cgs.items():
-            content = '\n'.join(v)
-            content = '# {}\n{}'.format(k,content)
-            c = Category(name=k,content=content)
-            db.session.add(c)
-
-        # format and save timeline
-        timeline = [dict(d=k,items=v) for k,v in timeline.items()]
-        timeline.sort(key=lambda x:x['d'],reverse=False)
-        timeline.reverse()
-
-        tl = []
-        for i in timeline:
-            tl.append('## {}'.format(i['d']))
-            for item in i['items']:
-                tl.append(item)
-
-        tl = '\n'.join(tl)
-        tl = '# wxnacy 博客 \n[TOC]\n{}'.format(tl)
-        Config.sync(name='timeline',value=tl)
-
-        db.session.commit()
-
-
-    @classmethod
-    def get_timeline_md(cls):
-        item = Config.query_item(name='timeline')
-        content = item.value if item else None
-        return Markdown(content=content)
-
-
-    @classmethod
-    def make_timeline(cls):
-        article = []
-        items= {}
-        for f in FILE_LIST:
-            res = re.findall(RE_DATE,f)
-            if res:
-                if res[0] not in items:
-                    items[res[0]] = []
-                md = Markdown(f)
-                items[res[0]].append('- [{}]({})'.format(md.title,md.route))
-
-        items = [dict(d=k,items=v) for k,v in items.items()]
-        items.sort(key=lambda x:x['d'],reverse=False)
-        items.reverse()
-
-        for i in items:
-            article.append('## {}'.format(i['d']))
-            for item in i['items']:
-                article.append(item)
-
-        content = '\n'.join(article)
-        return  '# wxnacy 博客 \n[TOC]\n{}'.format(content)
-
-    @classmethod
-    def sync_timeline(cls):
-        content = cls.make_timeline()
-        Config.sync(name='timeline',value=content)
-
-    @classmethod
-    def count(cls):
-        return cls.query.filter(
-                cls.is_del == 0
-                ).count()
 
 class Config(BaseModel,db.Model):
     id = db.Column(db.INT,primary_key=True)
@@ -438,6 +315,51 @@ class VisitorLogDate(BaseModel, db.Model):
         item.uv = uv
         item.update_self()
         logger.debug('statistics_visitor %s', item)
+
+class Article(BaseModel,db.Model):
+    __tablename__ = 'article'
+    id = db.Column(db.BIGINT,primary_key=True)
+    name = db.Column(db.String,default="")
+    url = db.Column(db.String, default="")
+    publish_date = db.Column(db.DATE, default = '2001-01-01')
+    tag = db.Column(db.String,default="")
+    pv = db.Column(db.INT,default=0,doc="观看数量")
+    init_pv = db.Column(db.INT,default=0,doc="初始值")
+    ext_property = db.Column(db.JSON,default={})
+    is_available = db.Column(db.INT,default=1)
+    create_ts = db.Column(db.TIMESTAMP,default=datetime.now())
+    update_ts = db.Column(db.TIMESTAMP,default=datetime.now())
+
+    @classmethod
+    def crawler(cls, url, **kw):
+        if not url.startswith('https://wxnacy.com'):
+            return None
+        if url == 'https://wxnacy.com' or url == 'https://wxnacy.com/':
+            return None
+        if '?' in url:
+            url = url[0:url.index('?')]
+        if url.endswith('/'):
+            url = url[0:-1]
+
+        params = {}
+        res = requests.get(url)
+        soup = BeautifulSoup(res.content, 'html.parser')
+        metas = soup.find_all('meta')
+        for meta in metas:
+            attrs = meta.attrs
+            if attrs.get('property') == 'og:title':
+                params['name'] = attrs['content']
+            elif attrs.get('name') == 'keywords':
+                params['tag'] = attrs['content']
+            elif attrs.get('property') == 'og:updated_time':
+                params['publish_date'] = attrs['content'][0:10]
+
+        item = cls.query_item(url=url)
+        if not item:
+            item = cls.create(url=url, publish_date = params['publish_date'])
+        cls.update_by_id(item.id, **params)
+
+
 
 class Test(BaseModel, db.Model):
     __tablename__ = 'test'
