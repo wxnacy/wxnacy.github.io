@@ -37,3 +37,4 @@ alter table `visitor_log` add column device varchar(64) not null default '' comm
 alter table `visitor_log` add column device_type varchar(64) not null default '' comment '设备类型 mobile pc tablet';
 alter table `visitor_log` add column is_bot tinyint(1) not null default '0' comment '是否为机器人';
 alter table `visitor_log` add column md5 varchar(64) not null default '' comment 'md5';
+alter table `visitor_log` add column visit_date date not null default '2018-03-22' comment '';

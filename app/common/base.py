@@ -140,7 +140,7 @@ class BaseModel(BaseObject):
         if not params:
             params = {}
         params['is_available'] = 1
-        return cls.query.filter_by(**params).all()
+        return cls.query.filter_by(**params).order_by(desc(cls.create_ts)).all()
 
     @classmethod
     def query_count(cls, **params):

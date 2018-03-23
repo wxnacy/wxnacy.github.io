@@ -6,6 +6,7 @@ __copyright__ = "Copyright of wxnacy (2017)."
 
 from app.common.base import BaseResponse
 from app.models import User
+from app.models import VisitorLog
 from app.config import logger
 from functools import wraps
 from flask import Blueprint
@@ -35,6 +36,10 @@ def login():
 
 @admin_bp.route('/index')
 def index():
+    args = dict(request.args) or {}
+    user = User.query_by_id(68719477421)
+    g.current_user = user
     logger.debug(g.current_user)
-    return render_template('index.html')
+    visitors = VisitorLog.query_items(**args)
+    return render_template('index.html', visitors=visitors)
 

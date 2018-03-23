@@ -12,6 +12,7 @@ from app.config import db
 from app.config import BaseConfig
 from app.config import logger
 from datetime import datetime
+from datetime import date
 from sqlalchemy.orm import backref as b
 from sqlalchemy import desc
 from sqlalchemy import or_
@@ -359,11 +360,28 @@ class VisitorLog(BaseModel, db.Model):
     device_type = db.Column(db.String, default = '')
     browser = db.Column(db.String, default = '')
     md5 = db.Column(db.String, default = '')
+    visit_date = db.Column(db.Date, default = date.today)
     is_bot = db.Column(db.INT, default=0)
     ext_property = db.Column(db.JSON, default={})
     is_available = db.Column(db.INT, default=1)
     create_ts = db.Column(db.TIMESTAMP, default=datetime.now())
     update_ts = db.Column(db.TIMESTAMP, default=datetime.now())
+
+    @property
+    def region(self):
+        ext = self.ext_property
+        return '{}-{}'.format(ext.get('country_name'), ext.get('city'))
+
+    @classmethod
+    def query_items(cls, **kw):
+        query_date = kw.get('date', date.today().isoformat())
+        logger.debug(query_date)
+        sql = 'is_bot = 0 and is_available = 1 and url like "%wxnacy.com%"\
+                and visit_date = :date'
+        items = cls.query.filter(text(sql)).params(
+            date = query_date
+        ).order_by(desc(cls.create_ts)).all()
+        return items
 
     @classmethod
     def visit(cls, **kw):
