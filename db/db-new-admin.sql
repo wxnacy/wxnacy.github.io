@@ -38,3 +38,18 @@ alter table `visitor_log` add column device_type varchar(64) not null default ''
 alter table `visitor_log` add column is_bot tinyint(1) not null default '0' comment '是否为机器人';
 alter table `visitor_log` add column md5 varchar(64) not null default '' comment 'md5';
 alter table `visitor_log` add column visit_date date not null default '2018-03-22' comment '';
+
+-- 2018-03-23
+drop table if exists `visitor_log_date`;
+create table `visitor_log_date`(
+  id bigint(20) not null AUTO_INCREMENT,
+  visit_date DATE not null default '2001-01-01' COMMENT '日期',
+  pv INT(11) not null default '0' COMMENT 'page views',
+  uv INT(11) not null default '0' COMMENT 'user views',
+  ext_property JSON  DEFAULT null COMMENT '扩展字段',
+  is_available tinyint(1) not null default 1 comment '是否有效',
+  create_ts timestamp not null default current_timestamp comment '创建时间',
+  update_ts timestamp not null default current_timestamp on update current_timestamp comment '修改时间',
+  primary key(`id`),
+  UNIQUE KEY `index_visitor_date` (`visitor_date`, `is_available`)
+) engine=InnoDB default charset=utf8mb4 COMMENT '每天的访问统计';

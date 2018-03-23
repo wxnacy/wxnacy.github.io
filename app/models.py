@@ -17,10 +17,12 @@ from sqlalchemy.orm import backref as b
 from sqlalchemy import desc
 from sqlalchemy import or_
 from sqlalchemy import text
+from sqlalchemy import func
 from flask import request
 from user_agents import parse
 import os
 import re
+import time
 
 
 FILE_LIST = os.listdir(BaseConfig.ARTICLE_DIR)
@@ -385,6 +387,7 @@ class VisitorLog(BaseModel, db.Model):
 
     @classmethod
     def visit(cls, **kw):
+        begin = time.time()
         ua = kw['user_agent']
         ua = parse(ua)
         kw['os'] = ua.os.family
@@ -401,7 +404,40 @@ class VisitorLog(BaseModel, db.Model):
         kw['visit_date'] = date.today()
 
         res = VisitorLog.create(**kw)
+        end = time.time()
+        logger.debug('visit time: %s', (end-begin))
         return res
+
+class VisitorLogDate(BaseModel, db.Model):
+    __tablename__ = 'visitor_log_date'
+    id = db.Column(db.INT, primary_key=True)
+    visit_date = db.Column(db.Date, default = date.today)
+    pv = db.Column(db.INT, default=0)
+    uv = db.Column(db.INT, default=0)
+    ext_property = db.Column(db.JSON, default={})
+    is_available = db.Column(db.INT, default=1)
+    create_ts = db.Column(db.TIMESTAMP, default=datetime.now())
+    update_ts = db.Column(db.TIMESTAMP, default=datetime.now())
+
+    @classmethod
+    def statistics_visitor(cls):
+        VL = VisitorLog
+        #  res = VL.query(VL.md5, func.count(VL.md5)).group_by(VL.md5).all()
+        query_day = date.today()
+        sql = 'is_bot = 0 and is_available = 1 and url like "%wxnacy.com%" and\
+            visit_date = :date'
+        res = db.session.query(VL.md5, func.count(VL.md5)).filter(text(sql)
+            ).params(date = query_day).group_by(VL.md5).all()
+        uv = len(res)
+        pv = sum([o[1] for o in res])
+
+        item = cls.query_item(visit_date = query_day)
+        if not item:
+            item = cls.create(visit_date = query_day)
+        item.pv = pv
+        item.uv = uv
+        item.update_self()
+        logger.debug('statistics_visitor %s', item)
 
 class Test(BaseModel, db.Model):
     __tablename__ = 'test'

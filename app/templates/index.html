@@ -80,6 +80,8 @@
                   <th>ip</th>
                   <th>浏览器</th>
                   <th>系统</th>
+                  <th>设备</th>
+                  <th>设备类型</th>
                   <th>地区</th>
                 </tr>
               </thead>
@@ -89,9 +91,11 @@
                   <td width="5%">{{ visitor.create_ts.time() }}</td>
                   <td width="10%"><a href="{{ visitor.referrer }}" target="_black">{{ visitor.referrer }}</a></td>
                   <td width="10%"><a href="{{ visitor.url }}" target="_black">{{ visitor.url }}</a></td>
-                  <td width="10%">{{ visitor.ip }}</td>
+                  <td width="10%"><div style="width: 110px;overflow:hidden;display:block;">{{ visitor.ip }}</div></td>
                   <td width="5%">{{ visitor.browser }}</td>
                   <td width="9%">{{ visitor.os }}</td>
+                  <td width="5%">{{ visitor.device }}</td>
+                  <td width="7%">{{ visitor.device_type }}</td>
                   <td>{{ visitor.region }}</td>
                 </tr>
                 {% endfor %}
