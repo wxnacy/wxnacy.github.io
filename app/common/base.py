@@ -99,6 +99,9 @@ class BaseModel(BaseObject):
 
     @classmethod
     def create(cls, **params):
+        params.update(dict(
+            create_ts = datetime.now(),update_ts = datetime.now()
+        ))
         item = cls(**params)
         db.session.add(item)
         db.session.commit()

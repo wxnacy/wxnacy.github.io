@@ -398,6 +398,7 @@ class VisitorLog(BaseModel, db.Model):
         kw['device_type'] = device_type
         kw['is_bot'] = ua.is_bot
         kw['md5'] = Md5.encrypt('{};{}'.format(kw['ip'], kw['user_agent']))
+        kw['visit_date'] = date.today()
 
         res = VisitorLog.create(**kw)
         return res
