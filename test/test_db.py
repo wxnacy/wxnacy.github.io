@@ -11,8 +11,13 @@ import time
 
 if __name__ == "__main__":
     begin = time.time()
-    vls = VisitorLog.query_items()
-    for vl in vls:
-        Article.crawler(url=vl.url)
+
+    #  vls = VisitorLog.query_items()
+    #  for vl in vls:
+        #  Article.crawler(url=vl.url)
+
+    #  VisitorLogDate.statistics_visitor()
+    Article.statistics_article()
+
     end = time.time()
     print('time :', (end-begin))

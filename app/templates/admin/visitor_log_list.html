@@ -1,0 +1,36 @@
+{% extends "admin/base.html" %}
+{% block content %}
+          <h2 class="sub-header">访问记录</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>时间</th>
+                  <th>来源</th>
+                  <th>访问</th>
+                  <th>ip</th>
+                  <th>浏览器</th>
+                  <th>系统</th>
+                  <th>设备</th>
+                  <th>设备类型</th>
+                  <th>地区</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for visitor in visitors %}
+                <tr>
+                  <td width="5%">{{ visitor.create_ts.time() }}</td>
+                  <td width="10%"><div style="width: 210px;overflow:hidden;display:block;"><a href="{{ visitor.referrer }}" target="_black">{{ visitor.referrer }}</a></div></td>
+                  <td width="10%"><div style="width: 210px;overflow:hidden;display:block;"><a href="{{ visitor.url }}" target="_black">{{ visitor.url }}</a></div></td>
+                  <td width="10%"><div style="width: 110px;overflow:hidden;display:block;">{{ visitor.ip }}</div></td>
+                  <td width="5%">{{ visitor.browser }}</td>
+                  <td width="9%">{{ visitor.os }}</td>
+                  <td width="5%">{{ visitor.device }}</td>
+                  <td width="7%">{{ visitor.device_type }}</td>
+                  <td>{{ visitor.region }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+{% endblock %}

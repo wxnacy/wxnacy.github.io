@@ -5,6 +5,7 @@ __author__ = "wxnacy(wxnacy@gmail.com)"
 __copyright__ = "Copyright of wxnacy (2017)."
 
 from app.common.base import BaseResponse
+from app.config import BaseConfig
 from app.models import User
 from app.models import VisitorLog
 from app.config import logger
@@ -30,7 +31,7 @@ def login():
     g.current_user = user
     logger.debug(g.current_user)
     res = make_response(render_template('index.html'))
-    res.set_cookie('name', user.name)
+    res.set_cookie(BaseConfig.HEAD_AUTHORIZATION, user.name)
     return res
 
 
@@ -43,3 +44,11 @@ def index():
     visitors = VisitorLog.query_items(**args)
     return render_template('index.html', visitors=visitors)
 
+@admin_bp.route('/visitor_log')
+def list_visitor_log():
+    args = dict(request.args) or {}
+    user = User.query_by_id(68719477421)
+    g.current_user = user
+    logger.debug(g.current_user)
+    visitors = VisitorLog.query_items(**args)
+    return render_template('admin/visitor_log_list.html', visitors=visitors)

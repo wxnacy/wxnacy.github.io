@@ -8,11 +8,13 @@ from app.common.base import BaseModel as BM
 from app.common.base import BaseDB
 from app.common.md import Markdown
 from app.common.security import Md5
+from app.common.security import AESecurity
 from app.config import db
 from app.config import BaseConfig
 from app.config import logger
 from datetime import datetime
 from datetime import date
+from datetime import timedelta
 from sqlalchemy.orm import backref as b
 from sqlalchemy import desc
 from sqlalchemy import or_
@@ -23,6 +25,7 @@ from user_agents import parse
 import os
 import re
 import requests
+import time
 from bs4 import BeautifulSoup
 
 
@@ -227,6 +230,11 @@ class User(BaseModel, db.Model):
     create_ts = db.Column(db.TIMESTAMP, default=datetime.now())
     update_ts = db.Column(db.TIMESTAMP, default=datetime.now())
 
+
+    def generate_authorization(self):
+        pass
+
+
 class VisitorLog(BaseModel, db.Model):
     __tablename__ = 'visitor_log'
     id = db.Column(db.INT, primary_key=True)
@@ -298,23 +306,30 @@ class VisitorLogDate(BaseModel, db.Model):
 
     @classmethod
     def statistics_visitor(cls):
-        VL = VisitorLog
-        #  res = VL.query(VL.md5, func.count(VL.md5)).group_by(VL.md5).all()
-        query_day = date.today()
-        sql = 'is_bot = 0 and is_available = 1 and url like "%wxnacy.com%" and\
-            visit_date = :date'
-        res = db.session.query(VL.md5, func.count(VL.md5)).filter(text(sql)
-            ).params(date = query_day).group_by(VL.md5).all()
-        uv = len(res)
-        pv = sum([o[1] for o in res])
 
-        item = cls.query_item(visit_date = query_day)
-        if not item:
-            item = cls.create(visit_date = query_day)
-        item.pv = pv
-        item.uv = uv
-        item.update_self()
-        logger.debug('statistics_visitor %s', item)
+        def _statistics(query_day):
+            VL = VisitorLog
+            #  res = VL.query(VL.md5, func.count(VL.md5)).group_by(VL.md5).all()
+            sql = 'is_bot = 0 and is_available = 1 and url like "%wxnacy.com%" and\
+                visit_date = :date'
+            res = db.session.query(VL.md5, func.count(VL.md5)).filter(text(sql)
+                ).params(date = query_day).group_by(VL.md5).all()
+            uv = len(res)
+            pv = sum([o[1] for o in res])
+
+            item = cls.query_item(visit_date = query_day)
+            if not item:
+                item = cls.create(visit_date = query_day)
+            item.pv = pv
+            item.uv = uv
+            item.update_self()
+            logger.debug('statistics_visitor %s', item)
+
+        query_day = date.today()
+        _statistics(query_day)
+        query_day = date.today() - timedelta(days=1)
+        _statistics(query_day)
+
 
 class Article(BaseModel,db.Model):
     __tablename__ = 'article'
@@ -336,15 +351,19 @@ class Article(BaseModel,db.Model):
             return None
         if url == 'https://wxnacy.com' or url == 'https://wxnacy.com/':
             return None
+        if url.startswith('https://wxnacy.com/archives'):
+            return None
         if '?' in url:
             url = url[0:url.index('?')]
         if url.endswith('/'):
             url = url[0:-1]
 
+
         params = {}
         res = requests.get(url)
         soup = BeautifulSoup(res.content, 'html.parser')
         metas = soup.find_all('meta')
+        pd = '2017-08-04'
         for meta in metas:
             attrs = meta.attrs
             if attrs.get('property') == 'og:title':
@@ -352,12 +371,31 @@ class Article(BaseModel,db.Model):
             elif attrs.get('name') == 'keywords':
                 params['tag'] = attrs['content']
             elif attrs.get('property') == 'og:updated_time':
-                params['publish_date'] = attrs['content'][0:10]
+                pd = attrs['content'][0:10]
+
+        dp = url.split('/')
+        if len(dp) > 5:
+            pd = '{}-{}-{}'.format(dp[3], dp[4], dp[5])
+        params['publish_date'] = pd
 
         item = cls.query_item(url=url)
         if not item:
             item = cls.create(url=url, publish_date = params['publish_date'])
         cls.update_by_id(item.id, **params)
+        return item
+
+    @classmethod
+    def statistics_article(cls):
+        def _statistics(vd):
+            items = VisitorLog.query_items(visit_date=vd)
+            for item in items:
+                Article.crawler(item.url)
+            logger.debug('statistics_article')
+
+        vd = date.today()
+        _statistics(vd)
+        vd = date.today() - timedelta(days=1)
+        _statistics(vd)
 
 
 
