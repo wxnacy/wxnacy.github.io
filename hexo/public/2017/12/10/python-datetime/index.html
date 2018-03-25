@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="wxnacy 博客">
 <meta property="og:description" content="在使用 Python 处理时间戳与系统时间转换时，遇到一些问题，解决后除了对问题的总结，也想把 Python 处理时间的各种情况都总结一下，慢慢更新补全，以便以后查阅">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-12-10T09:48:17.000Z">
+<meta property="og:updated_time" content="2018-03-25T07:50:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 时间">
 <meta name="twitter:description" content="在使用 Python 处理时间戳与系统时间转换时，遇到一些问题，解决后除了对问题的总结，也想把 Python 处理时间的各种情况都总结一下，慢慢更新补全，以便以后查阅">
@@ -208,6 +208,7 @@
 <li><a href="#shi-jian-chuo-zhuan-xi-tong-shi-jian">时间戳转系统时间</a></li>
 <li><a href="#xi-tong-shi-jian-zhuan-shi-jian-chuo">系统时间转时间戳</a></li>
 <li><a href="#shi-jian-ge-shi-hua-fu-hao">时间格式化符号</a></li>
+<li><a href="#shi-yong-ji-qiao">使用技巧</a></li>
 <li><a href="#can-kao-zi-liao">参考资料</a></li>
 </ul>
 <!-- tocstop -->
@@ -240,6 +241,7 @@
 <li>%Z 当前时区的名称</li>
 <li>%% %号本身</li>
 </ul>
+<h2><span id="shi-yong-ji-qiao">使用技巧</span><a href="#shi-yong-ji-qiao" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> date</div><div class="line"></div><div class="line">day = date(<span class="number">2018</span>, <span class="number">03</span>, <span class="number">25</span>).timetuple()</div><div class="line"><span class="comment"># 获取指定日期为当前星期的第几天</span></div><div class="line">print(day.tm_wday + <span class="number">1</span>)  <span class="comment"># 7</span></div><div class="line"><span class="comment"># 获取指定日期为当年的第几天</span></div><div class="line">print(day.tm_yday)      <span class="comment"># 84</span></div></pre></td></tr></table></figure>
 <h2><span id="can-kao-zi-liao">参考资料</span><a href="#can-kao-zi-liao" class="header-anchor"></a></h2><ul>
 <li><a href="http://www.runoob.com/python/python-date-time.html" target="_blank" rel="noopener">Python 日期和时间</a></li>
 </ul>
@@ -313,7 +315,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="huo-qu-shi-jian-chuo">&#x83B7;&#x53D6;&#x65F6;&#x95F4;&#x6233;</span><a href="#huo-qu-shi-jian-chuo" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="shi-jian-chuo-zhuan-xi-tong-shi-jian">&#x65F6;&#x95F4;&#x6233;&#x8F6C;&#x7CFB;&#x7EDF;&#x65F6;&#x95F4;</span><a href="#shi-jian-chuo-zhuan-xi-tong-shi-jian" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="xi-tong-shi-jian-zhuan-shi-jian-chuo">&#x7CFB;&#x7EDF;&#x65F6;&#x95F4;&#x8F6C;&#x65F6;&#x95F4;&#x6233;</span><a href="#xi-tong-shi-jian-zhuan-shi-jian-chuo" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text"><span id="shi-jian-ge-shi-hua-fu-hao">&#x65F6;&#x95F4;&#x683C;&#x5F0F;&#x5316;&#x7B26;&#x53F7;</span><a href="#shi-jian-ge-shi-hua-fu-hao" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text"><span id="can-kao-zi-liao">&#x53C2;&#x8003;&#x8D44;&#x6599;</span><a href="#can-kao-zi-liao" class="header-anchor"></a></span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="huo-qu-shi-jian-chuo">&#x83B7;&#x53D6;&#x65F6;&#x95F4;&#x6233;</span><a href="#huo-qu-shi-jian-chuo" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="shi-jian-chuo-zhuan-xi-tong-shi-jian">&#x65F6;&#x95F4;&#x6233;&#x8F6C;&#x7CFB;&#x7EDF;&#x65F6;&#x95F4;</span><a href="#shi-jian-chuo-zhuan-xi-tong-shi-jian" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="xi-tong-shi-jian-zhuan-shi-jian-chuo">&#x7CFB;&#x7EDF;&#x65F6;&#x95F4;&#x8F6C;&#x65F6;&#x95F4;&#x6233;</span><a href="#xi-tong-shi-jian-zhuan-shi-jian-chuo" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text"><span id="shi-jian-ge-shi-hua-fu-hao">&#x65F6;&#x95F4;&#x683C;&#x5F0F;&#x5316;&#x7B26;&#x53F7;</span><a href="#shi-jian-ge-shi-hua-fu-hao" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text"><span id="shi-yong-ji-qiao">&#x4F7F;&#x7528;&#x6280;&#x5DE7;</span><a href="#shi-yong-ji-qiao" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text"><span id="can-kao-zi-liao">&#x53C2;&#x8003;&#x8D44;&#x6599;</span><a href="#can-kao-zi-liao" class="header-anchor"></a></span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -470,11 +472,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -502,11 +504,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">

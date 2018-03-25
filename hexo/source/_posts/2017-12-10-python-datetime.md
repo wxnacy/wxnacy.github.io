@@ -74,5 +74,21 @@ print(datetime.strptime(t, '%Y-%m-%d %H:%M:%S').timestamp())
 - %Z 当前时区的名称
 - %% %号本身
 
+## 使用技巧
+```python
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+# Author: wxnacy(wxnacy@gmail.com)
+
+from datetime import date
+
+day = date(2018, 03, 25).timetuple()
+# 获取指定日期为当前星期的第几天
+print(day.tm_wday + 1)  # 7
+# 获取指定日期为当年的第几天
+print(day.tm_yday)      # 84
+
+```
+
 ## 参考资料
 - [Python 日期和时间](http://www.runoob.com/python/python-date-time.html)
