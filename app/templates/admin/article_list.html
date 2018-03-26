@@ -1,0 +1,27 @@
+{% extends "admin/base.html" %}
+{% block content %}
+          <h2 class="sub-header">访问记录</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>标题</th>
+                  <th>地址</th>
+                  <th>pv</th>
+                  <th>发布</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in articles %}
+                <tr>
+                  <td width="10%">{{ item.name }}</td>
+                  <td width="10%"><div style="width:
+                          210px;overflow:hidden;display:block;"><a href="{{item.url }}" target="_black">{{ item.url }}</a></div></td>
+                  <td width="5%">{{ item.pv }}</td>
+                  <td width="5%">{{ item.publish_date }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+{% endblock %}

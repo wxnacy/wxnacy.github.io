@@ -131,6 +131,13 @@ class BaseModel(BaseObject):
         return cls.query.filter_by(**params).order_by(desc(cls.create_ts)).first()
 
     @classmethod
+    def query_or_create(cls, **params):
+        item = cls.query_item(**params)
+        if not item:
+            item = cls.create(**params)
+        return item
+
+    @classmethod
     def query_paginate(cls, page, per_page, **params):
         if not params:
             params = {}

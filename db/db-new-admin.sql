@@ -51,7 +51,7 @@ create table `visitor_log_date`(
   create_ts timestamp not null default current_timestamp comment '创建时间',
   update_ts timestamp not null default current_timestamp on update current_timestamp comment '修改时间',
   primary key(`id`),
-  UNIQUE KEY `index_visitor_date` (`visitor_date`, `is_available`)
+  UNIQUE KEY `index_visitor_date` (`visit_date`, `is_available`)
 ) engine=InnoDB default charset=utf8mb4 COMMENT '每天的访问统计';
 
 drop table if exists `article`;
@@ -70,3 +70,31 @@ create table `article`(
   primary key(`id`),
   UNIQUE KEY `index_url` (`url`, `is_available`)
 ) engine=InnoDB default charset=utf8mb4 COMMENT '访问记录';
+
+-- 2018-03-26
+drop table if exists `nav`;
+create table `nav`(
+  id bigint(20) not null AUTO_INCREMENT,
+  name VARCHAR(256) not null default '' COMMENT 'name',
+  url VARCHAR(512) not null default '' COMMENT 'url',
+  ext_property JSON  DEFAULT null COMMENT '扩展字段',
+  is_available tinyint(1) not null default 1 comment '是否有效',
+  create_ts timestamp not null default current_timestamp comment '创建时间',
+  update_ts timestamp not null default current_timestamp on update current_timestamp comment '修改时间',
+  primary key(`id`)
+) engine=InnoDB default charset=utf8mb4 COMMENT '导航栏';
+
+drop table if exists `article_data`;
+create table `article_data`(
+  id bigint(20) not null AUTO_INCREMENT,
+  article_id  bigint(20) not null comment '文章 id',
+  visit_date DATE not null default '2001-01-01' COMMENT '日期',
+  pv INT(11) not null default '0' COMMENT 'page views',
+  uv INT(11) not null default '0' COMMENT 'user views',
+  ext_property JSON  DEFAULT null COMMENT '扩展字段',
+  is_available tinyint(1) not null default 1 comment '是否有效',
+  create_ts timestamp not null default current_timestamp comment '创建时间',
+  update_ts timestamp not null default current_timestamp on update current_timestamp comment '修改时间',
+  primary key(`id`),
+  UNIQUE KEY `index_article_id_visitor_date` (`article_id`, `visit_date`, `is_available`)
+) engine=InnoDB default charset=utf8mb4 COMMENT '文章数据';

@@ -11,6 +11,8 @@ from app.config import db
 from app.config import BaseConfig
 from app.config import logger
 from app.models import Article
+from app.models import User
+from app.models import Nav
 from app import models
 from app.schema import schema
 
@@ -20,6 +22,7 @@ from app.views.api import api_bp
 from app.views.code import code_bp
 from flask import g
 from flask import request
+from flask import redirect
 from flask_restless import APIManager
 from flask_graphql import GraphQLView
 from datetime import datetime
@@ -50,6 +53,21 @@ def before_request():
     except Exception as e:
         logger.error('params %s', e)
         logger.error(traceback.format_exc())
+
+    navs = Nav.query_items()
+    g.navs = navs
+
+    authorization = request.cookies.get('authorization')
+    if not authorization:
+        user = None
+    else:
+        user = User.get_user_from_authorization(authorization)
+
+    if not user and (request.path != '/admin/login' or request.path.startswith('/static')):
+        return redirect('/admin/login')
+
+    g.current_user = user
+
 
 
 @app.after_request

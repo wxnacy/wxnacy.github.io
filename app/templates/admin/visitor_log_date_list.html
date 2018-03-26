@@ -1,0 +1,24 @@
+{% extends "admin/base.html" %}
+{% block content %}
+          <h2 class="sub-header">访问记录</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>日期</th>
+                  <th>pv</th>
+                  <th>uv</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in items %}
+                <tr>
+                  <td width="10%">{{ item.visit_date }}</td>
+                  <td width="10%">{{ item.pv }}</td>
+                  <td width="10%">{{ item.uv }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+{% endblock %}

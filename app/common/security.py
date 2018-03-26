@@ -87,18 +87,20 @@ class Base64():
 
 
 if __name__ == '__main__':
-    # key = AESecurity.generate_key()
-    # print(key)
+    key = AESecurity.generate_key()
+    print(key)
     #
-    # aes = AESecurity(key)
-    # id = Md5.encrypt('1')
-    #
-    # res = aes.encrypt('{};{}'.format(id, time.time()))
-    # print(res)
+    aes = AESecurity(key)
+    id = Md5.encrypt('1')
+    
+    res = aes.encrypt('{};{}'.format(id, time.time()))
+    print(res)
+    plain = aes.decrypt('sdfasfas')
+    print(plain)
     # 820fb3cd26ad5e9bd8925ec34ded98a2
     # 820fb3cd26ad5e9bd8925ec34ded98a2
 
-    m1 = Md5.encrypt_by_file('/Users/wxnacy/Documents/app-release-21.apk')
-    print(m1)
-    m2 = Md5.encrypt_by_url('https://s3-ap-northeast-1.amazonaws.com/i.vego.tv/app/app-release-21.apk')
-    print(m2)
+    #  m1 = Md5.encrypt_by_file('/Users/wxnacy/Documents/app-release-21.apk')
+    #  print(m1)
+    #  m2 = Md5.encrypt_by_url('https://s3-ap-northeast-1.amazonaws.com/i.vego.tv/app/app-release-21.apk')
+    #  print(m2)

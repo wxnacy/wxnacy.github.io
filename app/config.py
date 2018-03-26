@@ -44,6 +44,8 @@ class BaseConfig(object):
     WX_MP_APP_SECRET = '720233db12f8d6dadaa9979c49418e8d'
     WX_MP_ID = 'gh_96c685096fbd'
 
+    AES_KEY = '2d451792e18f778e'
+
 
 def create_app(flask_config_name=None):
     """

@@ -26,7 +26,10 @@ import os
 import re
 import requests
 import time
+import traceback
 from bs4 import BeautifulSoup
+
+aes = AESecurity(BaseConfig.AES_KEY)
 
 
 FILE_LIST = os.listdir(BaseConfig.ARTICLE_DIR)
@@ -110,7 +113,7 @@ class VisitLog(BaseModel, db.Model):
     @classmethod
     def get_count_by_url(cls,url):
         return cls.query.filter(cls.url.like('%{}'.format(url))
-                ).count()
+            ).count()
 
 
 class Category(BaseModel,db.Model):
@@ -232,7 +235,20 @@ class User(BaseModel, db.Model):
 
 
     def generate_authorization(self):
-        pass
+        return aes.encrypt(f'{self.id};')
+
+    @classmethod
+    def get_user_from_authorization(cls, authorization):
+        try:
+            plain = aes.decrypt(authorization)
+            if ';' not in plain:
+                return None
+        except:
+            logger.error(traceback.format_exc())
+            return None
+        id = plain.split(';')[0]
+        return cls.query_by_id(id)
+
 
 
 class VisitorLog(BaseModel, db.Model):
@@ -310,10 +326,10 @@ class VisitorLogDate(BaseModel, db.Model):
         def _statistics(query_day):
             VL = VisitorLog
             #  res = VL.query(VL.md5, func.count(VL.md5)).group_by(VL.md5).all()
-            sql = 'is_bot = 0 and is_available = 1 and url like "%wxnacy.com%" and\
+            sql = 'is_bot = 0 and is_available = 1 and url like :url and\
                 visit_date = :date'
             res = db.session.query(VL.md5, func.count(VL.md5)).filter(text(sql)
-                ).params(date = query_day).group_by(VL.md5).all()
+                ).params(date = query_day, url='%wxnacy.com%').group_by(VL.md5).all()
             uv = len(res)
             pv = sum([o[1] for o in res])
 
@@ -346,19 +362,47 @@ class Article(BaseModel,db.Model):
     update_ts = db.Column(db.TIMESTAMP,default=datetime.now())
 
     @classmethod
-    def crawler(cls, url, **kw):
+    def query_items(cls, **kw):
+
+        items = cls.query.filter_by().order_by(desc(cls.publish_date)).all()
+        return items
+
+    @classmethod
+    def query_or_create(cls, url, **kw):
         if not url.startswith('https://wxnacy.com'):
             return None
         if url == 'https://wxnacy.com' or url == 'https://wxnacy.com/':
             return None
         if url.startswith('https://wxnacy.com/archives'):
             return None
+        if url.startswith('https://wxnacy.com/page'):
+            return None
         if '?' in url:
             url = url[0:url.index('?')]
         if url.endswith('/'):
             url = url[0:-1]
 
+        kw['url'] = url
+        return super().query_or_create(**kw)
 
+
+    @classmethod
+    def crawler(cls, url, **kw):
+        item = cls.query_or_create(url=url)
+        if not item:
+            return None
+        params = cls.get_crawler_data(url)
+
+        cls.update_by_id(item.id, **params)
+        return item
+
+    def crawler_self(self):
+        params = Article.get_crawler_data(self.url)
+        Article.update_by_id(self.id, **params)
+        return self
+
+    @classmethod
+    def get_crawler_data(cls, url):
         params = {}
         res = requests.get(url)
         soup = BeautifulSoup(res.content, 'html.parser')
@@ -377,27 +421,80 @@ class Article(BaseModel,db.Model):
         if len(dp) > 5:
             pd = '{}-{}-{}'.format(dp[3], dp[4], dp[5])
         params['publish_date'] = pd
-
-        item = cls.query_item(url=url)
-        if not item:
-            item = cls.create(url=url, publish_date = params['publish_date'])
-        cls.update_by_id(item.id, **params)
-        return item
+        print(params)
+        return params
 
     @classmethod
     def statistics_article(cls):
-        def _statistics(vd):
-            items = VisitorLog.query_items(visit_date=vd)
+        begin = time.time()
+        items = cls.query_items(publish_date='2001-01-01')
+        def _crawler():
             for item in items:
-                Article.crawler(item.url)
-            logger.debug('statistics_article')
+                item.crawler_self()
+        _crawler()
+        logger.debug('statistics_article time: %s', (time.time() - begin))
+
+
+    @classmethod
+    def statistics_pv(cls):
+        items = cls.query_items()
+        AD = ArticleData
+        for item in items:
+            ArticleData.query_items(article_id=item.id)
+            res = db.session.query(func.sum(AD.pv)).filter_by(article_id=item.id).all()
+            if res[0][0]:
+                item.pv = res[0][0]
+                db.session.add(item)
+        db.session.commit()
+
+
+
+class Nav(BaseModel,db.Model):
+    __tablename__ = 'nav'
+    id = db.Column(db.BIGINT,primary_key=True)
+    name = db.Column(db.String,default="")
+    url = db.Column(db.String, default="")
+    ext_property = db.Column(db.JSON,default={})
+    is_available = db.Column(db.INT,default=1)
+    create_ts = db.Column(db.TIMESTAMP,default=datetime.now())
+    update_ts = db.Column(db.TIMESTAMP,default=datetime.now())
+
+class ArticleData(BaseModel, db.Model):
+    __tablename__ = 'article_data'
+    id = db.Column(db.INT, primary_key=True)
+    article_id = db.Column(db.INT, db.ForeignKey('article.id'))
+    visit_date = db.Column(db.Date, default = date.today)
+    pv = db.Column(db.INT, default=0)
+    uv = db.Column(db.INT, default=0)
+    ext_property = db.Column(db.JSON, default={})
+    is_available = db.Column(db.INT, default=1)
+    create_ts = db.Column(db.TIMESTAMP, default=datetime.now())
+    update_ts = db.Column(db.TIMESTAMP, default=datetime.now())
+
+    @classmethod
+    def statistics_article_data(cls):
+
+        def _statistics(vd):
+            begin = time.time()
+            VL = VisitorLog
+            items = db.session.query(VL.url, func.count(VL.url)
+                ).filter(VL.visit_date == vd).group_by(VL.url).all()
+            for item in items:
+                article = Article.query_or_create(url=item[0])
+                if article:
+                    ad = cls.query_or_create(article_id=article.id,
+                        visit_date=vd)
+                    ad.pv = item[1]
+                    db.session.add(ad)
+            db.session.commit()
+
+            logger.debug('statistics_article_data time: %s',
+                    (time.time() - begin))
 
         vd = date.today()
         _statistics(vd)
         vd = date.today() - timedelta(days=1)
         _statistics(vd)
-
-
 
 class Test(BaseModel, db.Model):
     __tablename__ = 'test'
