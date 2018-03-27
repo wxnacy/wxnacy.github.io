@@ -5,6 +5,7 @@ __author__ = "wxnacy(wxnacy@gmail.com)"
 __copyright__ = "Copyright of wxnacy (2017)."
 
 from app.common.base import BaseResponse
+from app.common.base import BaseRequest
 from app.config import BaseConfig
 from app.models import User
 from app.models import VisitorLog
@@ -28,11 +29,7 @@ def login():
     method = request.method
     if method.lower() == 'get':
         return render_template('login.html')
-
-    user = User.query_by_id(68719477421)
-    g.current_user = user
-    logger.debug(g.current_user)
-    res = make_response(render_template('index.html'))
+    res = make_response(redirect(url_for('admin.list_article')))
     res.set_cookie(BaseConfig.HEAD_AUTHORIZATION, user.generate_authorization())
     return res
 
@@ -40,23 +37,24 @@ def login():
 @admin_bp.route('/index')
 def index():
     args = dict(request.args) or {}
-    visitors = VisitorLog.query_items(**args)
+    visitors = VisitorLog.query_by(**args)
     return render_template('index.html', visitors=visitors)
 
 @admin_bp.route('/visitor_log')
 def list_visitor_log():
-    args = dict(request.args) or {}
-    visitors = VisitorLog.query_items(**args)
+    args = BaseRequest.get_args()
+    visitors = VisitorLog.query_by(**args)
     return render_template('admin/visitor_log_list.html', visitors=visitors)
 
 @admin_bp.route('/article')
 def list_article():
-    args = dict(request.args) or {}
-    articles = Article.query_items(**args)
-    return render_template('admin/article_list.html', articles=articles)
+    args = BaseRequest.get_args()
+    logger.debug(request)
+    paginate = Article.query_by(**args)
+    return render_template('admin/article_list.html', paginate=paginate)
 
 @admin_bp.route('/visitor_log_date')
 def list_visitor_log_date():
-    args = dict(request.args) or {}
-    items = VisitorLogDate.query_items()
+    args = BaseRequest.get_args()
+    items = VisitorLogDate.query_by(**args)
     return render_template('admin/visitor_log_date_list.html', items=items)

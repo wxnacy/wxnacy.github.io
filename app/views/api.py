@@ -8,6 +8,7 @@ from app.common.base import BaseResponse
 from app.config import logger
 from app.models import AutoId
 from app.models import VisitorLog
+from app.models import Article
 from functools import wraps
 from flask import Blueprint
 from flask import request
@@ -31,3 +32,26 @@ def create_visitor_log():
     args['user_agent'] = ua
     res = VisitorLog.visit(**args)
     return BaseResponse.return_success(res.format())
+
+@api_bp.route('/article/<int:id>', methods=['PUT'])
+def update_article(id):
+    '''更新文章'''
+    res = Article.query_by_id(id)
+    res.crawler_self()
+    return BaseResponse.return_success(res.format())
+
+#  @api_bp.route('/article/<string:url>', methods=['PUT'])
+#  def crawler_article(url):
+    #  '''更新文章'''
+    #  res = Article.crawler(url=url)
+    #  return BaseResponse.return_success(res.format())
+
+@api_bp.route('/test', methods=['POST', 'GET'])
+def test():
+    '''测试'''
+    req = f'''
+        path: {request.path}
+        url: {request.url}
+    '''
+    res = dict(request=req)
+    return BaseResponse.return_success(res)

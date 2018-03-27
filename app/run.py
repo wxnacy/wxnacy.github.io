@@ -56,6 +56,7 @@ def before_request():
 
     navs = Nav.query_items()
     g.navs = navs
+    g.current_nav = Nav.query_item(url=request.path)
 
     authorization = request.cookies.get('authorization')
     if not authorization:
@@ -63,8 +64,9 @@ def before_request():
     else:
         user = User.get_user_from_authorization(authorization)
 
-    if not user and (request.path != '/admin/login' or request.path.startswith('/static')):
-        return redirect('/admin/login')
+    if request.path.startswith('/admin'):
+        if not user and (request.path != '/admin/login' or request.path.startswith('/static')):
+            return redirect('/admin/login')
 
     g.current_user = user
 

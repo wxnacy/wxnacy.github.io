@@ -13,12 +13,12 @@ from flask_apscheduler import APScheduler
 scheduler = APScheduler(app=app)
 scheduler.add_job('statistics_visitor', VisitorLogDate.statistics_visitor,
                   trigger='interval', seconds=100)
-#  scheduler.add_job('statistics_article', Article.statistics_article,
-                  #  trigger='interval', seconds=300)
 scheduler.add_job('statistics_article_data', ArticleData.statistics_article_data,
                   trigger='interval', seconds=66)
-#  scheduler.add_job('statistics_pv', Article.statistics_pv(),
-                  #  trigger='interval', seconds=666)
+scheduler.add_job('statistics_pv', Article.statistics_pv,
+                  trigger='interval', seconds=3600)
+scheduler.add_job('statistics_article', Article.statistics_article,
+                  trigger='interval', seconds=3500)
 scheduler.start()
 
 if __name__ == "__main__":

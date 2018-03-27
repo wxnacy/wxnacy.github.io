@@ -1,6 +1,6 @@
 {% extends "admin/base.html" %}
 {% block content %}
-          <h2 class="sub-header">访问记录</h2>
+{{ super() }}
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
@@ -9,19 +9,63 @@
                   <th>地址</th>
                   <th>pv</th>
                   <th>发布</th>
+                  <th>操作</th>
                 </tr>
               </thead>
               <tbody>
-                {% for item in articles %}
+                {% for item in paginate.items %}
                 <tr>
                   <td width="10%">{{ item.name }}</td>
                   <td width="10%"><div style="width:
                           210px;overflow:hidden;display:block;"><a href="{{item.url }}" target="_black">{{ item.url }}</a></div></td>
-                  <td width="5%">{{ item.pv }}</td>
+                  <td width="5%">{{ item.pv + item.init_pv }}</td>
                   <td width="5%">{{ item.publish_date }}</td>
+                  <td width="5%">
+                      <button type="button" onClick="update({{ item.id }})" class="btn btn-primary">更新</button>
+                  </td>
                 </tr>
                 {% endfor %}
               </tbody>
             </table>
           </div>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    {% for page in paginate.iter_pages()%}
+    {% if page %}
+      {% if page != paginate.page %}
+      <li class="page-item"><a class="page-link" href="#">{{ page }}</a></li>
+      {% else %}
+      <li class="page-item active"><a class="page-link" href="#">{{ page }}</a></li>
+      {% endif %}
+    {% else %}
+        <li class="page-item"><a class="page-link" href="#">...</a></li>
+    {% endif %}
+    {% endfor %}
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+<script>
+    function update(id){
+        console.log(id);
+        fetch(`/api/v1/article/${id}`, {
+            method: "PUT"
+            
+        }).then(function(res){
+            return res.json()
+        }).then(function(data){
+            console.log(data);
+        })
+    }
+</script>
 {% endblock %}

@@ -24,6 +24,8 @@ from flask import request
 from user_agents import parse
 import os
 import re
+import json
+import subprocess
 import requests
 import time
 import traceback
@@ -352,7 +354,7 @@ class Article(BaseModel,db.Model):
     id = db.Column(db.BIGINT,primary_key=True)
     name = db.Column(db.String,default="")
     url = db.Column(db.String, default="")
-    publish_date = db.Column(db.DATE, default = '2001-01-01')
+    publish_date = db.Column(db.DATE, default = '2017-08-04')
     tag = db.Column(db.String,default="")
     pv = db.Column(db.INT,default=0,doc="观看数量")
     init_pv = db.Column(db.INT,default=0,doc="初始值")
@@ -361,11 +363,8 @@ class Article(BaseModel,db.Model):
     create_ts = db.Column(db.TIMESTAMP,default=datetime.now())
     update_ts = db.Column(db.TIMESTAMP,default=datetime.now())
 
-    @classmethod
-    def query_items(cls, **kw):
+    DOMAIN = 'https://wxnacy.com'
 
-        items = cls.query.filter_by().order_by(desc(cls.publish_date)).all()
-        return items
 
     @classmethod
     def query_or_create(cls, url, **kw):
@@ -379,10 +378,13 @@ class Article(BaseModel,db.Model):
             return None
         if '?' in url:
             url = url[0:url.index('?')]
-        if url.endswith('/'):
-            url = url[0:-1]
+        if '#' in url:
+            url = url[0:url.index('#')]
+        if url.endswith('index.html'):
+            url = url[0:url.index('index.html')]
 
         kw['url'] = url
+        print(url)
         return super().query_or_create(**kw)
 
 
@@ -398,8 +400,61 @@ class Article(BaseModel,db.Model):
 
     def crawler_self(self):
         params = Article.get_crawler_data(self.url)
+        print(params)
         Article.update_by_id(self.id, **params)
         return self
+
+    @classmethod
+    def crawler_article(cls):
+
+        def _crawler(url):
+            res = requests.get(url)
+            soup = BeautifulSoup(res.content, 'html.parser')
+            items = soup.find_all('a', class_='article-title')
+            for item in items:
+                item_url = '{}{}'.format(cls.DOMAIN, item.attrs['href'])
+                print(item_url)
+                cls.crawler(url=item_url)
+
+        for i in range(23):
+            if i == 0:
+                url = 'https://wxnacy.com'
+            else:
+                url = '{}/page/{}'.format(cls.DOMAIN, i+1)
+            _crawler(url)
+
+    def create_init_pv(self):
+        jc = "BusuanziCallback_768395723167"
+        url = "https://busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback_768395723167"
+        res = requests.get(url, headers=dict(referer=self.url))
+        suffix = ');}catch(e){}'
+        prefix = 'try{BusuanziCallback_768395723167('
+        text = res.content.decode('utf-8')
+        if text.startswith(prefix) and text.endswith(suffix):
+            json_text = text[text.index(prefix)+len(prefix):text.index(suffix)]
+            res = json.loads(json_text)
+            print(res)
+            print(res.get('page_pv', 0))
+            self.init_pv = res.get('page_pv', 0)
+            print(self.init_pv)
+            self.update_self()
+
+    @classmethod
+    def statistics_init_pv(cls):
+        items = Article.query_items(init_pv = 0)
+        print(len(items))
+        for item in items:
+            item.create_init_pv()
+
+    @classmethod
+    def statistics_article(cls):
+        begin = time.time()
+        items = Article.query_items()
+        for item in items:
+            item.crawler_self()
+
+        logger.debug('statistics_article time: %s', (time.time() - begin))
+
 
     @classmethod
     def get_crawler_data(cls, url):
@@ -424,15 +479,6 @@ class Article(BaseModel,db.Model):
         print(params)
         return params
 
-    @classmethod
-    def statistics_article(cls):
-        begin = time.time()
-        items = cls.query_items(publish_date='2001-01-01')
-        def _crawler():
-            for item in items:
-                item.crawler_self()
-        _crawler()
-        logger.debug('statistics_article time: %s', (time.time() - begin))
 
 
     @classmethod
@@ -446,6 +492,7 @@ class Article(BaseModel,db.Model):
                 item.pv = res[0][0]
                 db.session.add(item)
         db.session.commit()
+
 
 
 

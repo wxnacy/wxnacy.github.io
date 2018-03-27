@@ -16,6 +16,7 @@ from flask import jsonify
 from flask import request
 from uuid import UUID
 from sqlalchemy import desc
+from sqlalchemy import text
 from sqlalchemy.ext.declarative import DeclarativeMeta
 from urllib.parse import urlparse
 import traceback
@@ -131,6 +132,23 @@ class BaseModel(BaseObject):
         return cls.query.filter_by(**params).order_by(desc(cls.create_ts)).first()
 
     @classmethod
+    def query_by(cls, **kw):
+        logger.debug(kw)
+        order_by = kw.pop('order_by', 'create_ts desc')
+        if 'order_by' in kw:
+            order_by = kw['order_by']
+        filter_by = kw.pop('filter_by', '')
+        params = kw.pop('params', {})
+        page = kw.pop('page', 1)
+        per_page = kw.pop('per_page', 10)
+
+        logger.debug(order_by)
+
+        items = cls.query.filter(text(filter_by)).params(params
+            ).order_by(order_by).paginate(page, per_page, False)
+        return items
+
+    @classmethod
     def query_or_create(cls, **params):
         item = cls.query_item(**params)
         if not item:
@@ -242,6 +260,7 @@ class BaseDB():
         finally:
             conn.close()
 
+    
 
 class BaseResponse(BaseObject):
     data = {}
@@ -329,7 +348,8 @@ class BaseResponse(BaseObject):
 
 class BaseRequest():
     @classmethod
-    def get_arg_int(cls, params, key, default=0):
+    def get_arg_int(cls, key, default=0):
+        params = cls.get_args()
         res = params.get(key, default)
         if not res:
             return default
@@ -337,14 +357,17 @@ class BaseRequest():
 
     @classmethod
     def get_args(cls):
-        content_type = request.content_type
-        if content_type == 'application/x-www-form-urlencoded':
-            _args = request.form
-        elif content_type == 'application/json':
-            _args = request.json
-        else:
-            _args = request.args
-        return _args
+        args = request.args or {}
+        args = dict(args) or {}
+
+        if 'order_by' in args:
+            args['order_by'] = args['order_by'][0]
+
+        if 'filter_by' in args:
+            args['filter_by'] = args['filter_by'][0]
+        if 'params' in args:
+            args['params'] = args['params'][0]
+        return args
 
 
 class BaseDict(dict):
