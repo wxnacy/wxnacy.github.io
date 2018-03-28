@@ -13,7 +13,7 @@
                 </tr>
               </thead>
               <tbody>
-                {% for item in paginate.items %}
+                {% for item in pagination.items %}
                 <tr>
                   <td width="10%">{{ item.name }}</td>
                   <td width="10%"><div style="width:
@@ -36,9 +36,9 @@
         <span class="sr-only">Previous</span>
       </a>
     </li>
-    {% for page in paginate.iter_pages()%}
+    {% for page in pagination.iter_pages()%}
     {% if page %}
-      {% if page != paginate.page %}
+      {% if page != pagination.page %}
       <li class="page-item"><a class="page-link" href="#">{{ page }}</a></li>
       {% else %}
       <li class="page-item active"><a class="page-link" href="#">{{ page }}</a></li>
@@ -55,6 +55,7 @@
     </li>
   </ul>
 </nav>
+<span>{{ pagination.total }}</span>
 <script>
     function update(id){
         console.log(id);

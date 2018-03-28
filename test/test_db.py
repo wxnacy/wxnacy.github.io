@@ -41,8 +41,8 @@ if __name__ == "__main__":
     #  print(paginate.next_num)
     #  print(paginate.pages)
     #  print(paginate.total)
-    paginate = Pagination(Article.query.filter_by(), 1, 1, 1, None)
-    print(paginate.items)
+    #  paginate = Pagination(Article.query.filter_by(), 1, 1, 1, None)
+    #  print(paginate.items)
 
     #  vls = VisitorLog.query_items()
     #  for vl in vls:
@@ -50,15 +50,15 @@ if __name__ == "__main__":
 
     #  VisitorLogDate.statistics_visitor()
 
-    #  vl = VisitorLog.query_item()
-    #  Article.crawler(url=vl.url)
-    #  now = date.today()
-    #  year = now.year
-    #  days = now.timetuple().tm_yday
-    #  now_day = now.isoformat()
-    #  print(now_day)
-    #  article = Article.query_item(publish_date = now_day)
-    #  print(f'{year} 年第 {days} 篇：{article.name} {article.url}')
+    vl = VisitorLog.query_item()
+    Article.crawler(url=vl.url)
+    now = date.today()
+    year = now.year
+    days = now.timetuple().tm_yday
+    now_day = now.isoformat()
+    print(now_day)
+    article = Article.query_item(publish_date = now_day)
+    print(f'{year} 年第 {days} 篇：{article.name} {article.url}')
 
     end = time.time()
     print('time :', (end-begin))

@@ -279,7 +279,6 @@ function visitor(){
             ext_property: data
         }
         fetchPost('/api/v1/visitor_log',params).then(function(data){
-            console.log(data);
         })
     })
 }

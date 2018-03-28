@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="wxnacy 博客">
 <meta property="og:description" content="我满怀欣喜的写了一个 py2 死亡，不，退休倒计时，呵呵呵呵，感谢 Python2 这么多年辛勤的付出，Python3 下面的时间后，就是你的天下了">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-03-24T14:28:06.000Z">
+<meta property="og:updated_time" content="2018-03-28T14:07:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 2.7 退休倒计时">
 <meta name="twitter:description" content="我满怀欣喜的写了一个 py2 死亡，不，退休倒计时，呵呵呵呵，感谢 Python2 这么多年辛勤的付出，Python3 下面的时间后，就是你的天下了">
@@ -203,60 +203,9 @@
       
         <p>我满怀欣喜的写了一个 py2 死亡，不，退休倒计时，呵呵呵呵，感谢 Python2 这么多年辛勤的付出，Python3 下面的时间后，就是你的天下了<br><a id="more"></a><br>
 <div id="aaa" style="font-size: 50px"></div>
-<script type="text/javascript" src="https://momentjs.com/downloads/moment.min.js"></script>
+<script type="text/javascript" src="/js/countdown.js"></script>
 
 <script>
-//定义一个立即执行的函数
-(function () {
-    var Ticts=function Ticts() {
-        this.ticts = {};
-    };
-    Ticts.prototype.createTicts=function(id, dealline) {
-        var ticts=this;
-        var time=moment(dealline).diff(moment());
-        var _ticts=this.ticts[id] = {
-            dealine: dealline
-            , id: id
-            , time: time
-            , interval: setInterval(function () {
-                var t = null;
-                var d = null;
-                var h = null;
-                var m = null;
-                var s = null;
-　　　　　　　　　//js默认时间戳为毫秒,需要转化成秒
-                t = _ticts.time / 1000;
-                y = 1
-                var now = new Date();
-                if( now.getYear() == 2019 ){
-                    y = 0
-                }
-                t = t - y * 365 * 24 * 3600
-                d = Math.floor(t / (24 * 3600));
-                var M = 11 - now.getMonth()
-                var now_month_day = new Date(now.getYear(), now.getMonth() + 1, 0).getDate();
-                var nd = now_month_day - now.getDate()
-                t = t - 24 * 3600 * d
-                h = Math.floor(t / 3600);
-                t = t -h * 3600
-                m = Math.floor(t / 60);
-                t = t - m * 60
-                s = Math.floor(t);
-　　　　　　　　　//这里可以做一个格式化的处理,甚至做毫秒级的页面渲染,基于DOM操作,太多个倒计时一起会导致页面性能下降
-                document.getElementById(id).innerHTML = `${y} 年 ${M} 月 ${nd} 天 ${h} 小时 ${m} 分钟 ${s} 秒`
-                _ticts.time -= 1000;
-                if (_ticts.time < 0)
-　　　　　　　　　　　ticts.deleteTicts(id);//判断是否到期,到期后自动删除定时器
-            }, 1000)
-        }
-    };
-    Ticts.prototype.deleteTicts = function(id) {
-        clearInterval(this.ticts[id].interval);//清楚定时器的方法,需要定时器的指针作为参数传入clearInterval
-        delete this.ticts[id];//通过delete的方法删除对象中的属性
-    };
-   //新建一个ticts对象,放到window全局函数中,那么在html页面是(或者其他js文件)可以访问该对象
-    window.Ticts=new Ticts();
-})();
 Ticts.createTicts("aaa","2020-01-01 00:00:00");
 </script>
 </p>
@@ -510,11 +459,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -522,11 +471,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -535,10 +488,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -622,11 +571,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">

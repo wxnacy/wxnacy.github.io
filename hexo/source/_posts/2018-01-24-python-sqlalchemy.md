@@ -158,16 +158,31 @@ filter_by().order_by(Book.id)
 # order by id desc
 from sqlalchemy import desc
 filter_by().order_by(desc(Book.id))
+filter_by().order_by(Book.id.desc())
+filter_by().order_by('id desc')
 
 # limit
 # limit 4
 filter_by().limit(4)
 ```
-### 函数使用
-group by
+### order by
+排序有三种方式，默认为正序排列
 ```python
+# select * from book order by id
+session.query(Book).order_by(Book.id).all()
+
+# select * from book order by id desc
+from sqlalchemy import desc
+session.query(Book).order_by(desc(Book.id)).all()
+session.query(Book).order_by(Book.id.desc()).all()
+session.query(Book).order_by('id desc').all()
+
+```
+### group by
+```python
+# select name, count(name) as c from book group by name
 from sqlalchemy import func
-session.query(Book.name, func.count(Book.name)).group_by(Book.name).all()
+session.query(Book.name, func.count(Book.name).label('c')).group_by(Book.name).all()
 ```
 ### 批量插入
 ```python

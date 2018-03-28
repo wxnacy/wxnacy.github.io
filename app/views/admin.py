@@ -29,6 +29,7 @@ def login():
     method = request.method
     if method.lower() == 'get':
         return render_template('login.html')
+    user = User.query_by_id(68719477421)
     res = make_response(redirect(url_for('admin.list_article')))
     res.set_cookie(BaseConfig.HEAD_AUTHORIZATION, user.generate_authorization())
     return res
@@ -43,18 +44,25 @@ def index():
 @admin_bp.route('/visitor_log')
 def list_visitor_log():
     args = BaseRequest.get_args()
-    visitors = VisitorLog.query_by(**args)
-    return render_template('admin/visitor_log_list.html', visitors=visitors)
+    pagination = VisitorLog.query_by(**args)
+    return render_template('admin/visitor_log_list.html', pagination=pagination)
 
 @admin_bp.route('/article')
 def list_article():
     args = BaseRequest.get_args()
     logger.debug(request)
-    paginate = Article.query_by(**args)
-    return render_template('admin/article_list.html', paginate=paginate)
+    pagination = Article.query_by(**args)
+    return render_template('admin/article_list.html', pagination=pagination)
 
 @admin_bp.route('/visitor_log_date')
 def list_visitor_log_date():
     args = BaseRequest.get_args()
-    items = VisitorLogDate.query_by(**args)
-    return render_template('admin/visitor_log_date_list.html', items=items)
+    pagination = VisitorLogDate.query_by(**args)
+    return render_template('admin/visitor_log_date_list.html',
+        pagination=pagination)
+
+@admin_bp.route('/rank')
+def rank():
+    args = BaseRequest.get_args()
+    rank = VisitorLog.query_rank(**args)
+    return render_template('admin/rank.html',rank=rank)

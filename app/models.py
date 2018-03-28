@@ -289,6 +289,19 @@ class VisitorLog(BaseModel, db.Model):
         return items
 
     @classmethod
+    def query_rank(cls, **kw):
+        logger.debug(kw)
+        qd = date.today()
+        if 'day' in kw:
+            qd = kw['day']
+
+        res = db.session.query(cls.url, func.count(cls.url).label('rank')
+            ).filter(cls.visit_date == qd
+            ).group_by(cls.url).order_by('rank desc').all()
+
+        return res
+
+    @classmethod
     def visit(cls, **kw):
         begin = time.time()
         ua = kw['user_agent']

@@ -1,0 +1,22 @@
+{% extends "admin/base.html" %}
+{% block content %}
+{{ super() }}
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>地址</th>
+                  <th>次数</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in rank %}
+                <tr>
+                  <td width="10%">{{ item[0] }}</td>
+                  <td width="10%">{{ item[1] }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+{% endblock %}
