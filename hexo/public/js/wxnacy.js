@@ -245,31 +245,30 @@ function checkNaN(){
         event.returnValue = false;
     }
 }
+function isEmpty(val){
+  if (val == '' || val == null || val == undefined || val == "undefined") {
+    return true;
+  }
+  return false;
+}
+function getValue(key) {
+  var name = key + "=";
+  var str = window.location.search;
+  var beginIndex = str.indexOf("?" + name);
+  if (beginIndex == -1) {
+    beginIndex = str.indexOf("&" + name);
+  }
+  if (beginIndex != -1) {
+    var pos_start = beginIndex + name.length + 1;
+    var pos_end = str.indexOf("&", pos_start);
+    if (pos_end == -1) {
+      return decodeURIComponent(str.substring(pos_start));
+    } else {
+      return decodeURIComponent(str.substring(pos_start, pos_end));
+    }
+  }
+}
 function visitor(){
-    // fetch('http://ip-api.com/json').then(function(res){
-        // return res.json()
-    // }).then(function(data){
-        // console.log(data);
-        // params = {
-            // ip: data.query,
-            // url: window.location.href,
-            // ext_property: data
-        // }
-        // console.log(params);
-        // fetch('/api/v1/visitor', {
-            // method: "POST",
-            // headers: {
-                // 'Content-Type': 'application/json'
-            // },
-            // body: JSON.stringify(params)
-        // }).then(function(res){
-            // return res.json()
-        // }).then(function(data){
-            // console.log(data);
-        // }).catch(function(e){
-            // console.log(e);
-        // })
-    // })
 
     fetchGet('https://ipapi.co/json/').then(function(data){
         params = {
