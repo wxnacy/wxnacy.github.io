@@ -44,6 +44,9 @@ class BaseConfig(object):
     WX_MP_APP_SECRET = '720233db12f8d6dadaa9979c49418e8d'
     WX_MP_ID = 'gh_96c685096fbd'
 
+    WX_MINIPROGRAM_KEY = 'wxd9bed78a5fe8c494'
+    WX_MINIPROGRAM_SECRET = '78db4fbcb60effefb7bc922c7fb86fe1'
+
     AES_KEY = '2d451792e18f778e'
 
 
