@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="wxnacy 博客">
 <meta property="og:description" content="Supervisor 是一个用 Python 写的进程管理工具，可以很方便的用来启动、重启、关闭进程（不仅仅是 Python 进程）。除了对单个进程的控制，还可以同时启动、关闭多个进程，比如很不幸的服务器出问题导致所有应用程序都被杀死，此时可以用 Supervisor 同时启动所有应用程序而不是一个一个地敲命令启动。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-12-08T05:22:10.000Z">
+<meta property="og:updated_time" content="2018-03-29T08:46:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 Supervisor 管理进程">
 <meta name="twitter:description" content="Supervisor 是一个用 Python 写的进程管理工具，可以很方便的用来启动、重启、关闭进程（不仅仅是 Python 进程）。除了对单个进程的控制，还可以同时启动、关闭多个进程，比如很不幸的服务器出问题导致所有应用程序都被杀死，此时可以用 Supervisor 同时启动所有应用程序而不是一个一个地敲命令启动。">
@@ -213,6 +213,12 @@
 <li><a href="#supervisor-pei-zhi">Supervisor 配置</a></li>
 <li><a href="#program-pei-zhi">program 配置</a></li>
 <li><a href="#shi-yong-supervisorctl">使用 supervisorctl</a></li>
+<li><a href="#kai-ji-zi-qi-dong">开机自启动</a><ul>
+<li><a href="#centos">CentOS</a></li>
+<li><a href="#ubuntu">Ubuntu</a></li>
+</ul>
+</li>
+<li><a href="#chang-jian-de-cuo-wu">常见的错误</a></li>
 <li><a href="#qi-ta">其它</a></li>
 </ul>
 <!-- tocstop -->
@@ -242,6 +248,13 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">supervisorctl -c /etc/supervisord.conf</div></pre></td></tr></table></figure>
 <p>上面这个命令会进入 supervisorctl 的 shell 界面，然后可以执行不同的命令了：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; status    <span class="comment"># 查看程序状态</span></div><div class="line">&gt; stop usercenter   <span class="comment"># 关闭 usercenter 程序</span></div><div class="line">&gt; start usercenter  <span class="comment"># 启动 usercenter 程序</span></div><div class="line">&gt; restart usercenter    <span class="comment"># 重启 usercenter 程序</span></div><div class="line">&gt; reread    ＃ 读取有更新（增加）的配置文件，不会启动新添加的程序</div><div class="line">&gt; update    ＃ 重启配置文件修改过的程序</div></pre></td></tr></table></figure></p>
 <p>上面这些命令都有相应的输出，除了进入 supervisorctl 的 shell 界面，也可以直接在 bash 终端运行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ supervisorctl status</div><div class="line">$ supervisorctl stop usercenter</div><div class="line">$ supervisorctl start usercenter</div><div class="line">$ supervisorctl restart usercenter</div><div class="line">$ supervisorctl reread</div><div class="line">$ supervisorctl update</div></pre></td></tr></table></figure></p>
+<h2><span id="kai-ji-zi-qi-dong">开机自启动</span><a href="#kai-ji-zi-qi-dong" class="header-anchor"></a></h2><h3><span id="centos">CentOS</span><a href="#centos" class="header-anchor"></a></h3><p>适用 CentOS 7 及以上版本<br>新建 <code>/usr/lib/systemd/system/supervisord.service</code> 文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">[Unit]</div><div class="line">Description=Supervisor daemon</div><div class="line"></div><div class="line">[Service]</div><div class="line">Type=forking</div><div class="line">ExecStart=/usr/bin/supervisord -c /etc/supervisord.conf</div><div class="line">ExecStop=/usr/bin/supervisorctl shutdown</div><div class="line">ExecReload=/usr/bin/supervisorctl reload</div><div class="line">KillMode=process</div><div class="line">Restart=on-failure</div><div class="line">RestartSec=42s</div><div class="line"></div><div class="line">[Install]</div><div class="line">WantedBy=multi-user.target</div></pre></td></tr></table></figure></p>
+<p>开启自启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl <span class="built_in">enable</span> supervisord</div></pre></td></tr></table></figure></p>
+<p>查看启动状态<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl status supervisord</div></pre></td></tr></table></figure></p>
+<h3><span id="ubuntu">Ubuntu</span><a href="#ubuntu" class="header-anchor"></a></h3><p>修改 <code>/etc/rc.local</code> 文件，在 <code>exit 0</code> 之前加入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/<span class="built_in">local</span>/bin/supervisord</div></pre></td></tr></table></figure></p>
+<p>保存退出，并修改权限<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x /etc/rc.local</div></pre></td></tr></table></figure></p>
+<h2><span id="chang-jian-de-cuo-wu">常见的错误</span><a href="#chang-jian-de-cuo-wu" class="header-anchor"></a></h2><p>在 <code>supervisorctl start program</code> 时，会报错<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xxx:ERROR [no such file]</div></pre></td></tr></table></figure></p>
+<p>此时需要检查在配置中设计到的文件和命令是否存在，尤其是 <code>command</code> 的赋值，命令最好将全地址写出，比如<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">command</span> = /usr/<span class="built_in">local</span>/bin/gunicorn -c gunicorn.py wsgi:app</div></pre></td></tr></table></figure></p>
 <h2><span id="qi-ta">其它</span><a href="#qi-ta" class="header-anchor"></a></h2><p>除了 supervisorctl 之外，还可以配置 supervisrod 启动 web 管理界面，这个 web 后台使用 Basic Auth 的方式进行身份认证。</p>
 <p>除了单个进程的控制，还可以配置 group，进行分组管理。</p>
 <p>经常查看日志文件，包括 supervisord 的日志和各个 pragram 的日志文件，程序 crash 或抛出异常的信息一半会输出到 stderr，可以查看相应的日志文件来查找问题。</p>
@@ -278,18 +291,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/19/python-2017-08-19-pigar/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/08/18/python-2017-08-18-pip-not-found/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          python 使用pigar管理requirements.txt
+          Linux 执行 pip 报错 command not found
         
       </div>
     </a>
   
   
-    <a href="/2017/08/18/python-2017-08-18-pip-not-found/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Linux 执行 pip 报错 command not found</div>
+    <a href="/2017/08/16/openresty-2017-08-16-install/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">openresty 安装</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -316,7 +329,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="an-zhuang">&#x5B89;&#x88C5;</span><a href="#an-zhuang" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="supervisor-pei-zhi">Supervisor &#x914D;&#x7F6E;</span><a href="#supervisor-pei-zhi" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="program-pei-zhi">program &#x914D;&#x7F6E;</span><a href="#program-pei-zhi" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text"><span id="shi-yong-supervisorctl">&#x4F7F;&#x7528; supervisorctl</span><a href="#shi-yong-supervisorctl" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text"><span id="qi-ta">&#x5176;&#x5B83;</span><a href="#qi-ta" class="header-anchor"></a></span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="an-zhuang">&#x5B89;&#x88C5;</span><a href="#an-zhuang" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="supervisor-pei-zhi">Supervisor &#x914D;&#x7F6E;</span><a href="#supervisor-pei-zhi" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="program-pei-zhi">program &#x914D;&#x7F6E;</span><a href="#program-pei-zhi" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text"><span id="shi-yong-supervisorctl">&#x4F7F;&#x7528; supervisorctl</span><a href="#shi-yong-supervisorctl" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text"><span id="kai-ji-zi-qi-dong">&#x5F00;&#x673A;&#x81EA;&#x542F;&#x52A8;</span><a href="#kai-ji-zi-qi-dong" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">5.1.</span> <span class="toc-text"><span id="centos">CentOS</span><a href="#centos" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">5.2.</span> <span class="toc-text"><span id="ubuntu">Ubuntu</span><a href="#ubuntu" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text"><span id="chang-jian-de-cuo-wu">&#x5E38;&#x89C1;&#x7684;&#x9519;&#x8BEF;</span><a href="#chang-jian-de-cuo-wu" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">7.</span> <span class="toc-text"><span id="qi-ta">&#x5176;&#x5B83;</span><a href="#qi-ta" class="header-anchor"></a></span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -493,11 +506,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -505,11 +518,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -537,11 +550,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">开发</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color3">开发</a>
               </li>
              
               <li class="article-tag-list-item">

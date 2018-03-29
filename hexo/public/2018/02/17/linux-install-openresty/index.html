@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="wxnacy 博客">
 <meta property="og:description" content="Linux 系统在安装 openresty 时，无法直接用 yum, apt 等安装包工具，需要手动添加 openresty 的仓库。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-02-17T13:19:33.000Z">
+<meta property="og:updated_time" content="2018-03-29T09:30:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux 安装 openresty">
 <meta name="twitter:description" content="Linux 系统在安装 openresty 时，无法直接用 yum, apt 等安装包工具，需要手动添加 openresty 的仓库。">
@@ -204,13 +204,26 @@
         <p>Linux 系统在安装 openresty 时，无法直接用 <code>yum, apt</code> 等安装包工具，需要手动添加 openresty 的仓库。<br><a id="more"></a><div class="toc"></p>
 <!-- toc -->
 <ul>
-<li><a href="#ubuntu">Ubuntu</a></li>
-<li><a href="#centos">CentOS</a></li>
+<li><a href="#ubuntu">Ubuntu</a><ul>
+<li><a href="#an-zhuang">安装</a></li>
+<li><a href="#zi-qi-dong">自启动</a></li>
+</ul>
+</li>
+<li><a href="#centos">CentOS</a><ul>
+<li><a href="#an-zhuang-1">安装</a></li>
+<li><a href="#zi-qi-dong-1">自启动</a></li>
+</ul>
+</li>
 </ul>
 <!-- tocstop -->
 <p></div></p>
-<h2><span id="ubuntu">Ubuntu</span><a href="#ubuntu" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 导入我们的 GPG 密钥：</span></div><div class="line">wget -qO - https://openresty.org/package/pubkey.gpg | sudo apt-key add -</div><div class="line"></div><div class="line"><span class="comment"># 安装 add-apt-repository 命令</span></div><div class="line"><span class="comment"># （之后你可以删除这个包以及对应的关联包）</span></div><div class="line">sudo apt-get -y install software-properties-common</div><div class="line"></div><div class="line"><span class="comment"># 添加我们官方 official APT 仓库：</span></div><div class="line">sudo add-apt-repository -y <span class="string">"deb http://openresty.org/package/ubuntu <span class="variable">$(lsb_release -sc)</span> main"</span></div><div class="line"></div><div class="line"><span class="comment"># 更新 APT 索引：</span></div><div class="line">sudo apt-get update</div><div class="line"><span class="comment"># 然后就可以像下面这样安装软件包，比如 openresty：</span></div><div class="line">sudo apt-get install openresty</div></pre></td></tr></table></figure>
-<h2><span id="centos">CentOS</span><a href="#centos" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 添加仓库</span></div><div class="line">sudo yum install yum-utils</div><div class="line">sudo yum-config-manager --add-repo https://openresty.org/package/centos/openresty.repo</div><div class="line"></div><div class="line"><span class="comment"># 然后就可以像下面这样安装软件包，比如 openresty：</span></div><div class="line">sudo yum install openresty</div></pre></td></tr></table></figure>
+<h2><span id="ubuntu">Ubuntu</span><a href="#ubuntu" class="header-anchor"></a></h2><h3><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 导入我们的 GPG 密钥：</span></div><div class="line">wget -qO - https://openresty.org/package/pubkey.gpg | sudo apt-key add -</div><div class="line"></div><div class="line"><span class="comment"># 安装 add-apt-repository 命令</span></div><div class="line"><span class="comment"># （之后你可以删除这个包以及对应的关联包）</span></div><div class="line">sudo apt-get -y install software-properties-common</div><div class="line"></div><div class="line"><span class="comment"># 添加我们官方 official APT 仓库：</span></div><div class="line">sudo add-apt-repository -y <span class="string">"deb http://openresty.org/package/ubuntu <span class="variable">$(lsb_release -sc)</span> main"</span></div><div class="line"></div><div class="line"><span class="comment"># 更新 APT 索引：</span></div><div class="line">sudo apt-get update</div><div class="line"><span class="comment"># 然后就可以像下面这样安装软件包，比如 openresty：</span></div><div class="line">sudo apt-get install openresty</div></pre></td></tr></table></figure>
+<h3><span id="zi-qi-dong">自启动</span><a href="#zi-qi-dong" class="header-anchor"></a></h3><p>修改 <code>/etc/rc.local</code> 文件，在 <code>exit 0</code> 之前加入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/bin/supervisord</div></pre></td></tr></table></figure></p>
+<p>保存退出，并修改权限<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x /etc/rc.local</div></pre></td></tr></table></figure></p>
+<h2><span id="centos">CentOS</span><a href="#centos" class="header-anchor"></a></h2><h3><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 添加仓库</span></div><div class="line">sudo yum install yum-utils</div><div class="line">sudo yum-config-manager --add-repo https://openresty.org/package/centos/openresty.repo</div><div class="line"></div><div class="line"><span class="comment"># 然后就可以像下面这样安装软件包，比如 openresty：</span></div><div class="line">sudo yum install openresty</div></pre></td></tr></table></figure>
+<h3><span id="zi-qi-dong">自启动</span><a href="#zi-qi-dong" class="header-anchor"></a></h3><p>适用 CentOS &gt;= 7 的版本<br>新建 <code>/usr/lib/systemd/system/openresty.service</code> 文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">[Unit]</div><div class="line">Description=openresty daemon</div><div class="line"></div><div class="line">[Service]</div><div class="line">Type=forking</div><div class="line">PIDFile=/usr/<span class="built_in">local</span>/openresty/nginx/logs/nginx.pid</div><div class="line">ExecStartPre=/usr/<span class="built_in">local</span>/openresty/nginx/sbin/nginx -t</div><div class="line">ExecStart=/usr/<span class="built_in">local</span>/openresty/nginx/sbin/nginx</div><div class="line">ExecReload=/bin/<span class="built_in">kill</span> -s HUP <span class="variable">$MAINPID</span></div><div class="line">ExecStop=/bin/<span class="built_in">kill</span> -s QUIT <span class="variable">$MAINPID</span></div><div class="line">PrivateTmp=<span class="literal">true</span></div><div class="line"></div><div class="line">[Install]</div><div class="line">WantedBy=multi-user.target</div></pre></td></tr></table></figure></p>
+<p>开启自启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl <span class="built_in">enable</span> openresty</div></pre></td></tr></table></figure></p>
+<p>查看启动状态<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl status openresty</div></pre></td></tr></table></figure></p>
 <ul>
 <li><a href="https://openresty.org/cn/linux-packages.html" target="_blank" rel="noopener">OpenResty® Linux 包</a></li>
 </ul>
@@ -284,7 +297,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="ubuntu">Ubuntu</span><a href="#ubuntu" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="centos">CentOS</span><a href="#centos" class="header-anchor"></a></span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="ubuntu">Ubuntu</span><a href="#ubuntu" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text"><span id="an-zhuang">&#x5B89;&#x88C5;</span><a href="#an-zhuang" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.2.</span> <span class="toc-text"><span id="zi-qi-dong">&#x81EA;&#x542F;&#x52A8;</span><a href="#zi-qi-dong" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="centos">CentOS</span><a href="#centos" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text"><span id="an-zhuang">&#x5B89;&#x88C5;</span><a href="#an-zhuang" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text"><span id="zi-qi-dong">&#x81EA;&#x542F;&#x52A8;</span><a href="#zi-qi-dong" class="header-anchor"></a></span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -461,11 +474,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -473,11 +486,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -505,11 +518,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">开发</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color3">开发</a>
               </li>
              
               <li class="article-tag-list-item">

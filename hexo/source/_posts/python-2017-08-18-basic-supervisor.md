@@ -132,6 +132,55 @@ $ supervisorctl reread
 $ supervisorctl update
 ```
 
+## 开机自启动
+### CentOS
+适用 CentOS 7 及以上版本
+新建 `/usr/lib/systemd/system/supervisord.service` 文件
+```bash
+[Unit]
+Description=Supervisor daemon
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/supervisord -c /etc/supervisord.conf
+ExecStop=/usr/bin/supervisorctl shutdown
+ExecReload=/usr/bin/supervisorctl reload
+KillMode=process
+Restart=on-failure
+RestartSec=42s
+
+[Install]
+WantedBy=multi-user.target
+```
+开启自启动
+```bash
+systemctl enable supervisord
+```
+查看启动状态
+```bash
+systemctl status supervisord
+```
+### Ubuntu
+修改 `/etc/rc.local` 文件，在 `exit 0` 之前加入
+```bash
+/usr/local/bin/supervisord
+```
+保存退出，并修改权限
+```bash
+chmod +x /etc/rc.local
+```
+
+## 常见的错误
+在 `supervisorctl start program` 时，会报错
+```bash
+xxx:ERROR [no such file]
+```
+此时需要检查在配置中设计到的文件和命令是否存在，尤其是 `command` 的赋值，命令最好将全地址写出，比如
+```bash
+command = /usr/local/bin/gunicorn -c gunicorn.py wsgi:app
+```
+
+
 ## 其它
 
 除了 supervisorctl 之外，还可以配置 supervisrod 启动 web 管理界面，这个 web 后台使用 Basic Auth 的方式进行身份认证。
