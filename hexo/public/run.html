@@ -4,7 +4,20 @@
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title></title>
+    <title>在线编辑 | wxnacy 博客</title>
+
+    <meta name="description" content="在线编辑 html js css">
+    <meta name="keywords" content="在线编辑 html js css">
+    <meta property="og:type" content="tool">
+    <meta property="og:title" content="在线编辑 | wxnacy 博客">
+    <meta property="og:url" content="http://wxnacy.com/run.html">
+    <meta property="og:site_name" content="wxnacy 博客">
+    <meta property="og:description" content="在线编辑 html js css">
+    <meta property="og:locale" content="zh-cn">
+    <meta property="og:updated_time" content="2018-03-29T21:27:18.000Z">
+    <meta name="twitter:title" content="在线编辑 | wxnacy 博客">
+    <meta name="twitter:description" content="在线编辑 html js css">
+    <link rel="icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   </head>
   <body>
@@ -15,6 +28,12 @@
           <button type="button" onClick="save()" class="btn btn-primary" id="save">保存</button>
         </div>
         <div class="col">
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">标题</span>
+  </div>
+  <input type="text"  id="name" style="width: 300px" aria-label="标题" aria-describedby="inputGroup-sizing-default">
+</div>
         </div>
       </div>
       <div class="row">
@@ -34,7 +53,7 @@
         </div>
         <div class="col">
           <div style="height: 610px" class="card card-body">
-            <iframe id="preview" frameBorder="no" border="0"  ></iframe>
+            <iframe id="preview" style="height: 610px" frameBorder="no" border="0"  ></iframe>
           </div>
         </div>
       </div>
@@ -51,8 +70,11 @@ function init(){
   if(!isEmpty(id)){
     fetchGet(`/api/v1/code/${id}`).then(function(data){
       var html = decodeURIComponent(data.data.code.html)
+      var name = data.data.name
 
       document.getElementById('html').value=html
+      document.getElementById('name').value=name
+      document.title = name
       run()
     })
   } else {
@@ -72,7 +94,7 @@ function save(){
     css: ""
   }
   var params = {
-    name: '',
+    name: document.getElementById('name').value,
     description: '',
     code: code
   }

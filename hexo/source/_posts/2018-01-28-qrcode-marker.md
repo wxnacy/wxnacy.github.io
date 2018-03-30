@@ -63,6 +63,7 @@ new QRCode(document.getElementById("qrcode"), "https://wxnacy.com");
     });
 </script>
 ```
+[试一试](/run.html?id=68719480053)
 其他方法
 ```java
 qrcode.clear(); // clear the code.

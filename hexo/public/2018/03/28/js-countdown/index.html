@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="wxnacy 博客">
 <meta property="og:description" content="前两天写了一个 python2 退休的倒计时，从网上找了一个算法，但是只能支持到天的倒计时，不是我想要的从年开始倒计时，所以自己优化了下，先看个效果">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-03-28T14:16:13.000Z">
+<meta property="og:updated_time" content="2018-03-29T13:46:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 实现倒计时">
 <meta name="twitter:description" content="前两天写了一个 python2 退休的倒计时，从网上找了一个算法，但是只能支持到天的倒计时，不是我想要的从年开始倒计时，所以自己优化了下，先看个效果">
@@ -212,6 +212,7 @@ Ticts.createTicts("aaa","2021-05-05 00:00:00");
 </p>
 <p>以下为代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> Ticts=<span class="function"><span class="keyword">function</span> <span class="title">Ticts</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.ticts = &#123;&#125;;</div><div class="line">    &#125;;</div><div class="line">    Ticts.prototype.createTicts=<span class="function"><span class="keyword">function</span>(<span class="params">id, dealline</span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> ticts=<span class="keyword">this</span>;</div><div class="line">        <span class="keyword">var</span> dd = <span class="keyword">new</span> <span class="built_in">Date</span>(dealline)     <span class="comment">// 倒计时最终时间</span></div><div class="line">        <span class="keyword">var</span> time = dd - <span class="keyword">new</span> <span class="built_in">Date</span>()      <span class="comment">// 距今天的毫秒数</span></div><div class="line">        <span class="keyword">var</span> _ticts=<span class="keyword">this</span>.ticts[id] = &#123;</div><div class="line">            dealine: dealline</div><div class="line">            , <span class="attr">id</span>: id</div><div class="line">            , <span class="attr">time</span>: time</div><div class="line">            , <span class="attr">interval</span>: setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">                <span class="keyword">var</span> t = <span class="literal">null</span>;</div><div class="line">                <span class="keyword">var</span> d = <span class="literal">null</span>;</div><div class="line">                <span class="keyword">var</span> h = <span class="literal">null</span>;</div><div class="line">                <span class="keyword">var</span> m = <span class="literal">null</span>;</div><div class="line">                <span class="keyword">var</span> s = <span class="literal">null</span>;</div><div class="line"></div><div class="line">                <span class="keyword">var</span> now = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">                t = _ticts.time / <span class="number">1000</span>; <span class="comment">//js默认时间戳为毫秒,需要转化成秒</span></div><div class="line">                <span class="keyword">var</span> y = dd.getFullYear() - now.getFullYear()</div><div class="line">                <span class="keyword">var</span> M = dd.getMonth() - now.getMonth()</div><div class="line">                <span class="keyword">var</span> d = dd.getDate() - now.getDate()</div><div class="line">                <span class="keyword">var</span> h = dd.getHours() - now.getHours()</div><div class="line">                <span class="keyword">if</span>( M &lt; <span class="number">0</span> )&#123;</div><div class="line">                    y--;</div><div class="line">                    M = M + <span class="number">12</span></div><div class="line">                &#125;</div><div class="line">                <span class="keyword">var</span> flag = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">10</span>, <span class="number">12</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">11</span>, <span class="number">2</span>];</div><div class="line">                <span class="keyword">if</span>( d &lt; <span class="number">0</span> )&#123;</div><div class="line">                    M--;</div><div class="line">                    <span class="keyword">var</span> index = flag.findIndex(<span class="function">(<span class="params">temp</span>) =&gt;</span> &#123;</div><div class="line">                        <span class="keyword">return</span> temp === now.getMonth() + <span class="number">1</span></div><div class="line">                    &#125;);</div><div class="line">                    <span class="keyword">var</span> monthLength;</div><div class="line">                    <span class="keyword">if</span> (index &lt;= <span class="number">6</span>) &#123;</div><div class="line">                        monthLength = <span class="number">31</span>;</div><div class="line">                    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (index &gt; <span class="number">6</span> &amp;&amp; index &lt;= <span class="number">10</span>) &#123;</div><div class="line">                        monthLength = <span class="number">30</span>;</div><div class="line">                    &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        monthLength = <span class="number">28</span>;</div><div class="line">                    &#125;</div><div class="line">                    d = dd.getDate() + (monthLength - now.getDate());</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span>( h &lt; <span class="number">0</span> )&#123;</div><div class="line">                    d--;</div><div class="line">                &#125;</div><div class="line">                t = t - y * <span class="number">365</span> * <span class="number">24</span> * <span class="number">3600</span></div><div class="line">                <span class="keyword">var</span> total_day = <span class="built_in">Math</span>.floor(t / (<span class="number">24</span> * <span class="number">3600</span>))</div><div class="line">                t = t - <span class="number">24</span> * <span class="number">3600</span> * total_day</div><div class="line">                h = <span class="built_in">Math</span>.floor(t / <span class="number">3600</span>);</div><div class="line">                t = t -h * <span class="number">3600</span></div><div class="line">                m = <span class="built_in">Math</span>.floor(t / <span class="number">60</span>);</div><div class="line">                t = t - m * <span class="number">60</span></div><div class="line">                s = <span class="built_in">Math</span>.floor(t);</div><div class="line">　　　　　　　　　<span class="comment">//这里可以做一个格式化的处理,甚至做毫秒级的页面渲染,基于DOM操作,太多个倒计时一起会导致页面性能下降</span></div><div class="line">                <span class="built_in">document</span>.getElementById(id).innerHTML = <span class="string">`<span class="subst">$&#123;y&#125;</span> 年 <span class="subst">$&#123;M&#125;</span> 月 <span class="subst">$&#123;d&#125;</span> 天 <span class="subst">$&#123;h&#125;</span> 小时 <span class="subst">$&#123;m&#125;</span> 分钟 <span class="subst">$&#123;s&#125;</span> 秒`</span></div><div class="line">                _ticts.time -= <span class="number">1000</span>;</div><div class="line">                <span class="keyword">if</span> (_ticts.time &lt; <span class="number">0</span>)</div><div class="line">　　　　　　　　　　　ticts.deleteTicts(id);<span class="comment">//判断是否到期,到期后自动删除定时器</span></div><div class="line">            &#125;, <span class="number">1000</span>)</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">    Ticts.prototype.deleteTicts = <span class="function"><span class="keyword">function</span>(<span class="params">id</span>) </span>&#123;</div><div class="line">        clearInterval(<span class="keyword">this</span>.ticts[id].interval);<span class="comment">//清楚定时器的方法,需要定时器的指针作为参数传入clearInterval</span></div><div class="line">        <span class="keyword">delete</span> <span class="keyword">this</span>.ticts[id];<span class="comment">//通过delete的方法删除对象中的属性</span></div><div class="line">    &#125;;</div><div class="line">   <span class="comment">//新建一个ticts对象,放到window全局函数中,那么在html页面是(或者其他js文件)可以访问该对象</span></div><div class="line">    <span class="built_in">window</span>.Ticts=<span class="keyword">new</span> Ticts();</div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
 <p>使用<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;div id="aaa" style="font-size: 50px"&gt;&lt;/div&gt;</div><div class="line">&lt;script type="text/javascript" src="/js/countdown.js"&gt;&lt;/script&gt;</div><div class="line"></div><div class="line">&lt;script&gt;</div><div class="line"><span class="comment">//定义一个立即执行的函数</span></div><div class="line">Ticts.createTicts(<span class="string">"aaa"</span>,<span class="string">"2021-05-05 00:00:00"</span>);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<p><a href="/run.html?id=68719480037">试一试</a></p>
 
       
 
@@ -447,19 +448,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">jpa</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -571,11 +568,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ansible</a>
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color3">ansible</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -583,11 +580,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">

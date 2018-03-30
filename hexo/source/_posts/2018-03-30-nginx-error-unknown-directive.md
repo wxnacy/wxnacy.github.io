@@ -1,7 +1,10 @@
 ---
 title: Nginx 异常 unknown directive
-tags: [nginx]
+tags:
+  - nginx
+date: 2018-03-30 21:43:14
 ---
+
 记一个基础知识不好的异常
 <!-- more --><!-- toc -->
 ```bash
