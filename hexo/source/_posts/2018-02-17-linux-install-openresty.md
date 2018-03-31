@@ -73,4 +73,25 @@ systemctl enable openresty
 systemctl status openresty
 ```
 
+## 手动编译
+如果服务器重度依赖 Nginx 来做请求判断，那最好还是用编译的方式，`yum, apt` 安装的方式模块依赖非常有限，并不方便更改。
+
+安装依赖
+```bash
+yum -y install pcre pcre-devel openssl openssl-devel
+```
+从 [download](https://openresty.org/cn/download.html) 页面找到最新版，或者你想要的版本
+```bash
+$ wget https://openresty.org/download/openresty-1.13.6.1.tar.gz
+$ tar -zxvf openresty-1.13.6.1.tar.gz
+$ cd openresty-1.13.6.1
+$ ./configure --prefix=/usr/local
+    \--user=nginx
+    \--group=nginx
+    \--with-http_ssl_module
+    \--with-http_realip_module
+    \--with-http_stub_status_module
+$ gmake && gmake install
+```
+
 - [OpenResty® Linux 包](https://openresty.org/cn/linux-packages.html)

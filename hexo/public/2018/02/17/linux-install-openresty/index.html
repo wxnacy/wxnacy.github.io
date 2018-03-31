@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="wxnacy 博客">
 <meta property="og:description" content="Linux 系统在安装 openresty 时，无法直接用 yum, apt 等安装包工具，需要手动添加 openresty 的仓库。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-03-29T09:30:54.000Z">
+<meta property="og:updated_time" content="2018-03-30T14:54:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux 安装 openresty">
 <meta name="twitter:description" content="Linux 系统在安装 openresty 时，无法直接用 yum, apt 等安装包工具，需要手动添加 openresty 的仓库。">
@@ -214,6 +214,7 @@
 <li><a href="#zi-qi-dong-1">自启动</a></li>
 </ul>
 </li>
+<li><a href="#shou-dong-bian-yi">手动编译</a></li>
 </ul>
 <!-- tocstop -->
 <p></div></p>
@@ -224,6 +225,9 @@
 <h3><span id="zi-qi-dong">自启动</span><a href="#zi-qi-dong" class="header-anchor"></a></h3><p>适用 CentOS &gt;= 7 的版本<br>新建 <code>/usr/lib/systemd/system/openresty.service</code> 文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">[Unit]</div><div class="line">Description=openresty daemon</div><div class="line"></div><div class="line">[Service]</div><div class="line">Type=forking</div><div class="line">PIDFile=/usr/<span class="built_in">local</span>/openresty/nginx/logs/nginx.pid</div><div class="line">ExecStartPre=/usr/<span class="built_in">local</span>/openresty/nginx/sbin/nginx -t</div><div class="line">ExecStart=/usr/<span class="built_in">local</span>/openresty/nginx/sbin/nginx</div><div class="line">ExecReload=/bin/<span class="built_in">kill</span> -s HUP <span class="variable">$MAINPID</span></div><div class="line">ExecStop=/bin/<span class="built_in">kill</span> -s QUIT <span class="variable">$MAINPID</span></div><div class="line">PrivateTmp=<span class="literal">true</span></div><div class="line"></div><div class="line">[Install]</div><div class="line">WantedBy=multi-user.target</div></pre></td></tr></table></figure></p>
 <p>开启自启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl <span class="built_in">enable</span> openresty</div></pre></td></tr></table></figure></p>
 <p>查看启动状态<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl status openresty</div></pre></td></tr></table></figure></p>
+<h2><span id="shou-dong-bian-yi">手动编译</span><a href="#shou-dong-bian-yi" class="header-anchor"></a></h2><p>如果服务器重度依赖 Nginx 来做请求判断，那最好还是用编译的方式，<code>yum, apt</code> 安装的方式模块依赖非常有限，并不方便更改。</p>
+<p>安装依赖<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install pcre pcre-devel openssl openssl-devel</div></pre></td></tr></table></figure></p>
+<p>从 <a href="https://openresty.org/cn/download.html" target="_blank" rel="noopener">download</a> 页面找到最新版，或者你想要的版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ wget https://openresty.org/download/openresty-1.13.6.1.tar.gz</div><div class="line">$ tar -zxvf openresty-1.13.6.1.tar.gz</div><div class="line">$ <span class="built_in">cd</span> openresty-1.13.6.1</div><div class="line">$ ./configure --prefix=/usr/<span class="built_in">local</span></div><div class="line">    \--user=nginx</div><div class="line">    \--group=nginx</div><div class="line">    \--with-http_ssl_module</div><div class="line">    \--with-http_realip_module</div><div class="line">    \--with-http_stub_status_module</div><div class="line">$ gmake &amp;&amp; gmake install</div></pre></td></tr></table></figure></p>
 <ul>
 <li><a href="https://openresty.org/cn/linux-packages.html" target="_blank" rel="noopener">OpenResty® Linux 包</a></li>
 </ul>
@@ -297,7 +301,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="ubuntu">Ubuntu</span><a href="#ubuntu" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text"><span id="an-zhuang">&#x5B89;&#x88C5;</span><a href="#an-zhuang" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.2.</span> <span class="toc-text"><span id="zi-qi-dong">&#x81EA;&#x542F;&#x52A8;</span><a href="#zi-qi-dong" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="centos">CentOS</span><a href="#centos" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text"><span id="an-zhuang">&#x5B89;&#x88C5;</span><a href="#an-zhuang" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text"><span id="zi-qi-dong">&#x81EA;&#x542F;&#x52A8;</span><a href="#zi-qi-dong" class="header-anchor"></a></span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="ubuntu">Ubuntu</span><a href="#ubuntu" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text"><span id="an-zhuang">&#x5B89;&#x88C5;</span><a href="#an-zhuang" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.2.</span> <span class="toc-text"><span id="zi-qi-dong">&#x81EA;&#x542F;&#x52A8;</span><a href="#zi-qi-dong" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="centos">CentOS</span><a href="#centos" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text"><span id="an-zhuang">&#x5B89;&#x88C5;</span><a href="#an-zhuang" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text"><span id="zi-qi-dong">&#x81EA;&#x542F;&#x52A8;</span><a href="#zi-qi-dong" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="shou-dong-bian-yi">&#x624B;&#x52A8;&#x7F16;&#x8BD1;</span><a href="#shou-dong-bian-yi" class="header-anchor"></a></span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -462,6 +466,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -470,7 +478,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -478,15 +486,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
