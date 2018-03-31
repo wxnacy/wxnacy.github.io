@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="wxnacy 博客">
 <meta property="og:description" content="这两天折腾 Nginx 使用 GeoIp 通过分析 ip 来区分用户来源，又学到了些东西，今天先来总结下 Nginx 的安装方式">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-03-31T08:16:47.000Z">
+<meta property="og:updated_time" content="2018-03-31T13:20:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS 7 安装 Nginx">
 <meta name="twitter:description" content="这两天折腾 Nginx 使用 GeoIp 通过分析 ip 来区分用户来源，又学到了些东西，今天先来总结下 Nginx 的安装方式">
@@ -209,6 +209,7 @@
 <li><a href="#tian-jia-nginx-cang-ku">添加 Nginx 仓库</a></li>
 </ul>
 </li>
+<li><a href="#bian-yi-an-zhuang">编译安装</a></li>
 <li><a href="#shi-yong">使用</a></li>
 </ul>
 <!-- tocstop -->
@@ -221,6 +222,10 @@
 <p>安装 Nginx<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo yum -y install nginx</div></pre></td></tr></table></figure></p>
 <p>查看版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ nginx -V</div><div class="line">nginx version: nginx/1.12.2</div><div class="line">built by gcc 4.8.5 20150623 (Red Hat 4.8.5-16) (GCC)</div><div class="line">built with OpenSSL 1.0.2k-fips  26 Jan 2017</div><div class="line">TLS SNI support enabled</div><div class="line">configure arguments: --prefix=/etc/nginx --sbin-path=/usr/sbin/nginx --modules-path=/usr/lib64/nginx/modules --conf-path=/etc/nginx/nginx.conf --error-log-path=/var/<span class="built_in">log</span>/nginx/error.log --http-log-path=/var/<span class="built_in">log</span>/nginx/access.log --pid-path=/var/run/nginx.pid --lock-path=/var/run/nginx.lock --http-client-body-temp-path=/var/cache/nginx/client_temp --http-proxy-temp-path=/var/cache/nginx/proxy_temp --http-fastcgi-temp-path=/var/cache/nginx/fastcgi_temp --http-uwsgi-temp-path=/var/cache/nginx/uwsgi_temp --http-scgi-temp-path=/var/cache/nginx/scgi_temp --user=nginx --group=nginx --with-compat --with-file-aio --with-threads --with-http_addition_module --with-http_auth_request_module --with-http_dav_module --with-http_flv_module --with-http_gunzip_module --with-http_gzip_static_module --with-http_mp4_module --with-http_random_index_module --with-http_realip_module --with-http_secure_link_module --with-http_slice_module --with-http_ssl_module --with-http_stub_status_module --with-http_sub_module --with-http_v2_module --with-mail --with-mail_ssl_module --with-stream --with-stream_realip_module --with-stream_ssl_module --with-stream_ssl_preread_module --with-cc-opt=<span class="string">'-O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -fPIC'</span> --with-ld-opt=<span class="string">'-Wl,-z,relro -Wl,-z,now -pie'</span></div></pre></td></tr></table></figure></p>
 <p>两种安装方式都很简洁，效果也差不多，但是通过 EPEL 库方式安装出来会发现，Nginx 的携带的模块要多一些，比如 <code>http_geoip_module</code> 而它恰恰是服务器安全和设置重要的模块之一，预期后期折腾的去安装模块，为什么不开始就装上呢</p>
+<h2><span id="bian-yi-an-zhuang">编译安装</span><a href="#bian-yi-an-zhuang" class="header-anchor"></a></h2><p>包安装很方便，但是扩展性不够，比如添加额外的模块，还是要使用源码编译<br>首先安装依赖<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yum -y install pcre pcre-devel openssl openssl-devel</div></pre></td></tr></table></figure></p>
+<p>从 <a href="https://nginx.org/en/download.html" target="_blank" rel="noopener">download</a> 下载当前文档版<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ wget https://nginx.org/download/nginx-1.12.2.tar.gz</div><div class="line"></div><div class="line">$ ./configure --with-http_ssl_module --with-http_realip_module --with-http_stub_status_module</div></pre></td></tr></table></figure></p>
+<p>解压并安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">$ tar zxvf nginx-1.12.2.tar.gz</div><div class="line">$ <span class="built_in">cd</span> nginx-1.12.2</div><div class="line">$ ./configure --user=nginx --group=nginx \</div><div class="line">    --with-http_ssl_module \</div><div class="line">    --with-http_realip_module \</div><div class="line">    --with-http_addition_module \</div><div class="line">    --with-http_sub_module \</div><div class="line">    --with-http_dav_module \</div><div class="line">    --with-http_flv_module \</div><div class="line">    --with-http_mp4_module \</div><div class="line">    --with-http_gunzip_module \</div><div class="line">    --with-http_gzip_static_module \</div><div class="line">    --with-http_random_index_module \</div><div class="line">    --with-http_secure_link_module \</div><div class="line">    --with-http_stub_status_module \</div><div class="line">    --with-mail \</div><div class="line">    --with-mail_ssl_module \</div><div class="line">    --with-file-aio</div><div class="line">$ make &amp;&amp; make install</div></pre></td></tr></table></figure></p>
+<p>默认的安装目录为 <code>/usr/local/nginx</code><br>最后将命令脚本超链接到环境变量中<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ln -sf /usr/<span class="built_in">local</span>/nginx/sbin/nginx /usr/<span class="built_in">local</span>/bin/nginx</div></pre></td></tr></table></figure></p>
 <h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><p>启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nginx</div></pre></td></tr></table></figure></p>
 <p>停止<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nginx -s [start, stop]</div></pre></td></tr></table></figure></p>
 <p>重新启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nginx -s reopen</div></pre></td></tr></table></figure></p>
@@ -293,7 +298,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="rpm-bao-an-zhuang">RPM &#x5305;&#x5B89;&#x88C5;</span><a href="#rpm-bao-an-zhuang" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text"><span id="an-zhuang-epel-ku">&#x5B89;&#x88C5; EPEL &#x5E93;</span><a href="#an-zhuang-epel-ku" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.2.</span> <span class="toc-text"><span id="tian-jia-nginx-cang-ku">&#x6DFB;&#x52A0; Nginx &#x4ED3;&#x5E93;</span><a href="#tian-jia-nginx-cang-ku" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="shi-yong">&#x4F7F;&#x7528;</span><a href="#shi-yong" class="header-anchor"></a></span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="rpm-bao-an-zhuang">RPM &#x5305;&#x5B89;&#x88C5;</span><a href="#rpm-bao-an-zhuang" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text"><span id="an-zhuang-epel-ku">&#x5B89;&#x88C5; EPEL &#x5E93;</span><a href="#an-zhuang-epel-ku" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.2.</span> <span class="toc-text"><span id="tian-jia-nginx-cang-ku">&#x6DFB;&#x52A0; Nginx &#x4ED3;&#x5E93;</span><a href="#tian-jia-nginx-cang-ku" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="bian-yi-an-zhuang">&#x7F16;&#x8BD1;&#x5B89;&#x88C5;</span><a href="#bian-yi-an-zhuang" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="shi-yong">&#x4F7F;&#x7528;</span><a href="#shi-yong" class="header-anchor"></a></span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -450,11 +455,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -470,11 +475,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -486,15 +491,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">

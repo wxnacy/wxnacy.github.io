@@ -344,7 +344,7 @@ class VisitorLogDate(BaseModel, db.Model):
             sql = 'is_bot = 0 and is_available = 1 and url like :url and\
                 visit_date = :date'
             res = db.session.query(VL.md5, func.count(VL.md5)).filter(text(sql)
-                ).params(date = query_day, url='%wxnacy.com%').group_by(VL.md5).all()
+                    ).params(date = query_day, url='https://wxnacy.com%').group_by(VL.md5).all()
             uv = len(res)
             pv = sum([o[1] for o in res])
 

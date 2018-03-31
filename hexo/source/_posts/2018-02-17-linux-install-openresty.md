@@ -85,12 +85,23 @@ yum -y install pcre pcre-devel openssl openssl-devel
 $ wget https://openresty.org/download/openresty-1.13.6.1.tar.gz
 $ tar -zxvf openresty-1.13.6.1.tar.gz
 $ cd openresty-1.13.6.1
-$ ./configure --prefix=/usr/local
-    \--user=nginx
-    \--group=nginx
-    \--with-http_ssl_module
-    \--with-http_realip_module
-    \--with-http_stub_status_module
+$ ./configure --user=nginx --group=nginx \
+    --with-http_ssl_module \
+    --with-http_realip_module \
+    --with-http_addition_module \
+    --with-http_sub_module \
+    --with-http_dav_module \
+    --with-http_flv_module \
+    --with-http_mp4_module \
+    --with-http_gunzip_module \
+    --with-http_gzip_static_module \
+    --with-http_random_index_module \
+    --with-http_secure_link_module \
+    --with-http_stub_status_module \
+    --with-mail \
+    --with-mail_ssl_module \
+    --with-file-aio
+
 $ gmake && gmake install
 ```
 

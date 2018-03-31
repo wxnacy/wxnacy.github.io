@@ -48,6 +48,45 @@ configure arguments: --prefix=/etc/nginx --sbin-path=/usr/sbin/nginx --modules-p
 ```
 两种安装方式都很简洁，效果也差不多，但是通过 EPEL 库方式安装出来会发现，Nginx 的携带的模块要多一些，比如 `http_geoip_module` 而它恰恰是服务器安全和设置重要的模块之一，预期后期折腾的去安装模块，为什么不开始就装上呢
 
+## 编译安装
+包安装很方便，但是扩展性不够，比如添加额外的模块，还是要使用源码编译
+首先安装依赖
+```bash
+$ yum -y install pcre pcre-devel openssl openssl-devel
+```
+从 [download](https://nginx.org/en/download.html) 下载当前文档版
+```bash
+$ wget https://nginx.org/download/nginx-1.12.2.tar.gz
+
+$ ./configure --with-http_ssl_module --with-http_realip_module --with-http_stub_status_module
+```
+解压并安装
+```bash
+$ tar zxvf nginx-1.12.2.tar.gz
+$ cd nginx-1.12.2
+$ ./configure --user=nginx --group=nginx \
+    --with-http_ssl_module \
+    --with-http_realip_module \
+    --with-http_addition_module \
+    --with-http_sub_module \
+    --with-http_dav_module \
+    --with-http_flv_module \
+    --with-http_mp4_module \
+    --with-http_gunzip_module \
+    --with-http_gzip_static_module \
+    --with-http_random_index_module \
+    --with-http_secure_link_module \
+    --with-http_stub_status_module \
+    --with-mail \
+    --with-mail_ssl_module \
+    --with-file-aio
+$ make && make install
+```
+默认的安装目录为 `/usr/local/nginx`
+最后将命令脚本超链接到环境变量中
+```bash
+$ ln -sf /usr/local/nginx/sbin/nginx /usr/local/bin/nginx
+```
 ## 使用
 启动
 ```bash
