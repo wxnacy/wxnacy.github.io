@@ -57,8 +57,6 @@ $ yum -y install pcre pcre-devel openssl openssl-devel
 从 [download](https://nginx.org/en/download.html) 下载当前文档版
 ```bash
 $ wget https://nginx.org/download/nginx-1.12.2.tar.gz
-
-$ ./configure --with-http_ssl_module --with-http_realip_module --with-http_stub_status_module
 ```
 解压并安装
 ```bash
