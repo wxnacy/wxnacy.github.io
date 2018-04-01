@@ -9,6 +9,11 @@ from app.models import Article
 from app.models import ArticleData
 from app.config import app
 from flask_apscheduler import APScheduler
+import requests
+import time
+
+def req():
+    requests.get('http://localhost:4001/{}'.format(time.time()))
 
 scheduler = APScheduler(app=app)
 scheduler.add_job('statistics_visitor', VisitorLogDate.statistics_visitor,
@@ -19,6 +24,8 @@ scheduler.add_job('statistics_pv', Article.statistics_pv,
                   trigger='interval', seconds=360)
 scheduler.add_job('statistics_article', Article.statistics_article,
                   trigger='interval', seconds=350)
+scheduler.add_job('test', req,
+                  trigger='interval', seconds=1)
 scheduler.start()
 
 if __name__ == "__main__":

@@ -58,6 +58,11 @@ $ yum -y install pcre pcre-devel openssl openssl-devel
 ```bash
 $ wget https://nginx.org/download/nginx-1.12.2.tar.gz
 ```
+创建相应用户
+```bash
+$ groupadd -f nginx
+$ useradd -g nginx nginx
+```
 解压并安装
 ```bash
 $ tar zxvf nginx-1.12.2.tar.gz
