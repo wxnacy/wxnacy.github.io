@@ -1,7 +1,10 @@
 ---
 title: Nginx 分割日志
-tags: [nginx]
+tags:
+  - nginx
+date: 2018-04-02 09:50:08
 ---
+
 Nginx 有个非常大的缺点，就是日志不能自动分割，死磕着一个文件写到死
 <!-- more --><!-- toc -->
 如果你重度依赖 `access.log` 日志进行分析，那长时间面对动辄上 G 的文件，你会很头痛，所以只能自己来写脚本来分割
@@ -46,7 +49,7 @@ LOG_DIR=/usr/local/nginx/logs
 LOG_FILE=${LOG_DIR}/access.log
 DT=`date "+%Y%m%d%H%M%S"`
 # 检查日志文件是否存在
-test -f ${LOG_FILE} || mv ${LOG_FILE} ${LOG_FILE}.${DT}
+test -f ${LOG_FILE} && mv ${LOG_FILE} ${LOG_FILE}.${DT}
 nginx -s reopen
 ```
 添加执行权限

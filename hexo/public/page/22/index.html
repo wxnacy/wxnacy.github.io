@@ -181,34 +181,33 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-ansible-2017-08-08-item-basic-playbooks" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mysql-2017-08-09-select-format" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">ansible入门笔记2 Playbooks</a>
+      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-select-format/">mysql select 格式化输出</a>
     </h1>
   
 
         
-        <a href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/" class="archive-article-date">
-  	<time datetime="2017-08-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
+        <a href="/2017/08/09/mysql-2017-08-09-select-format/" class="archive-article-date">
+  	<time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>专辑：<a href="/2017/08/14/ansible-2017-08-14-album-study-notes/">ansible学习笔记</a></p>
-<blockquote>
-<p>Playbooks 是 Ansible的配置,部署,编排语言.他们可以被描述为一个需要希望远程主机执行命令的方案,或者一组IT程序运行的命令集合.</p>
-</blockquote>
-<p>一个playbook就是一个YAML文件，所以playbook文件一般都以.yml结尾，一个playbook文件由一个或多个play组成，每个play定义了在一个或多个远程主机上执行的一系列的task，其中每个task一般就是调用一个ansible的模块，如调用copy模块复制文件到远程主机或调用shell模块执行命令。</p>
-<h2><span id="jian-dan-de-pei-zhi">简单的配置</span><a href="#jian-dan-de-pei-zhi" class="header-anchor"></a></h2><p>配置deploy.yml完成进入远程服务器的某个目录并执行git pull操作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- hosts: wxnacy <span class="comment"># 它会默认使用/etc/ansible/hosts 中配置的服务器组名 也可以单独设置hosts地址</span></div><div class="line">  tasks:</div><div class="line">  - name: <span class="built_in">cd</span> path and git pull <span class="comment"># 命令名称</span></div><div class="line">    shell: git pull <span class="comment"># 执行命令</span></div><div class="line">    args:</div><div class="line">      <span class="built_in">chdir</span>: ~/workdir <span class="comment"># 进入目录</span></div></pre></td></tr></table></figure></p>
-<p>运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ ansible-playbook deploy.yml</div><div class="line"></div><div class="line">PLAY [wxnacy] **********************************************************************************************************************************************************************************************</div><div class="line"></div><div class="line">TASK [<span class="built_in">cd</span> path and git pull] *************************************************************************************************************************************************************************************</div><div class="line">ok: [wxnacy.server.org]</div><div class="line"></div><div class="line"></div><div class="line">PLAY RECAP *************************************************************************************************************************************************************************************************</div><div class="line">wxnacy.server.org             : ok=2    changed=1    unreachable=0    failed=0</div></pre></td></tr></table></figure></p>
-<p>执行完运行命令ansible会在webservers组中依次执行tasks，返回以上样式结果极为成功，结果通过红黄绿三种颜色标明了不同的执行结果，红色表示有task执行失败，黄色表示改变了远程主机状态。</p>
+        <h2><span id="shi-yong-g-shu-chu-jie-guo-an-xing-chui-zhi-xian-shi-jie-guo">使用\G输出结果按行垂直显示结果</span><a href="#shi-yong-g-shu-chu-jie-guo-an-xing-chui-zhi-xian-shi-jie-guo" class="header-anchor"></a></h2><p>当使用命令 select 结果，如果表属性特别多的时候，查看起来非常难受，在 select 语句<br>后使用<code>\G</code>(必须大写)，可以让结果按行垂直显示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select * from user\G;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">*************************** 1. row ***************************</div><div class="line">       id: 1</div><div class="line">     name: wxnacy</div><div class="line">   is_del: 0</div><div class="line">create_ts: 2017-08-08 07:46:42</div><div class="line">update_ts: 2017-08-08 07:46:42</div><div class="line">1 row in set (0.00 sec)</div></pre></td></tr></table></figure>
+<h2><span id="yi-html-ge-shi-shu-chu">以html格式输出</span><a href="#yi-html-ge-shi-shu-chu" class="header-anchor"></a></h2><p>使用mysql客户端的参数–html或者-T，则所有SQL的查询结果会自动生成为html的table代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ mysql -u root --html -p</div><div class="line">mysql&gt; select * from user;</div></pre></td></tr></table></figure></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">TABLE</span> <span class="attr">BORDER</span>=<span class="string">1</span>&gt;</span><span class="tag">&lt;<span class="name">TR</span>&gt;</span><span class="tag">&lt;<span class="name">TH</span>&gt;</span>id<span class="tag">&lt;/<span class="name">TH</span>&gt;</span><span class="tag">&lt;<span class="name">TH</span>&gt;</span>name<span class="tag">&lt;/<span class="name">TH</span>&gt;</span><span class="tag">&lt;<span class="name">TH</span>&gt;</span>is_del<span class="tag">&lt;/<span class="name">TH</span>&gt;</span><span class="tag">&lt;<span class="name">TH</span>&gt;</span>create_ts<span class="tag">&lt;/<span class="name">TH</span>&gt;</span> <span class="tag">&lt;<span class="name">TH</span>&gt;</span>update_ts<span class="tag">&lt;/<span class="name">TH</span>&gt;</span><span class="tag">&lt;/<span class="name">TR</span>&gt;</span><span class="tag">&lt;<span class="name">TR</span>&gt;</span><span class="tag">&lt;<span class="name">TD</span>&gt;</span>1<span class="tag">&lt;/<span class="name">TD</span>&gt;</span><span class="tag">&lt;<span class="name">TD</span>&gt;</span>wxnacy<span class="tag">&lt;/<span class="name">TD</span>&gt;</span><span class="tag">&lt;<span class="name">TD</span>&gt;</span>0<span class="tag">&lt;/<span class="name">TD</span>&gt;</span><span class="tag">&lt;<span class="name">TD</span>&gt;</span>2017-08-08 07:46:42<span class="tag">&lt;/<span class="name">TD</span>&gt;</span><span class="tag">&lt;<span class="name">TD</span>&gt;</span>2017-08-08 07:46:42<span class="tag">&lt;/<span class="name">TD</span>&gt;</span><span class="tag">&lt;/<span class="name">TR</span>&gt;</span><span class="tag">&lt;/<span class="name">TABLE</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2><span id="yi-xml-ge-shi-shu-chu">以xml格式输出</span><a href="#yi-xml-ge-shi-shu-chu" class="header-anchor"></a></h2><p>使用mysql客户端的参数–xml或者-X选项，可以将结果输出为xml格式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ mysql -u root --xml -p</div><div class="line">mysql&gt; select * from user;</div></pre></td></tr></table></figure></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0"?&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">resultset</span> <span class="attr">statement</span>=<span class="string">"select * from user;"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">row</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"id"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">field</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span>&gt;</span>wxnacy<span class="tag">&lt;/<span class="name">field</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"is_del"</span>&gt;</span>0<span class="tag">&lt;/<span class="name">field</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"create_ts"</span>&gt;</span>2017-08-08 07:46:42<span class="tag">&lt;/<span class="name">field</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"update_ts"</span>&gt;</span>2017-08-08 07:46:42<span class="tag">&lt;/<span class="name">field</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">row</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">resultset</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2><span id="shi-yong-pager-jin-ru-more-huo-less-cha-kan-jie-guo">使用pager进入more或less查看结果</span><a href="#shi-yong-pager-jin-ru-more-huo-less-cha-kan-jie-guo" class="header-anchor"></a></h2><p>当select查询结果很多时，一屏幕往往无法装下。使用pager命令后在进行select命令，可以进入类似linux中more或less查看文件的效果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mysql&gt; pager more</div><div class="line">PAGER set to &apos;more&apos;</div><div class="line">mysql&gt; select * from user;</div><div class="line">...</div><div class="line">mysql&gt; nopager #退出pager状态</div><div class="line">PAGER set to stdout</div></pre></td></tr></table></figure></p>
 
       
 
@@ -222,7 +221,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ansible</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
         		</li>
       		
 		</ul>
@@ -232,7 +231,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-select-format/">展开全文 >></a>
         </p>
       
 
@@ -509,6 +508,87 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/08/ansible-2017-08-08-item-basic-get-started/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-ansible-2017-08-08-item-basic-playbooks" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">ansible入门笔记2 Playbooks</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/" class="archive-article-date">
+  	<time datetime="2017-08-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>专辑：<a href="/2017/08/14/ansible-2017-08-14-album-study-notes/">ansible学习笔记</a></p>
+<blockquote>
+<p>Playbooks 是 Ansible的配置,部署,编排语言.他们可以被描述为一个需要希望远程主机执行命令的方案,或者一组IT程序运行的命令集合.</p>
+</blockquote>
+<p>一个playbook就是一个YAML文件，所以playbook文件一般都以.yml结尾，一个playbook文件由一个或多个play组成，每个play定义了在一个或多个远程主机上执行的一系列的task，其中每个task一般就是调用一个ansible的模块，如调用copy模块复制文件到远程主机或调用shell模块执行命令。</p>
+<h2><span id="jian-dan-de-pei-zhi">简单的配置</span><a href="#jian-dan-de-pei-zhi" class="header-anchor"></a></h2><p>配置deploy.yml完成进入远程服务器的某个目录并执行git pull操作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- hosts: wxnacy <span class="comment"># 它会默认使用/etc/ansible/hosts 中配置的服务器组名 也可以单独设置hosts地址</span></div><div class="line">  tasks:</div><div class="line">  - name: <span class="built_in">cd</span> path and git pull <span class="comment"># 命令名称</span></div><div class="line">    shell: git pull <span class="comment"># 执行命令</span></div><div class="line">    args:</div><div class="line">      <span class="built_in">chdir</span>: ~/workdir <span class="comment"># 进入目录</span></div></pre></td></tr></table></figure></p>
+<p>运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ ansible-playbook deploy.yml</div><div class="line"></div><div class="line">PLAY [wxnacy] **********************************************************************************************************************************************************************************************</div><div class="line"></div><div class="line">TASK [<span class="built_in">cd</span> path and git pull] *************************************************************************************************************************************************************************************</div><div class="line">ok: [wxnacy.server.org]</div><div class="line"></div><div class="line"></div><div class="line">PLAY RECAP *************************************************************************************************************************************************************************************************</div><div class="line">wxnacy.server.org             : ok=2    changed=1    unreachable=0    failed=0</div></pre></td></tr></table></figure></p>
+<p>执行完运行命令ansible会在webservers组中依次执行tasks，返回以上样式结果极为成功，结果通过红黄绿三种颜色标明了不同的执行结果，红色表示有task执行失败，黄色表示改变了远程主机状态。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ansible</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">展开全文 >></a>
         </p>
       
 
@@ -965,88 +1045,6 @@
 
 
   
-    <article id="post-algorithm-2017-08-05-bank-verify" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/05/algorithm-2017-08-05-bank-verify/">银行卡校验规则(Luhn算法)</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/05/algorithm-2017-08-05-bank-verify/" class="archive-article-date">
-  	<time datetime="2017-08-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="http://www.icloudyin.com/?p=61" target="_blank" rel="noopener">原文:http://www.icloudyin.com/?p=61</a></p>
-<ul>
-<li>检验数字算法（Luhn Check Digit Algorithm），也叫做模数10公式，是一种简单的算法，用于验证银行卡、信用卡号码的有效性的算法。对所有大型信用卡公司发行的信用卡都起作用，这些公司包括美国Express、护照、万事达卡、Discover和用餐者俱乐部等。这种算法最初是在20世纪60年代由一组数学家制定，现在Luhn检验数字算法属于大众，任何人都可以使用它。</li>
-<li>将卡号上的每个数字乘上其权重（weight），如果卡号上的数字个数是偶数，那么第一个数字的权重就是2，若是奇数，那么权重就给1，剩下来的数字，根据第一个数字依序给定。例如某信用卡卡号的数字个数为偶数，那么从第一个数字开始的权重依序为 2、1、2、1、2、1 …。</li>
-<li>如果数字乘上自己的权重后比9还大，那么就从这加权数字里扣除9。</li>
-<li>接下来将所有处理过的加权数字全部加总起来，并且除以10，取其余数。</li>
-</ul>
-<h2><span id="java">java</span><a href="#java" class="header-anchor"></a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">	<span class="keyword">boolean</span> even = <span class="keyword">true</span>;</div><div class="line">	<span class="keyword">for</span> ( <span class="keyword">int</span> index = digits.size() - <span class="number">1</span>; index &gt;= <span class="number">0</span>; index-- ) &#123;</div><div class="line">		<span class="keyword">int</span> digit = digits.get( index );</div><div class="line"></div><div class="line">		<span class="keyword">if</span> ( even ) &#123;</div><div class="line">			digit &lt;&lt;= <span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> ( digit &gt; <span class="number">9</span> ) &#123;</div><div class="line">			digit -= <span class="number">9</span>;</div><div class="line">		&#125;</div><div class="line">		sum += digit;</div><div class="line">		even = !even;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> ( <span class="number">10</span> - ( sum % <span class="number">10</span> ) ) % <span class="number">10</span>;</div></pre></td></tr></table></figure>
-<h2><span id="python">python</span><a href="#python" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_bank_card</span><span class="params">(card_num)</span>:</span></div><div class="line">    <span class="string">"""检查银行卡的合法性"""</span></div><div class="line">    total = <span class="number">0</span></div><div class="line">    even = <span class="keyword">True</span></div><div class="line">    <span class="keyword">if</span> isinstance(card_num, int):</div><div class="line">        card_num = str(card_num)</div><div class="line">    check_num = card_num[<span class="number">-1</span>]</div><div class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> card_num[<span class="number">-2</span>::<span class="number">-1</span>]:</div><div class="line">        item = int(item)</div><div class="line">        <span class="keyword">if</span> even:</div><div class="line">            item &lt;&lt;= <span class="number">1</span></div><div class="line">        <span class="keyword">if</span> item &gt; <span class="number">9</span>:</div><div class="line">            item -= <span class="number">9</span></div><div class="line">        total += item</div><div class="line">        even = <span class="keyword">not</span> even</div><div class="line">    <span class="keyword">return</span> int(check_num) <span class="keyword">is</span> (<span class="number">10</span> - (total % <span class="number">10</span>)) % <span class="number">10</span></div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/05/algorithm-2017-08-05-bank-verify/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/21/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><span class="page-number current">22</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/23/">Next &raquo;</a>
@@ -1173,15 +1171,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1209,19 +1211,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1234,10 +1232,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ssh</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1281,11 +1275,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">微信</a>
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
+                <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1305,11 +1299,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ansible</a>
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color3">ansible</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1317,15 +1311,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
             
             <div class="clearfix"></div>

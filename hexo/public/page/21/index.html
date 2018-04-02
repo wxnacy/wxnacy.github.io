@@ -181,6 +181,80 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-python-2017-08-11-os-file" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/11/python-2017-08-11-os-file/">Python 操作目录文件相关命令</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/11/python-2017-08-11-os-file/" class="archive-article-date">
+  	<time datetime="2017-08-10T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"></div><div class="line">cur_file = sys.argv[<span class="number">0</span>]              <span class="comment"># ==&gt; 获取当前文件名</span></div><div class="line">print(cur_file)</div><div class="line"><span class="comment"># python test.py                    ==&gt; test.py</span></div><div class="line"><span class="comment"># python test/test.py               ==&gt; test/test.py</span></div><div class="line"><span class="comment"># python /Users/wxnacy/test/test.py ==&gt; /Users/wxnacy/test/test.py</span></div><div class="line"><span class="comment"># __file__ 可以达到同样效果</span></div><div class="line"></div><div class="line">cmd_dir = os.getcwd()               <span class="comment"># ==&gt; 获取命令运行目录绝对路径</span></div><div class="line">print(cmd_dir)</div><div class="line"><span class="comment"># python test.py                    ==&gt; /Users/wxnacy/test</span></div><div class="line"><span class="comment"># python test/test.py               ==&gt; /Users/wxnacy</span></div><div class="line"></div><div class="line">print(os.listdir(cmd_dir))          <span class="comment"># ==&gt; 获取目录下的所有文件</span></div><div class="line">print(os.path.exists(cmd_dir))      <span class="comment"># ==&gt; 判断文件或目录是否存在</span></div><div class="line">print(os.path.isfile(cmd_dir))      <span class="comment"># ==&gt; 判断是否为文件</span></div><div class="line">print(os.path.isdir(cmd_dir))       <span class="comment"># ==&gt; 判断是否为目录</span></div><div class="line"></div><div class="line">dirname = os.path.dirname(cur_file) <span class="comment"># ==&gt; 获取文件目录名</span></div><div class="line">print(dirname)</div><div class="line"><span class="comment"># os.path.dirname('test.py')        ==&gt; 空</span></div><div class="line"><span class="comment"># os.path.dirname('test/test.py')   ==&gt; test</span></div><div class="line"></div><div class="line">abspath = os.path.abspath(cur_file) <span class="comment"># ==&gt; 获取文件名的绝对路径</span></div><div class="line">print(abspath)</div><div class="line"><span class="comment"># os.path.abspath('')               ==&gt; 运行命令所在目录</span></div><div class="line"><span class="comment"># os.path.abspath('test/test.py')   ==&gt; /Users/wxnacy/test/test.py</span></div><div class="line"><span class="comment"># os.path.abspath('/Users/wxnacy')  ==&gt; /Users/wxnacy</span></div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/11/python-2017-08-11-os-file/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-mysql-2017-08-11-item-daily" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -587,19 +661,19 @@
 
 
   
-    <article id="post-mysql-2017-08-09-prompt" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mysql-2017-08-09-skill" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-prompt/">mysql prompt 提示符</a>
+      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-skill/">mysql 小技巧</a>
     </h1>
   
 
         
-        <a href="/2017/08/09/mysql-2017-08-09-prompt/" class="archive-article-date">
+        <a href="/2017/08/09/mysql-2017-08-09-skill/" class="archive-article-date">
   	<time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
 </a>
         
@@ -607,12 +681,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>原文：<a href="http://www.thegeekstuff.com/2010/02/mysql_ps1-6-examples-to-make-your-mysql-prompt-like-angelina-jolie/" target="_blank" rel="noopener">http://www.thegeekstuff.com/2010/02/mysql_ps1-6-examples-to-make-your-mysql-prompt-like-angelina-jolie/</a></p>
-<h2><span id="zai-ming-ling-xing-zhong-shi-yong">在命令行中使用</span><a href="#zai-ming-ling-xing-zhong-shi-yong" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mysql&gt; prompt \u@\d&gt;</div><div class="line">PROMPT set to &apos;\u@\d&gt; &apos;</div><div class="line">root@(none)&gt; use test</div><div class="line">Reading table information for completion of table and column names</div><div class="line">You can turn off this feature to get a quicker startup with -A</div><div class="line"></div><div class="line">Database changed</div><div class="line">root@test&gt;</div></pre></td></tr></table></figure>
-<h2><span id="zai-ming-ling-xing-can-shu-zhong-shi-yong">在命令行参数中使用</span><a href="#zai-ming-ling-xing-can-shu-zhong-shi-yong" class="header-anchor"></a></h2><p>需要使用双引号括起来<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wxnacy@wxnacydeMacBook-Pro: ~ $ mysql -u root -p --prompt=&quot;\u@\d&gt; &quot;    </div><div class="line">root@(none)&gt; use test;</div><div class="line">root@test&gt;</div></pre></td></tr></table></figure></p>
-<h3><span id="zai-bash-ceng-xiu-gai-mysql-ps1-bian-liang">在bash层修改 MYSQL_PS1 变量</span><a href="#zai-bash-ceng-xiu-gai-mysql-ps1-bian-liang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wxnacy@wxnacydeMacBook-Pro: ~ $ <span class="built_in">export</span> MYSQL_PS1=<span class="string">"\u@\d&gt; "</span>                              </div><div class="line">wxnacy@wxnacydeMacBook-Pro: ~ $ mysql -u root -p                            </div><div class="line">root@(none)&gt;</div></pre></td></tr></table></figure>
-<h2><span id="zai-etc-my-cnf-zhong-pei-zhi">在/etc/my.cnf中配置</span><a href="#zai-etc-my-cnf-zhong-pei-zhi" class="header-anchor"></a></h2><p>也可以在配置中一劳永逸<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[mysql]  </div><div class="line">prompt=\\u@\\d&gt;\\ <span class="comment"># 要多加一个反斜线\</span></div><div class="line">  </div><div class="line">又或者：  </div><div class="line">[mysql]  </div><div class="line">prompt=<span class="string">"\u@\d&gt; "</span></div></pre></td></tr></table></figure></p>
-<h3><span id="geng-duo-can-shu">更多参数</span><a href="#geng-duo-can-shu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">Option  Description  </div><div class="line">  </div><div class="line">\c  A counter that increments <span class="keyword">for</span> each statement you issue  </div><div class="line">\D  The full current date  </div><div class="line">\d  The default database  </div><div class="line">\h  The server host  </div><div class="line">\l  The current delimiter (new <span class="keyword">in</span> 5.0.25)  </div><div class="line">\m  Minutes of the current time  </div><div class="line">\n  A newline character  </div><div class="line">\O  The current month <span class="keyword">in</span> three-letter format (Jan, Feb, …)  </div><div class="line">\o  The current month <span class="keyword">in</span> numeric format  </div><div class="line">\P  am/pm  </div><div class="line">\p  The current TCP/IP port or socket file  </div><div class="line">\R  The current time, <span class="keyword">in</span> 24-hour military time (0–23)  </div><div class="line">\r  The current time, standard 12-hour time (1–12)  </div><div class="line">\S  Semicolon  </div><div class="line">\s  Seconds of the current time  </div><div class="line">\t  A tab character  </div><div class="line">\U  Your full user_name@host_name account name  </div><div class="line">   </div><div class="line">\u  Your user name  </div><div class="line">\v  The server version  </div><div class="line">\w  The current day of the week <span class="keyword">in</span> three-letter format (Mon, Tue, …)  </div><div class="line">\Y  The current year, four digits  </div><div class="line">\y  The current year, two digits  </div><div class="line">\_  A space  </div><div class="line">\   A space (a space follows the backslash)  </div><div class="line">\<span class="string">'  Single quote  </span></div><div class="line"><span class="string">\"  Double quote  </span></div><div class="line"><span class="string">\\  A literal “\” backslash character  </span></div><div class="line"><span class="string">\x  x, for any “x” not listed above</span></div></pre></td></tr></table></figure>
+        <h2><span id="shi-yong-tee-zhi-ding-shu-ru-ri-zhi">使用tee指定输入日志</span><a href="#shi-yong-tee-zhi-ding-shu-ru-ri-zhi" class="header-anchor"></a></h2><p>tee命令可以将mysql操作日志输出到指定文件中，如果文件已存在则追加。命令行参数可以使用–tee=file_path，命令中可以使用tee或\T,想要退出使用日志可以使用\t<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ mysql -u root -p --tee=mysql.log</div><div class="line">Logging to file &apos;mysql.log&apos;</div><div class="line">mysql&gt; tee mysql.log 或 \T mysql.log</div><div class="line">Logging to file &apos;mysql.log&apos;</div><div class="line">mysql&gt; \t mysql.log</div><div class="line">Outfile disabled</div></pre></td></tr></table></figure></p>
+<h2><span id="shi-yong-os-ming-ling">使用os命令</span><a href="#shi-yong-os-ming-ling" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mysql&gt; system uname;</div><div class="line">Darwin</div><div class="line">mysql&gt; \! uname;</div><div class="line">Darwin</div></pre></td></tr></table></figure>
+<h2><span id="zhi-xing-sql-wen-jian">执行sql文件</span><a href="#zhi-xing-sql-wen-jian" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; source mysql.sql</div></pre></td></tr></table></figure>
 
       
 
@@ -636,7 +707,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-prompt/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-skill/">展开全文 >></a>
         </p>
       
 
@@ -832,19 +903,19 @@
 
 
   
-    <article id="post-mysql-2017-08-09-select-format" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mysql-2017-08-09-prompt" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-select-format/">mysql select 格式化输出</a>
+      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-prompt/">mysql prompt 提示符</a>
     </h1>
   
 
         
-        <a href="/2017/08/09/mysql-2017-08-09-select-format/" class="archive-article-date">
+        <a href="/2017/08/09/mysql-2017-08-09-prompt/" class="archive-article-date">
   	<time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
 </a>
         
@@ -852,13 +923,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2><span id="shi-yong-g-shu-chu-jie-guo-an-xing-chui-zhi-xian-shi-jie-guo">使用\G输出结果按行垂直显示结果</span><a href="#shi-yong-g-shu-chu-jie-guo-an-xing-chui-zhi-xian-shi-jie-guo" class="header-anchor"></a></h2><p>当使用命令 select 结果，如果表属性特别多的时候，查看起来非常难受，在 select 语句<br>后使用<code>\G</code>(必须大写)，可以让结果按行垂直显示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select * from user\G;</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">*************************** 1. row ***************************</div><div class="line">       id: 1</div><div class="line">     name: wxnacy</div><div class="line">   is_del: 0</div><div class="line">create_ts: 2017-08-08 07:46:42</div><div class="line">update_ts: 2017-08-08 07:46:42</div><div class="line">1 row in set (0.00 sec)</div></pre></td></tr></table></figure>
-<h2><span id="yi-html-ge-shi-shu-chu">以html格式输出</span><a href="#yi-html-ge-shi-shu-chu" class="header-anchor"></a></h2><p>使用mysql客户端的参数–html或者-T，则所有SQL的查询结果会自动生成为html的table代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ mysql -u root --html -p</div><div class="line">mysql&gt; select * from user;</div></pre></td></tr></table></figure></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">TABLE</span> <span class="attr">BORDER</span>=<span class="string">1</span>&gt;</span><span class="tag">&lt;<span class="name">TR</span>&gt;</span><span class="tag">&lt;<span class="name">TH</span>&gt;</span>id<span class="tag">&lt;/<span class="name">TH</span>&gt;</span><span class="tag">&lt;<span class="name">TH</span>&gt;</span>name<span class="tag">&lt;/<span class="name">TH</span>&gt;</span><span class="tag">&lt;<span class="name">TH</span>&gt;</span>is_del<span class="tag">&lt;/<span class="name">TH</span>&gt;</span><span class="tag">&lt;<span class="name">TH</span>&gt;</span>create_ts<span class="tag">&lt;/<span class="name">TH</span>&gt;</span> <span class="tag">&lt;<span class="name">TH</span>&gt;</span>update_ts<span class="tag">&lt;/<span class="name">TH</span>&gt;</span><span class="tag">&lt;/<span class="name">TR</span>&gt;</span><span class="tag">&lt;<span class="name">TR</span>&gt;</span><span class="tag">&lt;<span class="name">TD</span>&gt;</span>1<span class="tag">&lt;/<span class="name">TD</span>&gt;</span><span class="tag">&lt;<span class="name">TD</span>&gt;</span>wxnacy<span class="tag">&lt;/<span class="name">TD</span>&gt;</span><span class="tag">&lt;<span class="name">TD</span>&gt;</span>0<span class="tag">&lt;/<span class="name">TD</span>&gt;</span><span class="tag">&lt;<span class="name">TD</span>&gt;</span>2017-08-08 07:46:42<span class="tag">&lt;/<span class="name">TD</span>&gt;</span><span class="tag">&lt;<span class="name">TD</span>&gt;</span>2017-08-08 07:46:42<span class="tag">&lt;/<span class="name">TD</span>&gt;</span><span class="tag">&lt;/<span class="name">TR</span>&gt;</span><span class="tag">&lt;/<span class="name">TABLE</span>&gt;</span></div></pre></td></tr></table></figure>
-<h2><span id="yi-xml-ge-shi-shu-chu">以xml格式输出</span><a href="#yi-xml-ge-shi-shu-chu" class="header-anchor"></a></h2><p>使用mysql客户端的参数–xml或者-X选项，可以将结果输出为xml格式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ mysql -u root --xml -p</div><div class="line">mysql&gt; select * from user;</div></pre></td></tr></table></figure></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0"?&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">resultset</span> <span class="attr">statement</span>=<span class="string">"select * from user;"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">row</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"id"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">field</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span>&gt;</span>wxnacy<span class="tag">&lt;/<span class="name">field</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"is_del"</span>&gt;</span>0<span class="tag">&lt;/<span class="name">field</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"create_ts"</span>&gt;</span>2017-08-08 07:46:42<span class="tag">&lt;/<span class="name">field</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"update_ts"</span>&gt;</span>2017-08-08 07:46:42<span class="tag">&lt;/<span class="name">field</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">row</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">resultset</span>&gt;</span></div></pre></td></tr></table></figure>
-<h2><span id="shi-yong-pager-jin-ru-more-huo-less-cha-kan-jie-guo">使用pager进入more或less查看结果</span><a href="#shi-yong-pager-jin-ru-more-huo-less-cha-kan-jie-guo" class="header-anchor"></a></h2><p>当select查询结果很多时，一屏幕往往无法装下。使用pager命令后在进行select命令，可以进入类似linux中more或less查看文件的效果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mysql&gt; pager more</div><div class="line">PAGER set to &apos;more&apos;</div><div class="line">mysql&gt; select * from user;</div><div class="line">...</div><div class="line">mysql&gt; nopager #退出pager状态</div><div class="line">PAGER set to stdout</div></pre></td></tr></table></figure></p>
+        <p>原文：<a href="http://www.thegeekstuff.com/2010/02/mysql_ps1-6-examples-to-make-your-mysql-prompt-like-angelina-jolie/" target="_blank" rel="noopener">http://www.thegeekstuff.com/2010/02/mysql_ps1-6-examples-to-make-your-mysql-prompt-like-angelina-jolie/</a></p>
+<h2><span id="zai-ming-ling-xing-zhong-shi-yong">在命令行中使用</span><a href="#zai-ming-ling-xing-zhong-shi-yong" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mysql&gt; prompt \u@\d&gt;</div><div class="line">PROMPT set to &apos;\u@\d&gt; &apos;</div><div class="line">root@(none)&gt; use test</div><div class="line">Reading table information for completion of table and column names</div><div class="line">You can turn off this feature to get a quicker startup with -A</div><div class="line"></div><div class="line">Database changed</div><div class="line">root@test&gt;</div></pre></td></tr></table></figure>
+<h2><span id="zai-ming-ling-xing-can-shu-zhong-shi-yong">在命令行参数中使用</span><a href="#zai-ming-ling-xing-can-shu-zhong-shi-yong" class="header-anchor"></a></h2><p>需要使用双引号括起来<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wxnacy@wxnacydeMacBook-Pro: ~ $ mysql -u root -p --prompt=&quot;\u@\d&gt; &quot;    </div><div class="line">root@(none)&gt; use test;</div><div class="line">root@test&gt;</div></pre></td></tr></table></figure></p>
+<h3><span id="zai-bash-ceng-xiu-gai-mysql-ps1-bian-liang">在bash层修改 MYSQL_PS1 变量</span><a href="#zai-bash-ceng-xiu-gai-mysql-ps1-bian-liang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wxnacy@wxnacydeMacBook-Pro: ~ $ <span class="built_in">export</span> MYSQL_PS1=<span class="string">"\u@\d&gt; "</span>                              </div><div class="line">wxnacy@wxnacydeMacBook-Pro: ~ $ mysql -u root -p                            </div><div class="line">root@(none)&gt;</div></pre></td></tr></table></figure>
+<h2><span id="zai-etc-my-cnf-zhong-pei-zhi">在/etc/my.cnf中配置</span><a href="#zai-etc-my-cnf-zhong-pei-zhi" class="header-anchor"></a></h2><p>也可以在配置中一劳永逸<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[mysql]  </div><div class="line">prompt=\\u@\\d&gt;\\ <span class="comment"># 要多加一个反斜线\</span></div><div class="line">  </div><div class="line">又或者：  </div><div class="line">[mysql]  </div><div class="line">prompt=<span class="string">"\u@\d&gt; "</span></div></pre></td></tr></table></figure></p>
+<h3><span id="geng-duo-can-shu">更多参数</span><a href="#geng-duo-can-shu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">Option  Description  </div><div class="line">  </div><div class="line">\c  A counter that increments <span class="keyword">for</span> each statement you issue  </div><div class="line">\D  The full current date  </div><div class="line">\d  The default database  </div><div class="line">\h  The server host  </div><div class="line">\l  The current delimiter (new <span class="keyword">in</span> 5.0.25)  </div><div class="line">\m  Minutes of the current time  </div><div class="line">\n  A newline character  </div><div class="line">\O  The current month <span class="keyword">in</span> three-letter format (Jan, Feb, …)  </div><div class="line">\o  The current month <span class="keyword">in</span> numeric format  </div><div class="line">\P  am/pm  </div><div class="line">\p  The current TCP/IP port or socket file  </div><div class="line">\R  The current time, <span class="keyword">in</span> 24-hour military time (0–23)  </div><div class="line">\r  The current time, standard 12-hour time (1–12)  </div><div class="line">\S  Semicolon  </div><div class="line">\s  Seconds of the current time  </div><div class="line">\t  A tab character  </div><div class="line">\U  Your full user_name@host_name account name  </div><div class="line">   </div><div class="line">\u  Your user name  </div><div class="line">\v  The server version  </div><div class="line">\w  The current day of the week <span class="keyword">in</span> three-letter format (Mon, Tue, …)  </div><div class="line">\Y  The current year, four digits  </div><div class="line">\y  The current year, two digits  </div><div class="line">\_  A space  </div><div class="line">\   A space (a space follows the backslash)  </div><div class="line">\<span class="string">'  Single quote  </span></div><div class="line"><span class="string">\"  Double quote  </span></div><div class="line"><span class="string">\\  A literal “\” backslash character  </span></div><div class="line"><span class="string">\x  x, for any “x” not listed above</span></div></pre></td></tr></table></figure>
 
       
 
@@ -882,83 +952,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-select-format/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-mysql-2017-08-09-skill" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-skill/">mysql 小技巧</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/09/mysql-2017-08-09-skill/" class="archive-article-date">
-  	<time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2><span id="shi-yong-tee-zhi-ding-shu-ru-ri-zhi">使用tee指定输入日志</span><a href="#shi-yong-tee-zhi-ding-shu-ru-ri-zhi" class="header-anchor"></a></h2><p>tee命令可以将mysql操作日志输出到指定文件中，如果文件已存在则追加。命令行参数可以使用–tee=file_path，命令中可以使用tee或\T,想要退出使用日志可以使用\t<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ mysql -u root -p --tee=mysql.log</div><div class="line">Logging to file &apos;mysql.log&apos;</div><div class="line">mysql&gt; tee mysql.log 或 \T mysql.log</div><div class="line">Logging to file &apos;mysql.log&apos;</div><div class="line">mysql&gt; \t mysql.log</div><div class="line">Outfile disabled</div></pre></td></tr></table></figure></p>
-<h2><span id="shi-yong-os-ming-ling">使用os命令</span><a href="#shi-yong-os-ming-ling" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mysql&gt; system uname;</div><div class="line">Darwin</div><div class="line">mysql&gt; \! uname;</div><div class="line">Darwin</div></pre></td></tr></table></figure>
-<h2><span id="zhi-xing-sql-wen-jian">执行sql文件</span><a href="#zhi-xing-sql-wen-jian" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; source mysql.sql</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-skill/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-prompt/">展开全文 >></a>
         </p>
       
 
@@ -1114,15 +1108,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1150,19 +1148,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1175,10 +1169,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ssh</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1222,11 +1212,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">微信</a>
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
+                <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1246,11 +1236,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ansible</a>
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color3">ansible</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1258,15 +1248,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
             
             <div class="clearfix"></div>
