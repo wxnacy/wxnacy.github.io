@@ -1,7 +1,10 @@
 ---
 title: Mysql 复制表的几种方式
-tags: [mysql]
+tags:
+  - mysql
+date: 2018-04-04 10:10:56
 ---
+
 
 介绍几种复制表的方式
 <!-- more --><!-- toc -->

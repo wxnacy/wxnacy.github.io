@@ -16,16 +16,16 @@ def req():
     requests.get('http://localhost:4001/{}'.format(time.time()))
 
 scheduler = APScheduler(app=app)
-scheduler.add_job('statistics_visitor', VisitorLogDate.statistics_visitor,
-                  trigger='interval', seconds=100)
+#  scheduler.add_job('statistics_visitor', VisitorLogDate.statistics_visitor,
+                  #  trigger='interval', seconds=5)
 scheduler.add_job('statistics_article_data', ArticleData.statistics_article_data,
                   trigger='interval', seconds=66)
 scheduler.add_job('statistics_pv', Article.statistics_pv,
                   trigger='interval', seconds=360)
 scheduler.add_job('statistics_article', Article.statistics_article,
                   trigger='interval', seconds=350)
-scheduler.add_job('test', req,
-                  trigger='interval', seconds=1)
+#  scheduler.add_job('test', req,
+                  #  trigger='interval', seconds=1)
 scheduler.start()
 
 if __name__ == "__main__":

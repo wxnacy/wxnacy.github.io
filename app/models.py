@@ -339,6 +339,7 @@ class VisitorLogDate(BaseModel, db.Model):
     def statistics_visitor(cls):
 
         def _statistics(query_day):
+
             VL = VisitorLog
             #  res = VL.query(VL.md5, func.count(VL.md5)).group_by(VL.md5).all()
             sql = 'is_bot = 0 and is_available = 1 and url like :url and\

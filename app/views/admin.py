@@ -57,6 +57,7 @@ def list_article():
 @admin_bp.route('/visitor_log_date')
 def list_visitor_log_date():
     args = BaseRequest.get_args()
+    VisitorLogDate.statistics_visitor()
     pagination = VisitorLogDate.query_by(**args)
     return render_template('admin/visitor_log_date_list.html',
         pagination=pagination)
