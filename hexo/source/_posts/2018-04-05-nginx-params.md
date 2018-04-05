@@ -1,7 +1,10 @@
 ---
 title: Nginx 命令行参数
-tags: [nginx]
+tags:
+  - nginx
+date: 2018-04-05 10:40:59
 ---
+
 
 简单介绍下 Nginx 的命令行参数
 <!-- more --><!-- toc -->
