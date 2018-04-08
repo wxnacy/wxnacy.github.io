@@ -4,6 +4,10 @@ iabbrev <buffer> h2 ##
 iabbrev <buffer> h3 ###
 iabbrev <buffer> h4 ####
 
+iabbrev <buffer> *1 **<esc>i
+iabbrev <buffer> *2 ****<esc>hi
+iabbrev <buffer> *3 ******<esc>hhi
+
 iabbrev <buffer> `b ```bash<cr>```<esc>O
 iabbrev <buffer> `p ```python<cr>```<esc>O#!/usr/bin/env python<cr>
             \# -*- coding:utf-8 -*-<cr>
