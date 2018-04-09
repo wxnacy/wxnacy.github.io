@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="wxnacy 博客">
 <meta property="og:description" content="有这些命令就够了">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-10-13T07:56:01.000Z">
+<meta property="og:updated_time" content="2018-04-09T10:25:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git 常用命令">
 <meta name="twitter:description" content="有这些命令就够了">
@@ -218,7 +218,7 @@
 <li><a href="#ssh-key">ssh-key</a></li>
 <li><a href="#chu-shi-hua-xiang-mu">初始化项目</a></li>
 <li><a href="#shan-chu-wen-jian">删除文件</a></li>
-<li><a href="#xiu-gai-yong-hu-xin-xi">修改用户信息</a></li>
+<li><a href="#yong-hu-xin-xi">用户信息</a></li>
 <li><a href="#ji-zhu-mi-ma">记住密码</a></li>
 <li><a href="#che-xiao-cao-zuo">撤销操作</a><ul>
 <li><a href="#chong-xin-ti-jiao">重新提交</a></li>
@@ -242,7 +242,7 @@
 <h2><span id="ssh-key">ssh-key</span><a href="#ssh-key" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C <span class="string">"<span class="variable">$your_email</span>"</span>          <span class="comment"># 获取 sshkey</span></div><div class="line">cat ~/.ssh/id_rsa.pub                       <span class="comment"># 查看 sshkey</span></div></pre></td></tr></table></figure>
 <h2><span id="chu-shi-hua-xiang-mu">初始化项目</span><a href="#chu-shi-hua-xiang-mu" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> project_root                             <span class="comment"># 进入项目目录</span></div><div class="line">git init                                    <span class="comment"># 初始化git仓库</span></div><div class="line">git add .                                   <span class="comment"># 添加文件到仓库</span></div><div class="line">git commit -m <span class="string">'init commit'</span>                 <span class="comment"># 提交代码到本地仓库</span></div><div class="line">git remote add origin <span class="variable">$&#123;repository_path&#125;</span>    <span class="comment"># 将项目关联到git server</span></div><div class="line">git pull origin master                      <span class="comment"># 同步代码</span></div><div class="line">git push origin master                      <span class="comment"># push代码到远程仓库</span></div><div class="line">git <span class="built_in">clone</span> <span class="variable">$&#123;repository_path&#125;</span>                <span class="comment"># 新的位置clone项目</span></div></pre></td></tr></table></figure>
 <h2><span id="shan-chu-wen-jian">删除文件</span><a href="#shan-chu-wen-jian" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">rm -r file_path</div><div class="line">git rm -r <span class="variable">$&#123;file_path&#125;</span></div><div class="line">git commit -m <span class="string">'remove'</span></div><div class="line">git pull origin master</div><div class="line">git push origin master</div></pre></td></tr></table></figure>
-<h2><span id="xiu-gai-yong-hu-xin-xi">修改用户信息</span><a href="#xiu-gai-yong-hu-xin-xi" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name wxnacy            <span class="comment"># 配置用户名</span></div><div class="line">git config --global user.email xxx@qq.com       <span class="comment"># 配置邮件</span></div></pre></td></tr></table></figure>
+<h2><span id="yong-hu-xin-xi">用户信息</span><a href="#yong-hu-xin-xi" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git config --global user.name wxnacy            <span class="comment"># 配置用户名</span></div><div class="line">git config --global user.email xxx@qq.com       <span class="comment"># 配置邮件</span></div><div class="line"></div><div class="line">$ git config user.name      <span class="comment"># 查看登录名</span></div><div class="line">$ git config user.email     <span class="comment"># 查看登录邮箱</span></div></pre></td></tr></table></figure>
 <h2><span id="ji-zhu-mi-ma">记住密码</span><a href="#ji-zhu-mi-ma" class="header-anchor"></a></h2><p>在服务器上 <code>clone</code> 代码第一次通常会提示输入密码，为了下次不再提示，可以在 <code>clone</code> 后做如下操作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config credential.helper store</div></pre></td></tr></table></figure></p>
 <h2><span id="che-xiao-cao-zuo">撤销操作</span><a href="#che-xiao-cao-zuo" class="header-anchor"></a></h2><h3><span id="chong-xin-ti-jiao">重新提交</span><a href="#chong-xin-ti-jiao" class="header-anchor"></a></h3><p>提交后如果发现遗漏可以使用 <code>git commit --amend</code> 重新提交<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git commit -m <span class="string">'initial commit'</span></div><div class="line">git add forgotten_file</div><div class="line">git commit --amend</div></pre></td></tr></table></figure></p>
 <h3><span id="che-xiao-ti-jiao-wen-jian">撤销提交文件</span><a href="#che-xiao-ti-jiao-wen-jian" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">git checkout -- &lt;file&gt;              <span class="comment"># 取消对文件的修改。还原到最近的版本，废弃本地做的修改。</span></div><div class="line">git reset HEAD &lt;file&gt;...            <span class="comment"># 取消已经暂存的文件。即，撤销先前"git add"的操作</span></div><div class="line">git reset HEAD^                     <span class="comment"># 回退所有内容到上一个版本</span></div><div class="line">git reset HEAD^ a.py                <span class="comment"># 回退a.py这个文件的版本到上一个版本</span></div><div class="line">git reset –soft HEAD~3              <span class="comment"># 向前回退到第3个版本</span></div><div class="line">git reset –hard origin/master       <span class="comment"># 将本地的状态回退到和远程的一样</span></div><div class="line">git reset 057d                      <span class="comment"># 回退到某个版本</span></div><div class="line">git revert HEAD                     <span class="comment"># 回退到上一次提交的状态，按照某一次的commit完全反向的进行一次commit.(代码回滚到上个版本，并提交git)</span></div></pre></td></tr></table></figure>
@@ -291,11 +291,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/05/algorithm-2017-08-05-identity-verify/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/08/05/algorithm-2017-08-05-bank-verify/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          身份证号码校验规则
+          银行卡校验规则(Luhn算法)
         
       </div>
     </a>
@@ -329,7 +329,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="ssh-key">ssh-key</span><a href="#ssh-key" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="chu-shi-hua-xiang-mu">&#x521D;&#x59CB;&#x5316;&#x9879;&#x76EE;</span><a href="#chu-shi-hua-xiang-mu" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="shan-chu-wen-jian">&#x5220;&#x9664;&#x6587;&#x4EF6;</span><a href="#shan-chu-wen-jian" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text"><span id="xiu-gai-yong-hu-xin-xi">&#x4FEE;&#x6539;&#x7528;&#x6237;&#x4FE1;&#x606F;</span><a href="#xiu-gai-yong-hu-xin-xi" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text"><span id="ji-zhu-mi-ma">&#x8BB0;&#x4F4F;&#x5BC6;&#x7801;</span><a href="#ji-zhu-mi-ma" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text"><span id="che-xiao-cao-zuo">&#x64A4;&#x9500;&#x64CD;&#x4F5C;</span><a href="#che-xiao-cao-zuo" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">6.1.</span> <span class="toc-text"><span id="chong-xin-ti-jiao">&#x91CD;&#x65B0;&#x63D0;&#x4EA4;</span><a href="#chong-xin-ti-jiao" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">6.2.</span> <span class="toc-text"><span id="che-xiao-ti-jiao-wen-jian">&#x64A4;&#x9500;&#x63D0;&#x4EA4;&#x6587;&#x4EF6;</span><a href="#che-xiao-ti-jiao-wen-jian" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">7.</span> <span class="toc-text"><span id="xiu-gai-remote-url">&#x4FEE;&#x6539;remote url</span><a href="#xiu-gai-remote-url" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">8.</span> <span class="toc-text"><span id="fen-zhi">&#x5206;&#x652F;</span><a href="#fen-zhi" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">9.</span> <span class="toc-text"><span id="biao-qian">&#x6807;&#x7B7E;</span><a href="#biao-qian" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">10.</span> <span class="toc-text"><span id="ti-jiao-jian-cha">&#x63D0;&#x4EA4;&#x68C0;&#x67E5;</span><a href="#ti-jiao-jian-cha" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">10.1.</span> <span class="toc-text"><span id="status">status</span><a href="#status" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">10.2.</span> <span class="toc-text"><span id="log">log</span><a href="#log" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">10.3.</span> <span class="toc-text"><span id="show">show</span><a href="#show" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">10.4.</span> <span class="toc-text"><span id="diff">diff</span><a href="#diff" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">11.</span> <span class="toc-text"><span id="can-kao-zi-liao">&#x53C2;&#x8003;&#x8D44;&#x6599;</span><a href="#can-kao-zi-liao" class="header-anchor"></a></span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="ssh-key">ssh-key</span><a href="#ssh-key" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="chu-shi-hua-xiang-mu">&#x521D;&#x59CB;&#x5316;&#x9879;&#x76EE;</span><a href="#chu-shi-hua-xiang-mu" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="shan-chu-wen-jian">&#x5220;&#x9664;&#x6587;&#x4EF6;</span><a href="#shan-chu-wen-jian" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text"><span id="yong-hu-xin-xi">&#x7528;&#x6237;&#x4FE1;&#x606F;</span><a href="#yong-hu-xin-xi" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text"><span id="ji-zhu-mi-ma">&#x8BB0;&#x4F4F;&#x5BC6;&#x7801;</span><a href="#ji-zhu-mi-ma" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text"><span id="che-xiao-cao-zuo">&#x64A4;&#x9500;&#x64CD;&#x4F5C;</span><a href="#che-xiao-cao-zuo" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">6.1.</span> <span class="toc-text"><span id="chong-xin-ti-jiao">&#x91CD;&#x65B0;&#x63D0;&#x4EA4;</span><a href="#chong-xin-ti-jiao" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">6.2.</span> <span class="toc-text"><span id="che-xiao-ti-jiao-wen-jian">&#x64A4;&#x9500;&#x63D0;&#x4EA4;&#x6587;&#x4EF6;</span><a href="#che-xiao-ti-jiao-wen-jian" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">7.</span> <span class="toc-text"><span id="xiu-gai-remote-url">&#x4FEE;&#x6539;remote url</span><a href="#xiu-gai-remote-url" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">8.</span> <span class="toc-text"><span id="fen-zhi">&#x5206;&#x652F;</span><a href="#fen-zhi" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">9.</span> <span class="toc-text"><span id="biao-qian">&#x6807;&#x7B7E;</span><a href="#biao-qian" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">10.</span> <span class="toc-text"><span id="ti-jiao-jian-cha">&#x63D0;&#x4EA4;&#x68C0;&#x67E5;</span><a href="#ti-jiao-jian-cha" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">10.1.</span> <span class="toc-text"><span id="status">status</span><a href="#status" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">10.2.</span> <span class="toc-text"><span id="log">log</span><a href="#log" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">10.3.</span> <span class="toc-text"><span id="show">show</span><a href="#show" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">10.4.</span> <span class="toc-text"><span id="diff">diff</span><a href="#diff" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">11.</span> <span class="toc-text"><span id="can-kao-zi-liao">&#x53C2;&#x8003;&#x8D44;&#x6599;</span><a href="#can-kao-zi-liao" class="header-anchor"></a></span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -518,6 +518,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
@@ -527,10 +531,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -566,11 +566,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+                <a href="javascript:void(0)" class="js-tag color2">jinja2</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">jinja2</a>
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -590,11 +590,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">微信</a>
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
+                <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -630,11 +630,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
