@@ -277,7 +277,7 @@ function visitor(){
             referrer: document.referrer,
             ext_property: data
         }
-        fetchPost('/api/v1/visitor_log',params).then(function(data){
+        fetchPost('https://wxnacy.com/api/v1/visitor_log',params).then(function(data){
         })
     })
 }
