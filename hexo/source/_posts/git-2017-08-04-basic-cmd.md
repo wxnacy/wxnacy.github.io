@@ -32,10 +32,13 @@ git commit -m 'remove'
 git pull origin master
 git push origin master
 ```
-## 修改用户信息
+## 用户信息
 ```bash
 git config --global user.name wxnacy            # 配置用户名
 git config --global user.email xxx@qq.com       # 配置邮件
+
+$ git config user.name      # 查看登录名
+$ git config user.email     # 查看登录邮箱
 ```
 
 ## 记住密码
