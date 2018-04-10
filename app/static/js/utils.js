@@ -167,3 +167,35 @@ function goToEditHtml(id) {
     }
 }
 
+function fetchGet(url) {
+    return fetchRequest(url, 'GET')
+}
+function fetchPost(url, params) {
+    return fetchRequest(url, 'POST', params)
+}
+function fetchPut(url, params) {
+    return fetchRequest(url, 'PUT', params)
+}
+function fetchRequest(url, method, params) {
+    var headers = {
+        "authorization": "XXXXXXXXX"
+    }
+    if( method.toLowerCase() == 'post' ){
+        headers['Content-Type']= 'application/json'
+    }
+    return new Promise(function(resolve, reject) {
+        fetch(url, {
+            method: method,
+            headers: headers,
+            body: JSON.stringify(params)
+        }).then(function(res){
+            return res.json()
+        }).then(function(data){
+            resolve(data)
+        }).catch(function(e){
+            console.log(e);
+            reject(e)
+            // 需要统一的处理错误方式，避免每次都catch
+        })
+    })
+}

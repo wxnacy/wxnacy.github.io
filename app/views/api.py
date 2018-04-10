@@ -40,11 +40,13 @@ def update_article(id):
     res.crawler_self()
     return BaseResponse.return_success(res.format())
 
-#  @api_bp.route('/article/<string:url>', methods=['PUT'])
-#  def crawler_article(url):
-    #  '''更新文章'''
-    #  res = Article.crawler(url=url)
-    #  return BaseResponse.return_success(res.format())
+@api_bp.route('/article', methods=['post'])
+def crawler_article():
+    '''创建'''
+    args = request.json
+    url = args['url']
+    res = Article.crawler(url=url)
+    return BaseResponse.return_success(res.format())
 
 @api_bp.route('/test', methods=['POST', 'GET'])
 def test():

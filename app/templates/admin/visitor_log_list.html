@@ -12,8 +12,9 @@
                   <th>浏览器</th>
                   <th>系统</th>
                   <th>设备</th>
-                  <th>设备类型</th>
+                  <th>类型</th>
                   <th>地区</th>
+                  <th>操作</th>
                 </tr>
               </thead>
               <tbody>
@@ -26,11 +27,22 @@
                   <td width="5%">{{ visitor.browser }}</td>
                   <td width="9%">{{ visitor.os }}</td>
                   <td width="5%">{{ visitor.device }}</td>
-                  <td width="7%">{{ visitor.device_type }}</td>
+                  <td width="5%">{{ visitor.device_type }}</td>
                   <td>{{ visitor.region }}</td>
+                  <td>
+                      <button type="button" onClick="create_article('{{ visitor.url }}')" class="btn btn-primary">更新</button>
+                  </td>
                 </tr>
                 {% endfor %}
               </tbody>
             </table>
           </div>
+<script>
+    function create_article(url){
+        console.log(url);
+        fetchPost(`/api/v1/article`, {"url": url }).then(data => {
+            console.log(data);
+        })
+    }
+</script>
 {% endblock %}
