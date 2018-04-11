@@ -57,10 +57,21 @@ def list_article():
 @admin_bp.route('/visitor_log_date')
 def list_visitor_log_date():
     args = BaseRequest.get_args()
+    args['per_page'] = 31
     VisitorLogDate.statistics_visitor()
     pagination = VisitorLogDate.query_by(**args)
+    items = list(pagination.items)
+    items.reverse()
+    days = []
+    pvs = []
+    uvs = []
+    for item in items:
+        days.append(item.visit_date.isoformat())
+        pvs.append(item.pv)
+        uvs.append(item.uv)
+
     return render_template('admin/visitor_log_date_list.html',
-        pagination=pagination)
+        pagination=pagination, days=days, pvs=pvs, uvs=uvs)
 
 @admin_bp.route('/rank')
 def rank():

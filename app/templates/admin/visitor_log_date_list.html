@@ -1,24 +1,67 @@
 {% extends "admin/base.html" %}
 {% block content %}
 {{ super() }}
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>日期</th>
-                  <th>pv</th>
-                  <th>uv</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for item in pagination.items %}
-                <tr>
-                  <td width="10%">{{ item.visit_date }}</td>
-                  <td width="10%">{{ item.pv }}</td>
-                  <td width="10%">{{ item.uv }}</td>
-                </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-          </div>
+<link href="/static/bs/css/dashboard.css" rel="stylesheet">
+<canvas class="my-4" id="myChart" width="900" height="380"></canvas>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>日期</th>
+        <th>pv</th>
+        <th>uv</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in pagination.items %}
+      <tr>
+        <td width="10%">{{ item.visit_date }}</td>
+        <td width="10%">{{ item.pv }}</td>
+        <td width="10%">{{ item.uv }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<script>
+{% autoescape off %}
+  var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: {{ days }},
+    datasets: [{
+      data: {{ pvs }},
+      lineTension: 0,
+      backgroundColor: 'transparent',
+      borderColor: '#00CC66',
+      borderWidth: 4,
+      pointBackgroundColor: '#00CC66'
+    },{
+      data: {{ uvs }},
+      lineTension: 0,
+      backgroundColor: 'transparent',
+      borderColor: '#FF6600',
+      borderWidth: 4,
+      pointBackgroundColor: '#FF6600'
+
+    }]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: false
+        }
+      }]
+    },
+    legend: {
+      display: false,
+    }
+  }
+});
+{% endautoescape %}
+</script>
 {% endblock %}
