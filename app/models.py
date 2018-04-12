@@ -275,7 +275,7 @@ class VisitorLog(BaseModel, db.Model):
     @property
     def region(self):
         ext = self.ext_property
-        return '{}-{}'.format(ext.get('country_name'), ext.get('city'))
+        return '{}-{}'.format(ext.get('country'), ext.get('city'))
 
     @classmethod
     def query_items(cls, **kw):
