@@ -2,6 +2,7 @@
 title: 压缩图片
 tags:
   - 工具
+  - javascript
 date: 2018-04-13 21:42:27
 ---
 
