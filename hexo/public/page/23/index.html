@@ -187,6 +187,85 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-mysql-2017-08-09-prompt" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-prompt/">mysql prompt 提示符</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/09/mysql-2017-08-09-prompt/" class="archive-article-date">
+  	<time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文：<a href="http://www.thegeekstuff.com/2010/02/mysql_ps1-6-examples-to-make-your-mysql-prompt-like-angelina-jolie/" target="_blank" rel="noopener">http://www.thegeekstuff.com/2010/02/mysql_ps1-6-examples-to-make-your-mysql-prompt-like-angelina-jolie/</a></p>
+<h2><span id="zai-ming-ling-xing-zhong-shi-yong">在命令行中使用</span><a href="#zai-ming-ling-xing-zhong-shi-yong" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mysql&gt; prompt \u@\d&gt;</div><div class="line">PROMPT set to &apos;\u@\d&gt; &apos;</div><div class="line">root@(none)&gt; use test</div><div class="line">Reading table information for completion of table and column names</div><div class="line">You can turn off this feature to get a quicker startup with -A</div><div class="line"></div><div class="line">Database changed</div><div class="line">root@test&gt;</div></pre></td></tr></table></figure>
+<h2><span id="zai-ming-ling-xing-can-shu-zhong-shi-yong">在命令行参数中使用</span><a href="#zai-ming-ling-xing-can-shu-zhong-shi-yong" class="header-anchor"></a></h2><p>需要使用双引号括起来<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wxnacy@wxnacydeMacBook-Pro: ~ $ mysql -u root -p --prompt=&quot;\u@\d&gt; &quot;    </div><div class="line">root@(none)&gt; use test;</div><div class="line">root@test&gt;</div></pre></td></tr></table></figure></p>
+<h3><span id="zai-bash-ceng-xiu-gai-mysql-ps1-bian-liang">在bash层修改 MYSQL_PS1 变量</span><a href="#zai-bash-ceng-xiu-gai-mysql-ps1-bian-liang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wxnacy@wxnacydeMacBook-Pro: ~ $ <span class="built_in">export</span> MYSQL_PS1=<span class="string">"\u@\d&gt; "</span>                              </div><div class="line">wxnacy@wxnacydeMacBook-Pro: ~ $ mysql -u root -p                            </div><div class="line">root@(none)&gt;</div></pre></td></tr></table></figure>
+<h2><span id="zai-etc-my-cnf-zhong-pei-zhi">在/etc/my.cnf中配置</span><a href="#zai-etc-my-cnf-zhong-pei-zhi" class="header-anchor"></a></h2><p>也可以在配置中一劳永逸<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[mysql]  </div><div class="line">prompt=\\u@\\d&gt;\\ <span class="comment"># 要多加一个反斜线\</span></div><div class="line">  </div><div class="line">又或者：  </div><div class="line">[mysql]  </div><div class="line">prompt=<span class="string">"\u@\d&gt; "</span></div></pre></td></tr></table></figure></p>
+<h3><span id="geng-duo-can-shu">更多参数</span><a href="#geng-duo-can-shu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">Option  Description  </div><div class="line">  </div><div class="line">\c  A counter that increments <span class="keyword">for</span> each statement you issue  </div><div class="line">\D  The full current date  </div><div class="line">\d  The default database  </div><div class="line">\h  The server host  </div><div class="line">\l  The current delimiter (new <span class="keyword">in</span> 5.0.25)  </div><div class="line">\m  Minutes of the current time  </div><div class="line">\n  A newline character  </div><div class="line">\O  The current month <span class="keyword">in</span> three-letter format (Jan, Feb, …)  </div><div class="line">\o  The current month <span class="keyword">in</span> numeric format  </div><div class="line">\P  am/pm  </div><div class="line">\p  The current TCP/IP port or socket file  </div><div class="line">\R  The current time, <span class="keyword">in</span> 24-hour military time (0–23)  </div><div class="line">\r  The current time, standard 12-hour time (1–12)  </div><div class="line">\S  Semicolon  </div><div class="line">\s  Seconds of the current time  </div><div class="line">\t  A tab character  </div><div class="line">\U  Your full user_name@host_name account name  </div><div class="line">   </div><div class="line">\u  Your user name  </div><div class="line">\v  The server version  </div><div class="line">\w  The current day of the week <span class="keyword">in</span> three-letter format (Mon, Tue, …)  </div><div class="line">\Y  The current year, four digits  </div><div class="line">\y  The current year, two digits  </div><div class="line">\_  A space  </div><div class="line">\   A space (a space follows the backslash)  </div><div class="line">\<span class="string">'  Single quote  </span></div><div class="line"><span class="string">\"  Double quote  </span></div><div class="line"><span class="string">\\  A literal “\” backslash character  </span></div><div class="line"><span class="string">\x  x, for any “x” not listed above</span></div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-prompt/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-mysql-2017-08-09-select-format" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -238,111 +317,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-select-format/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ansible-2017-08-08-item-basic-get-started" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/08/ansible-2017-08-08-item-basic-get-started/">ansible入门笔记1 Get Started</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/08/ansible-2017-08-08-item-basic-get-started/" class="archive-article-date">
-  	<time datetime="2017-08-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>专辑：<a href="/2017/08/14/ansible-2017-08-14-album-study-notes/">ansible学习笔记</a></p>
-<blockquote>
-<p>Ansilbe 是一个部署一群远程主机的工具。远程的主机可以是远程虚拟机或物理机，也<br>可以是本地主机。Ansilbe 是一个部署一群远程主机的工具。远程的主机可以是远程虚拟机<br>或物理机，也可以是本地主机。</p>
-</blockquote>
-<!-- move -->
-<div class="toc">
-
-<!-- toc -->
-<ul>
-<li><a href="#an-zhuang-ansible">安装ansible</a><ul>
-<li><a href="#ming-ling">命令</a></li>
-<li><a href="#pei-zhi-hosts">配置hosts</a></li>
-</ul>
-</li>
-<li><a href="#di-yi-tiao-ming-ling">第一条命令</a></li>
-<li><a href="#zhi-ding-hosts-wen-jian">指定hosts文件</a></li>
-</ul>
-<!-- tocstop -->
-</div>
-
-<h2><span id="an-zhuang-ansible">安装ansible</span><a href="#an-zhuang-ansible" class="header-anchor"></a></h2><h3><span id="ming-ling">命令</span><a href="#ming-ling" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install ansible</div></pre></td></tr></table></figure>
-<h3><span id="pei-zhi-hosts">配置hosts</span><a href="#pei-zhi-hosts" class="header-anchor"></a></h3><p>修改/etc/ansible/hosts 全局hosts文件，没有的话自己创建<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[wxnacy] <span class="comment"># 如果服务器使用密码登录就用这个方式保存密码，避免每次输入</span></div><div class="line">wxnacy.server.org ansible_ssh_pass=your_pass ansible_ssh_user=your_name</div><div class="line"></div><div class="line">[prod] <span class="comment"># 如果服务器使用sshkey登陆（推荐使用）</span></div><div class="line">prod.server.org ansible_ssh_user=your_name ansible_ssh_private_key_file=key_path</div></pre></td></tr></table></figure></p>
-<h2><span id="di-yi-tiao-ming-ling">第一条命令</span><a href="#di-yi-tiao-ming-ling" class="header-anchor"></a></h2><ul>
-<li>首先执行ping，查看是否可以连接服务器</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ ansible all -m ping</div><div class="line"></div><div class="line"></div><div class="line">wxnacy.server.org | SUCCESS =&gt; &#123;</div><div class="line">    <span class="string">"changed"</span>: <span class="literal">false</span>,</div><div class="line">    <span class="string">"ping"</span>: <span class="string">"pong"</span></div><div class="line">&#125;</div><div class="line">prod.server.org | SUCCESS =&gt; &#123;</div><div class="line">    <span class="string">"changed"</span>: <span class="literal">false</span>,</div><div class="line">    <span class="string">"ping"</span>: <span class="string">"pong"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>得到如上样式结果即为正确,另外执行 <code>ansible wxnacy -m ping</code> 可以针对某一个服务器<br>组进行操作</p>
-<ul>
-<li>现在我们用另一个命令看下是不是真的可以拿到远程服务器的信息</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ ansible prod -m shell -a <span class="string">"uname -a"</span></div><div class="line"></div><div class="line">prod.server.org | SUCCESS | rc=0 &gt;&gt;</div><div class="line">Linux ip-172-31-5-249 4.9.27-14.31.amzn1.x86_64 <span class="comment">#1 SMP Wed May 10 01:58:40 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux</span></div></pre></td></tr></table></figure>
-<h2><span id="zhi-ding-hosts-wen-jian">指定hosts文件</span><a href="#zhi-ding-hosts-wen-jian" class="header-anchor"></a></h2><p>在一些项目中，全局hosts配置不能满足需求，需要指定hosts命令，可以执行如下命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ansible my -i hosts_path -m ping</div></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ansible</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/08/ansible-2017-08-08-item-basic-get-started/">展开全文 >></a>
         </p>
       
 
@@ -464,6 +438,87 @@
 
 
   
+    <article id="post-ansible-2017-08-08-item-basic-playbooks" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">ansible入门笔记2 Playbooks</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/" class="archive-article-date">
+  	<time datetime="2017-08-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>专辑：<a href="/2017/08/14/ansible-2017-08-14-album-study-notes/">ansible学习笔记</a></p>
+<blockquote>
+<p>Playbooks 是 Ansible的配置,部署,编排语言.他们可以被描述为一个需要希望远程主机执行命令的方案,或者一组IT程序运行的命令集合.</p>
+</blockquote>
+<p>一个playbook就是一个YAML文件，所以playbook文件一般都以.yml结尾，一个playbook文件由一个或多个play组成，每个play定义了在一个或多个远程主机上执行的一系列的task，其中每个task一般就是调用一个ansible的模块，如调用copy模块复制文件到远程主机或调用shell模块执行命令。</p>
+<h2><span id="jian-dan-de-pei-zhi">简单的配置</span><a href="#jian-dan-de-pei-zhi" class="header-anchor"></a></h2><p>配置deploy.yml完成进入远程服务器的某个目录并执行git pull操作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- hosts: wxnacy <span class="comment"># 它会默认使用/etc/ansible/hosts 中配置的服务器组名 也可以单独设置hosts地址</span></div><div class="line">  tasks:</div><div class="line">  - name: <span class="built_in">cd</span> path and git pull <span class="comment"># 命令名称</span></div><div class="line">    shell: git pull <span class="comment"># 执行命令</span></div><div class="line">    args:</div><div class="line">      <span class="built_in">chdir</span>: ~/workdir <span class="comment"># 进入目录</span></div></pre></td></tr></table></figure></p>
+<p>运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ ansible-playbook deploy.yml</div><div class="line"></div><div class="line">PLAY [wxnacy] **********************************************************************************************************************************************************************************************</div><div class="line"></div><div class="line">TASK [<span class="built_in">cd</span> path and git pull] *************************************************************************************************************************************************************************************</div><div class="line">ok: [wxnacy.server.org]</div><div class="line"></div><div class="line"></div><div class="line">PLAY RECAP *************************************************************************************************************************************************************************************************</div><div class="line">wxnacy.server.org             : ok=2    changed=1    unreachable=0    failed=0</div></pre></td></tr></table></figure></p>
+<p>执行完运行命令ansible会在webservers组中依次执行tasks，返回以上样式结果极为成功，结果通过红黄绿三种颜色标明了不同的执行结果，红色表示有task执行失败，黄色表示改变了远程主机状态。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ansible</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-ansible-2017-08-08-item-basic-playbooks-ext" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -543,19 +598,19 @@
 
 
   
-    <article id="post-ansible-2017-08-08-item-basic-playbooks" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-ansible-2017-08-08-item-basic-get-started" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">ansible入门笔记2 Playbooks</a>
+      <a class="article-title" href="/2017/08/08/ansible-2017-08-08-item-basic-get-started/">ansible入门笔记1 Get Started</a>
     </h1>
   
 
         
-        <a href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/" class="archive-article-date">
+        <a href="/2017/08/08/ansible-2017-08-08-item-basic-get-started/" class="archive-article-date">
   	<time datetime="2017-08-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
 </a>
         
@@ -565,12 +620,36 @@
       
         <p>专辑：<a href="/2017/08/14/ansible-2017-08-14-album-study-notes/">ansible学习笔记</a></p>
 <blockquote>
-<p>Playbooks 是 Ansible的配置,部署,编排语言.他们可以被描述为一个需要希望远程主机执行命令的方案,或者一组IT程序运行的命令集合.</p>
+<p>Ansilbe 是一个部署一群远程主机的工具。远程的主机可以是远程虚拟机或物理机，也<br>可以是本地主机。Ansilbe 是一个部署一群远程主机的工具。远程的主机可以是远程虚拟机<br>或物理机，也可以是本地主机。</p>
 </blockquote>
-<p>一个playbook就是一个YAML文件，所以playbook文件一般都以.yml结尾，一个playbook文件由一个或多个play组成，每个play定义了在一个或多个远程主机上执行的一系列的task，其中每个task一般就是调用一个ansible的模块，如调用copy模块复制文件到远程主机或调用shell模块执行命令。</p>
-<h2><span id="jian-dan-de-pei-zhi">简单的配置</span><a href="#jian-dan-de-pei-zhi" class="header-anchor"></a></h2><p>配置deploy.yml完成进入远程服务器的某个目录并执行git pull操作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- hosts: wxnacy <span class="comment"># 它会默认使用/etc/ansible/hosts 中配置的服务器组名 也可以单独设置hosts地址</span></div><div class="line">  tasks:</div><div class="line">  - name: <span class="built_in">cd</span> path and git pull <span class="comment"># 命令名称</span></div><div class="line">    shell: git pull <span class="comment"># 执行命令</span></div><div class="line">    args:</div><div class="line">      <span class="built_in">chdir</span>: ~/workdir <span class="comment"># 进入目录</span></div></pre></td></tr></table></figure></p>
-<p>运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ ansible-playbook deploy.yml</div><div class="line"></div><div class="line">PLAY [wxnacy] **********************************************************************************************************************************************************************************************</div><div class="line"></div><div class="line">TASK [<span class="built_in">cd</span> path and git pull] *************************************************************************************************************************************************************************************</div><div class="line">ok: [wxnacy.server.org]</div><div class="line"></div><div class="line"></div><div class="line">PLAY RECAP *************************************************************************************************************************************************************************************************</div><div class="line">wxnacy.server.org             : ok=2    changed=1    unreachable=0    failed=0</div></pre></td></tr></table></figure></p>
-<p>执行完运行命令ansible会在webservers组中依次执行tasks，返回以上样式结果极为成功，结果通过红黄绿三种颜色标明了不同的执行结果，红色表示有task执行失败，黄色表示改变了远程主机状态。</p>
+<!-- move -->
+<div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#an-zhuang-ansible">安装ansible</a><ul>
+<li><a href="#ming-ling">命令</a></li>
+<li><a href="#pei-zhi-hosts">配置hosts</a></li>
+</ul>
+</li>
+<li><a href="#di-yi-tiao-ming-ling">第一条命令</a></li>
+<li><a href="#zhi-ding-hosts-wen-jian">指定hosts文件</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+
+<h2><span id="an-zhuang-ansible">安装ansible</span><a href="#an-zhuang-ansible" class="header-anchor"></a></h2><h3><span id="ming-ling">命令</span><a href="#ming-ling" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install ansible</div></pre></td></tr></table></figure>
+<h3><span id="pei-zhi-hosts">配置hosts</span><a href="#pei-zhi-hosts" class="header-anchor"></a></h3><p>修改/etc/ansible/hosts 全局hosts文件，没有的话自己创建<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[wxnacy] <span class="comment"># 如果服务器使用密码登录就用这个方式保存密码，避免每次输入</span></div><div class="line">wxnacy.server.org ansible_ssh_pass=your_pass ansible_ssh_user=your_name</div><div class="line"></div><div class="line">[prod] <span class="comment"># 如果服务器使用sshkey登陆（推荐使用）</span></div><div class="line">prod.server.org ansible_ssh_user=your_name ansible_ssh_private_key_file=key_path</div></pre></td></tr></table></figure></p>
+<h2><span id="di-yi-tiao-ming-ling">第一条命令</span><a href="#di-yi-tiao-ming-ling" class="header-anchor"></a></h2><ul>
+<li>首先执行ping，查看是否可以连接服务器</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ ansible all -m ping</div><div class="line"></div><div class="line"></div><div class="line">wxnacy.server.org | SUCCESS =&gt; &#123;</div><div class="line">    <span class="string">"changed"</span>: <span class="literal">false</span>,</div><div class="line">    <span class="string">"ping"</span>: <span class="string">"pong"</span></div><div class="line">&#125;</div><div class="line">prod.server.org | SUCCESS =&gt; &#123;</div><div class="line">    <span class="string">"changed"</span>: <span class="literal">false</span>,</div><div class="line">    <span class="string">"ping"</span>: <span class="string">"pong"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>得到如上样式结果即为正确,另外执行 <code>ansible wxnacy -m ping</code> 可以针对某一个服务器<br>组进行操作</p>
+<ul>
+<li>现在我们用另一个命令看下是不是真的可以拿到远程服务器的信息</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ ansible prod -m shell -a <span class="string">"uname -a"</span></div><div class="line"></div><div class="line">prod.server.org | SUCCESS | rc=0 &gt;&gt;</div><div class="line">Linux ip-172-31-5-249 4.9.27-14.31.amzn1.x86_64 <span class="comment">#1 SMP Wed May 10 01:58:40 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux</span></div></pre></td></tr></table></figure>
+<h2><span id="zhi-ding-hosts-wen-jian">指定hosts文件</span><a href="#zhi-ding-hosts-wen-jian" class="header-anchor"></a></h2><p>在一些项目中，全局hosts配置不能满足需求，需要指定hosts命令，可以执行如下命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ansible my -i hosts_path -m ping</div></pre></td></tr></table></figure></p>
 
       
 
@@ -594,7 +673,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/08/ansible-2017-08-08-item-basic-get-started/">展开全文 >></a>
         </p>
       
 
@@ -887,94 +966,6 @@
 
 
   
-    <article id="post-algorithm-2017-08-05-identity-verify" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/05/algorithm-2017-08-05-identity-verify/">身份证号码校验规则</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/05/algorithm-2017-08-05-identity-verify/" class="archive-article-date">
-  	<time datetime="2017-08-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="http://www.icloudyin.com/?p=66" target="_blank" rel="noopener">原文:http://www.icloudyin.com/?p=66</a></p>
-<p>18位身份证号码组成：<code>ddddddyyyymmddxxsp</code>共18位，其中：其他部分都和15位的相同。年份代码由原来的2位升级到4位。最后一位为校验位。</p>
-<h2><span id="xiao-yan-gui-ze">校验规则：</span><a href="#xiao-yan-gui-ze" class="header-anchor"></a></h2><ul>
-<li><p>十七位数字本体码加权求和公式</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">S = Sum(Ai * Wi), i = 0, … , 16 ，先对前17位数字的权求和</div><div class="line">Ai:表示第i位置上的身份证号码数字值</div><div class="line">Wi:表示第i位置上的加权因子</div><div class="line">Wi: 7 9 10 5 8 4 2 1 6 3 7 9 10 5 8 4 2</div></pre></td></tr></table></figure>
-</li>
-<li><p>计算模</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Y = mod(S, 11)</div></pre></td></tr></table></figure>
-</li>
-<li><p>通过模得到对应的校验码</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Y: 0 1 2 3 4 5 6 7 8 9 10</div><div class="line">校验码: 1 0 X 9 8 7 6 5 4 3 2</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2><span id="java">java</span><a href="#java" class="header-anchor"></a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> String <span class="title">getCheckCode</span><span class="params">(String idCard)</span></span>&#123;</div><div class="line">    <span class="keyword">static</span> String[] Wi = &#123; <span class="string">"7"</span>, <span class="string">"9"</span>, <span class="string">"10"</span>, <span class="string">"5"</span>, <span class="string">"8"</span>, <span class="string">"4"</span>, <span class="string">"2"</span>, <span class="string">"1"</span>, <span class="string">"6"</span>, <span class="string">"3"</span>, <span class="string">"7"</span>,</div><div class="line">        <span class="string">"9"</span>, <span class="string">"10"</span>, <span class="string">"5"</span>, <span class="string">"8"</span>, <span class="string">"4"</span>, <span class="string">"2"</span> &#125;;</div><div class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; <span class="number">17</span> ; i ++)</div><div class="line">    &#123;</div><div class="line">        sum = sum + Integer.parseInt(String.valueOf(idCard.charAt(i))) * Integer.parseInt(String.valueOf(Wi[i]));</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> T  = sum % <span class="number">11</span>;</div><div class="line">    <span class="keyword">int</span> R = (<span class="number">12</span> -T) % <span class="number">11</span>;</div><div class="line">    <span class="keyword">if</span>( R == <span class="number">10</span> )</div><div class="line">        <span class="keyword">return</span> <span class="string">"X"</span>;</div><div class="line">    <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> String.valueOf(R);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2><span id="python">python</span><a href="#python" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_identity_card</span><span class="params">(card)</span>:</span></div><div class="line">    wi = [<span class="string">"7"</span>, <span class="string">"9"</span>, <span class="string">"10"</span>, <span class="string">"5"</span>, <span class="string">"8"</span>, <span class="string">"4"</span>, <span class="string">"2"</span>, <span class="string">"1"</span>, <span class="string">"6"</span>, <span class="string">"3"</span>, <span class="string">"7"</span>, <span class="string">"9"</span>, <span class="string">"10"</span>,<span class="string">"5"</span>, <span class="string">"8"</span>, <span class="string">"4"</span>, <span class="string">"2"</span>]</div><div class="line">    total = <span class="number">0</span></div><div class="line">    card = list(card)</div><div class="line">    index = <span class="number">0</span></div><div class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> card:</div><div class="line">        total += ord(item) * int(wi[index])</div><div class="line">        index += <span class="number">1</span></div><div class="line">        t = total % <span class="number">11</span></div><div class="line">    r = (<span class="number">12</span> - t) % <span class="number">11</span></div><div class="line">    <span class="keyword">if</span> r == <span class="number">10</span>:</div><div class="line">        <span class="keyword">return</span> <span class="string">"X"</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">return</span> r</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/05/algorithm-2017-08-05-identity-verify/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-js-2017-08-05-screen-wh" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1185,15 +1176,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">jpa</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1217,6 +1208,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -1225,7 +1220,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1234,10 +1229,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

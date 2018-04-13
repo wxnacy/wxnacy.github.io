@@ -10,16 +10,19 @@ tags: [python]
 <!-- toc -->
 
 ## 安装
+
 Supervisor 可以运行在 Linux、Mac OS X 上。如前所述，Supervisor 是 Python 编写的，所以安装起来也很方便，可以直接用 pip :
+
 ```bash
 $ sudo pip install supervisor
 ```
-如果是 Ubuntu 系统，还可以使用 apt-get 安装。
+
+如果是 Ubuntu 系统，还可以使用 `apt` 安装。
 
 ## Supervisor 配置
 > Supervisor 相当强大，提供了很丰富的功能，不过我们可能只需要用到其中一小部分。安装完成之后，可以编写配置文件，来满足自己的需求。为了方便，我们把配置分成两部分 Supervisor（Supervisor 是一个 C/S 模型的程序，这是 server 端，对应的有 client 端：supervisorctl）和应用程序（即我们要管理的程序）。
 
-首先来看 Supervisor 的配置文件。安装完 Supervisor 之后，可以运行 echo_supervisord_conf 命令输出默认的配置项，也可以重定向到一个配置文件里：
+首先来看 Supervisor 的配置文件。安装完 Supervisor 之后，可以运行 `echo_supervisord_conf` 命令输出默认的配置项，也可以重定向到一个配置文件里：
 ```bash
 echo_supervisord_conf > /etc/supervisord.conf
 ```
@@ -113,16 +116,21 @@ stdout_logfile = /data/logs/usercenter_stdout.log
 ```bash
 supervisorctl -c /etc/supervisord.conf
 ```
+
 上面这个命令会进入 supervisorctl 的 shell 界面，然后可以执行不同的命令了：
+
 ```bash
-> status    # 查看程序状态
-> stop usercenter   # 关闭 usercenter 程序
-> start usercenter  # 启动 usercenter 程序
+> status                # 查看程序状态
+> stop usercenter       # 关闭 usercenter 程序
+> start usercenter      # 启动 usercenter 程序
 > restart usercenter    # 重启 usercenter 程序
-> reread    ＃ 读取有更新（增加）的配置文件，不会启动新添加的程序
-> update    ＃ 重启配置文件修改过的程序
+> reread                # 重新加载守护进程的配置文件，无需添加/删除（不重新启动）
+> reload                # 重新加载配置文件，并重启
+> update                # 重新加载配置，然后根据需要添加和删除（重新启动程序）
 ```
+
 上面这些命令都有相应的输出，除了进入 supervisorctl 的 shell 界面，也可以直接在 bash 终端运行：
+
 ```bash
 $ supervisorctl status
 $ supervisorctl stop usercenter
@@ -133,9 +141,12 @@ $ supervisorctl update
 ```
 
 ## 开机自启动
+
 ### CentOS
+
 适用 CentOS 7 及以上版本
 新建 `/usr/lib/systemd/system/supervisord.service` 文件
+
 ```bash
 [Unit]
 Description=Supervisor daemon
@@ -152,34 +163,46 @@ RestartSec=42s
 [Install]
 WantedBy=multi-user.target
 ```
-开启自启动
+
+**开启自启动**
+
 ```bash
 systemctl enable supervisord
 ```
-查看启动状态
+
+**查看启动状态**
+
 ```bash
 systemctl status supervisord
 ```
+
 ### Ubuntu
+
 修改 `/etc/rc.local` 文件，在 `exit 0` 之前加入
+
 ```bash
 /usr/local/bin/supervisord
 ```
+
 保存退出，并修改权限
+
 ```bash
 chmod +x /etc/rc.local
 ```
 
 ## 常见的错误
+
 在 `supervisorctl start program` 时，会报错
+
 ```bash
 xxx:ERROR [no such file]
 ```
+
 此时需要检查在配置中设计到的文件和命令是否存在，尤其是 `command` 的赋值，命令最好将全地址写出，比如
+
 ```bash
 command = /usr/local/bin/gunicorn -c gunicorn.py wsgi:app
 ```
-
 
 ## 其它
 
@@ -189,5 +212,5 @@ command = /usr/local/bin/gunicorn -c gunicorn.py wsgi:app
 
 经常查看日志文件，包括 supervisord 的日志和各个 pragram 的日志文件，程序 crash 或抛出异常的信息一半会输出到 stderr，可以查看相应的日志文件来查找问题。
 
-[官方文档](http://supervisord.org/index.html)
-[原文](http://liyangliang.me/posts/2015/06/using-supervisor/)
+- [官方文档](http://supervisord.org/index.html)
+- [原文](http://liyangliang.me/posts/2015/06/using-supervisor/)
