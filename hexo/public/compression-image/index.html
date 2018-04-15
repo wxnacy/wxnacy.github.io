@@ -19,7 +19,6 @@
     <meta name="twitter:description" content="图片压缩 html js css">
     <link rel="icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/style.css" >
     <style>
 a:link { text-decoration: none;color: blue}
 　　 a:active { text-decoration:blink}
@@ -29,18 +28,6 @@ a:link { text-decoration: none;color: blue}
   </head>
   <body>
 
-  <div class="shaft-load" id="loading" style="display: none">
-		  <div class="shaft1"></div>
-		  <div class="shaft2"></div>
-		  <div class="shaft3"></div>
-		  <div class="shaft4"></div>
-		  <div class="shaft5"></div>
-		  <div class="shaft6"></div>
-		  <div class="shaft7"></div>
-		  <div class="shaft8"></div>
-		  <div class="shaft9"></div>
-		  <div class="shaft10"></div>
-		</div>
 
     <div class="container-fluid">
       <div class="row">
@@ -129,7 +116,6 @@ var qualityDoc = document.getElementById('quality');
 var nameDoc = document.getElementById('fieldName');
 var widthDoc = document.getElementById('width');
 var heightDoc = document.getElementById('height');
-var loadDoc = document.getElementById('loading');
 compression('internet')
 
 
@@ -160,7 +146,6 @@ function compression(type) {
           document.getElementById('compression-detail').value = fs + 'KB'
           downDoc.href = rst.base64;
           downDoc.download = nameDoc.value;
-          loadDoc.style.display = "";
 
       })
       .catch(function (err){
