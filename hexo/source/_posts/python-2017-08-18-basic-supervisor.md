@@ -214,3 +214,4 @@ command = /usr/local/bin/gunicorn -c gunicorn.py wsgi:app
 
 - [官方文档](http://supervisord.org/index.html)
 - [原文](http://liyangliang.me/posts/2015/06/using-supervisor/)
+- [Supervisor全攻略(2)](https://my.oschina.net/guol/blog/509238)
