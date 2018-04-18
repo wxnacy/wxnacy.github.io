@@ -163,6 +163,12 @@ l.sort(reverse=True)
 print(l)        # ==> [5, 3, 1]
 ```
 
+### 乱序
+```python
+import random
+random.shuffle(publics)
+```
+
 ### 复杂对象排序
 `sort()` 方法在默认情况下只能对基本类型数据做排序，数字或字符串，但实际开发中列表中的数据通常是更复杂的结果，比如字典，假设我们有这样一组数据，并做排序处理
 ```python

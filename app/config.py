@@ -49,6 +49,8 @@ class BaseConfig(object):
 
     AES_KEY = '2d451792e18f778e'
 
+    ALIYUN_BUCKET_IMG = 'wxnacy-img'
+
 
 def create_app(flask_config_name=None):
     """
@@ -74,20 +76,24 @@ class RequestFormatter(Formatter):
         return super().format(record)
 
 def create_logger():
+    #  logger = app.logger
+    logger = logging.getLogger('wxnacyapi')
+    logger.setLevel(logging.DEBUG)
+
     fmt = '[%(asctime)s] [%(filename)s:%(lineno)d\t] [%(levelname)s] '\
             '[%(url)s\t] %(message)s '
     fmt = RequestFormatter(fmt)
     stream_handler = logging.StreamHandler()
     stream_handler.setFormatter(fmt)
-    app.logger.addHandler(stream_handler)
-    app.logger.setLevel(logging.DEBUG)
+    logger.addHandler(stream_handler)
+    logger.setLevel(logging.DEBUG)
 
     #  file_handler = logging.handlers.RotatingFileHandler(
         #  'log/tmd.log', maxBytes=104857600, backupCount=20
             #  )
     #  file_handler.setFormatter(fmt)
-    #  app.logger.addHandler(file_handler)
-    return app.logger
+    #  logger.addHandler(file_handler)
+    return logger
 
 
 app = create_app()

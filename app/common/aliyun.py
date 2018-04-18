@@ -4,20 +4,23 @@
 __author__ = "wxnacy(wxnacy@gmail.com)"
 __copyright__ = "Copyright of wxnacy (2017)."
 
+from app.config import app
+
+
 import oss2
 import requests
 from datetime import date
 from datetime import datetime
 
-access_key = '9I1VpgURzvT6t7Zb'
-secret_key = 'JVXlHhYcZbFJ0cqLxJs9ySLo0IZuak'
-endpoint = 'http://oss-cn-beijing.aliyuncs.com'
-BUCKET_IMG = 'img-easyjava-net'
+ENDPOINT = 'oss-cn-beijing.aliyuncs.com'
+BUCKET_IMG = 'wxnacy-img'
 
 
 class OSSClient():
-    def __init__(self, access_key='9I1VpgURzvT6t7Zb',
-                 secret_key='JVXlHhYcZbFJ0cqLxJs9ySLo0IZuak'):
+    def __init__(self, access_key=app.config['ALIYUN_ACCESS_KEY'],
+                 secret_key=app.config['ALIYUN_SECRET_KEY'],
+                 endpoint=ENDPOINT):
+        self.endpoint = endpoint
         self.auth = oss2.Auth(access_key, secret_key)
 
     def put_object(self, bucket_name, key, data, headers=None,
@@ -29,18 +32,19 @@ class OSSClient():
         :param data:
         :param content_type:
         :return:
+
+        eg
+            put_object(bucket_name, key, open(filepath, 'rb'))
         """
         try:
-            bucket = oss2.Bucket(self.auth, endpoint, bucket_name)
+            bucket = oss2.Bucket(self.auth, self.endpoint, bucket_name)
             result = bucket.put_object(key, data, headers=headers,
                                        progress_callback=progress_callback)
-            print(result)
             if result.status == 200:
-                return 'http://%s/%s' % (bucket_name.replace('-', '.'), key)
+                return f'https://{bucket_name}.{self.endpoint}/{key}'
             else:
                 return None
         except BaseException as e:
-            print(e)
             return None
 
 
@@ -89,10 +93,9 @@ class OSSClient():
 
 
 if __name__ == '__main__':
-    oss = OSSClient(access_key, secret_key)
-    name = 'test/{}/{}.json'.format(date.today().isoformat(),
-                                    datetime.utcnow().timestamp())
-    url = oss.put_object('file-easyjava-net', name, '{"id":1}')
+    oss = OSSClient()
+    name = 'test/{}.json'.format(datetime.utcnow().timestamp())
+    url = oss.put_object(BUCKET_IMG, name, '{"id":1}')
     print(url)
 
     pass
