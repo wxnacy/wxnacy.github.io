@@ -206,16 +206,7 @@ def timer(func, *args, reps=1000, **kwargs):
 
 
 def test():
-    print(os.getcwd())
-    root_dir = os.getcwd()
-    file_path = '{}/app/static/file/ss/{}.json'.format(root_dir,
-                                                       get_random_str(5))
-    print(file_path)
-    file = open(file_path, 'w')
-    data = dict(id=1, name='win')
-    file.write(json.dumps(data))
-    file.flush()
-    file.close()
+    return 'Hello World Hello World '
 
 
 def distance_between_points(lat1, lon1, lat2, lon2):

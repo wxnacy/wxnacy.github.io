@@ -221,6 +221,13 @@ class AutoId(BaseModel, db.Model):
         res = BaseDB.query(sql, [shard_id, item_id])
         return res[0]['id']
 
+    @classmethod
+    def generate_str_id(cls, suffix='W'):
+        sql = 'select func_auto_id(%s, %s) as id'
+        res = BaseDB.query(sql, [0, 1])
+        res = f'{datetime.now():%Y%m%d%H%M%S}-{res[0]["id"]}'
+        return res
+
 class User(BaseModel, db.Model):
     __tablename__ = 'user'
     id = db.Column(db.INT, primary_key=True)
@@ -560,3 +567,7 @@ class ArticleData(BaseModel, db.Model):
 class Test(BaseModel, db.Model):
     __tablename__ = 'test'
     id = db.Column(db.INT,primary_key=True)
+
+
+if __name__ == "__main__":
+    print(AutoId.generate_str_id())
