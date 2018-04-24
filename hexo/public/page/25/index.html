@@ -345,6 +345,94 @@
 
 
   
+    <article id="post-algorithm-2017-08-05-identity-verify" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/05/algorithm-2017-08-05-identity-verify/">身份证号码校验规则</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/05/algorithm-2017-08-05-identity-verify/" class="archive-article-date">
+  	<time datetime="2017-08-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://www.icloudyin.com/?p=66" target="_blank" rel="noopener">原文:http://www.icloudyin.com/?p=66</a></p>
+<p>18位身份证号码组成：<code>ddddddyyyymmddxxsp</code>共18位，其中：其他部分都和15位的相同。年份代码由原来的2位升级到4位。最后一位为校验位。</p>
+<h2><span id="xiao-yan-gui-ze">校验规则：</span><a href="#xiao-yan-gui-ze" class="header-anchor"></a></h2><ul>
+<li><p>十七位数字本体码加权求和公式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">S = Sum(Ai * Wi), i = 0, … , 16 ，先对前17位数字的权求和</div><div class="line">Ai:表示第i位置上的身份证号码数字值</div><div class="line">Wi:表示第i位置上的加权因子</div><div class="line">Wi: 7 9 10 5 8 4 2 1 6 3 7 9 10 5 8 4 2</div></pre></td></tr></table></figure>
+</li>
+<li><p>计算模</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Y = mod(S, 11)</div></pre></td></tr></table></figure>
+</li>
+<li><p>通过模得到对应的校验码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Y: 0 1 2 3 4 5 6 7 8 9 10</div><div class="line">校验码: 1 0 X 9 8 7 6 5 4 3 2</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2><span id="java">java</span><a href="#java" class="header-anchor"></a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> String <span class="title">getCheckCode</span><span class="params">(String idCard)</span></span>&#123;</div><div class="line">    <span class="keyword">static</span> String[] Wi = &#123; <span class="string">"7"</span>, <span class="string">"9"</span>, <span class="string">"10"</span>, <span class="string">"5"</span>, <span class="string">"8"</span>, <span class="string">"4"</span>, <span class="string">"2"</span>, <span class="string">"1"</span>, <span class="string">"6"</span>, <span class="string">"3"</span>, <span class="string">"7"</span>,</div><div class="line">        <span class="string">"9"</span>, <span class="string">"10"</span>, <span class="string">"5"</span>, <span class="string">"8"</span>, <span class="string">"4"</span>, <span class="string">"2"</span> &#125;;</div><div class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; <span class="number">17</span> ; i ++)</div><div class="line">    &#123;</div><div class="line">        sum = sum + Integer.parseInt(String.valueOf(idCard.charAt(i))) * Integer.parseInt(String.valueOf(Wi[i]));</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> T  = sum % <span class="number">11</span>;</div><div class="line">    <span class="keyword">int</span> R = (<span class="number">12</span> -T) % <span class="number">11</span>;</div><div class="line">    <span class="keyword">if</span>( R == <span class="number">10</span> )</div><div class="line">        <span class="keyword">return</span> <span class="string">"X"</span>;</div><div class="line">    <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> String.valueOf(R);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2><span id="python">python</span><a href="#python" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_identity_card</span><span class="params">(card)</span>:</span></div><div class="line">    wi = [<span class="string">"7"</span>, <span class="string">"9"</span>, <span class="string">"10"</span>, <span class="string">"5"</span>, <span class="string">"8"</span>, <span class="string">"4"</span>, <span class="string">"2"</span>, <span class="string">"1"</span>, <span class="string">"6"</span>, <span class="string">"3"</span>, <span class="string">"7"</span>, <span class="string">"9"</span>, <span class="string">"10"</span>,<span class="string">"5"</span>, <span class="string">"8"</span>, <span class="string">"4"</span>, <span class="string">"2"</span>]</div><div class="line">    total = <span class="number">0</span></div><div class="line">    card = list(card)</div><div class="line">    index = <span class="number">0</span></div><div class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> card:</div><div class="line">        total += ord(item) * int(wi[index])</div><div class="line">        index += <span class="number">1</span></div><div class="line">        t = total % <span class="number">11</span></div><div class="line">    r = (<span class="number">12</span> - t) % <span class="number">11</span></div><div class="line">    <span class="keyword">if</span> r == <span class="number">10</span>:</div><div class="line">        <span class="keyword">return</span> <span class="string">"X"</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">return</span> r</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/05/algorithm-2017-08-05-identity-verify/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-git-2017-08-04-basic-cmd" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -625,6 +713,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
@@ -645,23 +737,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -673,7 +757,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -682,14 +778,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">开发</a>
               </li>
              
               <li class="article-tag-list-item">
