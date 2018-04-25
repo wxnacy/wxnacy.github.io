@@ -1,7 +1,10 @@
 ---
 title: aliyun 媒体转码报错 Can not find endpoint to access
-tags: [开发]
+tags:
+  - 开发
+date: 2018-04-25 11:25:47
 ---
+
 
 在用阿里云没媒体转码功能时报了半天的错误
 <!-- more --><!-- toc -->

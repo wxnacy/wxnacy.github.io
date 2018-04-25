@@ -1,8 +1,14 @@
 iabbrev <buffer> print console.log("");<esc>hhi
 iabbrev <buffer> if if(){}<esc>i<cr><esc>k$hi
-iabbrev <buffer> for for(int i = 0; i <; i++){}<esc>i<cr><esc>k$F;i
+iabbrev <buffer> for for(var i = 0; i <; i++){}<esc>i<cr><esc>k$F;i
 iabbrev <buffer> fh /**<cr> * Author: wxnacy(wxnacy@gmail.com)<cr>
             \ * Description:<cr> */<cr>
+
+iabbrev <buffer> func function(){};<esc>hi<cr><esc>kf(i
+
+iabbrev <buffer> debi document.getElementById("");<esc>hhi
+iabbrev <buffer> dce document.createElement("");<esc>hhi
+iabbrev <buffer> ael addEventListener("");<esc>hhi
 
 "===============================
 " vim-javascript 配置

@@ -26,14 +26,15 @@
         <div class="col">
           <button type="button" onClick="run()" class="btn btn-primary" id="run">运行</button>
           <button type="button" onClick="save()" class="btn btn-primary" id="save">保存</button>
+          <button type="button" class="btn btn-primary" id="download">下载</button>
         </div>
         <div class="col">
-<div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="inputGroup-sizing-default">标题</span>
-  </div>
-  <input type="text"  id="name" style="width: 300px" aria-label="标题" aria-describedby="inputGroup-sizing-default">
-</div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">标题</span>
+            </div>
+            <input type="text"  id="name" style="width: 300px" aria-label="标题" aria-describedby="inputGroup-sizing-default">
+          </div>
         </div>
       </div>
       <div class="row">
@@ -65,6 +66,9 @@
   <script src="/js/wxnacy.min.js" ></script>
   <script>
     init()
+var htmlDom = document.getElementById("html");
+var nameDom = document.getElementById("name");
+
 function init(){
   var id = getValue('id')
   if(!isEmpty(id)){
@@ -72,8 +76,8 @@ function init(){
       var html = decodeURIComponent(data.data.code.html)
       var name = data.data.name
 
-      document.getElementById('html').value=html
-      document.getElementById('name').value=name
+      htmlDom.value=html
+      nameDom.value=name
       document.title = name
       run()
     })
@@ -81,20 +85,30 @@ function init(){
     run()
   }
 }
+document.getElementById("download").addEventListener("click", download, false);
+function download(){
+  var cont = htmlDom.value;
+  console.log(cont);
+  var downDom = document.createElement('a');
+  downDom.href = `data:text/html;charset=UTF-8,${encodeURIComponent(cont)}`
+  downDom.download = nameDom.value || '未命名'
+  console.log(downDom);
+  downDom.click()
+};
 function run(){
-  var content = document.getElementById('html').value;
+  var content = htmlDom.value;
   var preview = document.getElementById('preview');
   preview.srcdoc = content;
 }
 function save(){
-  var content = document.getElementById('html').value;
+  var content = htmlDom.value;
   var code = {
     html: encodeURIComponent(content),
     js: "",
     css: ""
   }
   var params = {
-    name: document.getElementById('name').value,
+    name: nameDom.value,
     description: '',
     code: code
   }
@@ -105,6 +119,5 @@ function save(){
     window.location.href = `${window.location.pathname}?id=${id}`
   })
 }
-console.log(window.location)
   </script>
 </html>
