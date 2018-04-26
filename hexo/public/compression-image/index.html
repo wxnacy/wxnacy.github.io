@@ -37,10 +37,9 @@ a:link { text-decoration: none;color: blue}
             <div class="input-group-prepend">
               <span class="input-group-text" id="inputGroup-sizing-default">网络图片</span>
             </div>
-            <input type="text" value="http://mewephoto.oss-cn-beijing.aliyuncs.com/1523584959140" id="internet-image"  style="width: 400px" aria-label="标题" aria-describedby="inputGroup-sizing-default">
+            <input type="text" value="https://mewephoto.oss-cn-beijing.aliyuncs.com/006.jpg" id="internet-image"  style="width: 400px" aria-label="标题" aria-describedby="inputGroup-sizing-default">
             <div class="input-group-append">
               <button class="btn btn-primary btn-outline-secondary " onClick="compression('internet')" type="button">压缩</button>
-              <button class="btn btn-outline-secondary" type="button">下载</button>
             </div>
           </div>
 
@@ -48,10 +47,17 @@ a:link { text-decoration: none;color: blue}
             <div class="input-group-prepend">
               <span class="input-group-text" id="inputGroup-sizing-default">本地图片</span>
             </div>
-            <input type="text"  id="local-image" style="width: 400px" aria-label="标题" aria-describedby="inputGroup-sizing-default">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="button">压缩</button>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="file">
+              <label class="custom-file-label"  for="file">点击或拖动图片到此</label>
             </div>
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">压缩前</span>
+            </div>
+            <input type="text"  id="origin-detail" style="width: 400px" aria-label="标题" aria-describedby="inputGroup-sizing-default">
           </div>
 
 
@@ -102,7 +108,6 @@ a:link { text-decoration: none;color: blue}
         </div>
       </div>
     </div>
-    <iframe style="display:none;" id="IframeReportImg" name="IframeReportImg"  width="0" height="0" src="about:blank"></iframe>
   </body>
   <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -110,52 +115,93 @@ a:link { text-decoration: none;color: blue}
   <script src="/js/wxnacy.min.js" ></script>
   <script type="text/javascript" src="/js/lrz.bundle.js"></script>
   <script>
-  var iframeDoc = document.getElementById('IframeReportImg');
 var downDoc = document.getElementById('download');
 var qualityDoc = document.getElementById('quality');
 var nameDoc = document.getElementById('fieldName');
 var widthDoc = document.getElementById('width');
 var heightDoc = document.getElementById('height');
+var previewDom = document.getElementById("preview");
+var fileDom = document.getElementById("file");
+var originDom = document.getElementById("origin");
+var originDetailDom = document.getElementById("origin-detail");
+
 compression('internet')
 
+fileDom.addEventListener("change", changeFile, false);
+function changeFile(e){
+  var files = e.target.files
+  compression('local',files[0])
 
-function compression(type) {
+};
+function b2k(b){
+      b = b / Math.pow(1024, 1)
+      b = Math.floor(b)
+  return b
+};
+function compression(type, file) {
+  var q = parseFloat(qualityDoc.value || 0.7)
+  var url = ''
   if( type == 'local' ){
-
-  } else {
-    var url = document.getElementById('internet-image').value;
-    document.getElementById('origin').src = url;
-    var q = parseFloat(qualityDoc.value || 0.7)
-    var image = new Image();
-    image.src = url
-    image.onload = function(){
-      console.log(image.width);
-      console.log(image.size);
+    url = file
+    if (!file.type.match('image.*')) {
+      alert('请选择一张图片')
+      return;
     }
-    lrz(url, {quality:q, fieldName: nameDoc.value, width: widthDoc.value, height: heightDoc.value})
-      .then(function (rst) {
-        console.log(rst);
-        console.log(rst.origin);
-        // 处理成功会执行
-        var imgDoc = document.getElementById('preview');
-        imgDoc.src = rst.base64
-        document.getElementById('download').value = rst.base64;
-        var fs = rst.fileLen / Math.pow(1024, 1)
-          fs = Math.floor(fs)
-          <!-- document.getElementById('fs').innerHTML = '压缩后大约：' + fs + 'KB' -->
-          document.getElementById('compression-detail').value = fs + 'KB'
-          downDoc.href = rst.base64;
-          downDoc.download = nameDoc.value;
 
-      })
-      .catch(function (err){
-        // 处理失败会执行
-        console.log(res);
-      })
-      .always(function () {
-        // 不管是成功失败，都会执行
-      });
+    originDetailDom.value = `${b2k(file.size)} KB`
+    var reader = new FileReader();
+
+    // Closure to capture the file information.
+    reader.onload = (function(theFile) {
+      return function(e) {
+        // Render thumbnail.
+        originDom.src = e.target.result;
+      };
+    })(file);
+
+    // Read in the image file as a data URL.
+    reader.readAsDataURL(file);
+  } else {
+    url = document.getElementById('internet-image').value;
+    var i = new Image()
+    i.src = url
+    i.onload = function(){
+      <!-- console.log(i.size); -->
+    };
+    fetch(url).then(function(res){
+      return res.blob()
+    }).then(function(data){
+      var fs = b2k(data.size)
+      originDetailDom.value = `${fs} KB`
+    })
+    originDom.src = url;
   }
+  previewDom.src = '';
+  lrz(url, {
+    quality:q,
+    fieldName: nameDoc.value,
+    width: widthDoc.value,
+    height: heightDoc.value
+  })
+    .then(function (rst) {
+      // 处理成功会执行
+      var imgDoc = previewDom
+      imgDoc.src = rst.base64
+      document.getElementById('download').value = rst.base64;
+      var fs = rst.fileLen / Math.pow(1024, 1)
+      fs = Math.floor(fs)
+      document.getElementById('compression-detail').value = `${fs} KB`
+      downDoc.href = rst.base64;
+      downDoc.download = nameDoc.value;
+
+    })
+    .catch(function (err){
+      // 处理失败会执行
+      console.log(res);
+    })
+    .always(function () {
+      // 不管是成功失败，都会执行
+    });
 }
 function download() {
   var down = document.getElementById('download');

@@ -9,6 +9,7 @@ from app.common.base import BaseDB
 from app.common.md import Markdown
 from app.common.security import Md5
 from app.common.security import AESecurity
+from app.common import utils
 from app.config import db
 from app.config import BaseConfig
 from app.config import logger
@@ -242,9 +243,53 @@ class User(BaseModel, db.Model):
     create_ts = db.Column(db.TIMESTAMP, default=datetime.now())
     update_ts = db.Column(db.TIMESTAMP, default=datetime.now())
 
+    @property
+    def real_mobile(self):
+        if len(self.mobile) == 7:
+            return ''
+        return self.mobile
+
+    def format(self):
+        #  item = self.to_dict(exclude=['password'])
+        item = super().format()
+        item.pop('password')
+        item['mobile'] = self.real_mobile
+        return item
 
     def generate_authorization(self):
-        return aes.encrypt(f'{self.id};')
+        return aes.encrypt(f'{self.id};{int(time.time())};')
+
+    @classmethod
+    def create(cls, **kw):
+        kw['name'] = kw['email']
+        kw['mobile'] = utils.get_random_str(7)
+
+        return super().create(**kw)
+
+    @property
+    def authorization(self):
+        return self.generate_authorization()
+
+    @classmethod
+    def generate_password(cls, password):
+        return Md5.encrypt(f'{password};!@#$%')
+
+    @classmethod
+    def login(cls, email, password):
+        pw = cls.generate_password(password)
+        item = cls.query_item(email = email, password = pw)
+        if not item:
+            return 401, '邮箱或密码错误'
+        return 200, item
+
+    @classmethod
+    def register(cls, email, password):
+        item = cls.query_item(email = email)
+        if item:
+            return 403, '邮箱已注册，请直接登录'
+        pw = cls.generate_password(password)
+        item = cls.create(email = email, password = pw)
+        return 200, item
 
     @classmethod
     def get_user_from_authorization(cls, authorization):
@@ -257,6 +302,8 @@ class User(BaseModel, db.Model):
             return None
         id = plain.split(';')[0]
         return cls.query_by_id(id)
+
+
 
 
 

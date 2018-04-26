@@ -18,9 +18,15 @@
     <meta name="twitter:title" content="在线编辑 | wxnacy 博客">
     <meta name="twitter:description" content="在线编辑 html js css">
     <link rel="icon" href="/images/favicon.ico">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/pricing.css">
+    <link rel="stylesheet" href="/css/signin.css">
+    <link rel="import" href="/tools/model.html">
   </head>
   <body>
+    <div id="nav-div"></div>
+
+<!-- Modal -->
     <div class="container-fluid">
       <div class="row">
         <div class="col">
@@ -47,7 +53,7 @@
                 <title></title>
               </head>
               <body>
-                Hello World 
+                Hello World
               </body>
             </html>
           </textarea>
@@ -60,14 +66,25 @@
       </div>
     </div>
   </body>
-  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="/js/jquery.min.js" ></script>
   <script src="/js/wxnacy.min.js" ></script>
+  <script src="/js/tools-common.js" ></script>
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" ></script>
+  <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script>
     init()
 var htmlDom = document.getElementById("html");
 var nameDom = document.getElementById("name");
+
+var link = document.querySelector('link[rel="import"]');
+
+    // 从导入中复制 <template>。
+    var template = link.import.querySelector('template');
+    var content = template.content.cloneNode(true)
+
+    document.querySelector('body').appendChild(content);
+
 
 function init(){
   var id = getValue('id')

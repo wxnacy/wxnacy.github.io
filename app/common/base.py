@@ -260,7 +260,7 @@ class BaseDB():
         finally:
             conn.close()
 
-    
+
 
 class BaseResponse(BaseObject):
     data = {}
@@ -286,6 +286,16 @@ class BaseResponse(BaseObject):
             if filters:
                 fd = BaseDict(data).filter(*filters.split(','))
                 data = fd
+        except:
+            logger.error(traceback.format_exc())
+            data = data
+
+        try:
+            if isinstance(data, db.Model):
+                data = data.format()
+            elif isinstance(data, list) and data and \
+                    isinstance(data[0], db.Model):
+                data = [o.format() for o in data]
         except:
             logger.error(traceback.format_exc())
             data = data

@@ -5,8 +5,11 @@ __author__ = "wxnacy(wxnacy@gmail.com)"
 __copyright__ = "Copyright of wxnacy (2017)."
 
 from app.common.base import BaseResponse
+from app.common.decorator import args_required
+from app.config import BaseConfig
 from app.config import logger
 from app.models import AutoId
+from app.models import User
 from app.models import VisitorLog
 from app.models import Article
 from functools import wraps
@@ -47,6 +50,30 @@ def crawler_article():
     url = args['url']
     res = Article.crawler(url=url)
     return BaseResponse.return_success(res.format())
+
+@api_bp.route('/login', methods=['post'])
+@args_required('email', 'password')
+def login():
+    '''登录'''
+    args = request.json
+    s, item = User.login(**args)
+    if s != 200:
+        return BaseResponse.return_response(status=s, message=item)
+    return BaseResponse.return_response(data = item, headers = {
+        BaseConfig.HEAD_AUTHORIZATION: item.authorization
+        })
+
+@api_bp.route('/register', methods=['post'])
+@args_required('email', 'password')
+def register():
+    '''注册'''
+    args = request.json
+    s, item = User.register(**args)
+    if s != 200:
+        return BaseResponse.return_response(status=s, message=item)
+    return BaseResponse.return_response(data = item, headers = {
+        BaseConfig.HEAD_AUTHORIZATION: item.authorization
+    })
 
 @api_bp.route('/test', methods=['POST', 'GET'])
 def test():

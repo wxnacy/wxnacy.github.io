@@ -8,6 +8,7 @@ from app.common.base import BaseResponse
 from app.common.base import BaseRequest
 from app.config import BaseConfig
 from app.models import User
+from app.models import Code
 from app.models import VisitorLog
 from app.models import VisitorLogDate
 from app.models import Article
@@ -53,6 +54,14 @@ def list_article():
     logger.debug(request)
     pagination = Article.query_by(**args)
     return render_template('admin/article_list.html', pagination=pagination)
+
+@admin_bp.route('/code')
+def list_code():
+    args = BaseRequest.get_args()
+    args['per_page'] = 100
+    logger.debug(request)
+    pagination = Code.query_by(**args)
+    return render_template('admin/code_list.html', pagination=pagination)
 
 @admin_bp.route('/visitor_log_date')
 def list_visitor_log_date():

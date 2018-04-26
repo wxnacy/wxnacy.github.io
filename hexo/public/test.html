@@ -1,10 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title></title>
-</head>
-<body>
-  Hello World 
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+  </head>
+  <body>
+    <span id='output'></span><br/>
+    <img id="preview" width="300"/>
+    <script>
+      fetch('/images/gzjzz2.png').then(function(res){
+        return res.blob()
+      }).then(function(data){
+        document.getElementById("output").innerHTML =  `${data.size} bytes`
+
+      })
+document.getElementById("preview").src = '/images/gzjzz2.png'
+
+    </script>
+  </body>
 </html>
