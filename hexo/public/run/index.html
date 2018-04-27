@@ -19,12 +19,12 @@
     <meta name="twitter:description" content="在线编辑 html js css">
     <link rel="icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/pricing.css">
     <link rel="stylesheet" href="/css/signin.css">
+    <link rel="import" href="/tools/nav.html">
     <link rel="import" href="/tools/model.html">
   </head>
   <body>
-    <div id="nav-div"></div>
+    <div id="nav"></div>
 
 <!-- Modal -->
     <div class="container-fluid">
@@ -66,7 +66,7 @@
       </div>
     </div>
   </body>
-  <script src="/js/jquery.min.js" ></script>
+  <!-- <script src="/js/jquery.min.js" ></script> -->
   <script src="/js/wxnacy.min.js" ></script>
   <script src="/js/tools-common.js" ></script>
   <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" ></script>
@@ -76,15 +76,6 @@
     init()
 var htmlDom = document.getElementById("html");
 var nameDom = document.getElementById("name");
-
-var link = document.querySelector('link[rel="import"]');
-
-    // 从导入中复制 <template>。
-    var template = link.import.querySelector('template');
-    var content = template.content.cloneNode(true)
-
-    document.querySelector('body').appendChild(content);
-
 
 function init(){
   var id = getValue('id')
