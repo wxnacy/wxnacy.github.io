@@ -87,7 +87,15 @@ day = date(2018, 03, 25).timetuple()
 print(day.tm_wday + 1)  # 7
 # 获取指定日期为当年的第几天
 print(day.tm_yday)      # 84
+```
 
+**date/time 转为 datetime**
+
+```python
+>>> from datetime import datetime
+>>> from datetime import date
+>>> datetime.combine(date.today(), datetime.min.time())
+datetime.datetime(2018, 4, 28, 0, 0)
 ```
 
 ## 参考资料

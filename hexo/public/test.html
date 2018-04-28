@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title></title>
-  </head>
-  <body>
-    <span id='output'></span><br/>
-    <img id="preview" width="300"/>
-    <script>
-      fetch('/images/gzjzz2.png').then(function(res){
-        return res.blob()
-      }).then(function(data){
-        document.getElementById("output").innerHTML =  `${data.size} bytes`
-
-      })
-document.getElementById("preview").src = '/images/gzjzz2.png'
-
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="import" href="/">
+</head>
+<body>
+  
+</body>
+<script>
+  var links = document.querySelectorAll('link[rel="import"]');
+  Array.prototype.forEach.call(links, (link) => {
+    console.log(link);
+    var template = link.import.querySelector('.header-menu');
+    var content = template.content.cloneNode(true)
+      document.querySelector('body').appendChild(content);
+  })
+</script>
 </html>

@@ -73,9 +73,10 @@
   <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script>
-    init()
 var htmlDom = document.getElementById("html");
 var nameDom = document.getElementById("name");
+
+init()
 
 function init(){
   var id = getValue('id')
@@ -96,14 +97,13 @@ function init(){
 document.getElementById("download").addEventListener("click", download, false);
 function download(){
   var cont = htmlDom.value;
-  console.log(cont);
   var downDom = document.createElement('a');
   downDom.href = `data:text/html;charset=UTF-8,${encodeURIComponent(cont)}`
   downDom.download = nameDom.value || '未命名'
-  console.log(downDom);
   downDom.click()
 };
 function run(){
+  console.log(htmlDom);
   var content = htmlDom.value;
   var preview = document.getElementById('preview');
   preview.srcdoc = content;
