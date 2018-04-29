@@ -10,10 +10,10 @@
           </button>
         </div>
         <div class="modal-body">
-        <form class="form-signin" >
-          <input type="email" id="email" class="form-control" placeholder="邮箱" required autofocus>
-          <input type="password" id="password" class="form-control" placeholder="密码" required>
-        </form>
+          <form class="form-signin" >
+            <input type="email" id="email" class="form-control" placeholder="邮箱" required autofocus>
+            <input type="password" id="password" class="form-control" placeholder="密码" required>
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
@@ -22,4 +22,20 @@
       </div>
     </div>
   </div>
+  <script>
+    initLogin()
+
+    function initLogin(){
+      document.getElementById("loginBtn").addEventListener('click', function(e){
+        var email = document.getElementById("email").value
+        var pw = document.getElementById("password").value
+        fetchPost('/api/v1/login', {
+          email: email, password: pw
+        }).then(function(data){
+          console.log(data);
+        })
+
+      })
+    };
+  </script>
 </template>

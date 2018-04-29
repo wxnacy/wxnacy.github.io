@@ -254,6 +254,7 @@ class User(BaseModel, db.Model):
         item = super().format()
         item.pop('password')
         item['mobile'] = self.real_mobile
+        item[BaseConfig.HEAD_AUTHORIZATION] = self.generate_authorization()
         return item
 
     def generate_authorization(self):
