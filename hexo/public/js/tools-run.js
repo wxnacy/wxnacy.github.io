@@ -2,6 +2,7 @@ var htmlDom = document.getElementById("html");
 var nameDom = document.getElementById("name");
 document.getElementById("download").addEventListener("click", download, false);
 document.getElementById("save").addEventListener("click", save, false);
+document.getElementById("run").addEventListener("click", run, false);
 document.getElementById("fmt").addEventListener("click", format, false);
 
 var editor = '';
