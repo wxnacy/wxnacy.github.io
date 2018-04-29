@@ -5,9 +5,12 @@ __author__ = "wxnacy(wxnacy@gmail.com)"
 __copyright__ = "Copyright of wxnacy (2017)."
 
 from app.common.base import BaseResponse
+from app.config import logger
 from app.models import Code
+from app.models import User
 from flask import Blueprint
 from flask import request
+from flask import g
 
 code_bp = Blueprint('code', __name__)
 
@@ -16,8 +19,7 @@ code_bp = Blueprint('code', __name__)
 def create_code():
     '''创建代码'''
     args = request.json
-    args['id'] = Code.generate_id()
-    item = Code.create(**args)
+    item = Code.create_or_update(**args)
     return BaseResponse.return_success(item.format())
 
 @code_bp.route('/code/<string:id>', methods=['GET'])

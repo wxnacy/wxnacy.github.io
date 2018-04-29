@@ -103,6 +103,7 @@ function save(){
   }
   var params = {
     name: nameDom.value,
+    id: getValue('id'),
     description: '',
     code: code
   }

@@ -123,7 +123,6 @@ function create_crypto(type) {
     }).then(function(res){
         return res.json();
     }).then(function(data){
-        console.log(data);
         body = data.data;
         if( type == 'default' || type == 'hmac'){
             document.getElementById("crypto").style.display = 'none';
@@ -281,6 +280,23 @@ function visitor(){
         })
     })
 }
+function setCookie(cname,cvalue,exdays) {
+  var d = new Date();
+  d.setTime(d.getTime()+(exdays*24*60*60*1000));
+  var expires = "expires="+d.toGMTString();
+  document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+
+function getCookie(cname){
+  var name = cname + "=";
+  var ca = document.cookie.split(';');
+  for(var i=0; i<ca.length; i++)
+  {
+    var c = ca[i].trim();
+    if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+  }
+  return "";
+}
 function fetchGet(url) {
     return fetchRequest(url, 'GET')
 }
@@ -289,7 +305,7 @@ function fetchPost(url, params) {
 }
 function fetchRequest(url, method, params) {
     var headers = {
-        "authorization": "XXXXXXXXX"
+        "authorization": getCookie('authorization')
     }
     if( method.toLowerCase() == 'post' ){
         headers['Content-Type']= 'application/json'

@@ -22,6 +22,7 @@ from sqlalchemy import or_
 from sqlalchemy import text
 from sqlalchemy import func
 from flask import request
+from flask import g
 from user_agents import parse
 import os
 import re
@@ -202,6 +203,7 @@ class Config(BaseModel,db.Model):
 class Code(BaseModel,db.Model):
     __tablename__ = 'code'
     id = db.Column(db.String,primary_key=True)
+    user_id = db.Column(db.INT, db.ForeignKey('user.id'), default="0")
     name = db.Column(db.String,default="")
     description = db.Column(db.String,default="")
     type = db.Column(db.String,default="")
@@ -209,6 +211,20 @@ class Code(BaseModel,db.Model):
     is_available = db.Column(db.INT,default=1)
     create_ts = db.Column(db.TIMESTAMP,default=datetime.now())
     update_ts = db.Column(db.TIMESTAMP,default=datetime.now())
+
+    @classmethod
+    def create_or_update(cls, **kw):
+        id = 0
+        if 'id' in kw:
+            id = kw.pop('id')
+        item = cls.query_item(id=id, user_id = g.current_user.id)
+        if not item:
+            kw['id'] = AutoId.generate_id()
+            kw['user_id'] = g.current_user.id
+            item = cls.create(**kw)
+        else:
+            cls.update_by_id(id, **kw)
+        return item
 
 class AutoId(BaseModel, db.Model):
     __tablename__ = 'auto_id'
