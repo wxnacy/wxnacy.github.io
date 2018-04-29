@@ -18,6 +18,8 @@ code_bp = Blueprint('code', __name__)
 @code_bp.route('/code', methods=['POST'])
 def create_code():
     '''创建代码'''
+    if not g.current_user:
+        return BaseResponse.return_unauthorized('请先登录')
     args = request.json
     item = Code.create_or_update(**args)
     return BaseResponse.return_success(item.format())

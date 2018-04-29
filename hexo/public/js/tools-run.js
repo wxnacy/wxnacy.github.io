@@ -109,7 +109,10 @@ function save(){
   }
 
   fetchPost(`/api/v1/code`, params).then(data => {
-    console.log(data);
+    if( data.status == 401 ){
+      alert('请先登录')
+      return
+    }
     let id = data.data.id
     window.location.href = `${window.location.pathname}?id=${id}`
   })
