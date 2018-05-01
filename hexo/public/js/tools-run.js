@@ -106,6 +106,7 @@ function save(){
     name: nameDom.value,
     id: getValue('id'),
     description: '',
+    source: 'run',
     code: code
   }
 

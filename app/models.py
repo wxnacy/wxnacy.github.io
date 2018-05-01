@@ -207,6 +207,8 @@ class Code(BaseModel,db.Model):
     name = db.Column(db.String,default="")
     description = db.Column(db.String,default="")
     type = db.Column(db.String,default="")
+    status = db.Column(db.String,default="")
+    source = db.Column(db.String,default="")
     code = db.Column(db.JSON,default={})
     is_available = db.Column(db.INT,default=1)
     create_ts = db.Column(db.TIMESTAMP,default=datetime.now())

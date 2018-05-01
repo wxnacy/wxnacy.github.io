@@ -75,12 +75,14 @@ def register():
         BaseConfig.HEAD_AUTHORIZATION: item.authorization
     })
 
-@api_bp.route('/test', methods=['POST', 'GET'])
-def test():
+@api_bp.route('/wapi/test', methods=['POST', 'GET', 'PUT', "DELETE"])
+def wapi_test():
     '''测试'''
-    req = f'''
-        path: {request.path}
-        url: {request.url}
-    '''
-    res = dict(request=req)
+    res = {}
+    res.update(dict(path= request.path))
+    res.update(dict(method= request.method))
+    res.update(dict(args= request.args))
+    res.update(dict(json= request.json))
+    res.update(dict(form= request.form))
+    res.update(dict(headers= dict(request.headers)))
     return BaseResponse.return_success(res)

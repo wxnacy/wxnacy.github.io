@@ -38,4 +38,10 @@ create table `code`(
   update_ts timestamp not null default current_timestamp on update current_timestamp comment '修改时间',
   primary key(`id`)
 ) engine=InnoDB default charset=utf8mb4 COMMENT '代码';
+
+-- 2018-04-29
 alter table `code` add column user_id bigint(20) not null default '0';
+
+-- 2018-04-30
+alter table `code` add column status varchar(32) not null default '';
+alter table `code` add column source varchar(32) not null default '';

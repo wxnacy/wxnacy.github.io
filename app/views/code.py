@@ -29,4 +29,5 @@ def code_detail(id):
     '''获取详情'''
 
     item = Code.query_by_id(id)
+    print(item)
     return BaseResponse.return_success(item.format())

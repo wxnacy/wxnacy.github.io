@@ -8,3 +8,4 @@ tags: [工具]
 
 - [cdnjs](https://cdnjs.com/)
 - [Google Hosted Libraries](https://developers.google.com/speed/libraries/)
+- [Staticfile CDN](https://www.staticfile.org/)

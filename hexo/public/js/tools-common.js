@@ -1,6 +1,6 @@
 
 importHtml()
-
+initNew()
 
 function importHtml(){
   var links = document.querySelectorAll('link[rel="import"]');
@@ -19,3 +19,10 @@ function importHtml(){
 };
 
 
+function initNew(){
+  var newDom = document.getElementById("new");
+  if( newDom != null ){
+    newDom.href = window.location.pathname
+    newDom.target = '_blank'
+  }
+};
