@@ -5,6 +5,7 @@ iabbrev <buffer> fh /**<cr> * Author: wxnacy(wxnacy@gmail.com)<cr>
             \ * Description:<cr> */<cr>
 
 iabbrev <buffer> func function(){};<esc>hi<cr><esc>kf(i
+iabbrev <buffer> main if( require.main === module ){}<esc>i<cr>
 
 iabbrev <buffer> debi document.getElementById("");<esc>hhi
 iabbrev <buffer> dce document.createElement("");<esc>hhi

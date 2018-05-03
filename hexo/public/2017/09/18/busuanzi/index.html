@@ -211,9 +211,9 @@
 <p>静态网页最快接入计算访问量插件<a href="http://busuanzi.ibruce.info/" target="_blank" rel="noopener"> 不蒜子 </a></p>
 </blockquote>
 <a id="more"></a>
-<p>接入方式很简单只需要将如下代码加入到页面中想要显示的位置<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;script <span class="keyword">async</span> src=<span class="string">"//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;span id=<span class="string">"busuanzi_container_site_pv"</span>&gt;</div><div class="line">本站总访问量&lt;span id=<span class="string">"busuanzi_value_site_pv"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span>次</div><div class="line">本站访客数&lt;span id=<span class="string">"busuanzi_value_site_uv"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span>人次</div><div class="line">本文总阅读量&lt;span id=<span class="string">"busuanzi_value_page_pv"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span>次</div><div class="line">&lt;<span class="regexp">/span&gt;</span></div></pre></td></tr></table></figure></p>
-<p>在 hexo 中使用不蒜子，只需要将上边这段代码加入到你使用的模板的 footer.ejs 中<br>位置在 <strong><em>themes/你的主题/layout/_partial/footer.ejs</em></strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;footer id=<span class="string">"footer"</span>&gt;</div><div class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"outer"</span>&gt;</div><div class="line">    &lt;div id=<span class="string">"footer-info"</span>&gt;</div><div class="line">    	&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"footer-left"</span>&gt;</div><div class="line">    		&amp;copy; <span class="xml"><span class="tag">&lt;<span class="name">%=</span> <span class="attr">date</span>(<span class="attr">new</span> <span class="attr">Date</span>(), '<span class="attr">YYYY</span>') %&gt;</span> <span class="tag">&lt;<span class="name">%=</span> <span class="attr">config.author</span> || <span class="attr">config.title</span> %&gt;</span></span></div><div class="line"><span class="xml">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">async</span> <span class="attr">src</span>=<span class="string">"//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">            &lt;span id="busuanzi_container_site_pv"&gt;</div><div class="line">            本站总访问量&lt;span id="busuanzi_value_site_pv"&gt;&lt;/span&gt;次</div><div class="line">            本站访客数&lt;span id="busuanzi_value_site_uv"&gt;&lt;/span&gt;人次</div><div class="line">            本文总阅读量&lt;span id="busuanzi_value_page_pv"&gt;&lt;/span&gt;次</div><div class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"><span class="xml">    	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">      	&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"footer-right"</span>&gt;</div><div class="line">      		&lt;a href=<span class="string">"http://hexo.io/"</span> target=<span class="string">"_blank"</span>&gt;Hexo&lt;<span class="regexp">/a&gt;  Theme &lt;a href="https:/</span><span class="regexp">/github.com/</span>litten/hexo-theme-yilia<span class="string">" target="</span>_blank<span class="string">"&gt;Yilia&lt;/a&gt; by Litten</span></div><div class="line"><span class="string">      	&lt;/div&gt;</span></div><div class="line"><span class="string">    &lt;/div&gt;</span></div><div class="line"><span class="string">  &lt;/div&gt;</span></div><div class="line"><span class="string">&lt;/footer&gt;</span></div></pre></td></tr></table></figure></p>
-<p>当然你也可以放在任何你想展示的地方<br>如果你是刚建站，只想计数，不想展示，则只引入第一行 js 文件即可<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script <span class="keyword">async</span> src=<span class="string">"//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
+<p>接入方式很简单只需要将如下代码加入到页面中想要显示的位置<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;script <span class="keyword">async</span> src=<span class="string">"//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;span id=<span class="string">"busuanzi_container_site_pv"</span>&gt;</div><div class="line">本站总访问量&lt;span id=<span class="string">"busuanzi_value_site_pv"</span>&gt;&lt;/span&gt;次</div><div class="line">本站访客数&lt;span id=<span class="string">"busuanzi_value_site_uv"</span>&gt;&lt;/span&gt;人次</div><div class="line">本文总阅读量&lt;span id=<span class="string">"busuanzi_value_page_pv"</span>&gt;&lt;/span&gt;次</div><div class="line">&lt;<span class="regexp">/span&gt;</span></div></pre></td></tr></table></figure></p>
+<p>在 hexo 中使用不蒜子，只需要将上边这段代码加入到你使用的模板的 footer.ejs 中<br>位置在 <strong><em>themes/你的主题/layout/_partial/footer.ejs</em></strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;footer id=<span class="string">"footer"</span>&gt;</div><div class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"outer"</span>&gt;</div><div class="line">    &lt;div id=<span class="string">"footer-info"</span>&gt;</div><div class="line">    	&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"footer-left"</span>&gt;</div><div class="line">    		&amp;copy; &lt;%= date(new Date(), 'YYYY') %&gt; &lt;%= config.author || config.title %&gt;</div><div class="line">        &lt;script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"&gt;&lt;/script&gt;</div><div class="line">            &lt;span id="busuanzi_container_site_pv"&gt;</div><div class="line">            本站总访问量&lt;span id="busuanzi_value_site_pv"&gt;&lt;/span&gt;次</div><div class="line">            本站访客数&lt;span id="busuanzi_value_site_uv"&gt;&lt;/span&gt;人次</div><div class="line">            本文总阅读量&lt;span id="busuanzi_value_page_pv"&gt;&lt;/span&gt;次</div><div class="line">            &lt;/span&gt;</div><div class="line">    	&lt;/div&gt;</div><div class="line">      	&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"footer-right"</span>&gt;</div><div class="line">      		&lt;a href=<span class="string">"http://hexo.io/"</span> target=<span class="string">"_blank"</span>&gt;Hexo&lt;<span class="regexp">/a&gt;  Theme &lt;a href="https:/</span><span class="regexp">/github.com/</span>litten/hexo-theme-yilia<span class="string">" target="</span>_blank<span class="string">"&gt;Yilia&lt;/a&gt; by Litten</span></div><div class="line"><span class="string">      	&lt;/div&gt;</span></div><div class="line"><span class="string">    &lt;/div&gt;</span></div><div class="line"><span class="string">  &lt;/div&gt;</span></div><div class="line"><span class="string">&lt;/footer&gt;</span></div></pre></td></tr></table></figure></p>
+<p>当然你也可以放在任何你想展示的地方<br>如果你是刚建站，只想计数，不想展示，则只引入第一行 js 文件即可<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script <span class="keyword">async</span> src=<span class="string">"//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"</span>&gt;&lt;/script&gt;</div></pre></td></tr></table></figure></p>
 
       
 
@@ -441,11 +441,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -465,15 +465,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -482,10 +486,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">

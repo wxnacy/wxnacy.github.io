@@ -1,55 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-        <style>
-
-textarea {
-  width: 100%;
-}
-        </style>
-    </head>
-    <body>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js"></script>
-<textarea name="my-xml-editor" data-editor="html" data-gutter="1" rows="20"><html></html></textarea>
-    </body>
-    <script>
-
-$(function() {
-  $('textarea[data-editor]').each(function() {
-    var textarea = $(this);
-    var mode = this.getAttribute('data-editor')
-    var editDiv = $('<div>', {
-      position: 'absolute',
-      width: textarea.width(),
-      height: textarea.height(),
-      'class': textarea.attr('class')
-    }).insertBefore(textarea);
-
-    var editDiv = document.createElement("div");
-    editDiv.style.position = "absolute"
-    editDiv.style.width = this.style.width
-    editDiv.style.height = this.style.height
-
-    <!-- this. -->
-      console.log(this);
-
-    textarea.css('display', 'none');
-    var editor = ace.edit(editDiv[0]);
-    editor.renderer.setShowGutter(textarea.data('gutter'));
-    editor.getSession().setValue(this.value);
-    editor.getSession().setMode("ace/mode/" + mode);
-    editor.setTheme("ace/theme/idle_fingers");
-
-    // copy back to textarea on form submit...
-    textarea.closest('form').submit(function() {
-      textarea.val(editor.getSession().getValue());
-    })
-  });
-});
-    </script>
-
-
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <script src="/js/web-tools.min.js"></script>
+  <script>
+    console.log(WebTools.getRandom(9))
+  </script>
+</body>
 </html>

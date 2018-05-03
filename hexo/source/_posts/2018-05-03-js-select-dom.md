@@ -1,7 +1,10 @@
 ---
 title: JavaScript 操作 Select DOM
-tags: [javascript]
+tags:
+  - javascript
+date: 2018-05-03 09:35:53
 ---
+
 
 Javascript 操作 Select DOM 的一些方法。
 <!-- more --><!-- toc -->

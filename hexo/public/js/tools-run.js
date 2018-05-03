@@ -5,6 +5,50 @@ document.getElementById("save").addEventListener("click", save, false);
 document.getElementById("run").addEventListener("click", run, false);
 document.getElementById("fmt").addEventListener("click", format, false);
 
+document.onkeydown = function(e) {
+  var keyCode = e.keyCode || e.which || e.charCode;
+  var ctrlKey = e.ctrlKey || e.metaKey;
+  if(ctrlKey && keyCode == 83) {
+    e.preventDefault();
+    save()
+  }
+  return true;
+}
+
+// layer.open({
+  // type: 1 //此处以iframe举例
+  // ,title: 'console 输出'
+  // ,area: ['390px', '330px']
+  // ,shade: 0
+  // ,offset: [ //为了演示，随机坐标
+    // Math.random()*($(window).height()-300)
+    // ,Math.random()*($(window).width()-390)
+  // ]
+  // ,maxmin: true
+  // ,content: '<div id="console"></div>'
+  // ,btn: ['继续弹出', '全部关闭'] //只是为了演示
+  // ,yes: function(){
+    // $(that).click(); //此处只是为了演示，实际使用可以剔除
+  // }
+  // ,btn2: function(){
+    // layer.closeAll();
+  // }
+  // ,zIndex: layer.zIndex //重点1
+  // ,success: function(layero){
+    // layer.setTop(layero); //重点2
+  // }
+// });
+
+// var old = console.log;
+	// var logger = document.getElementById('console');
+	// console.log = function (message) {
+		// if (typeof message == 'object') {
+			// logger.innerHTML += (JSON && JSON.stringify ? JSON.stringify(message) : message) + '<br />';
+		// } else {
+			// logger.innerHTML += message + '<br />';
+		// }
+	// }
+
 var editor = '';
 $(function() {
   $('textarea[data-editor]').each(function() {
@@ -33,23 +77,23 @@ $(function() {
   });
 });
 function format(){
-    var beautify = ace.require("ace/ext/beautify"); // get reference to extension
-    beautify.beautify(editor.session);
+  var beautify = ace.require("ace/ext/beautify"); // get reference to extension
+  beautify.beautify(editor.session);
 };
 function formatCode(editor, mode) {
-    var ace = editor.ace;
-    var sel = ace.selection;
-    var session = ace.session;
-    var range = sel.getRange();
+  var ace = editor.ace;
+  var sel = ace.selection;
+  var session = ace.session;
+  var range = sel.getRange();
 
-    var value = session.getTextRange(range);
+  var value = session.getTextRange(range);
 
-    value = doFormatting(value);
+  value = doFormatting(value);
 
-    var end = session.diffAndReplace(range, value);
-    sel.setSelectionRange(Range.fromPoints(range.start, end));
+  var end = session.diffAndReplace(range, value);
+  sel.setSelectionRange(Range.fromPoints(range.start, end));
 
-    return true;
+  return true;
 }
 
 function getEditorValue(){
@@ -61,7 +105,7 @@ function setEditorValue(content){
 
 };
 function init(){
-  var id = getValue('id')
+  var id = WebTools.getArgsValue('id')
   if(!isEmpty(id)){
     fetchGet(`/api/v1/code/${id}`).then(function(data){
       var html = decodeURIComponent(data.data.code.html)

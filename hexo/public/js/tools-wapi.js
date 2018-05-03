@@ -71,9 +71,8 @@ function fmt(){
 function format(editor, fmt='json'){
   var val = editor.getSession().getValue()
   if( fmt == 'json' ){
-    val = val.replace(/\n/g, "")
-    val = val.replace(/,"/g, ",\n\"")
-    // val = val.replace(/:/g, ": ")
+    val = JSON5.parse(val)
+    val = JSON.stringify(val, null, 4)
   }
   editor.getSession().setValue(val)
   var beautify = ace.require("ace/ext/beautify"); // get reference to extension
