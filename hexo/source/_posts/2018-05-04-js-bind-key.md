@@ -1,7 +1,10 @@
 ---
 title: JavaScript 绑定组合键
-tags: [javascript]
+tags:
+  - javascript
+date: 2018-05-04 15:13:25
 ---
+
 
 在写[在线编辑](/run/)时需要使用 `ctrl+s` 组合键完成保存的功能，今天总结下用法。
 <!-- more --><!-- toc -->

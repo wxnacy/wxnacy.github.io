@@ -87,16 +87,22 @@ class Base64():
 
 
 if __name__ == '__main__':
-    key = AESecurity.generate_key()
-    print(key)
+    #  key = AESecurity.generate_key()
+    #  print(key)
+    key = '68bc930a2e220b81'
     #
     aes = AESecurity(key)
     id = Md5.encrypt('1')
+    print(id)
     
     res = aes.encrypt('{};{}'.format(id, time.time()))
     print(res)
-    plain = aes.decrypt('sdfasfas')
+    plain = aes.decrypt(res)
     print(plain)
+
+    data = dict(id=100000000, ts=int(time.time()))
+    res = aes.encrypt(data)
+    print(res)
     # 820fb3cd26ad5e9bd8925ec34ded98a2
     # 820fb3cd26ad5e9bd8925ec34ded98a2
 

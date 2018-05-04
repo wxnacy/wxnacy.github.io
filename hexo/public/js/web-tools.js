@@ -7,6 +7,7 @@ Array.prototype.extend = function(lists){
   });
 };
 
+
 var WebTools = (function(){
 
   function getArgsValue(key){
@@ -115,7 +116,15 @@ var WebTools = (function(){
   };
 
   function customizeLog(){
-    
+    var old = console.log;
+    var logger = document.getElementById('console');
+    console.log = function (message) {
+      if (typeof message == 'object') {
+        logger.innerHTML += (JSON && JSON.stringify ? JSON.stringify(message) : message) + '<br />';
+      } else {
+        logger.innerHTML += message + '<br />';
+      }
+    }
   }
 
 
@@ -129,10 +138,15 @@ var WebTools = (function(){
   }
 })();
 
-// if( require.main === module  ){
-  // console.log(WebTools.getRandom(1));
-  // console.log(WebTools.getRandom(7));
-  // var a = [1, 2]
-  // a.extend(['a', 'b'], [8, 9], [4, 5])
-  // console.log(a);
-// }
+function filterJson(json, include, exclude){
+  console.log(json, include, exclude);
+  if( isNotEmpty(include) ){
+    
+
+  }
+}
+
+if( require.main === module  ){
+  var d = { name: "wxnacy" }
+  filterJson(d)
+}
