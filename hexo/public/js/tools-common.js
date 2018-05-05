@@ -14,7 +14,7 @@ function importHtml(){
       document.getElementById("head").appendChild(content)
     }else {
       document.querySelector('body').appendChild(content);
-    }
+ keys   }
   })
 };
 
@@ -26,3 +26,36 @@ function initNew(){
     newDom.target = '_blank'
   }
 };
+
+var Tools = (function(){
+
+function saveCode(source, code){
+  if( !checkIsLogin() ){
+    alert('请登录')
+    return
+  }
+  var params = {
+    id: getValue('id'),
+    description: '',
+    source: source,
+    code: code
+  }
+  var nameDom = document.getElementById("name");
+
+  if( !isEmpty(nameDom) ){
+    params['name'] = nameDom.value
+  }
+
+  fetchPost(`/api/v1/code`, params).then(data => {
+    if( data.status == 401 ){
+      alert('请先登录')
+      return
+    }
+    let id = data.data.id
+    window.location.href = `${window.location.pathname}?id=${id}`
+  })
+};
+return {
+  saveCode: saveCode
+}
+})();

@@ -141,12 +141,51 @@ var WebTools = (function(){
 function filterJson(json, include, exclude){
   console.log(json, include, exclude);
   if( isNotEmpty(include) ){
-    
+
 
   }
 }
 
-if( require.main === module  ){
-  var d = { name: "wxnacy" }
-  filterJson(d)
-}
+var WebFetch = (function(){
+  function get(url) {
+    return request(url, 'GET')
+  };
+  function post(url, params) {
+    return request(url, 'POST', params)
+  };
+  function request(url, method, params, headers) {
+    var headers = {
+      // "authorization": getCookie('authorization')
+    }
+    if( method.toLowerCase() == 'post' ){
+      headers['Content-Type']= 'application/json'
+    }
+    return new Promise(function(resolve, reject) {
+      fetch(url, {
+        method: method,
+        headers: headers,
+        body: JSON.stringify(params)
+      }).then(function(res){
+        return res.json()
+      }).then(function(data){
+        resolve(data)
+      }).catch(function(e){
+        reject(e)
+        // 需要统一的处理错误方式，避免每次都catch
+      })
+    })
+  };
+
+  return {
+    get: get,
+  }
+})();
+
+
+// if( require.main === module  ){
+  // // var d = { name: "wxnacy" }
+  // // filterJson(d)
+  // //
+  // res = WebFetch.get(':4001/api/v1/wapi/test')
+  // console.log(res);
+// }
