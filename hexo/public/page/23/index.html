@@ -187,6 +187,84 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-linux-2017-08-22-sftp-scp" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/22/linux-2017-08-22-sftp-scp/">Linux 远程文件传输 SFTP 和 SCP</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/22/linux-2017-08-22-sftp-scp/" class="archive-article-date">
+  	<time datetime="2017-08-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>熟悉linux的朋友都知道 SSH 可以登录远程服务器进行工作，但是如果想从远程服务器下载文件或上传到服务器呢，SSH 就做不到了，这时候我们可以用 SFTP 和 SCP 完成任务，这两个指令也是使用 SSH 的通道（Port 22），只是模拟 FTP 与复制的操作而已。下面我们一一介绍.</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2017/08/22/linux-2017-08-22-sftp-scp/#more">阅读全文 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/22/linux-2017-08-22-sftp-scp/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-python-2017-08-22-get-image-size" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -262,19 +340,19 @@
 
 
   
-    <article id="post-linux-2017-08-22-sftp-scp" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-linux-2017-08-22-centos-start-stop-restart-sshd" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/22/linux-2017-08-22-sftp-scp/">Linux 远程文件传输 SFTP 和 SCP</a>
+      <a class="article-title" href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/">Linux CentOS 各个版本启动SSHD服务命令</a>
     </h1>
   
 
         
-        <a href="/2017/08/22/linux-2017-08-22-sftp-scp/" class="archive-article-date">
+        <a href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/" class="archive-article-date">
   	<time datetime="2017-08-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
 </a>
         
@@ -283,11 +361,14 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>熟悉linux的朋友都知道 SSH 可以登录远程服务器进行工作，但是如果想从远程服务器下载文件或上传到服务器呢，SSH 就做不到了，这时候我们可以用 SFTP 和 SCP 完成任务，这两个指令也是使用 SSH 的通道（Port 22），只是模拟 FTP 与复制的操作而已。下面我们一一介绍.</p>
+<p>本篇介绍如何在 CentOS 系统中怎样启动sshd服务，如何开机自启</p>
 </blockquote>
-        
-          <a class="article-more-a" href="/2017/08/22/linux-2017-08-22-sftp-scp/#more">阅读全文 >></a>
-        
+<h2><span id="ming-ling-gai-kuang">命令概况</span><a href="#ming-ling-gai-kuang" class="header-anchor"></a></h2><p>CentOS &lt; 7.x<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">service <span class="built_in">command</span>     <span class="comment"># 使用service命令做start|stop|restart sshd</span></div><div class="line">chkconfig <span class="built_in">command</span>   <span class="comment"># turn on or off 机器自启sshd</span></div></pre></td></tr></table></figure></p>
+<p>CentOS &gt;= 7.x<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl <span class="built_in">command</span> <span class="comment"># 管理 start|stop|start 自启sshd</span></div></pre></td></tr></table></figure></p>
+<h2><span id="centos-lt-7-x">CentOS &lt; 7.x</span><a href="#centos-lt-7-x" class="header-anchor"></a></h2><h3><span id="chkconfig">chkconfig</span><a href="#chkconfig" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ chkconfig sshd on     <span class="comment"># 开机自启sshd</span></div><div class="line">$ chkconfig sshd off    <span class="comment"># 开机关闭自启sshd</span></div><div class="line">$ chkconfig --list sshd <span class="comment"># 查看每个运行级别类型中服务的当前状态</span></div></pre></td></tr></table></figure>
+<h3><span id="service">service</span><a href="#service" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ service sshd start | stop | restart</div><div class="line">or</div><div class="line">$ /etc/init.d/sshd start | stop | restart</div></pre></td></tr></table></figure>
+<h2><span id="centos-gt-7-x">CentOS &gt;= 7.x</span><a href="#centos-gt-7-x" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ systemctl <span class="built_in">enable</span> sshd.service     <span class="comment"># 开机自启sshd</span></div><div class="line">$ systemctl <span class="built_in">disable</span> sshd.service    <span class="comment"># 开机关闭自启sshd</span></div><div class="line">$ systemctl start sshd.service      <span class="comment"># 启动sshd</span></div><div class="line">$ systemctl restart sshd.service    <span class="comment"># 重启</span></div><div class="line">$ systemctl stop sshd.service       <span class="comment"># 停止</span></div><div class="line">$ systemctl reload sshd.service     <span class="comment"># 重新加载</span></div><div class="line">$ systemctl status sshd.service     <span class="comment"># 查看启动状态</span></div></pre></td></tr></table></figure>
+
       
 
       
@@ -310,7 +391,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/22/linux-2017-08-22-sftp-scp/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/">展开全文 >></a>
         </p>
       
 
@@ -418,82 +499,6 @@
 
 
   
-    <article id="post-python-2017-08-18-pip-not-found" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/18/python-2017-08-18-pip-not-found/">Linux 执行 pip 报错 command not found</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/18/python-2017-08-18-pip-not-found/" class="archive-article-date">
-  	<time datetime="2017-08-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>使用各个系统的安装器进行安装</p>
-<h3><span id="centos">CentOS</span><a href="#centos" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ easy_install pip</div></pre></td></tr></table></figure>
-<h3><span id="ubuntu">Ubuntu</span><a href="#ubuntu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ apt-get install python-pip</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/18/python-2017-08-18-pip-not-found/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-python-2017-08-18-basic-supervisor" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -543,6 +548,82 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/18/python-2017-08-18-basic-supervisor/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-python-2017-08-18-pip-not-found" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/18/python-2017-08-18-pip-not-found/">Linux 执行 pip 报错 command not found</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/18/python-2017-08-18-pip-not-found/" class="archive-article-date">
+  	<time datetime="2017-08-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>使用各个系统的安装器进行安装</p>
+<h3><span id="centos">CentOS</span><a href="#centos" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ easy_install pip</div></pre></td></tr></table></figure>
+<h3><span id="ubuntu">Ubuntu</span><a href="#ubuntu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ apt-get install python-pip</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/18/python-2017-08-18-pip-not-found/">展开全文 >></a>
         </p>
       
 
@@ -761,93 +842,6 @@
 
 
   
-    <article id="post-http-2017-08-16-basic" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/16/http-2017-08-16-basic/">HTTP相关知识</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/16/http-2017-08-16-basic/" class="archive-article-date">
-  	<time datetime="2017-08-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3><span id="content-length">Content-length</span><a href="#content-length" class="header-anchor"></a></h3><p>返回数据的大小，单位 bytes</p>
-<h2><span id="content-type">Content-Type</span><a href="#content-type" class="header-anchor"></a></h2><h3><span id="chang-yong">常用</span><a href="#chang-yong" class="header-anchor"></a></h3><ul>
-<li>application/octet-stream</li>
-<li>application/json</li>
-<li>application/javascript</li>
-<li>application/xml</li>
-<li>application/x-www-form-urlencoded</li>
-<li>text/plain</li>
-<li>text/xml</li>
-<li>text/html</li>
-<li>image/jpeg</li>
-<li>image/jpeg</li>
-<li>multipart/form-data<br>详细内容:<a href="http://tool.oschina.net/commons" target="_blank" rel="noopener">http://tool.oschina.net/commons</a></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/16/http-2017-08-16-basic/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-openresty-2017-08-16-install" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -933,31 +927,40 @@ sudo yum-config-manager --add-repo https://openresty.org/package/centos/openrest
 
 
   
-    <article id="post-linux-2017-08-15-nohup" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-http-2017-08-16-basic" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/15/linux-2017-08-15-nohup/">Linux 使用nohup在后台不挂断执行命令</a>
+      <a class="article-title" href="/2017/08/16/http-2017-08-16-basic/">HTTP相关知识</a>
     </h1>
   
 
         
-        <a href="/2017/08/15/linux-2017-08-15-nohup/" class="archive-article-date">
-  	<time datetime="2017-08-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-15</time>
+        <a href="/2017/08/16/http-2017-08-16-basic/" class="archive-article-date">
+  	<time datetime="2017-08-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>nohup 搭配 &amp; 来不挂断地运行某条命令达到后台执行的效果，默认会在根目录生成一个<br>nohup.out 文件用来记录所有的 log 信息，也可以重定向到其他位置。</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nohup gunicorn run:app &amp;</div></pre></td></tr></table></figure>
-<h2><span id="chong-ding-xiang-ri-zhi-dao-zhi-ding-wen-jian">重定向日志到制定文件</span><a href="#chong-ding-xiang-ri-zhi-dao-zhi-ding-wen-jian" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nohup gunicorn run:app &gt;nohup.log 2&gt;&amp;1 &amp;</div></pre></td></tr></table></figure>
+        <h3><span id="content-length">Content-length</span><a href="#content-length" class="header-anchor"></a></h3><p>返回数据的大小，单位 bytes</p>
+<h2><span id="content-type">Content-Type</span><a href="#content-type" class="header-anchor"></a></h2><h3><span id="chang-yong">常用</span><a href="#chang-yong" class="header-anchor"></a></h3><ul>
+<li>application/octet-stream</li>
+<li>application/json</li>
+<li>application/javascript</li>
+<li>application/xml</li>
+<li>application/x-www-form-urlencoded</li>
+<li>text/plain</li>
+<li>text/xml</li>
+<li>text/html</li>
+<li>image/jpeg</li>
+<li>image/jpeg</li>
+<li>multipart/form-data<br>详细内容:<a href="http://tool.oschina.net/commons" target="_blank" rel="noopener">http://tool.oschina.net/commons</a></li>
+</ul>
 
       
 
@@ -971,7 +974,7 @@ sudo yum-config-manager --add-repo https://openresty.org/package/centos/openrest
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
         		</li>
       		
 		</ul>
@@ -981,7 +984,7 @@ sudo yum-config-manager --add-repo https://openresty.org/package/centos/openrest
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/15/linux-2017-08-15-nohup/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/16/http-2017-08-16-basic/">展开全文 >></a>
         </p>
       
 
@@ -1165,15 +1168,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1189,15 +1192,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1281,11 +1284,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
