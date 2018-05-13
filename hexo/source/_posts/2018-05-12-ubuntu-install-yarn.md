@@ -17,3 +17,5 @@ $ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sour
 ```bash
 $ sudo apt-get update && sudo apt-get install yarn
 ```
+
+- [ubuntu 安装](https://yarnpkg.com/lang/zh-hans/docs/install/#debian-stable)
