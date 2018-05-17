@@ -17,6 +17,11 @@ $ sudo yum install -y yum-utils device-mapper-persistent-data lvm2
 
 ```bash
 $ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+```
+
+**允许使用edge test 版本**
+
+```bash
 $ sudo yum-config-manager --enable docker-ce-edge
 $ sudo yum-config-manager --enable docker-ce-test
 ```
