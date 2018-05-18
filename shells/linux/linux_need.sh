@@ -38,7 +38,7 @@ install(){
     sudo pip install httpie
     if [ ${SYS} == 'ubuntu' ]
     then
-        sudo ${PKG} -y install patch zlib1g.dev libgdbm-dev libssl-dev libsqlite3-dev libbz2-dev libreadline-dev
+        # sudo ${PKG} -y install patch zlib1g.dev libgdbm-dev libssl-dev libsqlite3-dev libbz2-dev libreadline-dev
         echo ${SYS}
     elif [ ${SYS} == 'centos' ]
     then
