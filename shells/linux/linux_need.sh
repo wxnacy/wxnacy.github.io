@@ -1,19 +1,23 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 PKG=''
+SYS=''
 
 check_system(){
     OS=`uname -s`
     if [ ${OS} == "Darwin"  ];then
         PKG='brew'
+        SYS='mac'
     elif [ ${OS} == "Linux"  ];then
         source /etc/os-release
         case $ID in
             debian|ubuntu|devuan)
-                PKG='apt-get'
+                PKG='apt'
+                SYS='ubuntu'
                 ;;
             centos|fedora|rhel)
                 PKG="yum"
+                SYS="centos"
                 if test "$(echo "$VERSION_ID >= 22" | bc)" -ne 0;
                 then
                     PKG="dnf"
@@ -28,5 +32,19 @@ check_system(){
     fi
 }
 
+install(){
+    if [ ${SYS} == 'ubuntu' ]
+    then
+        sudo ${PKG} update
+        sudo ${PKG} -y install git gcc make patch zlib1g.dev libgdbm-dev libssl-dev libsqlite3-dev libbz2-dev libreadline-dev
+        echo ${SYS}
+    elif [ ${SYS} == 'mac' ]
+    then
+        echo ${SYS}
+
+    fi
+}
+
 check_system
+install
 echo $PKG
