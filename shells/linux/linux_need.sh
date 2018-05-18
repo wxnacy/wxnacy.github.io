@@ -33,11 +33,16 @@ check_system(){
 }
 
 install(){
+    sudo ${PKG} update
+    sudo ${PKG} -y install git gcc make vim wget htop python-pip
+    sudo pip install httpie
     if [ ${SYS} == 'ubuntu' ]
     then
-        sudo ${PKG} update
-        sudo ${PKG} -y install git gcc make patch zlib1g.dev libgdbm-dev libssl-dev libsqlite3-dev libbz2-dev libreadline-dev
+        sudo ${PKG} -y install patch zlib1g.dev libgdbm-dev libssl-dev libsqlite3-dev libbz2-dev libreadline-dev
         echo ${SYS}
+    elif [ ${SYS} == 'centos' ]
+    then
+        sudo ${PKG} -y install readline readline-devel readline-static openssl openssl-devel openssl-static sqlite-devel bzip2-devel bzip2-libs
     elif [ ${SYS} == 'mac' ]
     then
         echo ${SYS}
