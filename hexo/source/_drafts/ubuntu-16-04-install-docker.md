@@ -1,25 +1,15 @@
 ---
-title: Ubuntu 14.04 LTS 安装 Docker
-date: 2018-05-18 14:19:39
+title: Ubuntu 16.04 LTS 安装 Docker
 tags: [docker]
 ---
 
-Ubuntu Trusty 14.04 版本安装 Docker。
+Ubuntu Xenial 16.04 版本安装 Docker。
 <!-- more --><!-- toc -->
 
 **删掉老版本**
 
 ```bash
 $ sudo apt-get remove docker docker-engine docker.io
-```
-
-## 安装 `linux-image-extra-`
-
-安装 Docker 的 `aufs` 储存驱动程序
-
-```bash
-$ sudo apt-get update
-$ sudo apt-get install  linux-image-extra-$(uname -r) linux-image-extra-virtual
 ```
 
 ## 使用仓库安装
@@ -56,7 +46,7 @@ $ sudo add-apt-repository \
 
 ```bash
 $ sudo apt-get update
-$ sudo apt-get install -y docker-ce
+$ sudo apt-get install docker-ce
 ```
 
 **查看所有可安装版本**
@@ -70,7 +60,7 @@ docker-ce | 18.03.0~ce-0~ubuntu | https://download.docker.com/linux/ubuntu xenia
 **安装指定版本**
 
 ```bash
-$ sudo apt-get install -y docker-ce=18.03.0.ce
+$ sudo apt-get install docker-ce=18.03.0.ce
 ```
 
 **运行 helloworld 镜像**
