@@ -37,15 +37,10 @@ install(){
     then
 
         wget -qO - https://openresty.org/package/pubkey.gpg | sudo apt-key add -
-        # 安装 add-apt-repository 命令
-        # （之后你可以删除这个包以及对应的关联包）
         sudo apt-get -y install software-properties-common
-        # 添加我们官方 official APT 仓库：
         sudo add-apt-repository -y "deb http://openresty.org/package/ubuntu $(lsb_release -sc) main"
-        # 更新 APT 索引：
-        sudo apt-get update
-        # 然后就可以像下面这样安装软件包，比如 openresty：
-        sudo apt-get install openresty
+        sudo apt-get -y update
+        sudo apt-get -y install openresty
 
     elif [ ${SYS} == 'centos' ]
     then

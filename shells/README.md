@@ -7,3 +7,8 @@
 ```bash
 $ curl -L https://raw.githubusercontent.com/wxnacy/wxnacy.github.io/master/shells/linux/linux_need.sh | bash
 ```
+
+**安装 openresty**
+```bash
+$ curl -L https://raw.githubusercontent.com/wxnacy/wxnacy.github.io/master/shells/linux/install_openresty.sh | bash
+```
