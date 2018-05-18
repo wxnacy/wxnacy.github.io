@@ -40,7 +40,7 @@ $ uname [-amnprsv]    # 默认使用 -s
 
 知道这些我们区分这两个系统已经足够，及使用 `uname -s` 命令即可
 
-## os-release
+## /etc/os-release
 
 在区分 Mac／Linux 之后我们要来谈谈怎样更好的区分 Linux 各个发行版本，毕竟现在发行版本还是很多的，每个版本的组件使用又不尽相同，我们拿最常用到的 CentOS 和 Ubuntu 最新的版本来举例说明
 
@@ -87,7 +87,9 @@ $ echo $ID      # --> ubuntu
 ```
 
 ## 编写脚本
+
 知道了上边这些我们来写一个简单脚本，以达到判断系统并使用相应的安装工具安装 Git
+
 ```bash
 OS=`uname -s`
 if [ ${OS} == "Darwin"  ];then
@@ -113,6 +115,15 @@ elif [ ${OS} == "Linux"  ];then
 else
     echo "Other OS: ${OS}"
 fi
+```
+
+## /etc/issue
+
+`/etc/issue` 也放了发行版本信息，但是少得可怜。
+
+```bash
+$ cat /etc/issue
+Ubuntu 14.04.5 LTS \n \l
 ```
 
 ## 其他版本
