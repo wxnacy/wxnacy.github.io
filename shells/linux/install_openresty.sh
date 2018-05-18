@@ -33,15 +33,20 @@ check_system(){
 }
 
 install(){
-    sudo ${PKG} -y update
-    sudo ${PKG} -y install gcc g++ make cmake
-    sudo ${PKG} -y install git vim
     if [ ${SYS} == 'ubuntu' ]
     then
-        sudo ${PKG} -y install htop python-pip
-        sudo pip install httpie
-        sudo ${PKG} -y install patch zlib1g.dev libgdbm-dev libssl-dev libsqlite3-dev libbz2-dev libreadline-dev
-        echo ${SYS}
+
+        wget -qO - https://openresty.org/package/pubkey.gpg | sudo apt-key add -
+        # 安装 add-apt-repository 命令
+        # （之后你可以删除这个包以及对应的关联包）
+        sudo apt-get -y install software-properties-common
+        # 添加我们官方 official APT 仓库：
+        sudo add-apt-repository -y "deb http://openresty.org/package/ubuntu $(lsb_release -sc) main"
+        # 更新 APT 索引：
+        sudo apt-get update
+        # 然后就可以像下面这样安装软件包，比如 openresty：
+        sudo apt-get install openresty
+
     elif [ ${SYS} == 'centos' ]
     then
         sudo ${PKG} -y install gcc-c++ aclocal
@@ -59,4 +64,3 @@ install(){
 
 check_system
 install
-echo $PKG
