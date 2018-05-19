@@ -44,11 +44,9 @@ install(){
 
     elif [ ${SYS} == 'centos' ]
     then
-        sudo ${PKG} -y install pcre pcre-devel openssl openssl-devel # nginx
-
+        sudo ${PKG} -y install pcre pcre-devel openssl openssl-devel
         sudo yum -y install yum-utils
         sudo yum-config-manager --add-repo https://openresty.org/package/centos/openresty.repo
-        # 然后就可以像下面这样安装软件包，比如 openresty：
         sudo yum -y install openresty
 
     elif [ ${SYS} == 'mac' ]

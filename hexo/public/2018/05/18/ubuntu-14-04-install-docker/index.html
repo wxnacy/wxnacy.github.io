@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="wxnacy 博客">
 <meta property="og:description" content="Ubuntu Trusty 14.04 版本安装 Docker。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-05-18T06:30:34.000Z">
+<meta property="og:updated_time" content="2018-05-18T06:47:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu 14.04 LTS 安装 Docker">
 <meta name="twitter:description" content="Ubuntu Trusty 14.04 版本安装 Docker。">
@@ -217,7 +217,8 @@
 <!-- tocstop -->
 </div>
 
-
+<p><strong>删掉老版本</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get remove docker docker-engine docker.io</div></pre></td></tr></table></figure>
 <h2><span id="an-zhuang-linux-image-extra">安装 <code>linux-image-extra-</code></span><a href="#an-zhuang-linux-image-extra" class="header-anchor"></a></h2><p>安装 Docker 的 <code>aufs</code> 储存驱动程序</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get update</div><div class="line">$ sudo apt-get install  linux-image-extra-$(uname -r) linux-image-extra-virtual</div></pre></td></tr></table></figure>
 <h2><span id="shi-yong-cang-ku-an-zhuang">使用仓库安装</span><a href="#shi-yong-cang-ku-an-zhuang" class="header-anchor"></a></h2><p><strong>允许 apt 使用 HTTPS 仓库</strong></p>
@@ -227,11 +228,11 @@
 <p><strong>添加仓库</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ sudo add-apt-repository \</div><div class="line">   <span class="string">"deb [arch=amd64] https://download.docker.com/linux/ubuntu \</span></div><div class="line"><span class="string">   <span class="variable">$(lsb_release -cs)</span> \</span></div><div class="line"><span class="string">   stable"</span></div></pre></td></tr></table></figure>
 <h2><span id="an-zhuang-docker-ce">安装 Docker ce</span><a href="#an-zhuang-docker-ce" class="header-anchor"></a></h2><p><strong>安装最新稳定版</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get update</div><div class="line">$ sudo apt-get install docker-ce</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get update</div><div class="line">$ sudo apt-get install -y docker-ce</div></pre></td></tr></table></figure>
 <p><strong>查看所有可安装版本</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ apt-cache madison docker-ce</div><div class="line"></div><div class="line">docker-ce | 18.03.0~ce-0~ubuntu | https://download.docker.com/linux/ubuntu xenial/stable amd64 Packages</div></pre></td></tr></table></figure>
 <p><strong>安装指定版本</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install docker-ce=18.03.0.ce</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install -y docker-ce=18.03.0.ce</div></pre></td></tr></table></figure>
 <p><strong>运行 helloworld 镜像</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo docker run hello-world</div></pre></td></tr></table></figure>
 <ul>
@@ -268,6 +269,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/05/19/centos-install-htop/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          CentOS 安装 Htop
+        
+      </div>
+    </a>
   
   
     <a href="/2018/05/17/docker-error/" id="article-nav-older" class="article-nav-link-wrap">
@@ -463,6 +473,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">vagrant</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -471,7 +489,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -487,11 +505,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -592,10 +610,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">electron</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
