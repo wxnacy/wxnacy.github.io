@@ -1,7 +1,10 @@
 ---
 title: Ubuntu 16.04 LTS 安装 Docker
-tags: [docker]
+tags:
+  - docker
+date: 2018-05-20 11:04:33
 ---
+
 
 Ubuntu Xenial 16.04 版本安装 Docker。
 <!-- more --><!-- toc -->
