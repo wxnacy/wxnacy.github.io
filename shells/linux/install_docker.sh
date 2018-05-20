@@ -41,6 +41,9 @@ install(){
         if [ ${VER} == '14.04' ]
         then
             install_ubuntu1404
+        elif [ ${VER} == '16.04' ]
+        then
+            install_ubuntu1604
         fi
     elif [ ${SYS} == 'centos' ]
     then
@@ -71,8 +74,8 @@ install(){
 # }
 
 install_ubuntu1604(){
-    sudo apt-get update
-    sudo apt-get install \
+    sudo apt-get -y update
+    sudo apt-get -y install \
         apt-transport-https \
         ca-certificates \
         curl \
@@ -82,15 +85,15 @@ install_ubuntu1604(){
         "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
         $(lsb_release -cs) \
         stable"
-    sudo apt-get update
-    sudo apt-get install docker-ce
+    sudo apt-get -y update
+    sudo apt-get -y install docker-ce
 }
 
 install_ubuntu1404(){
-    sudo apt-get update
-    sudo apt-get install  linux-image-extra-$(uname -r) linux-image-extra-virtual
-    sudo apt-get update
-    sudo apt-get install \
+    sudo apt-get -y update
+    sudo apt-get -y install  linux-image-extra-$(uname -r) linux-image-extra-virtual
+    sudo apt-get -y update
+    sudo apt-get -y install \
         apt-transport-https \
         ca-certificates \
         curl \
@@ -100,8 +103,8 @@ install_ubuntu1404(){
         "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
         $(lsb_release -cs) \
         stable"
-    sudo apt-get update
-    sudo apt-get install docker-ce
+    sudo apt-get -y update
+    sudo apt-get -y install docker-ce
 }
 
 main(){
