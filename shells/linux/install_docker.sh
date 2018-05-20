@@ -37,13 +37,10 @@ check_system(){
 install(){
     if [ ${SYS} == 'ubuntu' ]
     then
-
-        wget -qO - https://openresty.org/package/pubkey.gpg | sudo apt-key add -
-        sudo apt-get -y install software-properties-common
-        sudo add-apt-repository -y "deb http://openresty.org/package/ubuntu $(lsb_release -sc) main"
-        sudo apt-get -y update
-        sudo apt-get -y install openresty
-
+        if [ ${VER} == '14.04' ]
+        then
+            install_ubuntu1404
+        fi
     elif [ ${SYS} == 'centos' ]
     then
         sudo ${PKG} -y install pcre pcre-devel openssl openssl-devel
