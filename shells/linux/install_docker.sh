@@ -114,3 +114,4 @@ main(){
 
 check_system
 echo ${VER}
+install
