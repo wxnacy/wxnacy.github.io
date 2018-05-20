@@ -35,6 +35,7 @@ check_system(){
 }
 
 install(){
+    echo ${SYS} ${VER}
     if [ ${SYS} == 'ubuntu' ]
     then
         if [ ${VER} == '14.04' ]
@@ -113,5 +114,5 @@ main(){
 }
 
 check_system
-echo ${VER}
 install
+echo ${VER} ${SYS}
