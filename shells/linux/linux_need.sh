@@ -35,7 +35,7 @@ check_system(){
 install(){
     sudo ${PKG} -y update
     sudo ${PKG} -y install gcc g++ make cmake
-    sudo ${PKG} -y install git vim
+    sudo ${PKG} -y install git vim wget
     if [ ${SYS} == 'ubuntu' ]
     then
         sudo ${PKG} -y install htop python-pip
