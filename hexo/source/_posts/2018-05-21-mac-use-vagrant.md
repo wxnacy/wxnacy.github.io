@@ -1,7 +1,10 @@
 ---
 title: macOS 使用 Vagrant
-tags: [vagrant]
+tags:
+  - vagrant
+date: 2018-05-21 13:47:37
 ---
+
 
 Vagrant 是非常强大好用的虚拟机管理工具，它依赖于 virtualbox，可以非常方便的在电脑中起各种系统的虚拟机。
 
