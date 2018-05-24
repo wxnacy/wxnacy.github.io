@@ -8,7 +8,7 @@ ETCD_FILENAME=etcd-v${VERSION}-linux-amd64.tar.gz
 ETCD_DIR=etcd-v${VERSION}-linux-amd64
 
 test -f ${ETCD_FILENAME} || wget https://github.com/coreos/etcd/releases/download/v${VERSION}/${ETCD_FILENAME}
-tar -zxvf ${ETCD_FILENAME}
+test -d {ETCD_FILENAME} || tar -zxvf ${ETCD_FILENAME}
 test -f /usr/bin/etcd || sudo cp ${ETCD_DIR}/etcd /usr/bin/etcd
 test -f /usr/bin/etcdctl || sudo cp ${ETCD_DIR}/etcdctl /usr/bin/etcdctl
 
