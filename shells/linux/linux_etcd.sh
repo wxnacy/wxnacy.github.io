@@ -1,16 +1,11 @@
 #!/usr/bin/env bash
 
-PKG=''
-SYS=''
+sudo yum update -y
+sudo yum install -y wget
 
 wget https://github.com/coreos/etcd/releases/download/v3.3.5/etcd-v3.3.5-linux-amd64.tar.gz
 tar -zxvf etcd-v3.3.5-linux-amd64.tar.gz
 sudo cp etcd-v3.3.5-linux-amd64/etcd* /usr/bin/
-
-
-sudo cp etcd.conf /etc/sysconfig/etcd.conf
-sudo cp etcd.yml /etc/etcd.yml
-sudo cp etcd. /etc/etcd.yml
 
 cat <<EOF | sudo tee /etc/sysconfig/etcd.conf
 ETCD_LOG_DIR=/var/log/etcd
@@ -26,4 +21,7 @@ EOF
 
 test -d /var/lib/etcd || sudo mkdir /var/lib/etcd
 
+sudo curl  https://raw.githubusercontent.com/wxnacy/wxnacy.github.io/master/shells/linux/etcd.initd -o /etc/init.d/etcd
 
+sudo chkconfig --add etcd
+sudo chkconfig etcd on
