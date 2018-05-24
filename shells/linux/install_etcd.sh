@@ -3,9 +3,13 @@
 sudo yum update -y
 sudo yum install -y wget
 
-test -f etcd-v3.3.5-linux-amd64.tar.gz || wget https://github.com/coreos/etcd/releases/download/v3.3.5/etcd-v3.3.5-linux-amd64.tar.gz
-tar -zxvf etcd-v3.3.5-linux-amd64.tar.gz
-sudo cp etcd-v3.3.5-linux-amd64/etcd* /usr/bin/
+VERSION=3.3.5
+ETCD_FILENAME=etcd-v${VERSION}-linux-amd64.tar.gz
+ETCD_DIR=etcd-v${VERSION}-linux-amd64
+
+test -f ${ETCD_FILENAME} || wget https://github.com/coreos/etcd/releases/download/v${VERSION}/${ETCD_FILENAME}
+tar -zxvf ${ETCD_FILENAME}
+sudo cp ${ETCD_DIR}/etcd* /usr/bin/
 
 cat <<EOF | sudo tee /etc/sysconfig/etcd.conf
 ETCD_LOG_DIR=/var/log/etcd
