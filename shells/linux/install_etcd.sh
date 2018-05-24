@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
+sudo yum update -y
+sudo yum install -y wget
 
-curl -o etcd-v3.3.5-linux-amd64.tar.gz https://github.com/coreos/etcd/releases/download/v3.3.5/etcd-v3.3.5-linux-amd64.tar.gz
+wget https://github.com/coreos/etcd/releases/download/v3.3.5/etcd-v3.3.5-linux-amd64.tar.gz
 tar -zxvf etcd-v3.3.5-linux-amd64.tar.gz
 sudo cp etcd-v3.3.5-linux-amd64/etcd* /usr/bin/
 
