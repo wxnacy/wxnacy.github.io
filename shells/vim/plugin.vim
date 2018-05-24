@@ -124,6 +124,9 @@ let g:NERDTreeShowIgnoredStatus = 1
 " gundo 配置
 "===============================
 nnoremap <leader>H :GundoToggle<CR>
+if has('python3')
+    let g:gundo_prefer_python3 = 1
+endif
 
 
 "===============================
@@ -299,7 +302,6 @@ nnoremap <Leader>fu :CtrlPFunky<Cr>
 " narrow the list down with a word under cursor
 nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 let g:ctrlp_funky_syntax_highlight = 1
-
 let g:ctrlp_extensions = ['funky']
 
 "===============================

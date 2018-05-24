@@ -8,10 +8,26 @@ tags: [git]
 <!-- more -->
 <!-- toc -->
 ## ssh-key
+
 ```bash
 ssh-keygen -t rsa -C "$your_email"          # 获取 sshkey
 cat ~/.ssh/id_rsa.pub                       # 查看 sshkey
 ```
+
+## 首次使用 git
+
+客户端首次使用 git 提交时需要将 `id_rsa.pub` 内容提交到 github 上不然每次都会提示输入用户名密码
+
+然后输入必要的配置
+
+```bash
+git config --global user.name wxnacy            # 配置用户名
+git config --global user.email xxx@qq.com       # 配置邮件
+git config --global push.default simple
+git push -u origin master
+```
+
+
 ## 初始化项目
 ```bash
 cd project_root                             # 进入项目目录
