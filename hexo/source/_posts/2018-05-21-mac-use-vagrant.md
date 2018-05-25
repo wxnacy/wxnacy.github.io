@@ -93,6 +93,8 @@ Vagrant.configure("2") do |config|
 end
 ```
 
+你也可以通过 [Vagant Cloud](https://app.vagrantup.com/boxes/search) 查找 box
+
 - [官网](https://www.vagrantup.com/)
 - [Vagrant](http://sourabhbajaj.com/mac-setup/Vagrant/)
 - [Vagrant Manager](http://vagrantmanager.com/)
