@@ -19,6 +19,8 @@ $ brew cask install vagrant
 
 ## 使用
 
+### 快速开始
+
 **初始化 box **
 
 使用 `centos7` 系统，你也可以从 [Discover Vagrant Boxes](https://app.vagrantup.com/boxes/search) 查找其他系统
@@ -53,6 +55,42 @@ $ vagrant halt
 ```bash
 $ vagrant destroy
 $ vagrant destroy -f    # 不询问
+```
+
+### Boxes
+
+**下载 box**
+
+```bash
+$ vagrant box add hashicorp/precise64
+```
+
+**使用**
+
+修改 `Vagantfile` 文件
+
+```bash
+Vagrant.configure("2") do |config|
+  config.vm.box = "hashicorp/precise64"
+end
+```
+
+**指定版本**
+
+```bash
+Vagrant.configure("2") do |config|
+  config.vm.box = "hashicorp/precise64"
+  config.vm.box_version = "1.1.0"
+end
+```
+
+**指定地址**
+
+```bash
+Vagrant.configure("2") do |config|
+  config.vm.box = "hashicorp/precise64"
+  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+end
 ```
 
 - [官网](https://www.vagrantup.com/)
