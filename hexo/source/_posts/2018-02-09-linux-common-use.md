@@ -1,7 +1,7 @@
 ---
-title: Linux 常用 Shell 语法
+title: Shell 常用语法
 tags:
-  - linux
+  - shell
 date: 2018-02-09 15:16:50
 ---
 
