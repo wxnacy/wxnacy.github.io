@@ -187,6 +187,98 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-mysql-2017-08-07-item-daily" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/07/mysql-2017-08-07-item-daily/">2017-08-07 新建user和user_data表，完善`insert_commet_trigger`</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/07/mysql-2017-08-07-item-daily/" class="archive-article-date">
+  	<time datetime="2017-08-06T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>今天目标新建user、<code>user_data</code>表，并完善<code>insert_commet_trigger</code>，达到根据判断resource_type来更新video还是user_data的comment_count</p>
+</blockquote>
+<p>专辑：<a href="/?p=/doc/mysql/mysql_daily.md">mysql每天练习</a></p>
+<ul>
+<li><p>新建user表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">drop table if exists `user`;</div><div class="line">create table `user`(</div><div class="line">    id int(11) not null auto_increment,</div><div class="line">    name varchar(32) not null comment &apos;姓名&apos;,</div><div class="line">    is_del int(1) not null default 0 comment &apos;是否删除&apos;,</div><div class="line">    create_ts timestamp not null default current_timestamp comment &apos;创建时间&apos;,</div><div class="line">    update_ts timestamp not null default current_timestamp on update current_timestamp comment &apos;修改时间&apos;,</div><div class="line">    primary key(`id`)</div><div class="line">)engine=InnoDB default charset=utf8mb4 comment &apos;用户表&apos;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>新建user_data表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">drop table if exists `user_data`;</div><div class="line">create table `user_data`(</div><div class="line">    user_id int(11) not null,</div><div class="line">    comment_count int(11) not null default 0 comment &apos;评论数量&apos;,</div><div class="line">    update_ts timestamp not null default current_timestamp on update current_timestamp comment &apos;最后修改时间&apos;,</div><div class="line">    primary key(`user_id`)</div><div class="line">)engine=InnoDB default charset=utf8mb4 comment &apos;用户数据表，记录用户额外数据&apos;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>重写 <code>insert_comment_trigger</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">drop trigger if exists `insert_comment`;</div><div class="line">delimiter $</div><div class="line">create trigger `insert_comment` after insert on comment for each row </div><div class="line">begin</div><div class="line">    declare count int;</div><div class="line">    if (new.resource_type = &apos;user&apos;) then</div><div class="line">        select count(0) into count from user_data where user_id = new.resource_id;</div><div class="line">        if (count &gt; 0 ) then</div><div class="line">            update user_data set comment_count = comment_count +1  where user_id = new.resource_id;</div><div class="line">        else</div><div class="line">            insert into user_data (user_id,comment_count) values (new.resource_id,1);</div><div class="line">        end if;</div><div class="line">    else</div><div class="line">        update video set comment_count = comment_count +1 where id= new.resource_id;</div><div class="line">    end if; </div><div class="line">end $</div><div class="line">delimiter ;</div></pre></td></tr></table></figure>
+</li>
+<li><p>执行相关语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">insert into user(name) values (&apos;wxnacy&apos;);</div><div class="line">insert into comment (resource_id,resource_type,content) values (1,&apos;user&apos;,&apos;好人&apos;);</div><div class="line">insert into comment (resource_id,resource_type,content) values (1,&apos;user&apos;,&apos;大好人&apos;);</div><div class="line">select * from user_data;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>执行语句后，user_data中comment_count应该等于2</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/07/mysql-2017-08-07-item-daily/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-mysql-2017-08-06-basic-cmd" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -892,19 +984,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jpa</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -913,6 +993,18 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jpa</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -928,11 +1020,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -948,11 +1040,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+                <a href="javascript:void(0)" class="js-tag color5">tmux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1048,11 +1140,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">

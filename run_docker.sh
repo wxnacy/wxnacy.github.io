@@ -4,10 +4,11 @@ ENV=$2
 PROD=$1
 
 main() {
+    sudo docker pull wxnacy/wxnacy:latest
     sudo docker container stop ${PROD}
     sudo docker run \
         -it \
-        --rm \
+        --restart on-failure:10 \
         -d \
         --name ${PROD} \
         -v "$PWD":/wxnacy/${PROD} \

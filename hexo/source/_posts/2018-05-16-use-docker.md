@@ -32,7 +32,7 @@ $ docker login
 **创建镜像**
 
 ```bash
-$ docker build <image-name> .
+$ docker build -t <image-name> .
 ```
 
 **查看镜像列表**
@@ -73,3 +73,5 @@ $ docker container stop <container-name>[<container-id>]
 ```bash
 $ docker run -it --rm --name <demo-name> -v "$PWD":/usr/src/myapp -w /usr/src/myapp -p 8006:8005 python:3.5 python app.py
 ```
+
+- [Get Started](https://docs.docker.com/get-started/)
