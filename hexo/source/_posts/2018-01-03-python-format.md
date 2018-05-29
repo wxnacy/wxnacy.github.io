@@ -113,5 +113,6 @@ if __name__ == "__main__":
 ```
 ## 参考
 - [PyFormat](https://pyformat.info/)
+- [Python Strings: Replace, Join, Split, Reverse, Uppercase & Lowercase](https://www.guru99.com/learning-python-strings-replace-join-split-reverse.html)
 
 官方文档并没有明确给出要删除老方法 `%`，也没有说过新的方法速度会比较快，但是它已经有很多功能是 `%` 不支持的了，并且在以后官方也会慢慢只维护新函数，而这种格式化方式也比较适合函数式应用，所以建议都采用这种方式。
