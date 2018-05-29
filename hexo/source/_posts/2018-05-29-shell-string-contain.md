@@ -1,7 +1,10 @@
 ---
 title: Shell 判断字符串包含关系
-tags: [shell]
+tags:
+  - shell
+date: 2018-05-29 15:22:34
 ---
+
 
 在 shell 脚本中有几种可以判断字符串包含的关系。
 <!-- more --><!-- toc -->
