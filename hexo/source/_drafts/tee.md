@@ -1,0 +1,98 @@
+---
+title: Linux tee 重定向到文件
+tags: [linux]
+---
+
+> tee命令用于将数据重定向到文件，另一方面还可以提供一份重定向数据的副本作为后续命令的stdin。简单的说就是把数据重定向到给定文件和屏幕上。
+
+<!-- more --><!-- toc -->
+
+## 使用
+
+```bash
+$ ll | tee test
+
+total 20
+-rw-------.  1 vagrant vagrant  382 May 29 01:16 nohup.out
+-rw-rw-r--.  1 vagrant vagrant   51 May 29 10:17 out.txt
+-rw-rw-r--.  1 vagrant vagrant  297 May 29 10:53 test
+drwxrwxr-x. 21 vagrant vagrant 4096 May 29 09:19 wxnacy.github.io
+-rw-rw-r--.  1 vagrant vagrant 1406 May 29 06:22 wxnacy.log
+```
+
+```bash
+$ cat test
+
+total 20
+-rw-------.  1 vagrant vagrant  382 May 29 01:16 nohup.out
+-rw-rw-r--.  1 vagrant vagrant   51 May 29 10:17 out.txt
+-rw-rw-r--.  1 vagrant vagrant  297 May 29 10:53 test
+drwxrwxr-x. 21 vagrant vagrant 4096 May 29 09:19 wxnacy.github.io
+-rw-rw-r--.  1 vagrant vagrant 1406 May 29 06:22 wxnacy.log
+```
+
+可以看到，`ll` 命令同时输出到 `stdout` 和文件 `test` 中
+
+那它和 `echo >` 有什么区别呢
+
+```bash
+$ echo `ll` > test
+$ cat test
+
+
+total 20 -rw-------. 1 vagrant vagrant 382 May 29 01:16 nohup.out -rw-rw-r--. 1 vagrant vagrant 51 May 29 10:17 out.txt -rw-rw-r--. 1 vagrant vagrant 297 May 29 10:15 test drwxrwxr-x. 21 vagrant vagrant 4096 May 29 09:19 wxnacy.github.io -rw-rw-r--. 1 vagrant vagrant 1406 May 29 06:22 wxnacy.log
+```
+
+除了直观的 `\n` 没有正确输出到文件外，最大的区别在于，如果当前用户没有对输出文件权限时，不能方便的进行输入
+
+```bash
+$ sudo echo `ll` > /var/log/test
+
+-bash: /var/log/test: Permission denied
+```
+
+`>` 会将命令分成两部分，`sudo` 并不能作用到 `/var/log/test` 中，使用 `tee` 就没问题
+
+```bash
+$ ll | sudo tee /var/log/test
+```
+
+## 参数
+
+- -a：向文件中重定向时使用追加模式；
+- -i：忽略中断（interrupt）信号。
+
+`-a` 相当于 `>>` 可以将内容追加的方式输出到文件中
+
+```bash
+$ ll | tee -a test
+```
+
+## 更多实用
+
+**stdin**
+
+```bash
+$ ll | tee test || cat -n
+
+total 20
+-rw-------.  1 vagrant vagrant  382 May 29 01:16 nohup.out
+-rw-rw-r--.  1 vagrant vagrant   51 May 29 10:17 out.txt
+-rw-rw-r--.  1 vagrant vagrant  297 May 29 10:53 test
+drwxrwxr-x. 21 vagrant vagrant 4096 May 29 09:19 wxnacy.github.io
+-rw-rw-r--.  1 vagrant vagrant 1406 May 29 06:22 wxnacy.log
+```
+
+**cat 输入**
+
+```bash
+$ cat <<EOF | tee test
+< Hello World   # 输入目标文本
+< EOF           # 代表结束
+
+Hello World
+
+$ cat test
+
+Hello World
+```

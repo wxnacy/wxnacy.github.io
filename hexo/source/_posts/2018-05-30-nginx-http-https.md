@@ -1,7 +1,10 @@
 ---
 title: Nginx http 强制跳转 https 地址
-tags: [nginx]
+tags:
+  - nginx
+date: 2018-05-30 13:55:35
 ---
+
 
 `https` 越来越普及，但是当用户自己访问 `http` 是控制不了的，所以强制跳转的功能就必不可少了，下面是几种强制跳转的方法
 <!-- more --><!-- toc -->
