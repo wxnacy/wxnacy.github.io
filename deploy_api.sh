@@ -11,10 +11,8 @@ deploy_tag(){
     echo '******************************'
     git fetch
     git checkout ${TAG_NAME}
-    ./run.sh
+    ./run_docker.sh wxnacyapi product
 
-#    sudo /usr/local/bin/supervisorctl restart hamster
-#    sudo /usr/local/bin/supervisorctl restart hamsterschedule
     echo '******************************'
     echo '********部署成功'
     echo '******************************'

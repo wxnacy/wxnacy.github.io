@@ -1,0 +1,7 @@
+- hosts: vim
+  remote_user: root
+  tasks:
+  - name: deploy wxnacy.github.io python
+    shell: ./deploy_api.sh '{{tag_name}}'
+    args:
+      chdir: ~/wxnacy.github.io
