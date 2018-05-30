@@ -2,6 +2,9 @@
 
 ENV=$2
 PROD=$1
+LOG_DIR=/var/log/docker
+
+test -d ${LOG_DIR} || sudo mkdir ${LOG_DIR}
 
 main() {
     sudo docker pull wxnacy/wxnacy:latest
@@ -19,6 +22,7 @@ main() {
         wxnacy/wxnacy:latest \
         ./${PROD}/run_gunicorn_in_docker.sh ${PROD}
         # ls -l
+    sudo bash -c "nohup docker logs -f ${PROD} >> ${LOG_DIR}/${PROD}.log 2>&1 &"
 }
 
 if [ ! ${PROD} ] || [ ! ${ENV} ]
