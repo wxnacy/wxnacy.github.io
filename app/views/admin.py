@@ -21,6 +21,8 @@ from flask import redirect
 from flask import request
 from flask import make_response
 from flask import g
+from sqlalchemy import text
+from datetime import date
 
 admin_bp = Blueprint('admin', __name__)
 
@@ -45,7 +47,12 @@ def index():
 @admin_bp.route('/visitor_log')
 def list_visitor_log():
     args = BaseRequest.get_args()
-    pagination = VisitorLog.query_by(**args)
+    #  pagination = VisitorLog.query_by(**args)
+    sql = "is_bot = 0 and visit_date = :vd"
+    pagination = VisitorLog.query.filter(text(sql)
+            ).params(
+        vd = date.today()
+                    ).order_by("create_ts desc").paginate(1, 10, False)
     return render_template('admin/visitor_log_list.html', pagination=pagination)
 
 @admin_bp.route('/article')

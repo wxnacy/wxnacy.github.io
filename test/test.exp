@@ -1,0 +1,21 @@
+#!/usr/bin/env expect
+
+puts [file type /usr/local/etc]
+puts [file type /usr/local/etc/redis.conf]
+puts [file exists /usr/local/etc]
+puts [file exists /usr/local/test]
+puts [file isfile /usr/bin/slogin]
+puts [file isfile /Users/wxnacy/.wshell]
+puts [file isfile /Users/wxnacy/tmd]
+
+set f /usr/local/etc/redis.conf
+
+# if [file exists $f] && ([file type $f] == 'file') then puts $f
+
+set d /data/sql
+set f /data/sql/code.sql
+
+puts [file delete -force $d]
+
+
+
