@@ -1,7 +1,10 @@
 ---
 title: Shell 环境中 bash_profile 和 bashrc 的区别
-tags: [shell]
+tags:
+  - shell
+date: 2018-06-01 22:12:49
 ---
+
 
 在 shell 环境中 `~/.bash_profile` 和 `~/.bashrc`  文件都可以都可以配置环境变量等信息，那到底该写到那个文件里边呢？
 <!-- more --><!-- toc -->
