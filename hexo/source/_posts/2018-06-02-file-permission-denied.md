@@ -1,7 +1,10 @@
 ---
 title: Linux 输出内容到文件权限不够
-tags: [linux]
+tags:
+  - linux
+date: 2018-06-02 10:29:59
 ---
+
 
 `sudo echo 'Hello World' >> /var/log/test` 在执行语句时会出现权限不够的错误
 
