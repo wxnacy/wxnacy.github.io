@@ -24,3 +24,4 @@ $ sudo tail -f `docker inspect --format='{{.LogPath}}' <container_name>`
 $ nohup sudo bash -c "docker logs -f <container_name> >> /var/log/<container_name>.log" &
 ```
 
+- [how to redirect docker logs to a single file?](https://stackoverflow.com/questions/41144589/how-to-redirect-docker-logs-to-a-single-file/41147654)

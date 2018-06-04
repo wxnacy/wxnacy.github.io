@@ -14,10 +14,10 @@ tags: [mysql]
 config.vm.network "private_network", ip: "192.168.33.10"
 ```
 
-这步需要放在第一步来完成，随后销毁并重新构建
+这步需要放在第一步来完成，随后重新加载配置
 
 ```bash
-$ vagrant destroy -f && vagrant up
+$ vagrant reload
 ```
 
 ## 去掉绑定 127.0.0.1

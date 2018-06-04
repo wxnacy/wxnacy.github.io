@@ -1,7 +1,10 @@
 ---
 title: Ubuntu 16.04 安装 Mysql
-tags: [mysql]
+tags:
+  - mysql
+date: 2018-06-05 06:21:31
 ---
+
 
 本章介绍在 `Ubuntu 16.04` 版本中安装 Mysql
 <!-- more --><!-- toc -->

@@ -1,0 +1,25 @@
+---
+title: JRE 和 JDK 的区别
+tags: [java]
+---
+
+说来惭愧，虽然我是 Java 出身，但从来没去关注过 JRE 和 JDK 的区别，网上找了别人写的讲解，大多都不得要领，但其实官网的解释就非常简单明了
+<!-- more --><!-- toc -->
+在 JRE8 的[下载页面](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html)有这样一段话
+![jrejdk](/images/jrejdk.png)
+
+解释过来是这样的
+
+JRE 全称 `Java Runtime Environment`，Java 的运行环境
+
+JDK 全称 `Java Development Kit`，Java 开发套件
+
+如果你只想运行 Java 程序，那么就下载 JRE
+
+如果你想开发 Java 程序，那么就下载 JDK，JDK 中包含 JRE，所以不需要两个都下载
+
+这样一说就很明了了
+
+服务器就安装 JRE
+
+开发环境就安装 JDK
