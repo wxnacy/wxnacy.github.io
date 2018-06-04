@@ -1,7 +1,10 @@
 ---
 title: Shell 传递参数
-tags: [shell]
+tags:
+  - shell
+date: 2018-06-04 09:47:47
 ---
+
 
 shell 像所有语言一样可以在执行时传递参数
 <!-- more --><!-- toc -->
