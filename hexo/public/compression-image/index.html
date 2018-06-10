@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>图片压缩 | wxnacy 博客</title>
+
+    <meta name="description" content="图片压缩 html js css">
+    <meta name="keywords" content="图片压缩 html js css">
+    <meta property="og:type" content="tool">
+    <meta property="og:title" content="图片压缩 | wxnacy 博客">
+    <meta property="og:url" content="http://wxnacy.com/run.html">
+    <meta property="og:site_name" content="wxnacy 博客">
+    <meta property="og:description" content="图片压缩 html js css">
+    <meta property="og:locale" content="zh-cn">
+    <meta property="og:updated_time" content="2018-03-29T21:27:18.000Z">
+    <meta name="twitter:title" content="图片压缩 | wxnacy 博客">
+    <meta name="twitter:description" content="图片压缩 html js css">
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+a:link { text-decoration: none;color: blue}
+　　 a:active { text-decoration:blink}
+　　 a:hover { text-decoration:underline;color: red}
+　　 a:visited { text-decoration: none;color: green}
+    </style>
+  </head>
+  <body>
+
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">网络图片</span>
+            </div>
+            <input type="text" value="https://mewephoto.oss-cn-beijing.aliyuncs.com/006.jpg" id="internet-image"  style="width: 400px" aria-label="标题" aria-describedby="inputGroup-sizing-default">
+            <div class="input-group-append">
+              <button class="btn btn-primary btn-outline-secondary " onClick="compression('internet')" type="button">压缩</button>
+            </div>
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">本地图片</span>
+            </div>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="file">
+              <label class="custom-file-label"  for="file">点击或拖动图片到此</label>
+            </div>
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">压缩前</span>
+            </div>
+            <input type="text"  id="origin-detail" style="width: 400px" aria-label="标题" aria-describedby="inputGroup-sizing-default">
+          </div>
+
+
+        </div>
+        <div class="col">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">宽</span>
+            </div>
+            <input type="text"  id="width" style="width: 200px" aria-label="标题" aria-describedby="inputGroup-sizing-default">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">高</span>
+            </div>
+            <input type="text"  id="height" style="width: 200px" aria-label="标题" aria-describedby="inputGroup-sizing-default">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button"  ><a id="download" href="" download="">下载</a></button>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">文件名</span>
+            </div>
+            <input type="text"  id="fieldName" style="width: 200px" aria-label="标题" value="compression" aria-describedby="inputGroup-sizing-default">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">压缩系数</span>
+            </div>
+            <input type="text"  id="quality" style="width: 200px" aria-label="标题" value="0.7" aria-describedby="inputGroup-sizing-default">
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">压缩后</span>
+            </div>
+            <input type="text"  id="compression-detail" style="width: 400px" aria-label="标题" aria-describedby="inputGroup-sizing-default">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div style="" class="card card-body">
+            <img src="" id="origin" class="img-fluid" alt="Responsive image">
+          </div>
+        </div>
+        <div class="col">
+          <div style="" class="card card-body">
+            <img src="http://mewephoto.oss-cn-beijing.aliyuncs.com/1523584959140" id="preview" class="img-fluid" alt="Responsive image">
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="/js/wxnacy.min.js" ></script>
+  <script type="text/javascript" src="/js/lrz.bundle.js"></script>
+  <script>
+var downDoc = document.getElementById('download');
+var qualityDoc = document.getElementById('quality');
+var nameDoc = document.getElementById('fieldName');
+var widthDoc = document.getElementById('width');
+var heightDoc = document.getElementById('height');
+var previewDom = document.getElementById("preview");
+var fileDom = document.getElementById("file");
+var originDom = document.getElementById("origin");
+var originDetailDom = document.getElementById("origin-detail");
+
+compression('internet')
+
+fileDom.addEventListener("change", changeFile, false);
+function changeFile(e){
+  var files = e.target.files
+  compression('local',files[0])
+
+};
+function b2k(b){
+      b = b / Math.pow(1024, 1)
+      b = Math.floor(b)
+  return b
+};
+function compression(type, file) {
+  var q = parseFloat(qualityDoc.value || 0.7)
+  var url = ''
+  if( type == 'local' ){
+    url = file
+    if (!file.type.match('image.*')) {
+      alert('请选择一张图片')
+      return;
+    }
+
+    originDetailDom.value = `${b2k(file.size)} KB`
+    var reader = new FileReader();
+
+    // Closure to capture the file information.
+    reader.onload = (function(theFile) {
+      return function(e) {
+        // Render thumbnail.
+        originDom.src = e.target.result;
+      };
+    })(file);
+
+    // Read in the image file as a data URL.
+    reader.readAsDataURL(file);
+  } else {
+    url = document.getElementById('internet-image').value;
+    var i = new Image()
+    i.src = url
+    i.onload = function(){
+      <!-- console.log(i.size); -->
+    };
+    fetch(url).then(function(res){
+      return res.blob()
+    }).then(function(data){
+      var fs = b2k(data.size)
+      originDetailDom.value = `${fs} KB`
+    })
+    originDom.src = url;
+  }
+  previewDom.src = '';
+  lrz(url, {
+    quality:q,
+    fieldName: nameDoc.value,
+    width: widthDoc.value,
+    height: heightDoc.value
+  })
+    .then(function (rst) {
+      // 处理成功会执行
+      var imgDoc = previewDom
+      imgDoc.src = rst.base64
+      document.getElementById('download').value = rst.base64;
+      var fs = rst.fileLen / Math.pow(1024, 1)
+      fs = Math.floor(fs)
+      document.getElementById('compression-detail').value = `${fs} KB`
+      downDoc.href = rst.base64;
+      downDoc.download = nameDoc.value;
+
+    })
+    .catch(function (err){
+      // 处理失败会执行
+      console.log(res);
+    })
+    .always(function () {
+      // 不管是成功失败，都会执行
+    });
+}
+function download() {
+  var down = document.getElementById('download');
+  var url = down.value;
+  console.log(url);
+  console.log(iframeDoc.srcdoc);
+}
+  </script>
+</html>
