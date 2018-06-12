@@ -1,7 +1,10 @@
 ---
 title: CentOS 7 使用 rpm 安装 Elasticsearch
-tags: [elasticsearch]
+tags:
+  - elasticsearch
+date: 2018-06-12 15:01:15
 ---
+
 
 在安装 Elasticsearch 时，推荐使用 `rpm` 方式安装
 <!-- more --><!-- toc -->
