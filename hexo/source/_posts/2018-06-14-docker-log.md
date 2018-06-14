@@ -1,7 +1,10 @@
 ---
 title: Docker 容器日志的位置
-tags: [docker]
+tags:
+  - docker
+date: 2018-06-14 09:36:24
 ---
+
 
 Docker 再启动容器后，可以用 `docker logs -f <container_name>` 来查看日志内容，那么日志文件存放在哪了呢？
 <!-- more --><!-- toc -->
