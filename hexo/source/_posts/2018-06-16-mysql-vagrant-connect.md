@@ -1,7 +1,10 @@
 ---
 title: Vagrant 中安装 Mysql 如何从外边链接
-tags: [mysql]
+tags:
+  - mysql
+date: 2018-06-16 14:29:53
 ---
+
 
 在 Vagrant 中安装 Mysql 后从外部链接需要三步
 <!-- more --><!-- toc -->

@@ -1,5 +1,5 @@
 ---
-title: centos7-install-mysql
+title: CentOS 7 安装 Mysql
 tags:
   - mysql
 date: 2018-06-10 11:03:49
