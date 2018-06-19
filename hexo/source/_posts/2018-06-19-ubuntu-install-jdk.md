@@ -1,7 +1,11 @@
 ---
 title: Ubuntu 16.04 安装 JDK
-tags: [linux, java]
+tags:
+  - linux
+  - java
+date: 2018-06-19 12:34:16
 ---
+
 
 Ubuntu 安装 JDK 与 CentOS 很相似，但更简单。
 <!-- more --><!-- toc -->
