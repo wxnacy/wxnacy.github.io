@@ -1,7 +1,10 @@
 ---
 title: Shell 中的 Replace
-tags: [shell]
+tags:
+  - shell
+date: 2018-06-20 17:00:37
 ---
+
 
 Shell 中没有没有 Replace 方法，但是有一些替换方案。
 <!-- more --><!-- toc -->
