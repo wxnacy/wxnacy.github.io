@@ -276,7 +276,7 @@ function visitor(){
             referrer: document.referrer,
             ext_property: data
         }
-        fetchPost('https://wxnacy.com/api/v1/visitor_log',params).then(function(data){
+        fetchPost('https://api.wxnacy.com/api/v1/visitor_log',params).then(function(data){
         })
     })
 }
@@ -326,9 +326,11 @@ function fetchRequest(url, method, params) {
         })
     })
 }
+
+visitor()
+
 // var pagePvTimer;
 // pagePvTimer = setInterval(create_visit, 1000);
-visitor()
 // getAccessToken().then(function(res){
     // console.log("access", res);
 // })
