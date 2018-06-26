@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://wxnacy.com">
-  <title>银行卡校验规则(Luhn算法) | wxnacy 博客</title>
+  <title>Node 使用 ws 模块实现简单 WebSocket | wxnacy 博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="原文:http://www.icloudyin.com/?p=61  检验数字算法（Luhn Check Digit Algorithm），也叫做模数10公式，是一种简单的算法，用于验证银行卡、信用卡号码的有效性的算法。对所有大型信用卡公司发行的信用卡都起作用，这些公司包括美国Express、护照、万事达卡、Discover和用餐者俱乐部等。这种算法最初是在20世纪60年代由一组数学家制定，现在L">
-<meta name="keywords" content="算法">
+  <meta name="description" content="Node 中实现 WebSocket 可以使用 ws 模块轻松实现。">
+<meta name="keywords" content="node">
 <meta property="og:type" content="article">
-<meta property="og:title" content="银行卡校验规则(Luhn算法)">
-<meta property="og:url" content="http://wxnacy.com/2017/08/05/algorithm-2017-08-05-bank-verify/index.html">
+<meta property="og:title" content="Node 使用 ws 模块实现简单 WebSocket">
+<meta property="og:url" content="http://wxnacy.com/2018/06/26/node-ws/index.html">
 <meta property="og:site_name" content="wxnacy 博客">
-<meta property="og:description" content="原文:http://www.icloudyin.com/?p=61  检验数字算法（Luhn Check Digit Algorithm），也叫做模数10公式，是一种简单的算法，用于验证银行卡、信用卡号码的有效性的算法。对所有大型信用卡公司发行的信用卡都起作用，这些公司包括美国Express、护照、万事达卡、Discover和用餐者俱乐部等。这种算法最初是在20世纪60年代由一组数学家制定，现在L">
+<meta property="og:description" content="Node 中实现 WebSocket 可以使用 ws 模块轻松实现。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-12-07T08:34:11.000Z">
+<meta property="og:updated_time" content="2018-06-26T06:20:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="银行卡校验规则(Luhn算法)">
-<meta name="twitter:description" content="原文:http://www.icloudyin.com/?p=61  检验数字算法（Luhn Check Digit Algorithm），也叫做模数10公式，是一种简单的算法，用于验证银行卡、信用卡号码的有效性的算法。对所有大型信用卡公司发行的信用卡都起作用，这些公司包括美国Express、护照、万事达卡、Discover和用餐者俱乐部等。这种算法最初是在20世纪60年代由一组数学家制定，现在L">
+<meta name="twitter:title" content="Node 使用 ws 模块实现简单 WebSocket">
+<meta name="twitter:description" content="Node 中实现 WebSocket 可以使用 ws 模块轻松实现。">
   
     <link rel="alternative" href="/atom.xml" title="wxnacy 博客" type="application/atom+xml">
   
@@ -191,35 +191,50 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-algorithm-2017-08-05-bank-verify" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-node-ws" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      银行卡校验规则(Luhn算法)
+      Node 使用 ws 模块实现简单 WebSocket
     </h1>
   
 
         
-        <a href="/2017/08/05/algorithm-2017-08-05-bank-verify/" class="archive-article-date">
-  	<time datetime="2017-08-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-05</time>
+        <a href="/2018/06/26/node-ws/" class="archive-article-date">
+  	<time datetime="2018-06-26T06:09:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="http://www.icloudyin.com/?p=61" target="_blank" rel="noopener">原文:http://www.icloudyin.com/?p=61</a></p>
+        <p>Node 中实现 WebSocket 可以使用 <a href="https://github.com/websockets/ws" target="_blank" rel="noopener">ws</a> 模块轻松实现。<br><a id="more"></a><div class="toc"></p>
+<!-- toc -->
 <ul>
-<li>检验数字算法（Luhn Check Digit Algorithm），也叫做模数10公式，是一种简单的算法，用于验证银行卡、信用卡号码的有效性的算法。对所有大型信用卡公司发行的信用卡都起作用，这些公司包括美国Express、护照、万事达卡、Discover和用餐者俱乐部等。这种算法最初是在20世纪60年代由一组数学家制定，现在Luhn检验数字算法属于大众，任何人都可以使用它。</li>
-<li>将卡号上的每个数字乘上其权重（weight），如果卡号上的数字个数是偶数，那么第一个数字的权重就是2，若是奇数，那么权重就给1，剩下来的数字，根据第一个数字依序给定。例如某信用卡卡号的数字个数为偶数，那么从第一个数字开始的权重依序为 2、1、2、1、2、1 …。</li>
-<li>如果数字乘上自己的权重后比9还大，那么就从这加权数字里扣除9。</li>
-<li>接下来将所有处理过的加权数字全部加总起来，并且除以10，取其余数。</li>
+<li><a href="#an-zhuang">安装</a></li>
+<li><a href="#shi-xian">实现</a></li>
 </ul>
-<h2><span id="java">java</span><a href="#java" class="header-anchor"></a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">	<span class="keyword">boolean</span> even = <span class="keyword">true</span>;</div><div class="line">	<span class="keyword">for</span> ( <span class="keyword">int</span> index = digits.size() - <span class="number">1</span>; index &gt;= <span class="number">0</span>; index-- ) &#123;</div><div class="line">		<span class="keyword">int</span> digit = digits.get( index );</div><div class="line"></div><div class="line">		<span class="keyword">if</span> ( even ) &#123;</div><div class="line">			digit &lt;&lt;= <span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> ( digit &gt; <span class="number">9</span> ) &#123;</div><div class="line">			digit -= <span class="number">9</span>;</div><div class="line">		&#125;</div><div class="line">		sum += digit;</div><div class="line">		even = !even;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> ( <span class="number">10</span> - ( sum % <span class="number">10</span> ) ) % <span class="number">10</span>;</div></pre></td></tr></table></figure>
-<h2><span id="python">python</span><a href="#python" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_bank_card</span><span class="params">(card_num)</span>:</span></div><div class="line">    <span class="string">"""检查银行卡的合法性"""</span></div><div class="line">    total = <span class="number">0</span></div><div class="line">    even = <span class="keyword">True</span></div><div class="line">    <span class="keyword">if</span> isinstance(card_num, int):</div><div class="line">        card_num = str(card_num)</div><div class="line">    check_num = card_num[<span class="number">-1</span>]</div><div class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> card_num[<span class="number">-2</span>::<span class="number">-1</span>]:</div><div class="line">        item = int(item)</div><div class="line">        <span class="keyword">if</span> even:</div><div class="line">            item &lt;&lt;= <span class="number">1</span></div><div class="line">        <span class="keyword">if</span> item &gt; <span class="number">9</span>:</div><div class="line">            item -= <span class="number">9</span></div><div class="line">        total += item</div><div class="line">        even = <span class="keyword">not</span> even</div><div class="line">    <span class="keyword">return</span> int(check_num) <span class="keyword">is</span> (<span class="number">10</span> - (total % <span class="number">10</span>)) % <span class="number">10</span></div></pre></td></tr></table></figure>
+<!-- tocstop -->
+</div>
+
+<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yarn add ws</div></pre></td></tr></table></figure>
+<h2><span id="shi-xian">实现</span><a href="#shi-xian" class="header-anchor"></a></h2><p>我们采用 <code>client</code> 和 <code>server</code> 分开实现发送和回复的简单流程</p>
+<p><strong>Server</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 导入WebSocket模块:</span></div><div class="line"><span class="keyword">const</span> WebSocket = <span class="built_in">require</span>(<span class="string">'ws'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 引用Server类:</span></div><div class="line"><span class="keyword">const</span> WebSocketServer = WebSocket.Server;</div><div class="line"></div><div class="line"><span class="comment">// 实例化:</span></div><div class="line"><span class="keyword">const</span> wss = <span class="keyword">new</span> WebSocketServer(&#123;</div><div class="line">    port: <span class="number">4200</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">wss.on(<span class="string">'connection'</span>, <span class="function"><span class="keyword">function</span> <span class="title">connection</span>(<span class="params">ws</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"server connection"</span>);</div><div class="line">  ws.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span> <span class="title">incoming</span>(<span class="params">message</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'received: %s'</span>, message);</div><div class="line">    ws.send(<span class="string">`hello <span class="subst">$&#123;message&#125;</span>`</span>)</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><strong>Client</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> WebSocket = <span class="built_in">require</span>(<span class="string">'ws'</span>);</div><div class="line"></div><div class="line"><span class="keyword">const</span> ws = <span class="keyword">new</span> WebSocket(<span class="string">'ws://localhost:4200/test'</span>);</div><div class="line"></div><div class="line">ws.on(<span class="string">'open'</span>, <span class="function"><span class="keyword">function</span> <span class="title">open</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  ws.send(<span class="string">'wxnacy'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">ws.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span> <span class="title">incoming</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(data);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><strong>启动服务</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ node server.js</div></pre></td></tr></table></figure>
+<p><strong>启动客户端</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ node client.js</div></pre></td></tr></table></figure>
+<p>随后会看到服务端打印如下日志</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">server connection</div><div class="line">received: wxnacy</div></pre></td></tr></table></figure>
+<p>客户端打印如下日志</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hello wxnacy</div></pre></td></tr></table></figure>
+<p>更多参数配置见<a href="https://github.com/websockets/ws/blob/master/doc/ws.md#new-websocketserveroptions-callback" target="_blank" rel="noopener">文档</a></p>
 
       
 
@@ -233,7 +248,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">node</a>
         		</li>
       		
 		</ul>
@@ -252,18 +267,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/05/js-2017-08-05-screen-wh/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          js和css获取屏幕大小
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/08/04/git-2017-08-04-basic-cmd/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Git 常用命令</div>
+    <a href="/2018/06/25/baby19/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">小宝贝，第 19 天，上班第一天</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -290,7 +296,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="java">java</span><a href="#java" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="python">python</span><a href="#python" class="header-anchor"></a></span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="an-zhuang">&#x5B89;&#x88C5;</span><a href="#an-zhuang" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="shi-xian">&#x5B9E;&#x73B0;</span><a href="#shi-xian" class="header-anchor"></a></span></a></li></ol>
                     </div>
                 </span>
             </div>
