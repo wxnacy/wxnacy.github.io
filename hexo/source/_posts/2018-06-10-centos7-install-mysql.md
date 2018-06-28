@@ -42,14 +42,59 @@ $ sudo rpm -ivh mysql80-community-release-el7-1.noarch.rpm
 
 
 
-## 安装 Mysql
+## 安装
 
+### 8.0 版本
+
+添加完成仓库，直接下载即可得到最新的 `8.0` 版本
 ```bash
 $ sudo yum update -y
 $ sudo yum install -y mysql-server
 ```
 
-启动
+### 5.7 版本
+
+但是现在比较稳定的版本还是 `5.7`，想要下载这个版本，还需要做一些工作。
+
+**查看可安装版本**
+
+```bash
+$ yum repolist all | grep mysql
+
+mysql-cluster-7.5-community/x86_64 MySQL Cluster 7.5 Community    disabled
+mysql-cluster-7.5-community-source MySQL Cluster 7.5 Community -  disabled
+mysql-cluster-7.6-community/x86_64 MySQL Cluster 7.6 Community    disabled
+mysql-cluster-7.6-community-source MySQL Cluster 7.6 Community -  disabled
+mysql-connectors-community/x86_64  MySQL Connectors Community     enabled:    51
+mysql-connectors-community-source  MySQL Connectors Community - S disabled
+mysql-tools-community/x86_64       MySQL Tools Community          enabled:    63
+mysql-tools-community-source       MySQL Tools Community - Source disabled
+mysql-tools-preview/x86_64         MySQL Tools Preview            disabled
+mysql-tools-preview-source         MySQL Tools Preview - Source   disabled
+mysql55-community/x86_64           MySQL 5.5 Community Server     disabled
+mysql55-community-source           MySQL 5.5 Community Server - S disabled
+mysql56-community/x86_64           MySQL 5.6 Community Server     disabled
+mysql56-community-source           MySQL 5.6 Community Server - S disabled
+mysql57-community/x86_64           MySQL 5.7 Community Server     disabled
+mysql57-community-source           MySQL 5.7 Community Server - S disabled
+mysql80-community/x86_64           MySQL 8.0 Community Server     enabled:    17
+mysql80-community-source           MySQL 8.0 Community Server - S disabled
+```
+
+**选择默认版本为 5.7**
+
+```bash
+$ sudo yum-config-manager --disable mysql80-community
+$ sudo yum-config-manager --enable mysql57-community
+```
+
+**下载**
+
+```bash
+$ sudo yum install mysql-community-server
+```
+
+**启动**
 
 ```bash
 $ sudo systemctl start mysqld
@@ -158,8 +203,8 @@ mysql> SHOW VARIABLES LIKE 'validate_password%';
 将策略改为 `LOW`
 
 ```mysql
+> set global validate_password.policy=0;
 > set global validate_password_policy=0;
-> set global validate.password_policy=0;
 ```
 
 如果你不想让长度必须大于 8 位，也可以改为 4，这是最低长度
@@ -169,8 +214,26 @@ mysql> SHOW VARIABLES LIKE 'validate_password%';
 > set global validate_password.length=4;
 ```
 
-接下来再次执行 `sudo mysql_secure_installation` 即可成功修改密码。
+随后执行 sql 修改密码即可
+
+```bash
+> set password=password('wxnacy');
+```
+
+最后可以将访问权限全部对外开放
+
+```bash
+> GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'wxnacy' WITH GRANT OPTION;
+```
+
+也可以指定 ip 开放
+
+```bash
+> GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.33.11' IDENTIFIED BY 'wxnacy' WITH GRANT OPTION;
+```
 
 
+- [A Quick Guide to Using the MySQL Yum Repository](https://dev.mysql.com/doc/mysql-yum-repo-quick-guide/en/)
 - [How To Install MySQL on CentOS 7](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-centos-7)
 - [解决 MySQL 5.7 中 Your password does not satisfy the current policy requirements. 问题](https://blog.csdn.net/maxsky/article/details/51171474)
+

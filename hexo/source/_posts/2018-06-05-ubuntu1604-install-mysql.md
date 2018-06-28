@@ -56,4 +56,36 @@ Uptime:                 18 min 33 sec
 Threads: 1  Questions: 18  Slow queries: 0  Opens: 115  Flush tables: 1  Open tables: 34  Queries per second avg: 0.016
 ```
 
+**修改密码**
+
+```mysql
+> set password=password('wxnacy');
+```
+
+## 对外开放
+
+**打开防火墙 3306 端口**
+
+```bash
+$ sudo ufw allow 3306
+$ sudo ufw disable
+$ sudo ufw enable
+```
+
+**注释绑定 ip**
+
+```bash
+$ sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
+
+# bind-address      = 127.0.0.1
+```
+
+**允许所有ip访问**
+
+```mysql
+> GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'wxnacy' WITH GRANT OPTION;
+```
+
+- [A Quick Guide to Using the MySQL APT Repository](https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/)
 - [How To Install MySQL on Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-16-04)
+- [CentOS 7 安装 Mysql](/2018/06/10/centos7-install-mysql/)
