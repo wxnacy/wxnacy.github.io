@@ -1,7 +1,10 @@
 ---
 title: Mysql 插入表情
-tags: [mysql]
+tags:
+  - mysql
+date: 2018-07-02 10:08:12
 ---
+
 
 Mysql 建表时，默认 `varchar` 字段是不能保存表情符号的，会报编码错误。
 <!-- more --><!-- toc -->
