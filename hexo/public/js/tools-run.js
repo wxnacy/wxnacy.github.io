@@ -98,7 +98,7 @@ function setEditorValue(content){
 function init(){
   var id = WebTools.getArgsValue('id')
   if(!isEmpty(id)){
-    fetchGet(`/api/v1/code/${id}`).then(function(data){
+    fetchGet(`https://api.wxnacy.com/api/v1/code/${id}`).then(function(data){
       var html = decodeURIComponent(data.data.code.html)
       var name = data.data.name
 
@@ -145,7 +145,7 @@ function save(){
     code: code
   }
 
-  fetchPost(`/api/v1/code`, params).then(data => {
+  fetchPost(`https://api.wxnacy.com/api/v1/code`, params).then(data => {
     if( data.status == 401 ){
       alert('请先登录')
       return

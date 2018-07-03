@@ -27,7 +27,7 @@ function initLogin(){
   document.getElementById("loginBtn").addEventListener('click', function(e){
     var email = document.getElementById("login-email").value
     var pw = document.getElementById("login-password").value
-    fetchPost('/api/v1/login', {
+    fetchPost('https://api.wxnacy.com/api/v1/login', {
       email: email, password: pw
     }).then(function(data){
       console.log(data);

@@ -138,7 +138,7 @@ function init(){
   localStorage.clear()
   var id = getValue('id')
   if(!isEmpty(id)){
-    fetchGet(`/api/v1/code/${id}`).then(function(data){
+    fetchGet(`https://api.wxnacy.com/api/v1/code/${id}`).then(function(data){
       var params = decodeURIComponent(data.data.code.params)
       var name = data.data.name
       var code = data.data.code
