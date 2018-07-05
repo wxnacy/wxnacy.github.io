@@ -1,7 +1,7 @@
 ---
 title: Linux 安装 Elasticsearch
 tags:
-  - elasticsearch
+  - elastic
 date: 2018-07-04 09:40:23
 ---
 
@@ -170,7 +170,5 @@ repo    | 共享文件系统存储库位置。 可以容纳多个地点。 文�
 - `RESTART_ON_UPGRADE` 在软件包升级时配置重启，默认为false。 这意味着您必须在手动安装包后重新启动Elasticsearch实例。 其原因是为了确保集群中的升级不会导致连续的碎片重新分配，从而导致高网络流量并缩短集群的响应时间。
 
 
-
-- [Install Elasticsearch with RPM](https://www.elastic.co/guide/en/elasticsearch/reference/current/rpm.html)
-- [Install Elasticsearch with Debian Package](https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html)
+- [Install Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/6.x/install-elasticsearch.html)
 - [How To Install and Configure Elasticsearch on CentOS 7](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-elasticsearch-on-centos-7)

@@ -1,7 +1,7 @@
 ---
 title: CentOS 7 使用 rpm 安装 Elasticsearch
 tags:
-  - elasticsearch
+  - elastic
 date: 2018-06-12 15:01:15
 ---
 
