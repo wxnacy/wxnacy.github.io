@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="wxnacy 博客">
 <meta property="og:description" content="昨天在服务器上部署 API 时，总是失败，查看日志发现磁盘空间不足，想要查看磁盘空间各种手忙脚乱，不知如何下手，懂得简单几个命令也不能称心如意的解决问题。所以痛定思痛总结了下需要用到的几种，以便以后查阅。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-12-29T09:02:33.000Z">
+<meta property="og:updated_time" content="2018-07-09T05:44:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux 分析磁盘空间">
 <meta name="twitter:description" content="昨天在服务器上部署 API 时，总是失败，查看日志发现磁盘空间不足，想要查看磁盘空间各种手忙脚乱，不知如何下手，懂得简单几个命令也不能称心如意的解决问题。所以痛定思痛总结了下需要用到的几种，以便以后查阅。">
@@ -220,6 +220,7 @@
 </li>
 <li><a href="#du">du</a><ul>
 <li><a href="#geng-duo-can-shu-1">更多参数</a></li>
+<li><a href="#pai-xu">排序</a></li>
 </ul>
 </li>
 </ul>
@@ -238,6 +239,10 @@
 <p>结合上边这些参数我们已经可以来做分析了，我通常这样做<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ du -hd 1 ~</div><div class="line">$ du -hd 1 ~/.oh-my-zsh</div><div class="line">...</div></pre></td></tr></table></figure></p>
 <p>我从用户根目录开始查看第一级目录的文件夹大小，并一直将目录层级细化，最后找到最大的文件夹，进入后通过 <code>ll -h</code> 查看哪个文件最大，<code>-h</code> 已经不需要我告诉有什么作用了。</p>
 <h3><span id="geng-duo-can-shu">更多参数</span><a href="#geng-duo-can-shu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">-a或-all                <span class="comment"># 显示目录中个别文件的大小。</span></div><div class="line">-b或-bytes              <span class="comment"># 显示目录或文件大小时，以byte为单位。</span></div><div class="line">-c或--total             <span class="comment"># 除了显示个别目录或文件的大小外，同时也显示所有目录或文件的总和。</span></div><div class="line">-D或--dereference-args  <span class="comment"># 显示指定符号连接的源文件大小。</span></div><div class="line">-h或--human-readable    <span class="comment"># 以K，M，G为单位，提高信息的可读性。</span></div><div class="line">-H或--si                <span class="comment"># 与-h参数相同，但是K，M，G是以1000为换算单位。</span></div><div class="line">-k或--kilobytes         <span class="comment"># 以1024 bytes为单位。</span></div><div class="line">-l或--count-links       <span class="comment"># 重复计算硬件连接的文件。</span></div><div class="line">-L&lt;符号连接&gt;或--dereference&lt;符号连接&gt;   <span class="comment"># 显示选项中所指定符号连接的源文件大小。</span></div><div class="line">-m或--megabytes         <span class="comment"># 以1MB为单位。</span></div><div class="line">-s或--summarize         <span class="comment"># 仅显示总计。</span></div><div class="line">-S或--separate-dirs     <span class="comment"># 显示个别目录的大小时，并不含其子目录的大小。</span></div><div class="line">-x或--one-file-xystem   <span class="comment"># 以一开始处理时的文件系统为准，若遇上其它不同的文件系统目录则略过。</span></div><div class="line">-X&lt;文件&gt;或--exclude-from=&lt;文件&gt;         <span class="comment"># 在&lt;文件&gt;指定目录或文件。</span></div><div class="line">--exclude=&lt;目录或文件&gt;  <span class="comment"># 略过指定的目录或文件。</span></div><div class="line">--max-depth=&lt;目录层数&gt;  <span class="comment"># 超过指定层数的目录后，予以忽略。</span></div><div class="line">--<span class="built_in">help</span>                  <span class="comment"># 显示帮助。</span></div><div class="line">--version               <span class="comment"># 显示版本信息。</span></div></pre></td></tr></table></figure>
+<h3><span id="pai-xu">排序</span><a href="#pai-xu" class="header-anchor"></a></h3><p>当前目录下如果文件太多，挨个查看大小势必非常麻烦，我们可以对它进行排序，借助 <code>sort</code> 命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ du -d 1 -h | sort -nr</div><div class="line"></div><div class="line">148K	./layer-v3.1.1</div><div class="line">116K	./cnblogs-article-information</div><div class="line"> 71M	./AdminLTE-2.4.2</div><div class="line"> 64K	./vegobot</div><div class="line"> 59M	./ace</div></pre></td></tr></table></figure>
+<p>但是排序有些问题，因为它只按照文件数字显示大小，不考虑单位，所以不使用单位即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ du -d 1 | sort -nr</div><div class="line">$ du -d 1 | sort -nr | head     <span class="comment"># 显示最大的前十</span></div><div class="line">$ du -d 1 | sort -nr | tail     <span class="comment"># 显示最小的前十</span></div></pre></td></tr></table></figure>
 
       
 
@@ -339,7 +344,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="df">df</span><a href="#df" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text"><span id="geng-duo-can-shu">&#x66F4;&#x591A;&#x53C2;&#x6570;</span><a href="#geng-duo-can-shu" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="du">du</span><a href="#du" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text"><span id="geng-duo-can-shu">&#x66F4;&#x591A;&#x53C2;&#x6570;</span><a href="#geng-duo-can-shu" class="header-anchor"></a></span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="df">df</span><a href="#df" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text"><span id="geng-duo-can-shu">&#x66F4;&#x591A;&#x53C2;&#x6570;</span><a href="#geng-duo-can-shu" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="du">du</span><a href="#du" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text"><span id="geng-duo-can-shu">&#x66F4;&#x591A;&#x53C2;&#x6570;</span><a href="#geng-duo-can-shu" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text"><span id="pai-xu">&#x6392;&#x5E8F;</span><a href="#pai-xu" class="header-anchor"></a></span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -524,11 +529,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -536,7 +541,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -548,11 +553,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -561,10 +570,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -632,11 +637,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+                <a href="javascript:void(0)" class="js-tag color1">sqlalchemy</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sqlalchemy</a>
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -665,6 +670,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">ansible</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
