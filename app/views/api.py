@@ -6,6 +6,7 @@ __copyright__ = "Copyright of wxnacy (2017)."
 
 from app.common.base import BaseResponse
 from app.common.decorator import args_required
+from app.common.decorator import response_xml
 from app.config import BaseConfig
 from app.config import logger
 from app.models import AutoId
@@ -74,6 +75,12 @@ def register():
     return BaseResponse.return_response(data = item, headers = {
         BaseConfig.HEAD_AUTHORIZATION: item.authorization
     })
+
+@api_bp.route('/wx/mp_callback', methods=['POST', 'GET', 'PUT', "DELETE"])
+@response_xml
+def wx_callback():
+    '''测试'''
+    return 'success'
 
 @api_bp.route('/wapi/test', methods=['POST', 'GET', 'PUT', "DELETE"])
 def wapi_test():
