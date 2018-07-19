@@ -77,13 +77,11 @@ class WXSecurity():
                 aes = AESecurity(aes_key)
                 aes_msg = base64.b64decode(msg_encrypt)
                 body = aes.decrypt(aes_msg)
-                print(body)
 
-                pad = ord(body[-1])
-                print(pad)
-                return 200, body[20:-21]
+                res = body[20:body.rfind('>') + 1]
+                return 200, res
             except Exception as e:
-                print(e)
+                logger.error(e)
                 return 500, '加密信息解析失败'
         else:
             return 500, '加密校验失败'
