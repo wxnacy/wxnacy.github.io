@@ -23,7 +23,7 @@ main() {
         wxnacy/wxnacy:latest \
         ./${PROD}/run_gunicorn_in_docker.sh ${PROD}
         # ls -l
-    sudo bash -c "nohup docker logs -f ${PROD} >> ${LOG_DIR}/${PROD}.log 2>&1 &"
+    # sudo bash -c "nohup docker logs -f ${PROD} >> ${LOG_DIR}/${PROD}.log 2>&1 &"
 }
 
 if [ ! ${PROD} ] || [ ! ${ENV} ]
