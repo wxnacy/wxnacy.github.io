@@ -6,6 +6,7 @@ __copyright__ = "Copyright of wxnacy (2017)."
 
 from app.common.base import BaseResponse
 from app.common.wx_utils import WXSecurity
+from app.common.wx_utils import Message
 from app.common.decorator import args_required
 from app.common.decorator import response_xml
 from app.config import BaseConfig
@@ -21,9 +22,7 @@ import json
 
 api_bp = Blueprint('api', __name__)
 
-EAKEY = 'F3uIXPvYZ8nmpPVhazFkertj25fry8OcINM87xRe4kg'
-token = 'F3uIXPvYZ8nmpPVhazFkert'
-wxs = WXSecurity(token, EAKEY)
+wxs = WXSecurity()
 
 
 @api_bp.route('/auto_id/<int:shard_id>/<int:item_id>', methods=['POST'])
@@ -89,11 +88,20 @@ def wx_callback():
     logger.debug(method)
     if method == "GET":
         args = request.args
-        if wxs.check_get_request(signature = args['signature'],
+        if wxs.check_request(signature = args['signature'],
                 timestamp = args['timestamp'], nonce = args['nonce']):
             return request.args.get('echostr', 'success')
         else:
             return 'error'
+
+    if method == "POST":
+        s, res = Message.decrypt_body(request.data)
+        if s == 200:
+            msg = Message(res)
+            return msg.reply_text(msg.content)
+        else:
+            return msg.reply_text(res)
+
     return ''
 
 @api_bp.route('/wapi/test', methods=['POST', 'GET', 'PUT', "DELETE"])
