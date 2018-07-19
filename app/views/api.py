@@ -5,6 +5,7 @@ __author__ = "wxnacy(wxnacy@gmail.com)"
 __copyright__ = "Copyright of wxnacy (2017)."
 
 from app.common.base import BaseResponse
+from app.common.wx_utils import WXSecurity
 from app.common.decorator import args_required
 from app.common.decorator import response_xml
 from app.config import BaseConfig
@@ -19,6 +20,10 @@ from flask import request
 import json
 
 api_bp = Blueprint('api', __name__)
+
+EAKEY = 'F3uIXPvYZ8nmpPVhazFkertj25fry8OcINM87xRe4kg'
+token = 'F3uIXPvYZ8nmpPVhazFkert'
+wxs = WXSecurity(token, EAKEY)
 
 
 @api_bp.route('/auto_id/<int:shard_id>/<int:item_id>', methods=['POST'])
@@ -80,7 +85,15 @@ def register():
 @response_xml
 def wx_callback():
     '''测试'''
-    return 'success'
+    method = request.method
+    if method == "get":
+        args = request.args
+        args = dict(args)
+        if wxs.check_get_request(args):
+            return request.args.get('echostr', 'success')
+        else:
+            return 'error'
+    return ''
 
 @api_bp.route('/wapi/test', methods=['POST', 'GET', 'PUT', "DELETE"])
 def wapi_test():

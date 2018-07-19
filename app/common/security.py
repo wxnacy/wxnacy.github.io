@@ -16,15 +16,16 @@ import base64
 class AESecurity():
     @classmethod
     def generate_key(cls):
-        return Md5.encrypt('{}'.format(time.time()))[0:16]
+        return Md5.encrypt('{}'.format(time.time()))
 
     def __init__(self, key):
         self.key = key
+        self.iv = key[:16]
         self.mode = AES.MODE_CBC
 
     # 加密函数，如果text不是16的倍数【加密文本text必须为16的倍数！】，那就补足为16的倍数
     def encrypt(self, text):
-        cryptor = AES.new(self.key, self.mode, self.key)
+        cryptor = AES.new(self.key, self.mode, self.iv)
         # 这里密钥key 长度必须为16（AES-128）、24（AES-192）、或32（AES-256）Bytes 长度.目前AES-128足够用
         length = 16
         count = len(text)
@@ -37,7 +38,7 @@ class AESecurity():
 
     # 解密后，去掉补足的空格用strip() 去掉
     def decrypt(self, text):
-        cryptor = AES.new(self.key, self.mode, self.key)
+        cryptor = AES.new(self.key, self.mode, self.iv)
         plain_text = cryptor.decrypt(a2b_hex(text)).decode("utf-8")
         return plain_text.rstrip('\x00')
 
