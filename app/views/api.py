@@ -96,6 +96,8 @@ def wx_callback():
 
     if method == "POST":
         s, res = Message.decrypt_body(request.data)
+        logger.debug(f'解析状态: {s}')
+        logger.debug(f'解析结果: {res}')
         if s == 200:
             msg = Message(res)
             return msg.reply_text(msg.content)
