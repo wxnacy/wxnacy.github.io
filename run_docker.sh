@@ -8,6 +8,7 @@ test -d ${LOG_DIR} || sudo mkdir ${LOG_DIR}
 
 main() {
     sudo docker pull wxnacy/wxnacy:latest
+    sudo docker container rm ${PROD}
     sudo docker container stop ${PROD}
     sudo docker run \
         -it \
