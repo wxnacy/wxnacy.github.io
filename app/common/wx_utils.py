@@ -209,12 +209,12 @@ class Message():
         return xmltodict.unparse({"xml": xml})
 
     @classmethod
-    def decrypt_body(cls, xml_input):
+    def decrypt_body(cls, xml_input, msg_signature, timestamp, nonce):
         msg = json.loads(json.dumps(xmltodict.parse(xml_input)))
         data = msg['xml']
         encrypt = data['Encrypt']
         wxs = WXSecurity()
-        return wxs.get_security_body(encrypt, msg_s, ts, nonce)
+        return wxs.get_security_body(encrypt, msg_signature, timestamp, nonce)
 
 
 

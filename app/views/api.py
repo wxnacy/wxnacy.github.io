@@ -86,16 +86,21 @@ def wx_callback():
     '''测试'''
     method = request.method
     logger.debug(method)
+    args = request.args
+    signature = args['signature']
+    msg_signature = args['msg_signature']
+    timestamp = args['timestamp']
+    nonce = args['nonce']
     if method == "GET":
-        args = request.args
-        if wxs.check_request(signature = args['signature'],
-                timestamp = args['timestamp'], nonce = args['nonce']):
+        if wxs.check_request(signature = signature,
+                timestamp = timestamp, nonce = nonce):
             return request.args.get('echostr', 'success')
         else:
             return 'error'
 
     if method == "POST":
-        s, res = Message.decrypt_body(request.data)
+        s, res = Message.decrypt_body(request.data, msg_signature, timestamp,
+                nonce)
         logger.debug(f'解析状态: {s}')
         logger.debug(f'解析结果: {res}')
         if s == 200:
