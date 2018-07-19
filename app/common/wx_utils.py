@@ -4,6 +4,7 @@
 __author__ = "wxnacy(wxnacy@gmail.com)"
 __copyright__ = "Copyright of wxnacy (2017)."
 
+from app.config import logger
 from app.common.security import AESecurity
 import base64
 import hashlib
@@ -26,13 +27,13 @@ class WXSecurity():
          self.token = token
          self.encoding_aes_key = encoding_aes_key
 
-    def check_get_request(self, signature, timestamp, nonce, **kwargs):
+    def check_get_request(self, signature, timestamp, nonce):
         data = [self.token, str(timestamp), str(nonce)]
         data.sort()
         sha1 = hashlib.sha1()
         sha1.update(''.join(data).encode("utf-8"))
         sign = sha1.hexdigest()
-        print(sign)
+        logger.debug(sign)
         return sign == signature
 
 

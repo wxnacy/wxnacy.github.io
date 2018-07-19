@@ -86,10 +86,11 @@ def register():
 def wx_callback():
     '''测试'''
     method = request.method
-    if method == "get":
+    logger.debug(method)
+    if method == "GET":
         args = request.args
-        args = dict(args)
-        if wxs.check_get_request(args):
+        if wxs.check_get_request(signature = args['signature'],
+                timestamp = args['timestamp'], nonce = args['nonce']):
             return request.args.get('echostr', 'success')
         else:
             return 'error'
