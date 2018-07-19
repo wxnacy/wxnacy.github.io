@@ -80,25 +80,26 @@ def register():
         BaseConfig.HEAD_AUTHORIZATION: item.authorization
     })
 
-@api_bp.route('/wx/mp_callback', methods=['POST', 'GET', 'PUT', "DELETE"])
+@api_bp.route('/wx/mp_callback', methods=['POST', 'GET'])
 @response_xml
 def wx_callback():
     '''测试'''
     method = request.method
-    logger.debug(method)
     args = request.args
     signature = args['signature']
-    msg_signature = args['msg_signature']
     timestamp = args['timestamp']
     nonce = args['nonce']
+
     if method == "GET":
+        logger.debug('ss')
         if wxs.check_request(signature = signature,
                 timestamp = timestamp, nonce = nonce):
-            return request.args.get('echostr', 'success')
+            return args.get('echostr', 'success')
         else:
             return 'error'
 
     if method == "POST":
+        msg_signature = args['msg_signature']
         s, res = Message.decrypt_body(request.data, msg_signature, timestamp,
                 nonce)
         logger.debug(f'解析状态: {s}')

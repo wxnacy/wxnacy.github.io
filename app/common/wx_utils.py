@@ -14,36 +14,17 @@ from Crypto.Cipher import AES
 from binascii import b2a_hex, a2b_hex
 from datetime import datetime
 
-
-
-
 def sha1(text):
     sha1 = hashlib.sha1()
     sha1.update(text.encode("utf-8"))
     return sha1.hexdigest()
 
 class AESecurity():
-    @classmethod
-    def generate_key(cls):
-        return Md5.encrypt('{}'.format(time.time()))
 
     def __init__(self, key):
         self.key = key
         self.iv = key[:16]
         self.mode = AES.MODE_CBC
-
-    # 加密函数，如果text不是16的倍数【加密文本text必须为16的倍数！】，那就补足为16的倍数
-    def encrypt(self, text):
-        cryptor = AES.new(self.key, self.mode, self.iv)
-        # 这里密钥key 长度必须为16（AES-128）、24（AES-192）、或32（AES-256）Bytes 长度.目前AES-128足够用
-        length = 16
-        count = len(text)
-        add = length - (count % length)
-        text = text + ('\0' * add)
-        self.ciphertext = cryptor.encrypt(text)
-        # 因为AES加密时候得到的字符串不一定是ascii字符集的，输出到终端或者保存时候可能存在问题
-        # 所以这里统一把加密后的字符串转化为16进制字符串
-        return b2a_hex(self.ciphertext).decode("utf-8")
 
     # 解密后，去掉补足的空格用strip() 去掉
     def decrypt(self, text):
@@ -60,6 +41,9 @@ class WXSecurity():
 
     def check_request(self, signature, timestamp, nonce):
         '''检查请求是否复核加密'''
+        logger.debug(signature)
+        logger.debug(timestamp)
+        logger.debug(nonce)
         data = [self.token, str(timestamp), str(nonce)]
         data.sort()
         sign = sha1(''.join(data))
@@ -225,19 +209,10 @@ encrypt = 'S6eEBV46zgL6+m2SXqBWXCbDnxuPI7Eca4Yoj0IXlvFuWqCPXey7IzSzyKHZc5Gbz5ODS
 msg_s = '9f3178c8b6e445a0b2af112d0425c2972ffca176'
 
 if __name__ == "__main__":
-    print(f'{EAKEY}=')
-    key = base64.b64decode(f'{EAKEY}=')
-    #  print(key)
-    #  print(len(key))
-    aes = AESecurity(key)
-    s = aes.encrypt('test')
-    #  print(s)
-    #  t = aes.decrypt(s)
-    #  print(t)
-    #  print([token, ts, nonce].sort())
 
     wxs = WXSecurity(token, EAKEY)
     flag = wxs.check_request(signature, ts, nonce)
+    print(flag)
     s, res = wxs.get_security_body(encrypt, msg_s, ts, nonce)
     msg = Message(res.encode())
     print(msg.content)
