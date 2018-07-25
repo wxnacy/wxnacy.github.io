@@ -101,7 +101,7 @@ def wx_callback():
     if method == "POST":
         msg_signature = args['msg_signature']
         data_json = Message.xml2dict(request.data)
-        res = wxs.decrypt_security_body(data_json['xml']['Encrypt'], msg_signature, 
+        res = wxs.decrypt_security_body(data_json['xml']['Encrypt'], msg_signature,
                 timestamp, nonce)
         logger.debug(f'解析结果: {res}')
         if res:
