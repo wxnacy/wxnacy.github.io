@@ -5,8 +5,8 @@ __author__ = "wxnacy(wxnacy@gmail.com)"
 __copyright__ = "Copyright of wxnacy (2017)."
 
 from app.common.base import BaseResponse
-from app.common.wx_utils import WXSecurity
-from app.common.wx_utils import Message
+from wwx import WXSecurity
+from wwx import Message
 from app.common.decorator import args_required
 from app.common.decorator import response_xml
 from app.config import BaseConfig
@@ -22,7 +22,7 @@ import json
 
 api_bp = Blueprint('api', __name__)
 
-wxs = WXSecurity()
+wxs = WXSecurity(BaseConfig.WX_TOKEN, BaseConfig.WX_ENCODING_AES_KEY)
 
 
 @api_bp.route('/auto_id/<int:shard_id>/<int:item_id>', methods=['POST'])
@@ -100,11 +100,11 @@ def wx_callback():
 
     if method == "POST":
         msg_signature = args['msg_signature']
-        s, res = Message.decrypt_body(request.data, msg_signature, timestamp,
-                nonce)
-        logger.debug(f'解析状态: {s}')
+        data_json = Message.xml2dict(request.data)
+        res = wxs.decrypt_security_body(data_json['xml']['Encrypt'], msg_signature, 
+                timestamp, nonce)
         logger.debug(f'解析结果: {res}')
-        if s == 200:
+        if res:
             msg = Message(res)
             return msg.reply_text(msg.content)
         else:

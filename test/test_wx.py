@@ -10,7 +10,7 @@ import json
 
 #  url = 'http://localhost:8010/tmdapi/v1/wx'
 URL = 'http://localhost:8002/api/v1/wx/mp_callback'
-URL = 'http://localhost:8010/tmdapi/v1/wx/third/app/mp_callback'
+#  URL = 'http://localhost:8010/tmdapi/v1/wx/third/app/mp_callback'
 
 class TestCase(unittest.TestCase):
     def setUp(self):

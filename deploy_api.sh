@@ -11,7 +11,8 @@ deploy_tag(){
     echo '******************************'
     git fetch
     git checkout ${TAG_NAME}
-    ./run_docker.sh wxnacyapi product
+    # ./run_docker.sh wxnacyapi product
+    pm2 restart wxnacyapi
 
     echo '******************************'
     echo '********部署成功'
