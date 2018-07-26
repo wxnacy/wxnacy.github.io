@@ -108,8 +108,11 @@ def wx_callback():
             msg = Message(res)
             if msg.is_text():
                 return msg.reply_text(msg.content)
-            elif msg.is_image() or msg.is_video():
+            elif msg.is_image():
                 return msg.reply_image(msg.media_id)
+            elif msg.is_video():
+                return msg.reply_video(media_id = msg.media_id,
+                    title = '视频标题', description="描述")
         else:
             return msg.reply_text(res)
 
