@@ -6,14 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://wxnacy.com">
-  <title>ansible入门笔记2 Playbooks | wxnacy 博客</title>
+  <title>ansible入门笔记2 Playbooks | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="专辑：ansible学习笔记  Playbooks 是 Ansible的配置,部署,编排语言.他们可以被描述为一个需要希望远程主机执行命令的方案,或者一组IT程序运行的命令集合.  一个playbook就是一个YAML文件，所以playbook文件一般都以.yml结尾，一个playbook文件由一个或多个play组成，每个play定义了在一个或多个远程主机上执行的一系列的task，其中每个task">
 <meta name="keywords" content="ansible">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ansible入门笔记2 Playbooks">
 <meta property="og:url" content="http://wxnacy.com/2017/08/08/ansible-2017-08-08-item-basic-playbooks/index.html">
-<meta property="og:site_name" content="wxnacy 博客">
+<meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="专辑：ansible学习笔记  Playbooks 是 Ansible的配置,部署,编排语言.他们可以被描述为一个需要希望远程主机执行命令的方案,或者一组IT程序运行的命令集合.  一个playbook就是一个YAML文件，所以playbook文件一般都以.yml结尾，一个playbook文件由一个或多个play组成，每个play定义了在一个或多个远程主机上执行的一系列的task，其中每个task">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:updated_time" content="2017-09-18T12:56:15.000Z">
@@ -21,7 +21,7 @@
 <meta name="twitter:title" content="ansible入门笔记2 Playbooks">
 <meta name="twitter:description" content="专辑：ansible学习笔记  Playbooks 是 Ansible的配置,部署,编排语言.他们可以被描述为一个需要希望远程主机执行命令的方案,或者一组IT程序运行的命令集合.  一个playbook就是一个YAML文件，所以playbook文件一般都以.yml结尾，一个playbook文件由一个或多个play组成，每个play定义了在一个或多个远程主机上执行的一系列的task，其中每个task">
   
-    <link rel="alternative" href="/atom.xml" title="wxnacy 博客" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="温欣爸比的博客" type="application/atom+xml">
   
   
     <link rel="icon" href="/images/favicon.ico">
@@ -51,7 +51,7 @@
 			<img src="/images/avator.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="">wxnacy</a></h1>
+		  <h1 class="header-author"><a href="">温欣爸比</a></h1>
 		</hgroup>
 		
 
@@ -123,7 +123,7 @@
 				<img src="/images/avator.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">wxnacy</h1>
+			  <h1 class="header-author js-header-author">温欣爸比</h1>
 			</hgroup>
 			
 			
@@ -282,11 +282,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks-ext/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/08/08/mysql-2017-08-08-item-daily/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          ansible入门笔记3 Playbooks 简单扩展
+          2017-08-08 新建article表，完善`insert_comment_trigger`
         
       </div>
     </a>
@@ -365,7 +365,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 - 2018 wxnacy
+    		&copy; 2017 - 2018 温欣爸比
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111772162-1"></script>
         <script>
@@ -505,11 +505,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -518,10 +522,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -537,15 +537,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -613,11 +613,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+                <a href="javascript:void(0)" class="js-tag color1">sqlalchemy</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sqlalchemy</a>
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -657,19 +657,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
