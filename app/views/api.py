@@ -106,7 +106,10 @@ def wx_callback():
         logger.debug(f'解析结果: {res}')
         if res:
             msg = Message(res)
-            return msg.reply_text(msg.content)
+            if msg.is_text():
+                return msg.reply_text(msg.content)
+            elif msg.is_image():
+                return msg.reply_image(msg.media_id)
         else:
             return msg.reply_text(res)
 
