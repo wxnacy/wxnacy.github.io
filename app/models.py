@@ -7,9 +7,8 @@ __copyright__ = "Copyright of wxnacy (2017)."
 from app.common.base import BaseModel as BM
 from app.common.base import BaseDB
 from app.common.md import Markdown
-from app.common.security import Md5
-from app.common.security import AESecurity
-from app.common import utils
+from wpy import security
+from wpy import ID
 from app.config import db
 from app.config import BaseConfig
 from app.config import logger
@@ -33,7 +32,7 @@ import time
 import traceback
 from bs4 import BeautifulSoup
 
-aes = AESecurity(BaseConfig.AES_KEY)
+aes = security.AESecurity(BaseConfig.AES_KEY)
 
 
 FILE_LIST = os.listdir(BaseConfig.ARTICLE_DIR)
@@ -73,7 +72,7 @@ class VisitUser(BaseModel, db.Model):
 
     @classmethod
     def generate_md5(cls, ip, user_agent):
-        return Md5.encrypt('{};{}'.format(ip, user_agent))
+        return security.md5('{};{}'.format(ip, user_agent))
 
     @classmethod
     def log(cls):
@@ -281,7 +280,7 @@ class User(BaseModel, db.Model):
     @classmethod
     def create(cls, **kw):
         kw['name'] = kw['email']
-        kw['mobile'] = utils.get_random_str(7)
+        kw['mobile'] = ID.random_str(7)
 
         return super().create(**kw)
 
@@ -291,7 +290,7 @@ class User(BaseModel, db.Model):
 
     @classmethod
     def generate_password(cls, password):
-        return Md5.encrypt(f'{password};!@#$%')
+        return security.md5(f'{password};!@#$%')
 
     @classmethod
     def login(cls, email, password):
@@ -389,7 +388,7 @@ class VisitorLog(BaseModel, db.Model):
             device_type = 'tablet'
         kw['device_type'] = device_type
         kw['is_bot'] = ua.is_bot
-        kw['md5'] = Md5.encrypt('{};{}'.format(kw['ip'], kw['user_agent']))
+        kw['md5'] = security.md5('{};{}'.format(kw['ip'], kw['user_agent']))
         kw['visit_date'] = date.today()
 
         res = VisitorLog.create(**kw)

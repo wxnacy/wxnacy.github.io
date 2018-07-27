@@ -23,6 +23,7 @@ import traceback
 import json
 import pymysql.cursors
 import time
+from wpy.json import BaseDict
 
 URL_CONFIG = urlparse(app.config['SQLALCHEMY_DATABASE_URI'])
 
@@ -380,72 +381,72 @@ class BaseRequest():
         return args
 
 
-class BaseDict(dict):
-    def filter(self, *args, **kwargs):
-        """
-        过滤dict
-        :param args: 默认 source_include
-        :param kwargs:
-            source_include：想要留下的keys
-                eq:[attr,attr1]
-                子元素可以使用 ["obj.attr"] 和 ["obj[attr1,attr2]"] 两种方式
-                速度上推荐使用 ["obj[attr1,attr2]"]
-            source_exclude：想要去掉的keys
-        :return:
-        """
-        source_include = args if args else kwargs.get('source_include')
-        source_exclude = kwargs.get('source_exclude')
+#  class BaseDict(dict):
+    #  def filter(self, *args, **kwargs):
+        #  """
+        #  过滤dict
+        #  :param args: 默认 source_include
+        #  :param kwargs:
+            #  source_include：想要留下的keys
+                #  eq:[attr,attr1]
+                #  子元素可以使用 ["obj.attr"] 和 ["obj[attr1,attr2]"] 两种方式
+                #  速度上推荐使用 ["obj[attr1,attr2]"]
+            #  source_exclude：想要去掉的keys
+        #  :return:
+        #  """
+        #  source_include = args if args else kwargs.get('source_include')
+        #  source_exclude = kwargs.get('source_exclude')
 
-        def _filter(t, o, k):
-            """
-            过滤key
-            :param t: 过滤结果
-            :param o: 目标对象
-            :param k: 需要过滤的key
-            :return:
-            """
-            if k in o:
-                t[k] = o[k]
-            return t
+        #  def _filter(t, o, k):
+            #  """
+            #  过滤key
+            #  :param t: 过滤结果
+            #  :param o: 目标对象
+            #  :param k: 需要过滤的key
+            #  :return:
+            #  """
+            #  if k in o:
+                #  t[k] = o[k]
+            #  return t
 
-        def _check_key(t, o, k):
-            """
-            判断key需要何种过滤
-            :param t: 过滤结果
-            :param o: 目标对象
-            :param k: 需要过滤的key
-            :return:
-            """
-            if '.' in k:
-                key = k.split('.', 1)[0]
-                sub_key = k.split('.', 1)[1]
-                if o.get(key) and isinstance(o.get(key), dict):
-                    if key not in t:
-                        t[key] = {}
-                    t[key] = _check_key(t[key], o[key], sub_key)
-            elif '[' in k and ']' in k:
-                key = k.split('[')[0]
-                v = o.get(key)
-                sub_keys = k.split('[')[1].rstrip(']').split(',')
-                if isinstance(v, dict):
-                    t[key] = BaseDict(v).filter(*sub_keys)
-                elif isinstance(v, list):
-                    t[key] = [BaseDict(sv).filter(*sub_keys) for sv in v]
-            else:
-                t = _filter(t, o, k)
+        #  def _check_key(t, o, k):
+            #  """
+            #  判断key需要何种过滤
+            #  :param t: 过滤结果
+            #  :param o: 目标对象
+            #  :param k: 需要过滤的key
+            #  :return:
+            #  """
+            #  if '.' in k:
+                #  key = k.split('.', 1)[0]
+                #  sub_key = k.split('.', 1)[1]
+                #  if o.get(key) and isinstance(o.get(key), dict):
+                    #  if key not in t:
+                        #  t[key] = {}
+                    #  t[key] = _check_key(t[key], o[key], sub_key)
+            #  elif '[' in k and ']' in k:
+                #  key = k.split('[')[0]
+                #  v = o.get(key)
+                #  sub_keys = k.split('[')[1].rstrip(']').split(',')
+                #  if isinstance(v, dict):
+                    #  t[key] = BaseDict(v).filter(*sub_keys)
+                #  elif isinstance(v, list):
+                    #  t[key] = [BaseDict(sv).filter(*sub_keys) for sv in v]
+            #  else:
+                #  t = _filter(t, o, k)
 
-            return t
+            #  return t
 
-        temp = {}
-        if source_include:
-            for item in source_include:
-                temp = _check_key(temp, self, item)
-            return temp
-        elif source_exclude:
-            for item in source_exclude:
-                self.pop(item)
-            return self
-        return self
+        #  temp = {}
+        #  if source_include:
+            #  for item in source_include:
+                #  temp = _check_key(temp, self, item)
+            #  return temp
+        #  elif source_exclude:
+            #  for item in source_exclude:
+                #  self.pop(item)
+            #  return self
+        #  return self
 
 
 class UserSecurity():
