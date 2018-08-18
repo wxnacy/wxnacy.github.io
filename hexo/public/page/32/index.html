@@ -191,19 +191,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-shell-2017-08-16-zsh-install" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-http-2017-08-16-basic" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/16/shell-2017-08-16-zsh-install/">Zsh 与 oh-my-zsh 安装与使用</a>
+      <a class="article-title" href="/2017/08/16/http-2017-08-16-basic/">HTTP相关知识</a>
     </h1>
   
 
         
-        <a href="/2017/08/16/shell-2017-08-16-zsh-install/" class="archive-article-date">
+        <a href="/2017/08/16/http-2017-08-16-basic/" class="archive-article-date">
   	<time datetime="2017-08-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
 </a>
         
@@ -211,36 +211,258 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>经常操作 Unix 系统有一款好的 Shell 工具是必备的，程序员刚开始接触的都是 Bash<br>随着时代的进步，有越来越多的更好更方便的 Shell 工具可用，下面我们来介绍里面的<br>翘楚 <strong><em>Zsh</em></strong></p>
-<div class="toc">
-
-<!-- toc -->
-<ul>
-<li><a href="#an-zhuang-zsh">安装 Zsh</a><ul>
-<li><a href="#centos">CentOS</a></li>
-<li><a href="#ubuntu">Ubuntu</a></li>
-<li><a href="#mac">Mac</a></li>
+        <h3><span id="content-length">Content-length</span><a href="#content-length" class="header-anchor"></a></h3><p>返回数据的大小，单位 bytes</p>
+<h2><span id="content-type">Content-Type</span><a href="#content-type" class="header-anchor"></a></h2><h3><span id="chang-yong">常用</span><a href="#chang-yong" class="header-anchor"></a></h3><ul>
+<li>application/octet-stream</li>
+<li>application/json</li>
+<li>application/javascript</li>
+<li>application/xml</li>
+<li>application/x-www-form-urlencoded</li>
+<li>text/plain</li>
+<li>text/xml</li>
+<li>text/html</li>
+<li>image/jpeg</li>
+<li>image/jpeg</li>
+<li>multipart/form-data<br>详细内容:<a href="http://tool.oschina.net/commons" target="_blank" rel="noopener">http://tool.oschina.net/commons</a></li>
 </ul>
-</li>
-<li><a href="#an-zhuang-oh-my-zsh">安装 oh-my-zsh</a></li>
-<li><a href="#pi-fu">皮肤</a></li>
-</ul>
-<!-- tocstop -->
-</div>
 
-<h2><span id="an-zhuang-zsh">安装 Zsh</span><a href="#an-zhuang-zsh" class="header-anchor"></a></h2><h3><span id="centos">CentOS</span><a href="#centos" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yum -y install zsh</div></pre></td></tr></table></figure>
-<h3><span id="ubuntu">Ubuntu</span><a href="#ubuntu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ apt-get -y install zsh</div></pre></td></tr></table></figure>
-<h3><span id="mac">Mac</span><a href="#mac" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install zsh</div></pre></td></tr></table></figure>
-<p>安装完毕我们就可以通过输入 <code>zsh</code> 进入 Zsh 命令行，如果想系统默认使用 Zsh 则可以<br>修改配置文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ chsh -s /bin/zsh <span class="comment"># 将默认shell改为zsh</span></div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$SHELL</span> <span class="comment"># 查看是否生效</span></div></pre></td></tr></table></figure></p>
-<p>但是在 Mac 系统中这样会失败，因为 Zsh 的默认位置不在 <code>/bin/zsh</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">which</span> zsh</div><div class="line">/usr/<span class="built_in">local</span>/bin/zsh</div></pre></td></tr></table></figure></p>
-<p>通过如上命令可以发现，brew 将 Zsh 安装到到 <code>/usr/local/bin/zsh</code><br>我们需要修改 Shell 配置，<code>sudo vim /etc/shells</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># List of acceptable shells for chpass(1).</span></div><div class="line">  2 <span class="comment"># Ftpd will not allow users to connect who are not using</span></div><div class="line">  3 <span class="comment"># one of these shells.</span></div><div class="line">  4</div><div class="line">  5 /bin/bash</div><div class="line">  6 /bin/csh</div><div class="line">  7 /bin/ksh</div><div class="line">  8 /bin/sh</div><div class="line">  9 /bin/tcsh</div><div class="line">-10 /bin/zsh</div><div class="line">+10 /usr/<span class="built_in">local</span>/bin/zsh</div></pre></td></tr></table></figure></p>
-<p>我们将新的 Zsh 位置替换掉以前的，关闭文件，再次执行开始的命令即可</p>
-<h2><span id="an-zhuang-oh-my-zsh">安装 oh-my-zsh</span><a href="#an-zhuang-oh-my-zsh" class="header-anchor"></a></h2><p>想要更好的使用 Zsh 我们还需要安装一个配置管理工具 <a href="http://ohmyz.sh/" target="_blank" rel="noopener">oh-my-zsh</a><br>curl<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sh -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span></div></pre></td></tr></table></figure></p>
-<p>wget<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sh -c <span class="string">"<span class="variable">$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)</span>"</span></div></pre></td></tr></table></figure></p>
-<p>最后修改配置兼容 bash_profile 的环境变量 <code>vim ~/.zshrc</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"><span class="built_in">source</span> ~/.bash_profile</div><div class="line">...</div></pre></td></tr></table></figure></p>
-<h2><span id="pi-fu">皮肤</span><a href="#pi-fu" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">修改配置文件 `vim ~/.zshrc`</div><div class="line"></div><div class="line">...</div><div class="line">ZSH_THEME=<span class="string">"fishy"</span>       <span class="comment"># 修改此处可以更改zsh使用皮肤</span></div><div class="line">...</div></pre></td></tr></table></figure>
-<p><a href="https://github.com/robbyrussell/oh-my-zsh/wiki/themes" target="_blank" rel="noopener">更多皮肤</a></p>
-<p>Zsh 可以支持一些第三方应用命令的快速输入或简写，比如 <code>gst</code> 直接对应 <code>git status</code><br><code>gd</code> 对应 <code>git diff</code>，这样在开发或维护服务都很有效率，不过想要生效还需要配置一下<br><code>vim ~/.zshrc</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">plugins=(git)</div><div class="line">...</div></pre></td></tr></table></figure></p>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/16/http-2017-08-16-basic/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-linux-2017-08-16-curl" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/16/linux-2017-08-16-curl/">网络请求工具 cURL</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/16/linux-2017-08-16-curl/" class="archive-article-date">
+  	<time datetime="2017-08-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>cRUL 是一种命令行工具，作用是发出网络请求，然后得到和提取数据，显示在 “标准输出”（stdout）上面。</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2017/08/16/linux-2017-08-16-curl/#more">阅读全文 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/16/linux-2017-08-16-curl/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-python-2017-08-15-config-pythonpath" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/15/python-2017-08-15-config-pythonpath/">python 配置PYTHONPATH(了解python导入模块搜索路径运作原理)</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/15/python-2017-08-15-config-pythonpath/" class="archive-article-date">
+  	<time datetime="2017-08-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>python项目导入模块是必不可少的，大多数情况下，可以以来模块导入搜索路径的<br>自动特性，完全不需要配置路径。不过，如果你想在用户间定义目录边界来导入文件，<br>就需要知道搜索路径是如何运作的。</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2017/08/15/python-2017-08-15-config-pythonpath/#more">阅读全文 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/15/python-2017-08-15-config-pythonpath/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-linux-2017-08-15-nohup" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/15/linux-2017-08-15-nohup/">Linux 使用nohup在后台不挂断执行命令</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/15/linux-2017-08-15-nohup/" class="archive-article-date">
+  	<time datetime="2017-08-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>nohup 搭配 &amp; 来不挂断地运行某条命令达到后台执行的效果，默认会在根目录生成一个<br>nohup.out 文件用来记录所有的 log 信息，也可以重定向到其他位置。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nohup gunicorn run:app &amp;</div></pre></td></tr></table></figure>
+<h2><span id="chong-ding-xiang-ri-zhi-dao-zhi-ding-wen-jian">重定向日志到制定文件</span><a href="#chong-ding-xiang-ri-zhi-dao-zhi-ding-wen-jian" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nohup gunicorn run:app &gt;nohup.log 2&gt;&amp;1 &amp;</div></pre></td></tr></table></figure>
 
       
 
@@ -256,10 +478,6 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">mac</a>
-        		</li>
       		
 		</ul>
 	</div>
@@ -268,7 +486,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/16/shell-2017-08-16-zsh-install/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/15/linux-2017-08-15-nohup/">展开全文 >></a>
         </p>
       
 
@@ -378,84 +596,6 @@
 
 
   
-    <article id="post-python-2017-08-15-config-pythonpath" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/15/python-2017-08-15-config-pythonpath/">python 配置PYTHONPATH(了解python导入模块搜索路径运作原理)</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/15/python-2017-08-15-config-pythonpath/" class="archive-article-date">
-  	<time datetime="2017-08-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>python项目导入模块是必不可少的，大多数情况下，可以以来模块导入搜索路径的<br>自动特性，完全不需要配置路径。不过，如果你想在用户间定义目录边界来导入文件，<br>就需要知道搜索路径是如何运作的。</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2017/08/15/python-2017-08-15-config-pythonpath/#more">阅读全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/15/python-2017-08-15-config-pythonpath/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-python-2017-08-15-gunicorn-run" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -505,84 +645,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/15/python-2017-08-15-gunicorn-run/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-linux-2017-08-15-nohup" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/15/linux-2017-08-15-nohup/">Linux 使用nohup在后台不挂断执行命令</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/15/linux-2017-08-15-nohup/" class="archive-article-date">
-  	<time datetime="2017-08-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>nohup 搭配 &amp; 来不挂断地运行某条命令达到后台执行的效果，默认会在根目录生成一个<br>nohup.out 文件用来记录所有的 log 信息，也可以重定向到其他位置。</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nohup gunicorn run:app &amp;</div></pre></td></tr></table></figure>
-<h2><span id="chong-ding-xiang-ri-zhi-dao-zhi-ding-wen-jian">重定向日志到制定文件</span><a href="#chong-ding-xiang-ri-zhi-dao-zhi-ding-wen-jian" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nohup gunicorn run:app &gt;nohup.log 2&gt;&amp;1 &amp;</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/15/linux-2017-08-15-nohup/">展开全文 >></a>
         </p>
       
 
@@ -944,87 +1006,6 @@
 
 
   
-    <article id="post-mysql-2017-08-12-item-daily" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/12/mysql-2017-08-12-item-daily/">2017-08-12 新建等级表，完善`insert_user_event`</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/12/mysql-2017-08-12-item-daily/" class="archive-article-date">
-  	<time datetime="2017-08-11T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>今天练习目标，新建等级表，完善<code>insert_user_event</code>做到自动更新用户总积分和当前等级</p>
-</blockquote>
-<h2><span id="xin-jian-deng-ji-biao">新建等级表</span><a href="#xin-jian-deng-ji-biao" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">drop table if exists `rank`;</div><div class="line">create table `rank`(</div><div class="line">	id int(11) not null auto_increment,</div><div class="line">	rank int(11) not null default 0 comment &apos;等级&apos;,</div><div class="line">	name varchar(32) not null  comment &apos;等级名&apos;,</div><div class="line">	score int(11) not null comment &apos;等级所需值&apos;,</div><div class="line">	primary key(`id`)</div><div class="line">)engine=InnoDB default charset=utf8mb4 comment &apos;登记表&apos;;</div></pre></td></tr></table></figure>
-<h2><span id="cha-ru-shu-ju">插入数据</span><a href="#cha-ru-shu-ju" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">insert into rank (rank,name,score) values (1,&apos;等级1&apos;,0);</div><div class="line">insert into rank (rank,name,score) values (2,&apos;等级2&apos;,200);</div><div class="line">insert into rank (rank,name,score) values (3,&apos;等级3&apos;,500);</div><div class="line">insert into rank (rank,name,score) values (4,&apos;等级4&apos;,1000);</div><div class="line">insert into rank (rank,name,score) values (5,&apos;等级5&apos;,2000);</div><div class="line">insert into rank (rank,name,score) values (6,&apos;等级6&apos;,5000);</div><div class="line">insert into rank (rank,name,score) values (7,&apos;等级7&apos;,10000);</div><div class="line">insert into rank (rank,name,score) values (8,&apos;等级8&apos;,20000);</div></pre></td></tr></table></figure>
-<h2><span id="chong-xie-trigger">重写trigger</span><a href="#chong-xie-trigger" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">drop trigger if exists `insert_user_event`;</div><div class="line">DELIMITER $</div><div class="line">create trigger `insert_user_event` after insert on user_event for each row  </div><div class="line">begin</div><div class="line">	declare total_score int;</div><div class="line">	declare rank_val int;</div><div class="line">	if (new.type = &apos;get_score&apos;) then</div><div class="line">		select sum(val_num) into total_score from user_event where user_id = new.user_id and type = &apos;get_score&apos; and is_del = 0;</div><div class="line">		select rank into rank_val  from rank where score &lt;= total_score order by score desc limit 1;</div><div class="line">		update user set rank = rank_val , score = total_score where id = new.user_id;</div><div class="line">		</div><div class="line">	end if;</div><div class="line">end $</div><div class="line">DELIMITER ;</div></pre></td></tr></table></figure>
-<h2><span id="yun-xing">运行</span><a href="#yun-xing" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">update user set rank = 0 , score = 0 where id = 1;</div><div class="line">update user_event set is_del = 1 where user_id = 1 and type = &apos;get_score&apos;;</div><div class="line">insert into user_event (user_id,type,val_num) values (1,&apos;get_score&apos;,501);</div><div class="line">select * from user where id = 1;</div></pre></td></tr></table></figure>
-<p>运行后，用户rank=1 score=501</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/12/mysql-2017-08-12-item-daily/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/31/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="page-number" href="/page/31/">31</a><span class="page-number current">32</span><a class="page-number" href="/page/33/">33</a><a class="page-number" href="/page/34/">34</a><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/33/">Next &raquo;</a>
@@ -1167,15 +1148,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">jpa</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1187,15 +1168,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1207,15 +1192,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1224,6 +1201,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
