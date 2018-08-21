@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="在 Javascript 中使用 document.execCommand 方法可以将目标文字复制到剪切板中。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-08-18T06:20:41.000Z">
+<meta property="og:updated_time" content="2018-08-18T07:07:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Javascript 实现复制功能">
 <meta name="twitter:description" content="在 Javascript 中使用 document.execCommand 方法可以将目标文字复制到剪切板中。">
@@ -226,6 +226,9 @@
 <p>将想要复制的内容添加到一个隐藏的 <code>input</code> 中，再次进行上面的步骤即可。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&lt;div id=<span class="string">"div"</span> style=<span class="string">"border-style: solid;"</span>&gt;这次是 div 的内容&lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">&lt;button id="btn1"&gt;点我复制&lt;/</span>button&gt;</div><div class="line">&lt;script&gt;</div><div class="line">    <span class="keyword">const</span> btn1 = <span class="built_in">document</span>.querySelector(<span class="string">'#btn1'</span>);</div><div class="line">    btn1.addEventListener(<span class="string">'click'</span>, () =&gt; &#123;</div><div class="line">        <span class="keyword">const</span> input = <span class="built_in">document</span>.createElement(<span class="string">'input'</span>);</div><div class="line">        <span class="keyword">const</span> div = <span class="built_in">document</span>.querySelector(<span class="string">'#div'</span>);</div><div class="line">        input.setAttribute(<span class="string">'readonly'</span>, <span class="string">'readonly'</span>);</div><div class="line">        input.setAttribute(<span class="string">'value'</span>, <span class="string">`<span class="subst">$&#123;div.innerHTML&#125;</span>`</span>);</div><div class="line">        <span class="built_in">document</span>.body.appendChild(input);</div><div class="line">        input.select();</div><div class="line">        <span class="comment">// input.setSelectionRange(0, input.value.length);</span></div><div class="line">        <span class="keyword">if</span> (<span class="built_in">document</span>.execCommand(<span class="string">'copy'</span>)) &#123;</div><div class="line">            <span class="built_in">document</span>.execCommand(<span class="string">'copy'</span>);</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'复制成功'</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">document</span>.body.removeChild(input);</div><div class="line">    &#125;)</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
 <p><a href="/run/?id=68719515008">试一试</a></p>
+<ul>
+<li><a href="https://github.com/axuebin/articles/issues/26" target="_blank" rel="noopener">JavaScript复制内容到剪贴板</a></li>
+</ul>
 
       
 
@@ -290,8 +293,8 @@
 <nav id="article-nav">
   
   
-    <a href="/2018/08/07/jquery-listen-change/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">jQuery 监听 element change 事件</div>
+    <a href="/2018/08/17/python-pycrypto-rsa/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Python 使用 pycrypto 进行 rsa 公私钥加解密和签名验证</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -483,11 +486,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -499,15 +506,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -515,15 +514,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -663,11 +666,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
