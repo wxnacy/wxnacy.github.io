@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="公私钥加密是现在公认最安全的加密方式。因为普通的对称加密方式，加密和解密是用相同的秘钥来进行的，那不管这个算法多么复杂，只要你需要将秘钥发送给解密方，这个秘钥就一定可能会泄露给第三方，为此我们只能定期更改秘钥来减少加密信息被破解的几率，但这明显不是一个很好的方法。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-08-21T06:41:31.000Z">
+<meta property="og:updated_time" content="2018-08-21T06:44:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 使用 pycrypto 进行 rsa 公私钥加解密和签名验证">
 <meta name="twitter:description" content="公私钥加密是现在公认最安全的加密方式。因为普通的对称加密方式，加密和解密是用相同的秘钥来进行的，那不管这个算法多么复杂，只要你需要将秘钥发送给解密方，这个秘钥就一定可能会泄露给第三方，为此我们只能定期更改秘钥来减少加密信息被破解的几率，但这明显不是一个很好的方法。">
@@ -235,6 +235,7 @@
 <p><strong>下载</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install pycrypto</div></pre></td></tr></table></figure>
 <p><strong>代码</strong></p>
+<p>py 版本 3.5+</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> Crypto <span class="keyword">import</span> Random</div><div class="line"><span class="keyword">from</span> Crypto.Hash <span class="keyword">import</span> SHA</div><div class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> PKCS1_v1_5 <span class="keyword">as</span> Cipher_pkcs1_v1_5</div><div class="line"><span class="keyword">from</span> Crypto.Signature <span class="keyword">import</span> PKCS1_v1_5 <span class="keyword">as</span> Signature_pkcs1_v1_5</div><div class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</div><div class="line"><span class="keyword">import</span> base64</div><div class="line"></div><div class="line"><span class="comment"># 伪随机数生成器</span></div><div class="line">random_generator = Random.new().read</div><div class="line"><span class="comment"># rsa算法生成实例</span></div><div class="line">rsa = RSA.generate(<span class="number">1024</span>, random_generator)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">encrypt</span><span class="params">(message, pub_rsa_path)</span>:</span></div><div class="line">    <span class="string">'''使用公钥加密'''</span></div><div class="line">    <span class="keyword">with</span> open(pub_rsa_path) <span class="keyword">as</span> f:</div><div class="line">        key = f.read()</div><div class="line">        rsakey = RSA.importKey(key)</div><div class="line">        cipher = Cipher_pkcs1_v1_5.new(rsakey)</div><div class="line">        cipher_text = base64.b64encode(cipher.encrypt(message.encode()))</div><div class="line">        <span class="keyword">return</span> cipher_text</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">decrypt</span><span class="params">(secret_message, rsa_path)</span>:</span></div><div class="line">    <span class="string">'''使用私钥解密'''</span></div><div class="line">    <span class="keyword">with</span> open(rsa_path) <span class="keyword">as</span> f:</div><div class="line">        key = f.read()</div><div class="line">        rsakey = RSA.importKey(key)</div><div class="line">        cipher = Cipher_pkcs1_v1_5.new(rsakey)</div><div class="line">        text = cipher.decrypt(base64.b64decode(secret_message), random_generator)</div><div class="line">        <span class="keyword">return</span> text</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    plain = <span class="string">'message'</span></div><div class="line">    pub_rsa_path = <span class="string">'/Users/wxnacy/.ssh/id_rsa.pub'</span></div><div class="line">    rsa_path = <span class="string">'/Users/wxnacy/.ssh/id_rsa'</span></div><div class="line"></div><div class="line">    print(<span class="string">'明文：'</span>, plain)</div><div class="line">    secret = encrypt(plain, pub_rsa_path)</div><div class="line">    print(<span class="string">'加密文：'</span>, secret)</div><div class="line">    text = decrypt(secret, rsa_path)</div><div class="line">    print(<span class="string">'解密文：'</span>, text)</div></pre></td></tr></table></figure>
 <h2><span id="qian-ming-yan-zheng">签名验证</span><a href="#qian-ming-yan-zheng" class="header-anchor"></a></h2><p>刚才说了，随便有个公钥的人对信息加密，我就能进行解密，那公钥是公开的，我怎么知道解密的明文是我老婆要对我说的话呢，万一是谁朝我借钱怎么办。</p>
 <p>这时候我老婆需要对“我爱你”进行签名，我解密出明文后，要对签名进行验证，验证通过后，我就知道这确实是我老婆说的话了。</p>
@@ -509,11 +510,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -533,11 +534,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -549,10 +550,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -561,7 +558,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -570,10 +575,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -681,6 +682,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">go</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
@@ -689,11 +694,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">

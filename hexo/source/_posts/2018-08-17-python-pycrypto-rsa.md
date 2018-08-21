@@ -42,6 +42,8 @@ $ pip install pycrypto
 
 **代码**
 
+py 版本 3.5+
+
 ```python
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
