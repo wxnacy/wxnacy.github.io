@@ -84,3 +84,5 @@ func main() {
     fmt.Println(string(b), e)   // {"id":1,"name":"wxnacy"} <nil>
 }
 ```
+
+- [Package json](https://golang.org/pkg/encoding/json/)

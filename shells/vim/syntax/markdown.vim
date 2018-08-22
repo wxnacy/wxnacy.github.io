@@ -17,6 +17,7 @@ iabbrev <buffer> `v ```vim<cr>```<esc>O
 iabbrev <buffer> `m ```mysql<cr>```<esc>O
 iabbrev <buffer> `h ```html<cr>```<esc>O
 iabbrev <buffer> `c ```css<cr>```<esc>O
+iabbrev <buffer> `g ```go<cr>```<esc>O
 
 iabbrev <buffer> mt <!-- more --><!-- toc --><cr>
 

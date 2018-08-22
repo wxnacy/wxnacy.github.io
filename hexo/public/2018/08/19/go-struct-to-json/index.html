@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="Go 语言中 encoding/json 包可以很方便的将结构体、数组、字典转换为 json 字符串。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-08-21T07:57:18.000Z">
+<meta property="og:updated_time" content="2018-08-21T08:39:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Go 结构体、数组、字典和 json 字符串的相互转换">
 <meta name="twitter:description" content="Go 语言中 encoding/json 包可以很方便的将结构体、数组、字典转换为 json 字符串。">
@@ -229,6 +229,9 @@
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// []byte 字节数组</span></div><div class="line"><span class="comment">// v 传入结构体、数组等实例变量的指针地址</span></div><div class="line"><span class="comment">// error 可能会有的错误</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Unmarshal</span><span class="params">(data []<span class="keyword">byte</span>, v <span class="keyword">interface</span>&#123;&#125;)</span> <span class="title">error</span></span></div></pre></td></tr></table></figure>
 <p><strong>代码</strong></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="comment">// https://golang.org/pkg/encoding/json/</span></div><div class="line"><span class="comment">// https://cloud.tencent.com/developer/section/1141542#stage-100023262</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">    <span class="string">"fmt"</span></div><div class="line">    <span class="string">"encoding/json"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="keyword">type</span> User <span class="keyword">struct</span> &#123;</div><div class="line">    Id <span class="keyword">int</span> <span class="string">`json:"id"`</span></div><div class="line">    Name <span class="keyword">string</span> <span class="string">`json:"name"`</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">    <span class="comment">// 字符串解析为结构体</span></div><div class="line">    s := <span class="string">`&#123;"id": 1, "name": "wxnacy"&#125;`</span></div><div class="line"></div><div class="line">    <span class="keyword">var</span> user User</div><div class="line">    <span class="comment">// 将字符串反解析为结构体</span></div><div class="line">    json.Unmarshal([]<span class="keyword">byte</span>(s), &amp;user)</div><div class="line">    fmt.Println(user)   <span class="comment">// &#123;1 wxnacy&#125;</span></div><div class="line"></div><div class="line">    <span class="keyword">var</span> d <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">interface</span>&#123;&#125;</div><div class="line">    <span class="comment">// 将字符串反解析为字典</span></div><div class="line">    json.Unmarshal([]<span class="keyword">byte</span>(s), &amp;d)</div><div class="line">    fmt.Println(d)      <span class="comment">// map[id:1 name:wxnacy]</span></div><div class="line"></div><div class="line"></div><div class="line">    s = <span class="string">`[1, 2, 3, 4]`</span></div><div class="line">    <span class="keyword">var</span> a []<span class="keyword">int</span></div><div class="line">    <span class="comment">// 将字符串反解析为数组</span></div><div class="line">    json.Unmarshal([]<span class="keyword">byte</span>(s), &amp;a)</div><div class="line">    fmt.Println(a)      <span class="comment">// [1 2 3 4]</span></div><div class="line"></div><div class="line">    <span class="comment">// 将结构体解析为字符串</span></div><div class="line">    b, e := json.Marshal(user)</div><div class="line">    fmt.Println(e)</div><div class="line">    fmt.Println(<span class="keyword">string</span>(b))  <span class="comment">// &#123;"id":1,"name":"wxnacy"&#125;</span></div><div class="line"></div><div class="line">    b, e = json.Marshal(a)</div><div class="line">    fmt.Println(<span class="keyword">string</span>(b), e)   <span class="comment">// [1,2,3,4] &lt;nil&gt;</span></div><div class="line"></div><div class="line">    b, e = json.Marshal(d)</div><div class="line">    fmt.Println(<span class="keyword">string</span>(b), e)   <span class="comment">// &#123;"id":1,"name":"wxnacy"&#125; &lt;nil&gt;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><a href="https://golang.org/pkg/encoding/json/" target="_blank" rel="noopener">Package json</a></li>
+</ul>
 
       
 
@@ -503,6 +506,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">go</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
@@ -519,11 +526,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -535,15 +542,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -583,6 +590,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">jinja2</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">北京</a>
               </li>
              
@@ -592,10 +603,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">springboot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">jinja2</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -664,10 +671,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jquery</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">go</a>
               </li>
              
               <li class="article-tag-list-item">
