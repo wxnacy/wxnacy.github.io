@@ -1,0 +1,123 @@
+---
+title: Go 循环语句
+tags: [go]
+---
+
+Go 语言中的循环结合了几家语言的优点，使用起来非常全面，方便。
+<!-- more --><!-- toc -->
+
+## 普通遍历
+
+```go
+for i := 0; i < 3; i++ {
+    fmt.Println(i)
+}
+// 0
+// 1
+// 2
+```
+
+```go
+i := 0
+for i < 3{
+    fmt.Println(i)
+    i++
+}
+// 0
+// 1
+// 2
+```
+
+## 遍历数组
+
+```go
+b := []int{1, 2, 3}
+// 遍历索引
+for i := range b {
+    fmt.Println(i)
+}
+// 0
+// 1
+// 2
+```
+
+```go
+// 遍历索引和 item
+for i, v := range b {
+    fmt.Println(i, v)
+}
+// 0 1
+// 1 2
+// 2 3
+```
+
+```go
+// 遍历个数
+for range b {
+    fmt.Println("Hello World ")
+}
+// Hello World
+// Hello World
+// Hello World
+//
+```
+
+## 遍历字典
+
+```go
+a := map[string]string{"name": "wxnacy"}
+for k, v := range a {
+    fmt.Println(k, v)
+}
+// name wxnacy
+```
+
+## break continue goto
+
+- **break**
+
+```go
+for i := 0; i < 5; i++ {
+    fmt.Println(i)
+    if i == 3 {
+        break
+    }
+}
+// 0
+// 1
+// 2
+// 3
+```
+
+- **continue**
+
+```go
+for i := 0; i < 5; i++ {
+    if i == 3 {
+        continue
+    }
+    fmt.Println(i)
+}
+|| 0
+|| 1
+|| 2
+|| 4
+```
+
+- **goto**
+
+```go
+c := 0
+Tag: for c < 5 {
+    if c == 3 {
+        c++
+        goto Tag
+    }
+    fmt.Println(c)
+    c++
+}
+// 0
+// 1
+// 2
+// 4
+```
