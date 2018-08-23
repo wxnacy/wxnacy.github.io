@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="本章简单了解下 Go 语言的数组（array）。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-08-23T10:13:20.000Z">
+<meta property="og:updated_time" content="2018-08-23T10:27:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Go 数组 array">
 <meta name="twitter:description" content="本章简单了解下 Go 语言的数组（array）。">
@@ -254,6 +254,8 @@
 <p><strong>delete</strong></p>
 <p>Go 中貌似是没有数组的删除方法的，不过我们可以利用 <code>append</code> 来实现这个功能。</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Remove</span><span class="params">(slice []<span class="keyword">int</span>, s <span class="keyword">int</span>)</span> []<span class="title">int</span></span> &#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">append</span>(slice[:s], slice[s+<span class="number">1</span>:]...)</div><div class="line">&#125;</div><div class="line"></div><div class="line">a := []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>&#125;</div><div class="line">a = Remove(a, <span class="number">0</span>)</div><div class="line">fmt.Println(a)      <span class="comment">// [2]</span></div></pre></td></tr></table></figure>
+<p><strong>copy</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> n = []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>&#125;</div><div class="line"><span class="keyword">var</span> l = <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="built_in">len</span>(n), <span class="built_in">cap</span>(n) * <span class="number">2</span>)</div><div class="line"><span class="built_in">copy</span>(l, n)</div><div class="line">fmt.Println(l)  <span class="comment">// [1 2]</span></div></pre></td></tr></table></figure>
 
       
 
@@ -327,8 +329,8 @@
     </a>
   
   
-    <a href="/2018/08/07/jquery-listen-change/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">jQuery 监听 element change 事件</div>
+    <a href="/2018/08/11/go-map/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Go 字典 map</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -520,11 +522,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -548,15 +550,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -564,7 +562,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -573,6 +571,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">

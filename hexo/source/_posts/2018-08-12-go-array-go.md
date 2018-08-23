@@ -137,4 +137,11 @@ a = Remove(a, 0)
 fmt.Println(a)      // [2]
 ```
 
+**copy**
 
+```go
+var n = []int{1, 2}
+var l = make([]int, len(n), cap(n) * 2)
+copy(l, n)
+fmt.Println(l)  // [1 2]
+```
