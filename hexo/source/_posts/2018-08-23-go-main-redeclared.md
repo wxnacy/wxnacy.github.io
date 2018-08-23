@@ -1,7 +1,10 @@
 ---
 title: Go 语法错误：main redeclared in this block
-tags: [go]
+tags:
+  - go
+date: 2018-08-23 15:20:05
 ---
+
 
 在同一个目录中我创建了两个文件
 <!-- more --><!-- toc -->
