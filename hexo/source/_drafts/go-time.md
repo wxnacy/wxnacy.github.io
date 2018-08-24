@@ -1,0 +1,152 @@
+---
+title: Go 时间 time
+tags: [go]
+---
+
+本章简单了解下 Go 语言中 `time` 包的使用
+<!-- more --><!-- toc -->
+## 创建
+
+**引入包**
+
+```go
+import (
+    "time"
+)
+```
+
+**创建当前本地时间**
+
+```go
+fmt.Println(time.Now())             // 本地时间         2018-08-24 15:06:49.77478074 +0800 CST m=+0.000545907
+```
+
+**创建 Unix 本地时间**
+
+- 语法
+
+```go
+// sec  在 Unix 时间上增加的秒数
+// nsec 在 Unix 时间上增加的纳秒数
+func Unix(sec int64, nsec int64) Time
+```
+
+- 使用
+
+```go
+fmt.Println(time.Unix(0, 0))        // 1970-01-01 08:00:00 +0800 CST
+fmt.Println(time.Unix(1, 1))        // 1970-01-01 08:00:01.000000001 +0800 CST
+```
+
+**创建指定时间**
+
+- 语法
+
+```go
+func Date(year int, month Month, day, hour, min, sec, nsec int, loc *Location) Time
+```
+
+- 使用
+
+```go
+// 创建 UTC 时间    2018-08-24 12:00:00 +0000 UTC
+date := time.Date(2018, 8, 24, 12, 0, 0, 0, time.UTC)
+
+// 创建东八区时间   2018-08-24 12:00:00 +0000 CST
+secondsToUTC := int((time.Hour * 8).Seconds())
+beijingZone := time.FixedZone("CST", secondsToUTC)
+date = time.Date(2018, 8, 24, 12, 0, 0, 0, beijingZone)
+```
+
+## 时间属性
+
+```go
+now := time.Now()
+fmt.Println(now.Unix())             // 1970年至今秒数   1535094409
+fmt.Println(now.UnixNano())         // 1970年至今的纳秒 1535094409774780740
+fmt.Println(now.Year())             // 年份             2018
+fmt.Println(now.YearDay())          // 当年过了的天数   236
+fmt.Println(now.Month())            // 当前月份         August
+fmt.Println(now.Date())             // 当前日期         2018 August 24
+fmt.Println(now.Day())              // 当前日期天数     24
+fmt.Println(now.Hour())             // 当前时间的小时   15
+fmt.Println(now.Minute())           // 当前时间的分钟   6
+fmt.Println(now.Second())           // 当前时间的秒数   49
+fmt.Println(now.Clock())            // 当前的时分秒     15 6 49
+```
+
+## 格式化
+
+**format to string**
+
+```go
+timeFormat := time.Now().Format("2006-01-02 15:04:05 -0700")
+fmt.Println(timeFormat)             // 格式化   2018-08-24 16:27:16 +0800
+```
+
+这里值得说一下，Go 在时间格式化上真是别（yi）树（duo）一（qi）帜（pa），这颠覆了我以往认知的 `YYYY-mm-dd HH:MM:ss` 格式化模板，原因好像是 Go 是 Google 内部 2006 年立项的，全部数字可以按照 `1234567` 的顺序来记忆，不要告诉我你找不到这几个数字。
+
+更多的格式化符号详见[源码](https://github.com/golang/go/blob/master/src/time/format.go)
+
+**string to date**
+
+```go
+formatTime , _ := time.Parse("2006-01-02 15:04:05 -0700", "2018-08-24 16:27:16 +0800")
+fmt.Println(formatTime)             // 解析时间 2018-08-24 16:27:16 +0800 UTC
+```
+
+## 时间差
+
+**获取时间差**
+
+```go
+now := time.Now()
+date := time.Date(now.Year(), 8, 24, 20, 0, 0, 0, time.UTC)
+dur := date.Sub(now)
+fmt.Println(dur)                    // 11h2m26.458189482s
+```
+
+**时间差属性**
+
+获取的属性值都是按 100 位换算的
+
+```go
+fmt.Println(dur.Hours())            // 时间差小时数 10.997293793788334
+fmt.Println(dur.Minutes())          // 时间差分钟数 657.4303011169667
+fmt.Println(dur.Seconds())          // 时间差秒数   39507.497402641
+```
+
+**创建时间差**
+
+可使用的标示位 `"ns", "us" (or "µs"), "ms", "s", "m", "h".`
+
+```go
+d, _ := time.ParseDuration("1h30m")
+fmt.Println(d)                      // 解析时间差   1h30m0s
+```
+
+**添加时间**
+
+```go
+d, _ := time.ParseDuration("1h30m")
+now := time.Now()
+date := now.Add(d)
+fmt.Println(now)                // 2018-08-24 17:12:54.406938412 +0800 CST m=+5400.000626286
+fmt.Println(date)               // 2018-08-24 18:42:54.406938412 +0800 CST m=+5400.000626286
+```
+
+## 比较
+
+```go
+
+now := time.Now()
+d, _ := time.ParseDuration("1h30m")
+date := now.Add(d)
+
+fmt.Println(now.Equal(date))    // false
+fmt.Println(now.After(date))    // false
+fmt.Println(now.Before(date))   // true
+```
+
+- [time](https://golang.org/pkg/time/)
+- [Golang神奇的2006-01-02 15:04:05](https://www.jianshu.com/p/c7f7fbb16932)

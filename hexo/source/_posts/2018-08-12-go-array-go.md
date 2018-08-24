@@ -145,3 +145,5 @@ var l = make([]int, len(n), cap(n) * 2)
 copy(l, n)
 fmt.Println(l)  // [1 2]
 ```
+
+- [Go 循环语句](/2018/08/24/go-loops/)
