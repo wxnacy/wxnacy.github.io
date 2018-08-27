@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <button onClick="login()">登陆</button>
+    <button onClick="user()">信息</button>
+
+    <script>
+        function login(){
+            fetch('/adminapi/v3/test/login', {
+                method: "POST"
+            }).then(function(res){
+                return res.json()
+            }).then(function(data){
+                console.log(data);
+            })
+        };
+        function user(){
+            fetch('/adminapi/v3/test/user', {
+                method: "GET",
+                credentials: "include"
+            }).then(function(res){
+                return res.json()
+            }).then(function(data){
+                console.log(data);
+            })
+        };
+    </script>
+</body>
+</html>
