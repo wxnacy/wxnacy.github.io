@@ -191,6 +191,88 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-python-2017-08-15-flask-env-config" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/15/python-2017-08-15-flask-env-config/">Flask 如何配置多环境</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/15/python-2017-08-15-flask-env-config/" class="archive-article-date">
+  	<time datetime="2017-08-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>一个完整的web项目都需要配置数据库连接和开发环境、生产环境灵活切换，今天来在<br>各个环境中切换数据库连接</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2017/08/15/python-2017-08-15-flask-env-config/#more">阅读全文 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">flask</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/15/python-2017-08-15-flask-env-config/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-ansible-2017-08-14-album-study-notes" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -677,19 +759,19 @@
 
 
   
-    <article id="post-mysql-2017-08-10-item-daily" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-python-2017-08-10-pyenv-linux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/10/mysql-2017-08-10-item-daily/">2017-08-10 新建collection_resource表，新建trigger更新collection资源总数</a>
+      <a class="article-title" href="/2017/08/10/python-2017-08-10-pyenv-linux/">Linux 环境下安装 pyenv 和 virtualenv</a>
     </h1>
   
 
         
-        <a href="/2017/08/10/mysql-2017-08-10-item-daily/" class="archive-article-date">
+        <a href="/2017/08/10/python-2017-08-10-pyenv-linux/" class="archive-article-date">
   	<time datetime="2017-08-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-10</time>
 </a>
         
@@ -697,14 +779,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>今天练习的目标，新建collection_resource表，并新建trigger更新collection的资源数</p>
-</blockquote>
-<p>专辑：<a href="/?p=/doc/mysql/mysql_daily.md">mysql每天练习</a></p>
-<h2><span id="xin-jian-collection-resource">新建collection_resource</span><a href="#xin-jian-collection-resource" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">drop table if exists `collection_resource`;</div><div class="line">CREATE TABLE `collection_resource` (</div><div class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</div><div class="line">  `collection_id` int(11) NOT NULL,</div><div class="line">  `resource_id` int(11) NOT NULL,</div><div class="line">  `resource_type` varchar(32) NOT NULL,</div><div class="line">  PRIMARY KEY (`id`)</div><div class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT=&apos;合集资源对应表&apos;;</div></pre></td></tr></table></figure>
-<h2><span id="collection-biao-tian-jia-zi-yuan-shu-liang-zi-duan">collection表添加资源数量字段</span><a href="#collection-biao-tian-jia-zi-yuan-shu-liang-zi-duan" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table collection add column resource_count int(11) not null default 0 comment &apos;资源总数&apos;;</div></pre></td></tr></table></figure>
-<h2><span id="xin-jian-trigger">新建trigger</span><a href="#xin-jian-trigger" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">drop trigger if exists `insert_collection_resource`;</div><div class="line">delimiter $</div><div class="line">create trigger `insert_collection_resource` after insert on collection_resource for each row </div><div class="line">begin</div><div class="line">	declare count int;</div><div class="line">	select count(0) into count from collection where id = new.collection_id;</div><div class="line">	if (count &gt; 0) then </div><div class="line">		update collection set resource_count = resource_count + 1 where id = new.collection_id;</div><div class="line">	end if;</div><div class="line">end $</div><div class="line">delimiter ;</div></pre></td></tr></table></figure>
-<h2><span id="yun-xing">运行</span><a href="#yun-xing" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">insert into collection(name) values (&apos;合集&apos;);</div><div class="line">insert into collection_resource (collection_id,resource_id,resource_type) values(1,1,&apos;video&apos;);</div><div class="line">select * from collection;</div></pre></td></tr></table></figure>
+        <p>废话不多直接上命令</p>
+<h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><p>CentOS:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ yum -y install git</div><div class="line">$ curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash</div><div class="line">$ yum -y install gcc readline readline-devel readline-static openssl \</div><div class="line">    openssl-devel openssl-static sqlite-devel bzip2-devel bzip2-libs</div></pre></td></tr></table></figure></p>
+<p>Ubuntu<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ apt-get update</div><div class="line">$ apt-get -y install git gcc make patch zlib1g.dev libgdbm-dev libssl-dev \</div><div class="line">    libsqlite3-dev libbz2-dev libreadline-dev</div><div class="line">$ git <span class="built_in">clone</span> https://github.com/pyenv/pyenv.git ~/.pyenv</div></pre></td></tr></table></figure></p>
+<h2><span id="pei-zhi-huan-jing-bian-liang">配置环境变量</span><a href="#pei-zhi-huan-jing-bian-liang" class="header-anchor"></a></h2><p>vim ~/.bash_profile<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> PYENV_ROOT=<span class="string">"<span class="variable">$HOME</span>/.pyenv"</span></div><div class="line"><span class="built_in">export</span> PATH=<span class="string">"<span class="variable">$PYENV_ROOT</span>/bin:<span class="variable">$PATH</span>"</span></div><div class="line"><span class="built_in">export</span> PYENV_VIRTUALENV_DISABLE_PROMPT=1</div><div class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv init -)</span>"</span></div><div class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv virtualenv-init -)</span>"</span></div></pre></td></tr></table></figure></p>
+<h2><span id="sheng-ji">升级</span><a href="#sheng-ji" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pyenv update</div></pre></td></tr></table></figure>
+<h2><span id="xie-zai">卸载</span><a href="#xie-zai" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rm -rf ~/.pyenv</div><div class="line">然后把~/.bash_profile环境变量配置中的添加的删掉</div></pre></td></tr></table></figure>
 
       
 
@@ -718,7 +798,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		
 		</ul>
@@ -728,7 +808,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/10/mysql-2017-08-10-item-daily/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/10/python-2017-08-10-pyenv-linux/">展开全文 >></a>
         </p>
       
 
@@ -923,85 +1003,6 @@
 
 
   
-    <article id="post-python-2017-08-10-pyenv-linux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/10/python-2017-08-10-pyenv-linux/">Linux 环境下安装 pyenv 和 virtualenv</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/10/python-2017-08-10-pyenv-linux/" class="archive-article-date">
-  	<time datetime="2017-08-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>废话不多直接上命令</p>
-<h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><p>CentOS:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ yum -y install git</div><div class="line">$ curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash</div><div class="line">$ yum -y install gcc readline readline-devel readline-static openssl \</div><div class="line">    openssl-devel openssl-static sqlite-devel bzip2-devel bzip2-libs</div></pre></td></tr></table></figure></p>
-<p>Ubuntu<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ apt-get update</div><div class="line">$ apt-get -y install git gcc make patch zlib1g.dev libgdbm-dev libssl-dev \</div><div class="line">    libsqlite3-dev libbz2-dev libreadline-dev</div><div class="line">$ git <span class="built_in">clone</span> https://github.com/pyenv/pyenv.git ~/.pyenv</div></pre></td></tr></table></figure></p>
-<h2><span id="pei-zhi-huan-jing-bian-liang">配置环境变量</span><a href="#pei-zhi-huan-jing-bian-liang" class="header-anchor"></a></h2><p>vim ~/.bash_profile<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> PYENV_ROOT=<span class="string">"<span class="variable">$HOME</span>/.pyenv"</span></div><div class="line"><span class="built_in">export</span> PATH=<span class="string">"<span class="variable">$PYENV_ROOT</span>/bin:<span class="variable">$PATH</span>"</span></div><div class="line"><span class="built_in">export</span> PYENV_VIRTUALENV_DISABLE_PROMPT=1</div><div class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv init -)</span>"</span></div><div class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv virtualenv-init -)</span>"</span></div></pre></td></tr></table></figure></p>
-<h2><span id="sheng-ji">升级</span><a href="#sheng-ji" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pyenv update</div></pre></td></tr></table></figure>
-<h2><span id="xie-zai">卸载</span><a href="#xie-zai" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rm -rf ~/.pyenv</div><div class="line">然后把~/.bash_profile环境变量配置中的添加的删掉</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/10/python-2017-08-10-pyenv-linux/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/34/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/">33</a><a class="page-number" href="/page/34/">34</a><span class="page-number current">35</span><a class="page-number" href="/page/36/">36</a><a class="page-number" href="/page/37/">37</a><a class="extend next" rel="next" href="/page/36/">Next &raquo;</a>
@@ -1144,7 +1145,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">go</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1156,15 +1169,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">微信</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1172,11 +1177,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1188,11 +1189,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1201,6 +1202,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1308,15 +1313,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">go</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
