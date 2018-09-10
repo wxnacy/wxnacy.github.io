@@ -49,4 +49,22 @@ func main() {
 }
 ```
 
+可以对它进行封装
 
+```go
+func HasStdin() (string, bool) {
+    fileInfo, _ := os.Stdin.Stat()
+    if (fileInfo.Mode() & os.ModeNamedPipe) != os.ModeNamedPipe {
+        return "", false
+    }
+    s := bufio.NewScanner(os.Stdin)
+    resList := make([]string, 0, 0)
+    for s.Scan() {
+        resList = append(resList, s.Text())
+    }
+    result := strings.Join(resList, "\n")
+    return result, true
+}
+```
+
+完整代码见[demo](https://github.com/wxnacy/study/blob/master/goland/src/args/stdin.go)
