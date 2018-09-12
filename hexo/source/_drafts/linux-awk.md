@@ -1,0 +1,327 @@
+---
+title: Linux awk 文本处理神器
+tags: [linux]
+---
+
+AWK是一种处理文本文件的语言，是一个强大的文本分析工具。
+<!-- more --><!-- toc -->
+
+awk 的使用体系非常庞大，甚至可以当做一门语言来对待，本章只是作为入门，简单的了解这个命令行的厉害之处。
+
+## 开始
+
+首先准备测试类似的测试文本 `awktest`
+
+```bash
+$ cat > awktest << EOF
+281    sterapiserver    72.1.5.17:5051    tmrd    Sleep    291        NULL
+301    sterapiserver    72.1.5.17:5055    tmrd    Sleep    251        NULL
+303    sterapiserver    72.1.5.17:5055    tmrd    Sleep    254        NULL
+352    sterapiserver    72.1.9.13:3826    tmrd    Sleep    19        NULL
+354    sterapiserver    72.1.9.13:3827    tmrd    Sleep    16        NULL
+385    sterapi    72.1.5.17:5069    tmrd    Sleep    129        NULL
+386    sterapi    72.1.5.17:5069    tmrd    Sleep    126        NULL
+389    sterapi    72.1.5.17:5069    tmrd    Sleep    24        NULL
+391    sterapi    72.1.5.17:5070    tmrd    Sleep    117        NULL
+392    sterapi    72.1.5.17:5070    tmrd    Sleep    117        NULL
+393    sterapi    72.1.5.17:5071    tmte    Sleep    4        NULL
+395    sterapi    72.1.5.17:5071    tmte    Sleep    3        NULL
+396    sterapi    72.1.5.17:5071    tmte    Sleep    4        NULL
+397    sterapi    72.1.5.17:5072    tmte    Sleep    3        NULL
+398    sterapi    71.1.5.17:5072    tmte    Sleep    2        NULL
+399    sterapi    71.1.5.17:5072    tmte    Sleep    1        NULL
+400    sterapi    71.1.5.17:5072    tmrd    Sleep    4        NULL
+401    sterapi    71.1.9.13:3833    tmrd    Sleep    12        NULL
+402    sterapi    71.1.5.17:5072    tmrd    Sleep    4        NULL
+403    sterapi    72.1.5.17:5073    tmrd    Sleep    1        NULL
+404    sterapi    72.1.5.17:5073    tmrd    Sleep    5        NULL
+405    sterapiserver    72.1.5.17:5073    tmrd    Sleep    0        NULL
+406    sterapiserver    72.1.5.17:5074    tmrd    Sleep    2        NULL
+407    sterapiserver    72.1.5.17:5074    tmrd    Sleep    1        NULL
+EOF
+```
+
+awk 默认使用空格为分隔符，将文本分割为对应的列数，我们先来输出两列
+
+```bash
+$ awk '{print $1,$2}' awktest
+281 sterapiserver
+301 sterapiserver
+303 sterapiserver
+352 sterapiserver
+354 sterapiserver
+385 sterapi
+386 sterapi
+389 sterapi
+391 sterapi
+392 sterapi
+393 sterapi
+395 sterapi
+396 sterapi
+397 sterapi
+398 sterapi
+399 sterapi
+400 sterapi
+401 sterapi
+402 sterapi
+403 sterapi
+404 sterapi
+405 sterapiserver
+406 sterapiserver
+407 sterapiserver
+```
+
+awk 默认输出也是用空格为分隔符，需要注意的是 awk 语句只能用单引号包裹
+
+**根据条件语句输出**
+
+```bash
+$ awk '$1 < 392 && $2 == "sterapi" {print $1,$2}' awktest
+385 sterapi
+386 sterapi
+389 sterapi
+391 sterapi
+```
+
+运算符可以使用 `!=, >, <, >=, <=`
+
+**格式化输出**
+
+```bash
+$ awk '$1 < 392 {printf "%s %-13s %s\n", $1,$2,$3}' awktest
+281 sterapiserver 72.1.5.17:5051
+301 sterapiserver 72.1.5.17:5055
+303 sterapiserver 72.1.5.17:5055
+352 sterapiserver 72.1.9.13:3826
+354 sterapiserver 72.1.9.13:3827
+385 sterapi       72.1.5.17:5069
+386 sterapi       72.1.5.17:5069
+389 sterapi       72.1.5.17:5069
+391 sterapi       72.1.5.17:5070
+```
+
+像大部分编程语言的格式化格式
+
+## 查找
+
+awk 可以像 grep 那样匹配数据，比如
+
+```bash
+$ awk '/301/' awktest
+301    sterapiserver    72.1.5.17:5055    tmrd    Sleep    251        NULL
+```
+
+`//` 中是正则表达式
+
+**匹配多个**
+
+```bash
+$ awk '/301|392/' awktest
+301    sterapiserver    72.1.5.17:5055    tmrd    Sleep    251        NULL
+392    sterapi    72.1.5.17:5070    tmrd    Sleep    117        NULL
+```
+
+**某个变量匹配**
+
+```bash
+$ awk '$1 ~ /38/' awktest
+385    sterapi    72.1.5.17:5069    tmrd    Sleep    129        NULL
+386    sterapi    72.1.5.17:5069    tmrd    Sleep    126        NULL
+389    sterapi    72.1.5.17:5069    tmrd    Sleep    24        NULL
+```
+
+**取反**
+
+```bash
+$ awk '!/38/' awktest
+```
+
+## 变量
+
+### 内置变量
+
+`$1, $2` 都是 awk 的内置变量，它还有这些变量
+
+- $n	当前记录的第n个字段，字段间由FS分隔
+- $0	完整的输入记录
+- ARGC	命令行参数的数目
+- ARGIND	命令行中当前文件的位置(从0开始算)
+- ARGV	包含命令行参数的数组
+- CONVFMT	数字转换格式(默认值为%.6g)ENVIRON环境变量关联数组
+- ERRNO	最后一个系统错误的描述
+- FIELDWIDTHS	字段宽度列表(用空格键分隔)
+- FILENAME	当前文件名
+- FNR	各文件分别计数的行号
+- FS	字段分隔符(默认是任何空格)
+- IGNORECASE	如果为真，则进行忽略大小写的匹配
+- NF	一条记录的字段的数目
+- NR	已经读出的记录数，就是行号，从1开始
+- OFMT	数字的输出格式(默认值是%.6g)
+- OFS	输出记录分隔符（输出换行符），输出时用指定的符号代替换行符
+- ORS	输出记录分隔符(默认值是一个换行符)
+- RLENGTH	由match函数所匹配的字符串的长度
+- RS	记录分隔符(默认是一个换行符)
+- RSTART	由match函数所匹配的字符串的第一个位置
+- SUBSEP	数组下标分隔符(默认值是/034)
+
+**输出行号**
+
+```bash
+$ awk 'NR > 7 && NR < 12 {printf "%02d %s %s %s\n", NR, $1, $2, $3}' awktest
+08 389 sterapi 72.1.5.17:5069
+09 391 sterapi 72.1.5.17:5070
+10 392 sterapi 72.1.5.17:5070
+11 393 sterapi 72.1.5.17:5071
+```
+
+### 自定义
+
+```bash
+$ awk -v x=$a 'NR < 5 {print $1 + x}' awktest
+282
+302
+304
+353
+```
+
+### 环境变量
+
+```bash
+$ export b=2
+$ awk 'NR < 5 {print $1 + ENVIRON["b"]}' awktest
+283
+303
+305
+354
+```
+
+## 分隔符
+
+### 输入分隔符
+
+awk 默认的输入分隔符是空格，我们可以通过改变 FS 变量来更改分隔符
+
+**方法一**
+
+```bash
+$ awk 'BEGIN{FS="."} NR < 5 {print $1,$2}' awktest
+281    sterapiserver    72 1
+301    sterapiserver    72 1
+303    sterapiserver    72 1
+352    sterapiserver    72 1
+```
+
+**方法二**
+
+```bash
+$ awk -v FS=. ' NR < 5 {print $1,$2}' awktest
+281    sterapiserver    72 1
+301    sterapiserver    72 1
+303    sterapiserver    72 1
+352    sterapiserver    72 1
+```
+
+**方法三**
+
+还可以通过 `-F` 参数来实现
+
+```bash
+$ awk -F. ' NR < 5 {print $1,$2}' awktest
+281    sterapiserver    72 1
+301    sterapiserver    72 1
+303    sterapiserver    72 1
+352    sterapiserver    72 1
+```
+
+### 输出分隔符
+
+默认的输出分隔符为空格，并且输出变量需要使用逗号分割，不然就不会使用分隔符
+
+```bash
+$ awk ' NR < 5 {print $1 $2}' awktest
+281sterapiserver
+301sterapiserver
+303sterapiserver
+352sterapiserver
+```
+
+同样我们可以给内置变量 OFS 赋值来进行改变
+
+```bash
+$ awk -v OFS='--' ' NR < 5 {print $1, $2}' awktest
+281--sterapiserver
+301--sterapiserver
+303--sterapiserver
+352--sterapiserver
+```
+
+## 代码块
+
+上面修改输入分隔符出现了 `BEGIN{}` 样式的语句，在 awk 中有三种代码块
+
+- `BEGIN{}` 执行前的语句
+- `{}` 处理每一行时执行的语句
+- `END{}` 处理完每一行后执行的语句
+
+一个简单的例子
+
+```bash
+$ awk 'BEGIN { total=0; print "------------------" } NR < 5 {   total += $1; print $1 } END { print "------------------"; printf "Total %d\n", total}' awktest
+------------------
+281
+301
+303
+352
+------------------
+Total 1237
+```
+
+## 编写脚本
+
+加上 `BEGIN, END` 再在命令行中使用就太复杂了，并且可读性还很差，awk 支持将语法写到文件中，使用 `-f` 参数调用
+
+**创建脚本**
+
+```bash
+$ touch awkconf
+$ vim awkconf
+
+#!/usr/bin/env awk -f
+
+BEGIN {
+    total = 0
+    print "--------"
+}
+
+
+{
+    total += $1
+    print $1
+}
+
+END {
+    print "--------"
+    printf "Total %d\n", total
+}
+```
+
+**运行**
+
+```bash
+$ awk -f awkconf awktest
+```
+
+**执行脚本**
+
+我们也可能直接执行脚本，但首先要给文件添加执行权限
+
+```bash
+$ chmod +x awkconf
+$ ./awkconf awktest
+```
+
+
+## 参考文章
+
+- [Linux awk 命令](http://www.runoob.com/linux/linux-comm-awk.html)
+- [AWK 简明教程](https://coolshell.cn/articles/9070.html)
