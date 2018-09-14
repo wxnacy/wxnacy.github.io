@@ -222,19 +222,19 @@
 </div>
 
 <h2><span id="an-zhuang-java">安装 Java</span><a href="#an-zhuang-java" class="header-anchor"></a></h2><p>我们只需要安装 <code>jre</code> 即可</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ sudo yum install java-1.8.0-openjdk.x86_64</div><div class="line">$ java -version</div><div class="line"></div><div class="line">openjdk version <span class="string">"1.8.0_171"</span></div><div class="line">OpenJDK Runtime Environment (build 1.8.0_171-b10)</div><div class="line">OpenJDK 64-Bit Server VM (build 25.171-b10, mixed mode)</div></pre></td></tr></table></figure>
-<h2><span id="an-zhuang-elasticsearch">安装 Elasticsearch</span><a href="#an-zhuang-elasticsearch" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.4.rpm</div><div class="line">$ sudo rpm --install elasticsearch-6.2.4.rpm</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install java-1.8.0-openjdk.x86_64</span><br><span class="line">$ java -version</span><br><span class="line"></span><br><span class="line">openjdk version <span class="string">"1.8.0_171"</span></span><br><span class="line">OpenJDK Runtime Environment (build 1.8.0_171-b10)</span><br><span class="line">OpenJDK 64-Bit Server VM (build 25.171-b10, mixed mode)</span><br></pre></td></tr></table></figure>
+<h2><span id="an-zhuang-elasticsearch">安装 Elasticsearch</span><a href="#an-zhuang-elasticsearch" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.4.rpm</span><br><span class="line">$ sudo rpm --install elasticsearch-6.2.4.rpm</span><br></pre></td></tr></table></figure>
 <p>设置开机自启</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo systemctl daemon-reload</div><div class="line">$ sudo systemctl <span class="built_in">enable</span> elasticsearch.service</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl daemon-reload</span><br><span class="line">$ sudo systemctl <span class="built_in">enable</span> elasticsearch.service</span><br></pre></td></tr></table></figure>
 <p>启动</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo systemctl start elasticsearch.service</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl start elasticsearch.service</span><br></pre></td></tr></table></figure>
 <p>访问</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">$ curl localhost:9200</div><div class="line"></div><div class="line">&#123;</div><div class="line">  <span class="string">"name"</span> : <span class="string">"elasticsearch"</span>,</div><div class="line">  <span class="string">"cluster_name"</span> : <span class="string">"elasticsearch"</span>,</div><div class="line">  <span class="string">"cluster_uuid"</span> : <span class="string">"pLrLT2D9QA6VM9-6cdi1vQ"</span>,</div><div class="line">  <span class="string">"version"</span> : &#123;</div><div class="line">    <span class="string">"number"</span> : <span class="string">"6.2.4"</span>,</div><div class="line">    <span class="string">"build_hash"</span> : <span class="string">"ccec39f"</span>,</div><div class="line">    <span class="string">"build_date"</span> : <span class="string">"2018-04-12T20:37:28.497551Z"</span>,</div><div class="line">    <span class="string">"build_snapshot"</span> : <span class="literal">false</span>,</div><div class="line">    <span class="string">"lucene_version"</span> : <span class="string">"7.2.1"</span>,</div><div class="line">    <span class="string">"minimum_wire_compatibility_version"</span> : <span class="string">"5.6.0"</span>,</div><div class="line">    <span class="string">"minimum_index_compatibility_version"</span> : <span class="string">"5.0.0"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">"tagline"</span> : <span class="string">"You Know, for Search"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ curl localhost:9200</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span> : <span class="string">"elasticsearch"</span>,</span><br><span class="line">  <span class="string">"cluster_name"</span> : <span class="string">"elasticsearch"</span>,</span><br><span class="line">  <span class="string">"cluster_uuid"</span> : <span class="string">"pLrLT2D9QA6VM9-6cdi1vQ"</span>,</span><br><span class="line">  <span class="string">"version"</span> : &#123;</span><br><span class="line">    <span class="string">"number"</span> : <span class="string">"6.2.4"</span>,</span><br><span class="line">    <span class="string">"build_hash"</span> : <span class="string">"ccec39f"</span>,</span><br><span class="line">    <span class="string">"build_date"</span> : <span class="string">"2018-04-12T20:37:28.497551Z"</span>,</span><br><span class="line">    <span class="string">"build_snapshot"</span> : <span class="literal">false</span>,</span><br><span class="line">    <span class="string">"lucene_version"</span> : <span class="string">"7.2.1"</span>,</span><br><span class="line">    <span class="string">"minimum_wire_compatibility_version"</span> : <span class="string">"5.6.0"</span>,</span><br><span class="line">    <span class="string">"minimum_index_compatibility_version"</span> : <span class="string">"5.0.0"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"tagline"</span> : <span class="string">"You Know, for Search"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>此时 Elasticsearch 在服务器外通过 ip 是无法访问的，需要修改 <code>network.host</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo vim /etc/elasticsearch/elasticsearch.yml</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">network.host: 0.0.0.0</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/elasticsearch/elasticsearch.yml</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">network.host: 0.0.0.0</span><br></pre></td></tr></table></figure>
 <p>然后重启</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo systemctl start elasticsearch.service</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl start elasticsearch.service</span><br></pre></td></tr></table></figure>
 <p>此时通过 ip 访问即可</p>
 <p>另外 <code>cluster.name, node.name</code> 等 Elasticsearch 启动配置都可以在这个文件修改</p>
 <h2><span id="pei-zhi">配置</span><a href="#pei-zhi" class="header-anchor"></a></h2><p>通过 <code>rpm</code> 方式安装的软件目录如下</p>
@@ -420,7 +420,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="an-zhuang-java">&#x5B89;&#x88C5; Java</span><a href="#an-zhuang-java" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="an-zhuang-elasticsearch">&#x5B89;&#x88C5; Elasticsearch</span><a href="#an-zhuang-elasticsearch" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="pei-zhi">&#x914D;&#x7F6E;</span><a href="#pei-zhi" class="header-anchor"></a></span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">安装 Java</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">安装 Elasticsearch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">配置</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -621,6 +621,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -629,19 +637,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -650,6 +646,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -769,11 +769,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">

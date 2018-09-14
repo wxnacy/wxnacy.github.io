@@ -224,35 +224,35 @@
 </div>
 
 <h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><p><strong>MacOS</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install jq</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install jq</span><br></pre></td></tr></table></figure>
 <p><strong>Ubuntu</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt install jq -y</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt install jq -y</span><br></pre></td></tr></table></figure>
 <p><strong>CentOS</strong></p>
 <p>CentOS 需要将 EPEL 的软件包添加到源列表中</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo rpm -ivh http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm</div><div class="line">$ sudo yum repolist</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo rpm -ivh http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm</span><br><span class="line">$ sudo yum repolist</span><br></pre></td></tr></table></figure>
 <p>安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo yum install jq -y</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install jq -y</span><br></pre></td></tr></table></figure>
 <p>更多安装方式见<a href="https://stedolan.github.io/jq/download/" target="_blank" rel="noopener">文档</a></p>
 <h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><p><strong>输出 json 文件</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ jq <span class="string">'.'</span> test.json</div><div class="line"></div><div class="line">&#123;</div><div class="line">  <span class="string">"name"</span>: <span class="string">"wxnacy"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ jq <span class="string">'.'</span> test.json</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"wxnacy"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>管道命令</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">$ curl -s http://ip-api.com/json | jq</div><div class="line">&#123;</div><div class="line">  <span class="string">"as"</span>: <span class="string">"AS22552 eSited Solutions"</span>,</div><div class="line">  <span class="string">"city"</span>: <span class="string">"Orlando"</span>,</div><div class="line">  <span class="string">"country"</span>: <span class="string">"United States"</span>,</div><div class="line">  <span class="string">"countryCode"</span>: <span class="string">"US"</span>,</div><div class="line">  <span class="string">"isp"</span>: <span class="string">"eSited Solutions"</span>,</div><div class="line">  <span class="string">"lat"</span>: 28.5434,</div><div class="line">  <span class="string">"lon"</span>: -81.2256,</div><div class="line">  <span class="string">"org"</span>: <span class="string">"eSited Solutions"</span>,</div><div class="line">  <span class="string">"query"</span>: <span class="string">"104.222.246.242"</span>,</div><div class="line">  <span class="string">"region"</span>: <span class="string">"FL"</span>,</div><div class="line">  <span class="string">"regionName"</span>: <span class="string">"Florida"</span>,</div><div class="line">  <span class="string">"status"</span>: <span class="string">"success"</span>,</div><div class="line">  <span class="string">"timezone"</span>: <span class="string">"America/New_York"</span>,</div><div class="line">  <span class="string">"zip"</span>: <span class="string">"32825"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ curl -s http://ip-api.com/json | jq</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"as"</span>: <span class="string">"AS22552 eSited Solutions"</span>,</span><br><span class="line">  <span class="string">"city"</span>: <span class="string">"Orlando"</span>,</span><br><span class="line">  <span class="string">"country"</span>: <span class="string">"United States"</span>,</span><br><span class="line">  <span class="string">"countryCode"</span>: <span class="string">"US"</span>,</span><br><span class="line">  <span class="string">"isp"</span>: <span class="string">"eSited Solutions"</span>,</span><br><span class="line">  <span class="string">"lat"</span>: 28.5434,</span><br><span class="line">  <span class="string">"lon"</span>: -81.2256,</span><br><span class="line">  <span class="string">"org"</span>: <span class="string">"eSited Solutions"</span>,</span><br><span class="line">  <span class="string">"query"</span>: <span class="string">"104.222.246.242"</span>,</span><br><span class="line">  <span class="string">"region"</span>: <span class="string">"FL"</span>,</span><br><span class="line">  <span class="string">"regionName"</span>: <span class="string">"Florida"</span>,</span><br><span class="line">  <span class="string">"status"</span>: <span class="string">"success"</span>,</span><br><span class="line">  <span class="string">"timezone"</span>: <span class="string">"America/New_York"</span>,</span><br><span class="line">  <span class="string">"zip"</span>: <span class="string">"32825"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2><span id="guo-lu">过滤</span><a href="#guo-lu" class="header-anchor"></a></h2><p><strong>过滤 value</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="string">'&#123;"name":"wxnacy", "id": 1&#125;'</span> | jq <span class="string">'.name'</span></div><div class="line"><span class="string">"wxnacy"</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'&#123;"name":"wxnacy", "id": 1&#125;'</span> | jq <span class="string">'.name'</span></span><br><span class="line"><span class="string">"wxnacy"</span></span><br></pre></td></tr></table></figure>
 <p><strong>过滤字段</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="string">'&#123;"name":"wxnacy", "id": 1, "age": 23&#125;'</span> | jq <span class="string">'&#123;"name", "id"&#125;'</span></div><div class="line">&#123;</div><div class="line">  <span class="string">"name"</span>: <span class="string">"wxnacy"</span>,</div><div class="line">  <span class="string">"id"</span>: 1</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'&#123;"name":"wxnacy", "id": 1, "age": 23&#125;'</span> | jq <span class="string">'&#123;"name", "id"&#125;'</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"wxnacy"</span>,</span><br><span class="line">  <span class="string">"id"</span>: 1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>判断空值</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="string">'&#123;"name":"wxnacy", "id": 1, "age": 23&#125;'</span> | jq <span class="string">'&#123;"time"&#125;?'</span></div><div class="line">&#123;</div><div class="line">  <span class="string">"time"</span>: null</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="string">'&#123;"name":"wxnacy", "id": 1&#125;'</span> | jq <span class="string">'.time?'</span></div><div class="line">null</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'&#123;"name":"wxnacy", "id": 1, "age": 23&#125;'</span> | jq <span class="string">'&#123;"time"&#125;?'</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"time"</span>: null</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'&#123;"name":"wxnacy", "id": 1&#125;'</span> | jq <span class="string">'.time?'</span></span><br><span class="line">null</span><br></pre></td></tr></table></figure>
 <p><strong>截取数组</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="string">'[1, 2, 3, 4]'</span> | jq <span class="string">'.[0]'</span></div><div class="line">1</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="string">'[1, 2, 3, 4]'</span> | jq <span class="string">'.[0:2]'</span></div><div class="line">[</div><div class="line">  1,</div><div class="line">  2</div><div class="line">]</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'[1, 2, 3, 4]'</span> | jq <span class="string">'.[0]'</span></span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'[1, 2, 3, 4]'</span> | jq <span class="string">'.[0:2]'</span></span><br><span class="line">[</span><br><span class="line">  1,</span><br><span class="line">  2</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 <p><strong>获取数组和字典的所有值</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="string">'[1, 2, 3, 4]'</span> | jq <span class="string">'.[]'</span></div><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="string">'&#123;"name":"wxnacy", "id": 1&#125;'</span> | jq <span class="string">'.[]'</span>                                            ⬡ 8.4.0</div><div class="line"><span class="string">"wxnacy"</span></div><div class="line">1</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'[1, 2, 3, 4]'</span> | jq <span class="string">'.[]'</span></span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'&#123;"name":"wxnacy", "id": 1&#125;'</span> | jq <span class="string">'.[]'</span>                                            ⬡ 8.4.0</span><br><span class="line"><span class="string">"wxnacy"</span></span><br><span class="line">1</span><br></pre></td></tr></table></figure>
 <p><strong>使用逗号获取多个值</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="string">'&#123;"name":"wxnacy", "id": 1&#125;'</span> | jq <span class="string">'.name, .id'</span></div><div class="line"><span class="string">"wxnacy"</span></div><div class="line">1</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="string">'[1, 2, 3, 4]'</span> | jq <span class="string">'.[0, 3]'</span></div><div class="line">1</div><div class="line">4</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'&#123;"name":"wxnacy", "id": 1&#125;'</span> | jq <span class="string">'.name, .id'</span></span><br><span class="line"><span class="string">"wxnacy"</span></span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'[1, 2, 3, 4]'</span> | jq <span class="string">'.[0, 3]'</span></span><br><span class="line">1</span><br><span class="line">4</span><br></pre></td></tr></table></figure>
 <p>更多过滤方法见<a href="https://stedolan.github.io/jq/manual/" target="_blank" rel="noopener">文档</a></p>
 
       
@@ -355,7 +355,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="xia-zai">&#x4E0B;&#x8F7D;</span><a href="#xia-zai" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="shi-yong">&#x4F7F;&#x7528;</span><a href="#shi-yong" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="guo-lu">&#x8FC7;&#x6EE4;</span><a href="#guo-lu" class="header-anchor"></a></span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">过滤</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -556,6 +556,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -564,19 +572,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -585,6 +581,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -704,11 +704,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">

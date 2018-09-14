@@ -218,7 +218,7 @@
 <li>需要考虑用户保存领取红包的二维码或网页信息的情况，设计每日任务时效机制</li>
 </ul>
 <h2><span id="hong-bao-fen-pei-si-lu">红包分配思路</span><a href="#hong-bao-fen-pei-si-lu" class="header-anchor"></a></h2><h3><span id="shi-li-yi">实例一</span><a href="#shi-li-yi" class="header-anchor"></a></h3><p>给定一个固定的活动日期，固定的奖金总额，有一个可以预见的参与人数，有一个每天领取可以接受的上下限金额，如何分配用户领取的随机金额</p>
-<p>有一种方式是可以预先生成足够多的红包金额数组，每个参与的用户根据领取的索引在获取该得到的红包金额，算法如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> random</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_redpacket_amounts</span><span class="params">()</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line"><span class="string">    活动时间：39天</span></div><div class="line"><span class="string">    活动金额：$2300</span></div><div class="line"><span class="string">    参与人数：288</span></div><div class="line"><span class="string">    平均每天领取金额：2300 / 39  =  $59</span></div><div class="line"><span class="string">    每天平均领取金额：59 / 288  = $0.2</span></div><div class="line"><span class="string">    期望最低领取：$0.1</span></div><div class="line"><span class="string">    期望最高领取：$8</span></div><div class="line"><span class="string">    算法：首先生成一个长度为每天最大参与人数的数组，每个元素的值为活动可以期望的最小金额，然后遍历数组，给定几个位置赋值为可以接受的最大金额，剩下的位置根据当天奖金池随机分配，直到全部分完</span></div><div class="line"><span class="string">    """</span></div><div class="line">    daily_total = <span class="number">5900</span></div><div class="line">    min_amount = <span class="number">10</span></div><div class="line">    total = <span class="number">288</span></div><div class="line">    normal_range = <span class="number">91</span></div><div class="line"></div><div class="line">    big_amount = daily_total - (min_amount * total)</div><div class="line"></div><div class="line">    res = [min_amount] * total</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(res)):</div><div class="line">        n = res[i]</div><div class="line">        <span class="keyword">if</span> i == <span class="number">0</span> <span class="keyword">or</span> i == <span class="number">9</span>:</div><div class="line">            rand =  int(random.uniform(<span class="number">600</span>, <span class="number">791</span>))</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            ran = normal_range <span class="keyword">if</span> big_amount &gt;=normal_range <span class="keyword">else</span> big_amount</div><div class="line">            rand =  int(random.uniform(<span class="number">0</span>, ran)</div><div class="line">                    ) <span class="keyword">if</span> ran &gt; <span class="number">0</span> <span class="keyword">else</span> <span class="number">0</span></div><div class="line">        big_amount = big_amount - rand</div><div class="line">        res[i] = n + rand</div><div class="line"></div><div class="line">    <span class="keyword">return</span> res</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    print(get_redpacket_amounts())</div></pre></td></tr></table></figure></p>
+<p>有一种方式是可以预先生成足够多的红包金额数组，每个参与的用户根据领取的索引在获取该得到的红包金额，算法如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_redpacket_amounts</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    活动时间：39天</span></span><br><span class="line"><span class="string">    活动金额：$2300</span></span><br><span class="line"><span class="string">    参与人数：288</span></span><br><span class="line"><span class="string">    平均每天领取金额：2300 / 39  =  $59</span></span><br><span class="line"><span class="string">    每天平均领取金额：59 / 288  = $0.2</span></span><br><span class="line"><span class="string">    期望最低领取：$0.1</span></span><br><span class="line"><span class="string">    期望最高领取：$8</span></span><br><span class="line"><span class="string">    算法：首先生成一个长度为每天最大参与人数的数组，每个元素的值为活动可以期望的最小金额，然后遍历数组，给定几个位置赋值为可以接受的最大金额，剩下的位置根据当天奖金池随机分配，直到全部分完</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    daily_total = <span class="number">5900</span></span><br><span class="line">    min_amount = <span class="number">10</span></span><br><span class="line">    total = <span class="number">288</span></span><br><span class="line">    normal_range = <span class="number">91</span></span><br><span class="line"></span><br><span class="line">    big_amount = daily_total - (min_amount * total)</span><br><span class="line"></span><br><span class="line">    res = [min_amount] * total</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(res)):</span><br><span class="line">        n = res[i]</span><br><span class="line">        <span class="keyword">if</span> i == <span class="number">0</span> <span class="keyword">or</span> i == <span class="number">9</span>:</span><br><span class="line">            rand =  int(random.uniform(<span class="number">600</span>, <span class="number">791</span>))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            ran = normal_range <span class="keyword">if</span> big_amount &gt;=normal_range <span class="keyword">else</span> big_amount</span><br><span class="line">            rand =  int(random.uniform(<span class="number">0</span>, ran)</span><br><span class="line">                    ) <span class="keyword">if</span> ran &gt; <span class="number">0</span> <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">        big_amount = big_amount - rand</span><br><span class="line">        res[i] = n + rand</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    print(get_redpacket_amounts())</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -320,7 +320,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="hong-bao-fen-pei-si-lu">&#x7EA2;&#x5305;&#x5206;&#x914D;&#x601D;&#x8DEF;</span><a href="#hong-bao-fen-pei-si-lu" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text"><span id="shi-li-yi">&#x5B9E;&#x4F8B;&#x4E00;</span><a href="#shi-li-yi" class="header-anchor"></a></span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">红包分配思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text">实例一</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -521,6 +521,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -529,19 +537,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -550,6 +546,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -669,11 +669,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">

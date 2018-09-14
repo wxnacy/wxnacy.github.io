@@ -219,15 +219,15 @@
 <li><a href="#create-like">CREATE … LIKE</a></li>
 </ul>
 <!-- tocstop -->
-<p></div><br>首先创建一个表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">DROP TABLE IF EXISTS `user` ;</div><div class="line">CREATE TABLE `user` (</div><div class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</div><div class="line">  `name` varchar(32) NOT NULL COMMENT &apos;标题&apos;,</div><div class="line">  PRIMARY KEY (`id`),</div><div class="line">  UNIQUE KEY `index_name` (`name`)</div><div class="line">) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT=&apos;视频表&apos;;</div><div class="line">insert into `user` (name) values (&apos;wxnacy&apos;);</div><div class="line">insert into `user` (name) values (&apos;win&apos;);</div></pre></td></tr></table></figure></p>
-<h2><span id="create-select">CREATE … SELECT …</span><a href="#create-select" class="header-anchor"></a></h2><p>使用语句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; CREATE TABLE `user2` SELECT * FROM user;</div><div class="line">mysql&gt; SHOW CREATE TABLE `user2`;</div><div class="line"></div><div class="line">CREATE TABLE `user2` (</div><div class="line">  `id` int(11) NOT NULL DEFAULT &apos;0&apos;,</div><div class="line">  `name` varchar(32) CHARACTER SET utf8mb4 NOT NULL COMMENT &apos;标题&apos;</div><div class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8;</div></pre></td></tr></table></figure></p>
+<p></div><br>首先创建一个表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLE IF EXISTS `user` ;</span><br><span class="line">CREATE TABLE `user` (</span><br><span class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `name` varchar(32) NOT NULL COMMENT &apos;标题&apos;,</span><br><span class="line">  PRIMARY KEY (`id`),</span><br><span class="line">  UNIQUE KEY `index_name` (`name`)</span><br><span class="line">) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT=&apos;视频表&apos;;</span><br><span class="line">insert into `user` (name) values (&apos;wxnacy&apos;);</span><br><span class="line">insert into `user` (name) values (&apos;win&apos;);</span><br></pre></td></tr></table></figure></p>
+<h2><span id="create-select">CREATE … SELECT …</span><a href="#create-select" class="header-anchor"></a></h2><p>使用语句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; CREATE TABLE `user2` SELECT * FROM user;</span><br><span class="line">mysql&gt; SHOW CREATE TABLE `user2`;</span><br><span class="line"></span><br><span class="line">CREATE TABLE `user2` (</span><br><span class="line">  `id` int(11) NOT NULL DEFAULT &apos;0&apos;,</span><br><span class="line">  `name` varchar(32) CHARACTER SET utf8mb4 NOT NULL COMMENT &apos;标题&apos;</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8;</span><br></pre></td></tr></table></figure></p>
 <p>可以拷贝表结构，并复制数据，然后索引等信息却无法复制，所以并不推荐</p>
-<h2><span id="show-create-table">SHOW CREATE TABLE</span><a href="#show-create-table" class="header-anchor"></a></h2><p>查询建表结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show create table `user`\G;</div><div class="line">  Table: user</div><div class="line">  Create Table: CREATE TABLE `user` (</div><div class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</div><div class="line">  `name` varchar(32) NOT NULL COMMENT &apos;标题&apos; default &apos;win&apos;,</div><div class="line">  PRIMARY KEY (`id`),</div><div class="line">  UNIQUE KEY `index_name` (`name`)</div><div class="line">) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT=&apos;视频表&apos;;</div></pre></td></tr></table></figure></p>
-<p>复制建表信息并执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mysql&gt; CREATE TABLE `user2` (</div><div class="line">   -&gt;  `id` int(11) NOT NULL AUTO_INCREMENT,</div><div class="line">   -&gt;  `name` varchar(32) NOT NULL COMMENT &apos;标题&apos; default &apos;win&apos;,</div><div class="line">   -&gt;  PRIMARY KEY (`id`),</div><div class="line">   -&gt;  UNIQUE KEY `index_name` (`name`)</div><div class="line">   -&gt;) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT=&apos;视频表&apos;;</div></pre></td></tr></table></figure></p>
-<p>随后复制数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; insert table `user2` select * from `user`;</div></pre></td></tr></table></figure></p>
+<h2><span id="show-create-table">SHOW CREATE TABLE</span><a href="#show-create-table" class="header-anchor"></a></h2><p>查询建表结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show create table `user`\G;</span><br><span class="line">  Table: user</span><br><span class="line">  Create Table: CREATE TABLE `user` (</span><br><span class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `name` varchar(32) NOT NULL COMMENT &apos;标题&apos; default &apos;win&apos;,</span><br><span class="line">  PRIMARY KEY (`id`),</span><br><span class="line">  UNIQUE KEY `index_name` (`name`)</span><br><span class="line">) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT=&apos;视频表&apos;;</span><br></pre></td></tr></table></figure></p>
+<p>复制建表信息并执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; CREATE TABLE `user2` (</span><br><span class="line">   -&gt;  `id` int(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">   -&gt;  `name` varchar(32) NOT NULL COMMENT &apos;标题&apos; default &apos;win&apos;,</span><br><span class="line">   -&gt;  PRIMARY KEY (`id`),</span><br><span class="line">   -&gt;  UNIQUE KEY `index_name` (`name`)</span><br><span class="line">   -&gt;) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT=&apos;视频表&apos;;</span><br></pre></td></tr></table></figure></p>
+<p>随后复制数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; insert table `user2` select * from `user`;</span><br></pre></td></tr></table></figure></p>
 <p>这样可以完全复制表结构和数据，但是却不方便</p>
-<h2><span id="create-like">CREATE … LIKE</span><a href="#create-like" class="header-anchor"></a></h2><p>使用该语句可以方便的完全复制表结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; create table `user2` like `user`;</div></pre></td></tr></table></figure></p>
-<p>复制数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; insert table `user2` select * from `user`;</div></pre></td></tr></table></figure></p>
+<h2><span id="create-like">CREATE … LIKE</span><a href="#create-like" class="header-anchor"></a></h2><p>使用该语句可以方便的完全复制表结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table `user2` like `user`;</span><br></pre></td></tr></table></figure></p>
+<p>复制数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; insert table `user2` select * from `user`;</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -329,7 +329,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="create-select">CREATE &#x2026; SELECT &#x2026;</span><a href="#create-select" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="show-create-table">SHOW CREATE TABLE</span><a href="#show-create-table" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="create-like">CREATE &#x2026; LIKE</span><a href="#create-like" class="header-anchor"></a></span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">CREATE … SELECT …</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">SHOW CREATE TABLE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">CREATE … LIKE</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -530,6 +530,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -538,19 +546,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -559,6 +555,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -678,11 +678,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">

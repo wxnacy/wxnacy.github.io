@@ -217,11 +217,11 @@
 </div>
 
 <p><strong>使用</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">command</span> -pvV <span class="built_in">command</span> [arg ...]</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">command</span> -pvV <span class="built_in">command</span> [arg ...]</span><br></pre></td></tr></table></figure>
 <p><strong>实例</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">command</span> -v java</div><div class="line">/usr/bin/java</div><div class="line"></div><div class="line">$ <span class="built_in">command</span> -V java</div><div class="line">java is /usr/bin/java</div><div class="line"></div><div class="line">$ <span class="built_in">command</span> -p java</div><div class="line"></div><div class="line">Usage: java [-options] class [args...]</div><div class="line">           (to execute a class)</div><div class="line">   or  java [-options] -jar jarfile [args...]</div><div class="line">           (to execute a jar file)</div><div class="line"><span class="built_in">where</span> options include:</div><div class="line">    -d32          use a 32-bit data model <span class="keyword">if</span> available</div><div class="line">    -d64          use a 64-bit data model <span class="keyword">if</span> available</div><div class="line">    -server       to select the <span class="string">"server"</span> VM</div><div class="line">    -zero         to select the <span class="string">"zero"</span> VM</div><div class="line">    -dcevm        to select the <span class="string">"dcevm"</span> VM</div><div class="line">                  The default VM is server.</div><div class="line"></div><div class="line">    -cp &lt;class search path of directories and zip/jar files&gt;</div><div class="line">    -classpath &lt;class search path of directories and zip/jar files&gt;</div><div class="line">...</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">command</span> -v java</span><br><span class="line">/usr/bin/java</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">command</span> -V java</span><br><span class="line">java is /usr/bin/java</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">command</span> -p java</span><br><span class="line"></span><br><span class="line">Usage: java [-options] class [args...]</span><br><span class="line">           (to execute a class)</span><br><span class="line">   or  java [-options] -jar jarfile [args...]</span><br><span class="line">           (to execute a jar file)</span><br><span class="line"><span class="built_in">where</span> options include:</span><br><span class="line">    -d32          use a 32-bit data model <span class="keyword">if</span> available</span><br><span class="line">    -d64          use a 64-bit data model <span class="keyword">if</span> available</span><br><span class="line">    -server       to select the <span class="string">"server"</span> VM</span><br><span class="line">    -zero         to select the <span class="string">"zero"</span> VM</span><br><span class="line">    -dcevm        to select the <span class="string">"dcevm"</span> VM</span><br><span class="line">                  The default VM is server.</span><br><span class="line"></span><br><span class="line">    -cp &lt;class search path of directories and zip/jar files&gt;</span><br><span class="line">    -classpath &lt;class search path of directories and zip/jar files&gt;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <p><strong>判断是否安装</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> [ `<span class="built_in">command</span> -v java` ];<span class="keyword">then</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">'java 已经安装'</span></div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ `<span class="built_in">command</span> -v java` ];<span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">'java 已经安装'</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
 
       
 
@@ -524,6 +524,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -532,19 +540,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -553,6 +549,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -672,11 +672,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">

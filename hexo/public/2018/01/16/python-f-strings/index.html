@@ -220,9 +220,9 @@
 </ul>
 <!-- tocstop -->
 <p></div></p>
-<h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><p>这是一个让人兴奋的格式化字符串的方式，为什么这么说，先来看看效果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>name = <span class="string">'wxnacy'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">f'my name is <span class="subst">&#123;name&#125;</span>'</span></div><div class="line"><span class="string">'my name is wxnacy'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">f'my name is <span class="subst">&#123;name&#125;</span> and length is <span class="subst">&#123;len(name)&#125;</span>'</span></div><div class="line"><span class="string">'my name is wxnacy and length is 6'</span></div></pre></td></tr></table></figure></p>
-<p>之所以叫 <code>f-strings</code> ，就是要用 f 作为字符串的开头，就像 <code>b&#39;&#39;, u&#39;&#39;</code> 那样，然后用 <code>{}</code> 中使用变量，甚至可以使用函数方法，就可以完成格式化，如果你也接触 Node 开发，就知道现在在 Javascript 中字符串的格式化通常是这样的<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; name = <span class="string">'wxnacy'</span></div><div class="line"><span class="string">'wxnacy'</span></div><div class="line">&gt; <span class="string">`my name is <span class="subst">$&#123;name&#125;</span> and length is <span class="subst">$&#123;name.length&#125;</span>`</span></div><div class="line"><span class="string">'my name is wxnacy and length is 6'</span></div></pre></td></tr></table></figure></p>
-<h2><span id="yu-format-dui-bi">与 format() 对比</span><a href="#yu-format-dui-bi" class="header-anchor"></a></h2><p><code>f-strings</code> 与 <code>format()</code> 格式化的语法完全一致，<strong>只是更加简洁</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">f'<span class="subst">&#123;datetime.now():%Y-%m-%d %H:%M:%S.%s&#125;</span>'</span></div><div class="line"><span class="string">'2018-01-16 11:37:18.1516073838'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'&#123;:%Y-%m-%d %H:%M:%S.%s&#125;'</span>.format(datetime.now())</div><div class="line"><span class="string">'2018-01-16 11:44:34.1516074274'</span></div></pre></td></tr></table></figure></p>
+<h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><p>这是一个让人兴奋的格式化字符串的方式，为什么这么说，先来看看效果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>name = <span class="string">'wxnacy'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">f'my name is <span class="subst">&#123;name&#125;</span>'</span></span><br><span class="line"><span class="string">'my name is wxnacy'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">f'my name is <span class="subst">&#123;name&#125;</span> and length is <span class="subst">&#123;len(name)&#125;</span>'</span></span><br><span class="line"><span class="string">'my name is wxnacy and length is 6'</span></span><br></pre></td></tr></table></figure></p>
+<p>之所以叫 <code>f-strings</code> ，就是要用 f 作为字符串的开头，就像 <code>b&#39;&#39;, u&#39;&#39;</code> 那样，然后用 <code>{}</code> 中使用变量，甚至可以使用函数方法，就可以完成格式化，如果你也接触 Node 开发，就知道现在在 Javascript 中字符串的格式化通常是这样的<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; name = <span class="string">'wxnacy'</span></span><br><span class="line"><span class="string">'wxnacy'</span></span><br><span class="line">&gt; <span class="string">`my name is <span class="subst">$&#123;name&#125;</span> and length is <span class="subst">$&#123;name.length&#125;</span>`</span></span><br><span class="line"><span class="string">'my name is wxnacy and length is 6'</span></span><br></pre></td></tr></table></figure></p>
+<h2><span id="yu-format-dui-bi">与 format() 对比</span><a href="#yu-format-dui-bi" class="header-anchor"></a></h2><p><code>f-strings</code> 与 <code>format()</code> 格式化的语法完全一致，<strong>只是更加简洁</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">f'<span class="subst">&#123;datetime.now():%Y-%m-%d %H:%M:%S.%s&#125;</span>'</span></span><br><span class="line"><span class="string">'2018-01-16 11:37:18.1516073838'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'&#123;:%Y-%m-%d %H:%M:%S.%s&#125;'</span>.format(datetime.now())</span><br><span class="line"><span class="string">'2018-01-16 11:44:34.1516074274'</span></span><br></pre></td></tr></table></figure></p>
 <p>从上面的例子可以看到，除了以 <code>f</code> 开头外，唯一的区别就在 <code>datetime.now()</code> 放在 <code>:</code> 的前面。这样关于数字、日期、对象等格式化的使用，只要看我这篇文章 <a href="/2018/01/03/python-format/">Python 格式化函数 format</a> 即可。</p>
 <p>可以想象如果你的项目版本全面提到 3.6 以后，<code>f-strings</code> 格式化方法一定是首选，因为它不但简洁，并且<strong>快</strong>，它的速度比 <code>format()</code> 快了一倍。</p>
 <h2><span id="can-kao">参考</span><a href="#can-kao" class="header-anchor"></a></h2><ul>
@@ -331,7 +331,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="shi-yong">&#x4F7F;&#x7528;</span><a href="#shi-yong" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="yu-format-dui-bi">&#x4E0E; format() &#x5BF9;&#x6BD4;</span><a href="#yu-format-dui-bi" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="can-kao">&#x53C2;&#x8003;</span><a href="#can-kao" class="header-anchor"></a></span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">与 format() 对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -532,6 +532,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -540,19 +548,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -561,6 +557,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -680,11 +680,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">

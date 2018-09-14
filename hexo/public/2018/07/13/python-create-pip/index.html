@@ -223,35 +223,35 @@
 </div>
 
 <h2><span id="chuang-jian-xiang-mu">创建项目</span><a href="#chuang-jian-xiang-mu" class="header-anchor"></a></h2><p>首先创建项目，目录结构如下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">-- wwx</div><div class="line">  |</div><div class="line">  |-- wwx</div><div class="line">  |  |</div><div class="line">  |  |-- __init__.py</div><div class="line">  |  |-- models.py</div><div class="line">  |</div><div class="line">  |-- setup.py</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-- wwx</span><br><span class="line">  |</span><br><span class="line">  |-- wwx</span><br><span class="line">  |  |</span><br><span class="line">  |  |-- __init__.py</span><br><span class="line">  |  |-- models.py</span><br><span class="line">  |</span><br><span class="line">  |-- setup.py</span><br></pre></td></tr></table></figure>
 <p>其中 <code>wwx/wwx</code> 是主代码目录，<code>setup.py</code> 是必备的打包文件</p>
 <p><strong>setup.py</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"><span class="comment"># Description:</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> setuptools <span class="keyword">import</span> setup, find_packages</div><div class="line"></div><div class="line">setup(</div><div class="line">    name = <span class="string">'wwx'</span>,</div><div class="line">    version = <span class="string">'0.0.1'</span>,</div><div class="line">    keywords=<span class="string">'wx'</span>,</div><div class="line">    description = <span class="string">'a library for wx Developer'</span>,</div><div class="line">    license = <span class="string">'MIT License'</span>,</div><div class="line">    url = <span class="string">'https://github.com/wxnacy/wwx'</span>,</div><div class="line">    author = <span class="string">'wxnacy'</span>,</div><div class="line">    author_email = <span class="string">'wxnacy@gmail.com'</span>,</div><div class="line">    packages = find_packages(),</div><div class="line">    include_package_data = <span class="keyword">True</span>,</div><div class="line">    platforms = <span class="string">'any'</span>,</div><div class="line">    install_requires = [</div><div class="line">        <span class="string">'requests&gt;=2.19.1'</span>,</div><div class="line">        <span class="string">'pycrypto&gt;=2.6.1'</span>,</div><div class="line">        <span class="string">'xmltodict&gt;=0.11.0'</span></div><div class="line">        ],</div><div class="line">)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"><span class="comment"># Description:</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> setuptools <span class="keyword">import</span> setup, find_packages</span><br><span class="line"></span><br><span class="line">setup(</span><br><span class="line">    name = <span class="string">'wwx'</span>,</span><br><span class="line">    version = <span class="string">'0.0.1'</span>,</span><br><span class="line">    keywords=<span class="string">'wx'</span>,</span><br><span class="line">    description = <span class="string">'a library for wx Developer'</span>,</span><br><span class="line">    license = <span class="string">'MIT License'</span>,</span><br><span class="line">    url = <span class="string">'https://github.com/wxnacy/wwx'</span>,</span><br><span class="line">    author = <span class="string">'wxnacy'</span>,</span><br><span class="line">    author_email = <span class="string">'wxnacy@gmail.com'</span>,</span><br><span class="line">    packages = find_packages(),</span><br><span class="line">    include_package_data = <span class="keyword">True</span>,</span><br><span class="line">    platforms = <span class="string">'any'</span>,</span><br><span class="line">    install_requires = [</span><br><span class="line">        <span class="string">'requests&gt;=2.19.1'</span>,</span><br><span class="line">        <span class="string">'pycrypto&gt;=2.6.1'</span>,</span><br><span class="line">        <span class="string">'xmltodict&gt;=0.11.0'</span></span><br><span class="line">        ],</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 <p>项目代码根据你的需求编写，你可以写一个这样的例子来测试</p>
 <p><strong>models.py</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Message</span><span class="params">()</span>:</span></div><div class="line"><span class="meta">    @classmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">()</span>:</span></div><div class="line">        print(<span class="string">'Hello World'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Message</span><span class="params">()</span>:</span></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">()</span>:</span></span><br><span class="line">        print(<span class="string">'Hello World'</span>)</span><br></pre></td></tr></table></figure>
 <p><strong> <code>__init__.py</code> </strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Message</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Message</span><br></pre></td></tr></table></figure>
 <h2><span id="an-zhuang-dao-ben-di-ce-shi">安装到本地测试</span><a href="#an-zhuang-dao-ben-di-ce-shi" class="header-anchor"></a></h2><p>接下来在 <code>setup.py</code> 所在目录下执行安装命令，安装到本地</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install .</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install .</span><br></pre></td></tr></table></figure>
 <p>在项目中你就可以使用测试了</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> wwx <span class="keyword">import</span> Message</div><div class="line"></div><div class="line">Message.test()</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> wwx <span class="keyword">import</span> Message</span><br><span class="line"></span><br><span class="line">Message.test()</span><br></pre></td></tr></table></figure>
 <h2><span id="da-bao">打包</span><a href="#da-bao" class="header-anchor"></a></h2><p>测试完成后，再上传到 pypi 之前需要先打包</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ python setup.py &lt;params&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ python setup.py &lt;params&gt;</span><br></pre></td></tr></table></figure>
 <p><code>params</code> 有如下取值</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">sdist             create a <span class="built_in">source</span> distribution (tarball, zip file, etc.)</div><div class="line">bdist             create a built (binary) distribution</div><div class="line">bdist_dumb        create a <span class="string">"dumb"</span> built distribution</div><div class="line">bdist_rpm         create an RPM distribution</div><div class="line">bdist_wininst     create an executable installer <span class="keyword">for</span> MS Windows</div><div class="line">bdist_egg         create an <span class="string">"egg"</span> distribution</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sdist             create a <span class="built_in">source</span> distribution (tarball, zip file, etc.)</span><br><span class="line">bdist             create a built (binary) distribution</span><br><span class="line">bdist_dumb        create a <span class="string">"dumb"</span> built distribution</span><br><span class="line">bdist_rpm         create an RPM distribution</span><br><span class="line">bdist_wininst     create an executable installer <span class="keyword">for</span> MS Windows</span><br><span class="line">bdist_egg         create an <span class="string">"egg"</span> distribution</span><br></pre></td></tr></table></figure>
 <p><code>sdist</code> 可以支持上传到 pypi</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ python setup.py sdist</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ python setup.py sdist</span><br></pre></td></tr></table></figure>
 <p>然后根目录中会出现 <code>dist</code> 目录存放打包文件</p>
 <h2><span id="shang-chuan-pypi">上传 pypi</span><a href="#shang-chuan-pypi" class="header-anchor"></a></h2><p>最后一步上传到 pypi，首先去<a href="https://pypi.org/" target="_blank" rel="noopener">官网</a>搜索确认项目名没有被占用，并注册用户，然后使用 <code>twine</code> 进行上传</p>
 <p><strong>下载 twine</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install twine</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install twine</span><br></pre></td></tr></table></figure>
 <p><strong>上传</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ twine upload dist/*</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ twine upload dist/*</span><br></pre></td></tr></table></figure>
 <p>然后根据提示输入用户名密码即可。</p>
 <p><strong>设置全局账户信息</strong></p>
 <p>创建 <code>~/.pypirc</code> 文件并添加如下信息</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[distutils]</div><div class="line">index-servers=pypi</div><div class="line"></div><div class="line">[pypi]</div><div class="line">repository = https://upload.pypi.org/legacy/</div><div class="line">username = &lt;username&gt;</div><div class="line">password = &lt;password&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[distutils]</span><br><span class="line">index-servers=pypi</span><br><span class="line"></span><br><span class="line">[pypi]</span><br><span class="line">repository = https://upload.pypi.org/legacy/</span><br><span class="line">username = &lt;username&gt;</span><br><span class="line">password = &lt;password&gt;</span><br></pre></td></tr></table></figure>
 <p>然后再次上传就不会提示输入用户密码了</p>
 
       
@@ -354,7 +354,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="chuang-jian-xiang-mu">&#x521B;&#x5EFA;&#x9879;&#x76EE;</span><a href="#chuang-jian-xiang-mu" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="an-zhuang-dao-ben-di-ce-shi">&#x5B89;&#x88C5;&#x5230;&#x672C;&#x5730;&#x6D4B;&#x8BD5;</span><a href="#an-zhuang-dao-ben-di-ce-shi" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="da-bao">&#x6253;&#x5305;</span><a href="#da-bao" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text"><span id="shang-chuan-pypi">&#x4E0A;&#x4F20; pypi</span><a href="#shang-chuan-pypi" class="header-anchor"></a></span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">创建项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">安装到本地测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">打包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">上传 pypi</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -555,6 +555,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -563,19 +571,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -584,6 +580,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -703,11 +703,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">

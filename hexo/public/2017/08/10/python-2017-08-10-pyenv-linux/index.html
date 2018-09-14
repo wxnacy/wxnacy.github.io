@@ -212,11 +212,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>废话不多直接上命令</p>
-<h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><p>CentOS:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ yum -y install git</div><div class="line">$ curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash</div><div class="line">$ yum -y install gcc readline readline-devel readline-static openssl \</div><div class="line">    openssl-devel openssl-static sqlite-devel bzip2-devel bzip2-libs</div></pre></td></tr></table></figure></p>
-<p>Ubuntu<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ apt-get update</div><div class="line">$ apt-get -y install git gcc make patch zlib1g.dev libgdbm-dev libssl-dev \</div><div class="line">    libsqlite3-dev libbz2-dev libreadline-dev</div><div class="line">$ git <span class="built_in">clone</span> https://github.com/pyenv/pyenv.git ~/.pyenv</div></pre></td></tr></table></figure></p>
-<h2><span id="pei-zhi-huan-jing-bian-liang">配置环境变量</span><a href="#pei-zhi-huan-jing-bian-liang" class="header-anchor"></a></h2><p>vim ~/.bash_profile<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> PYENV_ROOT=<span class="string">"<span class="variable">$HOME</span>/.pyenv"</span></div><div class="line"><span class="built_in">export</span> PATH=<span class="string">"<span class="variable">$PYENV_ROOT</span>/bin:<span class="variable">$PATH</span>"</span></div><div class="line"><span class="built_in">export</span> PYENV_VIRTUALENV_DISABLE_PROMPT=1</div><div class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv init -)</span>"</span></div><div class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv virtualenv-init -)</span>"</span></div></pre></td></tr></table></figure></p>
-<h2><span id="sheng-ji">升级</span><a href="#sheng-ji" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pyenv update</div></pre></td></tr></table></figure>
-<h2><span id="xie-zai">卸载</span><a href="#xie-zai" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rm -rf ~/.pyenv</div><div class="line">然后把~/.bash_profile环境变量配置中的添加的删掉</div></pre></td></tr></table></figure>
+<h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><p>CentOS:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ yum -y install git</span><br><span class="line">$ curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash</span><br><span class="line">$ yum -y install gcc readline readline-devel readline-static openssl \</span><br><span class="line">    openssl-devel openssl-static sqlite-devel bzip2-devel bzip2-libs</span><br></pre></td></tr></table></figure></p>
+<p>Ubuntu<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ apt-get update</span><br><span class="line">$ apt-get -y install git gcc make patch zlib1g.dev libgdbm-dev libssl-dev \</span><br><span class="line">    libsqlite3-dev libbz2-dev libreadline-dev</span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/pyenv/pyenv.git ~/.pyenv</span><br></pre></td></tr></table></figure></p>
+<h2><span id="pei-zhi-huan-jing-bian-liang">配置环境变量</span><a href="#pei-zhi-huan-jing-bian-liang" class="header-anchor"></a></h2><p>vim ~/.bash_profile<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PYENV_ROOT=<span class="string">"<span class="variable">$HOME</span>/.pyenv"</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">"<span class="variable">$PYENV_ROOT</span>/bin:<span class="variable">$PATH</span>"</span></span><br><span class="line"><span class="built_in">export</span> PYENV_VIRTUALENV_DISABLE_PROMPT=1</span><br><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv init -)</span>"</span></span><br><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv virtualenv-init -)</span>"</span></span><br></pre></td></tr></table></figure></p>
+<h2><span id="sheng-ji">升级</span><a href="#sheng-ji" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pyenv update</span><br></pre></td></tr></table></figure>
+<h2><span id="xie-zai">卸载</span><a href="#xie-zai" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm -rf ~/.pyenv</span><br><span class="line">然后把~/.bash_profile环境变量配置中的添加的删掉</span><br></pre></td></tr></table></figure>
 
       
 
@@ -290,8 +290,8 @@
     </a>
   
   
-    <a href="/2017/08/10/mac-2017-08-10-clear-dns/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">mac清除DNS缓存</div>
+    <a href="/2017/08/10/mysql-2017-08-10-item-daily/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">2017-08-10 新建collection_resource表，新建trigger更新collection资源总数</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -318,7 +318,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="xia-zai">&#x4E0B;&#x8F7D;</span><a href="#xia-zai" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="pei-zhi-huan-jing-bian-liang">&#x914D;&#x7F6E;&#x73AF;&#x5883;&#x53D8;&#x91CF;</span><a href="#pei-zhi-huan-jing-bian-liang" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="sheng-ji">&#x5347;&#x7EA7;</span><a href="#sheng-ji" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text"><span id="xie-zai">&#x5378;&#x8F7D;</span><a href="#xie-zai" class="header-anchor"></a></span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">配置环境变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">升级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">卸载</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -519,6 +519,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -527,19 +535,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -548,6 +544,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -667,11 +667,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">

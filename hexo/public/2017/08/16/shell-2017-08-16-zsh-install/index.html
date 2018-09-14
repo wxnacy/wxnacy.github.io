@@ -228,19 +228,19 @@
 <!-- tocstop -->
 </div>
 
-<h2><span id="an-zhuang-zsh">安装 Zsh</span><a href="#an-zhuang-zsh" class="header-anchor"></a></h2><h3><span id="centos">CentOS</span><a href="#centos" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yum -y install zsh</div></pre></td></tr></table></figure>
-<h3><span id="ubuntu">Ubuntu</span><a href="#ubuntu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ apt-get -y install zsh</div></pre></td></tr></table></figure>
-<h3><span id="mac">Mac</span><a href="#mac" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install zsh</div></pre></td></tr></table></figure>
-<p>安装完毕我们就可以通过输入 <code>zsh</code> 进入 Zsh 命令行，如果想系统默认使用 Zsh 则可以<br>修改配置文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ chsh -s /bin/zsh <span class="comment"># 将默认shell改为zsh</span></div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$SHELL</span> <span class="comment"># 查看是否生效</span></div></pre></td></tr></table></figure></p>
-<p>但是在 Mac 系统中这样会失败，因为 Zsh 的默认位置不在 <code>/bin/zsh</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">which</span> zsh</div><div class="line">/usr/<span class="built_in">local</span>/bin/zsh</div></pre></td></tr></table></figure></p>
-<p>通过如上命令可以发现，brew 将 Zsh 安装到到 <code>/usr/local/bin/zsh</code><br>我们需要修改 Shell 配置，<code>sudo vim /etc/shells</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># List of acceptable shells for chpass(1).</span></div><div class="line">  2 <span class="comment"># Ftpd will not allow users to connect who are not using</span></div><div class="line">  3 <span class="comment"># one of these shells.</span></div><div class="line">  4</div><div class="line">  5 /bin/bash</div><div class="line">  6 /bin/csh</div><div class="line">  7 /bin/ksh</div><div class="line">  8 /bin/sh</div><div class="line">  9 /bin/tcsh</div><div class="line">-10 /bin/zsh</div><div class="line">+10 /usr/<span class="built_in">local</span>/bin/zsh</div></pre></td></tr></table></figure></p>
+<h2><span id="an-zhuang-zsh">安装 Zsh</span><a href="#an-zhuang-zsh" class="header-anchor"></a></h2><h3><span id="centos">CentOS</span><a href="#centos" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum -y install zsh</span><br></pre></td></tr></table></figure>
+<h3><span id="ubuntu">Ubuntu</span><a href="#ubuntu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-get -y install zsh</span><br></pre></td></tr></table></figure>
+<h3><span id="mac">Mac</span><a href="#mac" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install zsh</span><br></pre></td></tr></table></figure>
+<p>安装完毕我们就可以通过输入 <code>zsh</code> 进入 Zsh 命令行，如果想系统默认使用 Zsh 则可以<br>修改配置文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ chsh -s /bin/zsh <span class="comment"># 将默认shell改为zsh</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$SHELL</span> <span class="comment"># 查看是否生效</span></span><br></pre></td></tr></table></figure></p>
+<p>但是在 Mac 系统中这样会失败，因为 Zsh 的默认位置不在 <code>/bin/zsh</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">which</span> zsh</span><br><span class="line">/usr/<span class="built_in">local</span>/bin/zsh</span><br></pre></td></tr></table></figure></p>
+<p>通过如上命令可以发现，brew 将 Zsh 安装到到 <code>/usr/local/bin/zsh</code><br>我们需要修改 Shell 配置，<code>sudo vim /etc/shells</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># List of acceptable shells for chpass(1).</span></span><br><span class="line">  2 <span class="comment"># Ftpd will not allow users to connect who are not using</span></span><br><span class="line">  3 <span class="comment"># one of these shells.</span></span><br><span class="line">  4</span><br><span class="line">  5 /bin/bash</span><br><span class="line">  6 /bin/csh</span><br><span class="line">  7 /bin/ksh</span><br><span class="line">  8 /bin/sh</span><br><span class="line">  9 /bin/tcsh</span><br><span class="line">-10 /bin/zsh</span><br><span class="line">+10 /usr/<span class="built_in">local</span>/bin/zsh</span><br></pre></td></tr></table></figure></p>
 <p>我们将新的 Zsh 位置替换掉以前的，关闭文件，再次执行开始的命令即可</p>
-<h2><span id="an-zhuang-oh-my-zsh">安装 oh-my-zsh</span><a href="#an-zhuang-oh-my-zsh" class="header-anchor"></a></h2><p>想要更好的使用 Zsh 我们还需要安装一个配置管理工具 <a href="http://ohmyz.sh/" target="_blank" rel="noopener">oh-my-zsh</a><br>curl<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sh -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span></div></pre></td></tr></table></figure></p>
-<p>wget<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sh -c <span class="string">"<span class="variable">$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)</span>"</span></div></pre></td></tr></table></figure></p>
-<p>最后修改配置兼容 bash_profile 的环境变量 <code>vim ~/.zshrc</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"><span class="built_in">source</span> ~/.bash_profile</div><div class="line">...</div></pre></td></tr></table></figure></p>
-<h2><span id="pi-fu">皮肤</span><a href="#pi-fu" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">修改配置文件 `vim ~/.zshrc`</div><div class="line"></div><div class="line">...</div><div class="line">ZSH_THEME=<span class="string">"fishy"</span>       <span class="comment"># 修改此处可以更改zsh使用皮肤</span></div><div class="line">...</div></pre></td></tr></table></figure>
+<h2><span id="an-zhuang-oh-my-zsh">安装 oh-my-zsh</span><a href="#an-zhuang-oh-my-zsh" class="header-anchor"></a></h2><p>想要更好的使用 Zsh 我们还需要安装一个配置管理工具 <a href="http://ohmyz.sh/" target="_blank" rel="noopener">oh-my-zsh</a><br>curl<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sh -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span></span><br></pre></td></tr></table></figure></p>
+<p>wget<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sh -c <span class="string">"<span class="variable">$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)</span>"</span></span><br></pre></td></tr></table></figure></p>
+<p>最后修改配置兼容 bash_profile 的环境变量 <code>vim ~/.zshrc</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="built_in">source</span> ~/.bash_profile</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<h2><span id="pi-fu">皮肤</span><a href="#pi-fu" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">修改配置文件 `vim ~/.zshrc`</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">ZSH_THEME=<span class="string">"fishy"</span>       <span class="comment"># 修改此处可以更改zsh使用皮肤</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <p><a href="https://github.com/robbyrussell/oh-my-zsh/wiki/themes" target="_blank" rel="noopener">更多皮肤</a></p>
-<p>Zsh 可以支持一些第三方应用命令的快速输入或简写，比如 <code>gst</code> 直接对应 <code>git status</code><br><code>gd</code> 对应 <code>git diff</code>，这样在开发或维护服务都很有效率，不过想要生效还需要配置一下<br><code>vim ~/.zshrc</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">plugins=(git)</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p>Zsh 可以支持一些第三方应用命令的快速输入或简写，比如 <code>gst</code> 直接对应 <code>git status</code><br><code>gd</code> 对应 <code>git diff</code>，这样在开发或维护服务都很有效率，不过想要生效还需要配置一下<br><code>vim ~/.zshrc</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">plugins=(git)</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -308,11 +308,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/16/http-2017-08-16-basic/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/08/16/linux-2017-08-16-curl/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          HTTP相关知识
+          网络请求工具 cURL
         
       </div>
     </a>
@@ -346,7 +346,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="an-zhuang-zsh">&#x5B89;&#x88C5; Zsh</span><a href="#an-zhuang-zsh" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text"><span id="centos">CentOS</span><a href="#centos" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.2.</span> <span class="toc-text"><span id="ubuntu">Ubuntu</span><a href="#ubuntu" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.3.</span> <span class="toc-text"><span id="mac">Mac</span><a href="#mac" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="an-zhuang-oh-my-zsh">&#x5B89;&#x88C5; oh-my-zsh</span><a href="#an-zhuang-oh-my-zsh" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="pi-fu">&#x76AE;&#x80A4;</span><a href="#pi-fu" class="header-anchor"></a></span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">安装 Zsh</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text">CentOS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.2.</span> <span class="toc-text">Ubuntu</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.3.</span> <span class="toc-text">Mac</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">安装 oh-my-zsh</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">皮肤</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -547,6 +547,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -555,19 +563,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -576,6 +572,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -695,11 +695,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">

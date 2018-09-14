@@ -218,9 +218,9 @@
 
 <p>我主要使用压缩最简单的功能</p>
 <p><strong>下载</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ wget https://raw.githubusercontent.com/think2011/localResizeIMG/master/dist/lrz.bundle.js</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://raw.githubusercontent.com/think2011/localResizeIMG/master/dist/lrz.bundle.js</span><br></pre></td></tr></table></figure>
 <p><strong>使用</strong></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">&lt;img id=<span class="string">"origin"</span> src=<span class="string">"/images/springhw1.png"</span> width=<span class="string">"200"</span>/&gt;</div><div class="line">&lt;img id=<span class="string">"preview"</span> width=<span class="string">"200"</span>/&gt;</div><div class="line">&lt;div id="fs"&gt;&lt;/div&gt;</div><div class="line">&lt;script type="text/javascript" src="/js/lrz.bundle.js"&gt;&lt;/script&gt;</div><div class="line">&lt;script&gt;</div><div class="line">    lrz(<span class="string">'/images/springhw1.png'</span>, &#123;quality:<span class="number">0.2</span>&#125;)</div><div class="line">      .then(function (rst) &#123;</div><div class="line">        <span class="comment">// 处理成功会执行</span></div><div class="line">        var imgDoc = document.getElementById(<span class="string">'preview'</span>);</div><div class="line">        imgDoc.src = rst.base64</div><div class="line">        var fs = rst.fileLen / Math.pow(<span class="number">1024</span>, <span class="number">1</span>)</div><div class="line">          fs = Math.floor(fs)</div><div class="line">          document.getElementById(<span class="string">'fs'</span>).innerHTML = <span class="string">'压缩后大约：'</span> + fs + <span class="string">'KB'</span></div><div class="line"></div><div class="line"></div><div class="line">      &#125;)</div><div class="line">      .<span class="keyword">catch</span>(function (err)&#123;</div><div class="line">        <span class="comment">// 处理失败会执行</span></div><div class="line">        console.log(err);</div><div class="line">      &#125;)</div><div class="line">      .always(function () &#123;</div><div class="line">        <span class="comment">// 不管是成功失败，都会执行</span></div><div class="line">      &#125;);</div><div class="line"></div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;img id=<span class="string">"origin"</span> src=<span class="string">"/images/springhw1.png"</span> width=<span class="string">"200"</span>/&gt;</span><br><span class="line">&lt;img id=<span class="string">"preview"</span> width=<span class="string">"200"</span>/&gt;</span><br><span class="line">&lt;div id="fs"&gt;&lt;/div&gt;</span><br><span class="line">&lt;script type="text/javascript" src="/js/lrz.bundle.js"&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    lrz(<span class="string">'/images/springhw1.png'</span>, &#123;quality:<span class="number">0.2</span>&#125;)</span><br><span class="line">      .then(function (rst) &#123;</span><br><span class="line">        <span class="comment">// 处理成功会执行</span></span><br><span class="line">        var imgDoc = document.getElementById(<span class="string">'preview'</span>);</span><br><span class="line">        imgDoc.src = rst.base64</span><br><span class="line">        var fs = rst.fileLen / Math.pow(<span class="number">1024</span>, <span class="number">1</span>)</span><br><span class="line">          fs = Math.floor(fs)</span><br><span class="line">          document.getElementById(<span class="string">'fs'</span>).innerHTML = <span class="string">'压缩后大约：'</span> + fs + <span class="string">'KB'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      &#125;)</span><br><span class="line">      .<span class="keyword">catch</span>(function (err)&#123;</span><br><span class="line">        <span class="comment">// 处理失败会执行</span></span><br><span class="line">        console.log(err);</span><br><span class="line">      &#125;)</span><br><span class="line">      .always(function () &#123;</span><br><span class="line">        <span class="comment">// 不管是成功失败，都会执行</span></span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 <p><a href="/run/?id=68719483404">试一下</a></p>
 <p>参数文档详见：<a href="https://github.com/think2011/localResizeIMG/wiki/2.-%E5%8F%82%E6%95%B0%E6%96%87%E6%A1%A3" target="_blank" rel="noopener">https://github.com/think2011/localResizeIMG/wiki/2.-%E5%8F%82%E6%95%B0%E6%96%87%E6%A1%A3</a></p>
 
@@ -525,6 +525,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -533,19 +541,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -554,6 +550,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -673,11 +673,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">

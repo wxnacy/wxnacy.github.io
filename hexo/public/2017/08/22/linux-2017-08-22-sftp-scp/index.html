@@ -215,14 +215,14 @@
 <p>熟悉linux的朋友都知道 SSH 可以登录远程服务器进行工作，但是如果想从远程服务器下载文件或上传到服务器呢，SSH 就做不到了，这时候我们可以用 SFTP 和 SCP 完成任务，这两个指令也是使用 SSH 的通道（Port 22），只是模拟 FTP 与复制的操作而已。下面我们一一介绍.</p>
 </blockquote>
 <a id="more"></a>
-<h2><span id="sftp">SFTP</span><a href="#sftp" class="header-anchor"></a></h2><p>SFTP 登陆主机和 SSH 一样，也是用 用户名@主机名的方式连接<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sftp root@localhost</div><div class="line">root@localhost<span class="string">'s password: # 输入密码</span></div><div class="line"><span class="string">sftp&gt; exit # 输入FTP 相关命令</span></div></pre></td></tr></table></figure></p>
+<h2><span id="sftp">SFTP</span><a href="#sftp" class="header-anchor"></a></h2><p>SFTP 登陆主机和 SSH 一样，也是用 用户名@主机名的方式连接<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sftp root@localhost</span><br><span class="line">root@localhost<span class="string">'s password: # 输入密码</span></span><br><span class="line"><span class="string">sftp&gt; exit # 输入FTP 相关命令</span></span><br></pre></td></tr></table></figure></p>
 <p>进入主机后，就与一般 FTP 模式下操作方式一样了！下面是具体可用命令:</p>
-<h3><span id="yuan-cheng-fu-wu-qi">远程服务器</span><a href="#yuan-cheng-fu-wu-qi" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 切换某个目录</span></div><div class="line">$ <span class="built_in">cd</span> PATH</div><div class="line"></div><div class="line"><span class="comment"># 列出当前目录文件名</span></div><div class="line">$ ls</div><div class="line"></div><div class="line"><span class="comment"># 建立目录</span></div><div class="line">$ mkdir DIR</div><div class="line"></div><div class="line"><span class="comment"># 删除目录</span></div><div class="line">$ rmdir DIR</div><div class="line"></div><div class="line"><span class="comment"># 显示当前目录</span></div><div class="line">$ <span class="built_in">pwd</span></div><div class="line"></div><div class="line"><span class="comment"># 更改文件或目录的属组</span></div><div class="line">$ chgrp groupname PATH</div><div class="line"></div><div class="line"><span class="comment"># 更改文件或目录的属主</span></div><div class="line">$ chown username PATH</div><div class="line"></div><div class="line"><span class="comment"># 更改文件或目录的权限</span></div><div class="line">$ chmod 664 PATH</div><div class="line"></div><div class="line"><span class="comment"># 建立连接文件</span></div><div class="line">$ ln oldname newname</div><div class="line"></div><div class="line"><span class="comment"># 删除文件或目录</span></div><div class="line">$ rm PATH</div><div class="line"></div><div class="line"><span class="comment"># 更改文件或目录名称</span></div><div class="line">$ rename oldname newname</div><div class="line"></div><div class="line"><span class="comment"># 离开远程主机</span></div><div class="line">$ <span class="built_in">exit</span> | <span class="built_in">bye</span> | quit</div></pre></td></tr></table></figure>
-<h3><span id="ben-ji">本机</span><a href="#ben-ji" class="header-anchor"></a></h3><p>都在普通命令前加上l(L的小写)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 切换某个目录</span></div><div class="line">$ lcd PATH</div><div class="line"></div><div class="line"><span class="comment"># 列出当前目录文件名</span></div><div class="line">$ lls</div><div class="line"></div><div class="line"><span class="comment"># 建立目录</span></div><div class="line">$ lmkdir DIR</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 显示当前目录</span></div><div class="line">$ lpwd</div></pre></td></tr></table></figure></p>
-<h3><span id="shang-chuan-xia-zai-cao-zuo">上传下载操作</span><a href="#shang-chuan-xia-zai-cao-zuo" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 将文件由本机上传到远程主机</span></div><div class="line">$ put [本机目录或文件] [远程]</div><div class="line">$ put [本机目录或文件]</div><div class="line"><span class="comment"># 如果用第二种格式，则文件会上传到远程主机当前目录下</span></div><div class="line"></div><div class="line"><span class="comment"># 将文件由远程主机下载到本地</span></div><div class="line">$ get [远程目录或文件] [本地]</div><div class="line">$ get [远程目录或文件]</div><div class="line"><span class="comment"># 如果用第二种格式，则文件会下载到本地当前目录下</span></div><div class="line"></div><div class="line">put 和 get 都可以使用通配符 如: get * ,put *.pem</div></pre></td></tr></table></figure>
+<h3><span id="yuan-cheng-fu-wu-qi">远程服务器</span><a href="#yuan-cheng-fu-wu-qi" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 切换某个目录</span></span><br><span class="line">$ <span class="built_in">cd</span> PATH</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出当前目录文件名</span></span><br><span class="line">$ ls</span><br><span class="line"></span><br><span class="line"><span class="comment"># 建立目录</span></span><br><span class="line">$ mkdir DIR</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除目录</span></span><br><span class="line">$ rmdir DIR</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示当前目录</span></span><br><span class="line">$ <span class="built_in">pwd</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 更改文件或目录的属组</span></span><br><span class="line">$ chgrp groupname PATH</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更改文件或目录的属主</span></span><br><span class="line">$ chown username PATH</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更改文件或目录的权限</span></span><br><span class="line">$ chmod 664 PATH</span><br><span class="line"></span><br><span class="line"><span class="comment"># 建立连接文件</span></span><br><span class="line">$ ln oldname newname</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除文件或目录</span></span><br><span class="line">$ rm PATH</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更改文件或目录名称</span></span><br><span class="line">$ rename oldname newname</span><br><span class="line"></span><br><span class="line"><span class="comment"># 离开远程主机</span></span><br><span class="line">$ <span class="built_in">exit</span> | <span class="built_in">bye</span> | quit</span><br></pre></td></tr></table></figure>
+<h3><span id="ben-ji">本机</span><a href="#ben-ji" class="header-anchor"></a></h3><p>都在普通命令前加上l(L的小写)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 切换某个目录</span></span><br><span class="line">$ lcd PATH</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出当前目录文件名</span></span><br><span class="line">$ lls</span><br><span class="line"></span><br><span class="line"><span class="comment"># 建立目录</span></span><br><span class="line">$ lmkdir DIR</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示当前目录</span></span><br><span class="line">$ lpwd</span><br></pre></td></tr></table></figure></p>
+<h3><span id="shang-chuan-xia-zai-cao-zuo">上传下载操作</span><a href="#shang-chuan-xia-zai-cao-zuo" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将文件由本机上传到远程主机</span></span><br><span class="line">$ put [本机目录或文件] [远程]</span><br><span class="line">$ put [本机目录或文件]</span><br><span class="line"><span class="comment"># 如果用第二种格式，则文件会上传到远程主机当前目录下</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将文件由远程主机下载到本地</span></span><br><span class="line">$ get [远程目录或文件] [本地]</span><br><span class="line">$ get [远程目录或文件]</span><br><span class="line"><span class="comment"># 如果用第二种格式，则文件会下载到本地当前目录下</span></span><br><span class="line"></span><br><span class="line">put 和 get 都可以使用通配符 如: get * ,put *.pem</span><br></pre></td></tr></table></figure>
 <p>就整体而言，如果不考虑图形接口，SFTP 在 Linux 中完全可以取代 FTP 了，因为所有功能都已经涵盖</p>
 <h2><span id="wen-jian-yi-di-zhi-jie-fu-zhi-scp">文件异地直接复制: SCP</span><a href="#wen-jian-yi-di-zhi-jie-fu-zhi-scp" class="header-anchor"></a></h2><p>通常使用 SFTP 是因为可能还不知道服务器上面存在文件的信息，如果已经知道服务器上的文件名和地址，那么最简单的文件传输方式 SCP 指令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ scp [-pr] [-l 速率] file [账号@]主机:目录名 <span class="comment"># 上传</span></div><div class="line">$ scp [-pr] [-l 速率] [账号@主机]:file 目录名 <span class="comment"># 下载</span></div><div class="line"></div><div class="line"><span class="comment"># 参数</span></div><div class="line">-p : 保留文件原有的权限信息</div><div class="line">-r : 复制来源为目录时,可以复制整个目录(包含子目录)</div><div class="line">-l : 可以限制传输的速率,单位为 Kbits/s , 例如 [-l 800 ] 代表传输速率 100Kbytes/s</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ scp [-pr] [-l 速率] file [账号@]主机:目录名 <span class="comment"># 上传</span></span><br><span class="line">$ scp [-pr] [-l 速率] [账号@主机]:file 目录名 <span class="comment"># 下载</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 参数</span></span><br><span class="line">-p : 保留文件原有的权限信息</span><br><span class="line">-r : 复制来源为目录时,可以复制整个目录(包含子目录)</span><br><span class="line">-l : 可以限制传输的速率,单位为 Kbits/s , 例如 [-l 800 ] 代表传输速率 100Kbytes/s</span><br></pre></td></tr></table></figure>
 
       
 
@@ -286,11 +286,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/22/python-2017-08-22-get-image-size/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Python 获取本地或网络图片的宽高
+          Linux CentOS 各个版本启动SSHD服务命令
         
       </div>
     </a>
@@ -324,7 +324,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="sftp">SFTP</span><a href="#sftp" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text"><span id="yuan-cheng-fu-wu-qi">&#x8FDC;&#x7A0B;&#x670D;&#x52A1;&#x5668;</span><a href="#yuan-cheng-fu-wu-qi" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.2.</span> <span class="toc-text"><span id="ben-ji">&#x672C;&#x673A;</span><a href="#ben-ji" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.3.</span> <span class="toc-text"><span id="shang-chuan-xia-zai-cao-zuo">&#x4E0A;&#x4F20;&#x4E0B;&#x8F7D;&#x64CD;&#x4F5C;</span><a href="#shang-chuan-xia-zai-cao-zuo" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="wen-jian-yi-di-zhi-jie-fu-zhi-scp">&#x6587;&#x4EF6;&#x5F02;&#x5730;&#x76F4;&#x63A5;&#x590D;&#x5236;: SCP</span><a href="#wen-jian-yi-di-zhi-jie-fu-zhi-scp" class="header-anchor"></a></span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">SFTP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text">远程服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.2.</span> <span class="toc-text">本机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.3.</span> <span class="toc-text">上传下载操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">文件异地直接复制: SCP</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -525,6 +525,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -533,19 +541,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -554,6 +550,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -673,11 +673,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">

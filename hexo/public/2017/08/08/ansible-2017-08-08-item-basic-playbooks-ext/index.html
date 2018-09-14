@@ -216,20 +216,20 @@
 <p>Playbooks 在实际应用过程中，需要用到一些额外扩展功能，比如外部传参或指定hosts文件，本章节将着重介绍</p>
 </blockquote>
 <a id="more"></a>
-<h2><span id="wai-bu-chuan-can">外部传参</span><a href="#wai-bu-chuan-can" class="header-anchor"></a></h2><p>现在有一个playbook.yml文件，想要完成进入某个目录并完成部署任务，host和执行命令中的参数tag_name 需要外部传值<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- hosts: <span class="string">'&#123;&#123;host&#125;&#125;'</span></div><div class="line">  tasks:</div><div class="line">  - name: deploy</div><div class="line">    shell: ./deploy_api.sh <span class="string">'&#123;&#123;tag_name&#125;&#125;'</span></div><div class="line">    args:</div><div class="line">      <span class="built_in">chdir</span>: ~/path</div></pre></td></tr></table></figure></p>
+<h2><span id="wai-bu-chuan-can">外部传参</span><a href="#wai-bu-chuan-can" class="header-anchor"></a></h2><p>现在有一个playbook.yml文件，想要完成进入某个目录并完成部署任务，host和执行命令中的参数tag_name 需要外部传值<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- hosts: <span class="string">'&#123;&#123;host&#125;&#125;'</span></span><br><span class="line">  tasks:</span><br><span class="line">  - name: deploy</span><br><span class="line">    shell: ./deploy_api.sh <span class="string">'&#123;&#123;tag_name&#125;&#125;'</span></span><br><span class="line">    args:</span><br><span class="line">      <span class="built_in">chdir</span>: ~/path</span><br></pre></td></tr></table></figure></p>
 <p>通过 <code>--extra-vars</code> 或简写 <code>-e</code> 进行传值,现在可以通过三种方式进行传值：</p>
 <ul>
 <li><p>key=value</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ansible-playbook playbook.yml --extra-vars <span class="string">"host=xxx tag_name=xxx"</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ansible-playbook playbook.yml --extra-vars <span class="string">"host=xxx tag_name=xxx"</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>json格式</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ansible-playbook playbook.yml --extra-vars <span class="string">"&#123;'host':'xxx','tag_name':'xxx'&#125;"</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ansible-playbook playbook.yml --extra-vars <span class="string">"&#123;'host':'xxx','tag_name':'xxx'&#125;"</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>jaon文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ansible-playbook playbook.yml --extra-vars <span class="string">"kwargs.json"</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ansible-playbook playbook.yml --extra-vars <span class="string">"kwargs.json"</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2><span id="zhi-ding-hosts-wen-jian">指定hosts文件</span><a href="#zhi-ding-hosts-wen-jian" class="header-anchor"></a></h2><p>当多人协作开发项目的时候，都是全局/etc/ansible/hosts文件并不方便，我们可以通过传参 <code>--inventory-file</code> 或 <code>-i</code> 来制定当前playbook使用的hosts文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ansible-playbook playbook.yml --inventory-file=~/ansible-hosts</div></pre></td></tr></table></figure></p>
+<h2><span id="zhi-ding-hosts-wen-jian">指定hosts文件</span><a href="#zhi-ding-hosts-wen-jian" class="header-anchor"></a></h2><p>当多人协作开发项目的时候，都是全局/etc/ansible/hosts文件并不方便，我们可以通过传参 <code>--inventory-file</code> 或 <code>-i</code> 来制定当前playbook使用的hosts文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ansible-playbook playbook.yml --inventory-file=~/ansible-hosts</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -331,7 +331,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="wai-bu-chuan-can">&#x5916;&#x90E8;&#x4F20;&#x53C2;</span><a href="#wai-bu-chuan-can" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="zhi-ding-hosts-wen-jian">&#x6307;&#x5B9A;hosts&#x6587;&#x4EF6;</span><a href="#zhi-ding-hosts-wen-jian" class="header-anchor"></a></span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">外部传参</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">指定hosts文件</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -532,6 +532,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -540,19 +548,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -561,6 +557,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -680,11 +680,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">

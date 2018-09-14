@@ -236,15 +236,15 @@
 </ul>
 <!-- tocstop -->
 <p></div></p>
-<h2><span id="shu-ju-ku">数据库</span><a href="#shu-ju-ku" class="header-anchor"></a></h2><h3><span id="chuang-jian-ku">创建库</span><a href="#chuang-jian-ku" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create database name character utf8mb4;</div></pre></td></tr></table></figure>
-<h2><span id="biao-jie-gou">表结构</span><a href="#biao-jie-gou" class="header-anchor"></a></h2><h3><span id="chuang-jian-biao">创建表</span><a href="#chuang-jian-biao" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">drop table if exists `user`;</div><div class="line">create table `user`(</div><div class="line">    id int(11) not null auto_increment,</div><div class="line">    name varchar(32) not null comment &apos;姓名&apos;,</div><div class="line">    mobile varchar(11) not null default &apos;&apos; comment &apos;手机号&apos;,</div><div class="line">    ext JSON default null comment &apos;扩展信息&apos;,</div><div class="line">    create_ts timestamp not null default current_timestamp comment &apos;创建时间&apos;,</div><div class="line">    update_ts timestamp not null default current_timestamp on update current_timestamp comment &apos;修改时间&apos;,</div><div class="line">    primary key(`id`)</div><div class="line">) engine=InnoDB default charset=utf8mb4 comment &apos;用户表&apos;;</div></pre></td></tr></table></figure>
-<h3><span id="cha-kan-lie">查看列</span><a href="#cha-kan-lie" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">desc table_name</div></pre></td></tr></table></figure>
-<h3><span id="xiu-gai-biao-ming">修改表名</span><a href="#xiu-gai-biao-ming" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table table_name rename to new_name;</div></pre></td></tr></table></figure>
-<h3><span id="tian-jia-lie">添加列</span><a href="#tian-jia-lie" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table table_name add column col_name varchar(11) not null ...;</div></pre></td></tr></table></figure>
-<h3><span id="shan-chu-lie">删除列</span><a href="#shan-chu-lie" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table table_name drop column col_name;</div></pre></td></tr></table></figure>
-<h3><span id="xiu-gai-lie-ming">修改列名</span><a href="#xiu-gai-lie-ming" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table table_name change old_name new_name int(11)...;</div></pre></td></tr></table></figure>
-<h3><span id="xiu-gai-lie-shu-xing">修改列属性</span><a href="#xiu-gai-lie-shu-xing" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table table_name modify col_name int(11) not null...;</div></pre></td></tr></table></figure>
-<h3><span id="cha-kan-lie-shu-xing">查看列属性</span><a href="#cha-kan-lie-shu-xing" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">show columns from table_name;</div><div class="line">show full columns from table_name; # 全部信息</div></pre></td></tr></table></figure>
+<h2><span id="shu-ju-ku">数据库</span><a href="#shu-ju-ku" class="header-anchor"></a></h2><h3><span id="chuang-jian-ku">创建库</span><a href="#chuang-jian-ku" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database name character utf8mb4;</span><br></pre></td></tr></table></figure>
+<h2><span id="biao-jie-gou">表结构</span><a href="#biao-jie-gou" class="header-anchor"></a></h2><h3><span id="chuang-jian-biao">创建表</span><a href="#chuang-jian-biao" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">drop table if exists `user`;</span><br><span class="line">create table `user`(</span><br><span class="line">    id int(11) not null auto_increment,</span><br><span class="line">    name varchar(32) not null comment &apos;姓名&apos;,</span><br><span class="line">    mobile varchar(11) not null default &apos;&apos; comment &apos;手机号&apos;,</span><br><span class="line">    ext JSON default null comment &apos;扩展信息&apos;,</span><br><span class="line">    create_ts timestamp not null default current_timestamp comment &apos;创建时间&apos;,</span><br><span class="line">    update_ts timestamp not null default current_timestamp on update current_timestamp comment &apos;修改时间&apos;,</span><br><span class="line">    primary key(`id`)</span><br><span class="line">) engine=InnoDB default charset=utf8mb4 comment &apos;用户表&apos;;</span><br></pre></td></tr></table></figure>
+<h3><span id="cha-kan-lie">查看列</span><a href="#cha-kan-lie" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">desc table_name</span><br></pre></td></tr></table></figure>
+<h3><span id="xiu-gai-biao-ming">修改表名</span><a href="#xiu-gai-biao-ming" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table table_name rename to new_name;</span><br></pre></td></tr></table></figure>
+<h3><span id="tian-jia-lie">添加列</span><a href="#tian-jia-lie" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table table_name add column col_name varchar(11) not null ...;</span><br></pre></td></tr></table></figure>
+<h3><span id="shan-chu-lie">删除列</span><a href="#shan-chu-lie" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table table_name drop column col_name;</span><br></pre></td></tr></table></figure>
+<h3><span id="xiu-gai-lie-ming">修改列名</span><a href="#xiu-gai-lie-ming" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table table_name change old_name new_name int(11)...;</span><br></pre></td></tr></table></figure>
+<h3><span id="xiu-gai-lie-shu-xing">修改列属性</span><a href="#xiu-gai-lie-shu-xing" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table table_name modify col_name int(11) not null...;</span><br></pre></td></tr></table></figure>
+<h3><span id="cha-kan-lie-shu-xing">查看列属性</span><a href="#cha-kan-lie-shu-xing" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">show columns from table_name;</span><br><span class="line">show full columns from table_name; # 全部信息</span><br></pre></td></tr></table></figure>
 <ul>
 <li><strong>Field</strong> ：字段名</li>
 <li><strong>Type</strong>：字段类型</li>
@@ -256,7 +256,7 @@
 <li><strong>Privileges</strong>：权限</li>
 <li><strong>Comment</strong>：备注（mysql 5.0以上有)</li>
 </ul>
-<h2><span id="cha-xun">查询</span><a href="#cha-xun" class="header-anchor"></a></h2><h3><span id="qu-diao-chong-fu-shu-ju">去掉重复数据</span><a href="#qu-diao-chong-fu-shu-ju" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select distinct name from user;</div></pre></td></tr></table></figure>
+<h2><span id="cha-xun">查询</span><a href="#cha-xun" class="header-anchor"></a></h2><h3><span id="qu-diao-chong-fu-shu-ju">去掉重复数据</span><a href="#qu-diao-chong-fu-shu-ju" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select distinct name from user;</span><br></pre></td></tr></table></figure>
 <p>需要注意亮点，第一，<code>distinct</code> 必须放到查询字段最前边。第二，如果查询的字段很多，必须所有字段都相同才会过滤</p>
 
       
@@ -321,18 +321,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/07/mysql-2017-08-07-item-daily/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/08/06/mysql-2017-08-06-item-daily/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          2017-08-07 新建user和user_data表，完善`insert_commet_trigger`
+          2017-08-06 新建video和comment表，以及`insert_commet_trigger`
         
       </div>
     </a>
   
   
-    <a href="/2017/08/06/mysql-2017-08-06-item-daily/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">2017-08-06 新建video和comment表，以及`insert_commet_trigger`</div>
+    <a href="/2017/08/05/algorithm-2017-08-05-bank-verify/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">银行卡校验规则(Luhn算法)</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -359,7 +359,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="shu-ju-ku">&#x6570;&#x636E;&#x5E93;</span><a href="#shu-ju-ku" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text"><span id="chuang-jian-ku">&#x521B;&#x5EFA;&#x5E93;</span><a href="#chuang-jian-ku" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="biao-jie-gou">&#x8868;&#x7ED3;&#x6784;</span><a href="#biao-jie-gou" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text"><span id="chuang-jian-biao">&#x521B;&#x5EFA;&#x8868;</span><a href="#chuang-jian-biao" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text"><span id="cha-kan-lie">&#x67E5;&#x770B;&#x5217;</span><a href="#cha-kan-lie" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.3.</span> <span class="toc-text"><span id="xiu-gai-biao-ming">&#x4FEE;&#x6539;&#x8868;&#x540D;</span><a href="#xiu-gai-biao-ming" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.4.</span> <span class="toc-text"><span id="tian-jia-lie">&#x6DFB;&#x52A0;&#x5217;</span><a href="#tian-jia-lie" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.5.</span> <span class="toc-text"><span id="shan-chu-lie">&#x5220;&#x9664;&#x5217;</span><a href="#shan-chu-lie" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.6.</span> <span class="toc-text"><span id="xiu-gai-lie-ming">&#x4FEE;&#x6539;&#x5217;&#x540D;</span><a href="#xiu-gai-lie-ming" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.7.</span> <span class="toc-text"><span id="xiu-gai-lie-shu-xing">&#x4FEE;&#x6539;&#x5217;&#x5C5E;&#x6027;</span><a href="#xiu-gai-lie-shu-xing" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.8.</span> <span class="toc-text"><span id="cha-kan-lie-shu-xing">&#x67E5;&#x770B;&#x5217;&#x5C5E;&#x6027;</span><a href="#cha-kan-lie-shu-xing" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="cha-xun">&#x67E5;&#x8BE2;</span><a href="#cha-xun" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.1.</span> <span class="toc-text"><span id="qu-diao-chong-fu-shu-ju">&#x53BB;&#x6389;&#x91CD;&#x590D;&#x6570;&#x636E;</span><a href="#qu-diao-chong-fu-shu-ju" class="header-anchor"></a></span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text">创建库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">表结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text">创建表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text">查看列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.3.</span> <span class="toc-text">修改表名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.4.</span> <span class="toc-text">添加列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.5.</span> <span class="toc-text">删除列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.6.</span> <span class="toc-text">修改列名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.7.</span> <span class="toc-text">修改列属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.8.</span> <span class="toc-text">查看列属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.1.</span> <span class="toc-text">去掉重复数据</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -560,6 +560,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -568,19 +576,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -589,6 +585,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -708,11 +708,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">

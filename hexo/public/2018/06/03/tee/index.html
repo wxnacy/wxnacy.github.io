@@ -223,25 +223,25 @@
 <!-- tocstop -->
 </div>
 
-<h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ ll | tee <span class="built_in">test</span></div><div class="line"></div><div class="line">total 20</div><div class="line">-rw-------.  1 vagrant vagrant  382 May 29 01:16 nohup.out</div><div class="line">-rw-rw-r--.  1 vagrant vagrant   51 May 29 10:17 out.txt</div><div class="line">-rw-rw-r--.  1 vagrant vagrant  297 May 29 10:53 <span class="built_in">test</span></div><div class="line">drwxrwxr-x. 21 vagrant vagrant 4096 May 29 09:19 wxnacy.github.io</div><div class="line">-rw-rw-r--.  1 vagrant vagrant 1406 May 29 06:22 wxnacy.log</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ cat <span class="built_in">test</span></div><div class="line"></div><div class="line">total 20</div><div class="line">-rw-------.  1 vagrant vagrant  382 May 29 01:16 nohup.out</div><div class="line">-rw-rw-r--.  1 vagrant vagrant   51 May 29 10:17 out.txt</div><div class="line">-rw-rw-r--.  1 vagrant vagrant  297 May 29 10:53 <span class="built_in">test</span></div><div class="line">drwxrwxr-x. 21 vagrant vagrant 4096 May 29 09:19 wxnacy.github.io</div><div class="line">-rw-rw-r--.  1 vagrant vagrant 1406 May 29 06:22 wxnacy.log</div></pre></td></tr></table></figure>
+<h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ ll | tee <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line">total 20</span><br><span class="line">-rw-------.  1 vagrant vagrant  382 May 29 01:16 nohup.out</span><br><span class="line">-rw-rw-r--.  1 vagrant vagrant   51 May 29 10:17 out.txt</span><br><span class="line">-rw-rw-r--.  1 vagrant vagrant  297 May 29 10:53 <span class="built_in">test</span></span><br><span class="line">drwxrwxr-x. 21 vagrant vagrant 4096 May 29 09:19 wxnacy.github.io</span><br><span class="line">-rw-rw-r--.  1 vagrant vagrant 1406 May 29 06:22 wxnacy.log</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ cat <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line">total 20</span><br><span class="line">-rw-------.  1 vagrant vagrant  382 May 29 01:16 nohup.out</span><br><span class="line">-rw-rw-r--.  1 vagrant vagrant   51 May 29 10:17 out.txt</span><br><span class="line">-rw-rw-r--.  1 vagrant vagrant  297 May 29 10:53 <span class="built_in">test</span></span><br><span class="line">drwxrwxr-x. 21 vagrant vagrant 4096 May 29 09:19 wxnacy.github.io</span><br><span class="line">-rw-rw-r--.  1 vagrant vagrant 1406 May 29 06:22 wxnacy.log</span><br></pre></td></tr></table></figure>
 <p>可以看到，<code>ll</code> 命令同时输出到 <code>stdout</code> 和文件 <code>test</code> 中</p>
 <p>那它和 <code>echo &gt;</code> 有什么区别呢</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> `ll` &gt; <span class="built_in">test</span></div><div class="line">$ cat <span class="built_in">test</span></div><div class="line"></div><div class="line"></div><div class="line">total 20 -rw-------. 1 vagrant vagrant 382 May 29 01:16 nohup.out -rw-rw-r--. 1 vagrant vagrant 51 May 29 10:17 out.txt -rw-rw-r--. 1 vagrant vagrant 297 May 29 10:15 <span class="built_in">test</span> drwxrwxr-x. 21 vagrant vagrant 4096 May 29 09:19 wxnacy.github.io -rw-rw-r--. 1 vagrant vagrant 1406 May 29 06:22 wxnacy.log</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> `ll` &gt; <span class="built_in">test</span></span><br><span class="line">$ cat <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">total 20 -rw-------. 1 vagrant vagrant 382 May 29 01:16 nohup.out -rw-rw-r--. 1 vagrant vagrant 51 May 29 10:17 out.txt -rw-rw-r--. 1 vagrant vagrant 297 May 29 10:15 <span class="built_in">test</span> drwxrwxr-x. 21 vagrant vagrant 4096 May 29 09:19 wxnacy.github.io -rw-rw-r--. 1 vagrant vagrant 1406 May 29 06:22 wxnacy.log</span><br></pre></td></tr></table></figure>
 <p>除了直观的 <code>\n</code> 没有正确输出到文件外，最大的区别在于，如果当前用户没有对输出文件权限时，不能方便的进行输入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo <span class="built_in">echo</span> `ll` &gt; /var/<span class="built_in">log</span>/<span class="built_in">test</span></div><div class="line"></div><div class="line">-bash: /var/<span class="built_in">log</span>/<span class="built_in">test</span>: Permission denied</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo <span class="built_in">echo</span> `ll` &gt; /var/<span class="built_in">log</span>/<span class="built_in">test</span></span><br><span class="line"></span><br><span class="line">-bash: /var/<span class="built_in">log</span>/<span class="built_in">test</span>: Permission denied</span><br></pre></td></tr></table></figure>
 <p><code>&gt;</code> 会将命令分成两部分，<code>sudo</code> 并不能作用到 <code>/var/log/test</code> 中，使用 <code>tee</code> 就没问题</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ll | sudo tee /var/<span class="built_in">log</span>/<span class="built_in">test</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ll | sudo tee /var/<span class="built_in">log</span>/<span class="built_in">test</span></span><br></pre></td></tr></table></figure>
 <h2><span id="can-shu">参数</span><a href="#can-shu" class="header-anchor"></a></h2><ul>
 <li>-a：向文件中重定向时使用追加模式；</li>
 <li>-i：忽略中断（interrupt）信号。</li>
 </ul>
 <p><code>-a</code> 相当于 <code>&gt;&gt;</code> 可以将内容追加的方式输出到文件中</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ll | tee -a <span class="built_in">test</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ll | tee -a <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
 <h2><span id="geng-duo-shi-yong">更多实用</span><a href="#geng-duo-shi-yong" class="header-anchor"></a></h2><p><strong>stdin</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ ll | tee <span class="built_in">test</span> || cat -n</div><div class="line"></div><div class="line">total 20</div><div class="line">-rw-------.  1 vagrant vagrant  382 May 29 01:16 nohup.out</div><div class="line">-rw-rw-r--.  1 vagrant vagrant   51 May 29 10:17 out.txt</div><div class="line">-rw-rw-r--.  1 vagrant vagrant  297 May 29 10:53 <span class="built_in">test</span></div><div class="line">drwxrwxr-x. 21 vagrant vagrant 4096 May 29 09:19 wxnacy.github.io</div><div class="line">-rw-rw-r--.  1 vagrant vagrant 1406 May 29 06:22 wxnacy.log</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ ll | tee <span class="built_in">test</span> || cat -n</span><br><span class="line"></span><br><span class="line">total 20</span><br><span class="line">-rw-------.  1 vagrant vagrant  382 May 29 01:16 nohup.out</span><br><span class="line">-rw-rw-r--.  1 vagrant vagrant   51 May 29 10:17 out.txt</span><br><span class="line">-rw-rw-r--.  1 vagrant vagrant  297 May 29 10:53 <span class="built_in">test</span></span><br><span class="line">drwxrwxr-x. 21 vagrant vagrant 4096 May 29 09:19 wxnacy.github.io</span><br><span class="line">-rw-rw-r--.  1 vagrant vagrant 1406 May 29 06:22 wxnacy.log</span><br></pre></td></tr></table></figure>
 <p><strong>cat 输入</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ cat &lt;&lt;EOF | tee <span class="built_in">test</span></div><div class="line">&lt; Hello World   <span class="comment"># 输入目标文本</span></div><div class="line">&lt; EOF           <span class="comment"># 代表结束</span></div><div class="line"></div><div class="line">Hello World</div><div class="line"></div><div class="line">$ cat <span class="built_in">test</span></div><div class="line"></div><div class="line">Hello World</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ cat &lt;&lt;EOF | tee <span class="built_in">test</span></span><br><span class="line">&lt; Hello World   <span class="comment"># 输入目标文本</span></span><br><span class="line">&lt; EOF           <span class="comment"># 代表结束</span></span><br><span class="line"></span><br><span class="line">Hello World</span><br><span class="line"></span><br><span class="line">$ cat <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line">Hello World</span><br></pre></td></tr></table></figure>
 
       
 
@@ -343,7 +343,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="shi-yong">&#x4F7F;&#x7528;</span><a href="#shi-yong" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="can-shu">&#x53C2;&#x6570;</span><a href="#can-shu" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="geng-duo-shi-yong">&#x66F4;&#x591A;&#x5B9E;&#x7528;</span><a href="#geng-duo-shi-yong" class="header-anchor"></a></span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">更多实用</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -544,6 +544,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -552,19 +560,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -573,6 +569,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -692,11 +692,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">

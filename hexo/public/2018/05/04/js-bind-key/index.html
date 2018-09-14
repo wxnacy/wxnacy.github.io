@@ -216,12 +216,12 @@
 <!-- tocstop -->
 </div>
 
-<p>监听 <code>ctrl+s</code> 组合键，并自定义功能，其他键位正常使用<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.onkeydown = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(e);</div><div class="line">  <span class="keyword">var</span> keyCode = e.keyCode || e.which || e.charCode;</div><div class="line">  <span class="keyword">var</span> ctrlKey = e.ctrlKey || e.metaKey;</div><div class="line">  <span class="keyword">if</span>(ctrlKey &amp;&amp; keyCode == <span class="number">83</span>) &#123;</div><div class="line">    e.preventDefault();</div><div class="line">    alert(<span class="string">'保存'</span>)</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>监听 <code>ctrl+s</code> 组合键，并自定义功能，其他键位正常使用<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.onkeydown = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(e);</span><br><span class="line">  <span class="keyword">var</span> keyCode = e.keyCode || e.which || e.charCode;</span><br><span class="line">  <span class="keyword">var</span> ctrlKey = e.ctrlKey || e.metaKey;</span><br><span class="line">  <span class="keyword">if</span>(ctrlKey &amp;&amp; keyCode == <span class="number">83</span>) &#123;</span><br><span class="line">    e.preventDefault();</span><br><span class="line">    alert(<span class="string">'保存'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>按下 <code>ctrl+l</code> 打印 <code>event</code> 会有如下结果</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">altKey : <span class="keyword">false</span></div><div class="line">bubbles : <span class="keyword">true</span></div><div class="line">cancelBubble : <span class="keyword">false</span></div><div class="line">cancelable : <span class="keyword">true</span></div><div class="line">charCode : <span class="number">0</span></div><div class="line">code : <span class="string">"KeyL"</span></div><div class="line">composed : <span class="keyword">true</span></div><div class="line">ctrlKey : <span class="keyword">false</span></div><div class="line">currentTarget : <span class="keyword">null</span></div><div class="line">defaultPrevented : <span class="keyword">false</span></div><div class="line">detail : <span class="number">0</span></div><div class="line">eventPhase : <span class="number">0</span></div><div class="line">isComposing : <span class="keyword">false</span></div><div class="line">isTrusted : <span class="keyword">true</span></div><div class="line">key : <span class="string">"l"</span></div><div class="line">keyCode : <span class="number">76</span></div><div class="line">location : <span class="number">0</span></div><div class="line">metaKey : <span class="keyword">true</span></div><div class="line">repeat : <span class="keyword">false</span></div><div class="line">returnValue : <span class="keyword">true</span></div><div class="line">shiftKey : <span class="keyword">false</span></div><div class="line">srcElement : body</div><div class="line">target : body</div><div class="line">timeStamp : <span class="number">87489.19999999634</span></div><div class="line">type : <span class="string">"keydown"</span></div><div class="line">which : <span class="number">76</span></div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">altKey : <span class="keyword">false</span></span><br><span class="line">bubbles : <span class="keyword">true</span></span><br><span class="line">cancelBubble : <span class="keyword">false</span></span><br><span class="line">cancelable : <span class="keyword">true</span></span><br><span class="line">charCode : <span class="number">0</span></span><br><span class="line">code : <span class="string">"KeyL"</span></span><br><span class="line">composed : <span class="keyword">true</span></span><br><span class="line">ctrlKey : <span class="keyword">false</span></span><br><span class="line">currentTarget : <span class="keyword">null</span></span><br><span class="line">defaultPrevented : <span class="keyword">false</span></span><br><span class="line">detail : <span class="number">0</span></span><br><span class="line">eventPhase : <span class="number">0</span></span><br><span class="line">isComposing : <span class="keyword">false</span></span><br><span class="line">isTrusted : <span class="keyword">true</span></span><br><span class="line">key : <span class="string">"l"</span></span><br><span class="line">keyCode : <span class="number">76</span></span><br><span class="line">location : <span class="number">0</span></span><br><span class="line">metaKey : <span class="keyword">true</span></span><br><span class="line">repeat : <span class="keyword">false</span></span><br><span class="line">returnValue : <span class="keyword">true</span></span><br><span class="line">shiftKey : <span class="keyword">false</span></span><br><span class="line">srcElement : body</span><br><span class="line">target : body</span><br><span class="line">timeStamp : <span class="number">87489.19999999634</span></span><br><span class="line">type : <span class="string">"keydown"</span></span><br><span class="line">which : <span class="number">76</span></span><br></pre></td></tr></table></figure>
 <p>根据 <code>altKey, shiftKey, keyCode</code> 我们还可以完成 <code>alt, shift</code> 等组合键的判断。</p>
 <p>如果考虑兼容问题，可以直接使用一个开放组件 <a href="https://github.com/jeresig/jquery.hotkeys" target="_blank" rel="noopener">jQuery.Hotkeys</a></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">document</span>).on(<span class="string">'keydown'</span>, <span class="literal">null</span>, <span class="string">'ctrl+a'</span>, fn);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).on(<span class="string">'keydown'</span>, <span class="literal">null</span>, <span class="string">'ctrl+a'</span>, fn);</span><br></pre></td></tr></table></figure>
 
       
 
@@ -524,6 +524,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -532,19 +540,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -553,6 +549,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -672,11 +672,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">

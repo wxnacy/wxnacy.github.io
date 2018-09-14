@@ -221,22 +221,22 @@
 <!-- tocstop -->
 <p></div><br>今天介绍下 Node 项目 <a href="https://github.com/mishoo/UglifyJS2" target="_blank" rel="noopener">UglifyJS2</a> 来做 JS 压缩</p>
 <p>UglifyJS2 是 UglifyJS 的改进版，作者在此基础上做了很多优化改进。</p>
-<h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><p>全局命令行使用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g uglify-js</div></pre></td></tr></table></figure></p>
-<p>项目中使用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yarn add uglify-js</div></pre></td></tr></table></figure></p>
-<h2><span id="ming-ling-xing-shi-yong">命令行使用</span><a href="#ming-ling-xing-shi-yong" class="header-anchor"></a></h2><p>命令格式<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ uglifyjs [input files] [options]</div></pre></td></tr></table></figure></p>
-<p>准备文件 <code>example.js</code><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">first, second</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> first + second;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(add(<span class="number">1</span> + <span class="number">2</span>, <span class="number">3</span> + <span class="number">4</span>))</div></pre></td></tr></table></figure></p>
-<p>输出压缩结果<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ uglifyjs example.js</div></pre></td></tr></table></figure></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> add(first,second)&#123;<span class="built_in">return</span> first+second&#125;console.log(add(1+2,3+4));</div></pre></td></tr></table></figure>
-<p>添加混淆<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ uglifyjs example.js -m</div></pre></td></tr></table></figure></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> add(d,n)&#123;<span class="built_in">return</span> d+n&#125;console.log(add(1+2,3+4));</div></pre></td></tr></table></figure>
-<p>对表达式进行计算并去掉无用方法名<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ uglifyjs example.js -m -c --toplevel</div></pre></td></tr></table></figure></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">console.log(<span class="keyword">function</span>(n,o)&#123;<span class="built_in">return</span> n+o&#125;(3,7));</div></pre></td></tr></table></figure>
-<p>输出到文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ uglifyjs example.js -m -c --toplevel -o example.min.js</div><div class="line"><span class="comment"># example.min.js    ==&gt; console.log(function(n,o)&#123;return n+o&#125;(3,7));</span></div></pre></td></tr></table></figure></p>
+<h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><p>全局命令行使用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g uglify-js</span><br></pre></td></tr></table></figure></p>
+<p>项目中使用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yarn add uglify-js</span><br></pre></td></tr></table></figure></p>
+<h2><span id="ming-ling-xing-shi-yong">命令行使用</span><a href="#ming-ling-xing-shi-yong" class="header-anchor"></a></h2><p>命令格式<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ uglifyjs [input files] [options]</span><br></pre></td></tr></table></figure></p>
+<p>准备文件 <code>example.js</code><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">first, second</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> first + second;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(add(<span class="number">1</span> + <span class="number">2</span>, <span class="number">3</span> + <span class="number">4</span>))</span><br></pre></td></tr></table></figure></p>
+<p>输出压缩结果<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ uglifyjs example.js</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> add(first,second)&#123;<span class="built_in">return</span> first+second&#125;console.log(add(1+2,3+4));</span><br></pre></td></tr></table></figure>
+<p>添加混淆<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ uglifyjs example.js -m</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> add(d,n)&#123;<span class="built_in">return</span> d+n&#125;console.log(add(1+2,3+4));</span><br></pre></td></tr></table></figure>
+<p>对表达式进行计算并去掉无用方法名<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ uglifyjs example.js -m -c --toplevel</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(<span class="keyword">function</span>(n,o)&#123;<span class="built_in">return</span> n+o&#125;(3,7));</span><br></pre></td></tr></table></figure>
+<p>输出到文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ uglifyjs example.js -m -c --toplevel -o example.min.js</span><br><span class="line"><span class="comment"># example.min.js    ==&gt; console.log(function(n,o)&#123;return n+o&#125;(3,7));</span></span><br></pre></td></tr></table></figure></p>
 <p>通过上边这些简单操作，我们就已经可以把代码压缩很多，想想我们文件中几百行的代码吧。更多的参数请看<a href="https://github.com/mishoo/UglifyJS2#command-line-options" target="_blank" rel="noopener">文档</a></p>
-<h2><span id="xiang-mu-zhong-shi-yong">项目中使用</span><a href="#xiang-mu-zhong-shi-yong" class="header-anchor"></a></h2><p>我们可以在 Node 项目中使用该工具压缩，可以使用 <code>minify(code, options)</code> 这个方法，<br><code>code</code> 可以是字符串、JSON等格式，<code>options</code> 需要的参数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> UglifyJS = <span class="built_in">require</span>(<span class="string">"uglify-js"</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> code = <span class="string">"function add(first, second) &#123; return first + second;  &#125;"</span>;</div><div class="line"><span class="keyword">var</span> result = UglifyJS.minify(code);</div><div class="line"><span class="built_in">console</span>.log(result.error); <span class="comment">// runtime error, or `undefined` if( no error</span></div><div class="line"><span class="built_in">console</span>.log(result.code);  <span class="comment">// minified output: function add(n,d)&#123;return n+d&#125;)&#123;&#125;</span></div></pre></td></tr></table></figure></p>
-<p>使用 JSON 格式的话 key 为文件名，value 为代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> code = &#123;</div><div class="line">    <span class="string">"file1.js"</span>: <span class="string">"function add(first, second) &#123; return first + second;  &#125;"</span>,</div><div class="line">    <span class="string">"file2.js"</span>: <span class="string">"console.log(add(1 + 2, 3 + 4));"</span></div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> result = UglifyJS.minify(code);</div><div class="line"><span class="built_in">console</span>.log(result.code);</div><div class="line"><span class="comment">// function add(d,n)&#123;return d+n&#125;console.log(add(3,7));</span></div></pre></td></tr></table></figure></p>
-<p>使用参数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> code = &#123;</div><div class="line">    <span class="string">"file1.js"</span>: <span class="string">"function add(first, second) &#123; return first + second;  &#125;"</span>,</div><div class="line">    <span class="string">"file2.js"</span>: <span class="string">"console.log(add(1 + 2, 3 + 4));"</span></div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> options = &#123; <span class="attr">toplevel</span>: <span class="literal">true</span>  &#125;;</div><div class="line"><span class="keyword">var</span> result = UglifyJS.minify(code, options);</div><div class="line"><span class="built_in">console</span>.log(result.code);</div><div class="line"><span class="comment">// console.log(3+7);</span></div></pre></td></tr></table></figure></p>
-<p>读取文件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> code = fs.readFileSync(<span class="string">"./example.js"</span>, <span class="string">"utf8"</span>);</div><div class="line"><span class="keyword">var</span> res = UglifyJS.minify(code);</div><div class="line"><span class="built_in">console</span>.log(res.code);</div><div class="line"><span class="comment">// function add(d,n)&#123;return d+n&#125;console.log(add(3,7));</span></div></pre></td></tr></table></figure></p>
+<h2><span id="xiang-mu-zhong-shi-yong">项目中使用</span><a href="#xiang-mu-zhong-shi-yong" class="header-anchor"></a></h2><p>我们可以在 Node 项目中使用该工具压缩，可以使用 <code>minify(code, options)</code> 这个方法，<br><code>code</code> 可以是字符串、JSON等格式，<code>options</code> 需要的参数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> UglifyJS = <span class="built_in">require</span>(<span class="string">"uglify-js"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> code = <span class="string">"function add(first, second) &#123; return first + second;  &#125;"</span>;</span><br><span class="line"><span class="keyword">var</span> result = UglifyJS.minify(code);</span><br><span class="line"><span class="built_in">console</span>.log(result.error); <span class="comment">// runtime error, or `undefined` if( no error</span></span><br><span class="line"><span class="built_in">console</span>.log(result.code);  <span class="comment">// minified output: function add(n,d)&#123;return n+d&#125;)&#123;&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>使用 JSON 格式的话 key 为文件名，value 为代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> code = &#123;</span><br><span class="line">    <span class="string">"file1.js"</span>: <span class="string">"function add(first, second) &#123; return first + second;  &#125;"</span>,</span><br><span class="line">    <span class="string">"file2.js"</span>: <span class="string">"console.log(add(1 + 2, 3 + 4));"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> result = UglifyJS.minify(code);</span><br><span class="line"><span class="built_in">console</span>.log(result.code);</span><br><span class="line"><span class="comment">// function add(d,n)&#123;return d+n&#125;console.log(add(3,7));</span></span><br></pre></td></tr></table></figure></p>
+<p>使用参数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> code = &#123;</span><br><span class="line">    <span class="string">"file1.js"</span>: <span class="string">"function add(first, second) &#123; return first + second;  &#125;"</span>,</span><br><span class="line">    <span class="string">"file2.js"</span>: <span class="string">"console.log(add(1 + 2, 3 + 4));"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> options = &#123; <span class="attr">toplevel</span>: <span class="literal">true</span>  &#125;;</span><br><span class="line"><span class="keyword">var</span> result = UglifyJS.minify(code, options);</span><br><span class="line"><span class="built_in">console</span>.log(result.code);</span><br><span class="line"><span class="comment">// console.log(3+7);</span></span><br></pre></td></tr></table></figure></p>
+<p>读取文件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> code = fs.readFileSync(<span class="string">"./example.js"</span>, <span class="string">"utf8"</span>);</span><br><span class="line"><span class="keyword">var</span> res = UglifyJS.minify(code);</span><br><span class="line"><span class="built_in">console</span>.log(res.code);</span><br><span class="line"><span class="comment">// function add(d,n)&#123;return d+n&#125;console.log(add(3,7));</span></span><br></pre></td></tr></table></figure></p>
 <p>更多参数见<a href="https://github.com/mishoo/UglifyJS2#minify-options" target="_blank" rel="noopener">文档</a></p>
 <p>了解了上边这些，你已经可以在项目用起来了，再多做些练习吧，让压缩更得心应手。</p>
 
@@ -340,7 +340,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="xia-zai">&#x4E0B;&#x8F7D;</span><a href="#xia-zai" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="ming-ling-xing-shi-yong">&#x547D;&#x4EE4;&#x884C;&#x4F7F;&#x7528;</span><a href="#ming-ling-xing-shi-yong" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="xiang-mu-zhong-shi-yong">&#x9879;&#x76EE;&#x4E2D;&#x4F7F;&#x7528;</span><a href="#xiang-mu-zhong-shi-yong" class="header-anchor"></a></span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">命令行使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">项目中使用</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -541,6 +541,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -549,19 +557,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -570,6 +566,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -689,11 +689,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">

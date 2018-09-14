@@ -221,15 +221,15 @@
 </ul>
 <!-- tocstop -->
 <p></div><br>两个月前，因为工作的原因我编写了插件 <a href="https://github.com/wxnacy/vim-mysql" target="_blank" rel="noopener">vim-mysql</a> ，我可以执行文本中某一行或者选中的一段完整语句。为什么要造“轮子”呢？即使现在的数据库软件再强大，它也是为大多人设计的，为了方便我就是需要一些独特的功能，所以可以编写一个自己用的工具很重要。<br>今天开始我们来探讨下，如何在 Vim 中编写插件</p>
-<h2><span id="hello-world">Hello World</span><a href="#hello-world" class="header-anchor"></a></h2><p>又是 Hello World ，没错，学什么开始都是 Hello World 。首先明确目标，今天要达到的目标是，用 Vim 打开任意文件后，通过简短指令输出 <code>Hello World</code><br>首先在任意位置建立文件，如 <code>~/helloworld.vim</code><br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>! <span class="title">HelloWorld</span><span class="params">()</span></span></div><div class="line">    <span class="keyword">echo</span> <span class="string">'Hello World'</span></div><div class="line"><span class="keyword">endfunction</span></div></pre></td></tr></table></figure></p>
-<p>在 <code>~/.vimrc</code> 中做链接，指定 Vim 再启动时运行该文件<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">source</span> ~/helloworld.<span class="keyword">vim</span></div></pre></td></tr></table></figure></p>
+<h2><span id="hello-world">Hello World</span><a href="#hello-world" class="header-anchor"></a></h2><p>又是 Hello World ，没错，学什么开始都是 Hello World 。首先明确目标，今天要达到的目标是，用 Vim 打开任意文件后，通过简短指令输出 <code>Hello World</code><br>首先在任意位置建立文件，如 <code>~/helloworld.vim</code><br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>! <span class="title">HelloWorld</span><span class="params">()</span></span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'Hello World'</span></span><br><span class="line"><span class="keyword">endfunction</span></span><br></pre></td></tr></table></figure></p>
+<p>在 <code>~/.vimrc</code> 中做链接，指定 Vim 再启动时运行该文件<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">source</span> ~/helloworld.<span class="keyword">vim</span></span><br></pre></td></tr></table></figure></p>
 <p>执行 <code>:source ~/.vimrc</code> 使配置生效，或者干脆退出文件，再重新进入即可，随后执行 <code>call HelloWorld()</code> 并回车，既可以看到屏幕下方输出 <code>Hello World</code>，就是这么简单。</p>
-<h2><span id="you-hua">优化</span><a href="#you-hua" class="header-anchor"></a></h2><p>任务是完成了，但是还可以在处理的更好一点，比如我改变一下插件的位置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~/.vim/plugin/helloworld.vim</div></pre></td></tr></table></figure></p>
-<p>同时我去掉这句 <code>source ~/helloworld.vim</code> ，你在此重复上边的执行操作，同样可以生效，因为他可以自动查找该文件夹的脚本自动导入。<br>再比如，我可以在插件里加上如下配置<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>! <span class="title">HelloWorld</span><span class="params">()</span></span></div><div class="line">    <span class="keyword">echo</span> <span class="string">'Hello World'</span></div><div class="line"><span class="keyword">endfunction</span></div><div class="line">command! -nargs=<span class="number">0</span> HW <span class="keyword">call</span> HelloWorld()</div><div class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;leader&gt;</span>hw :<span class="keyword">call</span> HelloWorld()</div></pre></td></tr></table></figure></p>
+<h2><span id="you-hua">优化</span><a href="#you-hua" class="header-anchor"></a></h2><p>任务是完成了，但是还可以在处理的更好一点，比如我改变一下插件的位置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/.vim/plugin/helloworld.vim</span><br></pre></td></tr></table></figure></p>
+<p>同时我去掉这句 <code>source ~/helloworld.vim</code> ，你在此重复上边的执行操作，同样可以生效，因为他可以自动查找该文件夹的脚本自动导入。<br>再比如，我可以在插件里加上如下配置<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>! <span class="title">HelloWorld</span><span class="params">()</span></span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'Hello World'</span></span><br><span class="line"><span class="keyword">endfunction</span></span><br><span class="line">command! -nargs=<span class="number">0</span> HW <span class="keyword">call</span> HelloWorld()</span><br><span class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;leader&gt;</span>hw :<span class="keyword">call</span> HelloWorld()</span><br></pre></td></tr></table></figure></p>
 <p>让代码生效后，我只需要执行 <code>:HW</code> 或者 <code>&lt;leader&gt;hw</code> 即可完成命令的调用。<code>-nargs=0</code> 表示命令行后边不跟参数，<code>&lt;leader&gt;</code> 键我在 <a href="/2017/12/01/vim-mappings/#leader">Vim 高级功能 Mapping 映射</a> 文章中有详细讲解。</p>
-<h2><span id="chuan-can">传参</span><a href="#chuan-can" class="header-anchor"></a></h2><p>在 VimScript 中传参是很别扭的<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:HW name age</div></pre></td></tr></table></figure></p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>! <span class="title">HelloWorld</span><span class="params">(cmd, args)</span></span></div><div class="line">    <span class="keyword">echo</span> <span class="variable">a:cmd</span>      <span class="comment">" ==&gt; grep</span></div><div class="line">    <span class="keyword">echo</span> <span class="variable">a:args</span>     <span class="comment">" ==&gt; name age</span></div><div class="line">    <span class="keyword">echo</span> <span class="variable">a:args</span>[<span class="number">0</span>]  <span class="comment">" ==&gt; name</span></div><div class="line"><span class="keyword">endfunction</span></div><div class="line">command! -nargs=* HW <span class="keyword">call</span> HelloWorld(<span class="string">'grep'</span>, <span class="symbol">&lt;q-args&gt;</span>)</div></pre></td></tr></table></figure>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>! <span class="title">HelloWorld</span><span class="params">(...)</span></span></div><div class="line">    <span class="keyword">echo</span> <span class="variable">a:000</span>  <span class="comment">" ==&gt; name age</span></div><div class="line">    <span class="keyword">echo</span> <span class="variable">a:0</span>    <span class="comment">" ==&gt; name</span></div><div class="line">    <span class="keyword">echo</span> <span class="variable">a:1</span>    <span class="comment">" ==&gt; age</span></div><div class="line"><span class="keyword">endfunction</span></div><div class="line">command! -nargs=* HW <span class="keyword">call</span> HelloWorld(<span class="symbol">&lt;q-args&gt;</span>)</div></pre></td></tr></table></figure>
+<h2><span id="chuan-can">传参</span><a href="#chuan-can" class="header-anchor"></a></h2><p>在 VimScript 中传参是很别扭的<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:HW name age</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>! <span class="title">HelloWorld</span><span class="params">(cmd, args)</span></span></span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">a:cmd</span>      <span class="comment">" ==&gt; grep</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">a:args</span>     <span class="comment">" ==&gt; name age</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">a:args</span>[<span class="number">0</span>]  <span class="comment">" ==&gt; name</span></span><br><span class="line"><span class="keyword">endfunction</span></span><br><span class="line">command! -nargs=* HW <span class="keyword">call</span> HelloWorld(<span class="string">'grep'</span>, <span class="symbol">&lt;q-args&gt;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>! <span class="title">HelloWorld</span><span class="params">(...)</span></span></span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">a:000</span>  <span class="comment">" ==&gt; name age</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">a:0</span>    <span class="comment">" ==&gt; name</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">a:1</span>    <span class="comment">" ==&gt; age</span></span><br><span class="line"><span class="keyword">endfunction</span></span><br><span class="line">command! -nargs=* HW <span class="keyword">call</span> HelloWorld(<span class="symbol">&lt;q-args&gt;</span>)</span><br></pre></td></tr></table></figure>
 <p>这是固定参数加可变参数，已经完成可变参数的两种用法，<code>a:</code> 是参数前边必须加的。</p>
 <p><code>-nargs</code> 后可以跟的参数为 <code>0, 1, +, *, ?</code> 这些符号都可以当作正则表达式来理解，具体含义你可以查看文档 <code>:h command-nargs</code></p>
 <h2><span id="zhu-yi">注意</span><a href="#zhu-yi" class="header-anchor"></a></h2><p>有这么几点需要注意</p>
@@ -339,7 +339,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="hello-world">Hello World</span><a href="#hello-world" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="you-hua">&#x4F18;&#x5316;</span><a href="#you-hua" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="chuan-can">&#x4F20;&#x53C2;</span><a href="#chuan-can" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text"><span id="zhu-yi">&#x6CE8;&#x610F;</span><a href="#zhu-yi" class="header-anchor"></a></span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">Hello World</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">传参</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">注意</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -540,6 +540,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -548,19 +556,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -569,6 +565,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -688,11 +688,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">

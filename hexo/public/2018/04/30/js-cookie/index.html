@@ -220,12 +220,12 @@
 <!-- tocstop -->
 </div>
 
-<h2><span id="chuang-jian-cookie">创建 Cookie</span><a href="#chuang-jian-cookie" class="header-anchor"></a></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.cookie=<span class="string">"username=John Doe"</span>;</div><div class="line"></div><div class="line"><span class="comment">// 您还可以为 cookie 添加一个过期时间（以 UTC 或 GMT 时间）。默认情况下，cookie 在浏览器关闭时删除：</span></div><div class="line"><span class="built_in">document</span>.cookie=<span class="string">"username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 GMT"</span>;</div><div class="line"></div><div class="line"><span class="comment">// 您可以使用 path 参数告诉浏览器 cookie 的路径。默认情况下，cookie 属于当前页面。</span></div><div class="line"><span class="built_in">document</span>.cookie=<span class="string">"username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 GMT; path=/"</span>;</div></pre></td></tr></table></figure>
+<h2><span id="chuang-jian-cookie">创建 Cookie</span><a href="#chuang-jian-cookie" class="header-anchor"></a></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.cookie=<span class="string">"username=John Doe"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 您还可以为 cookie 添加一个过期时间（以 UTC 或 GMT 时间）。默认情况下，cookie 在浏览器关闭时删除：</span></span><br><span class="line"><span class="built_in">document</span>.cookie=<span class="string">"username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 GMT"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 您可以使用 path 参数告诉浏览器 cookie 的路径。默认情况下，cookie 属于当前页面。</span></span><br><span class="line"><span class="built_in">document</span>.cookie=<span class="string">"username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 GMT; path=/"</span>;</span><br></pre></td></tr></table></figure>
 <p><strong>封装函数</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setCookie</span>(<span class="params">cname,cvalue,exdays</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> d = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">  d.setTime(d.getTime()+(exdays*<span class="number">24</span>*<span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>));</div><div class="line">  <span class="keyword">var</span> expires = <span class="string">"expires="</span>+d.toGMTString();</div><div class="line">  <span class="built_in">document</span>.cookie = cname + <span class="string">"="</span> + cvalue + <span class="string">"; "</span> + expires;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2><span id="huo-qu-cookie">获取 Cookie</span><a href="#huo-qu-cookie" class="header-anchor"></a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var x = document.cookie;</div><div class="line"><span class="comment">// x 格式为 cookie1=value; cookie2=value;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setCookie</span>(<span class="params">cname,cvalue,exdays</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> d = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">  d.setTime(d.getTime()+(exdays*<span class="number">24</span>*<span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>));</span><br><span class="line">  <span class="keyword">var</span> expires = <span class="string">"expires="</span>+d.toGMTString();</span><br><span class="line">  <span class="built_in">document</span>.cookie = cname + <span class="string">"="</span> + cvalue + <span class="string">"; "</span> + expires;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2><span id="huo-qu-cookie">获取 Cookie</span><a href="#huo-qu-cookie" class="header-anchor"></a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var x = document.cookie;</span><br><span class="line"><span class="comment">// x 格式为 cookie1=value; cookie2=value;</span></span><br></pre></td></tr></table></figure>
 <p><strong>封装函数</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setCookie</span>(<span class="params">cname,cvalue,exdays</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> d = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">  d.setTime(d.getTime()+(exdays*<span class="number">24</span>*<span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>));</div><div class="line">  <span class="keyword">var</span> expires = <span class="string">"expires="</span>+d.toGMTString();</div><div class="line">  <span class="built_in">document</span>.cookie = cname + <span class="string">"="</span> + cvalue + <span class="string">"; "</span> + expires;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setCookie</span>(<span class="params">cname,cvalue,exdays</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> d = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">  d.setTime(d.getTime()+(exdays*<span class="number">24</span>*<span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>));</span><br><span class="line">  <span class="keyword">var</span> expires = <span class="string">"expires="</span>+d.toGMTString();</span><br><span class="line">  <span class="built_in">document</span>.cookie = cname + <span class="string">"="</span> + cvalue + <span class="string">"; "</span> + expires;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><a href="http://www.runoob.com/js/js-cookies.html" target="_blank" rel="noopener">JavaScript Cookie</a></li>
 </ul>
@@ -330,7 +330,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="chuang-jian-cookie">&#x521B;&#x5EFA; Cookie</span><a href="#chuang-jian-cookie" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="huo-qu-cookie">&#x83B7;&#x53D6; Cookie</span><a href="#huo-qu-cookie" class="header-anchor"></a></span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">创建 Cookie</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">获取 Cookie</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -531,6 +531,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -539,19 +547,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -560,6 +556,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -679,11 +679,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -221,17 +221,17 @@
 </div>
 
 <h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><p><strong>Ubuntu</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt install -y ufw</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt install -y ufw</span><br></pre></td></tr></table></figure>
 <p><strong>CentOS</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo yum install -y ufw</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install -y ufw</span><br></pre></td></tr></table></figure>
 <h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><p><strong>开启</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo ufw <span class="built_in">enable</span></div><div class="line">$ sudo ufw default deny <span class="comment"># 开启了防火墙并随系统启动同时关闭所有外部对本机的访问（本机访问外部正常）。</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ufw <span class="built_in">enable</span></span><br><span class="line">$ sudo ufw default deny <span class="comment"># 开启了防火墙并随系统启动同时关闭所有外部对本机的访问（本机访问外部正常）。</span></span><br></pre></td></tr></table></figure>
 <p><strong>关闭</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo ufw <span class="built_in">disable</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ufw <span class="built_in">disable</span></span><br></pre></td></tr></table></figure>
 <p><strong>查看防火墙状态</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo ufw status</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ufw status</span><br></pre></td></tr></table></figure>
 <p><strong>开启/禁用相应端口或服务举例</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ sudo ufw allow 80                 <span class="comment"># 允许外部访问80端口</span></div><div class="line">$ sudo ufw delete allow 80          <span class="comment"># 禁止外部访问80 端口</span></div><div class="line">$ sudo ufw allow from 192.168.1.1   <span class="comment"># 允许此IP访问所有的本机端口</span></div><div class="line">$ sudo ufw deny smtp                <span class="comment"># 禁止外部访问smtp服务</span></div><div class="line">$ sudo ufw delete allow smtp        <span class="comment"># 删除上面建立的某条规则</span></div><div class="line">$ sudo ufw deny proto tcp from 10.0.0.0/8 to 192.168.0.1 port 22    <span class="comment"># 要拒绝所有的TCP流量从10.0.0.0/8 到192.168.0.1地址的22端口</span></div><div class="line"></div><div class="line"><span class="comment"># 可以允许所有RFC1918网络（局域网/无线局域网的）访问这个主机（/8,/16,/12是一种网络分级）：</span></div><div class="line">$ sudo ufw allow from 10.0.0.0/8</div><div class="line">$ sudo ufw allow from 172.16.0.0/12</div><div class="line">$ sudo ufw allow from 192.168.0.0/16</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ufw allow 80                 <span class="comment"># 允许外部访问80端口</span></span><br><span class="line">$ sudo ufw delete allow 80          <span class="comment"># 禁止外部访问80 端口</span></span><br><span class="line">$ sudo ufw allow from 192.168.1.1   <span class="comment"># 允许此IP访问所有的本机端口</span></span><br><span class="line">$ sudo ufw deny smtp                <span class="comment"># 禁止外部访问smtp服务</span></span><br><span class="line">$ sudo ufw delete allow smtp        <span class="comment"># 删除上面建立的某条规则</span></span><br><span class="line">$ sudo ufw deny proto tcp from 10.0.0.0/8 to 192.168.0.1 port 22    <span class="comment"># 要拒绝所有的TCP流量从10.0.0.0/8 到192.168.0.1地址的22端口</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 可以允许所有RFC1918网络（局域网/无线局域网的）访问这个主机（/8,/16,/12是一种网络分级）：</span></span><br><span class="line">$ sudo ufw allow from 10.0.0.0/8</span><br><span class="line">$ sudo ufw allow from 172.16.0.0/12</span><br><span class="line">$ sudo ufw allow from 192.168.0.0/16</span><br></pre></td></tr></table></figure>
 <ul>
 <li><a href="http://wiki.ubuntu.org.cn/UFW%E9%98%B2%E7%81%AB%E5%A2%99%E7%AE%80%E5%8D%95%E8%AE%BE%E7%BD%AE" target="_blank" rel="noopener">UFW防火墙简单设置</a></li>
 </ul>
@@ -336,7 +336,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="xia-zai">&#x4E0B;&#x8F7D;</span><a href="#xia-zai" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="shi-yong">&#x4F7F;&#x7528;</span><a href="#shi-yong" class="header-anchor"></a></span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">使用</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -537,6 +537,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -545,19 +553,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -566,6 +562,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -685,11 +685,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">

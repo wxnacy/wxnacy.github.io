@@ -212,12 +212,12 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>React-Ace 解决 onChange 中 setState 的问题<br><a id="more"></a></p>
-<p>我在正常使用 ace 的功能时碰见一个大问题就是在 <code>onChange</code> 的时候，<code>setState</code> 会出现问题。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">- onChange=&#123;<span class="keyword">this</span>.onChange.bind(<span class="keyword">this</span>)&#125;</div><div class="line">+ onChange=&#123;(newValue) =&gt; <span class="keyword">this</span>.onChange(newValue)&#125;</div></pre></td></tr></table></figure></p>
+<p>我在正常使用 ace 的功能时碰见一个大问题就是在 <code>onChange</code> 的时候，<code>setState</code> 会出现问题。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- onChange=&#123;<span class="keyword">this</span>.onChange.bind(<span class="keyword">this</span>)&#125;</span><br><span class="line">+ onChange=&#123;(newValue) =&gt; <span class="keyword">this</span>.onChange(newValue)&#125;</span><br></pre></td></tr></table></figure></p>
 <p>通常方法的调用使用第一种，但是在这里需要换成第二种方式</p>
-<p>这时候可以成功的保存数据到 <code>state</code> 中，但是 ace 的输入功能会出现问题，变的无法正常输入，说白了是组件没有在改变 <code>state</code> 后及时更新，此时需要对 <code>shouldComponentUpdate</code>组件做出如下操作<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">shouldComponentUpdate(nextProps, nextState) &#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.state.aceValue !== nextState.aceValue) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这时候可以成功的保存数据到 <code>state</code> 中，但是 ace 的输入功能会出现问题，变的无法正常输入，说白了是组件没有在改变 <code>state</code> 后及时更新，此时需要对 <code>shouldComponentUpdate</code>组件做出如下操作<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">shouldComponentUpdate(nextProps, nextState) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.state.aceValue !== nextState.aceValue) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>也就是判断 <code>this.state.aceValue</code> 有变动后修改组件状态</p>
 <p>或者简单点，直接让组件继承 <code>PureComponent</code>，它自动完成了 <code>shouldComponentUpdate</code> 的浅比较</p>
-<p>完整调用如下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">onChange(newValue) &#123;</div><div class="line">    <span class="keyword">this</span>.setState(&#123;<span class="attr">aceValue</span>: newValue&#125;)</div><div class="line">&#125;</div><div class="line">shouldComponentUpdate(nextProps, nextState) &#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.state.aceValue !== nextState.aceValue) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">...</div><div class="line">&lt;AceEditor</div><div class="line">onChange=&#123;(newValue) =&gt; <span class="keyword">this</span>.onChange(newValue, mode)&#125;</div><div class="line">value=&#123;<span class="keyword">this</span>.state.aceValue&#125;/&gt;</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p>完整调用如下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">onChange(newValue) &#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;<span class="attr">aceValue</span>: newValue&#125;)</span><br><span class="line">&#125;</span><br><span class="line">shouldComponentUpdate(nextProps, nextState) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.state.aceValue !== nextState.aceValue) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line">&lt;AceEditor</span><br><span class="line">onChange=&#123;(newValue) =&gt; <span class="keyword">this</span>.onChange(newValue, mode)&#125;</span><br><span class="line">value=&#123;<span class="keyword">this</span>.state.aceValue&#125;/&gt;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li><a href="https://github.com/securingsincity/react-ace/issues/181" target="_blank" rel="noopener">setState in onChange will block the editor</a></li>
 <li><a href="https://segmentfault.com/a/1190000008402834" target="_blank" rel="noopener">谈一谈创建React Component的几种方式</a></li>
@@ -524,6 +524,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -532,19 +540,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -553,6 +549,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -672,11 +672,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">

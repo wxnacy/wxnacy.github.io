@@ -224,12 +224,12 @@
 <!-- tocstop -->
 </div>
 
-<h2><span id="parse">parse</span><a href="#parse" class="header-anchor"></a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; JSON.parse(<span class="string">'&#123;"a": 1&#125;'</span>)</div><div class="line">&#123; a: <span class="number">1</span> &#125;</div></pre></td></tr></table></figure>
-<h2><span id="stringify">stringify</span><a href="#stringify" class="header-anchor"></a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; var foo = &#123;<span class="string">"a"</span>: <span class="number">1</span>, <span class="string">"b"</span>: <span class="number">2</span>, <span class="string">"c"</span>: <span class="number">3</span>, <span class="string">"d"</span>: &#123; <span class="string">"e"</span>: <span class="number">4</span>&#125;, <span class="string">"e"</span>: <span class="number">5</span>&#125;</div><div class="line">undefined</div><div class="line">&gt; JSON.stringify(foo)</div><div class="line"><span class="string">'&#123;"a":1,"b":2,"c":3,"d":&#123;"e":4&#125;,"e":5&#125;'</span></div></pre></td></tr></table></figure>
+<h2><span id="parse">parse</span><a href="#parse" class="header-anchor"></a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; JSON.parse(<span class="string">'&#123;"a": 1&#125;'</span>)</span><br><span class="line">&#123; a: <span class="number">1</span> &#125;</span><br></pre></td></tr></table></figure>
+<h2><span id="stringify">stringify</span><a href="#stringify" class="header-anchor"></a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; var foo = &#123;<span class="string">"a"</span>: <span class="number">1</span>, <span class="string">"b"</span>: <span class="number">2</span>, <span class="string">"c"</span>: <span class="number">3</span>, <span class="string">"d"</span>: &#123; <span class="string">"e"</span>: <span class="number">4</span>&#125;, <span class="string">"e"</span>: <span class="number">5</span>&#125;</span><br><span class="line">undefined</span><br><span class="line">&gt; JSON.stringify(foo)</span><br><span class="line"><span class="string">'&#123;"a":1,"b":2,"c":3,"d":&#123;"e":4&#125;,"e":5&#125;'</span></span><br></pre></td></tr></table></figure>
 <p><strong>美化</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt; console.log(JSON.stringify(foo, [<span class="string">"a"</span>, <span class="string">"d"</span>, <span class="string">"e"</span>], <span class="number">4</span>))</div><div class="line">&#123;</div><div class="line">    <span class="string">"a"</span>: <span class="number">1</span>,</div><div class="line">    <span class="string">"d"</span>: &#123;</div><div class="line">        <span class="string">"e"</span>: <span class="number">4</span></div><div class="line">    &#125;,</div><div class="line">    <span class="string">"e"</span>: <span class="number">5</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; console.log(JSON.stringify(foo, [<span class="string">"a"</span>, <span class="string">"d"</span>, <span class="string">"e"</span>], <span class="number">4</span>))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">"d"</span>: &#123;</span><br><span class="line">        <span class="string">"e"</span>: <span class="number">4</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"e"</span>: <span class="number">5</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3><span id="guo-lu">过滤</span><a href="#guo-lu" class="header-anchor"></a></h3><p><strong>数组</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; JSON.stringify(foo, [<span class="string">"a"</span>, <span class="string">"d"</span>, <span class="string">"e"</span>])</div><div class="line"><span class="string">'&#123;"a":1,"d":&#123;"e":4&#125;,"e":5&#125;'</span></div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; JSON.stringify(foo, [<span class="string">"a"</span>, <span class="string">"d"</span>, <span class="string">"e"</span>])</span><br><span class="line"><span class="string">'&#123;"a":1,"d":&#123;"e":4&#125;,"e":5&#125;'</span></span><br></pre></td></tr></table></figure>
 <p><strong>方法</strong></p>
 <ul>
 <li>返回undefined表示忽略该属性；</li>
@@ -237,8 +237,8 @@
 <li>返回对象将会触发递归调用知道遇到基本类型的属性；</li>
 <li>返回无法stringify的值将会被忽略；</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">let baz = &#123;</div><div class="line">  a : <span class="number">1</span>,</div><div class="line">  b : &#123; c : <span class="number">2</span> &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 返回大于1的值</span></div><div class="line">let replacer = function (key, value) &#123;</div><div class="line">    <span class="keyword">if</span>(typeof === <span class="string">'number'</span>) &#123;</div><div class="line">        <span class="keyword">return</span> value &gt; <span class="number">1</span> ? value: undefined;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> value;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">JSON.stringify(baz, replacer);</div><div class="line"><span class="comment">// "&#123;"b":&#123;"c":2&#125;&#125;"</span></div></pre></td></tr></table></figure>
-<h2><span id="tojson">toJSON</span><a href="#tojson" class="header-anchor"></a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function">function <span class="title">Person</span> <span class="params">(first, last)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.firstName = first;</div><div class="line">    <span class="keyword">this</span>.last = last;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Person.prototype.process = function () &#123;</div><div class="line">   <span class="keyword">return</span> <span class="keyword">this</span>.firstName + <span class="string">' '</span> +</div><div class="line">          <span class="keyword">this</span>.lastName;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">let ade = <span class="keyword">new</span> Person(<span class="string">'Ade'</span>, <span class="string">'P'</span>);</div><div class="line">JSON.stringify(ade);</div><div class="line"><span class="comment">// "&#123;"firstName":"Ade","last":"P"&#125;"</span></div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">let baz = &#123;</span><br><span class="line">  a : <span class="number">1</span>,</span><br><span class="line">  b : &#123; c : <span class="number">2</span> &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回大于1的值</span></span><br><span class="line">let replacer = function (key, value) &#123;</span><br><span class="line">    <span class="keyword">if</span>(typeof === <span class="string">'number'</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> value &gt; <span class="number">1</span> ? value: undefined;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> value;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">JSON.stringify(baz, replacer);</span><br><span class="line"><span class="comment">// "&#123;"b":&#123;"c":2&#125;&#125;"</span></span><br></pre></td></tr></table></figure>
+<h2><span id="tojson">toJSON</span><a href="#tojson" class="header-anchor"></a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">function <span class="title">Person</span> <span class="params">(first, last)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.firstName = first;</span><br><span class="line">    <span class="keyword">this</span>.last = last;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.process = function () &#123;</span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">this</span>.firstName + <span class="string">' '</span> +</span><br><span class="line">          <span class="keyword">this</span>.lastName;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">let ade = <span class="keyword">new</span> Person(<span class="string">'Ade'</span>, <span class="string">'P'</span>);</span><br><span class="line">JSON.stringify(ade);</span><br><span class="line"><span class="comment">// "&#123;"firstName":"Ade","last":"P"&#125;"</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li><a href="https://blog.fundebug.com/2017/08/17/what-you-didnt-know%20about-json-stringify/" target="_blank" rel="noopener">你所不知道的JSON.stringify</a></li>
 <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON" target="_blank" rel="noopener">JSON</a></li>
@@ -344,7 +344,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="parse">parse</span><a href="#parse" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="stringify">stringify</span><a href="#stringify" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text"><span id="guo-lu">&#x8FC7;&#x6EE4;</span><a href="#guo-lu" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="tojson">toJSON</span><a href="#tojson" class="header-anchor"></a></span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">parse</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">stringify</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text">过滤</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">toJSON</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -545,6 +545,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -553,19 +561,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -574,6 +570,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -693,11 +693,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">

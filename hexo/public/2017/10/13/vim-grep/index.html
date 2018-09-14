@@ -235,7 +235,7 @@
 <p></div></p>
 <h2><span id="yu-lan">预览</span><a href="#yu-lan" class="header-anchor"></a></h2><p><img src="/images/vimgrep.gif" alt="/images/vimgrep.gif"></p>
 <h2><span id="vimgrep">vimgrep</span><a href="#vimgrep" class="header-anchor"></a></h2><p>在 Vim 命令行模式下输入 <code>:h vimgrep</code> 可以看到 vimgrep 的使用文档</p>
-<h3><span id="ming-ling">命令</span><a href="#ming-ling" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">:vim[grep][!] /&#123;pattern&#125;/[g][j] &#123;file&#125; ...</div><div class="line">:vim[grep][!] &#123;pattern&#125; &#123;file&#125; ...</div></pre></td></tr></table></figure>
+<h3><span id="ming-ling">命令</span><a href="#ming-ling" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">:vim[grep][!] /&#123;pattern&#125;/[g][j] &#123;file&#125; ...</span><br><span class="line">:vim[grep][!] &#123;pattern&#125; &#123;file&#125; ...</span><br></pre></td></tr></table></figure>
 <h3><span id="han-yi">含义</span><a href="#han-yi" class="header-anchor"></a></h3><ul>
 <li>vim 可作为 vimgrep 的缩写</li>
 <li>! 可紧随 vimgrep 之后，表示强制执行该命令</li>
@@ -243,9 +243,9 @@
 <li>g, j 可选。 如果添加 g，将显示重复行， 如果添加 j，vim 将不会自动跳转到第一个匹配的行（可能是别的文件）</li>
 <li>file 可以是正则文件名，也可以是多个确定的文件名</li>
 </ul>
-<h3><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:vimgrep /user/g **</div></pre></td></tr></table></figure>
+<h3><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:vimgrep /user/g **</span><br></pre></td></tr></table></figure>
 <p>使用该命令可以查找当前目录下所有文件中包含 <strong><em>user</em></strong> 字符串的文件，并跳转到第一个匹配的文件，<br>同时所有搜索结果会显示在 <strong><em>Quickfix</em></strong> 中，使用 <code>:cw, :copen</code> 可以打开该列表</p>
-<p>更多命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">:cnext, :cn         <span class="comment"># 当前页下一个结果</span></div><div class="line">:cprevious, :cp     <span class="comment"># 当前页上一个结果</span></div><div class="line">:clist, :cl         <span class="comment"># 使用 more 打开 Quickfix 窗口</span></div><div class="line">:copen, :cope, :cw  <span class="comment"># 打开 Quickfix 窗口，列出所有结果</span></div><div class="line">:ccl[ose]           <span class="comment"># 关闭 Quickfix 窗口。</span></div></pre></td></tr></table></figure></p>
+<p>更多命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">:cnext, :cn         <span class="comment"># 当前页下一个结果</span></span><br><span class="line">:cprevious, :cp     <span class="comment"># 当前页上一个结果</span></span><br><span class="line">:clist, :cl         <span class="comment"># 使用 more 打开 Quickfix 窗口</span></span><br><span class="line">:copen, :cope, :cw  <span class="comment"># 打开 Quickfix 窗口，列出所有结果</span></span><br><span class="line">:ccl[ose]           <span class="comment"># 关闭 Quickfix 窗口。</span></span><br></pre></td></tr></table></figure></p>
 <h2><span id="lvimgrep">lvimgrep</span><a href="#lvimgrep" class="header-anchor"></a></h2><p>lvimgrep 与 vimgrep 搜索命令基本一样，不同点在于搜索结果不是显示在 Quickfix 中<br>而是显示在 location-list 中</p>
 <h3><span id="quickfix-list-vs-location-list">quickfix-list vs location-list</span><a href="#quickfix-list-vs-location-list" class="header-anchor"></a></h3><p>quickfix list 是全局的，相对于窗口而言，不同的窗口共用一个quickfix list，<br>可以使用 :cw 或者 :copen 打开；而 loaction list 是局部于某个特定窗口的，<br>即不同窗口的 location list 可以不同，使用 :lw 或者 :lopen 命令打开。<br>（请使用：help quickfix 和:help location-list命令获取帮助）</p>
 
@@ -349,7 +349,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="yu-lan">&#x9884;&#x89C8;</span><a href="#yu-lan" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text"><span id="vimgrep">vimgrep</span><a href="#vimgrep" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text"><span id="ming-ling">&#x547D;&#x4EE4;</span><a href="#ming-ling" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text"><span id="han-yi">&#x542B;&#x4E49;</span><a href="#han-yi" class="header-anchor"></a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.3.</span> <span class="toc-text"><span id="shi-yong">&#x4F7F;&#x7528;</span><a href="#shi-yong" class="header-anchor"></a></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text"><span id="lvimgrep">lvimgrep</span><a href="#lvimgrep" class="header-anchor"></a></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.1.</span> <span class="toc-text"><span id="quickfix-list-vs-location-list">quickfix-list vs location-list</span><a href="#quickfix-list-vs-location-list" class="header-anchor"></a></span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">预览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">vimgrep</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text">命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text">含义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.3.</span> <span class="toc-text">使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">lvimgrep</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.1.</span> <span class="toc-text">quickfix-list vs location-list</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -550,6 +550,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -558,19 +566,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -579,6 +575,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -698,11 +698,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -211,12 +211,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在昨天写 Maven 构建项目文章的时候，因为要把 demo 放到 GitHub 上，结果在 <code>pull</code> 代码的时候报错<br><a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fatal: refusing to merge unrelated histories</div></pre></td></tr></table></figure></p>
+        <p>在昨天写 Maven 构建项目文章的时候，因为要把 demo 放到 GitHub 上，结果在 <code>pull</code> 代码的时候报错<br><a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fatal: refusing to merge unrelated histories</span><br></pre></td></tr></table></figure></p>
 <p>这个问题以前也碰到过，但因为懒，我通过一些讨巧的办法避开了这个问题，今天实在受不了了，赶紧 Google 了下，发现还是<strong>正面面对问题</strong>更简单。</p>
 <blockquote>
 <p>“git merge” used to allow merging two branches that have no common base by default, which led to a brand new history of an existing project created and then get pulled by an unsuspecting maintainer, which allowed an unnecessary parallel history merged into the existing project.  The command has been taught not to allow this by default, with an escape hatch “–allow-unrelated-histories” option to be used in a rare event that merges histories of two projects that started their lives independently.</p>
 </blockquote>
-<p>在 Git 2.9.0 以后两个仓库的代码合并需要添加一个参数 <code>--allow-unrelated-histories</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git pull origin master --allow-unrelated-histories</div></pre></td></tr></table></figure></p>
+<p>在 Git 2.9.0 以后两个仓库的代码合并需要添加一个参数 <code>--allow-unrelated-histories</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git pull origin master --allow-unrelated-histories</span><br></pre></td></tr></table></figure></p>
 <p>完美解决</p>
 <h2><span id="can-kao">参考</span><a href="#can-kao" class="header-anchor"></a></h2><ul>
 <li><a href="https://github.com/git/git/blob/master/Documentation/RelNotes/2.9.0.txt#L58-L68" target="_blank" rel="noopener">Git 2.9 Release Notes</a></li>
@@ -323,7 +323,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text"><span id="can-kao">&#x53C2;&#x8003;</span><a href="#can-kao" class="header-anchor"></a></span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">参考</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -524,6 +524,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -532,19 +540,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -553,6 +549,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -672,11 +672,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">
