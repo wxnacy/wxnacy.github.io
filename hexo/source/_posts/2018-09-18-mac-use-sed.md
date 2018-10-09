@@ -14,7 +14,7 @@ command i expects \ followed by text.
 
 每个不适用的命令都可以有相应的解决办法，但是这样未免太过麻烦，有个可以一次解决的方法，借助 `brew` 即可完成。
 
-安装 `gnu-sed` 
+安装 `gnu-sed`
 
 ```bash
 $ brew install gnu-sed
