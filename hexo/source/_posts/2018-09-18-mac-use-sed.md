@@ -25,3 +25,4 @@ $ brew install gnu-sed
 如果不想使用 `gsed` 命令，在安装的时候可以使用参数 `--with-default-names` 来制定命令名
 
 - [SED command error on MACOS X](https://stackoverflow.com/questions/14846304/sed-command-error-on-macos-x)
+- [mac环境使用sed修改文件出错的解决方法](https://blog.csdn.net/fdipzone/article/details/51253955)
