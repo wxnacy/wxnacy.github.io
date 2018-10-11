@@ -1,6 +1,7 @@
 ---
 title: Ubuntu 16.04 安装 Mysql
 tags:
+  - linux
   - mysql
 date: 2018-06-05 06:21:31
 ---
@@ -21,7 +22,7 @@ $ sudo apt install -y mysql-server
 **设置**
 
 ```bash
-$ mysql_secure_installation
+$ sudo mysql_secure_installation
 ```
 
 执行该命令可以修改 Mysql 密码强度并修改密码。
@@ -62,6 +63,8 @@ Threads: 1  Questions: 18  Slow queries: 0  Opens: 115  Flush tables: 1  Open ta
 > set password=password('wxnacy');
 ```
 
+因为 mysql 的安全策略，密码的最低长度为 8 位，所以这个命令会报错，想要修改它的安全策略可以参见[配置](/2018/06/10/centos7-install-mysql/#pei-zhi)
+
 ## 对外开放
 
 **打开防火墙 3306 端口**
@@ -84,6 +87,12 @@ $ sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
 
 ```mysql
 > GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'wxnacy' WITH GRANT OPTION;
+```
+
+**重启 Mysql**
+
+```bash
+$ sudo systemctl restart mysql
 ```
 
 - [A Quick Guide to Using the MySQL APT Repository](https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/)
