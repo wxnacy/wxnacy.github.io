@@ -6,8 +6,8 @@
 ------  |------   |-------  |--------   |------
 int     | int     | int     | int       | int
 string  | char[]  | String  | str       | string
-char    | char    | char    | str       |
-long    | long    | long    | int       |
+char    | char    | char    | str       | rune
+long    | long    | long    | int       | int64
 for     | for
 while   | true    | true    | true      | false
 i++     | true    | true    | false     | true
