@@ -1,7 +1,10 @@
 ---
 title: Shell 使用 read 创建交互模式脚本
-tags: [shell]
+tags:
+  - shell
+date: 2018-10-28 10:47:58
 ---
+
 
 Shell 脚本中可以使用 read 来实现交互模式。
 <!-- more --><!-- toc -->
