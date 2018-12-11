@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -203,8 +207,8 @@
 <!-- tocstop -->
 </div>
 
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&gt; $ tree -a</span><br><span class="line">.</span><br><span class="line">├── .vagrant</span><br><span class="line">│   └── machines</span><br><span class="line">│       └── default</span><br><span class="line">│           └── virtualbox</span><br><span class="line">│               ├── action_provision</span><br><span class="line">│               ├── action_set_name</span><br><span class="line">│               ├── creator_uid</span><br><span class="line">│               ├── id</span><br><span class="line">│               ├── index_uuid</span><br><span class="line">│               ├── private_key</span><br><span class="line">│               ├── synced_folders</span><br><span class="line">│               └── vagrant_cwd</span><br><span class="line">└── Vagrantfile</span><br><span class="line"></span><br><span class="line">4 directories, 9 files</span><br></pre></td></tr></table></figure>
-<h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install tree</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&gt; $ tree -a</div><div class="line">.</div><div class="line">├── .vagrant</div><div class="line">│   └── machines</div><div class="line">│       └── default</div><div class="line">│           └── virtualbox</div><div class="line">│               ├── action_provision</div><div class="line">│               ├── action_set_name</div><div class="line">│               ├── creator_uid</div><div class="line">│               ├── id</div><div class="line">│               ├── index_uuid</div><div class="line">│               ├── private_key</div><div class="line">│               ├── synced_folders</div><div class="line">│               └── vagrant_cwd</div><div class="line">└── Vagrantfile</div><div class="line"></div><div class="line">4 directories, 9 files</div></pre></td></tr></table></figure>
+<h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install tree</div></pre></td></tr></table></figure>
 <h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><ul>
 <li>-a 显示所有文件和目录。</li>
 <li>-A 使用ASNI绘图字符显示树状图而非以ASCII字符组合。</li>
@@ -228,7 +232,7 @@
 <li>-x 将范围局限在现行的文件系统中，若指定目录下的某些子目录，其存放于另一个文件系统上，则将该子目录予以排除在寻找范围外。</li>
 </ul>
 <h2><span id="yuan-li">原理</span><a href="#yuan-li" class="header-anchor"></a></h2><p>使用 <code>find</code> 命令即可达到如上效果</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ find . -<span class="built_in">print</span> | sed -e <span class="string">'s;[^/]*/;|____;g;s;____|; |;g'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ find . -<span class="built_in">print</span> | sed -e <span class="string">'s;[^/]*/;|____;g;s;____|; |;g'</span></div></pre></td></tr></table></figure>
 
       
 
@@ -529,11 +533,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -549,15 +553,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

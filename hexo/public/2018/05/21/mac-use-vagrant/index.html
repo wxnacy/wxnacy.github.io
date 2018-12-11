@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -206,33 +210,33 @@
 <!-- tocstop -->
 </div>
 
-<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ brew cask install virtualbox</span><br><span class="line">$ brew cask install vagrant</span><br></pre></td></tr></table></figure>
+<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ brew cask install virtualbox</div><div class="line">$ brew cask install vagrant</div></pre></td></tr></table></figure>
 <h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><h3><span id="kuai-su-kai-shi">快速开始</span><a href="#kuai-su-kai-shi" class="header-anchor"></a></h3><p><strong>初始化 box </strong></p>
-<p>使用 <code>centos7</code> 系统，你也可以从 <a href="https://app.vagrantup.com/boxes/search" target="_blank" rel="noopener">Discover Vagrant Boxes</a> 查找其他系统</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir vagrant &amp;&amp; <span class="built_in">cd</span> vagrant</span><br><span class="line">$ vagrant init centos/7</span><br></pre></td></tr></table></figure>
+<p>使用 <code>centos7</code> 系统，你也可以从 <a href="https://app.vagrantup.com/boxes/search" target="_blank" rel="external">Discover Vagrant Boxes</a> 查找其他系统</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ mkdir vagrant &amp;&amp; <span class="built_in">cd</span> vagrant</div><div class="line">$ vagrant init centos/7</div></pre></td></tr></table></figure>
 <p><strong>启动虚拟机</strong></p>
 <p>第一次启动时，vagrant 检查到没有指定的系统，会自动下载该镜像，下载目录为 <code>~/.vagrant.d/boxes</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant up</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vagrant up</div></pre></td></tr></table></figure>
 <p><strong>链接</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant ssh</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vagrant ssh</div></pre></td></tr></table></figure>
 <p><strong>关机</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant halt</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vagrant halt</div></pre></td></tr></table></figure>
 <p><strong>销毁</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant destroy</span><br><span class="line">$ vagrant destroy -f    <span class="comment"># 不询问</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ vagrant destroy</div><div class="line">$ vagrant destroy -f    <span class="comment"># 不询问</span></div></pre></td></tr></table></figure>
 <h3><span id="boxes">Boxes</span><a href="#boxes" class="header-anchor"></a></h3><p><strong>下载 box</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant box add hashicorp/precise64</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vagrant box add hashicorp/precise64</div></pre></td></tr></table></figure>
 <p><strong>使用</strong></p>
 <p>修改 <code>Vagantfile</code> 文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vagrant.configure(<span class="string">"2"</span>) <span class="keyword">do</span> |config|</span><br><span class="line">  config.vm.box = <span class="string">"hashicorp/precise64"</span></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Vagrant.configure(<span class="string">"2"</span>) <span class="keyword">do</span> |config|</div><div class="line">  config.vm.box = <span class="string">"hashicorp/precise64"</span></div><div class="line">end</div></pre></td></tr></table></figure>
 <p><strong>指定版本</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Vagrant.configure(<span class="string">"2"</span>) <span class="keyword">do</span> |config|</span><br><span class="line">  config.vm.box = <span class="string">"hashicorp/precise64"</span></span><br><span class="line">  config.vm.box_version = <span class="string">"1.1.0"</span></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Vagrant.configure(<span class="string">"2"</span>) <span class="keyword">do</span> |config|</div><div class="line">  config.vm.box = <span class="string">"hashicorp/precise64"</span></div><div class="line">  config.vm.box_version = <span class="string">"1.1.0"</span></div><div class="line">end</div></pre></td></tr></table></figure>
 <p><strong>指定地址</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Vagrant.configure(<span class="string">"2"</span>) <span class="keyword">do</span> |config|</span><br><span class="line">  config.vm.box = <span class="string">"hashicorp/precise64"</span></span><br><span class="line">  config.vm.box_url = <span class="string">"http://files.vagrantup.com/precise64.box"</span></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-<p>你也可以通过 <a href="https://app.vagrantup.com/boxes/search" target="_blank" rel="noopener">Vagant Cloud</a> 查找 box</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Vagrant.configure(<span class="string">"2"</span>) <span class="keyword">do</span> |config|</div><div class="line">  config.vm.box = <span class="string">"hashicorp/precise64"</span></div><div class="line">  config.vm.box_url = <span class="string">"http://files.vagrantup.com/precise64.box"</span></div><div class="line">end</div></pre></td></tr></table></figure>
+<p>你也可以通过 <a href="https://app.vagrantup.com/boxes/search" target="_blank" rel="external">Vagant Cloud</a> 查找 box</p>
 <ul>
-<li><a href="https://www.vagrantup.com/" target="_blank" rel="noopener">官网</a></li>
-<li><a href="http://sourabhbajaj.com/mac-setup/Vagrant/" target="_blank" rel="noopener">Vagrant</a></li>
-<li><a href="http://vagrantmanager.com/" target="_blank" rel="noopener">Vagrant Manager</a></li>
+<li><a href="https://www.vagrantup.com/" target="_blank" rel="external">官网</a></li>
+<li><a href="http://sourabhbajaj.com/mac-setup/Vagrant/" target="_blank" rel="external">Vagrant</a></li>
+<li><a href="http://vagrantmanager.com/" target="_blank" rel="external">Vagrant Manager</a></li>
 </ul>
 
       
@@ -530,11 +534,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -550,15 +554,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

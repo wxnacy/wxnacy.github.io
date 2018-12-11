@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -198,21 +202,21 @@
 <!-- tocstop -->
 </div>
 
-<p>因为使用的阿里云的服务器，默认使用的他们的镜像，但是发现同步很慢，无法满足高频的开发节奏，而是用 <a href="https://pypi.org/simple" target="_blank" rel="noopener">pypi</a> 就会经常超时或直接被墙。</p>
+<p>因为使用的阿里云的服务器，默认使用的他们的镜像，但是发现同步很慢，无法满足高频的开发节奏，而是用 <a href="https://pypi.org/simple" target="_blank" rel="external">pypi</a> 就会经常超时或直接被墙。</p>
 <p>从网上找到一些国内其他的镜像</p>
 <ul>
-<li><a href="http://pypi.douban.com/" target="_blank" rel="noopener">http://pypi.douban.com/</a> 豆瓣</li>
-<li><a href="http://pypi.mirrors.ustc.edu.cn/" target="_blank" rel="noopener">http://pypi.mirrors.ustc.edu.cn/</a> 中科大</li>
-<li><a href="https://pypi.tuna.tsinghua.edu.cn/" target="_blank" rel="noopener">https://pypi.tuna.tsinghua.edu.cn/</a> 清华</li>
+<li><a href="http://pypi.douban.com/" target="_blank" rel="external">http://pypi.douban.com/</a> 豆瓣</li>
+<li><a href="http://pypi.mirrors.ustc.edu.cn/" target="_blank" rel="external">http://pypi.mirrors.ustc.edu.cn/</a> 中科大</li>
+<li><a href="https://pypi.tuna.tsinghua.edu.cn/" target="_blank" rel="external">https://pypi.tuna.tsinghua.edu.cn/</a> 清华</li>
 </ul>
 <p>其中豆瓣的最好，更新最快</p>
 <p><strong>使用</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install &lt;package_name&gt; -i http://pypi.doubanio.com/simple/</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install &lt;package_name&gt; -i http://pypi.doubanio.com/simple/</div></pre></td></tr></table></figure>
 <p>全局使用</p>
 <p>修改 <code>~/.pip/pip.conf</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">index-url=http://pypi.douban.com/simple/</span><br><span class="line"></span><br><span class="line">[install]</span><br><span class="line">trusted-host=pypi.douban.com</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[global]</div><div class="line">index-url=http://pypi.douban.com/simple/</div><div class="line"></div><div class="line">[install]</div><div class="line">trusted-host=pypi.douban.com</div></pre></td></tr></table></figure>
 <p>最后还有一种情况是，命名镜像源中已经有了最新上传的包，但是通过 <code>pip install --upgrade wwx</code> 并不能更新到，索性只好直接找到包地址安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install https://files.pythonhosted.org/packages/41/64/5417dc693f4aa3cfc194c7f491cb3e88567de2214ecfb330caac57611870/wwx-0.1.1.tar.gz<span class="comment">#sha256=57a4243adc13f9e91ab7db70ffb7da88c01447eff594727232f46f3c1be6d107</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install https://files.pythonhosted.org/packages/41/64/5417dc693f4aa3cfc194c7f491cb3e88567de2214ecfb330caac57611870/wwx-0.1.1.tar.gz<span class="comment">#sha256=57a4243adc13f9e91ab7db70ffb7da88c01447eff594727232f46f3c1be6d107</span></div></pre></td></tr></table></figure>
 
       
 
@@ -509,11 +513,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -529,15 +533,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

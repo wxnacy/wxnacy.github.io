@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -193,7 +197,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>差不多半个月前我介绍了 Python 最新的字符串格式化函数 <a href="/2018/01/03/python-format/">format()</a>，今天来介绍下 3.6 版本增加的新功能 <a href="https://docs.python.org/3.6/reference/lexical_analysis.html#f-strings" target="_blank" rel="noopener">formatted string literals</a> ，简称 <code>f-strings</code><br><a id="more"></a><div class="toc"></p>
+        <p>差不多半个月前我介绍了 Python 最新的字符串格式化函数 <a href="/2018/01/03/python-format/">format()</a>，今天来介绍下 3.6 版本增加的新功能 <a href="https://docs.python.org/3.6/reference/lexical_analysis.html#f-strings" target="_blank" rel="external">formatted string literals</a> ，简称 <code>f-strings</code><br><a id="more"></a><div class="toc"></p>
 <!-- toc -->
 <ul>
 <li><a href="#shi-yong">使用</a></li>
@@ -202,15 +206,15 @@
 </ul>
 <!-- tocstop -->
 <p></div></p>
-<h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><p>这是一个让人兴奋的格式化字符串的方式，为什么这么说，先来看看效果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>name = <span class="string">'wxnacy'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">f'my name is <span class="subst">&#123;name&#125;</span>'</span></span><br><span class="line"><span class="string">'my name is wxnacy'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">f'my name is <span class="subst">&#123;name&#125;</span> and length is <span class="subst">&#123;len(name)&#125;</span>'</span></span><br><span class="line"><span class="string">'my name is wxnacy and length is 6'</span></span><br></pre></td></tr></table></figure></p>
-<p>之所以叫 <code>f-strings</code> ，就是要用 f 作为字符串的开头，就像 <code>b&#39;&#39;, u&#39;&#39;</code> 那样，然后用 <code>{}</code> 中使用变量，甚至可以使用函数方法，就可以完成格式化，如果你也接触 Node 开发，就知道现在在 Javascript 中字符串的格式化通常是这样的<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; name = <span class="string">'wxnacy'</span></span><br><span class="line"><span class="string">'wxnacy'</span></span><br><span class="line">&gt; <span class="string">`my name is <span class="subst">$&#123;name&#125;</span> and length is <span class="subst">$&#123;name.length&#125;</span>`</span></span><br><span class="line"><span class="string">'my name is wxnacy and length is 6'</span></span><br></pre></td></tr></table></figure></p>
-<h2><span id="yu-format-dui-bi">与 format() 对比</span><a href="#yu-format-dui-bi" class="header-anchor"></a></h2><p><code>f-strings</code> 与 <code>format()</code> 格式化的语法完全一致，<strong>只是更加简洁</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">f'<span class="subst">&#123;datetime.now():%Y-%m-%d %H:%M:%S.%s&#125;</span>'</span></span><br><span class="line"><span class="string">'2018-01-16 11:37:18.1516073838'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'&#123;:%Y-%m-%d %H:%M:%S.%s&#125;'</span>.format(datetime.now())</span><br><span class="line"><span class="string">'2018-01-16 11:44:34.1516074274'</span></span><br></pre></td></tr></table></figure></p>
+<h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><p>这是一个让人兴奋的格式化字符串的方式，为什么这么说，先来看看效果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>name = <span class="string">'wxnacy'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">f'my name is <span class="subst">&#123;name&#125;</span>'</span></div><div class="line"><span class="string">'my name is wxnacy'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">f'my name is <span class="subst">&#123;name&#125;</span> and length is <span class="subst">&#123;len(name)&#125;</span>'</span></div><div class="line"><span class="string">'my name is wxnacy and length is 6'</span></div></pre></td></tr></table></figure></p>
+<p>之所以叫 <code>f-strings</code> ，就是要用 f 作为字符串的开头，就像 <code>b&#39;&#39;, u&#39;&#39;</code> 那样，然后用 <code>{}</code> 中使用变量，甚至可以使用函数方法，就可以完成格式化，如果你也接触 Node 开发，就知道现在在 Javascript 中字符串的格式化通常是这样的<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; name = <span class="string">'wxnacy'</span></div><div class="line"><span class="string">'wxnacy'</span></div><div class="line">&gt; <span class="string">`my name is <span class="subst">$&#123;name&#125;</span> and length is <span class="subst">$&#123;name.length&#125;</span>`</span></div><div class="line"><span class="string">'my name is wxnacy and length is 6'</span></div></pre></td></tr></table></figure></p>
+<h2><span id="yu-format-dui-bi">与 format() 对比</span><a href="#yu-format-dui-bi" class="header-anchor"></a></h2><p><code>f-strings</code> 与 <code>format()</code> 格式化的语法完全一致，<strong>只是更加简洁</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">f'<span class="subst">&#123;datetime.now():%Y-%m-%d %H:%M:%S.%s&#125;</span>'</span></div><div class="line"><span class="string">'2018-01-16 11:37:18.1516073838'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'&#123;:%Y-%m-%d %H:%M:%S.%s&#125;'</span>.format(datetime.now())</div><div class="line"><span class="string">'2018-01-16 11:44:34.1516074274'</span></div></pre></td></tr></table></figure></p>
 <p>从上面的例子可以看到，除了以 <code>f</code> 开头外，唯一的区别就在 <code>datetime.now()</code> 放在 <code>:</code> 的前面。这样关于数字、日期、对象等格式化的使用，只要看我这篇文章 <a href="/2018/01/03/python-format/">Python 格式化函数 format</a> 即可。</p>
 <p>可以想象如果你的项目版本全面提到 3.6 以后，<code>f-strings</code> 格式化方法一定是首选，因为它不但简洁，并且<strong>快</strong>，它的速度比 <code>format()</code> 快了一倍。</p>
 <h2><span id="can-kao">参考</span><a href="#can-kao" class="header-anchor"></a></h2><ul>
-<li><a href="https://docs.python.org/3.6/reference/lexical_analysis.html#f-strings" target="_blank" rel="noopener">Formatted string literals</a></li>
-<li><a href="https://cito.github.io/blog/f-strings/" target="_blank" rel="noopener">The new f-strings in Python 3.6</a></li>
-<li><a href="https://www.python.org/dev/peps/pep-0498/" target="_blank" rel="noopener">PEP 498 – Literal String Interpolation</a></li>
+<li><a href="https://docs.python.org/3.6/reference/lexical_analysis.html#f-strings" target="_blank" rel="external">Formatted string literals</a></li>
+<li><a href="https://cito.github.io/blog/f-strings/" target="_blank" rel="external">The new f-strings in Python 3.6</a></li>
+<li><a href="https://www.python.org/dev/peps/pep-0498/" target="_blank" rel="external">PEP 498 – Literal String Interpolation</a></li>
 </ul>
 
       
@@ -508,11 +512,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -528,15 +532,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

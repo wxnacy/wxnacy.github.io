@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -193,7 +197,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Tmux 好用，但是在电脑重启后，之前开启过的回话都不会保存，<br>而 <a href="https://github.com/tmux-plugins/tmux-resurrect" target="_blank" rel="noopener">tmux-resurect</a> 和 <a href="https://github.com/tmux-plugins/tmux-continuum" target="_blank" rel="noopener">tmux-continuum</a> 可以很好的自动保存 Tmux 使用状态<br><a id="more"></a></p>
+        <p>Tmux 好用，但是在电脑重启后，之前开启过的回话都不会保存，<br>而 <a href="https://github.com/tmux-plugins/tmux-resurrect" target="_blank" rel="external">tmux-resurect</a> 和 <a href="https://github.com/tmux-plugins/tmux-continuum" target="_blank" rel="external">tmux-continuum</a> 可以很好的自动保存 Tmux 使用状态<br><a id="more"></a></p>
 <div class="toc">
 
 <!-- toc -->
@@ -211,13 +215,13 @@
 <!-- tocstop -->
 </div>
 
-<h2><span id="tmux-resurect">Tmux Resurect</span><a href="#tmux-resurect" class="header-anchor"></a></h2><h3><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h3><p>Tmux Plugin Manager<br>修改 .tmux.conf<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> -g @plugin <span class="string">'tmux-plugins/tmux-resurrect'</span></span><br></pre></td></tr></table></figure></p>
+<h2><span id="tmux-resurect">Tmux Resurect</span><a href="#tmux-resurect" class="header-anchor"></a></h2><h3><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h3><p>Tmux Plugin Manager<br>修改 .tmux.conf<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">set</span> -g @plugin <span class="string">'tmux-plugins/tmux-resurrect'</span></div></pre></td></tr></table></figure></p>
 <p>随后使用 <code>prefix + I</code> 进行安装</p>
-<h3><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">prefix &lt;c<span class="_">-s</span>&gt;    <span class="comment"># 保存，Tmux 状态栏会显示“Saving。。。” 字样，完毕后即为保存</span></span><br><span class="line">prefix &lt;c-r&gt;    <span class="comment"># 还原 Tmux 状态</span></span><br></pre></td></tr></table></figure>
+<h3><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">prefix &lt;c<span class="_">-s</span>&gt;    <span class="comment"># 保存，Tmux 状态栏会显示“Saving。。。” 字样，完毕后即为保存</span></div><div class="line">prefix &lt;c-r&gt;    <span class="comment"># 还原 Tmux 状态</span></div></pre></td></tr></table></figure>
 <p>这样只要养成手动保存的习惯，就可以实时保存 Tmux 的状态，<br>但是我们仍然希望可以自动保存，这时候我们需要用到 Tmux Continuum</p>
-<h2><span id="tmux-continuum">Tmux Continuum</span><a href="#tmux-continuum" class="header-anchor"></a></h2><h3><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h3><p>Tmux Plugin Manager<br>修改 .tmux.conf<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> -g @plugin <span class="string">'tmux-plugins/tmux-continuum'</span></span><br></pre></td></tr></table></figure></p>
+<h2><span id="tmux-continuum">Tmux Continuum</span><a href="#tmux-continuum" class="header-anchor"></a></h2><h3><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h3><p>Tmux Plugin Manager<br>修改 .tmux.conf<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">set</span> -g @plugin <span class="string">'tmux-plugins/tmux-continuum'</span></div></pre></td></tr></table></figure></p>
 <p>随后使用 <code>prefix + I</code> 进行安装</p>
-<p>Tmux Continuum 默认十五分钟备份一次，可以自己修改<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> -g @continuum-save-interval <span class="string">'60'</span> <span class="comment"># 修改为一小时</span></span><br></pre></td></tr></table></figure></p>
+<p>Tmux Continuum 默认十五分钟备份一次，可以自己修改<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">set</span> -g @continuum-save-interval <span class="string">'60'</span> <span class="comment"># 修改为一小时</span></div></pre></td></tr></table></figure></p>
 <p>然后使用 <code>tmux source-file ~/.tmux.conf</code> 命令重载 Tmux 配置</p>
 <p>两个插件都需要 Tmux &gt;= 1.9 才行</p>
 
@@ -516,11 +520,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -536,15 +540,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

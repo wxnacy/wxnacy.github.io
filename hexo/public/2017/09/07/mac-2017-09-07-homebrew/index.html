@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -194,7 +198,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p><a href="https://brew.sh/index_zh-cn.html" target="_blank" rel="noopener"> HomeBrew </a> 使 macOS 更完整</p>
+<p><a href="https://brew.sh/index_zh-cn.html" target="_blank" rel="external"> HomeBrew </a> 使 macOS 更完整</p>
 </blockquote>
 <a id="more"></a>
 <div class="toc">
@@ -218,19 +222,19 @@
 <!-- tocstop -->
 </div>
 
-<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/bin/ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure>
-<p>安装以后<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'export PATH="/usr/local/bin:$PATH"'</span> &gt;&gt; ~/.bash_profile</span><br></pre></td></tr></table></figure></p>
+<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ /usr/bin/ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></div></pre></td></tr></table></figure>
+<p>安装以后<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="string">'export PATH="/usr/local/bin:$PATH"'</span> &gt;&gt; ~/.bash_profile</div></pre></td></tr></table></figure></p>
 <p>这样是让 HomeBrew 下载的包优于系统自带的包</p>
-<h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><h3><span id="xia-zai-di-yi-ge-ruan-jian-bao">下载第一个软件包</span><a href="#xia-zai-di-yi-ge-ruan-jian-bao" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install wget</span><br></pre></td></tr></table></figure>
+<h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><h3><span id="xia-zai-di-yi-ge-ruan-jian-bao">下载第一个软件包</span><a href="#xia-zai-di-yi-ge-ruan-jian-bao" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install wget</div></pre></td></tr></table></figure>
 <p>这样在 Mac 中你也可以使用 wget 工具了</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /usr/<span class="built_in">local</span></span><br><span class="line">$ ls -l bin | grep <span class="string">'wget'</span></span><br><span class="line">wget -&gt; ../Cellar/wget/1.19.1_1/bin/wget</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> /usr/<span class="built_in">local</span></div><div class="line">$ ls -l bin | grep <span class="string">'wget'</span></div><div class="line">wget -&gt; ../Cellar/wget/1.19.1_1/bin/wget</div></pre></td></tr></table></figure>
 <p>通过上边一段命令，我们会发现，HomeBrew 会将软件包下载到单独的目录 /usr/local/Cellar 中，并将文件软链接到 /usr/local/bin 中</p>
-<h3><span id="geng-duo-ming-ling">更多命令</span><a href="#geng-duo-ming-ling" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ brew install wget             <span class="comment"># 安装包</span></span><br><span class="line">$ brew search wget              <span class="comment"># 搜索包（支持正则表达式）eq：brew search /^wg/</span></span><br><span class="line">$ brew info wget                <span class="comment"># 查看包的信息</span></span><br><span class="line">$ brew uninstall wget           <span class="comment"># 卸载包</span></span><br><span class="line">$ brew switch wget 1.9.1        <span class="comment"># 包切换到某一个版本</span></span><br><span class="line">$ brew outdated                 <span class="comment"># 列出过时的包</span></span><br><span class="line">$ brew upgrade wget             <span class="comment"># 更新包</span></span><br><span class="line">$ brew update                   <span class="comment"># 更新 HomeBrew 本身</span></span><br><span class="line">$ brew cleanup wget             <span class="comment"># 清除缓存</span></span><br><span class="line">$ brew list                     <span class="comment"># 列出已经安装的包</span></span><br><span class="line">$ <span class="built_in">echo</span> $(brew --prefix wget)    <span class="comment"># 输出软件安装路径，/usr/local/opt/wget</span></span><br></pre></td></tr></table></figure>
-<h3><span id="oh-my-zsh-bu-quan">oh-my-zsh 补全</span><a href="#oh-my-zsh-bu-quan" class="header-anchor"></a></h3><p>在安装和搜索包时，如果记不住全名可以使用 <strong>oh-my-zsh</strong> 的自动补全功能，但是需要下载相应的包<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install zsh-completions</span><br></pre></td></tr></table></figure></p>
-<h2><span id="cask">Cask</span><a href="#cask" class="header-anchor"></a></h2><p><a href="https://github.com/caskroom/homebrew-cask" target="_blank" rel="noopener">github</a></p>
-<p>如果你已经厌倦了在新装一个机子时，到处找软件下载地址，在一个一个手动安装，那你可能需要用到 <a href="https://caskroom.github.io/" target="_blank" rel="noopener">Cask</a>，它可以用一条命令就安装好你需要的常规软件</p>
-<h3><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew tap caskroom/cask</span><br></pre></td></tr></table></figure>
-<h3><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew cask install google-chrome</span><br></pre></td></tr></table></figure>
+<h3><span id="geng-duo-ming-ling">更多命令</span><a href="#geng-duo-ming-ling" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ brew install wget             <span class="comment"># 安装包</span></div><div class="line">$ brew search wget              <span class="comment"># 搜索包（支持正则表达式）eq：brew search /^wg/</span></div><div class="line">$ brew info wget                <span class="comment"># 查看包的信息</span></div><div class="line">$ brew uninstall wget           <span class="comment"># 卸载包</span></div><div class="line">$ brew switch wget 1.9.1        <span class="comment"># 包切换到某一个版本</span></div><div class="line">$ brew outdated                 <span class="comment"># 列出过时的包</span></div><div class="line">$ brew upgrade wget             <span class="comment"># 更新包</span></div><div class="line">$ brew update                   <span class="comment"># 更新 HomeBrew 本身</span></div><div class="line">$ brew cleanup wget             <span class="comment"># 清除缓存</span></div><div class="line">$ brew list                     <span class="comment"># 列出已经安装的包</span></div><div class="line">$ <span class="built_in">echo</span> $(brew --prefix wget)    <span class="comment"># 输出软件安装路径，/usr/local/opt/wget</span></div></pre></td></tr></table></figure>
+<h3><span id="oh-my-zsh-bu-quan">oh-my-zsh 补全</span><a href="#oh-my-zsh-bu-quan" class="header-anchor"></a></h3><p>在安装和搜索包时，如果记不住全名可以使用 <strong>oh-my-zsh</strong> 的自动补全功能，但是需要下载相应的包<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install zsh-completions</div></pre></td></tr></table></figure></p>
+<h2><span id="cask">Cask</span><a href="#cask" class="header-anchor"></a></h2><p><a href="https://github.com/caskroom/homebrew-cask" target="_blank" rel="external">github</a></p>
+<p>如果你已经厌倦了在新装一个机子时，到处找软件下载地址，在一个一个手动安装，那你可能需要用到 <a href="https://caskroom.github.io/" target="_blank" rel="external">Cask</a>，它可以用一条命令就安装好你需要的常规软件</p>
+<h3><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew tap caskroom/cask</div></pre></td></tr></table></figure>
+<h3><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew cask install google-chrome</div></pre></td></tr></table></figure>
 <p>是不是很简单，赶快用起来吧</p>
 <h2><span id="lu-jing-jie-shi">路径解释</span><a href="#lu-jing-jie-shi" class="header-anchor"></a></h2><ul>
 <li><strong>Cellar</strong>: 文件夹存放的是所有包安装所在路径，包括二进制，文档和配置文件，按照这样Cellar/包名/版本号/的形式来安放。</li>
@@ -542,11 +546,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -562,15 +566,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -202,8 +206,8 @@
 </ul>
 <!-- tocstop -->
 <p></div><br><code>user_agents</code> 是 Python 库，可以解析用户代理中使用系统、设备、浏览器等信息。它依赖于 <code>ua_parse</code> 解析库对原始代理字符串的解析。</p>
-<h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pyyaml ua-parser user-agents</span><br></pre></td></tr></table></figure>
-<h2><span id="she-bei-xin-xi">设备信息</span><a href="#she-bei-xin-xi" class="header-anchor"></a></h2><p>系浏览、器统、设备<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> user_agents <span class="keyword">import</span> parse</span><br><span class="line"></span><br><span class="line"><span class="comment"># iPhone's user agent string</span></span><br><span class="line">ua_string = <span class="string">'Mozilla/5.0 (iPhone; CPU iPhone OS 5_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9B179 Safari/7534.48.3'</span></span><br><span class="line">user_agent = parse(ua_string)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Accessing user agent's browser attributes</span></span><br><span class="line">user_agent.browser  <span class="comment"># returns Browser(family=u'Mobile Safari', version=(5, 1), version_string='5.1')</span></span><br><span class="line">user_agent.browser.family  <span class="comment"># returns 'Mobile Safari'</span></span><br><span class="line">user_agent.browser.version  <span class="comment"># returns (5, 1)</span></span><br><span class="line">user_agent.browser.version_string   <span class="comment"># returns '5.1'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Accessing user agent's operating system properties</span></span><br><span class="line">user_agent.os  <span class="comment"># returns OperatingSystem(family=u'iOS', version=(5, 1), version_string='5.1')</span></span><br><span class="line">user_agent.os.family  <span class="comment"># returns 'iOS'</span></span><br><span class="line">user_agent.os.version  <span class="comment"># returns (5, 1)</span></span><br><span class="line">user_agent.os.version_string  <span class="comment"># returns '5.1'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Accessing user agent's device properties</span></span><br><span class="line">user_agent.device  <span class="comment"># returns Device(family=u'iPhone', brand=u'Apple', model=u'iPhone')</span></span><br><span class="line">user_agent.device.family  <span class="comment"># returns 'iPhone'</span></span><br><span class="line">user_agent.device.brand <span class="comment"># returns 'Apple'</span></span><br><span class="line">user_agent.device.model <span class="comment"># returns 'iPhone'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Viewing a pretty string version</span></span><br><span class="line">str(user_agent) <span class="comment"># returns "iPhone / iOS 5.1 / Mobile Safari 5.1"</span></span><br></pre></td></tr></table></figure></p>
+<h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install pyyaml ua-parser user-agents</div></pre></td></tr></table></figure>
+<h2><span id="she-bei-xin-xi">设备信息</span><a href="#she-bei-xin-xi" class="header-anchor"></a></h2><p>系浏览、器统、设备<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> user_agents <span class="keyword">import</span> parse</div><div class="line"></div><div class="line"><span class="comment"># iPhone's user agent string</span></div><div class="line">ua_string = <span class="string">'Mozilla/5.0 (iPhone; CPU iPhone OS 5_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9B179 Safari/7534.48.3'</span></div><div class="line">user_agent = parse(ua_string)</div><div class="line"></div><div class="line"><span class="comment"># Accessing user agent's browser attributes</span></div><div class="line">user_agent.browser  <span class="comment"># returns Browser(family=u'Mobile Safari', version=(5, 1), version_string='5.1')</span></div><div class="line">user_agent.browser.family  <span class="comment"># returns 'Mobile Safari'</span></div><div class="line">user_agent.browser.version  <span class="comment"># returns (5, 1)</span></div><div class="line">user_agent.browser.version_string   <span class="comment"># returns '5.1'</span></div><div class="line"></div><div class="line"><span class="comment"># Accessing user agent's operating system properties</span></div><div class="line">user_agent.os  <span class="comment"># returns OperatingSystem(family=u'iOS', version=(5, 1), version_string='5.1')</span></div><div class="line">user_agent.os.family  <span class="comment"># returns 'iOS'</span></div><div class="line">user_agent.os.version  <span class="comment"># returns (5, 1)</span></div><div class="line">user_agent.os.version_string  <span class="comment"># returns '5.1'</span></div><div class="line"></div><div class="line"><span class="comment"># Accessing user agent's device properties</span></div><div class="line">user_agent.device  <span class="comment"># returns Device(family=u'iPhone', brand=u'Apple', model=u'iPhone')</span></div><div class="line">user_agent.device.family  <span class="comment"># returns 'iPhone'</span></div><div class="line">user_agent.device.brand <span class="comment"># returns 'Apple'</span></div><div class="line">user_agent.device.model <span class="comment"># returns 'iPhone'</span></div><div class="line"></div><div class="line"><span class="comment"># Viewing a pretty string version</span></div><div class="line">str(user_agent) <span class="comment"># returns "iPhone / iOS 5.1 / Mobile Safari 5.1"</span></div></pre></td></tr></table></figure></p>
 <h2><span id="she-bei-lei-xing-pan-duan">设备类型判断</span><a href="#she-bei-lei-xing-pan-duan" class="header-anchor"></a></h2><ul>
 <li><code>is_mobile</code> 是否为手机</li>
 <li><code>is_pc</code> 是否为桌面电脑</li>
@@ -211,7 +215,7 @@
 <li><code>is_touch_capable</code> 是否为触摸设备</li>
 <li><p><code>is_bot</code> 是否为爬虫机器人</p>
 </li>
-<li><p><a href="https://github.com/selwin/python-user-agents" target="_blank" rel="noopener">Python User Agents</a></p>
+<li><p><a href="https://github.com/selwin/python-user-agents" target="_blank" rel="external">Python User Agents</a></p>
 </li>
 </ul>
 
@@ -510,11 +514,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -530,15 +534,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

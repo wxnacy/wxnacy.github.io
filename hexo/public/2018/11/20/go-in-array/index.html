@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -198,9 +202,9 @@
 <!-- tocstop -->
 <p></div><br>刚入门时第一个想到的方法就是对某个类型的数组进行遍历，再逐个对比，但这样有个最大的问题就是我们只能对一种类型的数组进行对比，不能灵活的应对各种类型。</p>
 <p>在 stackexchange 中看到一个方法，充分的利用了 <code>reflect</code> 包对 <code>interface{}</code> 进行判断，如下</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"reflect"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">in_array</span><span class="params">(val <span class="keyword">interface</span>&#123;&#125;, array <span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">(exists <span class="keyword">bool</span>, index <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">    exists = <span class="literal">false</span></span><br><span class="line">    index = <span class="number">-1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">switch</span> reflect.TypeOf(array).Kind() &#123;</span><br><span class="line">    <span class="keyword">case</span> reflect.Slice:</span><br><span class="line">        s := reflect.ValueOf(array)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; s.Len(); i++ &#123;</span><br><span class="line">            <span class="keyword">if</span> reflect.DeepEqual(val, s.Index(i).Interface()) == <span class="literal">true</span> &#123;</span><br><span class="line">                index = i</span><br><span class="line">                exists = <span class="literal">true</span></span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></div><div class="line"><span class="keyword">import</span> <span class="string">"reflect"</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">in_array</span><span class="params">(val <span class="keyword">interface</span>&#123;&#125;, array <span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">(exists <span class="keyword">bool</span>, index <span class="keyword">int</span>)</span></span> &#123;</div><div class="line">    exists = <span class="literal">false</span></div><div class="line">    index = <span class="number">-1</span></div><div class="line"></div><div class="line">    <span class="keyword">switch</span> reflect.TypeOf(array).Kind() &#123;</div><div class="line">    <span class="keyword">case</span> reflect.Slice:</div><div class="line">        s := reflect.ValueOf(array)</div><div class="line"></div><div class="line">        <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; s.Len(); i++ &#123;</div><div class="line">            <span class="keyword">if</span> reflect.DeepEqual(val, s.Index(i).Interface()) == <span class="literal">true</span> &#123;</div><div class="line">                index = i</div><div class="line">                exists = <span class="literal">true</span></div><div class="line">                <span class="keyword">return</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
-<li><a href="https://codereview.stackexchange.com/questions/60074/in-array-in-go" target="_blank" rel="noopener">in_array() in Go</a></li>
+<li><a href="https://codereview.stackexchange.com/questions/60074/in-array-in-go" target="_blank" rel="external">in_array() in Go</a></li>
 </ul>
 
       
@@ -498,11 +502,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -518,15 +522,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

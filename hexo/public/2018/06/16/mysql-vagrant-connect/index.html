@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -204,18 +208,18 @@
 </div>
 
 <h2><span id="she-zhi-si-you-ip">设置私有 ip</span><a href="#she-zhi-si-you-ip" class="header-anchor"></a></h2><p>修改 <code>Vagrantfile</code> 添加 <code>private_network</code>，这样外部可以通过该 ip 链接</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config.vm.network <span class="string">"private_network"</span>, ip: <span class="string">"192.168.33.10"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">config.vm.network <span class="string">"private_network"</span>, ip: <span class="string">"192.168.33.10"</span></div></pre></td></tr></table></figure>
 <p>这步需要放在第一步来完成，随后重新加载配置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant reload</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vagrant reload</div></pre></td></tr></table></figure>
 <h2><span id="qu-diao-bang-ding-127-0-0-1">去掉绑定 127.0.0.1</span><a href="#qu-diao-bang-ding-127-0-0-1" class="header-anchor"></a></h2><p>如果你是使用 <code>rpm</code> 来安装的话，修改 <code>/etc/mysql/mysql.conf.d/mysql.cnf</code>，将绑定 <code>127.0.0.1</code> 这一行注释掉</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bind-address            = 127.0.0.1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># bind-address            = 127.0.0.1</span></div></pre></td></tr></table></figure>
 <h2><span id="dui-suo-you-ip-kai-fang">对所有 ip 开放</span><a href="#dui-suo-you-ip-kai-fang" class="header-anchor"></a></h2><p>登陆 Mysql 并对所有外网 ip 开放权限</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mysql -uroot -p</span><br><span class="line"></span><br><span class="line">&gt; GRANT ALL PRIVILEGES ON *.* TO <span class="string">'root'</span>@<span class="string">'%'</span> IDENTIFIED BY <span class="string">'your_mysql_password'</span> WITH GRANT OPTION;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ mysql -uroot -p</div><div class="line"></div><div class="line">&gt; GRANT ALL PRIVILEGES ON *.* TO <span class="string">'root'</span>@<span class="string">'%'</span> IDENTIFIED BY <span class="string">'your_mysql_password'</span> WITH GRANT OPTION;</div></pre></td></tr></table></figure>
 <p>这样从外部通过如下命令就可以访问了</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysql -uroot -p -h 192.168.33.10</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mysql -uroot -p -h 192.168.33.10</div></pre></td></tr></table></figure>
 <p><strong>注意</strong></p>
 <p>如果在生产环境上的话建议只对指定 ip 开放权限</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; GRANT ALL PRIVILEGES ON *.* TO &apos;root&apos;@&apos;213.1.2.1&apos; IDENTIFIED BY &apos;your_mysql_password&apos; WITH GRANT OPTION;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; GRANT ALL PRIVILEGES ON *.* TO &apos;root&apos;@&apos;213.1.2.1&apos; IDENTIFIED BY &apos;your_mysql_password&apos; WITH GRANT OPTION;</div></pre></td></tr></table></figure>
 
       
 
@@ -512,11 +516,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -532,15 +536,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

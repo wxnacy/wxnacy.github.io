@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -207,17 +211,17 @@
 </blockquote>
 <p>现在基本没有程序员在将密码明文存在数据库了，但是如果只是简单的做 MD5 加密，那跟明文也没什么区别了。</p>
 <p>MD5 被破解的原理很简单（首先声明 MD5 的破解不是被解密的，每次提到这个问题，就能想起以前跟我较真的一个同事，想起他一脸严肃的跟我说 MD5 可以解密，我就想笑，一句话就可以反驳，如果 MD5 可以解密，那它就是全世界最牛逼的压缩工具）。MD5 的长度是固定的，无限的数据组合散列出固定长度的密文，就一定会有两个不同的明文可以得到相同的 MD5 值。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">其他明文：md5(abc)    ==&gt;     xyz</span><br><span class="line">用户密码：md5(def)    ==&gt;     xyz</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">其他明文：md5(abc)    ==&gt;     xyz</div><div class="line">用户密码：md5(def)    ==&gt;     xyz</div></pre></td></tr></table></figure>
 <p>这样攻击者将 key（密码明文）和 value（MD5 值）存入数据库，然后用密文反查明文，及时得不到 <code>def</code>，使用 <code>abc</code> 也是可以通过登录验证的，这样的暴力破解已经非常成熟。</p>
 <h2><span id="salt-suan-fa">Salt 算法</span><a href="#salt-suan-fa" class="header-anchor"></a></h2><p>为了应对这种情况，我需要在明文上加上一点“佐料”是明文变长，这种算法我们成为加盐算法，也就是 salt 算法这样上述发生的几率就会降低，大大增加了破解的难度。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">其他明文：md5(abc+salt)    ==&gt;     yyyyy</span><br><span class="line">用户密码：md5(def+salt)    ==&gt;     xxxxx</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">其他明文：md5(abc+salt)    ==&gt;     yyyyy</div><div class="line">用户密码：md5(def+salt)    ==&gt;     xxxxx</div></pre></td></tr></table></figure>
 <p>因为 <code>MD5, SHA1</code> 已经不再安全，我们使用 <code>SHA512</code> 来进行加盐算法</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHA512(SHA512(password), salt)</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SHA512(SHA512(password), salt)</div></pre></td></tr></table></figure>
 <p>比较安全的加盐算法应该每个密码的 salt 值都不同，最简单的做法是随机获取 salt 并存入数据库。</p>
 <p>存入数据库，那如果被拖库了怎么办？就像这次华住事件，整个库都被人家拿走了，拿到了 salt 岂不是什么都完了。</p>
 <p>到也未必，上述公式，只是加盐算法的简单原理，我们可以在 salt 也做散列运算，或者在 salt 上再次加盐，等等复杂的操作都可以提现在代码中，这样即使攻击者拿到 salt 想要暴力破解出用户的原密码，仍然是非常难得。</p>
 <h2><span id="bcrypt">bcrypt</span><a href="#bcrypt" class="header-anchor"></a></h2><p>而另一种方式则是不将 salt 存在数据库，而是通过加密密码得到，这样每个密码的 salt 也是不同的</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHA512(SHA512(password), SHA512(password)[40:60])</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SHA512(SHA512(password), SHA512(password)[40:60])</div></pre></td></tr></table></figure>
 <p>这个 salt 的获取方式，是我随意写的，具体实现需要更复杂的加密才行。</p>
 <p>而 bcrypt 算法，就是建立在这个原理之上的，它的 salt 获取方式极其复杂，并且每次不同，导致每次对密码的加密结果都是不同的，但是 bcrypt 自己提供了验证上一次加密结果的方法，在散列加密中 bcrypt 被认为是最安全的。</p>
 <p>而安全换了的是性能的损失，因为它的复杂性，导致了每次计算的耗时远远大于普通的加盐算法。</p>
@@ -518,11 +522,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -538,15 +542,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

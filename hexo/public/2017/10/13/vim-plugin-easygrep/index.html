@@ -96,6 +96,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -140,6 +142,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -196,7 +200,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><a href="/vim">专辑：Vim 练级手册</a></p>
-<p>关于在 Vim 中使用 Grep 做全局搜索，我在文章<a href="/2017/10/13/vim-grep">Vim 高级功能 vimgrep 全局搜索文件</a>中有介绍，<br>但是命令行和手动打开搜索结果都让人感觉很不方便，<a href="https://github.com/dkprice/vim-easygrep" target="_blank" rel="noopener">EasyGrep</a> 应运而生，<br>它基于 vimgrep 进行封装，让搜索变得更简单，EasyGrep 有快捷键和命令行两种使用方式</p>
+<p>关于在 Vim 中使用 Grep 做全局搜索，我在文章<a href="/2017/10/13/vim-grep">Vim 高级功能 vimgrep 全局搜索文件</a>中有介绍，<br>但是命令行和手动打开搜索结果都让人感觉很不方便，<a href="https://github.com/dkprice/vim-easygrep" target="_blank" rel="external">EasyGrep</a> 应运而生，<br>它基于 vimgrep 进行封装，让搜索变得更简单，EasyGrep 有快捷键和命令行两种使用方式</p>
 <a id="more"></a>
 <div class="toc">
 
@@ -217,12 +221,12 @@
 <!-- tocstop -->
 <p></div></p>
 <h2><span id="yu-lan">预览</span><a href="#yu-lan" class="header-anchor"></a></h2><p><img src="/images/easygrep.gif" alt="/images/easygrep.gif"></p>
-<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><h3><span id="pathogen">Pathogen</span><a href="#pathogen" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~/.vim/bundle</span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/dkprice/vim-easygrep.git</span><br></pre></td></tr></table></figure>
-<h3><span id="vundle">Vundle</span><a href="#vundle" class="header-anchor"></a></h3><p>修改 <code>~/.vimrc</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Plugin <span class="string">'dkprice/vim-easygrep'</span></span><br></pre></td></tr></table></figure></p>
-<p>在 Vim 中运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:PluginInstall</span><br></pre></td></tr></table></figure></p>
-<h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><h3><span id="kuai-jie-jian">快捷键</span><a href="#kuai-jie-jian" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Leader&gt;vv  <span class="comment"># 搜索光标所在单词，并匹配出所有结果，类似 gstar</span></span><br><span class="line">&lt;Leader&gt;vV  <span class="comment"># 搜索光标所在单词，全词匹配，类似 star</span></span><br><span class="line">&lt;Leader&gt;va  <span class="comment"># 类似 vv，但是会把结果添加到之前的搜索列表</span></span><br><span class="line">&lt;Leader&gt;vA  <span class="comment"># 类似 vV，但是会把结果添加到之前的搜索列表</span></span><br><span class="line">&lt;Leader&gt;vr  <span class="comment"># 全局搜索光标所在单词，并替换想要的单词</span></span><br></pre></td></tr></table></figure>
-<h3><span id="ming-ling-xing">命令行</span><a href="#ming-ling-xing" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">:Grep [arg]             <span class="comment"># 类似 &lt;Leader&gt;vv，使用 ! 类似&lt;Leader&gt;vV</span></span><br><span class="line">:GrepAdd [arg]          <span class="comment"># 类似 &lt;Leader&gt;va，使用 ! 类似&lt;Leader&gt;vA</span></span><br><span class="line">:Replace [target] [replacement] <span class="comment"># 类似 &lt;Leader&gt;vr</span></span><br><span class="line">:ReplaceUndo            <span class="comment"># 撤销替换操作</span></span><br></pre></td></tr></table></figure>
-<p>更多使用<a href="https://github.com/dkprice/vim-easygrep#using-easygrep" target="_blank" rel="noopener">文档</a><br>更多配置<a href="https://github.com/dkprice/vim-easygrep#using-easygrep-with-perl-style-regexp" target="_blank" rel="noopener">文档</a></p>
+<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><h3><span id="pathogen">Pathogen</span><a href="#pathogen" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> ~/.vim/bundle</div><div class="line">$ git <span class="built_in">clone</span> https://github.com/dkprice/vim-easygrep.git</div></pre></td></tr></table></figure>
+<h3><span id="vundle">Vundle</span><a href="#vundle" class="header-anchor"></a></h3><p>修改 <code>~/.vimrc</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Plugin <span class="string">'dkprice/vim-easygrep'</span></div></pre></td></tr></table></figure></p>
+<p>在 Vim 中运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:PluginInstall</div></pre></td></tr></table></figure></p>
+<h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><h3><span id="kuai-jie-jian">快捷键</span><a href="#kuai-jie-jian" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;Leader&gt;vv  <span class="comment"># 搜索光标所在单词，并匹配出所有结果，类似 gstar</span></div><div class="line">&lt;Leader&gt;vV  <span class="comment"># 搜索光标所在单词，全词匹配，类似 star</span></div><div class="line">&lt;Leader&gt;va  <span class="comment"># 类似 vv，但是会把结果添加到之前的搜索列表</span></div><div class="line">&lt;Leader&gt;vA  <span class="comment"># 类似 vV，但是会把结果添加到之前的搜索列表</span></div><div class="line">&lt;Leader&gt;vr  <span class="comment"># 全局搜索光标所在单词，并替换想要的单词</span></div></pre></td></tr></table></figure>
+<h3><span id="ming-ling-xing">命令行</span><a href="#ming-ling-xing" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">:Grep [arg]             <span class="comment"># 类似 &lt;Leader&gt;vv，使用 ! 类似&lt;Leader&gt;vV</span></div><div class="line">:GrepAdd [arg]          <span class="comment"># 类似 &lt;Leader&gt;va，使用 ! 类似&lt;Leader&gt;vA</span></div><div class="line">:Replace [target] [replacement] <span class="comment"># 类似 &lt;Leader&gt;vr</span></div><div class="line">:ReplaceUndo            <span class="comment"># 撤销替换操作</span></div></pre></td></tr></table></figure>
+<p>更多使用<a href="https://github.com/dkprice/vim-easygrep#using-easygrep" target="_blank" rel="external">文档</a><br>更多配置<a href="https://github.com/dkprice/vim-easygrep#using-easygrep-with-perl-style-regexp" target="_blank" rel="external">文档</a></p>
 
       
 
@@ -519,11 +523,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -539,15 +543,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

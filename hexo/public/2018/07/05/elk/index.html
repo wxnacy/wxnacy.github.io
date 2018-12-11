@@ -97,6 +97,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -141,6 +143,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -213,35 +217,35 @@
 <h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><p>Elasticsearch 的安装方式可以参考我的这篇文章 <a href="/2018/07/04/linux-install-es/">Linux 安装 Elasticsearch</a>，在这里不在赘述。</p>
 <p>在这里推荐使用添加仓库的方式安装 Elasticsearch，这样可以直接用 <code>yum, apt</code> 来安装  Kibana 和 Filebeat。</p>
 <p><strong>Centos 7</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install -y kibana filebeat</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo yum install -y kibana filebeat</div></pre></td></tr></table></figure>
 <p><strong>Ubuntu</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt install -y kibana filebeat</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt install -y kibana filebeat</div></pre></td></tr></table></figure>
 <p><strong>启动</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl <span class="built_in">enable</span> kibana filebeat</span><br><span class="line">$ sudo systemctl start kibana filebeat</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo systemctl <span class="built_in">enable</span> kibana filebeat</div><div class="line">$ sudo systemctl start kibana filebeat</div></pre></td></tr></table></figure>
 <p><strong>查看状态</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl status elasticsearch</span><br><span class="line">$ sudo systemctl status kibana</span><br><span class="line">$ sudo systemctl status filebeat</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo systemctl status elasticsearch</div><div class="line">$ sudo systemctl status kibana</div><div class="line">$ sudo systemctl status filebeat</div></pre></td></tr></table></figure>
 <p>等待三个软件都启动后，可以查看 <code>elasticsearch, kibana</code> 是否正常访问</p>
 <p><strong>Elsaticsearch</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$ curl localhost:9200</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span> : <span class="string">"2ZsBFer"</span>,</span><br><span class="line">  <span class="string">"cluster_name"</span> : <span class="string">"elasticsearch"</span>,</span><br><span class="line">  <span class="string">"cluster_uuid"</span> : <span class="string">"oo_kBvPpQL-OJGHQd-SPDw"</span>,</span><br><span class="line">  <span class="string">"version"</span> : &#123;</span><br><span class="line">    <span class="string">"number"</span> : <span class="string">"6.3.0"</span>,</span><br><span class="line">    <span class="string">"build_flavor"</span> : <span class="string">"default"</span>,</span><br><span class="line">    <span class="string">"build_type"</span> : <span class="string">"rpm"</span>,</span><br><span class="line">    <span class="string">"build_hash"</span> : <span class="string">"424e937"</span>,</span><br><span class="line">    <span class="string">"build_date"</span> : <span class="string">"2018-06-11T23:38:03.357887Z"</span>,</span><br><span class="line">    <span class="string">"build_snapshot"</span> : <span class="literal">false</span>,</span><br><span class="line">    <span class="string">"lucene_version"</span> : <span class="string">"7.3.1"</span>,</span><br><span class="line">    <span class="string">"minimum_wire_compatibility_version"</span> : <span class="string">"5.6.0"</span>,</span><br><span class="line">    <span class="string">"minimum_index_compatibility_version"</span> : <span class="string">"5.0.0"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"tagline"</span> : <span class="string">"You Know, for Search"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">$ curl localhost:9200</div><div class="line"></div><div class="line">&#123;</div><div class="line">  <span class="string">"name"</span> : <span class="string">"2ZsBFer"</span>,</div><div class="line">  <span class="string">"cluster_name"</span> : <span class="string">"elasticsearch"</span>,</div><div class="line">  <span class="string">"cluster_uuid"</span> : <span class="string">"oo_kBvPpQL-OJGHQd-SPDw"</span>,</div><div class="line">  <span class="string">"version"</span> : &#123;</div><div class="line">    <span class="string">"number"</span> : <span class="string">"6.3.0"</span>,</div><div class="line">    <span class="string">"build_flavor"</span> : <span class="string">"default"</span>,</div><div class="line">    <span class="string">"build_type"</span> : <span class="string">"rpm"</span>,</div><div class="line">    <span class="string">"build_hash"</span> : <span class="string">"424e937"</span>,</div><div class="line">    <span class="string">"build_date"</span> : <span class="string">"2018-06-11T23:38:03.357887Z"</span>,</div><div class="line">    <span class="string">"build_snapshot"</span> : <span class="literal">false</span>,</div><div class="line">    <span class="string">"lucene_version"</span> : <span class="string">"7.3.1"</span>,</div><div class="line">    <span class="string">"minimum_wire_compatibility_version"</span> : <span class="string">"5.6.0"</span>,</div><div class="line">    <span class="string">"minimum_index_compatibility_version"</span> : <span class="string">"5.0.0"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">"tagline"</span> : <span class="string">"You Know, for Search"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><strong>Kibana</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ curl localhost:5601</span><br><span class="line"></span><br><span class="line">&lt;script&gt;var hashRoute = <span class="string">'/app/kibana'</span>;</span><br><span class="line">var defaultRoute = <span class="string">'/app/kibana'</span>;</span><br><span class="line"></span><br><span class="line">var <span class="built_in">hash</span> = window.location.hash;</span><br><span class="line"><span class="keyword">if</span> (hash.length) &#123;</span><br><span class="line">  window.location = hashRoute + <span class="built_in">hash</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  window.location = defaultRoute;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ curl localhost:5601</div><div class="line"></div><div class="line">&lt;script&gt;var hashRoute = <span class="string">'/app/kibana'</span>;</div><div class="line">var defaultRoute = <span class="string">'/app/kibana'</span>;</div><div class="line"></div><div class="line">var <span class="built_in">hash</span> = window.location.hash;</div><div class="line"><span class="keyword">if</span> (hash.length) &#123;</div><div class="line">  window.location = hashRoute + <span class="built_in">hash</span>;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">  window.location = defaultRoute;</div></pre></td></tr></table></figure>
 <p>Kibana 需要在浏览器中访问才可以看到真正的样子</p>
 <h2><span id="pei-zhi">配置</span><a href="#pei-zhi" class="header-anchor"></a></h2><h3><span id="wai-bu-fang-wen">外部访问</span><a href="#wai-bu-fang-wen" class="header-anchor"></a></h3><p>此时 Kibana 和 Elasticsearch 都只能在本机访问，如果需要让外部机器可以访问，需要修改绑定 ip 为 <code>0.0.0.0</code></p>
 <p><strong>Elasticsearch</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/elasticsearch/elasticsearch.yml <span class="comment"># 修改配置</span></span><br><span class="line"></span><br><span class="line">network.host: 0.0.0.0                           <span class="comment"># 找到这一行并修改</span></span><br><span class="line"></span><br><span class="line">$ sudo systemctl restart elasticsearch          <span class="comment"># 重启</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ sudo vim /etc/elasticsearch/elasticsearch.yml <span class="comment"># 修改配置</span></div><div class="line"></div><div class="line">network.host: 0.0.0.0                           <span class="comment"># 找到这一行并修改</span></div><div class="line"></div><div class="line">$ sudo systemctl restart elasticsearch          <span class="comment"># 重启</span></div></pre></td></tr></table></figure>
 <p><strong>Kibana</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/kibana/kibana.yml <span class="comment"># 修改配置</span></span><br><span class="line"></span><br><span class="line">server.host: <span class="string">"0.0.0.0"</span>                          <span class="comment"># 找到这一行并修改</span></span><br><span class="line"></span><br><span class="line">$ sudo systemctl restart kibana          <span class="comment"># 重启</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ sudo vim /etc/kibana/kibana.yml <span class="comment"># 修改配置</span></div><div class="line"></div><div class="line">server.host: <span class="string">"0.0.0.0"</span>                          <span class="comment"># 找到这一行并修改</span></div><div class="line"></div><div class="line">$ sudo systemctl restart kibana          <span class="comment"># 重启</span></div></pre></td></tr></table></figure>
 <h3><span id="ri-zhi-dao-ru">日志导入</span><a href="#ri-zhi-dao-ru" class="header-anchor"></a></h3><p>Filebeat 的作用便是将日志文件导入 Elasticsearch 中，同样的修改配置文件</p>
 <p><strong>修改配置</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/filebeat/filebeat.yml</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo vim /etc/filebeat/filebeat.yml</div></pre></td></tr></table></figure>
 <p>修改 <code>Filebeat inputs</code> 添加想要统计的日志位置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">filebeat.inputs:</span><br><span class="line">- <span class="built_in">type</span>: <span class="built_in">log</span></span><br><span class="line">  enabled: <span class="literal">true</span></span><br><span class="line">  paths:</span><br><span class="line">    - /var/<span class="built_in">log</span>/*.<span class="built_in">log</span></span><br></pre></td></tr></table></figure>
-<p>更多的 inputs 配置见文档 <a href="https://www.elastic.co/guide/en/beats/filebeat/6.3/configuration-filebeat-options.html" target="_blank" rel="noopener">Configure inputs</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">filebeat.inputs:</div><div class="line">- <span class="built_in">type</span>: <span class="built_in">log</span></div><div class="line">  enabled: <span class="literal">true</span></div><div class="line">  paths:</div><div class="line">    - /var/<span class="built_in">log</span>/*.<span class="built_in">log</span></div></pre></td></tr></table></figure>
+<p>更多的 inputs 配置见文档 <a href="https://www.elastic.co/guide/en/beats/filebeat/6.3/configuration-filebeat-options.html" target="_blank" rel="external">Configure inputs</a></p>
 <p>输出 Elasticsearch 的配置默认为 <code>localhost:9200</code>，如果你想输出到远程的机器上，需要修改 <code>Elasticsearch output</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">output.elasticsearch</span><br><span class="line">  hosts: [<span class="string">"localhost:9200"</span>]</span><br></pre></td></tr></table></figure>
-<p>更多配置见文档 <a href="https://www.elastic.co/guide/en/beats/filebeat/6.3/elasticsearch-output.html" target="_blank" rel="noopener">Configure the Elasticsearch output</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">output.elasticsearch</div><div class="line">  hosts: [<span class="string">"localhost:9200"</span>]</div></pre></td></tr></table></figure>
+<p>更多配置见文档 <a href="https://www.elastic.co/guide/en/beats/filebeat/6.3/elasticsearch-output.html" target="_blank" rel="external">Configure the Elasticsearch output</a></p>
 <p><strong>重启</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl restart filebeat</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo systemctl restart filebeat</div></pre></td></tr></table></figure>
 <h2><span id="cha-kan-ri-zhi-xin-xi">查看日志信息</span><a href="#cha-kan-ri-zhi-xin-xi" class="header-anchor"></a></h2><p>在浏览器中打开地址 <code>localhost:5601</code> 点击 <code>Management --&gt; Index Patterns</code> 会进入 <code>Create index pattern</code> 页面</p>
 <p><img src="/images/elk1.png" alt="/images/elk1.png"></p>
 <p>Filebeat 默认生成的索引名称为 <code>filebeat-${version}-${date}</code>，我们做如下两步完成创建</p>
@@ -253,10 +257,10 @@
 <p><img src="/images/elk2.png" alt="/images/elk2.png"></p>
 <p>还有很多配置需要完善，后续慢慢更新</p>
 <ul>
-<li><a href="https://www.elastic.co/solutions/logging" target="_blank" rel="noopener">Open Source Log Management</a></li>
-<li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/6.x/install-elasticsearch.html" target="_blank" rel="noopener">Install Elasticsearch</a></li>
-<li><a href="https://www.elastic.co/guide/en/kibana/6.3/release-notes-6.3.0.html" target="_blank" rel="noopener">Kibana</a></li>
-<li><a href="https://www.elastic.co/guide/en/beats/filebeat/6.3/filebeat-overview.html" target="_blank" rel="noopener">Filebeat overview</a></li>
+<li><a href="https://www.elastic.co/solutions/logging" target="_blank" rel="external">Open Source Log Management</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/6.x/install-elasticsearch.html" target="_blank" rel="external">Install Elasticsearch</a></li>
+<li><a href="https://www.elastic.co/guide/en/kibana/6.3/release-notes-6.3.0.html" target="_blank" rel="external">Kibana</a></li>
+<li><a href="https://www.elastic.co/guide/en/beats/filebeat/6.3/filebeat-overview.html" target="_blank" rel="external">Filebeat overview</a></li>
 </ul>
 
       
@@ -554,11 +558,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -574,15 +578,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

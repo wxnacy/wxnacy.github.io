@@ -96,6 +96,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -140,6 +142,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -196,7 +200,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><a href="/vim">专辑：Vim 练级手册</a></p>
-<p>简单项目使用 vimgrep 或 EasyGrep 已经足够完成搜索任务，但是在一些大型项目中 grep 的搜索速度就跟不上了，这时候可以使用 <a href="https://github.com/mileszs/ack.vim" target="_blank" rel="noopener">Ack</a> 替代它完成搜索任务<br><a id="more"></a></p>
+<p>简单项目使用 vimgrep 或 EasyGrep 已经足够完成搜索任务，但是在一些大型项目中 grep 的搜索速度就跟不上了，这时候可以使用 <a href="https://github.com/mileszs/ack.vim" target="_blank" rel="external">Ack</a> 替代它完成搜索任务<br><a id="more"></a></p>
 <div class="toc">
 
 <!-- toc -->
@@ -214,18 +218,18 @@
 <!-- tocstop -->
 <p></div></p>
 <h2><span id="yu-lan">预览</span><a href="#yu-lan" class="header-anchor"></a></h2><p><img src="/images/ack.gif" alt="ack"></p>
-<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><p>首先需要在机器上安装 Ack 工具<br>Mac<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install ack</span><br></pre></td></tr></table></figure></p>
+<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><p>首先需要在机器上安装 Ack 工具<br>Mac<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install ack</div></pre></td></tr></table></figure></p>
 <p>完成后安装 Vim 插件</p>
-<h3><span id="pathogen">Pathogen</span><a href="#pathogen" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~/.vim/bundle</span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/mileszs/ack.vim.git</span><br></pre></td></tr></table></figure>
-<h3><span id="vundle">Vundle</span><a href="#vundle" class="header-anchor"></a></h3><p>修改 <code>~/.vimrc</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Plugin <span class="string">'mileszs/ack.vim'</span></span><br></pre></td></tr></table></figure></p>
-<p>在 Vim 中运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:PluginInstall</span><br></pre></td></tr></table></figure></p>
-<h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><p>命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:Ack [options] &#123;pattern&#125; [&#123;directories&#125;]</span><br></pre></td></tr></table></figure></p>
+<h3><span id="pathogen">Pathogen</span><a href="#pathogen" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> ~/.vim/bundle</div><div class="line">$ git <span class="built_in">clone</span> https://github.com/mileszs/ack.vim.git</div></pre></td></tr></table></figure>
+<h3><span id="vundle">Vundle</span><a href="#vundle" class="header-anchor"></a></h3><p>修改 <code>~/.vimrc</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Plugin <span class="string">'mileszs/ack.vim'</span></div></pre></td></tr></table></figure></p>
+<p>在 Vim 中运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:PluginInstall</div></pre></td></tr></table></figure></p>
+<h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><p>命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:Ack [options] &#123;pattern&#125; [&#123;directories&#125;]</div></pre></td></tr></table></figure></p>
 <p>还可以像 <code>:grep</code>, <code>:grepadd</code>, <code>:lgrep</code>, <code>:lgrepadd</code> 一样使用 <code>:Ack</code>, <code>:AckAdd</code>, <code>:LAck</code>, <code>:LAckAdd</code></p>
-<h2><span id="pei-zhi">配置</span><a href="#pei-zhi" class="header-anchor"></a></h2><p>可以在有 <code>ag</code> 时使用 ag 进行搜索<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> executable(<span class="string">'ag'</span>)</span><br><span class="line">    <span class="built_in">let</span> g:ackprg = <span class="string">'ag --nogroup --nocolor --column'</span></span><br><span class="line">endif</span><br></pre></td></tr></table></figure></p>
-<p>快捷键<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap &lt;Leader&gt;&lt;Leader&gt;a :Ack&lt;space&gt;-i&lt;space&gt;     <span class="comment"># -i 忽略大小写</span></span><br></pre></td></tr></table></figure></p>
+<h2><span id="pei-zhi">配置</span><a href="#pei-zhi" class="header-anchor"></a></h2><p>可以在有 <code>ag</code> 时使用 ag 进行搜索<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> executable(<span class="string">'ag'</span>)</div><div class="line">    <span class="built_in">let</span> g:ackprg = <span class="string">'ag --nogroup --nocolor --column'</span></div><div class="line">endif</div></pre></td></tr></table></figure></p>
+<p>快捷键<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nmap &lt;Leader&gt;&lt;Leader&gt;a :Ack&lt;space&gt;-i&lt;space&gt;     <span class="comment"># -i 忽略大小写</span></div></pre></td></tr></table></figure></p>
 <h2><span id="can-kao-wen-xian">参考文献</span><a href="#can-kao-wen-xian" class="header-anchor"></a></h2><ul>
-<li><a href="https://github.com/mileszs/ack.vim#keyboard-shortcuts" target="_blank" rel="noopener">更多使用</a></li>
-<li><a href="https://linux.cn/article-5077-1.html" target="_blank" rel="noopener">何不 Ack？Grep, Ack, Ag的搜索效率对比</a></li>
+<li><a href="https://github.com/mileszs/ack.vim#keyboard-shortcuts" target="_blank" rel="external">更多使用</a></li>
+<li><a href="https://linux.cn/article-5077-1.html" target="_blank" rel="external">何不 Ack？Grep, Ack, Ag的搜索效率对比</a></li>
 </ul>
 
       
@@ -523,11 +527,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -543,15 +547,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -211,19 +215,19 @@
 <!-- tocstop -->
 <p></div><br>Headless Chrome 是在无头环境中运行 Chrome 的一种方式，即在没有 chrome 的情况下运行 Chrome。恩？没有 chrome 还怎么运行，这里有点绕，没有 chrome 是指不用真的打开一个浏览器，而是在命令行中运行命令，并模拟 Chrome 加载网页。这种方式在开发中很是方便。</p>
 <h2><span id="ban-ben-yao-qiu">版本要求</span><a href="#ban-ben-yao-qiu" class="header-anchor"></a></h2><p>Chrome 59 版本以上才支持这个功能，如果你不知道当前客户端的版本，打开一个浏览器并打开 <code>chrome://version</code> 即可，如果版本过低，先升级下吧。</p>
-<h2><span id="yun-xing-ming-ling">运行命令</span><a href="#yun-xing-ming-ling" class="header-anchor"></a></h2><p>在电脑中安装的 Chrome 客户端是并没有在环境变量中的，修改 <code>~/.bash_profile</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> chrome=<span class="string">"/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"</span></span><br><span class="line"><span class="built_in">alias</span> chrome-canary=<span class="string">"/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"</span></span><br><span class="line"><span class="built_in">alias</span> chromium=<span class="string">"/Applications/Chromium.app/Contents/MacOS/Chromium"</span></span><br></pre></td></tr></table></figure></p>
+<h2><span id="yun-xing-ming-ling">运行命令</span><a href="#yun-xing-ming-ling" class="header-anchor"></a></h2><p>在电脑中安装的 Chrome 客户端是并没有在环境变量中的，修改 <code>~/.bash_profile</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">alias</span> chrome=<span class="string">"/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"</span></div><div class="line"><span class="built_in">alias</span> chrome-canary=<span class="string">"/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"</span></div><div class="line"><span class="built_in">alias</span> chromium=<span class="string">"/Applications/Chromium.app/Contents/MacOS/Chromium"</span></div></pre></td></tr></table></figure></p>
 <p>随后执行 <code>source ~/.bash_profile</code> 使变量生效，并在终端中输入 <code>chrome</code> 可以打开一个浏览器，这样环境变量就生效了。</p>
-<h2><span id="shi-yong-headless">使用 headless</span><a href="#shi-yong-headless" class="header-anchor"></a></h2><h3><span id="da-yin-dom">打印 Dom</span><a href="#da-yin-dom" class="header-anchor"></a></h3><p>参数 <code>--dump-dom</code> 可以将 <code>document.body.innerHTML</code> 打印到标准输出中<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chrome --headless --<span class="built_in">disable</span>-gpu --dump-dom https://wxnacy.com</span><br></pre></td></tr></table></figure></p>
+<h2><span id="shi-yong-headless">使用 headless</span><a href="#shi-yong-headless" class="header-anchor"></a></h2><h3><span id="da-yin-dom">打印 Dom</span><a href="#da-yin-dom" class="header-anchor"></a></h3><p>参数 <code>--dump-dom</code> 可以将 <code>document.body.innerHTML</code> 打印到标准输出中<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chrome --headless --<span class="built_in">disable</span>-gpu --dump-dom https://wxnacy.com</div></pre></td></tr></table></figure></p>
 <ul>
 <li><code>--headless</code> 即为使用 headless 模式打开 chrome</li>
 <li><code>--disable-gpu</code> 如果在 Windows 中需要使用该参数</li>
 </ul>
-<h3><span id="shu-chu-pdf">输出 PDF</span><a href="#shu-chu-pdf" class="header-anchor"></a></h3><p>将网页输出到名为 <code>output.pdf</code> 的文件中<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chrome --headless --<span class="built_in">disable</span>-gpu --<span class="built_in">print</span>-to-pdf https://wxnacy.com</span><br></pre></td></tr></table></figure></p>
-<h3><span id="jie-tu">截图</span><a href="#jie-tu" class="header-anchor"></a></h3><p>将网页截图并命名为 <code>screenshot.png</code> 保存到当前目录中<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chrome --headless --<span class="built_in">disable</span>-gpu --screenshot https://wxnacy.com</span><br></pre></td></tr></table></figure></p>
-<p>设定打开多大的模拟浏览器在加载页面<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chrome --headless --<span class="built_in">disable</span>-gpu --screenshot --window-size=1280,1696 https://wxnacy.com</span><br></pre></td></tr></table></figure></p>
-<h3><span id="repl-mo-shi-read-eval-print-loop">REPL 模式 (read-eval-print loop)</span><a href="#repl-mo-shi-read-eval-print-loop" class="header-anchor"></a></h3><p>该模式会进入一个 Javascript 环境，并可以通过输入 Javascript 指令来分析 Dom 元素<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wxnacy@bogon ~/Documents&gt; chrome --headless --<span class="built_in">disable</span>-gpu --repl https://wxnacy.com</span><br><span class="line">location.hre[0212/160208.469737:INFO:headless_shell.cc(398)] Type a Javascript expression to evaluate or <span class="string">"quit"</span> to <span class="built_in">exit</span>.</span><br><span class="line">&gt;&gt;&gt; document.title</span><br><span class="line">&#123;<span class="string">"result"</span>:&#123;<span class="string">"type"</span>:<span class="string">"string"</span>,<span class="string">"value"</span>:<span class="string">"wxnacy 博客"</span>&#125;&#125;</span><br></pre></td></tr></table></figure></p>
+<h3><span id="shu-chu-pdf">输出 PDF</span><a href="#shu-chu-pdf" class="header-anchor"></a></h3><p>将网页输出到名为 <code>output.pdf</code> 的文件中<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chrome --headless --<span class="built_in">disable</span>-gpu --<span class="built_in">print</span>-to-pdf https://wxnacy.com</div></pre></td></tr></table></figure></p>
+<h3><span id="jie-tu">截图</span><a href="#jie-tu" class="header-anchor"></a></h3><p>将网页截图并命名为 <code>screenshot.png</code> 保存到当前目录中<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chrome --headless --<span class="built_in">disable</span>-gpu --screenshot https://wxnacy.com</div></pre></td></tr></table></figure></p>
+<p>设定打开多大的模拟浏览器在加载页面<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chrome --headless --<span class="built_in">disable</span>-gpu --screenshot --window-size=1280,1696 https://wxnacy.com</div></pre></td></tr></table></figure></p>
+<h3><span id="repl-mo-shi-read-eval-print-loop">REPL 模式 (read-eval-print loop)</span><a href="#repl-mo-shi-read-eval-print-loop" class="header-anchor"></a></h3><p>该模式会进入一个 Javascript 环境，并可以通过输入 Javascript 指令来分析 Dom 元素<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">wxnacy@bogon ~/Documents&gt; chrome --headless --<span class="built_in">disable</span>-gpu --repl https://wxnacy.com</div><div class="line">location.hre[0212/160208.469737:INFO:headless_shell.cc(398)] Type a Javascript expression to evaluate or <span class="string">"quit"</span> to <span class="built_in">exit</span>.</div><div class="line">&gt;&gt;&gt; document.title</div><div class="line">&#123;<span class="string">"result"</span>:&#123;<span class="string">"type"</span>:<span class="string">"string"</span>,<span class="string">"value"</span>:<span class="string">"wxnacy 博客"</span>&#125;&#125;</div></pre></td></tr></table></figure></p>
 <ul>
-<li><a href="https://developers.google.com/web/updates/2017/04/headless-chrome" target="_blank" rel="noopener">Getting Started with Headless Chrome</a></li>
+<li><a href="https://developers.google.com/web/updates/2017/04/headless-chrome" target="_blank" rel="external">Getting Started with Headless Chrome</a></li>
 </ul>
 
       
@@ -521,11 +525,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -541,15 +545,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

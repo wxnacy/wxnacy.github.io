@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -212,13 +216,13 @@
 <!-- tocstop -->
 </div>
 
-<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install gunicorn</span><br></pre></td></tr></table></figure>
-<h2><span id="qi-dong">启动</span><a href="#qi-dong" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ gunicorn run:app</span><br><span class="line"></span><br><span class="line">[2017-08-15 15:25:28 +0800] [26628] [INFO] Starting gunicorn 19.7.1</span><br><span class="line">[2017-08-15 15:25:28 +0800] [26628] [INFO] Listening at: http://127.0.0.1:8000 (26628)</span><br><span class="line">[2017-08-15 15:25:28 +0800] [26628] [INFO] Using worker: sync</span><br><span class="line">[2017-08-15 15:25:28 +0800] [26631] [INFO] Booting worker with pid: 26631</span><br></pre></td></tr></table></figure>
-<h2><span id="pei-zhi-can-shu">配置参数</span><a href="#pei-zhi-can-shu" class="header-anchor"></a></h2><h3><span id="ming-ling-xing-can-shu">命令行参数</span><a href="#ming-ling-xing-can-shu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gunicorn -w 2 -b 0.0.0.0:8000 run:app</span><br></pre></td></tr></table></figure>
+<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install gunicorn</div></pre></td></tr></table></figure>
+<h2><span id="qi-dong">启动</span><a href="#qi-dong" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ gunicorn run:app</div><div class="line"></div><div class="line">[2017-08-15 15:25:28 +0800] [26628] [INFO] Starting gunicorn 19.7.1</div><div class="line">[2017-08-15 15:25:28 +0800] [26628] [INFO] Listening at: http://127.0.0.1:8000 (26628)</div><div class="line">[2017-08-15 15:25:28 +0800] [26628] [INFO] Using worker: sync</div><div class="line">[2017-08-15 15:25:28 +0800] [26631] [INFO] Booting worker with pid: 26631</div></pre></td></tr></table></figure>
+<h2><span id="pei-zhi-can-shu">配置参数</span><a href="#pei-zhi-can-shu" class="header-anchor"></a></h2><h3><span id="ming-ling-xing-can-shu">命令行参数</span><a href="#ming-ling-xing-can-shu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gunicorn -w 2 -b 0.0.0.0:8000 run:app</div></pre></td></tr></table></figure>
 <p>其中<code>-b 或 --bind</code> 指定项目启动绑定域名和端口，<code>-w 或 --workers</code> 指定启动几个<br>线程</p>
-<h3><span id="pei-zhi-can-shu-wen-jian">配置参数文件</span><a href="#pei-zhi-can-shu-wen-jian" class="header-anchor"></a></h3><p>在项目根目录下创建配置文件 <code>touch gunicorn_config.py</code> 并编辑<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">配置信息</span></span><br><span class="line"><span class="string">https://github.com/benoitc/gunicorn/blob/master/examples/example_config.py</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line">__author__ = <span class="string">"wxnacy(wxnacy@gmail.com)"</span></span><br><span class="line">__copyright__ = <span class="string">"Copyright of wxnacy (2017)."</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> multiprocessing</span><br><span class="line"></span><br><span class="line">bind = <span class="string">'0.0.0.0:8002'</span> <span class="comment"># 绑定地址</span></span><br><span class="line">workers =  multiprocessing.cpu_count() * <span class="number">2</span> + <span class="number">1</span> <span class="comment"># 根据cpu数量指定线程数量</span></span><br></pre></td></tr></table></figure></p>
-<p>启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gunicorn -c gunicorn_config.py run:app</span><br></pre></td></tr></table></figure></p>
-<p><a href="http://docs.gunicorn.org/en/stable/settings.html" target="_blank" rel="noopener">更多配置</a></p>
+<h3><span id="pei-zhi-can-shu-wen-jian">配置参数文件</span><a href="#pei-zhi-can-shu-wen-jian" class="header-anchor"></a></h3><p>在项目根目录下创建配置文件 <code>touch gunicorn_config.py</code> 并编辑<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="string">'''</span></div><div class="line"><span class="string">配置信息</span></div><div class="line"><span class="string">https://github.com/benoitc/gunicorn/blob/master/examples/example_config.py</span></div><div class="line"><span class="string">'''</span></div><div class="line">__author__ = <span class="string">"wxnacy(wxnacy@gmail.com)"</span></div><div class="line">__copyright__ = <span class="string">"Copyright of wxnacy (2017)."</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> multiprocessing</div><div class="line"></div><div class="line">bind = <span class="string">'0.0.0.0:8002'</span> <span class="comment"># 绑定地址</span></div><div class="line">workers =  multiprocessing.cpu_count() * <span class="number">2</span> + <span class="number">1</span> <span class="comment"># 根据cpu数量指定线程数量</span></div></pre></td></tr></table></figure></p>
+<p>启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gunicorn -c gunicorn_config.py run:app</div></pre></td></tr></table></figure></p>
+<p><a href="http://docs.gunicorn.org/en/stable/settings.html" target="_blank" rel="external">更多配置</a></p>
 
       
 
@@ -515,11 +519,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -535,15 +539,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

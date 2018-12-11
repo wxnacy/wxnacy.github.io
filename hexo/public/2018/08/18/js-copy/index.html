@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -202,14 +206,14 @@
 <!-- tocstop -->
 </div>
 
-<h2><span id="fu-zhi-shu-ru-yu-de-shu-ju">复制输入域的数据</span><a href="#fu-zhi-shu-ru-yu-de-shu-ju" class="header-anchor"></a></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;input id=<span class="string">"demoInput"</span> value=<span class="string">"hello world"</span>&gt;</span><br><span class="line">&lt;button id=<span class="string">"btn"</span>&gt;点我复制&lt;<span class="regexp">/button&gt;&lt;br/</span>&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">const</span> btn = <span class="built_in">document</span>.querySelector(<span class="string">'#btn'</span>);</span><br><span class="line">    btn.addEventListener(<span class="string">'click'</span>, () =&gt; &#123;</span><br><span class="line">        <span class="keyword">const</span> input = <span class="built_in">document</span>.querySelector(<span class="string">'#demoInput'</span>);</span><br><span class="line">        input.select();</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">document</span>.execCommand(<span class="string">'copy'</span>)) &#123;</span><br><span class="line">            <span class="built_in">document</span>.execCommand(<span class="string">'copy'</span>);</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'复制成功'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<h2><span id="fu-zhi-shu-ru-yu-de-shu-ju">复制输入域的数据</span><a href="#fu-zhi-shu-ru-yu-de-shu-ju" class="header-anchor"></a></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;input id=<span class="string">"demoInput"</span> value=<span class="string">"hello world"</span>&gt;</div><div class="line">&lt;button id=<span class="string">"btn"</span>&gt;点我复制&lt;<span class="regexp">/button&gt;&lt;br/</span>&gt;</div><div class="line">&lt;script&gt;</div><div class="line">    <span class="keyword">const</span> btn = <span class="built_in">document</span>.querySelector(<span class="string">'#btn'</span>);</div><div class="line">    btn.addEventListener(<span class="string">'click'</span>, () =&gt; &#123;</div><div class="line">        <span class="keyword">const</span> input = <span class="built_in">document</span>.querySelector(<span class="string">'#demoInput'</span>);</div><div class="line">        input.select();</div><div class="line">        <span class="keyword">if</span> (<span class="built_in">document</span>.execCommand(<span class="string">'copy'</span>)) &#123;</div><div class="line">            <span class="built_in">document</span>.execCommand(<span class="string">'copy'</span>);</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'复制成功'</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
 <p><a href="/run/?id=68719515008">试一试</a></p>
 <h2><span id="qi-ta-element-fu-zhi">其他 element 复制</span><a href="#qi-ta-element-fu-zhi" class="header-anchor"></a></h2><p><code>document.execCommand</code> 只能复制输入域的内容，如 <code>input</code> <code>textarea</code>，而其他的 element 内容复制，只能通过借用 input 的方式来完成。</p>
 <p>将想要复制的内容添加到一个隐藏的 <code>input</code> 中，再次进行上面的步骤即可。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"div"</span> style=<span class="string">"border-style: solid;"</span>&gt;这次是 div 的内容&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;button id="btn1"&gt;点我复制&lt;/</span>button&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">const</span> btn1 = <span class="built_in">document</span>.querySelector(<span class="string">'#btn1'</span>);</span><br><span class="line">    btn1.addEventListener(<span class="string">'click'</span>, () =&gt; &#123;</span><br><span class="line">        <span class="keyword">const</span> input = <span class="built_in">document</span>.createElement(<span class="string">'input'</span>);</span><br><span class="line">        <span class="keyword">const</span> div = <span class="built_in">document</span>.querySelector(<span class="string">'#div'</span>);</span><br><span class="line">        input.setAttribute(<span class="string">'readonly'</span>, <span class="string">'readonly'</span>);</span><br><span class="line">        input.setAttribute(<span class="string">'value'</span>, <span class="string">`<span class="subst">$&#123;div.innerHTML&#125;</span>`</span>);</span><br><span class="line">        <span class="built_in">document</span>.body.appendChild(input);</span><br><span class="line">        input.select();</span><br><span class="line">        <span class="comment">// input.setSelectionRange(0, input.value.length);</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">document</span>.execCommand(<span class="string">'copy'</span>)) &#123;</span><br><span class="line">            <span class="built_in">document</span>.execCommand(<span class="string">'copy'</span>);</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'复制成功'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">document</span>.body.removeChild(input);</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&lt;div id=<span class="string">"div"</span> style=<span class="string">"border-style: solid;"</span>&gt;这次是 div 的内容&lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">&lt;button id="btn1"&gt;点我复制&lt;/</span>button&gt;</div><div class="line">&lt;script&gt;</div><div class="line">    <span class="keyword">const</span> btn1 = <span class="built_in">document</span>.querySelector(<span class="string">'#btn1'</span>);</div><div class="line">    btn1.addEventListener(<span class="string">'click'</span>, () =&gt; &#123;</div><div class="line">        <span class="keyword">const</span> input = <span class="built_in">document</span>.createElement(<span class="string">'input'</span>);</div><div class="line">        <span class="keyword">const</span> div = <span class="built_in">document</span>.querySelector(<span class="string">'#div'</span>);</div><div class="line">        input.setAttribute(<span class="string">'readonly'</span>, <span class="string">'readonly'</span>);</div><div class="line">        input.setAttribute(<span class="string">'value'</span>, <span class="string">`<span class="subst">$&#123;div.innerHTML&#125;</span>`</span>);</div><div class="line">        <span class="built_in">document</span>.body.appendChild(input);</div><div class="line">        input.select();</div><div class="line">        <span class="comment">// input.setSelectionRange(0, input.value.length);</span></div><div class="line">        <span class="keyword">if</span> (<span class="built_in">document</span>.execCommand(<span class="string">'copy'</span>)) &#123;</div><div class="line">            <span class="built_in">document</span>.execCommand(<span class="string">'copy'</span>);</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'复制成功'</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">document</span>.body.removeChild(input);</div><div class="line">    &#125;)</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
 <p><a href="/run/?id=68719515008">试一试</a></p>
 <ul>
-<li><a href="https://github.com/axuebin/articles/issues/26" target="_blank" rel="noopener">JavaScript复制内容到剪贴板</a></li>
+<li><a href="https://github.com/axuebin/articles/issues/26" target="_blank" rel="external">JavaScript复制内容到剪贴板</a></li>
 </ul>
 
       
@@ -507,11 +511,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -527,15 +531,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

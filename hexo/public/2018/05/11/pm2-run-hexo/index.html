@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -199,11 +203,11 @@
 </div>
 
 <p><strong>首先编写启动脚本 <code>run.js</code></strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> spawn = <span class="built_in">require</span>(<span class="string">'child_process'</span>).spawn;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 其实就是等于执行hexo server --draft*/</span></span><br><span class="line">free = spawn(<span class="string">'hexo'</span>, [<span class="string">'server'</span>, <span class="string">'--draft'</span>]);</span><br><span class="line">free.stdout.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'standard output:\n'</span> + data);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">free.stderr.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'standard error output:\n'</span> + data);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">free.on(<span class="string">'exit'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">code, signal</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'child process eixt ,exit:'</span> + code);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> spawn = <span class="built_in">require</span>(<span class="string">'child_process'</span>).spawn;</div><div class="line"></div><div class="line"><span class="comment">/* 其实就是等于执行hexo server --draft*/</span></div><div class="line">free = spawn(<span class="string">'hexo'</span>, [<span class="string">'server'</span>, <span class="string">'--draft'</span>]);</div><div class="line">free.stdout.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'standard output:\n'</span> + data);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">free.stderr.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'standard error output:\n'</span> + data);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">free.on(<span class="string">'exit'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">code, signal</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'child process eixt ,exit:'</span> + code);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p><strong>然后编写 pm2 启动配置 <code>pm2-config.json</code></strong></p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"apps"</span> : [&#123;</span><br><span class="line">        <span class="attr">"name"</span>        : <span class="string">"wxnacy"</span>,</span><br><span class="line">        <span class="attr">"script"</span>      : <span class="string">"./run.js"</span></span><br><span class="line">    &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"apps"</span> : [&#123;</div><div class="line">        <span class="attr">"name"</span>        : <span class="string">"wxnacy"</span>,</div><div class="line">        <span class="attr">"script"</span>      : <span class="string">"./run.js"</span></div><div class="line">    &#125;]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><strong>启动</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pm2 start pm2-config.json</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pm2 start pm2-config.json</div></pre></td></tr></table></figure>
 
       
 
@@ -500,11 +504,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -520,15 +524,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

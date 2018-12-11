@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -193,7 +197,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>原文：<a href="http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html" target="_blank" rel="noopener">http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html</a><br><a id="more"></a><div class="toc"></p>
+        <p>原文：<a href="http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html" target="_blank" rel="external">http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html</a><br><a id="more"></a><div class="toc"></p>
 <!-- toc -->
 <ul>
 <li><a href="#suo-yin-lei-xing">索引类型</a></li>
@@ -209,11 +213,11 @@
 <p></div></p>
 <h2><span id="suo-yin-lei-xing">索引类型</span><a href="#suo-yin-lei-xing" class="header-anchor"></a></h2><p>在创建索引时，可以规定索引能否包含重复值。如果不包含，则索引应该创建为PRIMARY KEY或UNIQUE索引。对于单列惟一性索引，这保证单列不包含重复的值。对于多列惟一性索引，保证多个值的组合不重复。 PRIMARY KEY索引和UNIQUE索引非常类似。事实上，PRIMARY KEY索引仅是一个具有名称PRIMARY的UNIQUE索引。这表示一个表只能包含一个PRIMARY KEY，因为一个表中不可能具有两个同名的索引。下面的SQL语句对students表在sid上添加PRIMARY KEY索引。</p>
 <h2><span id="chuang-jian-suo-yin">创建索引</span><a href="#chuang-jian-suo-yin" class="header-anchor"></a></h2><p>在执行CREATE TABLE语句时可以创建索引，也可以单独用CREATE INDEX或ALTER TABLE来为表增加索引。</p>
-<h3><span id="alter-table">alter table</span><a href="#alter-table" class="header-anchor"></a></h3><p>其中table_name是要增加索引的表名，column_list指出对哪些列进行索引，多列时各列之间用逗号分隔。索引名index_name可选，缺省时，MySQL将根据第一个索引列赋一个名称。另外，ALTER TABLE允许在单个语句中更改多个表，因此可以在同时创建多个索引。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alter table table_name add index index_name (column_list);</span><br><span class="line">alter table table_name add unique index_name (column_list);</span><br><span class="line">alter table table_name add primary key (column_list);</span><br></pre></td></tr></table></figure></p>
-<h3><span id="create-table">create table</span><a href="#create-table" class="header-anchor"></a></h3><p>CREATE INDEX可对表增加普通索引或UNIQUE索引。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">create index index_name on table_name (column_list);</span><br><span class="line">create unique index index_name on table_name (column_list);</span><br></pre></td></tr></table></figure></p>
-<h2><span id="shan-chu-suo-yin">删除索引</span><a href="#shan-chu-suo-yin" class="header-anchor"></a></h2><p>可利用ALTER TABLE或DROP INDEX语句来删除索引。类似于CREATE INDEX语句，DROP INDEX可以在ALTER TABLE内部作为一条语句处理，语法如下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">drop index index_name on table_name;</span><br><span class="line">alter table_name drop index index_name;</span><br><span class="line">alter table_name drop primary key;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">其中，前两条语句是等价的，删除掉table_name中的索引index_name。</span><br><span class="line">第3条语句只在删除PRIMARY KEY索引时使用，因为一个表只可能有一个PRIMARY KEY索引，因此不需要指定索引名。</span><br><span class="line">如果没有创建PRIMARY KEY索引，但表具有一个或多个UNIQUE索引，则MySQL将删除第一个UNIQUE索引。</span><br><span class="line">如果从表中删除了某列，则索引会受到影响。对于多列组合的索引</span><br><span class="line">如果删除其中的某列，则该列也会从索引中删除。如果删除组成索引的所有列，则整个索引将被删除。</span><br></pre></td></tr></table></figure>
-<h2><span id="cha-kan-suo-yin">查看索引</span><a href="#cha-kan-suo-yin" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">show index from table_name;</span><br><span class="line">show keys from table_name;</span><br></pre></td></tr></table></figure>
+<h3><span id="alter-table">alter table</span><a href="#alter-table" class="header-anchor"></a></h3><p>其中table_name是要增加索引的表名，column_list指出对哪些列进行索引，多列时各列之间用逗号分隔。索引名index_name可选，缺省时，MySQL将根据第一个索引列赋一个名称。另外，ALTER TABLE允许在单个语句中更改多个表，因此可以在同时创建多个索引。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">alter table table_name add index index_name (column_list);</div><div class="line">alter table table_name add unique index_name (column_list);</div><div class="line">alter table table_name add primary key (column_list);</div></pre></td></tr></table></figure></p>
+<h3><span id="create-table">create table</span><a href="#create-table" class="header-anchor"></a></h3><p>CREATE INDEX可对表增加普通索引或UNIQUE索引。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">create index index_name on table_name (column_list);</div><div class="line">create unique index index_name on table_name (column_list);</div></pre></td></tr></table></figure></p>
+<h2><span id="shan-chu-suo-yin">删除索引</span><a href="#shan-chu-suo-yin" class="header-anchor"></a></h2><p>可利用ALTER TABLE或DROP INDEX语句来删除索引。类似于CREATE INDEX语句，DROP INDEX可以在ALTER TABLE内部作为一条语句处理，语法如下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">drop index index_name on table_name;</div><div class="line">alter table_name drop index index_name;</div><div class="line">alter table_name drop primary key;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">其中，前两条语句是等价的，删除掉table_name中的索引index_name。</div><div class="line">第3条语句只在删除PRIMARY KEY索引时使用，因为一个表只可能有一个PRIMARY KEY索引，因此不需要指定索引名。</div><div class="line">如果没有创建PRIMARY KEY索引，但表具有一个或多个UNIQUE索引，则MySQL将删除第一个UNIQUE索引。</div><div class="line">如果从表中删除了某列，则索引会受到影响。对于多列组合的索引</div><div class="line">如果删除其中的某列，则该列也会从索引中删除。如果删除组成索引的所有列，则整个索引将被删除。</div></pre></td></tr></table></figure>
+<h2><span id="cha-kan-suo-yin">查看索引</span><a href="#cha-kan-suo-yin" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">show index from table_name;</div><div class="line">show keys from table_name;</div></pre></td></tr></table></figure>
 <ul>
 <li><strong>Table</strong>: 表的名称。</li>
 <li><strong>Non_unique</strong>: 如果索引不能包括重复词，则为0。如果可以，则为1。</li>
@@ -301,18 +305,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/09/mysql-2017-08-09-prompt/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/08/09/mysql-2017-08-09-item-daily/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          mysql prompt 提示符
+          2017-08-09 新建collection合集表，新建trigger完成更新用户文章数
         
       </div>
     </a>
   
   
-    <a href="/2017/08/09/mysql-2017-08-09-select-format/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">mysql select 格式化输出</div>
+    <a href="/2017/08/08/ansible-2017-08-08-item-basic-get-started/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ansible入门笔记1 Get Started</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -524,11 +528,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -544,15 +548,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

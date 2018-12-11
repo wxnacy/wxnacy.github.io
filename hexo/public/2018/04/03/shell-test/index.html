@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -210,16 +214,16 @@
 <li>-gt    大于则为真</li>
 <li>-ge    大于等于则为真</li>
 <li>-lt    小于则为真</li>
-<li>-le    小于等于则为真<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> 1 -eq 1</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="literal">true</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="literal">false</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<li>-le    小于等于则为真<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> <span class="built_in">test</span> 1 -eq 1</div><div class="line"><span class="keyword">then</span></div><div class="line">    <span class="built_in">echo</span> <span class="literal">true</span></div><div class="line"><span class="keyword">else</span></div><div class="line">    <span class="built_in">echo</span> <span class="literal">false</span></div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>输出<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
-<p>也可以用 <code>&amp;&amp;, ||</code> 来做真假的判断<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">test</span> 1 -eq 1 &amp;&amp; <span class="built_in">echo</span> <span class="literal">true</span> || <span class="built_in">echo</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
+<p>输出<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="literal">true</span></div></pre></td></tr></table></figure></p>
+<p>也可以用 <code>&amp;&amp;, ||</code> 来做真假的判断<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">test</span> 1 -eq 1 &amp;&amp; <span class="built_in">echo</span> <span class="literal">true</span> || <span class="built_in">echo</span> <span class="literal">false</span></div><div class="line"></div><div class="line"><span class="literal">true</span></div></pre></td></tr></table></figure></p>
 <h2><span id="zi-fu-chuan-ce-shi">字符串测试</span><a href="#zi-fu-chuan-ce-shi" class="header-anchor"></a></h2><ul>
 <li>=    等于则为真</li>
 <li>!=    不相等则为真</li>
 <li>-z 字符串    字符串的长度为零则为真</li>
-<li>-n 字符串    字符串的长度不为零则为真<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">test</span> <span class="string">'wxnacy'</span> = <span class="string">'wxnacy'</span> &amp;&amp; <span class="built_in">echo</span> <span class="literal">true</span> || <span class="built_in">echo</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<li>-n 字符串    字符串的长度不为零则为真<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">test</span> <span class="string">'wxnacy'</span> = <span class="string">'wxnacy'</span> &amp;&amp; <span class="built_in">echo</span> <span class="literal">true</span> || <span class="built_in">echo</span> <span class="literal">false</span></div><div class="line"></div><div class="line"><span class="literal">true</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
 <h2><span id="wen-jian-ce-shi">文件测试</span><a href="#wen-jian-ce-shi" class="header-anchor"></a></h2><ul>
@@ -231,7 +235,7 @@
 <li>-d 文件名    如果文件存在且为目录则为真</li>
 <li>-f 文件名    如果文件存在且为普通文件则为真</li>
 <li>-c 文件名    如果文件存在且为字符型特殊文件则为真</li>
-<li>-b 文件名    如果文件存在且为块特殊文件则为真<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">test</span> -f test.sh &amp;&amp; <span class="built_in">echo</span> <span class="literal">true</span> || <span class="built_in">echo</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<li>-b 文件名    如果文件存在且为块特殊文件则为真<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">test</span> -f test.sh &amp;&amp; <span class="built_in">echo</span> <span class="literal">true</span> || <span class="built_in">echo</span> <span class="literal">false</span></div><div class="line"></div><div class="line"><span class="literal">false</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
 <h2><span id="yu-huo-fei">与或非</span><a href="#yu-huo-fei" class="header-anchor"></a></h2><p>Shell 还提供了三个操作符</p>
@@ -240,10 +244,10 @@
 <li>-a 与</li>
 <li>-o 或<br>优先级由高到低为 <code>!, -a, -o</code></li>
 </ul>
-<h2><span id="fan-hui-zhi">返回值</span><a href="#fan-hui-zhi" class="header-anchor"></a></h2><p>我们可以通过 <code>$?</code> 来获取 <code>test</code> 的返回值<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">test</span> 1 -gt 1; <span class="built_in">echo</span> $?</span><br><span class="line"></span><br><span class="line">1 <span class="comment"># 假</span></span><br></pre></td></tr></table></figure></p>
+<h2><span id="fan-hui-zhi">返回值</span><a href="#fan-hui-zhi" class="header-anchor"></a></h2><p>我们可以通过 <code>$?</code> 来获取 <code>test</code> 的返回值<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">test</span> 1 -gt 1; <span class="built_in">echo</span> $?</div><div class="line"></div><div class="line">1 <span class="comment"># 假</span></div></pre></td></tr></table></figure></p>
 <ul>
-<li><a href="http://www.runoob.com/linux/linux-shell-test.html" target="_blank" rel="noopener">Shell test 命令</a></li>
-<li><a href="https://www.ibm.com/developerworks/cn/linux/l-bash-test.html" target="_blank" rel="noopener">Bash 测试和比较函数</a></li>
+<li><a href="http://www.runoob.com/linux/linux-shell-test.html" target="_blank" rel="external">Shell test 命令</a></li>
+<li><a href="https://www.ibm.com/developerworks/cn/linux/l-bash-test.html" target="_blank" rel="external">Bash 测试和比较函数</a></li>
 </ul>
 
       
@@ -541,11 +545,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -561,15 +565,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

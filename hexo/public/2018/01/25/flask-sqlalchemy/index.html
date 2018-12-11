@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -204,22 +208,22 @@
 <li><a href="#can-kao">参考</a></li>
 </ul>
 <!-- tocstop -->
-<p></div><br>本章代码 Demo 地址：<a href="https://github.com/wxnacy/study/tree/master/python/flask_sqlalchemy_demo" target="_blank" rel="noopener">https://github.com/wxnacy/study/tree/master/python/flask_sqlalchemy_demo</a></p>
-<h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ pip install Flask</span><br><span class="line">$ pip install Flask_SQLAlchemy</span><br></pre></td></tr></table></figure>
+<p></div><br>本章代码 Demo 地址：<a href="https://github.com/wxnacy/study/tree/master/python/flask_sqlalchemy_demo" target="_blank" rel="external">https://github.com/wxnacy/study/tree/master/python/flask_sqlalchemy_demo</a></p>
+<h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ pip install Flask</div><div class="line">$ pip install Flask_SQLAlchemy</div></pre></td></tr></table></figure>
 <p><code>Flask_SQLAlchemy</code> 将 SQLAlchemy 整合到 Flask 框架中，使用起来非常方便。</p>
-<h2><span id="chuang-jian-db">创建 db</span><a href="#chuang-jian-db" class="header-anchor"></a></h2><p>SQLAlchemy 需要的 <code>Base, engine, session</code> 都被整合到了一起，用 <code>SQLAlchemy</code> 类实现，该类实例需要传入 <code>Flask</code> 对象，并利用 <code>app.config[&#39;SQLALCHEMY_DATABASE_URI&#39;]</code> 来赋值 <code>database</code> 的 URI，<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"><span class="keyword">from</span> flask_sqlalchemy <span class="keyword">import</span> SQLAlchemy</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">SQLALCHEMY_DATABASE_URI = <span class="string">'mysql+pymysql://root:wxnacy@127.0.0.1:3306/study?charset=utf8mb4'</span></span><br><span class="line">app.config[<span class="string">'SQLALCHEMY_DATABASE_URI'</span>] = SQLALCHEMY_DATABASE_URI</span><br><span class="line"></span><br><span class="line">db = SQLAlchemy(app)</span><br></pre></td></tr></table></figure></p>
+<h2><span id="chuang-jian-db">创建 db</span><a href="#chuang-jian-db" class="header-anchor"></a></h2><p>SQLAlchemy 需要的 <code>Base, engine, session</code> 都被整合到了一起，用 <code>SQLAlchemy</code> 类实现，该类实例需要传入 <code>Flask</code> 对象，并利用 <code>app.config[&#39;SQLALCHEMY_DATABASE_URI&#39;]</code> 来赋值 <code>database</code> 的 URI，<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</div><div class="line"><span class="keyword">from</span> flask_sqlalchemy <span class="keyword">import</span> SQLAlchemy</div><div class="line"></div><div class="line">app = Flask(__name__)</div><div class="line">SQLALCHEMY_DATABASE_URI = <span class="string">'mysql+pymysql://root:wxnacy@127.0.0.1:3306/study?charset=utf8mb4'</span></div><div class="line">app.config[<span class="string">'SQLALCHEMY_DATABASE_URI'</span>] = SQLALCHEMY_DATABASE_URI</div><div class="line"></div><div class="line">db = SQLAlchemy(app)</div></pre></td></tr></table></figure></p>
 <p>通过 db 可以获取基类 <code>db.Model</code>，Session <code>db.session</code>，引擎 <code>db.engine</code></p>
-<h2><span id="ying-she-lei">映射类</span><a href="#ying-she-lei" class="header-anchor"></a></h2><p>在构造映射类的时候，需要继承的基类由 <code>db.Model</code> 来实现<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span><span class="params">(db.Model)</span>:</span></span><br><span class="line">    __tablename__ = <span class="string">'book'</span></span><br><span class="line">    id = db.Column(db.INT, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    name = db.Column(db.String, default=<span class="string">""</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">format</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> dict(id=self.id, name=self.name)</span><br></pre></td></tr></table></figure></p>
-<h2><span id="chuang-jian-api">创建 api</span><a href="#chuang-jian-api" class="header-anchor"></a></h2><p>我们创建两个 RESTful 风格的接口，创建和查询<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route('/book', methods=['POST'])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_book</span><span class="params">()</span>:</span></span><br><span class="line">    args = request.json</span><br><span class="line">    book = Book(**args)</span><br><span class="line">    db.session.add(book)</span><br><span class="line">    db.session.commit()</span><br><span class="line">    <span class="keyword">return</span> jsonify(book.format())</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route('/book/&lt;int:id&gt;', methods=['GET'])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_book</span><span class="params">(id)</span>:</span></span><br><span class="line">    book = Book.query.filter_by(id=id).first()</span><br><span class="line">    <span class="keyword">return</span> jsonify(book.format())</span><br></pre></td></tr></table></figure></p>
+<h2><span id="ying-she-lei">映射类</span><a href="#ying-she-lei" class="header-anchor"></a></h2><p>在构造映射类的时候，需要继承的基类由 <code>db.Model</code> 来实现<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span><span class="params">(db.Model)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'book'</span></div><div class="line">    id = db.Column(db.INT, primary_key=<span class="keyword">True</span>)</div><div class="line">    name = db.Column(db.String, default=<span class="string">""</span>)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">format</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> dict(id=self.id, name=self.name)</div></pre></td></tr></table></figure></p>
+<h2><span id="chuang-jian-api">创建 api</span><a href="#chuang-jian-api" class="header-anchor"></a></h2><p>我们创建两个 RESTful 风格的接口，创建和查询<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@app.route('/book', methods=['POST'])</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_book</span><span class="params">()</span>:</span></div><div class="line">    args = request.json</div><div class="line">    book = Book(**args)</div><div class="line">    db.session.add(book)</div><div class="line">    db.session.commit()</div><div class="line">    <span class="keyword">return</span> jsonify(book.format())</div><div class="line"></div><div class="line"><span class="meta">@app.route('/book/&lt;int:id&gt;', methods=['GET'])</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_book</span><span class="params">(id)</span>:</span></div><div class="line">    book = Book.query.filter_by(id=id).first()</div><div class="line">    <span class="keyword">return</span> jsonify(book.format())</div></pre></td></tr></table></figure></p>
 <p>在创建部分，与直接使用 SQLAlchemy 没有什么不同，但是在查询方面，除了可以使用 <code>session.query(Book)</code> 的方式查询，还可以使用 <code>Book.query</code> 的方式查询，这样书写会更方便。</p>
-<h2><span id="yun-xing">运行</span><a href="#yun-xing" class="header-anchor"></a></h2><p>最后加上 <code>app.run()</code> 来启动 web 服务，运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ python run.py</span><br></pre></td></tr></table></figure></p>
+<h2><span id="yun-xing">运行</span><a href="#yun-xing" class="header-anchor"></a></h2><p>最后加上 <code>app.run()</code> 来启动 web 服务，运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ python run.py</div></pre></td></tr></table></figure></p>
 <p>启动项目</p>
-<p>创建<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl -X POST localhost:5000/book -H <span class="string">"Content-Type:application/json"</span> -d <span class="string">'&#123;"name":"wxnacy"&#125;'</span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"id"</span>: 94,</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"wxnacy"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>获取<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl localhost:5000/book/94</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"id"</span>: 94,</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"wxnacy"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>创建<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl -X POST localhost:5000/book -H <span class="string">"Content-Type:application/json"</span> -d <span class="string">'&#123;"name":"wxnacy"&#125;'</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="string">"id"</span>: 94,</div><div class="line">    <span class="string">"name"</span>: <span class="string">"wxnacy"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>获取<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl localhost:5000/book/94</div></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="string">"id"</span>: 94,</div><div class="line">    <span class="string">"name"</span>: <span class="string">"wxnacy"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2><span id="can-kao">参考</span><a href="#can-kao" class="header-anchor"></a></h2><ul>
-<li><a href="http://flask-sqlalchemy.pocoo.org/2.3/" target="_blank" rel="noopener">Flask SQLAlchemy</a></li>
+<li><a href="http://flask-sqlalchemy.pocoo.org/2.3/" target="_blank" rel="external">Flask SQLAlchemy</a></li>
 </ul>
 
       
@@ -521,11 +525,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -541,15 +545,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

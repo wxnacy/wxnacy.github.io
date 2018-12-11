@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -205,27 +209,27 @@
 
 <h2><span id="an-zhuang-mo-kuai">安装模块</span><a href="#an-zhuang-mo-kuai" class="header-anchor"></a></h2><p>openresty 版本为 1.11.2.2，通过动态加载的方式导入。</p>
 <p><strong>下载并解压模块</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://github.com/weibocom/nginx-upsync-module/archive/v2.0.0.tar.gz</span><br><span class="line">$ tar -zxvf v2.0.0.tar.gz</span><br><span class="line"></span><br><span class="line">drwxrwxr-x  5 ec2-user ec2-user     4096 Jul  2  2017 nginx-upsync-module-2.0.0</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ wget https://github.com/weibocom/nginx-upsync-module/archive/v2.0.0.tar.gz</div><div class="line">$ tar -zxvf v2.0.0.tar.gz</div><div class="line"></div><div class="line">drwxrwxr-x  5 ec2-user ec2-user     4096 Jul  2  2017 nginx-upsync-module-2.0.0</div></pre></td></tr></table></figure>
 <p><strong>下载 openresty</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://openresty.org/download/openresty-1.11.2.2.tar.gz</span><br><span class="line">$ tar -zxvf openresty-1.11.2.2.tar.gz</span><br><span class="line"></span><br><span class="line">drwxrwxr-x  6 ec2-user ec2-user     4096 May 23 06:20 openresty-1.11.2.2</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ wget https://openresty.org/download/openresty-1.11.2.2.tar.gz</div><div class="line">$ tar -zxvf openresty-1.11.2.2.tar.gz</div><div class="line"></div><div class="line">drwxrwxr-x  6 ec2-user ec2-user     4096 May 23 06:20 openresty-1.11.2.2</div></pre></td></tr></table></figure>
 <p><strong>编译安装</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ./configure --prefix=/usr/<span class="built_in">local</span>/openresty --add-dynamic-module=../nginx-upsync-module-2.0.0</span><br><span class="line">$ sudo gmake &amp;&amp; sudo gmake install</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ./configure --prefix=/usr/<span class="built_in">local</span>/openresty --add-dynamic-module=../nginx-upsync-module-2.0.0</div><div class="line">$ sudo gmake &amp;&amp; sudo gmake install</div></pre></td></tr></table></figure>
 <p>然后在 <code>/usr/local/openresty/nginx/modules</code> 目录下会出现 <code>ngx_http_upsync_module.so</code> 模块文件，然后在 nginx.conf 中导入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">load_module modules/ngx_http_upsync_module.so;</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections  1024;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">load_module modules/ngx_http_upsync_module.so;</div><div class="line"></div><div class="line">events &#123;</div><div class="line">    worker_connections  1024;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2><span id="etcd">etcd</span><a href="#etcd" class="header-anchor"></a></h2><p>upsync 模块支持 consul 和 etcd 两种服务发现服务，在这里我们使用 etcd，如果你不了解 etcd，请看<a href="/2018/05/23/etcd/">这里</a></p>
 <p>我们添加两个服务到 <code>k/v</code> 储存中</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ etcdctl <span class="built_in">set</span> upstreams/127.0.0.1:8001 <span class="string">'&#123;"server": "127.0.0.1:8001"&#125;'</span></span><br><span class="line">$ etcdctl <span class="built_in">set</span> upstreams/127.0.0.1:8002 <span class="string">'&#123;"server": "127.0.0.1:8002"&#125;'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ etcdctl <span class="built_in">set</span> upstreams/127.0.0.1:8001 <span class="string">'&#123;"server": "127.0.0.1:8001"&#125;'</span></div><div class="line">$ etcdctl <span class="built_in">set</span> upstreams/127.0.0.1:8002 <span class="string">'&#123;"server": "127.0.0.1:8002"&#125;'</span></div></pre></td></tr></table></figure>
 <p>查看文件夹 <code>upstreams/</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ curl http://127.0.0.1:2379/v2/keys/upstreams/</span><br><span class="line"></span><br><span class="line">&#123;<span class="string">"action"</span>:<span class="string">"get"</span>,<span class="string">"node"</span>:&#123;<span class="string">"key"</span>:<span class="string">"/upstreams"</span>,<span class="string">"dir"</span>:<span class="literal">true</span>,<span class="string">"nodes"</span>:[&#123;<span class="string">"key"</span>:<span class="string">"/upstreams/127.0.0.1:8001"</span>,<span class="string">"value"</span>:<span class="string">"&#123;\"server\": \"127.0.0.1:8001\"&#125;"</span>,<span class="string">"modifiedIndex"</span>:4,<span class="string">"createdIndex"</span>:4&#125;,&#123;<span class="string">"key"</span>:<span class="string">"/upstreams/127.0.0.1:8002"</span>,<span class="string">"value"</span>:<span class="string">"&#123;\"server\": \"120.0.0.1:8002\"&#125;"</span>,<span class="string">"modifiedIndex"</span>:5,<span class="string">"createdIndex"</span>:5&#125;],<span class="string">"modifiedIndex"</span>:4,<span class="string">"createdIndex"</span>:4&#125;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ curl http://127.0.0.1:2379/v2/keys/upstreams/</div><div class="line"></div><div class="line">&#123;<span class="string">"action"</span>:<span class="string">"get"</span>,<span class="string">"node"</span>:&#123;<span class="string">"key"</span>:<span class="string">"/upstreams"</span>,<span class="string">"dir"</span>:<span class="literal">true</span>,<span class="string">"nodes"</span>:[&#123;<span class="string">"key"</span>:<span class="string">"/upstreams/127.0.0.1:8001"</span>,<span class="string">"value"</span>:<span class="string">"&#123;\"server\": \"127.0.0.1:8001\"&#125;"</span>,<span class="string">"modifiedIndex"</span>:4,<span class="string">"createdIndex"</span>:4&#125;,&#123;<span class="string">"key"</span>:<span class="string">"/upstreams/127.0.0.1:8002"</span>,<span class="string">"value"</span>:<span class="string">"&#123;\"server\": \"120.0.0.1:8002\"&#125;"</span>,<span class="string">"modifiedIndex"</span>:5,<span class="string">"createdIndex"</span>:5&#125;],<span class="string">"modifiedIndex"</span>:4,<span class="string">"createdIndex"</span>:4&#125;&#125;</div></pre></td></tr></table></figure>
 <h2><span id="upstream-pei-zhi">upstream 配置</span><a href="#upstream-pei-zhi" class="header-anchor"></a></h2><p>upstream 配置如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">upstream <span class="built_in">test</span> &#123;</span><br><span class="line">    server localhost:8003 ;</span><br><span class="line">    upsync 127.0.0.1:2379/v2/keys/upstreams/ upsync_timeout=6m upsync_interval=500ms upsync_type=etcd strong_dependency=off;</span><br><span class="line">    upsync_dump_path /usr/<span class="built_in">local</span>/openresty/nginx/conf/servers/servers_test.conf;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  localhost;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://<span class="built_in">test</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location /upstream_list &#123;</span><br><span class="line">        upstream_show;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">upstream <span class="built_in">test</span> &#123;</div><div class="line">    server localhost:8003 ;</div><div class="line">    upsync 127.0.0.1:2379/v2/keys/upstreams/ upsync_timeout=6m upsync_interval=500ms upsync_type=etcd strong_dependency=off;</div><div class="line">    upsync_dump_path /usr/<span class="built_in">local</span>/openresty/nginx/conf/servers/servers_test.conf;</div><div class="line">&#125;</div><div class="line"></div><div class="line">server &#123;</div><div class="line">    listen       80;</div><div class="line">    server_name  localhost;</div><div class="line"></div><div class="line">    location / &#123;</div><div class="line">        proxy_pass http://<span class="built_in">test</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    location /upstream_list &#123;</div><div class="line">        upstream_show;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>参数 <code>upsync_dump_path</code> 的作用在于将 <code>upstreams/</code> 的内容备份到本地，并作为 <code>upstream</code> 列表使用，<code>servers_test.conf</code> 内容如下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">server 127.0.0.1:8001 weight=1 max_fails=2 fail_timeout=10s;</span><br><span class="line">server 127.0.0.1:8002 weight=1 max_fails=2 fail_timeout=10s;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">server 127.0.0.1:8001 weight=1 max_fails=2 fail_timeout=10s;</div><div class="line">server 127.0.0.1:8002 weight=1 max_fails=2 fail_timeout=10s;</div></pre></td></tr></table></figure>
 <p>当 <code>servers_test.conf</code> 成功下载后，配置 <code>server localhost:8003;</code> 将不再生效，它仅仅是为了不让 nginx 报错而存在的。</p>
 <p><code>upstream_show</code> 的作用是返回当前服务列表</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ curl localhost/upstream_list</span><br><span class="line"></span><br><span class="line">Upstream name: <span class="built_in">test</span>; Backend server count: 2</span><br><span class="line">        server 127.0.0.1:8001 weight=1 max_fails=2 fail_timeout=10s;</span><br><span class="line">        server 127.0.0.1:8002 weight=1 max_fails=2 fail_timeout=10s;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ curl localhost/upstream_list</div><div class="line"></div><div class="line">Upstream name: <span class="built_in">test</span>; Backend server count: 2</div><div class="line">        server 127.0.0.1:8001 weight=1 max_fails=2 fail_timeout=10s;</div><div class="line">        server 127.0.0.1:8002 weight=1 max_fails=2 fail_timeout=10s;</div></pre></td></tr></table></figure>
 <ul>
-<li><a href="https://github.com/weibocom/nginx-upsync-module" target="_blank" rel="noopener">nginx-upsync-module</a></li>
+<li><a href="https://github.com/weibocom/nginx-upsync-module" target="_blank" rel="external">nginx-upsync-module</a></li>
 </ul>
 
       
@@ -523,11 +527,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -543,15 +547,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

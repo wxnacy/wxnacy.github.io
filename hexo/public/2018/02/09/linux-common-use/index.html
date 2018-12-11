@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -204,15 +208,15 @@
 <!-- tocstop -->
 </div>
 
-<h2><span id="can-shu">参数</span><a href="#can-shu" class="header-anchor"></a></h2><p>文件接收参数<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'echo $1 $2'</span> &gt; test.sh</span><br><span class="line">$ chmod +x test.sh</span><br><span class="line">$ ./test.sh name age</span><br><span class="line"></span><br><span class="line">name age</span><br></pre></td></tr></table></figure></p>
-<p>函数接受参数<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$1</span> <span class="variable">$2</span>      <span class="comment"># --&gt; name age</span></span><br><span class="line">&#125;</span><br><span class="line">main name age</span><br></pre></td></tr></table></figure></p>
-<h2><span id="pan-duan">判断</span><a href="#pan-duan" class="header-anchor"></a></h2><p>判断字符串相等<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ <span class="variable">$sysOS</span> == <span class="string">"Darwin"</span>  ];<span class="keyword">then</span></span><br><span class="line"><span class="comment"># do something</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></p>
-<p>判断字符串为空或不存在<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ENV=<span class="variable">$1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ ! <span class="variable">$&#123;ENV&#125;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    ENV=<span class="built_in">local</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></p>
-<p>判断是否有某个文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -f ~/.bash_profile  ]; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># do something</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></p>
-<p>判断是否有某个目录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -d ~/.oh-my-zsh   ]; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># do something</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="comment"># else do something</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></p>
-<h2><span id="case">case</span><a href="#case" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="variable">$ID</span> <span class="keyword">in</span></span><br><span class="line">    debian|ubuntu|devuan)</span><br><span class="line">        <span class="comment"># do something</span></span><br><span class="line">        ;;</span><br><span class="line">    centos|fedora|rhel)</span><br><span class="line">        <span class="comment"># do something</span></span><br><span class="line">        ;;</span><br><span class="line">    *)</span><br><span class="line">        <span class="built_in">exit</span> 1</span><br><span class="line">        ;;</span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
-<h2><span id="qi-ta">其他</span><a href="#qi-ta" class="header-anchor"></a></h2><p>当前环境生效环境变量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> NODE_PATH=`<span class="built_in">pwd</span>`/nodejs</span><br></pre></td></tr></table></figure></p>
-<p>执行某个文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bash_profile</span><br></pre></td></tr></table></figure></p>
+<h2><span id="can-shu">参数</span><a href="#can-shu" class="header-anchor"></a></h2><p>文件接收参数<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="string">'echo $1 $2'</span> &gt; test.sh</div><div class="line">$ chmod +x test.sh</div><div class="line">$ ./test.sh name age</div><div class="line"></div><div class="line">name age</div></pre></td></tr></table></figure></p>
+<p>函数接受参数<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">main</span></span>() &#123;</div><div class="line">    <span class="built_in">echo</span> <span class="variable">$1</span> <span class="variable">$2</span>      <span class="comment"># --&gt; name age</span></div><div class="line">&#125;</div><div class="line">main name age</div></pre></td></tr></table></figure></p>
+<h2><span id="pan-duan">判断</span><a href="#pan-duan" class="header-anchor"></a></h2><p>判断字符串相等<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> [ <span class="variable">$sysOS</span> == <span class="string">"Darwin"</span>  ];<span class="keyword">then</span></div><div class="line"><span class="comment"># do something</span></div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure></p>
+<p>判断字符串为空或不存在<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ENV=<span class="variable">$1</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [ ! <span class="variable">$&#123;ENV&#125;</span> ]</div><div class="line"><span class="keyword">then</span></div><div class="line">    ENV=<span class="built_in">local</span></div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure></p>
+<p>判断是否有某个文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> [ -f ~/.bash_profile  ]; <span class="keyword">then</span></div><div class="line">    <span class="comment"># do something</span></div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure></p>
+<p>判断是否有某个目录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> [ -d ~/.oh-my-zsh   ]; <span class="keyword">then</span></div><div class="line">    <span class="comment"># do something</span></div><div class="line"><span class="keyword">else</span></div><div class="line">    <span class="comment"># else do something</span></div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure></p>
+<h2><span id="case">case</span><a href="#case" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">case</span> <span class="variable">$ID</span> <span class="keyword">in</span></div><div class="line">    debian|ubuntu|devuan)</div><div class="line">        <span class="comment"># do something</span></div><div class="line">        ;;</div><div class="line">    centos|fedora|rhel)</div><div class="line">        <span class="comment"># do something</span></div><div class="line">        ;;</div><div class="line">    *)</div><div class="line">        <span class="built_in">exit</span> 1</div><div class="line">        ;;</div><div class="line"><span class="keyword">esac</span></div></pre></td></tr></table></figure>
+<h2><span id="qi-ta">其他</span><a href="#qi-ta" class="header-anchor"></a></h2><p>当前环境生效环境变量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> NODE_PATH=`<span class="built_in">pwd</span>`/nodejs</div></pre></td></tr></table></figure></p>
+<p>执行某个文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> ~/.bash_profile</div></pre></td></tr></table></figure></p>
 
       
 
@@ -509,11 +513,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -529,15 +533,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

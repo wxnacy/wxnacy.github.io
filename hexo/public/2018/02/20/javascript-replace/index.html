@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -201,19 +205,19 @@
 </ul>
 <!-- tocstop -->
 <p></div></p>
-<h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">stringObject.replace(regexp/substr,newSubstr/function)</span><br><span class="line"></span><br><span class="line"><span class="comment">// regexp/substr 必需。规定子字符串或要替换的模式的 RegExp 对象。</span></span><br><span class="line"><span class="comment">// 请注意，如果该值是一个字符串，则将它作为要检索的直接量文本模式，而不是首先被转换为 RegExp 对象。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// newSubstr 必需。一个字符串值。规定了替换文本或生成替换文本的函数。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// function 一个函数，用于创建新的子字符串以用于替换给定的正则表达式或substr的匹配。</span></span><br></pre></td></tr></table></figure>
-<p>newSubstr 中如果有 $ 字符具有特定的含义。如下所示，它说明从模式匹配得到的字符串将用于替换<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$1</span>、<span class="variable">$2</span>、...、<span class="variable">$99</span>    <span class="comment"># 与 regexp 中的第 1 到第 99 个子表达式相匹配的文本。</span></span><br><span class="line">$&amp;                  <span class="comment"># 与 regexp 相匹配的子串。</span></span><br><span class="line">$`                  <span class="comment"># 位于匹配子串左侧的文本。</span></span><br><span class="line">$<span class="string">'                  # 位于匹配子串右侧的文本。</span></span><br><span class="line"><span class="string">$$                  # 直接量符号。'</span>`</span><br></pre></td></tr></table></figure></p>
-<h2><span id="li-zi">例子</span><a href="#li-zi" class="header-anchor"></a></h2><p>替换第一个<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str=<span class="string">"Visit Microsoft!"</span></span><br><span class="line"><span class="built_in">document</span>.write(str.replace(<span class="regexp">/Microsoft/</span>, <span class="string">"W3School"</span>))</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Visit W3School!</span><br></pre></td></tr></table></figure>
-<p>全局替换<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str=<span class="string">"Welcome to Microsoft! "</span></span><br><span class="line">str=str + <span class="string">"We are proud to announce that Microsoft has "</span></span><br><span class="line">str=str + <span class="string">"one of the largest Web Developers sites in the world."</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.write(str.replace(<span class="regexp">/Microsoft/g</span>, <span class="string">"W3School"</span>))</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Welcome to W3School! We are proud to announce that W3School</span><br><span class="line">has one of the largest Web Developers sites in the world.</span><br></pre></td></tr></table></figure>
-<p>全局替换<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str=<span class="string">"Welcome to Microsoft! "</span></span><br><span class="line">str=str + <span class="string">"We are proud to announce that Microsoft has "</span></span><br><span class="line">str=str + <span class="string">"one of the largest Web Developers sites in the world."</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.write(str.replace(<span class="regexp">/Microsoft/g</span>, <span class="string">"W3School"</span>))</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Welcome to W3School! We are proud to announce that W3School</span><br><span class="line">has one of the largest Web Developers sites in the world.</span><br></pre></td></tr></table></figure>
-<p>首字母转大写<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">name = <span class="string">'aaa bbb ccc'</span>;</span><br><span class="line">uw=name.replace(/\b\w+\b/g, function(word)&#123;</span><br><span class="line">        <span class="keyword">return</span> word.substring(<span class="number">0</span>,<span class="number">1</span>).toUpperCase()+word.substring(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">document.write(uw);</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Aaa Bbb Ccc</span><br></pre></td></tr></table></figure>
+<h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">stringObject.replace(regexp/substr,newSubstr/function)</div><div class="line"></div><div class="line"><span class="comment">// regexp/substr 必需。规定子字符串或要替换的模式的 RegExp 对象。</span></div><div class="line"><span class="comment">// 请注意，如果该值是一个字符串，则将它作为要检索的直接量文本模式，而不是首先被转换为 RegExp 对象。</span></div><div class="line"></div><div class="line"><span class="comment">// newSubstr 必需。一个字符串值。规定了替换文本或生成替换文本的函数。</span></div><div class="line"></div><div class="line"><span class="comment">// function 一个函数，用于创建新的子字符串以用于替换给定的正则表达式或substr的匹配。</span></div></pre></td></tr></table></figure>
+<p>newSubstr 中如果有 $ 字符具有特定的含义。如下所示，它说明从模式匹配得到的字符串将用于替换<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$1</span>、<span class="variable">$2</span>、...、<span class="variable">$99</span>    <span class="comment"># 与 regexp 中的第 1 到第 99 个子表达式相匹配的文本。</span></div><div class="line">$&amp;                  <span class="comment"># 与 regexp 相匹配的子串。</span></div><div class="line">$`                  <span class="comment"># 位于匹配子串左侧的文本。</span></div><div class="line">$<span class="string">'                  # 位于匹配子串右侧的文本。</span></div><div class="line"><span class="string">$$                  # 直接量符号。'</span>`</div></pre></td></tr></table></figure></p>
+<h2><span id="li-zi">例子</span><a href="#li-zi" class="header-anchor"></a></h2><p>替换第一个<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str=<span class="string">"Visit Microsoft!"</span></div><div class="line"><span class="built_in">document</span>.write(str.replace(<span class="regexp">/Microsoft/</span>, <span class="string">"W3School"</span>))</div></pre></td></tr></table></figure></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Visit W3School!</div></pre></td></tr></table></figure>
+<p>全局替换<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str=<span class="string">"Welcome to Microsoft! "</span></div><div class="line">str=str + <span class="string">"We are proud to announce that Microsoft has "</span></div><div class="line">str=str + <span class="string">"one of the largest Web Developers sites in the world."</span></div><div class="line"></div><div class="line"><span class="built_in">document</span>.write(str.replace(<span class="regexp">/Microsoft/g</span>, <span class="string">"W3School"</span>))</div></pre></td></tr></table></figure></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Welcome to W3School! We are proud to announce that W3School</div><div class="line">has one of the largest Web Developers sites in the world.</div></pre></td></tr></table></figure>
+<p>全局替换<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str=<span class="string">"Welcome to Microsoft! "</span></div><div class="line">str=str + <span class="string">"We are proud to announce that Microsoft has "</span></div><div class="line">str=str + <span class="string">"one of the largest Web Developers sites in the world."</span></div><div class="line"></div><div class="line"><span class="built_in">document</span>.write(str.replace(<span class="regexp">/Microsoft/g</span>, <span class="string">"W3School"</span>))</div></pre></td></tr></table></figure></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Welcome to W3School! We are proud to announce that W3School</div><div class="line">has one of the largest Web Developers sites in the world.</div></pre></td></tr></table></figure>
+<p>首字母转大写<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">name = <span class="string">'aaa bbb ccc'</span>;</div><div class="line">uw=name.replace(/\b\w+\b/g, function(word)&#123;</div><div class="line">        <span class="keyword">return</span> word.substring(<span class="number">0</span>,<span class="number">1</span>).toUpperCase()+word.substring(<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">);</div><div class="line"></div><div class="line">document.write(uw);</div></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Aaa Bbb Ccc</div></pre></td></tr></table></figure>
 <ul>
-<li><a href="http://www.w3school.com.cn/jsref/jsref_replace.asp" target="_blank" rel="noopener">JavaScript replace() 方法</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace" target="_blank" rel="noopener">String.prototype.replace()</a></li>
+<li><a href="http://www.w3school.com.cn/jsref/jsref_replace.asp" target="_blank" rel="external">JavaScript replace() 方法</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace" target="_blank" rel="external">String.prototype.replace()</a></li>
 </ul>
 
       
@@ -511,11 +515,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -531,15 +535,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

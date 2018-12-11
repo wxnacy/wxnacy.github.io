@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -194,8 +198,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>在 Flask 中配置 logger 用到的 Python 中原生的 logging 模块<br><a id="more"></a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"><span class="keyword">import</span> logging.handlers</span><br><span class="line"><span class="keyword">from</span> logging <span class="keyword">import</span> Formatter</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 日志格式化配置</span></span><br><span class="line">fmt = <span class="string">'[%(asctime)s] [%(filename)s:%(lineno)d\t] [%(levelname)s] '</span>\</span><br><span class="line">        <span class="string">'[%(url)s] %(message)s '</span></span><br><span class="line">fmt = RequestFormatter(fmt)</span><br><span class="line">stream_handler = logging.StreamHandler()</span><br><span class="line">stream_handler.setFormatter(fmt)</span><br><span class="line">app.logger.addHandler(stream_handler)</span><br><span class="line">app.logger.setLevel(logging.DEBUG)</span><br><span class="line"></span><br><span class="line"><span class="comment"># rotating file 配置</span></span><br><span class="line">file_handler = logging.handlers.RotatingFileHandler(</span><br><span class="line">    <span class="string">'log/tmd.log'</span>, maxBytes=<span class="number">104857600</span>, backupCount=<span class="number">20</span></span><br><span class="line">)</span><br><span class="line">file_handler.setFormatter(fmt)</span><br><span class="line">app.logger.addHandler(file_handler)</span><br><span class="line"></span><br><span class="line">app.logger.debug(<span class="string">'Hello World'</span>)</span><br></pre></td></tr></table></figure>
-<p>更多的格式化<a href="https://docs.python.org/2/library/logging.html#logrecord-attributes" target="_blank" rel="noopener">参数</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> logging</div><div class="line"><span class="keyword">import</span> logging.handlers</div><div class="line"><span class="keyword">from</span> logging <span class="keyword">import</span> Formatter</div><div class="line"></div><div class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</div><div class="line"></div><div class="line">app = Flask(__name__)</div><div class="line"></div><div class="line"><span class="comment"># 日志格式化配置</span></div><div class="line">fmt = <span class="string">'[%(asctime)s] [%(filename)s:%(lineno)d\t] [%(levelname)s] '</span>\</div><div class="line">        <span class="string">'[%(url)s] %(message)s '</span></div><div class="line">fmt = RequestFormatter(fmt)</div><div class="line">stream_handler = logging.StreamHandler()</div><div class="line">stream_handler.setFormatter(fmt)</div><div class="line">app.logger.addHandler(stream_handler)</div><div class="line">app.logger.setLevel(logging.DEBUG)</div><div class="line"></div><div class="line"><span class="comment"># rotating file 配置</span></div><div class="line">file_handler = logging.handlers.RotatingFileHandler(</div><div class="line">    <span class="string">'log/tmd.log'</span>, maxBytes=<span class="number">104857600</span>, backupCount=<span class="number">20</span></div><div class="line">)</div><div class="line">file_handler.setFormatter(fmt)</div><div class="line">app.logger.addHandler(file_handler)</div><div class="line"></div><div class="line">app.logger.debug(<span class="string">'Hello World'</span>)</div></pre></td></tr></table></figure>
+<p>更多的格式化<a href="https://docs.python.org/2/library/logging.html#logrecord-attributes" target="_blank" rel="external">参数</a></p>
 
       
 
@@ -496,11 +500,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -516,15 +520,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

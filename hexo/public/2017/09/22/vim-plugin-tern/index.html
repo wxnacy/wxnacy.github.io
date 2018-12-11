@@ -96,6 +96,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -140,6 +142,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -196,7 +200,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><a href="/vim">专辑：Vim 练级手册</a></p>
-<p>在使用 Vim 开发的过程中，发现 仅仅使用 <strong><em>YouCompleteMe</em></strong> 并不能很好的支持 JavaScript 的自动补全<br>后来发现 <strong><em>Tern</em></strong> 可以跟 YouCompleteMe 很好的配合来完成自动补全<br>下面我来介绍 Tern 在 Vim 中的插件 <a href="https://github.com/ternjs/tern_for_vim.git" target="_blank" rel="noopener">tern_for_vim</a><br><a id="more"></a></p>
+<p>在使用 Vim 开发的过程中，发现 仅仅使用 <strong><em>YouCompleteMe</em></strong> 并不能很好的支持 JavaScript 的自动补全<br>后来发现 <strong><em>Tern</em></strong> 可以跟 YouCompleteMe 很好的配合来完成自动补全<br>下面我来介绍 Tern 在 Vim 中的插件 <a href="https://github.com/ternjs/tern_for_vim.git" target="_blank" rel="external">tern_for_vim</a><br><a id="more"></a></p>
 <div class="toc">
 
 <!-- toc -->
@@ -218,15 +222,15 @@
 </div>
 
 <h2><span id="yu-lan">预览</span><a href="#yu-lan" class="header-anchor"></a></h2><p><img src="/images/tern.gif" alt="tern"></p>
-<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><h3><span id="pathogen">Pathogen</span><a href="#pathogen" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~/.vim/bundle</span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/marijnh/tern_for_vim</span><br></pre></td></tr></table></figure>
-<h3><span id="vundle">Vundle</span><a href="#vundle" class="header-anchor"></a></h3><p>在 <code>~/.vimrc</code> 中添加<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Plugin <span class="string">'marijnh/tern_for_vim'</span></span><br></pre></td></tr></table></figure></p>
-<p>在 Vim 中运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:PluginInstall</span><br></pre></td></tr></table></figure></p>
-<h2><span id="pei-he-youcompleteme">配合 YouCompleteMe</span><a href="#pei-he-youcompleteme" class="header-anchor"></a></h2><p>安装完 Tern 后，需要 YouCompleteMe 在安装时传入支持 Tern 的参数<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./install.py --tern-complete</span><br></pre></td></tr></table></figure></p>
+<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><h3><span id="pathogen">Pathogen</span><a href="#pathogen" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> ~/.vim/bundle</div><div class="line">$ git <span class="built_in">clone</span> https://github.com/marijnh/tern_for_vim</div></pre></td></tr></table></figure>
+<h3><span id="vundle">Vundle</span><a href="#vundle" class="header-anchor"></a></h3><p>在 <code>~/.vimrc</code> 中添加<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Plugin <span class="string">'marijnh/tern_for_vim'</span></div></pre></td></tr></table></figure></p>
+<p>在 Vim 中运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:PluginInstall</div></pre></td></tr></table></figure></p>
+<h2><span id="pei-he-youcompleteme">配合 YouCompleteMe</span><a href="#pei-he-youcompleteme" class="header-anchor"></a></h2><p>安装完 Tern 后，需要 YouCompleteMe 在安装时传入支持 Tern 的参数<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ./install.py --tern-complete</div></pre></td></tr></table></figure></p>
 <p>YouCompleteMe 的详细教程请参考我得文章 <a href="/2017/09/22/vim-plugin-youcompleteme">Vim 插件 YouCompleteMe</a></p>
-<h2><span id="pei-zhi">配置</span><a href="#pei-zhi" class="header-anchor"></a></h2><p>Tern 是 NodeJs 项目，所以需要进行 <code>npm install</code> 操作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~/.vim/bundle/tern_for_vim</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure></p>
-<p>完成后需要在项目的根目录建立 <code>.tern-project</code> 文件<br>或者在用户根目录 <code>~/</code> 下建立 <code>.tern-project</code> 文件<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"ecmaVersion"</span>: <span class="number">6</span>,</span><br><span class="line">    <span class="attr">"libs"</span>: [</span><br><span class="line">        <span class="string">"browser"</span>,</span><br><span class="line">        <span class="string">"underscore"</span>,</span><br><span class="line">        <span class="string">"jquery"</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">"plugins"</span>: &#123;</span><br><span class="line">        <span class="attr">"node"</span>: &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2><span id="pei-zhi">配置</span><a href="#pei-zhi" class="header-anchor"></a></h2><p>Tern 是 NodeJs 项目，所以需要进行 <code>npm install</code> 操作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> ~/.vim/bundle/tern_for_vim</div><div class="line">$ npm install</div></pre></td></tr></table></figure></p>
+<p>完成后需要在项目的根目录建立 <code>.tern-project</code> 文件<br>或者在用户根目录 <code>~/</code> 下建立 <code>.tern-project</code> 文件<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"ecmaVersion"</span>: <span class="number">6</span>,</div><div class="line">    <span class="attr">"libs"</span>: [</div><div class="line">        <span class="string">"browser"</span>,</div><div class="line">        <span class="string">"underscore"</span>,</div><div class="line">        <span class="string">"jquery"</span></div><div class="line">    ],</div><div class="line">    <span class="attr">"plugins"</span>: &#123;</div><div class="line">        <span class="attr">"node"</span>: &#123;&#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>此时你已经可以打开 Vim 体验 JavaScript 的自动补全了</p>
-<h2><span id="pei-zhi-shuo-ming">配置说明</span><a href="#pei-zhi-shuo-ming" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ecmaVersion <span class="comment"># 选择 ECMAScript 版本</span></span><br><span class="line">libs        <span class="comment"># browser 表示原生 js 补全，jquery 代表 jQuery 补全</span></span><br><span class="line">loadEagerly <span class="comment"># 指定加载解析的 js 文件</span></span><br><span class="line">dontLoad    <span class="comment"># 排除加载的文件</span></span><br><span class="line">plugins     <span class="comment"># ternjs 使用的插件，配置的扩展补全的库等</span></span><br></pre></td></tr></table></figure>
+<h2><span id="pei-zhi-shuo-ming">配置说明</span><a href="#pei-zhi-shuo-ming" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ecmaVersion <span class="comment"># 选择 ECMAScript 版本</span></div><div class="line">libs        <span class="comment"># browser 表示原生 js 补全，jquery 代表 jQuery 补全</span></div><div class="line">loadEagerly <span class="comment"># 指定加载解析的 js 文件</span></div><div class="line">dontLoad    <span class="comment"># 排除加载的文件</span></div><div class="line">plugins     <span class="comment"># ternjs 使用的插件，配置的扩展补全的库等</span></div></pre></td></tr></table></figure>
 <h3><span id="libs">libs</span><a href="#libs" class="header-anchor"></a></h3><ul>
 <li>browser</li>
 <li>chai</li>
@@ -535,11 +539,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -555,15 +559,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

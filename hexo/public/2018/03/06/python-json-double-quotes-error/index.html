@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -197,8 +201,8 @@
 <p>JSONDecodeError Expecting property name enclosed in double quotes line 1 column 2 (char 1)</p>
 </blockquote>
 <p>Python 在使用 <code>json.loads()</code> 方法时会报一个标题提到的错误，这是因为 JSON 格式的问题。<br><a id="more"></a><br>首先 JSON 格式数据本身规定字符串必须使用双引号来包裹，而 <code>loads()</code> 方法又没有做这方面的处理，想要解决 BUG 笨点办法就是用双引号替换单引号</p>
-<p>当然更好的办法就是使用 <a href="https://docs.python.org/3/library/ast.html#ast-helpers" target="_blank" rel="noopener">ast</a> 模块</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> ast</span><br><span class="line"></span><br><span class="line">text = <span class="string">"&#123;'name': 'wxnacy'&#125;"</span></span><br><span class="line">res = ast.literal_eval(text)</span><br><span class="line">print(res)  <span class="comment"># =&gt; &#123;'name': 'wxnacy'&#125;</span></span><br></pre></td></tr></table></figure>
+<p>当然更好的办法就是使用 <a href="https://docs.python.org/3/library/ast.html#ast-helpers" target="_blank" rel="external">ast</a> 模块</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> ast</div><div class="line"></div><div class="line">text = <span class="string">"&#123;'name': 'wxnacy'&#125;"</span></div><div class="line">res = ast.literal_eval(text)</div><div class="line">print(res)  <span class="comment"># =&gt; &#123;'name': 'wxnacy'&#125;</span></div></pre></td></tr></table></figure>
 
       
 
@@ -495,11 +499,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -515,15 +519,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

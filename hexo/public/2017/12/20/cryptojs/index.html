@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -193,7 +197,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>昨天写一个<a href="/2017/12/19/tool-crypto/">在线加密工具</a>，今天介绍下使用 Node 如何使用 <a href="https://github.com/brix/crypto-js" target="_blank" rel="noopener">crypto-js</a> 包实现散列运算及加密。<br><a id="more"></a><div class="toc"></p>
+        <p>昨天写一个<a href="/2017/12/19/tool-crypto/">在线加密工具</a>，今天介绍下使用 Node 如何使用 <a href="https://github.com/brix/crypto-js" target="_blank" rel="external">crypto-js</a> 包实现散列运算及加密。<br><a id="more"></a><div class="toc"></p>
 <!-- toc -->
 <ul>
 <li><a href="#xia-zai">下载</a></li>
@@ -217,20 +221,20 @@
 <p>通过这段描述，我们需要注意两个点，<strong>一段文字</strong>和<strong>固定长度</strong>，运算的结果是固定长度，但是作为数据源的一段文字却没有限制长度，理论上这段文字可以无限大。那么问题来了，以 MD5 为例，他可以任意长度的数据加密到 32 位长度，如果他竟然可以解密的话，那他岂不是成了最牛逼的压缩工具了，还要那些压缩工具干啥。</p>
 <p>之所以有些工具可以将它解密，是因为散列算法生成的结果是不变的，我们大可以将常用的数据算出 MD5 值并一一对应储存起来，这样一些常用的 MD5 就可以反推出原数据。这也是数据库单纯使用 MD5 等散列算法加密储存密码带来的隐患性。</p>
 <p>好，扯的有点远，先回来看看 crypto-js 怎么使用。</p>
-<h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><p>npm<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save crypto-js</span><br></pre></td></tr></table></figure></p>
-<p>yarn<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yarn add crypto-js</span><br></pre></td></tr></table></figure></p>
-<h2><span id="san-lie">散列</span><a href="#san-lie" class="header-anchor"></a></h2><p>MD5 等散列算法，因为计算结果的唯一性，常被用来作为检验文件是否被修改，如果某人<br>给你网传了一份数据，并把他计算得到的 MD5 告诉你，你拿到数据后也计算下 MD5 值，<br>如果一致，则数据在传递的过程中没有被修改过（等等，如果这个 MD5 值也在传递过程修<br>改了呢？闭嘴，就你话多），我们看下如何计算<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var CryptoJS = require(<span class="string">"crypto-js"</span>);</span><br><span class="line"></span><br><span class="line">var hash = CryptoJS.MD5(<span class="string">'message'</span>);</span><br><span class="line">console.log(hash.toString());   <span class="comment">// 78e731027d8fd50ed642340b7c9a63b3</span></span><br><span class="line">var hash = CryptoJS.SHA1(<span class="string">'message'</span>);</span><br><span class="line">console.log(hash.toString());   <span class="comment">// 6f9b9af3cd6e8b8a73c2cdced37fe9f59226e27d</span></span><br></pre></td></tr></table></figure></p>
+<h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><p>npm<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install --save crypto-js</div></pre></td></tr></table></figure></p>
+<p>yarn<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yarn add crypto-js</div></pre></td></tr></table></figure></p>
+<h2><span id="san-lie">散列</span><a href="#san-lie" class="header-anchor"></a></h2><p>MD5 等散列算法，因为计算结果的唯一性，常被用来作为检验文件是否被修改，如果某人<br>给你网传了一份数据，并把他计算得到的 MD5 告诉你，你拿到数据后也计算下 MD5 值，<br>如果一致，则数据在传递的过程中没有被修改过（等等，如果这个 MD5 值也在传递过程修<br>改了呢？闭嘴，就你话多），我们看下如何计算<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var CryptoJS = require(<span class="string">"crypto-js"</span>);</div><div class="line"></div><div class="line">var hash = CryptoJS.MD5(<span class="string">'message'</span>);</div><div class="line">console.log(hash.toString());   <span class="comment">// 78e731027d8fd50ed642340b7c9a63b3</span></div><div class="line">var hash = CryptoJS.SHA1(<span class="string">'message'</span>);</div><div class="line">console.log(hash.toString());   <span class="comment">// 6f9b9af3cd6e8b8a73c2cdced37fe9f59226e27d</span></div></pre></td></tr></table></figure></p>
 <h3><span id="hmac">Hmac</span><a href="#hmac" class="header-anchor"></a></h3><blockquote>
 <p>1996年后被证实存在弱点，可以被加以破解，对于需要高度安全性的数据，专家一般建议改用其他算法，如SHA-2。2004年，证实MD5算法无法防止碰撞（collision），因此不适用于安全性认证，如SSL公开密钥认证或是数字签名等用途。</p>
 </blockquote>
-<p>想想也是，任意长度的本文都可以压缩到 32 位来表达，肯定会有可能产生重复，并且上边提到过，所有人运算得到的结果都是一样的，那这样数据的安全性就有了隐患，即使现在有个 <code>SHA1, SHA256, SHA512</code> 等等的 Plus 算法，但原理终归是一样的。同样一个密码，我如何跟其他人计算的不一样呢？稍微思考一下，你可能会得到这样的结果，我可以在原数据后面跟一个只有我和朋友才知道的数据（secret key），带着他一起计算，这样别人得到的结果肯定就不一样了。<br>对，这就是 Hmac 算法的原理<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> CryptoJS = <span class="built_in">require</span>(<span class="string">"crypto-js"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> hash = CryptoJS.HmacMD5(<span class="string">'message'</span>, <span class="string">'secret-key'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(hash.toString());   <span class="comment">// 48ef0b47f0dde34665d4a3f548c2c591</span></span><br><span class="line"><span class="keyword">var</span> hash = CryptoJS.SHA1(<span class="string">'message'</span>, <span class="string">'secret-key'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(hash.toString());   <span class="comment">// 48de2656eac2c9c21b04faeec4f1be9672ef53c1</span></span><br></pre></td></tr></table></figure></p>
+<p>想想也是，任意长度的本文都可以压缩到 32 位来表达，肯定会有可能产生重复，并且上边提到过，所有人运算得到的结果都是一样的，那这样数据的安全性就有了隐患，即使现在有个 <code>SHA1, SHA256, SHA512</code> 等等的 Plus 算法，但原理终归是一样的。同样一个密码，我如何跟其他人计算的不一样呢？稍微思考一下，你可能会得到这样的结果，我可以在原数据后面跟一个只有我和朋友才知道的数据（secret key），带着他一起计算，这样别人得到的结果肯定就不一样了。<br>对，这就是 Hmac 算法的原理<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> CryptoJS = <span class="built_in">require</span>(<span class="string">"crypto-js"</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> hash = CryptoJS.HmacMD5(<span class="string">'message'</span>, <span class="string">'secret-key'</span>);</div><div class="line"><span class="built_in">console</span>.log(hash.toString());   <span class="comment">// 48ef0b47f0dde34665d4a3f548c2c591</span></div><div class="line"><span class="keyword">var</span> hash = CryptoJS.SHA1(<span class="string">'message'</span>, <span class="string">'secret-key'</span>);</div><div class="line"><span class="built_in">console</span>.log(hash.toString());   <span class="comment">// 48de2656eac2c9c21b04faeec4f1be9672ef53c1</span></div></pre></td></tr></table></figure></p>
 <p>就这样，同样的文本因为有了 <code>secret-key</code> 的加入，计算的 MD5 ／SHA1 就不再相同，你可以为自己的项目准备不同的 <code>secret-key</code> ，并最好定期更换。</p>
-<h2><span id="dui-cheng-jia-mi">对称加密</span><a href="#dui-cheng-jia-mi" class="header-anchor"></a></h2><p>对称加密顾名思义，加解密双方使用相同的 key，就可以对数据进行加解密操作，注意，这里是可以解密，那就意味着，加密的结果长度取决于愿数据的长度，数据越大，结果越大。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var result = CryptoJS.AES.encrypt(<span class="string">'message'</span>, <span class="string">'secret-key'</span>).toString()</span><br><span class="line">console.log(result);    <span class="comment">// U2FsdGVkX1+deb0glX+i9JpO9WiqJAXRVNnTD+3aeK8=</span></span><br><span class="line">var msg = CryptoJS.AES.decrypt(result, <span class="string">'secret-key'</span>).toString(CryptoJS.enc.Utf8);</span><br><span class="line">console.log(msg);       <span class="comment">// message</span></span><br></pre></td></tr></table></figure></p>
-<p>并且每次计算的加密结果都是不一样的，这样也就减少了碰撞几率，加强了数据安全性。<br>还有更多算法见<a href="https://github.com/brix/crypto-js#list-of-modules" target="_blank" rel="noopener">文档</a></p>
+<h2><span id="dui-cheng-jia-mi">对称加密</span><a href="#dui-cheng-jia-mi" class="header-anchor"></a></h2><p>对称加密顾名思义，加解密双方使用相同的 key，就可以对数据进行加解密操作，注意，这里是可以解密，那就意味着，加密的结果长度取决于愿数据的长度，数据越大，结果越大。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var result = CryptoJS.AES.encrypt(<span class="string">'message'</span>, <span class="string">'secret-key'</span>).toString()</div><div class="line">console.log(result);    <span class="comment">// U2FsdGVkX1+deb0glX+i9JpO9WiqJAXRVNnTD+3aeK8=</span></div><div class="line">var msg = CryptoJS.AES.decrypt(result, <span class="string">'secret-key'</span>).toString(CryptoJS.enc.Utf8);</div><div class="line">console.log(msg);       <span class="comment">// message</span></div></pre></td></tr></table></figure></p>
+<p>并且每次计算的加密结果都是不一样的，这样也就减少了碰撞几率，加强了数据安全性。<br>还有更多算法见<a href="https://github.com/brix/crypto-js#list-of-modules" target="_blank" rel="external">文档</a></p>
 <h2><span id="geng-duo-si-kao">更多思考</span><a href="#geng-duo-si-kao" class="header-anchor"></a></h2><p>有对称加密，就有不对称加密，这种情况加解密双方使用的 key 就是不一样的了，这样就<br>避免了前面提到的，这个 key 在传递的过程中被窃取的情况，目前这也是最安全的加密方<br>式，但是不在本次文章的探讨范围内，以后有机会我们再聊。</p>
 <h2><span id="can-kao">参考</span><a href="#can-kao" class="header-anchor"></a></h2><ul>
-<li><a href="https://zh.wikipedia.org/wiki/MD5" target="_blank" rel="noopener">MD5</a></li>
-<li><a href="https://code.google.com/archive/p/crypto-js/" target="_blank" rel="noopener">crypto-js</a></li>
+<li><a href="https://zh.wikipedia.org/wiki/MD5" target="_blank" rel="external">MD5</a></li>
+<li><a href="https://code.google.com/archive/p/crypto-js/" target="_blank" rel="external">crypto-js</a></li>
 </ul>
 
       
@@ -528,11 +532,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -548,15 +552,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

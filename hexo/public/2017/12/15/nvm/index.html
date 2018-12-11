@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -193,7 +197,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>每个语言应该有自己的版本管理器，Python 有 pyenv ，Ruby 有 rbenv，Node 也有 <a href="https://github.com/creationix/nvm" target="_blank" rel="noopener">nvm</a><br><a id="more"></a><div class="toc"></p>
+        <p>每个语言应该有自己的版本管理器，Python 有 pyenv ，Ruby 有 rbenv，Node 也有 <a href="https://github.com/creationix/nvm" target="_blank" rel="external">nvm</a><br><a id="more"></a><div class="toc"></p>
 <!-- toc -->
 <ul>
 <li><a href="#an-zhuang">安装</a></li>
@@ -202,26 +206,26 @@
 <!-- tocstop -->
 </div>
 
-<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><p>curl<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash</span><br></pre></td></tr></table></figure></p>
-<p>wget<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash</span><br></pre></td></tr></table></figure></p>
+<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><p>curl<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash</div></pre></td></tr></table></figure></p>
+<p>wget<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash</div></pre></td></tr></table></figure></p>
 <p>修改 <code>~/.bash_profile</code> 配置环境变量</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> NVM_DIR=<span class="string">"<span class="variable">$HOME</span>/.nvm"</span></span><br><span class="line">[ -s <span class="string">"<span class="variable">$NVM_DIR</span>/nvm.sh"</span>  ] &amp;&amp; . <span class="string">"<span class="variable">$NVM_DIR</span>/nvm.sh"</span> <span class="comment"># This loads nvm</span></span><br><span class="line">[ -s <span class="string">"<span class="variable">$NVM_DIR</span>/bash_completion"</span>  ] &amp;&amp; \. <span class="string">"<span class="variable">$NVM_DIR</span>/bash_completion"</span>  <span class="comment"># This loads nvm bash_completion</span></span><br></pre></td></tr></table></figure>
-<p>检查安装结构<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">command</span> -v nvm</span><br></pre></td></tr></table></figure></p>
-<p>如果安装成功，该命令会输出 <code>nvm</code>，还有其他的安装方式，见<a href="https://github.com/creationix/nvm#git-install" target="_blank" rel="noopener">文档 </a></p>
-<h2><span id="ming-ling">命令</span><a href="#ming-ling" class="header-anchor"></a></h2><p>下载 node 最新版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nvm install node</span><br></pre></td></tr></table></figure></p>
-<p>node 会被下载到 <code>~/.nvm/versions</code> 目录下，使用 <code>which</code> 命令可以查看某个版本所在位置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ nvm <span class="built_in">which</span> 9.3.0</span><br><span class="line"><span class="comment"># /Users/wxnacy/.nvm/versions/node/v9.3.0/bin/node</span></span><br></pre></td></tr></table></figure></p>
-<p>当然我们还可以下载指定版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nvm install 8.4.0</span><br></pre></td></tr></table></figure></p>
-<p>同时指定使用该版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ nvm use 8.4.0</span><br><span class="line"><span class="comment"># Now using node v8.4.0 (npm v5.3.0)</span></span><br></pre></td></tr></table></figure></p>
-<p>想要使用最新版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ nvm use node</span><br><span class="line"><span class="comment"># Now using node v9.3.0 (npm v5.5.1)</span></span><br></pre></td></tr></table></figure></p>
-<p><code>use</code> 命令只能在当前终端有效，下次打开终端又会回到最初的版本，想要默认使用某个<br>版本，需要使用 <code>alias</code> 命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nvm <span class="built_in">alias</span> default 8.4.0</span><br></pre></td></tr></table></figure></p>
-<p>默认使用最新版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nvm <span class="built_in">alias</span> default node</span><br></pre></td></tr></table></figure></p>
-<p>版本管理最应该做的事情，就是可以让不同的项目运行在不同的版本下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nvm run 8.4.0 index.js</span><br></pre></td></tr></table></figure></p>
-<p>在试了这么久后，我想知道机器都装了哪些版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ nvm ls</span><br><span class="line"><span class="comment">#         v8.0.0</span></span><br><span class="line"><span class="comment">#-&gt;       v8.4.0</span></span><br><span class="line"><span class="comment">#         v9.3.0</span></span><br><span class="line"><span class="comment">#         system</span></span><br></pre></td></tr></table></figure></p>
-<p>想要删掉不用版本也很简单<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nvm uninstall 8.0.0</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> NVM_DIR=<span class="string">"<span class="variable">$HOME</span>/.nvm"</span></div><div class="line">[ -s <span class="string">"<span class="variable">$NVM_DIR</span>/nvm.sh"</span>  ] &amp;&amp; . <span class="string">"<span class="variable">$NVM_DIR</span>/nvm.sh"</span> <span class="comment"># This loads nvm</span></div><div class="line">[ -s <span class="string">"<span class="variable">$NVM_DIR</span>/bash_completion"</span>  ] &amp;&amp; \. <span class="string">"<span class="variable">$NVM_DIR</span>/bash_completion"</span>  <span class="comment"># This loads nvm bash_completion</span></div></pre></td></tr></table></figure>
+<p>检查安装结构<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">command</span> -v nvm</div></pre></td></tr></table></figure></p>
+<p>如果安装成功，该命令会输出 <code>nvm</code>，还有其他的安装方式，见<a href="https://github.com/creationix/nvm#git-install" target="_blank" rel="external">文档 </a></p>
+<h2><span id="ming-ling">命令</span><a href="#ming-ling" class="header-anchor"></a></h2><p>下载 node 最新版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nvm install node</div></pre></td></tr></table></figure></p>
+<p>node 会被下载到 <code>~/.nvm/versions</code> 目录下，使用 <code>which</code> 命令可以查看某个版本所在位置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ nvm <span class="built_in">which</span> 9.3.0</div><div class="line"><span class="comment"># /Users/wxnacy/.nvm/versions/node/v9.3.0/bin/node</span></div></pre></td></tr></table></figure></p>
+<p>当然我们还可以下载指定版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nvm install 8.4.0</div></pre></td></tr></table></figure></p>
+<p>同时指定使用该版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ nvm use 8.4.0</div><div class="line"><span class="comment"># Now using node v8.4.0 (npm v5.3.0)</span></div></pre></td></tr></table></figure></p>
+<p>想要使用最新版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ nvm use node</div><div class="line"><span class="comment"># Now using node v9.3.0 (npm v5.5.1)</span></div></pre></td></tr></table></figure></p>
+<p><code>use</code> 命令只能在当前终端有效，下次打开终端又会回到最初的版本，想要默认使用某个<br>版本，需要使用 <code>alias</code> 命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nvm <span class="built_in">alias</span> default 8.4.0</div></pre></td></tr></table></figure></p>
+<p>默认使用最新版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nvm <span class="built_in">alias</span> default node</div></pre></td></tr></table></figure></p>
+<p>版本管理最应该做的事情，就是可以让不同的项目运行在不同的版本下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nvm run 8.4.0 index.js</div></pre></td></tr></table></figure></p>
+<p>在试了这么久后，我想知道机器都装了哪些版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ nvm ls</div><div class="line"><span class="comment">#         v8.0.0</span></div><div class="line"><span class="comment">#-&gt;       v8.4.0</span></div><div class="line"><span class="comment">#         v9.3.0</span></div><div class="line"><span class="comment">#         system</span></div></pre></td></tr></table></figure></p>
+<p>想要删掉不用版本也很简单<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nvm uninstall 8.0.0</div></pre></td></tr></table></figure></p>
 <p>如果你连 nvm 也不想要了，那就直接把刚才哪些配置去掉，并把 <code>~/.nvm</code> 目录删除即可</p>
-<p>简单的用法就是这些，如果想要更深入了解它的用法，请看<a href="https://github.com/creationix/nvm#usage" target="_blank" rel="noopener">文档 </a></p>
+<p>简单的用法就是这些，如果想要更深入了解它的用法，请看<a href="https://github.com/creationix/nvm#usage" target="_blank" rel="external">文档 </a></p>
 <ul>
-<li><a href="http://nodejs.cn/api/" target="_blank" rel="noopener">Node.js v10.5.0 文档</a></li>
+<li><a href="http://nodejs.cn/api/" target="_blank" rel="external">Node.js v10.5.0 文档</a></li>
 </ul>
 
       
@@ -519,11 +523,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -539,15 +543,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

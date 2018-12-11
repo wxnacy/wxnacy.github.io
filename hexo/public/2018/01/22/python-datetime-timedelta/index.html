@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -202,7 +206,7 @@
 </ul>
 <!-- tocstop -->
 <p></div></p>
-<h2><span id="shi-jian-chai-yun-suan">时间差运算</span><a href="#shi-jian-chai-yun-suan" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">21</span>]: <span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line">In [<span class="number">22</span>]: <span class="keyword">from</span> datetime <span class="keyword">import</span> timedelta</span><br><span class="line"></span><br><span class="line">In [<span class="number">23</span>]: a = datetime.now()</span><br><span class="line"></span><br><span class="line">In [<span class="number">24</span>]: b = datetime.utcnow()</span><br><span class="line"></span><br><span class="line">In [<span class="number">25</span>]: a - b</span><br><span class="line">Out[<span class="number">25</span>]: datetime.timedelta(<span class="number">0</span>, <span class="number">28788</span>, <span class="number">822751</span>)</span><br></pre></td></tr></table></figure>
+<h2><span id="shi-jian-chai-yun-suan">时间差运算</span><a href="#shi-jian-chai-yun-suan" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">21</span>]: <span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</div><div class="line"></div><div class="line">In [<span class="number">22</span>]: <span class="keyword">from</span> datetime <span class="keyword">import</span> timedelta</div><div class="line"></div><div class="line">In [<span class="number">23</span>]: a = datetime.now()</div><div class="line"></div><div class="line">In [<span class="number">24</span>]: b = datetime.utcnow()</div><div class="line"></div><div class="line">In [<span class="number">25</span>]: a - b</div><div class="line">Out[<span class="number">25</span>]: datetime.timedelta(<span class="number">0</span>, <span class="number">28788</span>, <span class="number">822751</span>)</div></pre></td></tr></table></figure>
 <p>timedelta 不能单独使用，需要引入 datetime 模块，在上面这个例子上 a 是当前北京时间（东八区），b 是 UTC 时间，两者做减法，返回一个 <code>timedelta(0, 28788, 822751)</code> 对象，三个值分别代表的是 <code>days</code>、<code>seconds</code>、<code>microseconds</code>。三个值换算后加起来会约等于 8 小时</p>
 <p>timedelta 只会保存 <code>days</code>、<code>seconds</code>、<code>microseconds</code> 三个值，其他类型换算如下：</p>
 <ul>
@@ -217,12 +221,12 @@
 <li>0 &lt;= seconds &lt; 3600 * 24 (the number of seconds in one day)</li>
 <li>-999999999 &lt;= days &lt;= 999999999</li>
 </ul>
-<p>在 2.7 版本以后 timedelta 增加了 <code>total_seconds()</code> 方法<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">35</span>]: timedelta(days=<span class="number">1</span>, hours=<span class="number">2</span>, seconds=<span class="number">3.5</span>)</span><br><span class="line">Out[<span class="number">35</span>]: datetime.timedelta(<span class="number">1</span>, <span class="number">7203</span>, <span class="number">500000</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">36</span>]: timedelta(days=<span class="number">1</span>, hours=<span class="number">2</span>, seconds=<span class="number">3.5</span>).total_seconds()</span><br><span class="line">Out[<span class="number">36</span>]: <span class="number">93603.5</span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">total_seconds() = seconds + days * <span class="number">24</span> * <span class="number">60</span> * <span class="number">60</span> + microseconds / <span class="number">1000</span> / <span class="number">100</span></span><br></pre></td></tr></table></figure>
-<h2><span id="zi-ding-yi-shi-jian-chai">自定义时间差</span><a href="#zi-ding-yi-shi-jian-chai" class="header-anchor"></a></h2><p>用法<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timedelta([days[, seconds[, microseconds[, milliseconds[, minutes[, hours[, weeks]]]]]]])</span><br></pre></td></tr></table></figure></p>
-<p>所有参数可选，且默认都是0，参数的值可以是整数，浮点数，正数或负数。<br>示例<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">27</span>]: <span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line">In [<span class="number">28</span>]: <span class="keyword">from</span> datetime <span class="keyword">import</span> timedelta</span><br><span class="line"></span><br><span class="line">In [<span class="number">29</span>]: a = datetime.now()</span><br><span class="line"></span><br><span class="line">In [<span class="number">32</span>]: a</span><br><span class="line">Out[<span class="number">32</span>]: datetime.datetime(<span class="number">2018</span>, <span class="number">1</span>, <span class="number">22</span>, <span class="number">13</span>, <span class="number">58</span>, <span class="number">46</span>, <span class="number">45448</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">30</span>]: a + timedelta(<span class="number">2</span>)</span><br><span class="line">Out[<span class="number">30</span>]: datetime.datetime(<span class="number">2018</span>, <span class="number">1</span>, <span class="number">24</span>, <span class="number">13</span>, <span class="number">58</span>, <span class="number">46</span>, <span class="number">45448</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">31</span>]: a + timedelta(days=<span class="number">2</span>, hours=<span class="number">3</span>)</span><br><span class="line">Out[<span class="number">31</span>]: datetime.datetime(<span class="number">2018</span>, <span class="number">1</span>, <span class="number">24</span>, <span class="number">16</span>, <span class="number">58</span>, <span class="number">46</span>, <span class="number">45448</span>)</span><br></pre></td></tr></table></figure></p>
+<p>在 2.7 版本以后 timedelta 增加了 <code>total_seconds()</code> 方法<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">35</span>]: timedelta(days=<span class="number">1</span>, hours=<span class="number">2</span>, seconds=<span class="number">3.5</span>)</div><div class="line">Out[<span class="number">35</span>]: datetime.timedelta(<span class="number">1</span>, <span class="number">7203</span>, <span class="number">500000</span>)</div><div class="line"></div><div class="line">In [<span class="number">36</span>]: timedelta(days=<span class="number">1</span>, hours=<span class="number">2</span>, seconds=<span class="number">3.5</span>).total_seconds()</div><div class="line">Out[<span class="number">36</span>]: <span class="number">93603.5</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">total_seconds() = seconds + days * <span class="number">24</span> * <span class="number">60</span> * <span class="number">60</span> + microseconds / <span class="number">1000</span> / <span class="number">100</span></div></pre></td></tr></table></figure>
+<h2><span id="zi-ding-yi-shi-jian-chai">自定义时间差</span><a href="#zi-ding-yi-shi-jian-chai" class="header-anchor"></a></h2><p>用法<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">timedelta([days[, seconds[, microseconds[, milliseconds[, minutes[, hours[, weeks]]]]]]])</div></pre></td></tr></table></figure></p>
+<p>所有参数可选，且默认都是0，参数的值可以是整数，浮点数，正数或负数。<br>示例<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">27</span>]: <span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</div><div class="line"></div><div class="line">In [<span class="number">28</span>]: <span class="keyword">from</span> datetime <span class="keyword">import</span> timedelta</div><div class="line"></div><div class="line">In [<span class="number">29</span>]: a = datetime.now()</div><div class="line"></div><div class="line">In [<span class="number">32</span>]: a</div><div class="line">Out[<span class="number">32</span>]: datetime.datetime(<span class="number">2018</span>, <span class="number">1</span>, <span class="number">22</span>, <span class="number">13</span>, <span class="number">58</span>, <span class="number">46</span>, <span class="number">45448</span>)</div><div class="line"></div><div class="line">In [<span class="number">30</span>]: a + timedelta(<span class="number">2</span>)</div><div class="line">Out[<span class="number">30</span>]: datetime.datetime(<span class="number">2018</span>, <span class="number">1</span>, <span class="number">24</span>, <span class="number">13</span>, <span class="number">58</span>, <span class="number">46</span>, <span class="number">45448</span>)</div><div class="line"></div><div class="line">In [<span class="number">31</span>]: a + timedelta(days=<span class="number">2</span>, hours=<span class="number">3</span>)</div><div class="line">Out[<span class="number">31</span>]: datetime.datetime(<span class="number">2018</span>, <span class="number">1</span>, <span class="number">24</span>, <span class="number">16</span>, <span class="number">58</span>, <span class="number">46</span>, <span class="number">45448</span>)</div></pre></td></tr></table></figure></p>
 <h2><span id="can-kao">参考</span><a href="#can-kao" class="header-anchor"></a></h2><ul>
-<li><a href="https://docs.python.org/2/library/datetime.html#datetime.timedelta" target="_blank" rel="noopener">timedelta</a></li>
+<li><a href="https://docs.python.org/2/library/datetime.html#datetime.timedelta" target="_blank" rel="external">timedelta</a></li>
 </ul>
 
       
@@ -520,11 +524,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -540,15 +544,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

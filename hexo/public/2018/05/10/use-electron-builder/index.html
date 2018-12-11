@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -193,31 +197,31 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="https://www.electron.build/" target="_blank" rel="noopener">electron-builder</a> 可以将 <code>electron</code> 程序打包为 <code>macOS, Linux, Windows</code> 三个平台的软件包，并且使用非常简单。<br><a id="more"></a><div class="toc"></p>
+        <p><a href="https://www.electron.build/" target="_blank" rel="external">electron-builder</a> 可以将 <code>electron</code> 程序打包为 <code>macOS, Linux, Windows</code> 三个平台的软件包，并且使用非常简单。<br><a id="more"></a><div class="toc"></p>
 <!-- toc -->
 <!-- tocstop -->
 </div>
 
 <p><strong>下载模块</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yarn add electron-builder --dev</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yarn add electron-builder --dev</div></pre></td></tr></table></figure>
 <p><strong>将配置信息添加到 <code>package.json</code> 中</strong></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">"build": &#123;</span><br><span class="line">   "appId": "your.id",</span><br><span class="line">   "mac": &#123;</span><br><span class="line">     "category": "your.app.category.type"</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<p>完整配置信息见<a href="https://www.electron.build/configuration/configuration#configuration" target="_blank" rel="noopener">详情</a></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">"build": &#123;</div><div class="line">   "appId": "your.id",</div><div class="line">   "mac": &#123;</div><div class="line">     "category": "your.app.category.type"</div><div class="line">   &#125;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<p>完整配置信息见<a href="https://www.electron.build/configuration/configuration#configuration" target="_blank" rel="external">详情</a></p>
 <p><strong>添加 icon</strong></p>
-<p>macOS 默认使用 icon 位置为 <code>build/icon.icns</code>，更多信息见<a href="https://www.electron.build/icons" target="_blank" rel="noopener">详情</a></p>
+<p>macOS 默认使用 icon 位置为 <code>build/icon.icns</code>，更多信息见<a href="https://www.electron.build/icons" target="_blank" rel="external">详情</a></p>
 <p><strong>在 <code>package.json</code> 中添加运行脚本</strong></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">"scripts": &#123;</span><br><span class="line">   "pack": "electron-builder --dir",</span><br><span class="line">   "dist": "electron-builder"</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">"scripts": &#123;</div><div class="line">   "pack": "electron-builder --dir",</div><div class="line">   "dist": "electron-builder"</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
 <p>然后运行 <code>yarn dist</code> 即可打包，运行 <code>yarn pack</code> 打包后将源码打压缩包。打包目录<br>为 <code>dist</code></p>
 <p><strong>注意</strong></p>
 <ul>
-<li><p>如果你的应用里面，包含有自己的原生addon (并不是依赖项)，那么请设置<a href="https://www.electron.build/configuration/configuration#Configuration-nodeGypRebuild" target="_blank" rel="noopener">nodeGypRebuild</a>为true。</p>
+<li><p>如果你的应用里面，包含有自己的原生addon (并不是依赖项)，那么请设置<a href="https://www.electron.build/configuration/configuration#Configuration-nodeGypRebuild" target="_blank" rel="external">nodeGypRebuild</a>为true。</p>
 </li>
-<li><p>如果你不是 macOS 10.12+ 系统的话，您需要安装<a href="https://electron.org.cn/builder/multi-platform-build.html" target="_blank" rel="noopener">必须的系统包</a>。请注意，<a href="https://www.electron.build/configuration/configuration#Configuration-asar" target="_blank" rel="noopener">默认情况</a>下，所有的文件都会被打包到asar压缩包中。对于一个将要马上投入生产的app，你应该对你的应用进行签名。参见<a href="https://www.electron.build/code-signing#where-to-buy-code-signing-certificate" target="_blank" rel="noopener">哪里可以购买签名证书</a>.</p>
+<li><p>如果你不是 macOS 10.12+ 系统的话，您需要安装<a href="https://electron.org.cn/builder/multi-platform-build.html" target="_blank" rel="external">必须的系统包</a>。请注意，<a href="https://www.electron.build/configuration/configuration#Configuration-asar" target="_blank" rel="external">默认情况</a>下，所有的文件都会被打包到asar压缩包中。对于一个将要马上投入生产的app，你应该对你的应用进行签名。参见<a href="https://www.electron.build/code-signing#where-to-buy-code-signing-certificate" target="_blank" rel="external">哪里可以购买签名证书</a>.</p>
 </li>
 </ul>
-<p>你也可以将<a href="https://github.com/wxnacy/study/tree/master/node/electron/electron-builder" target="_blank" rel="noopener">DEMO</a>下载到本地，在 <code>electron-builder</code> 目录中执行 <code>yarn &amp;&amp; yarn dist</code> 即可</p>
+<p>你也可以将<a href="https://github.com/wxnacy/study/tree/master/node/electron/electron-builder" target="_blank" rel="external">DEMO</a>下载到本地，在 <code>electron-builder</code> 目录中执行 <code>yarn &amp;&amp; yarn dist</code> 即可</p>
 <ul>
-<li><a href="https://electron.org.cn/builder/index.html" target="_blank" rel="noopener">electron-builder 中文</a></li>
+<li><a href="https://electron.org.cn/builder/index.html" target="_blank" rel="external">electron-builder 中文</a></li>
 </ul>
 
       
@@ -515,11 +519,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -535,15 +539,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

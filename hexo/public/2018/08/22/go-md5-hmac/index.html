@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -203,29 +207,29 @@
 </div>
 
 <h2><span id="md5">MD5</span><a href="#md5" class="header-anchor"></a></h2><p><strong>引入包</strong></p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"crypto/md5"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="string">"crypto/md5"</span></div></pre></td></tr></table></figure>
 <p><strong>字符串</strong></p>
 <p>有两种方式可以对字符串进行 md5 运算</p>
 <ul>
 <li><strong>方法一</strong></li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"crypto/md5"</span></span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">MD51</span><span class="params">(message <span class="keyword">string</span>)</span> <span class="title">string</span></span> &#123;</span><br><span class="line">    res := md5.Sum([]<span class="keyword">byte</span>(message))</span><br><span class="line">    <span class="keyword">return</span> fmt.Sprintf(<span class="string">"%x"</span>, res)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> (</div><div class="line">    <span class="string">"crypto/md5"</span></div><div class="line">    <span class="string">"fmt"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">MD51</span><span class="params">(message <span class="keyword">string</span>)</span> <span class="title">string</span></span> &#123;</div><div class="line">    res := md5.Sum([]<span class="keyword">byte</span>(message))</div><div class="line">    <span class="keyword">return</span> fmt.Sprintf(<span class="string">"%x"</span>, res)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
 <li><strong>方法二</strong></li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"crypto/md5"</span></span><br><span class="line">    <span class="string">"io"</span></span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">MD52</span><span class="params">(message <span class="keyword">string</span>)</span> <span class="title">string</span></span> &#123;</span><br><span class="line">    h := md5.New()</span><br><span class="line">    io.WriteString(h, message)</span><br><span class="line">    <span class="keyword">return</span> fmt.Sprintf(<span class="string">"%x"</span>, h.Sum(<span class="literal">nil</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> (</div><div class="line">    <span class="string">"crypto/md5"</span></div><div class="line">    <span class="string">"io"</span></div><div class="line">    <span class="string">"fmt"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">MD52</span><span class="params">(message <span class="keyword">string</span>)</span> <span class="title">string</span></span> &#123;</div><div class="line">    h := md5.New()</div><div class="line">    io.WriteString(h, message)</div><div class="line">    <span class="keyword">return</span> fmt.Sprintf(<span class="string">"%x"</span>, h.Sum(<span class="literal">nil</span>))</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><strong>文件</strong></p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"crypto/md5"</span></span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"io"</span></span><br><span class="line">    <span class="string">"os"</span></span><br><span class="line">    <span class="string">"log"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">MD5File</span><span class="params">(filePath <span class="keyword">string</span>)</span> <span class="title">string</span></span> &#123;</span><br><span class="line">    f, err := os.Open(filePath)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">defer</span> f.Close()</span><br><span class="line"></span><br><span class="line">	h := md5.New()</span><br><span class="line">	<span class="keyword">if</span> _, err := io.Copy(h, f); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> fmt.Sprintf(<span class="string">"%x"</span>, h.Sum(<span class="literal">nil</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"crypto/md5"</span></div><div class="line">	<span class="string">"fmt"</span></div><div class="line">    <span class="string">"io"</span></div><div class="line">    <span class="string">"os"</span></div><div class="line">    <span class="string">"log"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">MD5File</span><span class="params">(filePath <span class="keyword">string</span>)</span> <span class="title">string</span></span> &#123;</div><div class="line">    f, err := os.Open(filePath)</div><div class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</div><div class="line">		log.Fatal(err)</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">defer</span> f.Close()</div><div class="line"></div><div class="line">	h := md5.New()</div><div class="line">	<span class="keyword">if</span> _, err := io.Copy(h, f); err != <span class="literal">nil</span> &#123;</div><div class="line">		log.Fatal(err)</div><div class="line">	&#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> fmt.Sprintf(<span class="string">"%x"</span>, h.Sum(<span class="literal">nil</span>))</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>会了一种计算方式其他的都是这个套路，比如 sha1 只需要引入 <code>crypto/sha1</code> 包，然后将 md5 替换为 sha1 即可</p>
 <h2><span id="hmac">Hmac</span><a href="#hmac" class="header-anchor"></a></h2><p>Hmac 算法在另一个包中可以实现</p>
 <p><strong>引入包</strong></p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"crypto/hmac"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="string">"crypto/hmac"</span></div></pre></td></tr></table></figure>
 <p><strong>HmacMD5算法</strong></p>
 <p>hmac 包需要借助 <code>md5, sha1</code> 等包一起实现相应算法</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"crypto/md5"</span></span><br><span class="line">	<span class="string">"crypto/hmac"</span></span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">HmacMD5</span><span class="params">(message <span class="keyword">string</span>, key <span class="keyword">string</span>)</span> <span class="title">string</span></span> &#123;</span><br><span class="line">    h := hmac.New(md5.New, []<span class="keyword">byte</span>(key))</span><br><span class="line">    h.Write([]<span class="keyword">byte</span>(message))</span><br><span class="line">    <span class="keyword">return</span> fmt.Sprintf(<span class="string">"%x"</span>, h.Sum(<span class="literal">nil</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"crypto/md5"</span></div><div class="line">	<span class="string">"crypto/hmac"</span></div><div class="line">	<span class="string">"fmt"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">HmacMD5</span><span class="params">(message <span class="keyword">string</span>, key <span class="keyword">string</span>)</span> <span class="title">string</span></span> &#123;</div><div class="line">    h := hmac.New(md5.New, []<span class="keyword">byte</span>(key))</div><div class="line">    h.Write([]<span class="keyword">byte</span>(message))</div><div class="line">    <span class="keyword">return</span> fmt.Sprintf(<span class="string">"%x"</span>, h.Sum(<span class="literal">nil</span>))</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
-<li><a href="https://golang.org/pkg/crypto/md5/" target="_blank" rel="noopener">md5</a></li>
-<li><a href="https://golang.org/pkg/crypto/hmac/" target="_blank" rel="noopener">hmac</a></li>
+<li><a href="https://golang.org/pkg/crypto/md5/" target="_blank" rel="external">md5</a></li>
+<li><a href="https://golang.org/pkg/crypto/hmac/" target="_blank" rel="external">hmac</a></li>
 </ul>
 
       
@@ -523,11 +527,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -543,15 +547,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

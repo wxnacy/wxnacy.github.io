@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -193,7 +197,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本章使用 <a href="https://github.com/davidshimjs/qrcodejs" target="_blank" rel="noopener">QRCode.js</a> 来作为生成二维码的工具<br><a id="more"></a></p>
+        <p>本章使用 <a href="https://github.com/davidshimjs/qrcodejs" target="_blank" rel="external">QRCode.js</a> 来作为生成二维码的工具<br><a id="more"></a></p>
 <h2><span id="er-wei-ma-sheng-cheng-qi">二维码生成器</span><a href="#er-wei-ma-sheng-cheng-qi" class="header-anchor"></a></h2>
 <textarea id="plain" style="width: 300px">
 https://wxnacy.com
@@ -226,9 +230,9 @@ window.open(url);
 
 </script>
 
-<h2><span id="qrcode-js">QRCode.js</span><a href="#qrcode-js" class="header-anchor"></a></h2><p>基本使用<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"qrcode"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;script  type=<span class="string">"text/javascript"</span> src=<span class="string">"qrcode.min.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line"><span class="keyword">new</span> QRCode(<span class="built_in">document</span>.getElementById(<span class="string">"qrcode"</span>), <span class="string">"https://wxnacy.com"</span>);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>或者<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">    var qrcode = <span class="keyword">new</span> QRCode(document.getElementById(<span class="string">"qrcode"</span>), &#123;</span><br><span class="line">        text: <span class="string">"https://wxnacy.com"</span>,</span><br><span class="line">        width: <span class="number">128</span>,</span><br><span class="line">        height: <span class="number">128</span>,</span><br><span class="line">        colorDark : <span class="string">"#000000"</span>,</span><br><span class="line">        colorLight : <span class="string">"#ffffff"</span>,</span><br><span class="line">        correctLevel : QRCode.CorrectLevel.H</span><br><span class="line">    &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
-<p><a href="/run.html?id=68719480053">试一试</a><br>其他方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">qrcode.clear(); <span class="comment">// clear the code.</span></span><br><span class="line">qrcode.makeCode(<span class="string">"http://naver.com"</span>); <span class="comment">// make another code.</span></span><br></pre></td></tr></table></figure></p>
+<h2><span id="qrcode-js">QRCode.js</span><a href="#qrcode-js" class="header-anchor"></a></h2><p>基本使用<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;div id=<span class="string">"qrcode"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">&lt;script  type=<span class="string">"text/javascript"</span> src=<span class="string">"qrcode.min.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</div><div class="line"><span class="keyword">new</span> QRCode(<span class="built_in">document</span>.getElementById(<span class="string">"qrcode"</span>), <span class="string">"https://wxnacy.com"</span>);</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</div><div class="line">    var qrcode = <span class="keyword">new</span> QRCode(document.getElementById(<span class="string">"qrcode"</span>), &#123;</div><div class="line">        text: <span class="string">"https://wxnacy.com"</span>,</div><div class="line">        width: <span class="number">128</span>,</div><div class="line">        height: <span class="number">128</span>,</div><div class="line">        colorDark : <span class="string">"#000000"</span>,</div><div class="line">        colorLight : <span class="string">"#ffffff"</span>,</div><div class="line">        correctLevel : QRCode.CorrectLevel.H</div><div class="line">    &#125;);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<p><a href="/run.html?id=68719480053">试一试</a><br>其他方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">qrcode.clear(); <span class="comment">// clear the code.</span></div><div class="line">qrcode.makeCode(<span class="string">"http://naver.com"</span>); <span class="comment">// make another code.</span></div></pre></td></tr></table></figure></p>
 
       
 
@@ -525,11 +529,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -545,15 +549,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

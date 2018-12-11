@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -196,7 +200,7 @@
         <p>change 事件适用于文本域在值变化时触发，我们也可以在非标单元素中通过主动调用 <code>change()</code> 方法来触发 change 事件<br><a id="more"></a><div class="toc"></p>
 <!-- toc -->
 <!-- tocstop -->
-<p></div><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">	&lt;head&gt;</span><br><span class="line">		&lt;meta charset=<span class="string">"utf-8"</span>&gt;</span><br><span class="line">		&lt;title&gt;change事件&lt;/title&gt;</span><br><span class="line">		&lt;style&gt;</span><br><span class="line">			#container &#123;</span><br><span class="line">				min-height: <span class="number">120</span>px;</span><br><span class="line">				border: 1px solid #aaa;</span><br><span class="line">			&#125;</span><br><span class="line">		&lt;/style&gt;</span><br><span class="line">	&lt;/head&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line">		&lt;div id=<span class="string">"container"</span>&gt;</span><br><span class="line"></span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">		&lt;button type="button" id="btn"&gt;add "aaa" for div&lt;/button&gt;</span><br><span class="line">        &lt;button type="button" id="attr"&gt;监听属性&lt;/button&gt;</span><br><span class="line"></span><br><span class="line"> &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"&gt;&lt;/script&gt;</span><br><span class="line">		&lt;script&gt;</span><br><span class="line"></span><br><span class="line">			<span class="function">function <span class="title">changes</span><span class="params">()</span></span>&#123;</span><br><span class="line">				alert(<span class="string">"changes"</span>);</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			$(<span class="string">"#btn"</span>).click(function() &#123;</span><br><span class="line">				$(<span class="string">"#container"</span>).append(<span class="string">"aaa"</span>).change();</span><br><span class="line">			&#125;);</span><br><span class="line">			$(<span class="string">"#attr"</span>).click(function() &#123;</span><br><span class="line">				$(<span class="string">"#container"</span>).attr(<span class="string">"data-value"</span>, <span class="string">"test"</span>).change();</span><br><span class="line">			&#125;);</span><br><span class="line">			$(<span class="string">"#container"</span>).bind(<span class="string">"change"</span>, changes);</span><br><span class="line">		&lt;/script&gt;</span><br><span class="line">	&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p></div><br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">	&lt;head&gt;</div><div class="line">		&lt;meta charset=<span class="string">"utf-8"</span>&gt;</div><div class="line">		&lt;title&gt;change事件&lt;/title&gt;</div><div class="line">		&lt;style&gt;</div><div class="line">			#container &#123;</div><div class="line">				min-height: <span class="number">120</span>px;</div><div class="line">				border: 1px solid #aaa;</div><div class="line">			&#125;</div><div class="line">		&lt;/style&gt;</div><div class="line">	&lt;/head&gt;</div><div class="line">	&lt;body&gt;</div><div class="line">		&lt;div id=<span class="string">"container"</span>&gt;</div><div class="line"></div><div class="line">		&lt;/div&gt;</div><div class="line">		&lt;button type="button" id="btn"&gt;add "aaa" for div&lt;/button&gt;</div><div class="line">        &lt;button type="button" id="attr"&gt;监听属性&lt;/button&gt;</div><div class="line"></div><div class="line"> &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"&gt;&lt;/script&gt;</div><div class="line">		&lt;script&gt;</div><div class="line"></div><div class="line">			<span class="function">function <span class="title">changes</span><span class="params">()</span></span>&#123;</div><div class="line">				alert(<span class="string">"changes"</span>);</div><div class="line"></div><div class="line">			&#125;</div><div class="line"></div><div class="line">			$(<span class="string">"#btn"</span>).click(function() &#123;</div><div class="line">				$(<span class="string">"#container"</span>).append(<span class="string">"aaa"</span>).change();</div><div class="line">			&#125;);</div><div class="line">			$(<span class="string">"#attr"</span>).click(function() &#123;</div><div class="line">				$(<span class="string">"#container"</span>).attr(<span class="string">"data-value"</span>, <span class="string">"test"</span>).change();</div><div class="line">			&#125;);</div><div class="line">			$(<span class="string">"#container"</span>).bind(<span class="string">"change"</span>, changes);</div><div class="line">		&lt;/script&gt;</div><div class="line">	&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
 <p><a href="/run/?id=68719513614">试一试</a></p>
 
       
@@ -494,11 +498,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -514,15 +518,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

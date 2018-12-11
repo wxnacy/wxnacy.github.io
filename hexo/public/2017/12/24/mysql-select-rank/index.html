@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -195,12 +199,12 @@
       
         <p>Mysql 中没有像 Oracle 中那样的 Rank 函数来实现查询的排名排序，但是我们可以用一<br>些基础查询语句来实现同样的效果。</p>
 <a id="more"></a>
-<p>先创建一个表来作为例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">drop table if exists `post`;</span><br><span class="line">create table `post`(</span><br><span class="line">  id int(11) not null AUTO_INCREMENT,</span><br><span class="line">  url VARCHAR(512) not null default &apos;&apos; COMMENT &apos;地址&apos;,</span><br><span class="line">  pv int(11) not null default 0 COMMENT &apos;访问量&apos;,</span><br><span class="line">  primary key(`id`)</span><br><span class="line">) engine=InnoDB default charset=utf8mb4 COMMENT &apos;博客&apos;;</span><br><span class="line">INSERT INTO `post` (`url`, `pv`) VALUES</span><br><span class="line">(&apos;/p/1&apos;, 22),</span><br><span class="line">(&apos;/p/2&apos;, 21),</span><br><span class="line">(&apos;/p/3&apos;, 50),</span><br><span class="line">(&apos;/p/4&apos;, 5),</span><br><span class="line">(&apos;/p/5&apos;, 15),</span><br><span class="line">(&apos;/p/6&apos;, 23),</span><br><span class="line">(&apos;/p/7&apos;, 45),</span><br><span class="line">(&apos;/p/8&apos;, 35),</span><br><span class="line">(&apos;/p/9&apos;, 20);</span><br></pre></td></tr></table></figure></p>
-<p>我们想要对 pv 字段进行倒序排名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select @rank := @rank +1 as rank, url, pv from `post` p, (select @rank := 0) r order by pv desc;</span><br></pre></td></tr></table></figure></p>
-<p>如果你按照我上边的语句执行，你会得到如下的结果<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1    /p/3    50</span><br><span class="line">2    /p/7    45</span><br><span class="line">3    /p/8    35</span><br><span class="line">4    /p/6    23</span><br><span class="line">5    /p/1    22</span><br><span class="line">6    /p/2    21</span><br><span class="line">7    /p/9    20</span><br><span class="line">8    /p/5    15</span><br><span class="line">9    /p/4    5</span><br></pre></td></tr></table></figure></p>
+<p>先创建一个表来作为例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">drop table if exists `post`;</div><div class="line">create table `post`(</div><div class="line">  id int(11) not null AUTO_INCREMENT,</div><div class="line">  url VARCHAR(512) not null default &apos;&apos; COMMENT &apos;地址&apos;,</div><div class="line">  pv int(11) not null default 0 COMMENT &apos;访问量&apos;,</div><div class="line">  primary key(`id`)</div><div class="line">) engine=InnoDB default charset=utf8mb4 COMMENT &apos;博客&apos;;</div><div class="line">INSERT INTO `post` (`url`, `pv`) VALUES</div><div class="line">(&apos;/p/1&apos;, 22),</div><div class="line">(&apos;/p/2&apos;, 21),</div><div class="line">(&apos;/p/3&apos;, 50),</div><div class="line">(&apos;/p/4&apos;, 5),</div><div class="line">(&apos;/p/5&apos;, 15),</div><div class="line">(&apos;/p/6&apos;, 23),</div><div class="line">(&apos;/p/7&apos;, 45),</div><div class="line">(&apos;/p/8&apos;, 35),</div><div class="line">(&apos;/p/9&apos;, 20);</div></pre></td></tr></table></figure></p>
+<p>我们想要对 pv 字段进行倒序排名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select @rank := @rank +1 as rank, url, pv from `post` p, (select @rank := 0) r order by pv desc;</div></pre></td></tr></table></figure></p>
+<p>如果你按照我上边的语句执行，你会得到如下的结果<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">1    /p/3    50</div><div class="line">2    /p/7    45</div><div class="line">3    /p/8    35</div><div class="line">4    /p/6    23</div><div class="line">5    /p/1    22</div><div class="line">6    /p/2    21</div><div class="line">7    /p/9    20</div><div class="line">8    /p/5    15</div><div class="line">9    /p/4    5</div></pre></td></tr></table></figure></p>
 <p>有结果来看，我们已经得到了想要的结果，下面我们来看看怎么实现的。</p>
-<p>首先简单说下 Mysql 中的变量，需要以 <code>@</code> 开头，及 <code>@rank</code>，想要给变量赋值分两种。<br>SET 语句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set @name = &apos;wxnacy&apos;;</span><br><span class="line">select @name;</span><br></pre></td></tr></table></figure></p>
-<p>SELECT 语句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select @name := &apos;wxnacy&apos;;</span><br></pre></td></tr></table></figure></p>
+<p>首先简单说下 Mysql 中的变量，需要以 <code>@</code> 开头，及 <code>@rank</code>，想要给变量赋值分两种。<br>SET 语句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">set @name = &apos;wxnacy&apos;;</div><div class="line">select @name;</div></pre></td></tr></table></figure></p>
+<p>SELECT 语句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select @name := &apos;wxnacy&apos;;</div></pre></td></tr></table></figure></p>
 <p>两者的区别在于 set 命令需要两条命令查询，select 命令中使用 <code>:=</code> 赋值<br>而 <code>@rank := @rank + 1</code> 就是在查询语句中达到自增的目的，也就变相的实现了 <code>rank</code> 函数。</p>
 
       
@@ -498,11 +502,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -518,15 +522,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

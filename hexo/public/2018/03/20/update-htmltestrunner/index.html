@@ -96,6 +96,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -140,6 +142,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -195,7 +199,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>原版的 <a href="http://tungwaiyip.info/software/HTMLTestRunner.html" target="_blank" rel="noopener">HTMLTestRunner</a> 只支持 python2 环境，为了使用我做了适配 python3 的改动，并记录在此<br><a id="more"></a><div class="toc"></p>
+        <p>原版的 <a href="http://tungwaiyip.info/software/HTMLTestRunner.html" target="_blank" rel="external">HTMLTestRunner</a> 只支持 python2 环境，为了使用我做了适配 python3 的改动，并记录在此<br><a id="more"></a><div class="toc"></p>
 <!-- toc -->
 <ul>
 <li><a href="#no-module-named-stringio">No module named StringIO</a></li>
@@ -205,13 +209,13 @@
 </ul>
 <!-- tocstop -->
 <p></div></p>
-<h2><span id="no-module-named-stringio">No module named StringIO</span><a href="#no-module-named-stringio" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.outputBuffer = StringIO.StringIO()</span><br></pre></td></tr></table></figure>
-<p>py3 中 <code>StringIO</code> 由 <code>io</code> 代替，所以导入模块时需要加上如下操作<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">import</span> StringIO</span><br><span class="line"><span class="keyword">except</span> ImportError:</span><br><span class="line">    <span class="keyword">import</span> io <span class="keyword">as</span> StringIO</span><br></pre></td></tr></table></figure></p>
-<h2><span id="attributeerror-dict-object-has-no-attribute-has-key">AttributeError: ‘dict’ object has no attribute ‘has_key’</span><a href="#attributeerror-dict-object-has-no-attribute-has-key" class="header-anchor"></a></h2><p>py3 中去掉了 <code>has_key()</code> 方法，判断是否包含 key 使用 <code>in</code> 操作符<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> rmap.has_key(cls):</span><br><span class="line"><span class="comment"># ==&gt;</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> cls <span class="keyword">in</span> rmap:</span><br></pre></td></tr></table></figure></p>
-<h2><span id="str-object-has-no-attribute-decode">‘str’ object has no attribute ‘decode’</span><a href="#str-object-has-no-attribute-decode" class="header-anchor"></a></h2><p>同样的 py3 中去掉了 <code>decode</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ue = e.decode(<span class="string">'latin-1'</span>)</span><br><span class="line"><span class="comment"># ==&gt;</span></span><br><span class="line">ue = e</span><br><span class="line"></span><br><span class="line">uo = o.decode(<span class="string">'latin-1'</span>)</span><br><span class="line"><span class="comment"># ==&gt;</span></span><br><span class="line">uo = o</span><br></pre></td></tr></table></figure></p>
-<h2><span id="typeerror-unsupported-operand-type-s-for-gt-gt-builtin-function-or-method-and-io-textiowrapper">TypeError: unsupported operand type(s) for &gt;&gt;: ‘builtin_function_or_method’ and ‘_io.TextIOWrapper’</span><a href="#typeerror-unsupported-operand-type-s-for-gt-gt-builtin-function-or-method-and-io-textiowrapper" class="header-anchor"></a></h2><p><code>print</code> 是 py3 与 py2 最不可调和的矛盾<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> &gt;&gt; sys.stderr, <span class="string">'\nTime Elapsed: %s'</span> % (self.stopTime-self.startTime)</span><br><span class="line"><span class="comment"># ==&gt;</span></span><br><span class="line">print(sys.stderr, <span class="string">'\nTime Elapsed: %s'</span> % (self.stopTime-self.startTime))</span><br></pre></td></tr></table></figure></p>
-<p>修改后完整代码地址： <a href="https://github.com/wxnacy/study/blob/master/python/unittest_demo/HTMLTestRunner.py" target="_blank" rel="noopener">https://github.com/wxnacy/study/blob/master/python/unittest_demo/HTMLTestRunner.py</a></p>
-<p>测试<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://raw.githubusercontent.com/wxnacy/study/master/python/unittest_demo/HTMLTestRunner.py</span><br><span class="line">$ wget https://raw.githubusercontent.com/wxnacy/study/master/python/unittest_demo/to_html.py</span><br><span class="line">$ python to_html.py</span><br><span class="line">$ open my_report.html</span><br></pre></td></tr></table></figure></p>
+<h2><span id="no-module-named-stringio">No module named StringIO</span><a href="#no-module-named-stringio" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">self.outputBuffer = StringIO.StringIO()</div></pre></td></tr></table></figure>
+<p>py3 中 <code>StringIO</code> 由 <code>io</code> 代替，所以导入模块时需要加上如下操作<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span>:</div><div class="line">    <span class="keyword">import</span> StringIO</div><div class="line"><span class="keyword">except</span> ImportError:</div><div class="line">    <span class="keyword">import</span> io <span class="keyword">as</span> StringIO</div></pre></td></tr></table></figure></p>
+<h2><span id="attributeerror-dict-object-has-no-attribute-has-key">AttributeError: ‘dict’ object has no attribute ‘has_key’</span><a href="#attributeerror-dict-object-has-no-attribute-has-key" class="header-anchor"></a></h2><p>py3 中去掉了 <code>has_key()</code> 方法，判断是否包含 key 使用 <code>in</code> 操作符<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> <span class="keyword">not</span> rmap.has_key(cls):</div><div class="line"><span class="comment"># ==&gt;</span></div><div class="line"><span class="keyword">if</span> <span class="keyword">not</span> cls <span class="keyword">in</span> rmap:</div></pre></td></tr></table></figure></p>
+<h2><span id="str-object-has-no-attribute-decode">‘str’ object has no attribute ‘decode’</span><a href="#str-object-has-no-attribute-decode" class="header-anchor"></a></h2><p>同样的 py3 中去掉了 <code>decode</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">ue = e.decode(<span class="string">'latin-1'</span>)</div><div class="line"><span class="comment"># ==&gt;</span></div><div class="line">ue = e</div><div class="line"></div><div class="line">uo = o.decode(<span class="string">'latin-1'</span>)</div><div class="line"><span class="comment"># ==&gt;</span></div><div class="line">uo = o</div></pre></td></tr></table></figure></p>
+<h2><span id="typeerror-unsupported-operand-type-s-for-gt-gt-builtin-function-or-method-and-io-textiowrapper">TypeError: unsupported operand type(s) for &gt;&gt;: ‘builtin_function_or_method’ and ‘_io.TextIOWrapper’</span><a href="#typeerror-unsupported-operand-type-s-for-gt-gt-builtin-function-or-method-and-io-textiowrapper" class="header-anchor"></a></h2><p><code>print</code> 是 py3 与 py2 最不可调和的矛盾<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> &gt;&gt; sys.stderr, <span class="string">'\nTime Elapsed: %s'</span> % (self.stopTime-self.startTime)</div><div class="line"><span class="comment"># ==&gt;</span></div><div class="line">print(sys.stderr, <span class="string">'\nTime Elapsed: %s'</span> % (self.stopTime-self.startTime))</div></pre></td></tr></table></figure></p>
+<p>修改后完整代码地址： <a href="https://github.com/wxnacy/study/blob/master/python/unittest_demo/HTMLTestRunner.py" target="_blank" rel="external">https://github.com/wxnacy/study/blob/master/python/unittest_demo/HTMLTestRunner.py</a></p>
+<p>测试<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ wget https://raw.githubusercontent.com/wxnacy/study/master/python/unittest_demo/HTMLTestRunner.py</div><div class="line">$ wget https://raw.githubusercontent.com/wxnacy/study/master/python/unittest_demo/to_html.py</div><div class="line">$ python to_html.py</div><div class="line">$ open my_report.html</div></pre></td></tr></table></figure></p>
 <p>打开网页的效果如下</p>
 <p><img src="/images/htmltestrunner.png" alt="/images/htmltestrunner.png"></p>
 
@@ -325,7 +329,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">No module named StringIO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">AttributeError: ‘dict’ object has no attribute ‘has_key’</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">‘str’ object has no attribute ‘decode’</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">TypeError: unsupported operand type(s) for &gt;&gt;: ‘builtin_function_or_method’ and ‘_io.TextIOWrapper’</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">No module named StringIO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">AttributeError: ‘dict’ object has no attribute ‘has_key’</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">‘str’ object has no attribute ‘decode’</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">TypeError: unsupported operand type(s) for >>: ‘builtin_function_or_method’ and ‘_io.TextIOWrapper’</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -510,11 +514,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -530,15 +534,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

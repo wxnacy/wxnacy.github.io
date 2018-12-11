@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -193,8 +197,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>如何在终端使用代理<br><a id="more"></a><br>我使用的翻墙环境使用 VPS 服务器搭建的，使用 <a href="https://github.com/shadowsocks/ShadowsocksX-NG/releases" target="_blank" rel="noopener">ShadowsocksX-NG</a> 客户端来完成代理操作，但是在终端环境中，仍然不能翻墙，这样很多依赖翻墙的开发就不能进行，这时候需要手动设置下环境变量。</p>
-<p>我们需要写一个脚本来完成这件事，编辑 <code>~/.bash_profile</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">proxyoff</span></span>()&#123;</span><br><span class="line">    <span class="built_in">unset</span> http_proxy</span><br><span class="line">    <span class="built_in">unset</span> https_proxy</span><br><span class="line">    <span class="built_in">echo</span> -e <span class="string">"已关闭代理"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">proxyon</span></span>() &#123;</span><br><span class="line">    <span class="built_in">export</span> no_proxy=<span class="string">"baidu.com,github.com,wxnacy.com"</span></span><br><span class="line">    <span class="built_in">export</span> http_proxy=<span class="string">"http://127.0.0.1:1080"</span></span><br><span class="line">    <span class="built_in">export</span> https_proxy=<span class="variable">$http_proxy</span></span><br><span class="line">    <span class="built_in">echo</span> -e <span class="string">"已开启代理"</span></span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+        <p>如何在终端使用代理<br><a id="more"></a><br>我使用的翻墙环境使用 VPS 服务器搭建的，使用 <a href="https://github.com/shadowsocks/ShadowsocksX-NG/releases" target="_blank" rel="external">ShadowsocksX-NG</a> 客户端来完成代理操作，但是在终端环境中，仍然不能翻墙，这样很多依赖翻墙的开发就不能进行，这时候需要手动设置下环境变量。</p>
+<p>我们需要写一个脚本来完成这件事，编辑 <code>~/.bash_profile</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">proxyoff</span></span>()&#123;</div><div class="line">    <span class="built_in">unset</span> http_proxy</div><div class="line">    <span class="built_in">unset</span> https_proxy</div><div class="line">    <span class="built_in">echo</span> -e <span class="string">"已关闭代理"</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">proxyon</span></span>() &#123;</div><div class="line">    <span class="built_in">export</span> no_proxy=<span class="string">"baidu.com,github.com,wxnacy.com"</span></div><div class="line">    <span class="built_in">export</span> http_proxy=<span class="string">"http://127.0.0.1:1080"</span></div><div class="line">    <span class="built_in">export</span> https_proxy=<span class="variable">$http_proxy</span></div><div class="line">    <span class="built_in">echo</span> -e <span class="string">"已开启代理"</span></div><div class="line">&#125;</div><div class="line">...</div></pre></td></tr></table></figure></p>
 <p>在 <code>proxyon()</code> 函数中，<code>http_proxy, https_proxy</code> 的值是本机的代理地址，这个地址的端口号 ShadowsocksX-NG 已经帮我们完成了，<code>no_proxy</code> 是不需要走代理的地址列表，这样可以保证在访问国内时网速可以得到保证。</p>
 <p>然后执行 <code>source ~/.bash_profile</code> 使函数生效，以后想在终端使用代理，运行 <code>proxyon</code> 即可</p>
 
@@ -493,11 +497,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -513,15 +517,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

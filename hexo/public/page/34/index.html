@@ -92,6 +92,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -136,6 +138,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -193,10 +197,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><h3><span id="macos">macOS</span><a href="#macos" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew cask install minikube</span><br></pre></td></tr></table></figure>
-<h3><span id="linux">Linux</span><a href="#linux" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \</span><br><span class="line">    &amp;&amp; chmod +x minikube \</span><br><span class="line">    &amp;&amp; sudo mv minikube /usr/<span class="built_in">local</span>/bin/</span><br></pre></td></tr></table></figure>
-<h2><span id="xhyve-qu-dong">xhyve 驱动</span><a href="#xhyve-qu-dong" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">brew install docker-machine-driver-xhyve</span><br><span class="line">sudo chown root:wheel $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve</span><br><span class="line">sudo chmod u+s $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve</span><br></pre></td></tr></table></figure>
-<h2><span id="kubectl">kubectl</span><a href="#kubectl" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install kubectl</span><br></pre></td></tr></table></figure>
+        <h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><h3><span id="macos">macOS</span><a href="#macos" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew cask install minikube</div></pre></td></tr></table></figure>
+<h3><span id="linux">Linux</span><a href="#linux" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \</div><div class="line">    &amp;&amp; chmod +x minikube \</div><div class="line">    &amp;&amp; sudo mv minikube /usr/<span class="built_in">local</span>/bin/</div></pre></td></tr></table></figure>
+<h2><span id="xhyve-qu-dong">xhyve 驱动</span><a href="#xhyve-qu-dong" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">brew install docker-machine-driver-xhyve</div><div class="line">sudo chown root:wheel $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve</div><div class="line">sudo chmod u+s $(brew --prefix)/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve</div></pre></td></tr></table></figure>
+<h2><span id="kubectl">kubectl</span><a href="#kubectl" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install kubectl</div></pre></td></tr></table></figure>
 
       
 
@@ -330,7 +334,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><a href="/vim">专辑：Vim 练级手册</a></p>
-<p>在 Vim 中搜索文件，使用 Ack 或 EasyGrep 已经足足的够了，<br>但是如果我们想把搜索做的更像 IDE ，比如把搜索命中行的上下几行也都显示出来那就更完美了，<br>这时候我们需要用到 <a href="https://github.com/dyng/ctrlsf.vim" target="_blank" rel="noopener">CtrlSF</a><br><img src="/images/ctrlsf.gif" alt="/images/ctrlsf.gif"><br>
+<p>在 Vim 中搜索文件，使用 Ack 或 EasyGrep 已经足足的够了，<br>但是如果我们想把搜索做的更像 IDE ，比如把搜索命中行的上下几行也都显示出来那就更完美了，<br>这时候我们需要用到 <a href="https://github.com/dyng/ctrlsf.vim" target="_blank" rel="external">CtrlSF</a><br><img src="/images/ctrlsf.gif" alt="/images/ctrlsf.gif"><br>
         
           <a class="article-more-a" href="/2017/10/13/vim-plugin-ctrlsf/#more">阅读全文 >></a>
         
@@ -409,7 +413,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><a href="/vim">专辑：Vim 练级手册</a></p>
-<p>简单项目使用 vimgrep 或 EasyGrep 已经足够完成搜索任务，但是在一些大型项目中 grep 的搜索速度就跟不上了，这时候可以使用 <a href="https://github.com/mileszs/ack.vim" target="_blank" rel="noopener">Ack</a> 替代它完成搜索任务<br>
+<p>简单项目使用 vimgrep 或 EasyGrep 已经足够完成搜索任务，但是在一些大型项目中 grep 的搜索速度就跟不上了，这时候可以使用 <a href="https://github.com/mileszs/ack.vim" target="_blank" rel="external">Ack</a> 替代它完成搜索任务<br>
         
           <a class="article-more-a" href="/2017/10/13/vim-plugin-ack/#more">阅读全文 >></a>
         
@@ -488,7 +492,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><a href="/vim">专辑：Vim 练级手册</a></p>
-<p>关于在 Vim 中使用 Grep 做全局搜索，我在文章<a href="/2017/10/13/vim-grep">Vim 高级功能 vimgrep 全局搜索文件</a>中有介绍，<br>但是命令行和手动打开搜索结果都让人感觉很不方便，<a href="https://github.com/dkprice/vim-easygrep" target="_blank" rel="noopener">EasyGrep</a> 应运而生，<br>它基于 vimgrep 进行封装，让搜索变得更简单，EasyGrep 有快捷键和命令行两种使用方式</p>
+<p>关于在 Vim 中使用 Grep 做全局搜索，我在文章<a href="/2017/10/13/vim-grep">Vim 高级功能 vimgrep 全局搜索文件</a>中有介绍，<br>但是命令行和手动打开搜索结果都让人感觉很不方便，<a href="https://github.com/dkprice/vim-easygrep" target="_blank" rel="external">EasyGrep</a> 应运而生，<br>它基于 vimgrep 进行封装，让搜索变得更简单，EasyGrep 有快捷键和命令行两种使用方式</p>
         
           <a class="article-more-a" href="/2017/10/13/vim-plugin-easygrep/#more">阅读全文 >></a>
         
@@ -645,7 +649,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Tmux 好用，但是在电脑重启后，之前开启过的回话都不会保存，<br>而 <a href="https://github.com/tmux-plugins/tmux-resurrect" target="_blank" rel="noopener">tmux-resurect</a> 和 <a href="https://github.com/tmux-plugins/tmux-continuum" target="_blank" rel="noopener">tmux-continuum</a> 可以很好的自动保存 Tmux 使用状态<br>
+        <p>Tmux 好用，但是在电脑重启后，之前开启过的回话都不会保存，<br>而 <a href="https://github.com/tmux-plugins/tmux-resurrect" target="_blank" rel="external">tmux-resurect</a> 和 <a href="https://github.com/tmux-plugins/tmux-continuum" target="_blank" rel="external">tmux-continuum</a> 可以很好的自动保存 Tmux 使用状态<br>
         
           <a class="article-more-a" href="/2017/10/04/tmux-plugin-resurect-continuum/#more">阅读全文 >></a>
         
@@ -724,7 +728,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><a href="/vim">专辑：Vim 练级手册</a></p>
-<p><a href="https://github.com/scrooloose/nerdcommenter" target="_blank" rel="noopener">nerdcommenter</a> 快速注释/解开注释<br>Vim 必备的插件</p>
+<p><a href="https://github.com/scrooloose/nerdcommenter" target="_blank" rel="external">nerdcommenter</a> 快速注释/解开注释<br>Vim 必备的插件</p>
         
           <a class="article-more-a" href="/2017/09/25/vim-plugin-nerdcommenter/#more">阅读全文 >></a>
         
@@ -803,7 +807,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><a href="/vim">专辑：Vim 练级手册</a></p>
-<p><a href="https://github.com/altercation/vim-colors-solarized" target="_blank" rel="noopener">vim-colors-solarized</a> 不用多说现在最流行的 Vim 主题</p>
+<p><a href="https://github.com/altercation/vim-colors-solarized" target="_blank" rel="external">vim-colors-solarized</a> 不用多说现在最流行的 Vim 主题</p>
         
           <a class="article-more-a" href="/2017/09/25/vim-plugin-solarize/#more">阅读全文 >></a>
         
@@ -882,7 +886,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><a href="/vim">专辑：Vim 练级手册</a></p>
-<p><a href="https://github.com/bling/vim-airline" target="_blank" rel="noopener">vim-airline</a> 状态栏增强显示<br>先来看效果<br><img src="/images/airline.png" alt="airline"></p>
+<p><a href="https://github.com/bling/vim-airline" target="_blank" rel="external">vim-airline</a> 状态栏增强显示<br>先来看效果<br><img src="/images/airline.png" alt="airline"></p>
         
           <a class="article-more-a" href="/2017/09/25/vim-plugin-artline/#more">阅读全文 >></a>
         
@@ -1110,11 +1114,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1130,15 +1134,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -199,13 +203,13 @@
 </div>
 
 <p>语法</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> 值 <span class="keyword">in</span></span><br><span class="line">模式1)</span><br><span class="line">    command1</span><br><span class="line">    command2</span><br><span class="line">    ...</span><br><span class="line">    commandN</span><br><span class="line">    ;;</span><br><span class="line">模式2|模式3）</span><br><span class="line">    command1</span><br><span class="line">    command2</span><br><span class="line">    ...</span><br><span class="line">    commandN</span><br><span class="line">    ;;</span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">case</span> 值 <span class="keyword">in</span></div><div class="line">模式1)</div><div class="line">    command1</div><div class="line">    command2</div><div class="line">    ...</div><div class="line">    commandN</div><div class="line">    ;;</div><div class="line">模式2|模式3）</div><div class="line">    command1</div><div class="line">    command2</div><div class="line">    ...</div><div class="line">    commandN</div><div class="line">    ;;</div><div class="line"><span class="keyword">esac</span></div></pre></td></tr></table></figure>
 <p>使用</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">'输入 1 到 4 之间的数字:'</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'你输入的数字为:'</span></span><br><span class="line"><span class="built_in">read</span> aNum</span><br><span class="line"><span class="keyword">case</span> <span class="variable">$aNum</span> <span class="keyword">in</span></span><br><span class="line">    1)  <span class="built_in">echo</span> <span class="string">'你选择了 1'</span></span><br><span class="line">    ;;</span><br><span class="line">    2)  <span class="built_in">echo</span> <span class="string">'你选择了 2'</span></span><br><span class="line">    ;;</span><br><span class="line">    3|4)  <span class="built_in">echo</span> <span class="string">'你选择了 3 或 4'</span></span><br><span class="line">    ;;</span><br><span class="line">    *)  <span class="built_in">echo</span> <span class="string">'你没有输入 1 到 4 之间的数字'</span></span><br><span class="line">    ;;</span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="string">'输入 1 到 4 之间的数字:'</span></div><div class="line"><span class="built_in">echo</span> <span class="string">'你输入的数字为:'</span></div><div class="line"><span class="built_in">read</span> aNum</div><div class="line"><span class="keyword">case</span> <span class="variable">$aNum</span> <span class="keyword">in</span></div><div class="line">    1)  <span class="built_in">echo</span> <span class="string">'你选择了 1'</span></div><div class="line">    ;;</div><div class="line">    2)  <span class="built_in">echo</span> <span class="string">'你选择了 2'</span></div><div class="line">    ;;</div><div class="line">    3|4)  <span class="built_in">echo</span> <span class="string">'你选择了 3 或 4'</span></div><div class="line">    ;;</div><div class="line">    *)  <span class="built_in">echo</span> <span class="string">'你没有输入 1 到 4 之间的数字'</span></div><div class="line">    ;;</div><div class="line"><span class="keyword">esac</span></div></pre></td></tr></table></figure>
 <p>执行并输入 <code>1 - 4</code> 中的数字</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入 1 到 4 之间的数字:</span><br><span class="line">你输入的数字为:</span><br><span class="line">3</span><br><span class="line">你选择了 3 或 4</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">输入 1 到 4 之间的数字:</div><div class="line">你输入的数字为:</div><div class="line">3</div><div class="line">你选择了 3 或 4</div></pre></td></tr></table></figure>
 <ul>
-<li><a href="http://www.runoob.com/linux/linux-shell-process-control.html" target="_blank" rel="noopener">Shell 流程控制</a></li>
+<li><a href="http://www.runoob.com/linux/linux-shell-process-control.html" target="_blank" rel="external">Shell 流程控制</a></li>
 </ul>
 
       
@@ -503,11 +507,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -523,15 +527,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

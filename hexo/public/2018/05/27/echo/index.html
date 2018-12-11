@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -204,25 +208,25 @@
 </div>
 
 <h2><span id="zi-fu-chuan-shu-chu">字符串输出</span><a href="#zi-fu-chuan-shu-chu" class="header-anchor"></a></h2><p>字符串带不带双引号的效果是一样的，都是讲字符串输出并解析 <code>$</code> 符号</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> hello world</span><br><span class="line">hello world</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$PATH</span></span><br><span class="line">/usr/bin:/usr/<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> hello world</div><div class="line">hello world</div><div class="line"></div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$PATH</span></div><div class="line">/usr/bin:/usr/<span class="built_in">local</span>/bin</div></pre></td></tr></table></figure>
 <p>单引号包围时不会识别 <code>$</code> 符号，只是单纯的将字符串输出</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="variable">$PATH</span></span><br><span class="line"><span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="variable">$PATH</span></div><div class="line"><span class="variable">$PATH</span></div></pre></td></tr></table></figure>
 <p><code>` </code> 号包围时不但识别 <code>$</code> 符号，还会将字符串当 <code>shell</code> 语句执行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ touch test.sh</span><br><span class="line">$ vim test.sh</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'Hello World'</span></span><br><span class="line"></span><br><span class="line">$ chmod +x test.sh</span><br><span class="line">$ <span class="built_in">echo</span> `./test.sh`</span><br><span class="line">Hello World</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ touch test.sh</div><div class="line">$ vim test.sh</div><div class="line"><span class="built_in">echo</span> <span class="string">'Hello World'</span></div><div class="line"></div><div class="line">$ chmod +x test.sh</div><div class="line">$ <span class="built_in">echo</span> `./test.sh`</div><div class="line">Hello World</div></pre></td></tr></table></figure>
 <h2><span id="can-shu-shuo-ming">参数说明</span><a href="#can-shu-shuo-ming" class="header-anchor"></a></h2><p><code>echo</code> 默认输出后会带有回车，加上参数 <code>-n</code> 会去掉回车</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> -n Hello World</span><br><span class="line">Hello World$</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> -n Hello World</div><div class="line">Hello World$</div></pre></td></tr></table></figure>
 <p><code>echo</code> 默认不识别转义字符，即默认使用了 <code>-E</code> 参数</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'Hello\nWorld'</span></span><br><span class="line">Hello\nWorld</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="string">'Hello\nWorld'</span></div><div class="line">Hello\nWorld</div></pre></td></tr></table></figure>
 <p>使用 <code>-e</code> 参数可以解析转义字符</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> -e <span class="string">'Hello\nWorld'</span></span><br><span class="line">Hello</span><br><span class="line">World</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> -e <span class="string">'Hello\nWorld'</span></div><div class="line">Hello</div><div class="line">World</div></pre></td></tr></table></figure>
 <p>还可以解析下列转义字符</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">\\    反斜杠</span><br><span class="line">\a    响铃声</span><br><span class="line">\b    退格</span><br><span class="line">\c    不再产生新的输出</span><br><span class="line">\e    转义符</span><br><span class="line">\f    换页</span><br><span class="line">\n    新行</span><br><span class="line">\r    回车</span><br><span class="line">\t    水平制表符</span><br><span class="line">\v    竖直制表符</span><br><span class="line">\0NNN   字节数以八进制数 NNN (1至3位)表示</span><br><span class="line">\xHH    字节数以十六进制数 HH (1至2位)表示</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">\\    反斜杠</div><div class="line">\a    响铃声</div><div class="line">\b    退格</div><div class="line">\c    不再产生新的输出</div><div class="line">\e    转义符</div><div class="line">\f    换页</div><div class="line">\n    新行</div><div class="line">\r    回车</div><div class="line">\t    水平制表符</div><div class="line">\v    竖直制表符</div><div class="line">\0NNN   字节数以八进制数 NNN (1至3位)表示</div><div class="line">\xHH    字节数以十六进制数 HH (1至2位)表示</div></pre></td></tr></table></figure>
 <h2><span id="shu-chu-dao-wen-jian">输出到文件</span><a href="#shu-chu-dao-wen-jian" class="header-anchor"></a></h2><p>使用 <code>&gt;</code> 可以将字符串覆盖到文件中</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'Hello World'</span> &gt; hello.txt</span><br><span class="line">$ cat hello.txt</span><br><span class="line">Hello World</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">'Hello Wxnacy'</span> &gt; hello.txt</span><br><span class="line">$ cat hello.txt</span><br><span class="line">Hello Wxnacy</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="string">'Hello World'</span> &gt; hello.txt</div><div class="line">$ cat hello.txt</div><div class="line">Hello World</div><div class="line"></div><div class="line">$ <span class="built_in">echo</span> <span class="string">'Hello Wxnacy'</span> &gt; hello.txt</div><div class="line">$ cat hello.txt</div><div class="line">Hello Wxnacy</div></pre></td></tr></table></figure>
 <p>使用 <code>&gt;&gt;</code> 可以将字符串追加到文件中</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'Hello World'</span> &gt;&gt; hello1.txt</span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">'Hello Wxnacy'</span> &gt;&gt; hello1.txt</span><br><span class="line">$ cat hello1.txt</span><br><span class="line">Hello World</span><br><span class="line">Hello Wxnacy</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="string">'Hello World'</span> &gt;&gt; hello1.txt</div><div class="line">$ <span class="built_in">echo</span> <span class="string">'Hello Wxnacy'</span> &gt;&gt; hello1.txt</div><div class="line">$ cat hello1.txt</div><div class="line">Hello World</div><div class="line">Hello Wxnacy</div></pre></td></tr></table></figure>
 <ul>
-<li><a href="http://man7.org/linux/man-pages/man1/echo.1.html" target="_blank" rel="noopener">ECHO</a></li>
+<li><a href="http://man7.org/linux/man-pages/man1/echo.1.html" target="_blank" rel="external">ECHO</a></li>
 </ul>
 
       
@@ -520,11 +524,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -540,15 +544,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

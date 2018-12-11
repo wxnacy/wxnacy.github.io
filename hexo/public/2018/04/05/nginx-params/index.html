@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -196,16 +200,16 @@
         <p>简单介绍下 Nginx 的命令行参数<br><a id="more"></a><div class="toc"></p>
 <!-- toc -->
 <!-- tocstop -->
-<p></div><br>通过 <code>nginx -h</code> 我们可以得到如下参数信息<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Options:</span><br><span class="line">  -?,-h         : this <span class="built_in">help</span></span><br><span class="line">  -v            : show version and <span class="built_in">exit</span></span><br><span class="line">  -V            : show version and configure options <span class="keyword">then</span> <span class="built_in">exit</span></span><br><span class="line">  -t            : <span class="built_in">test</span> configuration and <span class="built_in">exit</span></span><br><span class="line">  -T            : <span class="built_in">test</span> configuration, dump it and <span class="built_in">exit</span></span><br><span class="line">  -q            : suppress non-error messages during configuration testing</span><br><span class="line">  -s signal     : send signal to a master process: stop, quit, reopen, reload</span><br><span class="line">  -p prefix     : <span class="built_in">set</span> prefix path (default: /usr/<span class="built_in">local</span>/Cellar/nginx/1.12.0_1/)</span><br><span class="line">  -c filename   : <span class="built_in">set</span> configuration file (default: /usr/<span class="built_in">local</span>/etc/nginx/nginx.conf)</span><br><span class="line">  -g directives : <span class="built_in">set</span> global directives out of configuration file</span><br></pre></td></tr></table></figure></p>
-<p>其中我们常用到的命令如下<br>查看版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ nginx -V</span><br><span class="line"></span><br><span class="line">nginx version: nginx/1.12.0</span><br><span class="line">built by clang 8.0.0 (clang-800.0.42.1)</span><br><span class="line">built with OpenSSL 1.1.0e  16 Feb 2017 (running with OpenSSL 1.1.0f  25 May 2017)</span><br><span class="line">TLS SNI support enabled</span><br><span class="line">configure arguments: --prefix=/usr/<span class="built_in">local</span>/Cellar/nginx/1.12.0_1 --with-http_ssl_module --with-pcre --sbin-path=/usr/<span class="built_in">local</span>/Cellar/nginx/1.12.0_1/bin/nginx --with-cc-opt=<span class="string">'-I/usr/local/opt/pcre/include -I/usr/local/opt/openssl@1.1/include'</span> --with-ld-opt=<span class="string">'-L/usr/local/opt/pcre/lib -L/usr/local/opt/openssl@1.1/lib'</span> --conf-path=/usr/<span class="built_in">local</span>/etc/nginx/nginx.conf --pid-path=/usr/<span class="built_in">local</span>/var/run/nginx.pid --lock-path=/usr/<span class="built_in">local</span>/var/run/nginx.lock --http-client-body-temp-path=/usr/<span class="built_in">local</span>/var/run/nginx/client_body_temp --http-proxy-temp-path=/usr/<span class="built_in">local</span>/var/run/nginx/proxy_temp --http-fastcgi-temp-path=/usr/<span class="built_in">local</span>/var/run/nginx/fastcgi_temp --http-uwsgi-temp-path=/usr/<span class="built_in">local</span>/var/run/nginx/uwsgi_temp --http-scgi-temp-path=/usr/<span class="built_in">local</span>/var/run/nginx/scgi_temp --http-log-path=/usr/<span class="built_in">local</span>/var/<span class="built_in">log</span>/nginx/access.log --error-log-path=/usr/<span class="built_in">local</span>/var/<span class="built_in">log</span>/nginx/error.log --with-http_gzip_static_module --with-http_v2_module</span><br></pre></td></tr></table></figure></p>
-<p>修改 <code>nginx.conf</code> 文件后测试是否通过<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ nginx -t</span><br><span class="line"></span><br><span class="line">nginx: the configuration file /usr/<span class="built_in">local</span>/etc/nginx/nginx.conf syntax is ok</span><br><span class="line">nginx: configuration file /usr/<span class="built_in">local</span>/etc/nginx/nginx.conf <span class="built_in">test</span> is successful</span><br></pre></td></tr></table></figure></p>
-<p>运行 Nginx 时指定配置文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nginx -c /www/nginx.conf</span><br></pre></td></tr></table></figure></p>
-<p><code>-s</code> 的使用<br>快速关闭 Nginx<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nginx -s stop</span><br></pre></td></tr></table></figure></p>
-<p>优雅的关闭 Nginx<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nginx -s quit</span><br></pre></td></tr></table></figure></p>
+<p></div><br>通过 <code>nginx -h</code> 我们可以得到如下参数信息<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Options:</div><div class="line">  -?,-h         : this <span class="built_in">help</span></div><div class="line">  -v            : show version and <span class="built_in">exit</span></div><div class="line">  -V            : show version and configure options <span class="keyword">then</span> <span class="built_in">exit</span></div><div class="line">  -t            : <span class="built_in">test</span> configuration and <span class="built_in">exit</span></div><div class="line">  -T            : <span class="built_in">test</span> configuration, dump it and <span class="built_in">exit</span></div><div class="line">  -q            : suppress non-error messages during configuration testing</div><div class="line">  -s signal     : send signal to a master process: stop, quit, reopen, reload</div><div class="line">  -p prefix     : <span class="built_in">set</span> prefix path (default: /usr/<span class="built_in">local</span>/Cellar/nginx/1.12.0_1/)</div><div class="line">  -c filename   : <span class="built_in">set</span> configuration file (default: /usr/<span class="built_in">local</span>/etc/nginx/nginx.conf)</div><div class="line">  -g directives : <span class="built_in">set</span> global directives out of configuration file</div></pre></td></tr></table></figure></p>
+<p>其中我们常用到的命令如下<br>查看版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ nginx -V</div><div class="line"></div><div class="line">nginx version: nginx/1.12.0</div><div class="line">built by clang 8.0.0 (clang-800.0.42.1)</div><div class="line">built with OpenSSL 1.1.0e  16 Feb 2017 (running with OpenSSL 1.1.0f  25 May 2017)</div><div class="line">TLS SNI support enabled</div><div class="line">configure arguments: --prefix=/usr/<span class="built_in">local</span>/Cellar/nginx/1.12.0_1 --with-http_ssl_module --with-pcre --sbin-path=/usr/<span class="built_in">local</span>/Cellar/nginx/1.12.0_1/bin/nginx --with-cc-opt=<span class="string">'-I/usr/local/opt/pcre/include -I/usr/local/opt/openssl@1.1/include'</span> --with-ld-opt=<span class="string">'-L/usr/local/opt/pcre/lib -L/usr/local/opt/openssl@1.1/lib'</span> --conf-path=/usr/<span class="built_in">local</span>/etc/nginx/nginx.conf --pid-path=/usr/<span class="built_in">local</span>/var/run/nginx.pid --lock-path=/usr/<span class="built_in">local</span>/var/run/nginx.lock --http-client-body-temp-path=/usr/<span class="built_in">local</span>/var/run/nginx/client_body_temp --http-proxy-temp-path=/usr/<span class="built_in">local</span>/var/run/nginx/proxy_temp --http-fastcgi-temp-path=/usr/<span class="built_in">local</span>/var/run/nginx/fastcgi_temp --http-uwsgi-temp-path=/usr/<span class="built_in">local</span>/var/run/nginx/uwsgi_temp --http-scgi-temp-path=/usr/<span class="built_in">local</span>/var/run/nginx/scgi_temp --http-log-path=/usr/<span class="built_in">local</span>/var/<span class="built_in">log</span>/nginx/access.log --error-log-path=/usr/<span class="built_in">local</span>/var/<span class="built_in">log</span>/nginx/error.log --with-http_gzip_static_module --with-http_v2_module</div></pre></td></tr></table></figure></p>
+<p>修改 <code>nginx.conf</code> 文件后测试是否通过<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ nginx -t</div><div class="line"></div><div class="line">nginx: the configuration file /usr/<span class="built_in">local</span>/etc/nginx/nginx.conf syntax is ok</div><div class="line">nginx: configuration file /usr/<span class="built_in">local</span>/etc/nginx/nginx.conf <span class="built_in">test</span> is successful</div></pre></td></tr></table></figure></p>
+<p>运行 Nginx 时指定配置文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nginx -c /www/nginx.conf</div></pre></td></tr></table></figure></p>
+<p><code>-s</code> 的使用<br>快速关闭 Nginx<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nginx -s stop</div></pre></td></tr></table></figure></p>
+<p>优雅的关闭 Nginx<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nginx -s quit</div></pre></td></tr></table></figure></p>
 <p>优雅地关闭 Nginx，这是说 Nginx 主进程会等待 worker 进程完成当前用户请求的处理。需要启动时的用户身份来执行</p>
-<p>重新打开日志文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nginx -s reopen</span><br></pre></td></tr></table></figure></p>
+<p>重新打开日志文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nginx -s reopen</div></pre></td></tr></table></figure></p>
 <p>可用于<a href="/2018/04/02/nginx-split-log/">分割日志</a>后，重新打开一个新的日志文件，</p>
-<p>重新加载配置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nginx -s reload</span><br></pre></td></tr></table></figure></p>
+<p>重新加载配置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nginx -s reload</div></pre></td></tr></table></figure></p>
 <p>当主进程接收到 reload 信号，它会检查配置文件的语法，然后尝试应用该配置。如果成功，主进程启动新的 worker 进程，并发送消息给原来的 worker 进程要求他们关闭。如果加载配置失败，主进程会对改动进行回滚，继续以原来的配置进行工作。当原来的 worker 进程接收到消息要他们关闭，他们会停止接收新的连接，并继续处理当前的请求直到完成。完成之后，原来的 worker 进程将会退出。</p>
 
       
@@ -503,11 +507,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -523,15 +527,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

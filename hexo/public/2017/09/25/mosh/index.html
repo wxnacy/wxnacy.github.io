@@ -9,7 +9,7 @@
   <title>网络请求断线重连工具 Mosh | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Mosh 是一个替代 SSH 的免费软件，它最大的特点是支持网络漫游和间歇性连接。">
-<meta name="keywords" content="linux,mac,ssh">
+<meta name="keywords" content="linux,ssh,mac">
 <meta property="og:type" content="article">
 <meta property="og:title" content="网络请求断线重连工具 Mosh">
 <meta property="og:url" content="http://wxnacy.com/2017/09/25/mosh/index.html">
@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -218,15 +222,15 @@
 <li>减少网络延时：SSH 需要等待服务器响应后，才显示您的输入内容。而 Mosh 会马上显示<br>  您的输入，编辑，删除等内容。</li>
 <li>像 SSH，但比 SSH 更好：Mosh 会通过 SSH 登录到服务器，然后运行普通终端应用程序。</li>
 </ul>
-<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><h3><span id="mac">Mac</span><a href="#mac" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install mobile-shell</span><br></pre></td></tr></table></figure>
-<h3><span id="centos">Centos</span><a href="#centos" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum install mosh</span><br></pre></td></tr></table></figure>
-<h3><span id="ubuntu">Ubuntu</span><a href="#ubuntu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-get install mosh</span><br></pre></td></tr></table></figure>
+<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><h3><span id="mac">Mac</span><a href="#mac" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install mobile-shell</div></pre></td></tr></table></figure>
+<h3><span id="centos">Centos</span><a href="#centos" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yum install mosh</div></pre></td></tr></table></figure>
+<h3><span id="ubuntu">Ubuntu</span><a href="#ubuntu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ apt-get install mosh</div></pre></td></tr></table></figure>
 <p><strong><em>注意：想要使用 Mosh ，客户端和服务器必须同时安装</em></strong></p>
-<h2><span id="she-zhi-fang-huo-qiang">设置防火墙</span><a href="#she-zhi-fang-huo-qiang" class="header-anchor"></a></h2><p>因为 Mosh 使用的是 UDP 端口，所以服务器上需要打开60000-61000 UDP 端口<br>打开：<code>/etc/iptables.firewall.rules</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-A INPUT -p udp --dport 60000:61000 -j ACCEPT</span><br></pre></td></tr></table></figure></p>
-<p>加入如上这行后，然后重新载入您的防火墙规则：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo iptables-restore &lt; /etc/iptables.firewall.rules</span><br></pre></td></tr></table></figure></p>
-<h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><p>Mosh 可以像 SSH 那样去连接服务器<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mosh username@host</span><br></pre></td></tr></table></figure></p>
-<p>如果你设置了 <code>~/.ssh/config</code> 文件，则可以直接连接服务器名称<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mosh wxnacy</span><br></pre></td></tr></table></figure></p>
-<p>如果SSH监听在非正规端口（比如 23），需要如下连接：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mosh username@host --ssh=<span class="string">"ssh -p 23"</span></span><br></pre></td></tr></table></figure></p>
+<h2><span id="she-zhi-fang-huo-qiang">设置防火墙</span><a href="#she-zhi-fang-huo-qiang" class="header-anchor"></a></h2><p>因为 Mosh 使用的是 UDP 端口，所以服务器上需要打开60000-61000 UDP 端口<br>打开：<code>/etc/iptables.firewall.rules</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-A INPUT -p udp --dport 60000:61000 -j ACCEPT</div></pre></td></tr></table></figure></p>
+<p>加入如上这行后，然后重新载入您的防火墙规则：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo iptables-restore &lt; /etc/iptables.firewall.rules</div></pre></td></tr></table></figure></p>
+<h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><p>Mosh 可以像 SSH 那样去连接服务器<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mosh username@host</div></pre></td></tr></table></figure></p>
+<p>如果你设置了 <code>~/.ssh/config</code> 文件，则可以直接连接服务器名称<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mosh wxnacy</div></pre></td></tr></table></figure></p>
+<p>如果SSH监听在非正规端口（比如 23），需要如下连接：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mosh username@host --ssh=<span class="string">"ssh -p 23"</span></div></pre></td></tr></table></figure></p>
 
       
 
@@ -285,11 +289,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">mac</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ssh</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ssh</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">mac</a>
         		</li>
       		
 		</ul>
@@ -531,11 +535,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -551,15 +555,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -199,16 +203,16 @@
 </div>
 
 <p><strong>用法</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$&#123;parameter/pattern/string&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$&#123;parameter/pattern/string&#125;</span></div></pre></td></tr></table></figure>
 <p><strong>使用</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ a=/data/wxnacy/data/<span class="built_in">log</span>/log.txt</span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;a/data/User&#125;</span>           <span class="comment"># 将第一个 data 替换为 User</span></span><br><span class="line">/User/wxnacy/data/<span class="built_in">log</span>/log.txt</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;a//data/User&#125;</span>           <span class="comment"># 将全部 data 替换为 User</span></span><br><span class="line">/User/wxnacy/User/<span class="built_in">log</span>/log.txt</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;a/#\/data/\/User&#125;</span>           <span class="comment"># 匹配开头 /data 替换为 /User（/ 需要转义）</span></span><br><span class="line">/User/wxnacy/data/<span class="built_in">log</span>/log.txt</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;a/%log.txt/User&#125;</span>           <span class="comment"># 匹配结尾 log.txt 替换为 User</span></span><br><span class="line">/data/wxnacy/data/<span class="built_in">log</span>/User</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ a=/data/wxnacy/data/<span class="built_in">log</span>/log.txt</div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;a/data/User&#125;</span>           <span class="comment"># 将第一个 data 替换为 User</span></div><div class="line">/User/wxnacy/data/<span class="built_in">log</span>/log.txt</div><div class="line"></div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;a//data/User&#125;</span>           <span class="comment"># 将全部 data 替换为 User</span></div><div class="line">/User/wxnacy/User/<span class="built_in">log</span>/log.txt</div><div class="line"></div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;a/#\/data/\/User&#125;</span>           <span class="comment"># 匹配开头 /data 替换为 /User（/ 需要转义）</span></div><div class="line">/User/wxnacy/data/<span class="built_in">log</span>/log.txt</div><div class="line"></div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;a/%log.txt/User&#125;</span>           <span class="comment"># 匹配结尾 log.txt 替换为 User</span></div><div class="line">/data/wxnacy/data/<span class="built_in">log</span>/User</div></pre></td></tr></table></figure>
 <p>其他方法</p>
 <p>还有一种方法是利用 sed 来实现</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="variable">$a</span> | sed -e <span class="string">"s/data/User/g"</span></span><br><span class="line">/User/wxnacy/User/<span class="built_in">log</span>/log.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="variable">$a</span> | sed -e <span class="string">"s/data/User/g"</span></div><div class="line">/User/wxnacy/User/<span class="built_in">log</span>/log.txt</div></pre></td></tr></table></figure>
 <p>对比一下还是第一种方式简单</p>
 <ul>
-<li><a href="http://blog.51cto.com/xuke1668/868683" target="_blank" rel="noopener">bash shell 中的扩展–参数和变量扩展</a></li>
-<li><a href="https://stackoverflow.com/questions/3306007/replace-a-string-in-shell-script-using-a-variable" target="_blank" rel="noopener">Replace a string in shell script using a variable</a></li>
+<li><a href="http://blog.51cto.com/xuke1668/868683" target="_blank" rel="external">bash shell 中的扩展–参数和变量扩展</a></li>
+<li><a href="https://stackoverflow.com/questions/3306007/replace-a-string-in-shell-script-using-a-variable" target="_blank" rel="external">Replace a string in shell script using a variable</a></li>
 </ul>
 
       
@@ -506,11 +510,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -526,15 +530,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

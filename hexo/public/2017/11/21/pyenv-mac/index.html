@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -194,12 +198,12 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>在 Mac 上使用 brew 可以很方便的安装 pyenv<br><a id="more"></a></p>
-<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install pyenv</span><br></pre></td></tr></table></figure>
-<p>接下来需要修改环境变量<br><code>vim ~/.bash_profile</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PYENV_ROOT=<span class="string">"<span class="variable">$&#123;HOME&#125;</span>/.pyenv"</span></span><br><span class="line"><span class="keyword">if</span> [ -d <span class="string">"<span class="variable">$&#123;PYENV_ROOT&#125;</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">export</span> PATH=<span class="string">"<span class="variable">$&#123;PYENV_ROOT&#125;</span>/bin:<span class="variable">$&#123;PATH&#125;</span>"</span></span><br><span class="line">  <span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv init -)</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">CFLAGS=<span class="string">"-I<span class="variable">$(brew --prefix openssl)</span>/include"</span> \</span><br><span class="line">LDFLAGS=<span class="string">"-L<span class="variable">$(brew --prefix openssl)</span>/lib"</span> \</span><br></pre></td></tr></table></figure></p>
-<p>使配置生效 <code>source ~/.bash_profile</code><br>然后还需要一些依赖<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ xcode-select --install</span><br><span class="line">$ brew install readline xz zlib</span><br></pre></td></tr></table></figure></p>
+<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install pyenv</div></pre></td></tr></table></figure>
+<p>接下来需要修改环境变量<br><code>vim ~/.bash_profile</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> PYENV_ROOT=<span class="string">"<span class="variable">$&#123;HOME&#125;</span>/.pyenv"</span></div><div class="line"><span class="keyword">if</span> [ -d <span class="string">"<span class="variable">$&#123;PYENV_ROOT&#125;</span>"</span> ]; <span class="keyword">then</span></div><div class="line">  <span class="built_in">export</span> PATH=<span class="string">"<span class="variable">$&#123;PYENV_ROOT&#125;</span>/bin:<span class="variable">$&#123;PATH&#125;</span>"</span></div><div class="line">  <span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv init -)</span>"</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line">CFLAGS=<span class="string">"-I<span class="variable">$(brew --prefix openssl)</span>/include"</span> \</div><div class="line">LDFLAGS=<span class="string">"-L<span class="variable">$(brew --prefix openssl)</span>/lib"</span> \</div></pre></td></tr></table></figure></p>
+<p>使配置生效 <code>source ~/.bash_profile</code><br>然后还需要一些依赖<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ xcode-select --install</div><div class="line">$ brew install readline xz zlib</div></pre></td></tr></table></figure></p>
 <p>这样就可以正常使用 pyenv 了</p>
-<h2><span id="sheng-ji">升级</span><a href="#sheng-ji" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew upgrade pyenv</span><br></pre></td></tr></table></figure>
-<h2><span id="xie-zai">卸载</span><a href="#xie-zai" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew uninstall pyenv</span><br></pre></td></tr></table></figure>
+<h2><span id="sheng-ji">升级</span><a href="#sheng-ji" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew upgrade pyenv</div></pre></td></tr></table></figure>
+<h2><span id="xie-zai">卸载</span><a href="#xie-zai" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew uninstall pyenv</div></pre></td></tr></table></figure>
 <p>然后删除之前填在 <code>~/.bash_profile</code> 文件里添加的内容</p>
 
       
@@ -501,11 +505,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -521,15 +525,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -194,14 +198,14 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>在使用 <code>datetime</code> 的 <code>timestamp()</code> 方法获取时间戳时遇到一点问题<br><a id="more"></a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line">print(datetime.now().timestamp()        <span class="comment"># ==&gt; 1512393482.510263</span></span><br><span class="line">print(datetime.utcnow().timestamp())    <span class="comment"># ==&gt; 1512364682.510288</span></span><br></pre></td></tr></table></figure>
-<p>理论上两个输出应该都返回当前时间戳，但是 <code>utcnow()</code> 方法的时间戳并不正确，网上查找资料没一个能说明白的，后来查看<a href="https://docs.python.org/dev/library/datetime.html#datetime.datetime.timestamp" target="_blank" rel="noopener">官方文档</a>发现这么一句话</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</div><div class="line">print(datetime.now().timestamp()        <span class="comment"># ==&gt; 1512393482.510263</span></div><div class="line">print(datetime.utcnow().timestamp())    <span class="comment"># ==&gt; 1512364682.510288</span></div></pre></td></tr></table></figure>
+<p>理论上两个输出应该都返回当前时间戳，但是 <code>utcnow()</code> 方法的时间戳并不正确，网上查找资料没一个能说明白的，后来查看<a href="https://docs.python.org/dev/library/datetime.html#datetime.datetime.timestamp" target="_blank" rel="external">官方文档</a>发现这么一句话</p>
 <blockquote>
 <p>There is no method to obtain the POSIX timestamp directly from a naive datetime instance representing UTC time. If your application uses this convention and your system timezone is not set to UTC, you can obtain the POSIX timestamp by supplying tzinfo=timezone.utc:</p>
 </blockquote>
-<p>我们不能通过 UTC 得到的 <code>datetime</code> 实例直接获取时间戳，如果系统的时区不是 UTC 则需要 <code>timezone.utc</code> 来帮忙转换。我晕，我们不提供，但是给你指条路。好吧，先试试<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> timezone</span><br><span class="line"></span><br><span class="line">dt = datetime.utcnow()</span><br><span class="line">print(dt.replace(tzinfo=timezone.utc).timestamp())  <span class="comment"># ==&gt; 1512454062.906826</span></span><br><span class="line">print(datetime.now().timestamp())                   <span class="comment"># ==&gt; 1512454062.906826</span></span><br></pre></td></tr></table></figure></p>
-<p>OK，这次可以了，但是呢，难道每次获取一次时间戳都这样麻烦或者修改系统时区吗？当然不是，我们还可以通过 <code>time</code> 模块来轻松搞定<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">print(time.time())      <span class="comment"># ==&gt; 1512454270.614852</span></span><br></pre></td></tr></table></figure></p>
-<h2><span id="shi-jian-chuo-zhuan-wei-di-qu-shi-jian">时间戳转为地区时间</span><a href="#shi-jian-chuo-zhuan-wei-di-qu-shi-jian" class="header-anchor"></a></h2><p>如果想要将时间戳转为某个地区的时间，比如北京时间，需要引入 <code>pytz</code> 模块，首先下载 <code>pip install pytz</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> pytz</span><br><span class="line"></span><br><span class="line">tz = pytz.timezone(<span class="string">'Asia/Shanghai'</span>) <span class="comment">#东八区</span></span><br><span class="line">t = datetime.fromtimestamp(int(time.time()),</span><br><span class="line">    pytz.timezone(<span class="string">'Asia/Shanghai'</span>)).strftime(<span class="string">'%Y-%m-%d %H:%M:%S %Z%z'</span>)</span><br><span class="line">print(t)    <span class="comment"># ==&gt; 2017-12-05 18:39:45 CST+0800</span></span><br></pre></td></tr></table></figure></p>
+<p>我们不能通过 UTC 得到的 <code>datetime</code> 实例直接获取时间戳，如果系统的时区不是 UTC 则需要 <code>timezone.utc</code> 来帮忙转换。我晕，我们不提供，但是给你指条路。好吧，先试试<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</div><div class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> timezone</div><div class="line"></div><div class="line">dt = datetime.utcnow()</div><div class="line">print(dt.replace(tzinfo=timezone.utc).timestamp())  <span class="comment"># ==&gt; 1512454062.906826</span></div><div class="line">print(datetime.now().timestamp())                   <span class="comment"># ==&gt; 1512454062.906826</span></div></pre></td></tr></table></figure></p>
+<p>OK，这次可以了，但是呢，难道每次获取一次时间戳都这样麻烦或者修改系统时区吗？当然不是，我们还可以通过 <code>time</code> 模块来轻松搞定<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line">print(time.time())      <span class="comment"># ==&gt; 1512454270.614852</span></div></pre></td></tr></table></figure></p>
+<h2><span id="shi-jian-chuo-zhuan-wei-di-qu-shi-jian">时间戳转为地区时间</span><a href="#shi-jian-chuo-zhuan-wei-di-qu-shi-jian" class="header-anchor"></a></h2><p>如果想要将时间戳转为某个地区的时间，比如北京时间，需要引入 <code>pytz</code> 模块，首先下载 <code>pip install pytz</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</div><div class="line"><span class="keyword">import</span> pytz</div><div class="line"></div><div class="line">tz = pytz.timezone(<span class="string">'Asia/Shanghai'</span>) <span class="comment">#东八区</span></div><div class="line">t = datetime.fromtimestamp(int(time.time()),</div><div class="line">    pytz.timezone(<span class="string">'Asia/Shanghai'</span>)).strftime(<span class="string">'%Y-%m-%d %H:%M:%S %Z%z'</span>)</div><div class="line">print(t)    <span class="comment"># ==&gt; 2017-12-05 18:39:45 CST+0800</span></div></pre></td></tr></table></figure></p>
 
       
 
@@ -498,11 +502,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -518,15 +522,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

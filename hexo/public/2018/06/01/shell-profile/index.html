@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -204,16 +208,16 @@
 </ul>
 <!-- tocstop -->
 <p></div><br>首先来了解下 Linux 在登录时会按照如下顺序执行配置文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/profile -&gt; (~/.bash_profile | ~/.bash_login | ~/.profile) -&gt; ~/.bashrc -&gt; /etc/bashrc -&gt; ~/.bash_logout</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/etc/profile -&gt; (~/.bash_profile | ~/.bash_login | ~/.profile) -&gt; ~/.bashrc -&gt; /etc/bashrc -&gt; ~/.bash_logout</div></pre></td></tr></table></figure>
 <h2><span id="etc-profile">/etc/profile</span><a href="#etc-profile" class="header-anchor"></a></h2><p>该文件为系统所有用户设置环境信息，只在用户登录时执行一次，并且执行 <code>/etc/profile.d</code> 目录下的配置信息</p>
 <h2><span id="bash-profile-bash-login-profile">~/.bash_profile ~/.bash_login ~/.profile</span><a href="#bash-profile-bash-login-profile" class="header-anchor"></a></h2><p>当前登录用户的环境信息，只在登录时执行一次。</p>
 <p>三个文件只会按照顺序执行一个，并且都会执行 <code>~/.bashrc</code> 文件，因为在 <code>~/.bash_profile</code> 有如下语句</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -f ~/.bashrc ]; <span class="keyword">then</span></span><br><span class="line">	. ~/.bashrc</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> [ -f ~/.bashrc ]; <span class="keyword">then</span></div><div class="line">	. ~/.bashrc</div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
 <p>其中 CentOS 会用 <code>~/.bash_profile</code> 文件，Ubuntu 用 <code>~/.profile</code> 文件</p>
 <h2><span id="bashrc">~/.bashrc</span><a href="#bashrc" class="header-anchor"></a></h2><p>当前登录用户的 shell 配置，在执行 <code>~/.bash_profile</code> 后会执行该文件</p>
 <p>它是交互式 <code>non-login</code> 方式，所以每次打开新 shell 都会执行</p>
 <h2><span id="etc-bashrc">/etc/bashrc</span><a href="#etc-bashrc" class="header-anchor"></a></h2><p>如果 <code>~/.bashrc</code> 文件中有</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -f /etc/bashrc ]; <span class="keyword">then</span></span><br><span class="line">	. /etc/bashrc</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> [ -f /etc/bashrc ]; <span class="keyword">then</span></div><div class="line">	. /etc/bashrc</div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
 <p>则也会执行它，同时会执行 <code>/etc/profile.d</code> 目录下的配置</p>
 <h2><span id="bash-logout">~/.bash_logout</span><a href="#bash-logout" class="header-anchor"></a></h2><p>最后用户登出时还会执行 <code>~/.bash_logout</code></p>
 <p>最后总结下如果是配置环境变量等信息推荐写到 <code>~/.bash_profile</code> 文件中，shell 信息比如 <code>alias</code> 等配置推荐写到 <code>~/.bashrc</code> 中</p>
@@ -513,11 +517,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -533,15 +537,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

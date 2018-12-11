@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -202,16 +206,16 @@
 </ul>
 <!-- tocstop -->
 <p></div></p>
-<h2><span id="os-mo-kuai">os 模块</span><a href="#os-mo-kuai" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">5</span>]: <span class="keyword">import</span> os</span><br><span class="line">In [<span class="number">5</span>]: os.system(<span class="string">'echo "Hello World"'</span>)</span><br><span class="line">Hello World</span><br><span class="line">Out[<span class="number">5</span>]: <span class="number">0</span></span><br></pre></td></tr></table></figure>
-<p>使用 <code>system()</code> 方法可以执行命令，但是方法返回的结果是 0，在大多数情况下，这不是我们想要的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">6</span>]: os.popen(<span class="string">'echo "Hello World"'</span>)</span><br><span class="line">Out[<span class="number">6</span>]: &lt;open file <span class="string">'echo "Hello World"'</span>, mode <span class="string">'r'</span> at <span class="number">0x10faa5c00</span>&gt;</span><br></pre></td></tr></table></figure></p>
-<p><code>popen()</code> 方法可以返回结果，但是返回的是一个 file 类型，通过对返回值在使用 <code>read()</code> 或 <code>readlines()</code> 返回即可拿到结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">7</span>]: os.popen(<span class="string">'echo "Hello World"'</span>).read()</span><br><span class="line">Out[<span class="number">7</span>]: <span class="string">'Hello World\n'</span></span><br></pre></td></tr></table></figure></p>
-<h2><span id="commands">commands</span><a href="#commands" class="header-anchor"></a></h2><p>os 模块可以勉强达到我们想要的效果，但是用起来会很别扭，我们还可以使用 commands 模块提供的 <code>getstatusoutput(), getoutput()</code> 两个方法来完成任务<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">1</span>]: <span class="keyword">import</span> commands</span><br><span class="line"></span><br><span class="line">In [<span class="number">2</span>]: commands.getstatusoutput(<span class="string">'ls'</span>)</span><br><span class="line">Out[<span class="number">2</span>]:</span><br><span class="line">(<span class="number">0</span>,</span><br><span class="line"> <span class="string">'README.md\nTest.java\nUser-Admin\nUser-Api\nUser-Base\npom.xml\nsrc\ntarget\nuser-center.iml'</span>)</span><br></pre></td></tr></table></figure></p>
+<h2><span id="os-mo-kuai">os 模块</span><a href="#os-mo-kuai" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">5</span>]: <span class="keyword">import</span> os</div><div class="line">In [<span class="number">5</span>]: os.system(<span class="string">'echo "Hello World"'</span>)</div><div class="line">Hello World</div><div class="line">Out[<span class="number">5</span>]: <span class="number">0</span></div></pre></td></tr></table></figure>
+<p>使用 <code>system()</code> 方法可以执行命令，但是方法返回的结果是 0，在大多数情况下，这不是我们想要的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">6</span>]: os.popen(<span class="string">'echo "Hello World"'</span>)</div><div class="line">Out[<span class="number">6</span>]: &lt;open file <span class="string">'echo "Hello World"'</span>, mode <span class="string">'r'</span> at <span class="number">0x10faa5c00</span>&gt;</div></pre></td></tr></table></figure></p>
+<p><code>popen()</code> 方法可以返回结果，但是返回的是一个 file 类型，通过对返回值在使用 <code>read()</code> 或 <code>readlines()</code> 返回即可拿到结果<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">7</span>]: os.popen(<span class="string">'echo "Hello World"'</span>).read()</div><div class="line">Out[<span class="number">7</span>]: <span class="string">'Hello World\n'</span></div></pre></td></tr></table></figure></p>
+<h2><span id="commands">commands</span><a href="#commands" class="header-anchor"></a></h2><p>os 模块可以勉强达到我们想要的效果，但是用起来会很别扭，我们还可以使用 commands 模块提供的 <code>getstatusoutput(), getoutput()</code> 两个方法来完成任务<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">1</span>]: <span class="keyword">import</span> commands</div><div class="line"></div><div class="line">In [<span class="number">2</span>]: commands.getstatusoutput(<span class="string">'ls'</span>)</div><div class="line">Out[<span class="number">2</span>]:</div><div class="line">(<span class="number">0</span>,</div><div class="line"> <span class="string">'README.md\nTest.java\nUser-Admin\nUser-Api\nUser-Base\npom.xml\nsrc\ntarget\nuser-center.iml'</span>)</div></pre></td></tr></table></figure></p>
 <p><code>getstatusoutput()</code> 方法会返回一个元组 <code>(status, output)</code> 分别为执行状态和结果，这个结果是用字符串的形式将结果呈现出来，而 <code>getoutput()</code> 方法只返回结果</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">3</span>]: commands.getoutput(<span class="string">'ls'</span>)</span><br><span class="line">Out[<span class="number">3</span>]: <span class="string">'README.md\nTest.java\nUser-Admin\nUser-Api\nUser-Base\npom.xml\nsrc\ntarget\nuser-center.iml'</span></span><br></pre></td></tr></table></figure>
-<h2><span id="subprocess">subprocess</span><a href="#subprocess" class="header-anchor"></a></h2><p>在官方文档中 subprocess 模块是被用来替换上边提到的方法的，它可以开启子线程工作，比他们更加灵活。它有非常丰富的使用方法，这里简单介绍输出方法 <code>check_output()</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">13</span>]: <span class="keyword">import</span> subprocess</span><br><span class="line"></span><br><span class="line">In [<span class="number">14</span>]: subprocess.check_output(<span class="string">'ls'</span>)</span><br><span class="line">Out[<span class="number">14</span>]: <span class="string">'README.md\nTest.java\nUser-Admin\nUser-Api\nUser-Base\npom.xml\nsrc\ntarget\nuser-center.iml\n'</span></span><br></pre></td></tr></table></figure></p>
-<p>简单的命令没有太大区别，但是执行一些复杂的方法会有所不同<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">15</span>]: subprocess.check_output(<span class="string">'echo "hello world"'</span>)</span><br><span class="line">OSError: [Errno <span class="number">2</span>] No such file <span class="keyword">or</span> directory</span><br></pre></td></tr></table></figure></p>
-<p>在进行复杂命令时，该方法需要接收一个数组<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">16</span>]: subprocess.check_output([<span class="string">'echo'</span>, <span class="string">'hello world'</span>])</span><br><span class="line">Out[<span class="number">16</span>]: <span class="string">'hello world\n'</span></span><br></pre></td></tr></table></figure></p>
-<p>更多使用方法见<a href="https://docs.python.org/2/library/subprocess.html" target="_blank" rel="noopener">文档</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">3</span>]: commands.getoutput(<span class="string">'ls'</span>)</div><div class="line">Out[<span class="number">3</span>]: <span class="string">'README.md\nTest.java\nUser-Admin\nUser-Api\nUser-Base\npom.xml\nsrc\ntarget\nuser-center.iml'</span></div></pre></td></tr></table></figure>
+<h2><span id="subprocess">subprocess</span><a href="#subprocess" class="header-anchor"></a></h2><p>在官方文档中 subprocess 模块是被用来替换上边提到的方法的，它可以开启子线程工作，比他们更加灵活。它有非常丰富的使用方法，这里简单介绍输出方法 <code>check_output()</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">13</span>]: <span class="keyword">import</span> subprocess</div><div class="line"></div><div class="line">In [<span class="number">14</span>]: subprocess.check_output(<span class="string">'ls'</span>)</div><div class="line">Out[<span class="number">14</span>]: <span class="string">'README.md\nTest.java\nUser-Admin\nUser-Api\nUser-Base\npom.xml\nsrc\ntarget\nuser-center.iml\n'</span></div></pre></td></tr></table></figure></p>
+<p>简单的命令没有太大区别，但是执行一些复杂的方法会有所不同<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">15</span>]: subprocess.check_output(<span class="string">'echo "hello world"'</span>)</div><div class="line">OSError: [Errno <span class="number">2</span>] No such file <span class="keyword">or</span> directory</div></pre></td></tr></table></figure></p>
+<p>在进行复杂命令时，该方法需要接收一个数组<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">16</span>]: subprocess.check_output([<span class="string">'echo'</span>, <span class="string">'hello world'</span>])</div><div class="line">Out[<span class="number">16</span>]: <span class="string">'hello world\n'</span></div></pre></td></tr></table></figure></p>
+<p>更多使用方法见<a href="https://docs.python.org/2/library/subprocess.html" target="_blank" rel="external">文档</a></p>
 
       
 
@@ -512,11 +516,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -532,15 +536,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

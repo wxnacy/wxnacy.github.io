@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -214,17 +218,17 @@
 <!-- tocstop -->
 </div>
 
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ python tests/test_utils.py</span><br><span class="line"></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"tests/test_utils.py"</span>, line 7, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    from run_api import app</span><br><span class="line">ImportError: No module named <span class="string">'run_api'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ python tests/test_utils.py</div><div class="line"></div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"tests/test_utils.py"</span>, line 7, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">    from run_api import app</div><div class="line">ImportError: No module named <span class="string">'run_api'</span></div></pre></td></tr></table></figure>
 <p>在我刚学习python时，做模块导入最长碰到的就是这个错误，我明明定义了 <code>run_api</code><br>模块，但是却总是报找不到的错误， No module No module No你妹啊，如果你也碰到这<br>样的问题，你应该好好看看这篇文章</p>
-<h2><span id="bu-tai-hao-de-jie-jue-ban-fa">不太好的解决办法</span><a href="#bu-tai-hao-de-jie-jue-ban-fa" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line">sys.path.append( os.path.join( os.path.dirname(__file__), os.path.pardir ) )</span><br></pre></td></tr></table></figure>
+<h2><span id="bu-tai-hao-de-jie-jue-ban-fa">不太好的解决办法</span><a href="#bu-tai-hao-de-jie-jue-ban-fa" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> os</div><div class="line">sys.path.append( os.path.join( os.path.dirname(__file__), os.path.pardir ) )</div></pre></td></tr></table></figure>
 <p>在 google 模块导入问题的时候，大部分博客给出了这样的解决方案，在每个文件配置<br>这样的代码，他做到了将当前文件的路径加入到 Python 模块搜索路径 sys.path 中，<br>确实可以起到解决 bug 的作用，但是每个文件都写上这样一段代码，实在让人不舒服，<br>下面我们还是来学习下 Python 模块搜索路径是如何运作的</p>
-<h2><span id="python-cong-na-xie-lu-jing-dao-ru-mo-kuai">Python 从哪些路径导入模块</span><a href="#python-cong-na-xie-lu-jing-dao-ru-mo-kuai" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、程序的主目录</span><br><span class="line">2、PYTHONPATH 目录（如果已经进行了设置）</span><br><span class="line">3、标准链接库目录</span><br><span class="line">4、任何 .pth 文件的内容（如果存在的话）</span><br></pre></td></tr></table></figure>
+<h2><span id="python-cong-na-xie-lu-jing-dao-ru-mo-kuai">Python 从哪些路径导入模块</span><a href="#python-cong-na-xie-lu-jing-dao-ru-mo-kuai" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1、程序的主目录</div><div class="line">2、PYTHONPATH 目录（如果已经进行了设置）</div><div class="line">3、标准链接库目录</div><div class="line">4、任何 .pth 文件的内容（如果存在的话）</div></pre></td></tr></table></figure>
 <h3><span id="zhu-mu-lu">主目录</span><a href="#zhu-mu-lu" class="header-anchor"></a></h3><p>Python 首先会在主目录内搜索导入的文件。如果程序完全位于单一目录，所有导入的会<br>自动工作，而并不需要配置路径。由于这个目录总是先搜索，其文件也将覆盖路径上的<br>其他目录中具有同样名称的模块。如果你需要在自己程序中使用库模块的话，小心不要<br>以这种方式以外地隐藏库模块。</p>
 <h3><span id="pythonpath-mu-lu">PYTHONPATH 目录</span><a href="#pythonpath-mu-lu" class="header-anchor"></a></h3><p>之后，Python 会从左到右搜索 PYTHONPATH 环境变量设置中罗列出的所有目录，可以是<br>用户定义或平台特定的目录名。因为 Python 优先搜索主目录，当导入的文件跨目录时，<br>这个设置才显得格外重要。</p>
 <h3><span id="biao-zhun-ku-mu-lu">标准库目录</span><a href="#biao-zhun-ku-mu-lu" class="header-anchor"></a></h3><p>接着，Python 会自动搜索标准库模块安装在机器上的那些目录，这块通常不需要在单独<br>配置</p>
 <h3><span id="pth-wen-jian-mu-lu">.pth 文件目录</span><a href="#pth-wen-jian-mu-lu" class="header-anchor"></a></h3><p>最后，Python 有个相当新的功能，允许用户把有效的目录添加到模块搜索路径中去，<br>也就是在后缀名为 .pth （路径的意思）的文本文件中一行一行的列出目录。他是<br>PYTHONPATH 的一种替代方案，我们也可以把它放在标注库所在位置的 sitepackages 的<br>子目录中扩展模块搜索路径</p>
-<h2><span id="ying-yong-dao-dang-qian-xiang-mu">应用到当前项目</span><a href="#ying-yong-dao-dang-qian-xiang-mu" class="header-anchor"></a></h2><p>在开发大型项目之前，我们可以将项目根目录作为 PYTHONPATH 存到环境变量中，也可以<br>每次运行前之前该命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ touch env.sh</span><br><span class="line">$ vim env.sh</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> PYTHONPATH=./ <span class="comment"># 将项目根目录作为PYTHONPATH</span></span><br><span class="line"></span><br><span class="line">$ <span class="built_in">source</span> env.sh <span class="comment"># 在项目运行之前执行该命令</span></span><br></pre></td></tr></table></figure></p>
-<p>最后我们可以通过下面两行代码来查看当前项目python模块搜索路径和导入的模块<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">print(sys.path) <span class="comment"># 输出python模块搜索目录</span></span><br><span class="line"></span><br><span class="line">print(list(sys.modules.keys())) <span class="comment"># 输出python已经导入的模块列表</span></span><br></pre></td></tr></table></figure></p>
+<h2><span id="ying-yong-dao-dang-qian-xiang-mu">应用到当前项目</span><a href="#ying-yong-dao-dang-qian-xiang-mu" class="header-anchor"></a></h2><p>在开发大型项目之前，我们可以将项目根目录作为 PYTHONPATH 存到环境变量中，也可以<br>每次运行前之前该命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ touch env.sh</div><div class="line">$ vim env.sh</div><div class="line"></div><div class="line"><span class="built_in">export</span> PYTHONPATH=./ <span class="comment"># 将项目根目录作为PYTHONPATH</span></div><div class="line"></div><div class="line">$ <span class="built_in">source</span> env.sh <span class="comment"># 在项目运行之前执行该命令</span></div></pre></td></tr></table></figure></p>
+<p>最后我们可以通过下面两行代码来查看当前项目python模块搜索路径和导入的模块<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> sys</div><div class="line"></div><div class="line">print(sys.path) <span class="comment"># 输出python模块搜索目录</span></div><div class="line"></div><div class="line">print(list(sys.modules.keys())) <span class="comment"># 输出python已经导入的模块列表</span></div></pre></td></tr></table></figure></p>
 
       
 
@@ -298,18 +302,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/15/linux-2017-08-15-nohup/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/08/15/python-2017-08-15-flask-hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Linux 使用nohup在后台不挂断执行命令
+          Flask 运行 Hello World
         
       </div>
     </a>
   
   
-    <a href="/2017/08/15/python-2017-08-15-flask-hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Flask 运行 Hello World</div>
+    <a href="/2017/08/15/python-2017-08-15-flask-env-config/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Flask 如何配置多环境</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -521,11 +525,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -541,15 +545,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

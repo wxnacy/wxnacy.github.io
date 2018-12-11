@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -206,13 +210,13 @@
 <h2><span id="huo-qu-iframe-nei-yuan-su">获取 iframe 内元素</span><a href="#huo-qu-iframe-nei-yuan-su" class="header-anchor"></a></h2><ul>
 <li><strong>Javascript</strong></li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方法1</span></span><br><span class="line"><span class="keyword">let</span> text = <span class="built_in">document</span>.getElementById(<span class="string">"iframeId"</span>).contentWindow.document.getElementById(<span class="string">"iframe 内元素 id"</span>).value;</span><br><span class="line"><span class="comment">// 方法2</span></span><br><span class="line"><span class="keyword">let</span> text = <span class="built_in">window</span>.frames[<span class="string">'frameName'</span>].document.getElementById(<span class="string">"iframe 内元素 id"</span>).value;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 方法1</span></div><div class="line"><span class="keyword">let</span> text = <span class="built_in">document</span>.getElementById(<span class="string">"iframeId"</span>).contentWindow.document.getElementById(<span class="string">"iframe 内元素 id"</span>).value;</div><div class="line"><span class="comment">// 方法2</span></div><div class="line"><span class="keyword">let</span> text = <span class="built_in">window</span>.frames[<span class="string">'frameName'</span>].document.getElementById(<span class="string">"iframe 内元素 id"</span>).value;</div></pre></td></tr></table></figure>
 <ul>
 <li><strong>jquery</strong></li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方法3</span></span><br><span class="line"><span class="keyword">let</span> text = $(<span class="string">"#iframeId"</span>).contents().find(<span class="string">"#iframe 内元素 id"</span>).val();</span><br><span class="line"><span class="comment">// 方法4</span></span><br><span class="line"><span class="keyword">let</span> text = $(<span class="string">"#iframe 内元素 id"</span>, <span class="built_in">window</span>.frames[<span class="string">"frameName"</span>].document).val();</span><br></pre></td></tr></table></figure>
-<h2><span id="huo-qu-iframe-wai-yuan-su">获取 iframe 外元素</span><a href="#huo-qu-iframe-wai-yuan-su" class="header-anchor"></a></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方法1 javascript</span></span><br><span class="line"><span class="keyword">let</span> text = <span class="built_in">window</span>.parent.document.getElementById(<span class="string">'iframe 外元素 id'</span>).value;</span><br><span class="line"><span class="comment">// 方法2 jquery</span></span><br><span class="line"><span class="keyword">let</span> text = $(<span class="string">'#iframe 外元素 id'</span>, parent.document).val();</span><br></pre></td></tr></table></figure>
-<h2><span id="diao-yong-iframe-wai-fang-fa">调用 iframe 外方法</span><a href="#diao-yong-iframe-wai-fang-fa" class="header-anchor"></a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parent.iframeOutFunc()</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 方法3</span></div><div class="line"><span class="keyword">let</span> text = $(<span class="string">"#iframeId"</span>).contents().find(<span class="string">"#iframe 内元素 id"</span>).val();</div><div class="line"><span class="comment">// 方法4</span></div><div class="line"><span class="keyword">let</span> text = $(<span class="string">"#iframe 内元素 id"</span>, <span class="built_in">window</span>.frames[<span class="string">"frameName"</span>].document).val();</div></pre></td></tr></table></figure>
+<h2><span id="huo-qu-iframe-wai-yuan-su">获取 iframe 外元素</span><a href="#huo-qu-iframe-wai-yuan-su" class="header-anchor"></a></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 方法1 javascript</span></div><div class="line"><span class="keyword">let</span> text = <span class="built_in">window</span>.parent.document.getElementById(<span class="string">'iframe 外元素 id'</span>).value;</div><div class="line"><span class="comment">// 方法2 jquery</span></div><div class="line"><span class="keyword">let</span> text = $(<span class="string">'#iframe 外元素 id'</span>, parent.document).val();</div></pre></td></tr></table></figure>
+<h2><span id="diao-yong-iframe-wai-fang-fa">调用 iframe 外方法</span><a href="#diao-yong-iframe-wai-fang-fa" class="header-anchor"></a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">parent.iframeOutFunc()</div></pre></td></tr></table></figure>
 
       
 
@@ -513,11 +517,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -533,15 +537,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

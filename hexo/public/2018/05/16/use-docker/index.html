@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -199,27 +203,27 @@
 </div>
 
 <p><strong>避免每次输入 sudo</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ vim ~/.bash_profile</span><br><span class="line"></span><br><span class="line"><span class="built_in">alias</span> docker=<span class="string">"sudo docker"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ vim ~/.bash_profile</div><div class="line"></div><div class="line"><span class="built_in">alias</span> docker=<span class="string">"sudo docker"</span></div></pre></td></tr></table></figure>
 <p><strong>版本信息</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker --version</span><br><span class="line">$ docker version</span><br><span class="line">$ docker info</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ docker --version</div><div class="line">$ docker version</div><div class="line">$ docker info</div></pre></td></tr></table></figure>
 <p><strong>登陆</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker login</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ docker login</div></pre></td></tr></table></figure>
 <p><strong>创建镜像</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker build -t &lt;image-name&gt; .</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ docker build -t &lt;image-name&gt; .</div></pre></td></tr></table></figure>
 <p><strong>查看镜像列表</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image ls</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ docker image ls</div></pre></td></tr></table></figure>
 <p><strong>运行镜像</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run --rm --name &lt;container-name&gt; -d -p 8080:80 &lt;image-name&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ docker run --rm --name &lt;container-name&gt; -d -p 8080:80 &lt;image-name&gt;</div></pre></td></tr></table></figure>
 <p><strong>删除镜像</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker image rm &lt;image-id&gt;[&lt;image-name&gt;]  <span class="comment"># id 输入前几位即可</span></span><br><span class="line">$ docker rmi &lt;image-id&gt;[&lt;image-name&gt;]</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ docker image rm &lt;image-id&gt;[&lt;image-name&gt;]  <span class="comment"># id 输入前几位即可</span></div><div class="line">$ docker rmi &lt;image-id&gt;[&lt;image-name&gt;]</div></pre></td></tr></table></figure>
 <p><strong>容器列表</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker container ls           <span class="comment"># 在运行的容器列表</span></span><br><span class="line">$ docker container ls --all     <span class="comment"># 全部容器列表</span></span><br><span class="line">$ docker container ls -aq</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ docker container ls           <span class="comment"># 在运行的容器列表</span></div><div class="line">$ docker container ls --all     <span class="comment"># 全部容器列表</span></div><div class="line">$ docker container ls -aq</div></pre></td></tr></table></figure>
 <p><strong>停止容器</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker container stop &lt;container-name&gt;[&lt;container-id&gt;]</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ docker container stop &lt;container-name&gt;[&lt;container-id&gt;]</div></pre></td></tr></table></figure>
 <p><strong>使用镜像运行demo</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it --rm --name &lt;demo-name&gt; -v <span class="string">"<span class="variable">$PWD</span>"</span>:/usr/src/myapp -w /usr/src/myapp -p 8006:8005 python:3.5 python app.py</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ docker run -it --rm --name &lt;demo-name&gt; -v <span class="string">"<span class="variable">$PWD</span>"</span>:/usr/src/myapp -w /usr/src/myapp -p 8006:8005 python:3.5 python app.py</div></pre></td></tr></table></figure>
 <ul>
-<li><a href="https://docs.docker.com/get-started/" target="_blank" rel="noopener">Get Started</a></li>
+<li><a href="https://docs.docker.com/get-started/" target="_blank" rel="external">Get Started</a></li>
 </ul>
 
       
@@ -517,11 +521,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -537,15 +541,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

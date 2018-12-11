@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -204,7 +208,7 @@
 </ul>
 <!-- tocstop -->
 <p></div></p>
-<h2><span id="fang-fa">方法</span><a href="#fang-fa" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.session.query(User).filter_by().paginate(page=<span class="keyword">None</span>, per_page=<span class="keyword">None</span>,</span><br><span class="line">    error_out=<span class="keyword">True</span>, max_per_page=<span class="keyword">None</span>)</span><br></pre></td></tr></table></figure>
+<h2><span id="fang-fa">方法</span><a href="#fang-fa" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">db.session.query(User).filter_by().paginate(page=<span class="keyword">None</span>, per_page=<span class="keyword">None</span>,</div><div class="line">    error_out=<span class="keyword">True</span>, max_per_page=<span class="keyword">None</span>)</div></pre></td></tr></table></figure>
 <p>参数定义：</p>
 <ul>
 <li><code>page</code> 查询的页数</li>
@@ -231,13 +235,13 @@
 <li><code>query</code> 用于创建此分页对象的无限查询对象。</li>
 <li><code>total</code> 总条数</li>
 <li><p><code>iter_pages(left_edge=2, left_current=2, right_current=5, right_edge=2)</code><br>  迭代分页中的页码，四个参数，分别控制了省略号左右两侧各显示多少页码，在模板中可以这样渲染</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;% macro render_pagination(pagination, endpoint) %&#125;</span><br><span class="line">  &lt;div class=pagination&gt;</span><br><span class="line">  &#123;% <span class="keyword">for</span> page <span class="keyword">in</span> pagination.iter_pages() %&#125;</span><br><span class="line">    &#123;% <span class="keyword">if</span> page %&#125;</span><br><span class="line">      &#123;% <span class="keyword">if</span> page != pagination.page %&#125;</span><br><span class="line">        &lt;a href="&#123;&#123; url_for(endpoint, page=page) &#125;&#125;"&gt;&#123;&#123; page &#125;&#125;&lt;/a&gt;</span><br><span class="line">      &#123;% <span class="keyword">else</span> %&#125;</span><br><span class="line">        &lt;strong&gt;&#123;&#123; page &#125;&#125;&lt;/strong&gt;</span><br><span class="line">      &#123;% endif %&#125;</span><br><span class="line">    &#123;% <span class="keyword">else</span> %&#125;</span><br><span class="line">      &lt;span class=ellipsis&gt;…&lt;/span&gt;</span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line">  &#123;%- endfor %&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&#123;% endmacro %&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&#123;% macro render_pagination(pagination, endpoint) %&#125;</div><div class="line">  &lt;div class=pagination&gt;</div><div class="line">  &#123;% <span class="keyword">for</span> page <span class="keyword">in</span> pagination.iter_pages() %&#125;</div><div class="line">    &#123;% <span class="keyword">if</span> page %&#125;</div><div class="line">      &#123;% <span class="keyword">if</span> page != pagination.page %&#125;</div><div class="line">        &lt;a href="&#123;&#123; url_for(endpoint, page=page) &#125;&#125;"&gt;&#123;&#123; page &#125;&#125;&lt;/a&gt;</div><div class="line">      &#123;% <span class="keyword">else</span> %&#125;</div><div class="line">        &lt;strong&gt;&#123;&#123; page &#125;&#125;&lt;/strong&gt;</div><div class="line">      &#123;% endif %&#125;</div><div class="line">    &#123;% <span class="keyword">else</span> %&#125;</div><div class="line">      &lt;span class=ellipsis&gt;…&lt;/span&gt;</div><div class="line">    &#123;% endif %&#125;</div><div class="line">  &#123;%- endfor %&#125;</div><div class="line">  &lt;/div&gt;</div><div class="line">&#123;% endmacro %&#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p><code>next(error_out=False)</code> 返回下一页的分页对象</p>
 </li>
 <li><p><code>prev(error_out=False)</code> 返回上一页的分页对象</p>
 </li>
-<li><p><a href="http://flask-sqlalchemy.pocoo.org/2.3/api/#flask_sqlalchemy.Pagination" target="_blank" rel="noopener">Pagination</a></p>
+<li><p><a href="http://flask-sqlalchemy.pocoo.org/2.3/api/#flask_sqlalchemy.Pagination" target="_blank" rel="external">Pagination</a></p>
 </li>
 </ul>
 
@@ -540,11 +544,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -560,15 +564,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -196,13 +200,13 @@
         <p>在 Go 中实现不换行进度条，可以通过几行原理代码实现。<br><a id="more"></a><div class="toc"></p>
 <!-- toc -->
 <!-- tocstop -->
-<p></div><br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fmt.Printf(<span class="string">"%s \033[K\n"</span>, <span class="string">"--"</span>)     <span class="comment">// 输出一行结果</span></span><br><span class="line">fmt.Printf(<span class="string">"\033[%dA\033[K"</span>, <span class="number">1</span>)     <span class="comment">// 将光标向上移动一行</span></span><br><span class="line">fmt.Printf(<span class="string">"%s \033[K\n"</span>, <span class="string">"=-"</span>)     <span class="comment">// 输出第二行结果</span></span><br></pre></td></tr></table></figure></p>
+<p></div><br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">fmt.Printf(<span class="string">"%s \033[K\n"</span>, <span class="string">"--"</span>)     <span class="comment">// 输出一行结果</span></div><div class="line">fmt.Printf(<span class="string">"\033[%dA\033[K"</span>, <span class="number">1</span>)     <span class="comment">// 将光标向上移动一行</span></div><div class="line">fmt.Printf(<span class="string">"%s \033[K\n"</span>, <span class="string">"=-"</span>)     <span class="comment">// 输出第二行结果</span></div></pre></td></tr></table></figure></p>
 <p>如此往复即可实现不换行进度条</p>
-<p>完整代码见 <a href="https://github.com/wxnacy/study/blob/master/goland/src/progress/single.go" target="_blank" rel="noopener">single.go</a></p>
+<p>完整代码见 <a href="https://github.com/wxnacy/study/blob/master/goland/src/progress/single.go" target="_blank" rel="external">single.go</a></p>
 <p>输出屏幕带有屏幕的原理可见 <a href="/2018/09/07/go-fmt-color/">Go 如何给屏幕打印信息加上颜色</a></p>
-<p>带颜色的进度条完整代码见 <a href="https://github.com/wxnacy/study/blob/master/goland/src/progress/color.go" target="_blank" rel="noopener">color.go</a></p>
+<p>带颜色的进度条完整代码见 <a href="https://github.com/wxnacy/study/blob/master/goland/src/progress/color.go" target="_blank" rel="external">color.go</a></p>
 <p>如果同时有多个进度条同时运行，那原理在于将最上边的进度条使用 <code>fmt.Printf(&quot;\033[%dA\033[K&quot;, n)</code> 上移一定的行数，其余进度条顺序打印即可。</p>
-<p>多个进度条完整代码见 <a href="https://github.com/wxnacy/study/blob/master/goland/src/progress/multi.go" target="_blank" rel="noopener">multi.go</a></p>
+<p>多个进度条完整代码见 <a href="https://github.com/wxnacy/study/blob/master/goland/src/progress/multi.go" target="_blank" rel="external">multi.go</a></p>
 
       
 
@@ -499,11 +503,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -519,15 +523,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

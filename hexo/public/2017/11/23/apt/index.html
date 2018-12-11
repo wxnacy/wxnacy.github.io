@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -194,7 +198,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p><a href="https://zh.wikipedia.org/wiki/%E9%AB%98%E7%BA%A7%E5%8C%85%E8%A3%85%E5%B7%A5%E5%85%B7" target="_blank" rel="noopener">Apt</a> 是Debian及其派生发行版的软件包管理器，APT可以自动下载，配置，安装二进制或者源代码格式的软件包，因此简化了 Unix 系统上管理软件的过程，现在可以安装 RPM 软件包，同类型的还有 CentOS 中常用的 Yum</p>
+<p><a href="https://zh.wikipedia.org/wiki/%E9%AB%98%E7%BA%A7%E5%8C%85%E8%A3%85%E5%B7%A5%E5%85%B7" target="_blank" rel="external">Apt</a> 是Debian及其派生发行版的软件包管理器，APT可以自动下载，配置，安装二进制或者源代码格式的软件包，因此简化了 Unix 系统上管理软件的过程，现在可以安装 RPM 软件包，同类型的还有 CentOS 中常用的 Yum</p>
 </blockquote>
 <a id="more"></a>
 <div class="toc">
@@ -211,21 +215,21 @@
 <!-- tocstop -->
 </div>
 
-<h2><span id="an-zhuang-shan-chu">安装删除</span><a href="#an-zhuang-shan-chu" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ apt [-y] install git  <span class="comment"># 下载软件包，-y 对一切问题都回答 yes</span></span><br><span class="line">$ apt remove git        <span class="comment"># 删除软件包（保留配置文件）</span></span><br><span class="line">$ apt purge git         <span class="comment"># 删除软件包（删除配置文件）</span></span><br></pre></td></tr></table></figure>
-<h2><span id="sou-suo">搜索</span><a href="#sou-suo" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt search git</span><br></pre></td></tr></table></figure>
+<h2><span id="an-zhuang-shan-chu">安装删除</span><a href="#an-zhuang-shan-chu" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ apt [-y] install git  <span class="comment"># 下载软件包，-y 对一切问题都回答 yes</span></div><div class="line">$ apt remove git        <span class="comment"># 删除软件包（保留配置文件）</span></div><div class="line">$ apt purge git         <span class="comment"># 删除软件包（删除配置文件）</span></div></pre></td></tr></table></figure>
+<h2><span id="sou-suo">搜索</span><a href="#sou-suo" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ apt search git</div></pre></td></tr></table></figure>
 <p>搜索与目标最匹配的软件包</p>
 <h2><span id="geng-xin-ben-di-yuan">更新本地源</span><a href="#geng-xin-ben-di-yuan" class="header-anchor"></a></h2><p>有时候在安装软件的时候会报错 <a href="/2017/11/23/unable-to-locate-package/">Unable to locate package</a><br>这时候需要更新本地软件列表的命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt update</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ apt update</div></pre></td></tr></table></figure>
 <p>在修改 <code>/etc/apt/sources.list</code> 后也需要执行</p>
-<h2><span id="xiu-gai-yuan">修改源</span><a href="#xiu-gai-yuan" class="header-anchor"></a></h2><p>修改软件网络源通过修改 <code>/etc/apt/sources.list</code> 文件完成，格式为<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deb [地址] [发行商名称] [main/contrib/non-free]</span><br></pre></td></tr></table></figure></p>
-<h2><span id="sheng-ji">升级</span><a href="#sheng-ji" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt upgrade</span><br></pre></td></tr></table></figure>
-<p>通过该命令系统会自动将所有已经安装在系统内的包升级为最新版本。如果一个包改变了<br>依存关系，而需要安装一个新的包时，它将不会被升级，而是标识成 hold 样。如果某个<br>包被设置 hold 标号，就不会被升级。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt full-upgrade</span><br></pre></td></tr></table></figure></p>
+<h2><span id="xiu-gai-yuan">修改源</span><a href="#xiu-gai-yuan" class="header-anchor"></a></h2><p>修改软件网络源通过修改 <code>/etc/apt/sources.list</code> 文件完成，格式为<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">deb [地址] [发行商名称] [main/contrib/non-free]</div></pre></td></tr></table></figure></p>
+<h2><span id="sheng-ji">升级</span><a href="#sheng-ji" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ apt upgrade</div></pre></td></tr></table></figure>
+<p>通过该命令系统会自动将所有已经安装在系统内的包升级为最新版本。如果一个包改变了<br>依存关系，而需要安装一个新的包时，它将不会被升级，而是标识成 hold 样。如果某个<br>包被设置 hold 标号，就不会被升级。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ apt full-upgrade</div></pre></td></tr></table></figure></p>
 <p>和 <code>upgrade</code> 类似，但会安装和移除包来满足依存关系，因此具有一定的危险性。</p>
 <h2><span id="qing-chu-huan-cun">清除缓存</span><a href="#qing-chu-huan-cun" class="header-anchor"></a></h2><p>软件在卸载后如果还保留着 .deb 文件，在 <code>/var/cache/apt/archives</code> 目录中，会很<br>占用系统空间，我们可以使用这个命令删除</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt autoclean</span><br></pre></td></tr></table></figure>
-<p>这个命令会把当前使用中的软件的 .deb 文件也删除掉，通常这些文件也是不需要的<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt clean</span><br></pre></td></tr></table></figure></p>
-<p>apt 是 2014 年才发布的第一个稳定版，早期都使用 <code>apt-get</code> 命令，简单来说两者的<br>区别就是<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt = apt-get + apt-cache + apt-config</span><br></pre></td></tr></table></figure></p>
-<p>更多区别详见 <a href="https://www.sysgeek.cn/apt-vs-apt-get/" target="_blank" rel="noopener">Linux中apt与apt-get命令的区别与解释</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ apt autoclean</div></pre></td></tr></table></figure>
+<p>这个命令会把当前使用中的软件的 .deb 文件也删除掉，通常这些文件也是不需要的<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ apt clean</div></pre></td></tr></table></figure></p>
+<p>apt 是 2014 年才发布的第一个稳定版，早期都使用 <code>apt-get</code> 命令，简单来说两者的<br>区别就是<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apt = apt-get + apt-cache + apt-config</div></pre></td></tr></table></figure></p>
+<p>更多区别详见 <a href="https://www.sysgeek.cn/apt-vs-apt-get/" target="_blank" rel="external">Linux中apt与apt-get命令的区别与解释</a></p>
 
       
 
@@ -522,11 +526,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -542,15 +546,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">

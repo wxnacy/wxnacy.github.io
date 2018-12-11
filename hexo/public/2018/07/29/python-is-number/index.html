@@ -94,6 +94,8 @@
 				
 					<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
 		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
 					<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/wxnacy" title="twitter"><i class="icon-twitter"></i></a>
@@ -138,6 +140,8 @@
 				<div class="social">
 					
 						<a class="github" target="_blank" href="https://github.com/wxnacy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:wxnacy@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -196,15 +200,15 @@
         <p>Python 判断字符串是否由数字组成的几种方法<br><a id="more"></a><div class="toc"></p>
 <!-- toc -->
 <!-- tocstop -->
-<p></div><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_number</span><span class="params">(s)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        float(s)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">except</span> ValueError:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">import</span> unicodedata</span><br><span class="line">        unicodedata.numeric(s)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">except</span> (TypeError, ValueError):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试字符串和数字</span></span><br><span class="line">print(is_number(<span class="string">'foo'</span>))   <span class="comment"># False</span></span><br><span class="line">print(is_number(<span class="string">'1'</span>))     <span class="comment"># True</span></span><br><span class="line">print(is_number(<span class="string">'1.3'</span>))   <span class="comment"># True</span></span><br><span class="line">print(is_number(<span class="string">'-1.37'</span>)) <span class="comment"># True</span></span><br><span class="line">print(is_number(<span class="string">'1e3'</span>))   <span class="comment"># True</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试 Unicode</span></span><br><span class="line"><span class="comment"># 阿拉伯语 5</span></span><br><span class="line">print(is_number(<span class="string">'٥'</span>))  <span class="comment"># True</span></span><br><span class="line"><span class="comment"># 泰语 2</span></span><br><span class="line">print(is_number(<span class="string">'๒'</span>))  <span class="comment"># True</span></span><br><span class="line"><span class="comment"># 中文数字</span></span><br><span class="line">print(is_number(<span class="string">'四'</span>)) <span class="comment"># True</span></span><br><span class="line"><span class="comment"># 版权号</span></span><br><span class="line">print(is_number(<span class="string">'©'</span>))  <span class="comment"># False</span></span><br></pre></td></tr></table></figure></p>
+<p></div><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_number</span><span class="params">(s)</span>:</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        float(s)</div><div class="line">        <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">    <span class="keyword">except</span> ValueError:</div><div class="line">        <span class="keyword">pass</span></div><div class="line"></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        <span class="keyword">import</span> unicodedata</div><div class="line">        unicodedata.numeric(s)</div><div class="line">        <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">    <span class="keyword">except</span> (TypeError, ValueError):</div><div class="line">        <span class="keyword">pass</span></div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line"></div><div class="line"><span class="comment"># 测试字符串和数字</span></div><div class="line">print(is_number(<span class="string">'foo'</span>))   <span class="comment"># False</span></div><div class="line">print(is_number(<span class="string">'1'</span>))     <span class="comment"># True</span></div><div class="line">print(is_number(<span class="string">'1.3'</span>))   <span class="comment"># True</span></div><div class="line">print(is_number(<span class="string">'-1.37'</span>)) <span class="comment"># True</span></div><div class="line">print(is_number(<span class="string">'1e3'</span>))   <span class="comment"># True</span></div><div class="line"></div><div class="line"><span class="comment"># 测试 Unicode</span></div><div class="line"><span class="comment"># 阿拉伯语 5</span></div><div class="line">print(is_number(<span class="string">'٥'</span>))  <span class="comment"># True</span></div><div class="line"><span class="comment"># 泰语 2</span></div><div class="line">print(is_number(<span class="string">'๒'</span>))  <span class="comment"># True</span></div><div class="line"><span class="comment"># 中文数字</span></div><div class="line">print(is_number(<span class="string">'四'</span>)) <span class="comment"># True</span></div><div class="line"><span class="comment"># 版权号</span></div><div class="line">print(is_number(<span class="string">'©'</span>))  <span class="comment"># False</span></div></pre></td></tr></table></figure></p>
 <p>简单的情况下还可以使用另外两个方法</p>
 <ul>
 <li><code>&quot;&quot;.isdigit()</code></li>
 <li><code>&quot;&quot;.isnumeric()</code></li>
 </ul>
 <ul>
-<li><a href="http://www.runoob.com/python3/python3-check-is-number.html" target="_blank" rel="noopener">Python 判断字符串是否为数字</a></li>
-<li><a href="http://www.runoob.com/python3/python3-string-isnumeric.html" target="_blank" rel="noopener">Python3 isnumeric()方法</a></li>
+<li><a href="http://www.runoob.com/python3/python3-check-is-number.html" target="_blank" rel="external">Python 判断字符串是否为数字</a></li>
+<li><a href="http://www.runoob.com/python3/python3-string-isnumeric.html" target="_blank" rel="external">Python3 isnumeric()方法</a></li>
 </ul>
 
       
@@ -502,11 +506,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -522,15 +526,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
