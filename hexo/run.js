@@ -1,7 +1,7 @@
 var spawn = require('child_process').spawn;
 
 /* 其实就是等于执行hexo server --draft*/
-free = spawn('hexo', ['server', '--draft']);
+free = spawn('hexo', ['server', '--draft', '--debug']);
 free.stdout.on('data', function (data) {
   console.log('standard output:\n' + data);
 });
