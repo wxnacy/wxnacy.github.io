@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2018-12-12T10:09:28.000Z</updated>
+  <updated>2018-12-18T10:33:52.000Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,66 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>dig 写一条最简单的查询 DNS 命令</title>
+    <link href="http://wxnacy.com/2018/12/18/dig-simple/"/>
+    <id>http://wxnacy.com/2018/12/18/dig-simple/</id>
+    <published>2018-12-18T10:24:31.000Z</published>
+    <updated>2018-12-18T10:33:52.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>dig（域信息搜索器）命令是一个用于询问 DNS 域名服务器的灵活的工具。它执行 DNS 查询，显示从已查询名称服务器返回的应答。<br><a id="more"></a><div class="toc"></p><!-- toc --><!-- tocstop --><p></div><br>dig 的功能非常强大，我们这篇不展开讨论，只看最简单的查询域名的 DNS 映射。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">$ dig baidu.com</div><div class="line"></div><div class="line">; &lt;&lt;&gt;&gt; DiG 9.8.3-P1 &lt;&lt;&gt;&gt; baidu.com</div><div class="line">;; global options: +cmd</div><div class="line">;; Got answer:</div><div class="line">;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 28439</div><div class="line">;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 0</div><div class="line"></div><div class="line">;; QUESTION SECTION:</div><div class="line">;baidu.com.INA</div><div class="line"></div><div class="line">;; ANSWER SECTION:</div><div class="line">baidu.com.110INA220.181.57.216</div><div class="line">baidu.com.110INA123.125.115.110</div><div class="line"></div><div class="line">;; Query time: 198 msec</div><div class="line">;; SERVER: 1.1.1.1<span class="comment">#53(1.1.1.1)</span></div><div class="line">;; WHEN: Tue Dec 18 18:25:21 2018</div><div class="line">;; MSG SIZE  rcvd: 59</div></pre></td></tr></table></figure><p>我们取关键的应答部分</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">;; ANSWER SECTION:</div><div class="line">baidu.com.110INA220.181.57.216</div><div class="line">baidu.com.110INA123.125.115.110</div></pre></td></tr></table></figure><p>从这里我们可以看到目前 <code>baidu.com</code> 域名映射了两个 ip 地址。</p><p>这虽然是非常简单的命令行，但却是非常好用的检测工具。如果你不是专业的运维，了解到这个命令，就已经在工作中帮了大忙。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;dig（域信息搜索器）命令是一个用于询问 DNS 域名服务器的灵活的工具。它执行 DNS 查询，显示从已查询名称服务器返回的应答。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="http://wxnacy.com/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>玩儿</title>
+    <link href="http://wxnacy.com/2018/12/17/waner/"/>
+    <id>http://wxnacy.com/2018/12/17/waner/</id>
+    <published>2018-12-17T10:08:46.000Z</published>
+    <updated>2018-12-17T10:10:29.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>看于谦的《玩儿》真的很有意思，这是一部表面极为不正经，其实蕴含很多人生道理，看完让人回味无穷的书。<br><a id="more"></a><div class="toc"></p><!-- toc --><!-- tocstop --></div><p>你说玩儿就玩儿吧，干嘛非得学什么大道理，话是这么说，但是如果你好好玩儿，认真玩儿，还真就能在玩儿的时候就把道理给学了。</p><p>知道于谦，是从郭德纲相声开始的，抽烟喝酒烫头是几乎所有人都知道的梗，但郭德纲也早就说过，于大娘主业是玩儿，相声只是他玩儿的一部分。</p><p>玩儿简单，也难。简单之处无需多言，可难就难在两个字，认真。玩儿的认真，以前只对这句话有个模糊的概念，为什么呢？因为什么事认真起来都难呗！</p><p>从下面这段就能看出来。</p><blockquote><p>七哥从水中捞起那团麻，挤干了水，用一小片羊肉裹住，让鹰吞了下去，“这个行话叫‘下轴’，鹰有一个习性，在野外捕到鸡、兔时，皮毛骨肉一起吞下，遇有消化不了的东西，会在胃中团成一个椭圆状的球形吐出来。咱们就利用它这个特点，给它喂下一团麻。麻，鹰是消化不了的，下肚以后，麻粗糙的纤维会刮下鹰肚中的膛油，带着油脂被鹰吐出来。这样，双管齐下，里外结合，用不了几天，它就会俯首帖耳。”<br>    听了这番话，我当时的反应就是：人真是太聪明了，可也够损的。这主意是怎么想出来的呢？就这么折腾，甭说鹰，搁人也受不了。<br>天渐渐黑了下来，七嫂又摆上了一桌子的菜，七哥说：“来吧，都坐，喝酒，吃饭，鹰先不遛了。这遛是让它熟悉人多的环境，现在晩上人也少了，它也看不见了，咱就不出去了，但在家喝酒可也不能闲着。”七哥边说边慢慢来回转动左臂，臂上的黄鹰站立不稳，被动地来回倒着脚步，“看见没有？这叫倒拳儿，为的是不让它睡觉，老得让它活动着。这鹰肚里没食，要靠睡觉来补充体力，不让它睡觉也是消耗它的一个重要手段。之所以叫熬鹰，说的就是这个。但是鹰有一个与众不同之处，你如果只是盯着它不让睡，它会闭一只眼睛睡觉。你看到的这只眼睛总是睁着的，其实是一个假象，也许背面你看不到的那只眼睛已经闭上睡觉了，你很难发现。所以只能这样来回倒拳儿让它总是站不稳，它就无法入睡。”<br>听七哥说完，我随口一句：“这人是真够缺德的，不给饭吃，从肚子里往外刮油，再不让睡觉，这也太狠了吧？”<br>七哥听我说完，反倒像逮着理了似的，马上说：“哎！就得狠！老话讲善不赢人，说的就是这个道理。你要不这么狠，你但凡心疼它一点儿，它永远也驯不出来，那咱们就输了手艺了！那咱就不如不养。这道理跟人一样，你想学点儿东西，你不下功夫不吃苦能学会吗？你要想出好成绩，所下的功夫必须要超过常人。这就叫吃得苦中苦，方为人上人呀！</p></blockquote><p>这是讲“熬鹰”的一个片段，咋一听是挺渗人的，也挺长见识的。想想被影视作品里只会睁着眼“瞪鹰”骗了这么多年，还挺可笑的。</p><p>你要是动物保护协会的，这会肯定蹦起来要去抵制这种做法。还好我不是，我更关注的最后一句话。</p><p>这道理跟人一样，你想学点儿东西，你不下功夫不吃苦能学会吗？你要想出好成绩，所下的功夫必须要超过常人。这就叫吃得苦中苦，方为人上人呀！</p><p>看到这话真的是感触良多，我虽然不是多爱学习的人，但也确实为了几件事真的拼过，个中滋味也只有经历过才能了解。</p><p>你身边一定一两个这样的人，回看他们的人生，异样的精彩。几乎每过段时间，就可以看到他们专注在某一件事上，并且付出远高于我们的努力。</p><p>所以你看到他们顺利的考取了几个证书，学习了几门一辈子都学不会的语言，连玩“杀人游戏”你都不一定能赢过他。这些“比我们优秀还比我们努力的人”，或许只是做每件事的时候都比我们认真一些。</p><p>提到“玩儿”，更多人第一反应就是不务正业，我读完整本书，还是这么觉得。但事情的发展就在于，我们现在所处的时代，不管什么事情，认真的做，做到极致，都能挣到钱。能挣到钱，那就不是不务正业。</p><p>果然于大娘最后真的将自己的马场进行了开放，完成了“从玩儿到商业再到更好的玩儿”的闭环，这时候不管前边你再怎么不理解，这时候你都得承认人家比你强，为什么？因为人家连玩儿都比你认真。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;看于谦的《玩儿》真的很有意思，这是一部表面极为不正经，其实蕴含很多人生道理，看完让人回味无穷的书。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="杂谈" scheme="http://wxnacy.com/tags/%E6%9D%82%E8%B0%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis 常用命令</title>
+    <link href="http://wxnacy.com/2018/12/13/redis-cli/"/>
+    <id>http://wxnacy.com/2018/12/13/redis-cli/</id>
+    <published>2018-12-13T07:22:47.000Z</published>
+    <updated>2018-12-18T10:17:26.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>现在公司里或多或少总是要用到 Redis 来处理缓存数据，虽然有 Redis Manageer 这样的客户端工具，但是现在 AWS、Aliyun 提供的服务都是内网访问的，显然客户端就用不到了，那么熟记几个简单的命令行工具就显得尤为重要。<br><a id="more"></a><div class="toc"></p><!-- toc --><ul><li><a href="#ming-ling-xing">命令行</a></li><li><a href="#set-shu-ju">set 数据</a></li><li><a href="#huo-qu-xin-xi">获取信息</a></li><li><a href="#shan-chu-jian">删除键</a></li><li><a href="#zi-zeng-zi-jian">自增自减</a></li></ul><!-- tocstop --></div><h2><span id="ming-ling-xing">命令行</span><a href="#ming-ling-xing" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ redis-cli get name</div><div class="line"><span class="string">"10"</span></div></pre></td></tr></table></figure><p><code>redis-cli</code> 是 Redis 的基础命令脚本，后续跟上必要参数进行缓存的操作，不过一般情况下，我们先登录数据库后在进行操作。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ redis-cli</div><div class="line">127.0.0.1:6379&gt;</div></pre></td></tr></table></figure><p>加上 <code>--raw</code> 可以避免中文乱码</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ redis-cli --raw</div></pre></td></tr></table></figure><p>指定端口和地址登录</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ redis-cli -h redis_host -p redis_port -a redis_password</div></pre></td></tr></table></figure><p>试想这种情况下，每次都跟上 <code>get name</code> 查询，简直不敢想象</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ redis-cli ping</div><div class="line">PONG</div></pre></td></tr></table></figure><p>这种情况下，代表可以 ping 通，及可以登录。</p><h2><span id="set-shu-ju">set 数据</span><a href="#set-shu-ju" class="header-anchor"></a></h2><p>登录后我们开始设置数据</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">SET key value [EX seconds] [PX milliseconds] [NX|XX]</div><div class="line"><span class="comment"># EX second ：设置键的过期时间为 second 秒。 SET key value EX second 效果等同于 SETEX key second value 。</span></div><div class="line"><span class="comment"># PX millisecond ：设置键的过期时间为 millisecond 毫秒。 SET key value PX millisecond 效果等同于 PSETEX key millisecond value 。</span></div><div class="line"><span class="comment"># NX ：只在键不存在时，才对键进行设置操作。 SET key value NX 效果等同于 SETNX key value 。</span></div><div class="line"><span class="comment"># XX ：只在键已经存在时，才对键进行设置操作。</span></div></pre></td></tr></table></figure><p>设置键值对</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="built_in">set</span> name wxnacy</div><div class="line">OK</div></pre></td></tr></table></figure><p>设置键值对，并设置 10 秒有效期</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="built_in">set</span> name wxnacy ex 10</div><div class="line">OK</div></pre></td></tr></table></figure><p>只在不存在 name 键时才设置数据</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="built_in">set</span> name wxnacy</div><div class="line">OK</div><div class="line">&gt; <span class="built_in">set</span> name wxnacy nx</div><div class="line">(nil)</div><div class="line"><span class="comment"># (nil) 表示没有设置成功</span></div></pre></td></tr></table></figure><h2><span id="huo-qu-xin-xi">获取信息</span><a href="#huo-qu-xin-xi" class="header-anchor"></a></h2><p>获取值</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; get name</div><div class="line"><span class="string">"wxnacy"</span></div></pre></td></tr></table></figure><p>获取键还有几秒的有效期</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="built_in">set</span> name wxnacy ex 10</div><div class="line">OK</div><div class="line">&gt; ttl name</div><div class="line">(<span class="built_in">integer</span>) 8</div></pre></td></tr></table></figure><p>查询 key 列表</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">KEY pattern</div><div class="line"><span class="comment"># 查找所有符合给定模式 pattern 的 key 。</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># KEYS * 匹配数据库中所有 key 。</span></div><div class="line"><span class="comment"># KEYS h?llo 匹配 hello ， hallo 和 hxllo 等。</span></div><div class="line"><span class="comment"># KEYS h*llo 匹配 hllo 和 heeeeello 等。</span></div><div class="line"><span class="comment"># KEYS h[ae]llo 匹配 hello 和 hallo ，但不匹配 hillo 。</span></div><div class="line"><span class="comment"># 特殊符号用 \ 隔开</span></div></pre></td></tr></table></figure><p>模糊查询</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="built_in">set</span> id:1 wxnacy</div><div class="line">OK</div><div class="line">&gt; <span class="built_in">set</span> id:1 wxnacy</div><div class="line">OK</div><div class="line">&gt; <span class="built_in">set</span> name:1 wxnacy</div><div class="line">OK</div><div class="line">&gt; keys id*</div><div class="line">1) <span class="string">"id:1"</span></div><div class="line">2) <span class="string">"id:2"</span></div></pre></td></tr></table></figure><h2><span id="shan-chu-jian">删除键</span><a href="#shan-chu-jian" class="header-anchor"></a></h2><p>删除一个 key</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="built_in">set</span> name wxnacy</div><div class="line">OK</div><div class="line">&gt; del name</div><div class="line">(<span class="built_in">integer</span>) 1</div></pre></td></tr></table></figure><p>删除多个 key</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="built_in">set</span> name wxnacy</div><div class="line">OK</div><div class="line">&gt; <span class="built_in">set</span> age 0</div><div class="line">OK</div><div class="line">&gt; del name age</div><div class="line">(<span class="built_in">integer</span>) 2</div></pre></td></tr></table></figure><h2><span id="zi-zeng-zi-jian">自增自减</span><a href="#zi-zeng-zi-jian" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">INCR key</div><div class="line"></div><div class="line"><span class="comment"># 将 key 中储存的数字值增一。</span></div><div class="line"><span class="comment"># 如果 key 不存在，那么 key 的值会先被初始化为 0 ，然后再执行 INCR 操作。</span></div><div class="line"></div><div class="line">DECR key</div><div class="line"></div><div class="line"><span class="comment"># 将 KEY 中储存的数字值减一。</span></div><div class="line"><span class="comment"># 如果 KEY 不存在，那么 KEY 的值会先被初始化为 0 ，然后再执行 DECR 操作。</span></div><div class="line"><span class="comment"># 如果值包含错误的类型，或字符串类型的值不能表示为数字，那么返回一个错误。</span></div><div class="line"><span class="comment"># 本操作的值限制在 64 位(BIT)有符号数字表示之内。</span></div></pre></td></tr></table></figure><p>自增</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; incr id</div><div class="line">(<span class="built_in">integer</span>) 1</div><div class="line">&gt; <span class="built_in">set</span> ids 20</div><div class="line">OK</div><div class="line">&gt; incr ids</div><div class="line">(<span class="built_in">integer</span>) 21</div></pre></td></tr></table></figure><p>自减</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; decr id</div><div class="line">(<span class="built_in">integer</span>) -1</div><div class="line">&gt; <span class="built_in">set</span> ids 20</div><div class="line">OK</div><div class="line">&gt; decr ids</div><div class="line">(<span class="built_in">integer</span>) 19</div></pre></td></tr></table></figure><p>Redis 的功能非常强大，还有很多有用的命令，不过我想如果不是重度使用 Redis，没必要也记不住这么多的命令，有这几个键位，我们已经可以完成很多常用功能，再多的就使用的时候再查询文档吧。</p><ul><li><a href="http://redisdoc.com/index.html" target="_blank" rel="external">Redis 命令参考</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;现在公司里或多或少总是要用到 Redis 来处理缓存数据，虽然有 Redis Manageer 这样的客户端工具，但是现在 AWS、Aliyun 提供的服务都是内网访问的，显然客户端就用不到了，那么熟记几个简单的命令行工具就显得尤为重要。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="redis" scheme="http://wxnacy.com/tags/redis/"/>
+    
+  </entry>
   
   <entry>
     <title>如何给 Hexo 博客添加 RSS 订阅功能</title>
@@ -362,68 +422,6 @@
     
     
       <category term="git" scheme="http://wxnacy.com/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Deepin 交换 CapsLock 和 Control 键位</title>
-    <link href="http://wxnacy.com/2018/10/25/deepin-capslock-control/"/>
-    <id>http://wxnacy.com/2018/10/25/deepin-capslock-control/</id>
-    <published>2018-10-25T02:05:19.000Z</published>
-    <updated>2018-10-25T02:12:54.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>对于程序员来说，<code>CapsLock</code> 键位基本是没用的，但是它又占着一个黄金位置，将它换成 <code>Control</code> 键，在各个终端命令中作为 Leader 键是非常合适的，在 Mac 中可以直接从设置面板中修改，在 Deepin 中稍微费点事。<br><a id="more"></a><div class="toc"></p><!-- toc --><!-- tocstop --></div><p><strong>打开 Terminal</strong></p><p>使用 <code>ctrl + alt + t</code> 键快速打开一个 Terminal。</p><p><strong>创建配置文件</strong></p><p>在用户当前目录 <code>~</code> 下创建 <code>.xmodmap</code> 文件，如果有，直接编辑。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> ~</div><div class="line">$ touch .xmodmap</div><div class="line">$ vim .xmodmap</div></pre></td></tr></table></figure><p>将如下配置复制进文件，然后保存退出</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">remove Lock = Caps_Lock</div><div class="line">remove Control = Control_L</div><div class="line">keysym Control_L = Caps_Lock</div><div class="line">keysym Caps_Lock = Control_L</div><div class="line">add Lock = Caps_Lock</div><div class="line">add Control = Control_L</div></pre></td></tr></table></figure><p>使用文件生效</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ xmodmap .xmodmap</div></pre></td></tr></table></figure><p>如果执行后没有报错，此时两个键位已经交换成功</p><p><strong>参考</strong></p><ul><li><a href="https://jingyan.baidu.com/article/a24b33cd2bb8e019fe002bb6.html" target="_blank" rel="external">deepin linux下怎么交换ctrl和capslock键</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;对于程序员来说，&lt;code&gt;CapsLock&lt;/code&gt; 键位基本是没用的，但是它又占着一个黄金位置，将它换成 &lt;code&gt;Control&lt;/code&gt; 键，在各个终端命令中作为 Leader 键是非常合适的，在 Mac 中可以直接从设置面板中修改，在 Deepin 中稍微费点事。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="linux" scheme="http://wxnacy.com/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Go 如何实现不换行进度条</title>
-    <link href="http://wxnacy.com/2018/10/24/go-progress/"/>
-    <id>http://wxnacy.com/2018/10/24/go-progress/</id>
-    <published>2018-10-24T02:01:48.000Z</published>
-    <updated>2018-10-24T02:49:47.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>在 Go 中实现不换行进度条，可以通过几行原理代码实现。<br><a id="more"></a><div class="toc"></p><!-- toc --><!-- tocstop --><p></div><br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">fmt.Printf(<span class="string">"%s \033[K\n"</span>, <span class="string">"--"</span>)     <span class="comment">// 输出一行结果</span></div><div class="line">fmt.Printf(<span class="string">"\033[%dA\033[K"</span>, <span class="number">1</span>)     <span class="comment">// 将光标向上移动一行</span></div><div class="line">fmt.Printf(<span class="string">"%s \033[K\n"</span>, <span class="string">"=-"</span>)     <span class="comment">// 输出第二行结果</span></div></pre></td></tr></table></figure></p><p>如此往复即可实现不换行进度条</p><p>完整代码见 <a href="https://github.com/wxnacy/study/blob/master/goland/src/progress/single.go" target="_blank" rel="external">single.go</a></p><p>输出屏幕带有屏幕的原理可见 <a href="/2018/09/07/go-fmt-color/">Go 如何给屏幕打印信息加上颜色</a></p><p>带颜色的进度条完整代码见 <a href="https://github.com/wxnacy/study/blob/master/goland/src/progress/color.go" target="_blank" rel="external">color.go</a></p><p>如果同时有多个进度条同时运行，那原理在于将最上边的进度条使用 <code>fmt.Printf(&quot;\033[%dA\033[K&quot;, n)</code> 上移一定的行数，其余进度条顺序打印即可。</p><p>多个进度条完整代码见 <a href="https://github.com/wxnacy/study/blob/master/goland/src/progress/multi.go" target="_blank" rel="external">multi.go</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在 Go 中实现不换行进度条，可以通过几行原理代码实现。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="go" scheme="http://wxnacy.com/tags/go/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>查看本机的 ip 地址</title>
-    <link href="http://wxnacy.com/2018/10/23/ifconfig-local-ip/"/>
-    <id>http://wxnacy.com/2018/10/23/ifconfig-local-ip/</id>
-    <published>2018-10-23T04:25:42.000Z</published>
-    <updated>2018-10-23T05:30:17.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>在终端中可以使用 <code>ifconfig</code> 查看 ip 信息<br><a id="more"></a><div class="toc"></p><!-- toc --><!-- tocstop --></div><p>在 Mac 中使用 <code>ifconfig en0</code> 可以查看本机 ip</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ ifconfig en0</div><div class="line">en0: flags=8863&lt;UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST&gt; mtu 1500</div><div class="line">ether 98:01:a7:8b:d9:a5</div><div class="line">inet6 fe80::9a01:a7ff:fe8b:d9a5%en0 prefixlen 64 scopeid 0x4</div><div class="line">inet 10.2.0.95 netmask 0xfffffc00 broadcast 10.2.3.255</div><div class="line">nd6 options=1&lt;PERFORMNUD&gt;</div><div class="line">media: autoselect</div><div class="line">status: active</div></pre></td></tr></table></figure><p><code>10.2.0.95</code> 即为本机 ip，可以使用组合命令将该 ip 直接找出</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ifconfig en0 | grep inet | grep -v inet6 | awk <span class="string">'&#123;print $2&#125;'</span></div><div class="line">10.2.0.95</div></pre></td></tr></table></figure><p>在 Linux 系统中需要使用 <code>ifconfig eth0</code> 查看本机 ip</p><p>比如 CentOS</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ifconfig eth0 | grep inet | grep -v inet6 | awk <span class="string">'&#123;print $2&#125;'</span></div></pre></td></tr></table></figure><p>在 Ubuntu 中 ip 格式为 <code>addr:10.2.0.59</code>，需要再加一层 awk 命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ifconfig eth0 | grep inet | grep -v inet6 | awk <span class="string">'&#123;print $2&#125;'</span> | awk -v FS=<span class="string">":"</span> <span class="string">'&#123;print $2&#125;'</span></div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在终端中可以使用 &lt;code&gt;ifconfig&lt;/code&gt; 查看 ip 信息&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="linux" scheme="http://wxnacy.com/tags/linux/"/>
-    
-      <category term="mac" scheme="http://wxnacy.com/tags/mac/"/>
     
   </entry>
   
