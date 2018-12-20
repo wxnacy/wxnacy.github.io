@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2018-12-18T10:33:52.000Z</updated>
+  <updated>2018-12-20T08:14:24.000Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python 报错：local variable &#39;count&#39; referenced before assignment</title>
+    <link href="http://wxnacy.com/2018/12/20/python-error-local-variable/"/>
+    <id>http://wxnacy.com/2018/12/20/python-error-local-variable/</id>
+    <published>2018-12-20T08:06:16.000Z</published>
+    <updated>2018-12-20T08:14:24.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>使用 Python 很久了，仍然会碰到一些莫名其妙的错误。<br><a id="more"></a><div class="toc"></p><!-- toc --><!-- tocstop --></div><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"></div><div class="line">count = <span class="number">0</span></div><div class="line"></div><div class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fmt</span><span class="params">(i)</span>:</span></div><div class="line">    count += i</div><div class="line"></div><div class="line">[fmt(o) <span class="keyword">for</span> o <span class="keyword">in</span> a]</div><div class="line">print(count)</div></pre></td></tr></table></figure><p>我的本意是想在 <code>fmt</code> 方法中对 <code>count</code> 进行累加，但是会报错</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">local</span> variable <span class="string">'count'</span> referenced before assignment</div></pre></td></tr></table></figure><p>google 后发现</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">count = <span class="number">0</span></div></pre></td></tr></table></figure><p>定义为全局变量</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fmt</span><span class="params">(i)</span>:</span></div><div class="line">    count += i</div></pre></td></tr></table></figure><p>方法中只能对局部变量进行修改，<strong><em>如果想要修改全局变量，需要在方法内使用 global 对变量进行修改</em></strong></p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fmt</span><span class="params">(i)</span>:</span></div><div class="line">    <span class="keyword">global</span> count</div><div class="line">    count += i</div></pre></td></tr></table></figure><p>完整代码如下</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"></div><div class="line">count = <span class="number">0</span></div><div class="line"></div><div class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fmt</span><span class="params">(i)</span>:</span></div><div class="line">    <span class="keyword">global</span> count</div><div class="line">    count += i</div><div class="line"></div><div class="line">[fmt(o) <span class="keyword">for</span> o <span class="keyword">in</span> a]</div><div class="line">print(count)</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;使用 Python 很久了，仍然会碰到一些莫名其妙的错误。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://wxnacy.com/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>dig 写一条最简单的查询 DNS 命令</title>
@@ -402,26 +422,6 @@
     
     
       <category term="expect" scheme="http://wxnacy.com/tags/expect/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Git 将用户名密码储存在本机，避免每次输入</title>
-    <link href="http://wxnacy.com/2018/10/26/git-store-password/"/>
-    <id>http://wxnacy.com/2018/10/26/git-store-password/</id>
-    <published>2018-10-26T03:33:53.000Z</published>
-    <updated>2018-10-26T04:07:47.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>新机器上使用 Git，每次推送都需要使用密码，为了避免这种情况，需要将密码储存在本地。<br><a id="more"></a><div class="toc"></p><!-- toc --><!-- tocstop --></div><p>在提交文件之前使用命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git config --global credential.helper store</div></pre></td></tr></table></figure><p>随后再输入用户名和密码后会在根目录 <code>~</code> 中生成一个文件 <code>.git-credentials</code></p><p>文件内容为</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://user:password@github.com</div></pre></td></tr></table></figure><p>以后再次提交内容则不用在输入密码，也可以手动添加该文件。</p><p>Mac 中可以使用 <code>osxkeychain</code> 模式将密码加密储存。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git config --global credential.helper osxkeychain</div></pre></td></tr></table></figure><p><strong>参考</strong></p><ul><li><a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E5%87%AD%E8%AF%81%E5%AD%98%E5%82%A8" target="_blank" rel="external">Git 工具 - 凭证存储</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;新机器上使用 Git，每次推送都需要使用密码，为了避免这种情况，需要将密码储存在本地。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="git" scheme="http://wxnacy.com/tags/git/"/>
     
   </entry>
   

@@ -110,6 +110,8 @@ if __name__ == "__main__":
 ## 转义
 ```python
 >>> '{} position is {{0}}'.format('a')      # a position is {0}
+# {{ 来显示左大括号
+# }} 来显示右大括号
 ```
 ## 参考
 - [PyFormat](https://pyformat.info/)

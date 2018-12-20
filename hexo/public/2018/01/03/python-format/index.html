@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="自 2.6 以后 Python 增加一个新函数 str.format() 来增加字符串格式化的功能">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-05-29T05:27:29.000Z">
+<meta property="og:updated_time" content="2018-12-20T07:41:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 格式化函数 format">
 <meta name="twitter:description" content="自 2.6 以后 Python 增加一个新函数 str.format() 来增加字符串格式化的功能">
@@ -217,7 +217,7 @@
 <h2><span id="zi-fu-chuan">字符串</span><a href="#zi-fu-chuan" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 截取</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'&#123;:.3&#125;'</span>.format(<span class="string">'wxnacy'</span>)                <span class="comment"># wxn</span></div><div class="line"><span class="comment"># 截取并对齐</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'&#123;:6.3&#125;'</span>.format(<span class="string">'wxnacy'</span>)               <span class="comment"># wxn</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'&#123;:&gt;6.3&#125;'</span>.format(<span class="string">'wxnacy'</span>)              <span class="comment">#    wxn</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'&#123;:^6.3&#125;'</span>.format(<span class="string">'wxnacy'</span>)              <span class="comment">#  wxn</span></div><div class="line"><span class="comment"># 截取并对齐并占位</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'&#123;:0&lt;6.3&#125;'</span>.format(<span class="string">'wxnacy'</span>)             <span class="comment"># wxn000</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'&#123;:0&gt;6.3&#125;'</span>.format(<span class="string">'wxnacy'</span>)             <span class="comment"># 000wxn</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'&#123;:0^6.3&#125;'</span>.format(<span class="string">'wxnacy'</span>)             <span class="comment"># 0wxn00</span></div></pre></td></tr></table></figure>
 <h2><span id="shi-jian">时间</span><a href="#shi-jian" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>dt = datetime.now()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'&#123;:%Y-%m-%d %H:%M:%S.%s&#125;'</span>.format(dt)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'2018-01-03 18:41:52.1514976112'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'&#123;:&#123;dfmt&#125; &#123;tfmt&#125;&#125;'</span>.format(dt, dfmt=<span class="string">'%Y-%m-%d'</span>, tfmt=<span class="string">'%H:%M:%S.%s'</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'2018-01-03 18:41:52.1514976112'</span></div></pre></td></tr></table></figure>
 <h2><span id="dui-xiang">对象</span><a href="#dui-xiang" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">()</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self.name = <span class="string">'wxnacy'</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> self.name</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> <span class="string">'räpr'</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__format__</span><span class="params">(self, fmt)</span>:</span></div><div class="line">        <span class="keyword">if</span> fmt == <span class="string">'fmt'</span>:</div><div class="line">            <span class="keyword">return</span> <span class="string">"I'm format user"</span></div><div class="line">        <span class="keyword">return</span> <span class="string">'user'</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    u = User()</div><div class="line">    print(<span class="string">'&#123;:fmt&#125;'</span>.format(u))   <span class="comment"># I'm format user</span></div><div class="line">    print(<span class="string">'&#123;!s&#125;'</span>.format(u))     <span class="comment"># wxnacy</span></div><div class="line">    print(<span class="string">'&#123;!r&#125;'</span>.format(u))     <span class="comment"># räpr</span></div><div class="line">    print(<span class="string">'&#123;!a&#125;'</span>.format(u))     <span class="comment"># r\xe4pr</span></div></pre></td></tr></table></figure>
-<h2><span id="zhuan-yi">转义</span><a href="#zhuan-yi" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'&#123;&#125; position is &#123;&#123;0&#125;&#125;'</span>.format(<span class="string">'a'</span>)      <span class="comment"># a position is &#123;0&#125;</span></div></pre></td></tr></table></figure>
+<h2><span id="zhuan-yi">转义</span><a href="#zhuan-yi" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'&#123;&#125; position is &#123;&#123;0&#125;&#125;'</span>.format(<span class="string">'a'</span>)      <span class="comment"># a position is &#123;0&#125;</span></div><div class="line"><span class="comment"># &#123;&#123; 来显示左大括号</span></div><div class="line"><span class="comment"># &#125;&#125; 来显示右大括号</span></div></pre></td></tr></table></figure>
 <h2><span id="can-kao">参考</span><a href="#can-kao" class="header-anchor"></a></h2><ul>
 <li><a href="https://pyformat.info/" target="_blank" rel="external">PyFormat</a></li>
 <li><a href="https://www.guru99.com/learning-python-strings-replace-join-split-reverse.html" target="_blank" rel="external">Python Strings: Replace, Join, Split, Reverse, Uppercase &amp; Lowercase</a></li>
@@ -519,11 +519,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -539,15 +539,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
