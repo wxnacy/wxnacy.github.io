@@ -374,6 +374,16 @@ class VisitorLog(BaseModel, db.Model):
         return res
 
     @classmethod
+    def query_hot(cls):
+
+        res = db.session.query(cls.url, func.count(cls.url).label('rank')
+            ).filter(cls.visit_date >= date.today() - timedelta(days = 7)
+            ).group_by(cls.url).order_by('rank desc').all()
+
+        return res
+
+
+    @classmethod
     def visit(cls, **kw):
         begin = time.time()
         ua = kw['user_agent']
@@ -470,7 +480,7 @@ class Article(BaseModel,db.Model):
             url = url[0:url.index('index.html')]
 
         kw['url'] = url
-        print(url)
+        #  print(url)
         return super().query_or_create(**kw)
 
 
@@ -562,7 +572,7 @@ class Article(BaseModel,db.Model):
         if len(dp) > 5:
             pd = '{}-{}-{}'.format(dp[3], dp[4], dp[5])
         params['publish_date'] = pd
-        print(params)
+        #  print(params)
         return params
 
 
