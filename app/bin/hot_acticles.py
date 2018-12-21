@@ -20,7 +20,10 @@ def print_hot():
 
     for i in items:
         art = Article.crawler(url = i.url)
-        fmt = '{}: {}'.format(art.name, art.url)
+        url = i.url
+        if url.startswith('https://wxnacy.com'):
+            url = url[len('https://wxnacy.com'):]
+        fmt = '{}: {}'.format(art.name, url)
         print(fmt)
     pass
 
