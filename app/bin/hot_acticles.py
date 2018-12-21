@@ -19,7 +19,9 @@ def print_hot():
     items = items[0:5]
 
     for i in items:
-        art = Article.crawler(url = i.url)
+        art = Article.query_item(url = i.url)
+        if not art:
+            art = Article.crawler(url = i.url)
         url = i.url
         if url.startswith('https://wxnacy.com'):
             url = url[len('https://wxnacy.com'):]
