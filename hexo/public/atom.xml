@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2018-12-20T08:14:24.000Z</updated>
+  <updated>2018-12-25T03:19:32.000Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java 11 新特性：java 命令自动编译运行</title>
+    <link href="http://wxnacy.com/2018/12/25/java-11-new1/"/>
+    <id>http://wxnacy.com/2018/12/25/java-11-new1/</id>
+    <published>2018-12-25T02:47:43.000Z</published>
+    <updated>2018-12-25T03:19:32.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>虽然现在很少使用 Java 进行开发，但是仍然时不时的关注着它的动态，最近发现 Java 11 发布了，并且带来了很多新特性，关键它是 Java8 以后又一长期维护版本，可以在生产环境使用，这又增加了我关注它的动力，今天先介绍一个新特性：java 命令可以直接编译运行源代码。<br><a id="more"></a><div class="toc"></p><!-- toc --><!-- tocstop --><p></div><br>这将以为着，从此以后我们不需要 <code>javac</code> 来进行编译</p><p>举个例子，写一个类文件 <code>HelloWorld.java</code></p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"Hello World"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>以前需要这样运行</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ javac HelloWorld.java</div><div class="line">$ java HelloWorld</div><div class="line">Hello World</div></pre></td></tr></table></figure><p>现在只需要这样</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ java HelloWorld.java</div><div class="line">Hello World</div></pre></td></tr></table></figure><p>嗯，Python 你闭嘴，还有你 Go。呵呵</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;虽然现在很少使用 Java 进行开发，但是仍然时不时的关注着它的动态，最近发现 Java 11 发布了，并且带来了很多新特性，关键它是 Java8 以后又一长期维护版本，可以在生产环境使用，这又增加了我关注它的动力，今天先介绍一个新特性：java 命令可以直接编译运行源代码。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://wxnacy.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java 11 新特性：String 增强</title>
+    <link href="http://wxnacy.com/2018/12/24/java-11-new-string/"/>
+    <id>http://wxnacy.com/2018/12/24/java-11-new-string/</id>
+    <published>2018-12-24T03:51:01.000Z</published>
+    <updated>2018-12-25T04:01:17.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>虽然现在很少使用 Java 进行开发，但是仍然时不时的关注着它的动态，最近发现 Java 11 发布了，并且带来了很多新特性，关键它是 Java8 以后又一长期维护版本，可以在生产环境使用，这又增加了我关注它的动力，今天先介绍一个新特性：String 增强<br><a id="more"></a><div class="toc"></p><!-- toc --><!-- tocstop --><p></div><br>我们来看这段代码</p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringExample</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</div><div class="line">        Java11Upgrade();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Java11Upgrade</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">// 判断字符串是否为空白</span></div><div class="line">        System.out.println(<span class="string">" "</span>.isBlank());              <span class="comment">// true</span></div><div class="line">        <span class="comment">// 去除首尾空格</span></div><div class="line">        System.out.println(<span class="string">" Java "</span>.strip());           <span class="comment">// Java</span></div><div class="line">        <span class="comment">// 去除首部空格</span></div><div class="line">        System.out.println(<span class="string">" Java"</span>.stripLeading());     <span class="comment">// Java</span></div><div class="line">        <span class="comment">// 去除尾部空格</span></div><div class="line">        System.out.println(<span class="string">"Java "</span>.stripTrailing());    <span class="comment">// Java</span></div><div class="line">        <span class="comment">// 重复字符串</span></div><div class="line">        System.out.println(<span class="string">"Java"</span>.repeat(<span class="number">2</span>));           <span class="comment">// JavaJava</span></div><div class="line">        <span class="comment">// 获取字符串中的行数</span></div><div class="line">        System.out.println(<span class="string">"A\nB\nC"</span>.lines().count());  <span class="comment">// 3</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>还是一些其他语言早就有的特性，不过很高兴 Java 在逐渐补足这些东西，这也是让 Java 保持霸主地位的必要操作。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;虽然现在很少使用 Java 进行开发，但是仍然时不时的关注着它的动态，最近发现 Java 11 发布了，并且带来了很多新特性，关键它是 Java8 以后又一长期维护版本，可以在生产环境使用，这又增加了我关注它的动力，今天先介绍一个新特性：String 增强&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://wxnacy.com/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>Python 报错：local variable &#39;count&#39; referenced before assignment</title>
@@ -382,46 +422,6 @@
     
     
       <category term="go" scheme="http://wxnacy.com/tags/go/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Shell 使用 read 创建交互模式脚本</title>
-    <link href="http://wxnacy.com/2018/10/28/shell-read/"/>
-    <id>http://wxnacy.com/2018/10/28/shell-read/</id>
-    <published>2018-10-28T02:47:58.000Z</published>
-    <updated>2018-10-28T02:47:58.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Shell 脚本中可以使用 read 来实现交互模式。<br><a id="more"></a><div class="toc"></p><!-- toc --><ul><li><a href="#echo-he-read">echo 和 read</a></li><li><a href="#zhi-jie-yong-read">直接用 read</a></li></ul><!-- tocstop --></div><h2><span id="echo-he-read">echo 和 read</span><a href="#echo-he-read" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/usr/bin/env bash</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> -n <span class="string">"What is your name: "</span></div><div class="line"><span class="comment"># echo -e "What is your name: \c"</span></div><div class="line"><span class="built_in">read</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$REPLY</span>"</span></div></pre></td></tr></table></figure><p>执行该脚本，根据提示输入名字即可完成一次交互，echo 的 <code>-n</code> 参数可以使屏幕输出后不换行，键盘输入的内容默认使用变量 <code>REPLY</code></p><h2><span id="zhi-jie-yong-read">直接用 read</span><a href="#zhi-jie-yong-read" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">read</span> -p <span class="string">"What is your name: "</span> name</div><div class="line"><span class="built_in">echo</span> <span class="string">"My name is <span class="variable">$name</span>"</span></div></pre></td></tr></table></figure><p>可以实现跟上边相同的效果，<code>-p</code> 为提示信息，<code>name</code> 为传入参数变量</p><p><strong>不可见</strong></p><p>普通输入文字都是明文显示，如果想要输入密码类的内容，可以使用 <code>-s</code> 参数使内容不显示</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">read</span> -p <span class="string">"What is your name: "</span> -s name</div></pre></td></tr></table></figure><p><strong>限制个数</strong></p><p>使用 <code>-n</code> 显示参数个数，再输入参数跟回车一个效果</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">read</span> -n 1 -p <span class="string">"Are you sure delete[Y|n]: "</span> flag</div></pre></td></tr></table></figure><p><strong>读取管道数据</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span> <span class="built_in">read</span> line</div><div class="line"><span class="keyword">do</span></div><div class="line">    <span class="built_in">echo</span> <span class="variable">$line</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ll | test.sh</div></pre></td></tr></table></figure><p><strong>更多参数</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">-a ：将内容读入到数组中</div><div class="line">-d ：表示delimiter，即定界符，一般情况下是以IFS为参数的间隔，但是通过-d，我们可以定义一直读到出现执行的字符位置。例如<span class="built_in">read</span> –d madfds value，读到有m的字符的时候就不在继续向后读，例如输入为 hello m，有效值为“hello”，请注意m前面的空格等会被删除。这种方式可以输入多个字符串，例如定义“.”作为结符号等等。</div><div class="line">-e ：只用于互相交互的脚本，它将readline用于收集输入行。读到这几句话不太明白什么意思，先跳过。</div><div class="line">-n ：用于限定最多可以有多少字符可以作为有效读入。例如<span class="built_in">echo</span> –n 4 value1 value2，如果我们试图输入12 34，则只有前面有效的12 3，作为输入，实际上在你输入第4个字符‘3’后，就自动结束输入。这里结果是value为12，value2为3。</div><div class="line">-p ：用于给出提示符，在前面的例子中我们使用了<span class="built_in">echo</span> –n “…“来给出提示符，可以使用<span class="built_in">read</span> –p ‘… my promt?’value的方式只需一个语句来表示。</div><div class="line">-r ：在参数输入中，我们可以使用’/’表示没有输入完，换行继续输入，如果我们需要行最后的’/’作为有效的字符，可以通过-r来进行。此外在输入字符中，我们希望/n这类特殊字符生效，也应采用-r选项。</div><div class="line">-s ：隐藏输入内容，比如密码</div><div class="line">-t ：用于表示等待输入的时间，单位为秒，等待时间超过，将继续执行后面的脚本，注意不作为null输入，参数将保留原有的值</div></pre></td></tr></table></figure><p><strong>参考</strong></p><ul><li><a href="http://gohom.win/2015/08/20/shell-read/" target="_blank" rel="external">shell的read命令</a></li><li><a href="https://www.cnblogs.com/nwf5d/archive/2011/11/20/2255702.html" target="_blank" rel="external">Shell中read的选项及用法</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Shell 脚本中可以使用 read 来实现交互模式。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="shell" scheme="http://wxnacy.com/tags/shell/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Expect 脚本参数传递</title>
-    <link href="http://wxnacy.com/2018/10/27/expect-args/"/>
-    <id>http://wxnacy.com/2018/10/27/expect-args/</id>
-    <published>2018-10-27T02:44:20.000Z</published>
-    <updated>2018-10-27T02:44:20.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Expect 脚本同 Shell 脚本一样可以通过外部传递参数。<br><a id="more"></a><div class="toc"></p><!-- toc --><!-- tocstop --></div><p><code>argc</code> 代表参数个数，<code>argv</code> 代表参数列表</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">puts $argc</div><div class="line">puts $argv</div></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ./test.exp wxnacy wxn</div><div class="line">2</div><div class="line">wxnacy wxn</div></pre></td></tr></table></figure><p>设置变量</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">set name [lindex $argv 0]</div><div class="line">puts $name</div></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">./test.exp wxnacy wxn</div><div class="line">wxnacy</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Expect 脚本同 Shell 脚本一样可以通过外部传递参数。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="expect" scheme="http://wxnacy.com/tags/expect/"/>
     
   </entry>
   
