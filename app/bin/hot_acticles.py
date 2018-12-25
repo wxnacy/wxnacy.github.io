@@ -14,11 +14,17 @@ def print_hot():
                 'https://wxnacy.com/album/',
                 ):
             return False
+        if o.url.startswith('http://local.wxnacy.com') or \
+                o.url.startswith('http://localhost'):
+            return False
         return True
     items = list(filter(lambda x: _filter(x), items))
-    items = items[0:5]
+    items = items[0:10]
 
     for i in items:
+        if 'vim.wxnacy.com' in i.url:
+            print('VIM 练级手册: ', i.url)
+            continue
         art = Article.query_item(url = i.url)
         if not art:
             art = Article.crawler(url = i.url)
