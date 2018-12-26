@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2018-12-25T03:19:32.000Z</updated>
+  <updated>2018-12-26T02:56:36.000Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ubuntu 安装 JDK 11</title>
+    <link href="http://wxnacy.com/2018/12/26/ubuntu-install-jdk11/"/>
+    <id>http://wxnacy.com/2018/12/26/ubuntu-install-jdk11/</id>
+    <published>2018-12-26T02:56:36.000Z</published>
+    <updated>2018-12-26T02:56:36.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>几个月前我写过文章 <a href="/2018/06/19/ubuntu-install-jdk/">Ubuntu 16.04 安装 JDK</a> ，当时是以 JDK 8 为例子，现在 Java 11 出来了，相应的更新一版。<br><a id="more"></a><div class="toc"></p><!-- toc --><ul><li><a href="#oracle-jdk">Oracle JDK</a></li><li><a href="#openjdk">OpenJDK</a><ul><li><a href="#18-04-lts">18.04 LTS</a></li><li><a href="#geng-lao-ban-ben">更老版本</a></li></ul></li><li><a href="#qie-huan-ban-ben">切换版本</a></li></ul><!-- tocstop --></div><p>我们首选使用 apt 来进行安装管理</p><h2><span id="oracle-jdk">Oracle JDK</span><a href="#oracle-jdk" class="header-anchor"></a></h2><p>首先添加 LinuxUprising Java PPA 仓库到软件源中，并下载 Oracle Java 11</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo add-apt-repository ppa:linuxuprising/java</div><div class="line">$ sudo apt update</div><div class="line">$ sudo apt install oracle-java11-installer</div></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ java -version</div><div class="line">java version <span class="string">"11.0.1"</span> 2018-10-16 LTS</div><div class="line">Java(TM) SE Runtime Environment 18.9 (build 11.0.1+13-LTS)</div><div class="line">Java HotSpot(TM) 64-Bit Server VM 18.9 (build 11.0.1+13-LTS, mixed mode)</div></pre></td></tr></table></figure><h2><span id="openjdk">OpenJDK</span><a href="#openjdk" class="header-anchor"></a></h2><h3><span id="18-04-lts">18.04 LTS</span><a href="#18-04-lts" class="header-anchor"></a></h3><p>首先我们使用 <code>apt</code> 进行搜索</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt search openjdk</div></pre></td></tr></table></figure><p>如果你的系统版本足够新，比如 18.04 LTS，那么很有可能搜索出这样的条目</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">openjdk-11-jdk/bionic-updates,bionic-security,now 10.0.2+13-1ubuntu0.18.04.4 amd64 [installed,automatic]</div><div class="line">  OpenJDK Development Kit (JDK)</div></pre></td></tr></table></figure><p>这代表软件源已经更新了 Java 11，这样直接安装默认版本即可</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt install -y default-jdk</div></pre></td></tr></table></figure><h3><span id="geng-lao-ban-ben">更老版本</span><a href="#geng-lao-ban-ben" class="header-anchor"></a></h3><p>如果是更早的版本，那么很大程度上并没有更新该源，那么这时候我们需要使用 tar 包进行安装</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ wget https://download.java.net/java/GA/jdk11/28/GPL/openjdk-11+28_linux-x64_bin.tar.gz -O /tmp/openjdk-11+28_linux-x64_bin.tar.gz</div><div class="line">$ sudo tar xfvz /tmp/openjdk-11+28_linux-x64_bin.tar.gz --directory /usr/lib/jvm</div><div class="line">$ rm -f /tmp/openjdk-11+28_linux-x64_bin.tar.gz</div></pre></td></tr></table></figure><p>使用 <code>update-alternatives</code> 对它进行管理</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo sh -c <span class="string">'for bin in /usr/lib/jvm/jdk-11/bin/*; do update-alternatives --install /usr/bin/$(basename $bin) $(basename $bin) $bin 100; done'</span></div><div class="line">$ sudo sh -c <span class="string">'for bin in /usr/lib/jvm/jdk-11/bin/*; do update-alternatives --set $(basename $bin) $bin; done'</span></div></pre></td></tr></table></figure><p>最后查看 java 版本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ java -version</div><div class="line">openjdk version <span class="string">"10.0.2"</span> 2018-07-17</div><div class="line">OpenJDK Runtime Environment (build 10.0.2+13-Ubuntu-1ubuntu0.18.04.4)</div><div class="line">OpenJDK 64-Bit Server VM (build 10.0.2+13-Ubuntu-1ubuntu0.18.04.4, mixed mode)</div></pre></td></tr></table></figure><h2><span id="qie-huan-ban-ben">切换版本</span><a href="#qie-huan-ban-ben" class="header-anchor"></a></h2><p>现在我们已经有两个版本的 Java，我们可以通过 <code>update-alternatives</code> 来选择一个作为默认版本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ sudo update-alternatives --config java</div><div class="line">There are 2 choices <span class="keyword">for</span> the alternative java (providing /usr/bin/java).</div><div class="line"></div><div class="line">  Selection    Path                                  Priority   Status</div><div class="line">------------------------------------------------------------</div><div class="line">  0            /usr/lib/jvm/java-11-oracle/bin/java   1091      auto mode</div><div class="line">* 1            /usr/lib/jvm/java-11-oracle/bin/java   1091      manual mode</div><div class="line">  2            /usr/lib/jvm/jdk-11/bin/java           100       manual mode</div><div class="line"></div><div class="line">Press &lt;enter&gt; to keep the current choice[*], or <span class="built_in">type</span> selection number:</div></pre></td></tr></table></figure><p>随后输入 <code>Selection</code> 对应的数字即可完成切换</p><ul><li><a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html" target="_blank" rel="external">Java SE Development Kit 11 Downloads</a></li><li><a href="https://dzone.com/articles/installing-openjdk-11-on-ubuntu-1804-for-real" target="_blank" rel="external">Installing OpenJDK 11 on Ubuntu 18.04</a></li><li><a href="https://www.linuxuprising.com/2018/10/how-to-install-oracle-java-11-in-ubuntu.html" target="_blank" rel="external">How To Install Oracle Java 11 In Ubuntu, Linux Mint Or Debian (From PPA Repository)</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;几个月前我写过文章 &lt;a href=&quot;/2018/06/19/ubuntu-install-jdk/&quot;&gt;Ubuntu 16.04 安装 JDK&lt;/a&gt; ，当时是以 JDK 8 为例子，现在 Java 11 出来了，相应的更新一版。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://wxnacy.com/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>Java 11 新特性：java 命令自动编译运行</title>
@@ -397,26 +417,6 @@
     <summary type="html">
     
       &lt;p&gt;在 Go 中打印 error 可以直接使用 &lt;code&gt;fmt.Println(err)&lt;/code&gt;，那么如何将 error 转换为 string 呢。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="go" scheme="http://wxnacy.com/tags/go/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Go 构建 web 项目怎样使用热启动</title>
-    <link href="http://wxnacy.com/2018/10/29/go-fresh/"/>
-    <id>http://wxnacy.com/2018/10/29/go-fresh/</id>
-    <published>2018-10-29T06:02:13.000Z</published>
-    <updated>2018-10-29T06:05:41.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Go 语言官方框架并没有提供热启动的模块，导致编写 web 应用非常麻烦。<br><a id="more"></a><div class="toc"></p><!-- toc --><!-- tocstop --><p></div><br>经过 google 发现第三方包 <a href="https://github.com/pilu/fresh" target="_blank" rel="external">fresh</a> 可以使用该功能。</p><p><strong>下载</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ go get github.com/pilu/fresh</div></pre></td></tr></table></figure><p>然后在项目根目录下启动命令即可</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ fresh</div></pre></td></tr></table></figure><p>它会默认去找 <code>main</code> 方法来执行。</p><p>更多的设置可见文档 <a href="https://github.com/pilu/fresh" target="_blank" rel="external">Usage</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Go 语言官方框架并没有提供热启动的模块，导致编写 web 应用非常麻烦。&lt;br&gt;
     
     </summary>
     
