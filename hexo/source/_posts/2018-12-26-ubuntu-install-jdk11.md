@@ -1,5 +1,5 @@
 ---
-title: Ubuntu 安装 JDK 11
+title: Ubuntu 如何安装 Java 11
 tags:
   - java
 date: 2018-12-26 10:56:36

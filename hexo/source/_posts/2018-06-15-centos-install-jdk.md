@@ -65,7 +65,7 @@ java-1.8.0-openjdk.x86_64 : OpenJDK Runtime Environment
 java-1.8.0-openjdk-devel.x86_64 : OpenJDK Development Environment
 ```
 
-他们分别是 JRE 和 JDK，根据你的需求安装即可，比如安装 JDK
+他们分别是 JRE 和 JDK，根据你的需求安装即可，比如安装 JRE
 
 ```bash
 $ sudo yum install java-1.8.0-openjdk -y
