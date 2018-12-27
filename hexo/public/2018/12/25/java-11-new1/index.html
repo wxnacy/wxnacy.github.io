@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://wxnacy.com">
-  <title>Java 11 新特性：java 命令自动编译运行 | 温欣爸比的博客</title>
+  <title>Java 11 新特性：java 命令直接运行单文件 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="虽然现在很少使用 Java 进行开发，但是仍然时不时的关注着它的动态，最近发现 Java 11 发布了，并且带来了很多新特性，关键它是 Java8 以后又一长期维护版本，可以在生产环境使用，这又增加了我关注它的动力，今天先介绍一个新特性：java 命令可以直接编译运行源代码。">
+  <meta name="description" content="虽然现在很少使用 Java 进行开发，但是仍然时不时的关注着它的动态，最近发现 Java 11 发布了，并且带来了很多新特性，关键它是 Java8 以后又一长期维护版本，可以在生产环境使用，这又增加了我关注它的动力，今天先介绍一个新特性：java 命令可以直接运行单文件。">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java 11 新特性：java 命令自动编译运行">
+<meta property="og:title" content="Java 11 新特性：java 命令直接运行单文件">
 <meta property="og:url" content="http://wxnacy.com/2018/12/25/java-11-new1/index.html">
 <meta property="og:site_name" content="温欣爸比的博客">
-<meta property="og:description" content="虽然现在很少使用 Java 进行开发，但是仍然时不时的关注着它的动态，最近发现 Java 11 发布了，并且带来了很多新特性，关键它是 Java8 以后又一长期维护版本，可以在生产环境使用，这又增加了我关注它的动力，今天先介绍一个新特性：java 命令可以直接编译运行源代码。">
+<meta property="og:description" content="虽然现在很少使用 Java 进行开发，但是仍然时不时的关注着它的动态，最近发现 Java 11 发布了，并且带来了很多新特性，关键它是 Java8 以后又一长期维护版本，可以在生产环境使用，这又增加了我关注它的动力，今天先介绍一个新特性：java 命令可以直接运行单文件。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-12-25T03:19:32.000Z">
+<meta property="og:updated_time" content="2018-12-27T08:23:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java 11 新特性：java 命令自动编译运行">
-<meta name="twitter:description" content="虽然现在很少使用 Java 进行开发，但是仍然时不时的关注着它的动态，最近发现 Java 11 发布了，并且带来了很多新特性，关键它是 Java8 以后又一长期维护版本，可以在生产环境使用，这又增加了我关注它的动力，今天先介绍一个新特性：java 命令可以直接编译运行源代码。">
+<meta name="twitter:title" content="Java 11 新特性：java 命令直接运行单文件">
+<meta name="twitter:description" content="虽然现在很少使用 Java 进行开发，但是仍然时不时的关注着它的动态，最近发现 Java 11 发布了，并且带来了很多新特性，关键它是 Java8 以后又一长期维护版本，可以在生产环境使用，这又增加了我关注它的动力，今天先介绍一个新特性：java 命令可以直接运行单文件。">
   
     <link rel="alternative" href="/atom.xml" title="温欣爸比的博客" type="application/atom+xml">
   
@@ -184,7 +184,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Java 11 新特性：java 命令自动编译运行
+      Java 11 新特性：java 命令直接运行单文件
     </h1>
   
 
@@ -197,17 +197,66 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>虽然现在很少使用 Java 进行开发，但是仍然时不时的关注着它的动态，最近发现 Java 11 发布了，并且带来了很多新特性，关键它是 Java8 以后又一长期维护版本，可以在生产环境使用，这又增加了我关注它的动力，今天先介绍一个新特性：java 命令可以直接编译运行源代码。<br><a id="more"></a><div class="toc"></p>
+        <p>虽然现在很少使用 Java 进行开发，但是仍然时不时的关注着它的动态，最近发现 Java 11 发布了，并且带来了很多新特性，关键它是 Java8 以后又一长期维护版本，可以在生产环境使用，这又增加了我关注它的动力，今天先介绍一个新特性：java 命令可以直接运行单文件。<br><a id="more"></a><div class="toc"></p>
 <!-- toc -->
+<ul>
+<li><a href="#yun-xing-dan-wen-jian">运行单文件</a></li>
+<li><a href="#wei-shi-me">为什么？</a><ul>
+<li><a href="#jiao-ben-yun-xing">脚本运行</a></li>
+<li><a href="#tong-yi-ge-wen-jian-duo-ge-gong-gong-lei">同一个文件多个公共类</a></li>
+</ul>
+</li>
+</ul>
 <!-- tocstop -->
-<p></div><br>这将以为着，从此以后我们不需要 <code>javac</code> 来进行编译</p>
-<p>举个例子，写一个类文件 <code>HelloWorld.java</code></p>
+</div>
+
+<h2><span id="yun-xing-dan-wen-jian">运行单文件</span><a href="#yun-xing-dan-wen-jian" class="header-anchor"></a></h2><p>举个例子，写一个类文件 <code>HelloWorld.java</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"Hello World"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>以前需要这样运行</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ javac HelloWorld.java</div><div class="line">$ java HelloWorld</div><div class="line">Hello World</div></pre></td></tr></table></figure>
 <p>现在只需要这样</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ java HelloWorld.java</div><div class="line">Hello World</div></pre></td></tr></table></figure>
 <p>嗯，Python 你闭嘴，还有你 Go。呵呵</p>
+<h2><span id="wei-shi-me">为什么？</span><a href="#wei-shi-me" class="header-anchor"></a></h2><p>其他介绍 Java 11 新特性的文章，到这里也就点到为止了，但是我总觉得这事不是这么简单。</p>
+<p>Java 为什么要这么做，真的是想用 <code>java</code> 取代 <code>javac</code> 吗，很显然不是，你可以做些实验，再多文件打包运行时，我们仍然需要 <code>javac</code> 来进行编译，也就是说 <code>java</code> 有其他的用途。</p>
+<p>这几年 Java 一直在追赶脚本语言（如：Python、NodeJS）的脚步，比如 lambda 函数、服务器组件、轻量级的 JSON 组件，还有 Java 11 才增加的 Http Client Api。这无疑都在想让自己往脚本语言方向发展，并且现在已经越来越像了。</p>
+<p>我们来做一些对比，拿入门的打印 <code>Hello World</code> 来举例，在 Python 中我们这样</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line">print(<span class="string">"Hello World"</span>)</div><div class="line"><span class="comment"># python Hello.py</span></div></pre></td></tr></table></figure>
+<p>Java 中这样</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"Hello World"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// javac Hello.java</span></div><div class="line"><span class="comment">// java Hello</span></div></pre></td></tr></table></figure>
+<p>好了，先不要笑，也先不要管 <code>public, static, void</code> 是个什么东西，Java 一直都很臃肿，你又不是不知道，至少现在它已经把 <code>javac Hello.java</code> 干掉了。</p>
+<h3><span id="jiao-ben-yun-xing">脚本运行</span><a href="#jiao-ben-yun-xing" class="header-anchor"></a></h3><p>脚本语言的特性是可以在文件第一行以 <code>#!</code> 开头，并指定运行命令，然后可以直接在终端中运行，比如 Python</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ chmod +x hello.py</div><div class="line">$ ./hello.py</div><div class="line">Hello World</div></pre></td></tr></table></figure>
+<p>那 Java 呢，因为本身的特性，<code>.java</code> 后缀的文件不运行出现 <code>#!</code>，所以我们首先需要改一下名字，听到这里，你是不是已经开始心跳加速了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ mv Hello.java hello.sh</div><div class="line">$ chmod +x hello.sh</div></pre></td></tr></table></figure>
+<p>然后修改文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env java --source 11</span></div><div class="line"></div><div class="line">public class HelloWorld&#123;</div><div class="line">    public static void main(String args[])&#123;</div><div class="line">        System.out.println(<span class="string">"Hello World"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后执行该文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ./hello.sh</div><div class="line">Hello World</div></pre></td></tr></table></figure>
+<p>啊！我看到了什么，这真的是 Java 吗？</p>
+<p>OK，现在为止，已经挑战了我的认知，这有悖于我们多年以来的认知。</p>
+<p>当然文件还可以使用 java 运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ java -Dtrace=<span class="literal">true</span> --<span class="built_in">source</span> 11 hello.sh</div></pre></td></tr></table></figure>
+<h3><span id="tong-yi-ge-wen-jian-duo-ge-gong-gong-lei">同一个文件多个公共类</span><a href="#tong-yi-ge-wen-jian-duo-ge-gong-gong-lei" class="header-anchor"></a></h3><p>我们刚才已经知道了两个有悖“常识”的知识点<strong><em>Java 可以作为脚本运行</em></strong>和<strong><em>文件名可以和第一个公共类名不相同</em></strong></p>
+<p>看到第二点，我有个大胆的想法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"Hello World"</span>);</div><div class="line">        User u = <span class="keyword">new</span> User();</div><div class="line">        u.id = <span class="number">1</span>;</div><div class="line">        System.out.println(u.id);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> id;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"User"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样的写法，如果放在几个月以前，是会被别人破口大骂的，因为只学过几天的菜鸟也知道，一个类中不能出现两个公共类，它会报这个错误。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">error: class User is public, should be declared <span class="keyword">in</span> a file named User.java</div></pre></td></tr></table></figure>
+<p>你把 <code>User</code> 类前边的 <code>public</code> 去掉就行了，那在 Java 11 中呢</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ java hello.java</div><div class="line">Hello World</div><div class="line">1</div></pre></td></tr></table></figure>
+<p>现在 Java 11 会正常运行该文件，并直接第一个公共类的 <code>main</code> 函数。</p>
+<p>好吧，这确实颠覆了 20 几年来 Java 固守的东西，还有对于新手来说，这真的是一个痛苦的过程。</p>
+<p>最后我们再来总结一下，在单文件运行的情况下 Java 11 做了哪些改变</p>
+<ul>
+<li><strong><em>Java 11 可以将单文件作为脚本来运行</em></strong></li>
+<li><strong><em>文件名不在需要跟第一个公共类名相同</em></strong></li>
+<li><strong><em>同一个文件下可以存在多个公共类</em></strong></li>
+<li><strong><em>单文件下不再需要 class 文件</em></strong></li>
+</ul>
+<p>参考：</p>
+<ul>
+<li><a href="https://medium.com/the-java-report/new-java-11-feature-launch-single-file-source-code-programs-fadd698abf54" target="_blank" rel="external">New Java 11 Feature: Launch Single-File Source-Code Programs</a></li>
+</ul>
 
       
 
@@ -348,7 +397,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">运行单文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">为什么？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text">脚本运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text">同一个文件多个公共类</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -505,11 +554,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -525,15 +574,23 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -545,23 +602,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color5">tmux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
