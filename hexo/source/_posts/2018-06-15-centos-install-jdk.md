@@ -4,6 +4,8 @@ date: 2018-06-15 14:49:09
 tags: [linux, java]
 ---
 
+***现以更新安装 Java 11 版本，传送门 [CentOS 7 如何安装 Java 11](/2018/12/27/centos7-install-java11/)***
+
 Java 最常用的安装方式是从[官网](http://www.oracle.com/technetwork/java/javase/downloads/jdk10-downloads-4416644.html)下载 `tar.gz` 文件，解压后配置环境变量，这样的安装方式并不利于自动化，今天来看下通过 `rpm` 的安装方式。
 <!-- more --><!-- toc -->
 
