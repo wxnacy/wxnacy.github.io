@@ -1,5 +1,5 @@
 ---
-title: 重新学 Java：新系列、新开始
+title: 重新学 Java 系列：新系列、新开始
 tags: [java]
 ---
 
