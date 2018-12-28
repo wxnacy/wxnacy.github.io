@@ -943,19 +943,19 @@
 
 
   
-    <article id="post-linux-2017-08-22-centos-start-stop-restart-sshd" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-python-2017-08-22-get-image-size" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/">Linux CentOS 各个版本启动SSHD服务命令</a>
+      <a class="article-title" href="/2017/08/22/python-2017-08-22-get-image-size/">Python 获取本地或网络图片的宽高</a>
     </h1>
   
 
         
-        <a href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/" class="archive-article-date">
+        <a href="/2017/08/22/python-2017-08-22-get-image-size/" class="archive-article-date">
   	<time datetime="2017-08-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
 </a>
         
@@ -963,14 +963,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>本篇介绍如何在 CentOS 系统中怎样启动sshd服务，如何开机自启</p>
-</blockquote>
-<h2><span id="ming-ling-gai-kuang">命令概况</span><a href="#ming-ling-gai-kuang" class="header-anchor"></a></h2><p>CentOS &lt; 7.x<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">service <span class="built_in">command</span>     <span class="comment"># 使用service命令做start|stop|restart sshd</span></div><div class="line">chkconfig <span class="built_in">command</span>   <span class="comment"># turn on or off 机器自启sshd</span></div></pre></td></tr></table></figure></p>
-<p>CentOS &gt;= 7.x<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl <span class="built_in">command</span> <span class="comment"># 管理 start|stop|start 自启sshd</span></div></pre></td></tr></table></figure></p>
-<h2><span id="centos-lt-7-x">CentOS &lt; 7.x</span><a href="#centos-lt-7-x" class="header-anchor"></a></h2><h3><span id="chkconfig">chkconfig</span><a href="#chkconfig" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ chkconfig sshd on     <span class="comment"># 开机自启sshd</span></div><div class="line">$ chkconfig sshd off    <span class="comment"># 开机关闭自启sshd</span></div><div class="line">$ chkconfig --list sshd <span class="comment"># 查看每个运行级别类型中服务的当前状态</span></div></pre></td></tr></table></figure>
-<h3><span id="service">service</span><a href="#service" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ service sshd start | stop | restart</div><div class="line">or</div><div class="line">$ /etc/init.d/sshd start | stop | restart</div></pre></td></tr></table></figure>
-<h2><span id="centos-gt-7-x">CentOS &gt;= 7.x</span><a href="#centos-gt-7-x" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ systemctl <span class="built_in">enable</span> sshd.service     <span class="comment"># 开机自启sshd</span></div><div class="line">$ systemctl <span class="built_in">disable</span> sshd.service    <span class="comment"># 开机关闭自启sshd</span></div><div class="line">$ systemctl start sshd.service      <span class="comment"># 启动sshd</span></div><div class="line">$ systemctl restart sshd.service    <span class="comment"># 重启</span></div><div class="line">$ systemctl stop sshd.service       <span class="comment"># 停止</span></div><div class="line">$ systemctl reload sshd.service     <span class="comment"># 重新加载</span></div><div class="line">$ systemctl status sshd.service     <span class="comment"># 查看启动状态</span></div></pre></td></tr></table></figure>
+        <h2><span id="ben-di">本地</span><a href="#ben-di" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</div><div class="line">fp = <span class="string">'/Users/wxnacy/Documents/WX20170412-190958@2x.png'</span></div><div class="line">i = Image.open(fp)</div><div class="line">print(i.size) <span class="comment"># 获取宽高 (w,h)</span></div><div class="line">print(i.format) <span class="comment"># 获取图片格式</span></div></pre></td></tr></table></figure>
+<h2><span id="wang-luo-tu-pian">网络图片</span><a href="#wang-luo-tu-pian" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</div><div class="line"><span class="keyword">import</span> io</div><div class="line"><span class="keyword">import</span> requests</div><div class="line">url = <span class="string">''</span></div><div class="line">i = Image.open(io.BytesIO(requests.get(url).content))</div><div class="line">print(i.size) <span class="comment"># 获取宽高 (w,h)</span></div><div class="line">print(i.format) <span class="comment"># 获取图片格式</span></div></pre></td></tr></table></figure>
 
       
 
@@ -989,7 +983,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		
 		</ul>
@@ -999,7 +993,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/22/python-2017-08-22-get-image-size/">展开全文 >></a>
         </p>
       
 
@@ -1171,10 +1165,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
@@ -1184,6 +1174,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">jpa</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1203,10 +1197,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
@@ -1216,6 +1206,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -1,9 +1,9 @@
 setlocal omnifunc=javacomplete#Complete
 iabbrev <buffer> class public class{}<esc>i<cr><esc>k$Fsli
-iabbrev <buffer> main public static void main(String args[]){}<esc>i<cr>
+iabbrev <buffer> main public static void main(String[] args){}<esc>i<cr>
 iabbrev <buffer> classm public class{}
                  \<esc>i<cr>public static void main
-                 \(String args[]){}<esc>i<cr>
+                 \(String[] args){}<esc>i<cr>
                  \System.out.println("Hello World");
                  \<esc>kk$Fsli
 iabbrev <buffer> print System.out.println()<esc>i""<esc>i

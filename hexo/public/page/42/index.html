@@ -177,6 +177,90 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-python-2017-08-10-pyenv-linux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/10/python-2017-08-10-pyenv-linux/">Linux 环境下安装 pyenv 和 virtualenv</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/10/python-2017-08-10-pyenv-linux/" class="archive-article-date">
+  	<time datetime="2017-08-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>废话不多直接上命令</p>
+<h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><p>CentOS:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ yum -y install git</div><div class="line">$ curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash</div><div class="line">$ yum -y install gcc readline readline-devel readline-static openssl \</div><div class="line">    openssl-devel openssl-static sqlite-devel bzip2-devel bzip2-libs</div></pre></td></tr></table></figure></p>
+<p>Ubuntu<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ apt-get update</div><div class="line">$ apt-get -y install git gcc make patch zlib1g.dev libgdbm-dev libssl-dev \</div><div class="line">    libsqlite3-dev libbz2-dev libreadline-dev</div><div class="line">$ git <span class="built_in">clone</span> https://github.com/pyenv/pyenv.git ~/.pyenv</div></pre></td></tr></table></figure></p>
+<h2><span id="pei-zhi-huan-jing-bian-liang">配置环境变量</span><a href="#pei-zhi-huan-jing-bian-liang" class="header-anchor"></a></h2><p>vim ~/.bash_profile<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> PYENV_ROOT=<span class="string">"<span class="variable">$HOME</span>/.pyenv"</span></div><div class="line"><span class="built_in">export</span> PATH=<span class="string">"<span class="variable">$PYENV_ROOT</span>/bin:<span class="variable">$PATH</span>"</span></div><div class="line"><span class="built_in">export</span> PYENV_VIRTUALENV_DISABLE_PROMPT=1</div><div class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv init -)</span>"</span></div><div class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv virtualenv-init -)</span>"</span></div></pre></td></tr></table></figure></p>
+<h2><span id="sheng-ji">升级</span><a href="#sheng-ji" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pyenv update</div></pre></td></tr></table></figure>
+<h2><span id="xie-zai">卸载</span><a href="#xie-zai" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rm -rf ~/.pyenv</div><div class="line">然后把~/.bash_profile环境变量配置中的添加的删掉</div></pre></td></tr></table></figure>
+
+      
+
+      
+      
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/10/python-2017-08-10-pyenv-linux/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-mac-2017-08-10-clear-dns" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -347,97 +431,6 @@
 
 
   
-    <article id="post-python-2017-08-10-pyenv-cmd" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/10/python-2017-08-10-pyenv-cmd/">pyenv 常用命令</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/10/python-2017-08-10-pyenv-cmd/" class="archive-article-date">
-  	<time datetime="2017-08-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2><span id="pyenv">pyenv</span><a href="#pyenv" class="header-anchor"></a></h2><h3><span id="cha-kan-ke-an-zhuang-ban-ben">查看可安装版本</span><a href="#cha-kan-ke-an-zhuang-ban-ben" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pyenv install -list</div></pre></td></tr></table></figure>
-<h3><span id="an-zhuang-mou-ge-ban-ben">安装某个版本</span><a href="#an-zhuang-mou-ge-ban-ben" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pyenv install -v 3.5.0</div></pre></td></tr></table></figure>
-<h3><span id="cha-kan-ben-di-ban-ben-lie-biao">查看本地版本列表</span><a href="#cha-kan-ben-di-ban-ben-lie-biao" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ pyenv versions</div><div class="line"></div><div class="line">* system (<span class="built_in">set</span> by /home/wxnacy/.pyenv/version) <span class="comment"># 系统python环境 *号代表当前环境版本</span></div><div class="line">  3.5.0 <span class="comment"># 刚下载的3.5.0版本</span></div></pre></td></tr></table></figure>
-<h3><span id="cha-kan-dang-qian-huan-jing-ban-ben">查看当前环境版本</span><a href="#cha-kan-dang-qian-huan-jing-ban-ben" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ pyenv version</div><div class="line">system (<span class="built_in">set</span> by /home/wxnacy/.pyenv/version)</div></pre></td></tr></table></figure>
-<h3><span id="she-zhi-quan-ju-wei-mou-yi-ge-huan-jing">设置全局为某一个环境</span><a href="#she-zhi-quan-ju-wei-mou-yi-ge-huan-jing" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ pyenv global 3.5.0</div><div class="line">$ pyenv version <span class="comment"># 查看当前环境</span></div><div class="line">3.5.0 (<span class="built_in">set</span> by /home/wxnacy/project/project_350/.python-version)</div></pre></td></tr></table></figure>
-<h3><span id="wei-xiang-mu-she-zhi-dan-du-huan-jing">为项目设置单独环境</span><a href="#wei-xiang-mu-she-zhi-dan-du-huan-jing" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> project</div><div class="line">$ pyenv <span class="built_in">local</span> 3.5.0 <span class="comment"># 使用local命令为某个目录单独设置目录</span></div><div class="line">$ pyenv version</div><div class="line">3.5.0 (<span class="built_in">set</span> by /home/wxnacy/project/project_350/.python-version)</div><div class="line"></div><div class="line">$ <span class="built_in">cd</span> ..</div><div class="line">$ pyenv version <span class="comment"># 退出目录查看环境没有改变</span></div><div class="line">system (<span class="built_in">set</span> by /home/wxnacy/.pyenv/version)</div></pre></td></tr></table></figure>
-<h2><span id="virtualenv">virtualenv</span><a href="#virtualenv" class="header-anchor"></a></h2><p>假如我们有多个项目都是用3.5.0的环境，但是又不想让他们公用一个环境该怎么办？<br>使用virtualenv可以为某一个python版本创建一个干净的虚拟机环境</p>
-<h3><span id="chuang-jian-xu-ni-ji">创建虚拟机</span><a href="#chuang-jian-xu-ni-ji" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ pyenv virtualenv 3.5.0 env_350</div><div class="line">$ pyenv versions</div><div class="line">* system (<span class="built_in">set</span> by /home/wxnacy/.pyenv/version)</div><div class="line">  3.5.0</div><div class="line">  3.5.0/envs/env_350</div><div class="line">  env_350</div></pre></td></tr></table></figure>
-<p>查看环境后我们发现多了两个环境<code>3.5.0/envs/env_350</code>和<code>env_350</code>，这两个是同一个</p>
-<h3><span id="zhi-ding-dang-qian-jin-cheng-huan-jing">指定当前进程环境</span><a href="#zhi-ding-dang-qian-jin-cheng-huan-jing" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pyenv activate env_350</div></pre></td></tr></table></figure>
-<p>该命令只能指定当前进程的环境，退出shell后重新进入，发现环境又变回之前的环境</p>
-<h3><span id="dang-qian-jin-xing-tui-chu-activate">当前进行退出activate</span><a href="#dang-qian-jin-xing-tui-chu-activate" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pynev deactivate</div></pre></td></tr></table></figure>
-<p>当然virtualenv生成的虚拟环境也可以配合<code>global</code>和<code>local</code>等pyenv命令配合使用</p>
-
-      
-
-      
-      
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/10/python-2017-08-10-pyenv-cmd/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-mysql-2017-08-09-skill" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -490,87 +483,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-skill/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-mysql-2017-08-09-basic-index" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-basic-index/">Mysql 索引的增删查</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/09/mysql-2017-08-09-basic-index/" class="archive-article-date">
-  	<time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文：<a href="http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html" target="_blank" rel="external">http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html</a><br>
-        
-          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-basic-index/#more">阅读全文 >></a>
-        
-      
-
-      
-      
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-basic-index/">展开全文 >></a>
         </p>
       
 
@@ -666,6 +578,87 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-item-daily/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-mysql-2017-08-09-basic-index" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-basic-index/">Mysql 索引的增删查</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/09/mysql-2017-08-09-basic-index/" class="archive-article-date">
+  	<time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文：<a href="http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html" target="_blank" rel="external">http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html</a><br>
+        
+          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-basic-index/#more">阅读全文 >></a>
+        
+      
+
+      
+      
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-basic-index/">展开全文 >></a>
         </p>
       
 
@@ -1187,10 +1180,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
@@ -1200,6 +1189,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">jpa</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1219,10 +1212,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
@@ -1232,6 +1221,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
