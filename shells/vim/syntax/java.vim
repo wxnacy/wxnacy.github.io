@@ -6,7 +6,7 @@ iabbrev <buffer> classm public class{}
                  \(String[] args){}<esc>i<cr>
                  \System.out.println("Hello World");
                  \<esc>kk$Fsli
-iabbrev <buffer> print System.out.println()<esc>i""<esc>i
+iabbrev <buffer> print System.out.println();<esc>hi""<esc>i
 iabbrev <buffer> if if(){}<esc>i<cr><esc>k$hi
 iabbrev <buffer> for for(int i = 0; i <; i++){}<esc>i<cr><esc>k$F;i
 
