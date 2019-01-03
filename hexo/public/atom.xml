@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>温欣爸比的博客</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://wxnacy.com/"/>
+  <updated>2019-01-03T08:52:13.000Z</updated>
+  <id>http://wxnacy.com/</id>
+  
+  <author>
+    <name>温欣爸比</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>重新学 Java 系列：为什么要用 set、get 方法</title>
+    <link href="http://wxnacy.com/2019/01/03/java-renew-why-set-get/"/>
+    <id>http://wxnacy.com/2019/01/03/java-renew-why-set-get/</id>
+    <published>2019-01-03T08:52:13.000Z</published>
+    <updated>2019-01-03T08:52:13.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>这个是一个系列阅读，关于为什么重新学习，我在文章 <a href="/2018/12/29/java-renew-why/">重新学 Java 系列：新系列、新开始</a>(<a href="https://wxnacy.com/2018/12/29/java-renew-why/">https://wxnacy.com/2018/12/29/java-renew-why/</a>) 中有提到，这个系列是在有 Java 基础的情况下，重新学习讨论一下以前可能忽略掉，或者没理解的知识细节，我想要永远在学习的路上。</p></blockquote><a id="more"></a><div class="toc"><br><br><!-- toc --><!-- tocstop --></div><p><code>set, get</code> 方法，是 Java 开发者最常见的两个方法，从初学的手敲，到各种 IED 的自动生成，说它是一个项目里最多的方法名也不为过。</p><p>还记得几年前，一位开发 IOS 的同事问我，为什么你们 Java 非要用 <code>set, get</code> 方法操作变量，难道就不直接对变量进行赋值吗，就算不能赋值，还不能直接读取吗？我赶紧写了个类试了一下，哎，可以啊，那为啥呢，想了半天，不知道该怎么回答，憋了一句，这是规范。同事“哦”了一声，“好可怜的规范”。</p><p>大家都很忙的，晚上还要加班呢，谁有空在去深究为什么，大家都这么写嘛，规范嘛。</p><p>既然要重新学习，那自然要搞明白为什么。</p><p>首先我们先来弄清楚变量的作用域，详情可以看我的这篇文章<a href="/2018/12/30/java-renew-modification/">重新学 Java 系列：public private protected friendly 的区别</a>(<a href="https://wxnacy.com/2018/12/30/java-renew-modification/">https://wxnacy.com/2018/12/30/java-renew-modification/</a>)</p><p>我们用到最多的两个修饰符为 <code>public, private</code>，它们的区别在于</p><ul><li><code>public</code>: 所有地方都可以调用。</li><li><code>private</code>: 只有当前类可以调用。</li></ul><p>通常当修饰符为 <code>private</code> 时才需要用到 <code>set, get</code> 方法，因为该修饰符不能像 <code>public</code> 一样被外部方法和修改，那为什么我们不直接用 <code>public</code> 修饰呢。</p><p>真正的原因在于，作为一个类，我的变量想让你访问和修改，但我不希望你随便修改，而是按照我的方式来访问修改。</p><p>比如</p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.name = <span class="string">"wxnacy_"</span> + name</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getAge</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.age + <span class="number">10</span></div><div class="line">&#125;</div></pre></td></tr></table></figure><p>两个方法都不是将原数据传入和传出，都经过了类的独特修改才进行的相应操作。</p><p>所以平常我们觉得它们多余，只是很多时候用不到这个特点而已。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;这个是一个系列阅读，关于为什么重新学习，我在文章 &lt;a href=&quot;/2018/12/29/java-renew-why/&quot;&gt;重新学 Java 系列：新系列、新开始&lt;/a&gt;(&lt;a href=&quot;https://wxnacy.com/2018/12/29/java-renew-why/&quot;&gt;https://wxnacy.com/2018/12/29/java-renew-why/&lt;/a&gt;) 中有提到，这个系列是在有 Java 基础的情况下，重新学习讨论一下以前可能忽略掉，或者没理解的知识细节，我想要永远在学习的路上。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://wxnacy.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>重新学 Java 系列：public private protected friendly 的区别</title>
+    <link href="http://wxnacy.com/2018/12/30/java-renew-modification/"/>
+    <id>http://wxnacy.com/2018/12/30/java-renew-modification/</id>
+    <published>2018-12-30T14:28:56.000Z</published>
+    <updated>2018-12-30T14:28:56.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>这个是一个系列阅读，关于为什么重新学习，我在文章 <a href="/2018/12/29/java-renew-why/">重新学 Java 系列：新系列、新开始</a>(<a href="https://wxnacy.com/2018/12/29/java-renew-why/">https://wxnacy.com/2018/12/29/java-renew-why/</a>) 中有提到，这个系列是在有 Java 基础的情况下，重新学习讨论一下以前可能忽略掉，或者没理解的知识细节，我想要永远在学习的路上。</p></blockquote><a id="more"></a><div class="toc"><br><br><!-- toc --><!-- tocstop --><p></div><br>Java 共有四种修饰：<code>public, private, protected, friendly</code>，（默认为：friendly）</p><p>可能调用他们修饰变量和函数的有的作用域有：当前类、当前包、子类、外部类</p><p>从网上找他们的对应的调用权限，很多是各种摘抄，并且存在各种错误，所以我认真对他们进行了实验，得到如下结论</p><table><thead><tr><th>对比</th><th>当前类</th><th>当前包</th><th>子类</th><th>外部类</th></tr></thead><tbody><tr><td>public</td><td>√</td><td>√</td><td>√</td><td>√</td></tr><tr><td>private</td><td>√</td><td>×</td><td>×</td><td>×</td></tr><tr><td>protected</td><td>√</td><td>√</td><td>√</td><td>×</td></tr><tr><td>friendly</td><td>√</td><td>√</td><td>√</td><td>×</td></tr></tbody></table><p>如表格，简单总结如下</p><ul><li><code>public</code>: 所有地方都可以调用。</li><li><code>private</code>: 只有当前类可以调用。</li><li><code>protected</code>: 只有外部类不可调用。</li><li><code>friendly</code>: 与 <code>protected</code> 完全相同。</li></ul><p>下载 demo <a href="https://github.com/wxnacy/study/tree/master/java/modification" target="_blank" rel="external">https://github.com/wxnacy/study/tree/master/java/modification</a> 到电脑中，确保电脑中有 Java 运行环境，可以执行跟目下的 <code>./run.sh</code> 脚本。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ ./run.sh</div><div class="line">        public  private protected       friendly</div><div class="line">当前类  √       √       √               √</div><div class="line">当前包  √       ×       √               √</div><div class="line">子类    √       ×       √               √</div><div class="line">外部类  √       ×       ×               ×</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;这个是一个系列阅读，关于为什么重新学习，我在文章 &lt;a href=&quot;/2018/12/29/java-renew-why/&quot;&gt;重新学 Java 系列：新系列、新开始&lt;/a&gt;(&lt;a href=&quot;https://wxnacy.com/2018/12/29/java-renew-why/&quot;&gt;https://wxnacy.com/2018/12/29/java-renew-why/&lt;/a&gt;) 中有提到，这个系列是在有 Java 基础的情况下，重新学习讨论一下以前可能忽略掉，或者没理解的知识细节，我想要永远在学习的路上。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://wxnacy.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>重新学 Java 系列：新系列、新开始</title>
+    <link href="http://wxnacy.com/2018/12/29/java-renew-why/"/>
+    <id>http://wxnacy.com/2018/12/29/java-renew-why/</id>
+    <published>2018-12-29T08:09:17.000Z</published>
+    <updated>2018-12-29T08:09:17.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>我经常自诩是个 Java 出身的程序员，虽然实际情况确实如此，但随着时间推移，说这句话越来越没了底气。<br><a id="more"></a><div class="toc"></p><!-- toc --><!-- tocstop --><p></div><br>以前作为 Java 程序员，我是很自豪的，原因呢？可能只是因为 Java 本身的市场占比。</p><p>后来因为工作原因接触了 Python，并逐渐成为主力语言，Java 就慢慢从我的开发生活中淡出了，这次的原因呢？好吧，我已经不想在用打印 <code>Hello World</code> 这个玩笑来自嘲了。</p><p>在这个过程中，我接触了 Ruby、NodeJS、Go。他们每个都比 Java 简洁，比 Java 更有效率。我沉醉于吸收新语言，觉得这是在给自己修炼各种劳作工具，免得遇到各种问题都只能想到 Java 这一把“锤子”来解决问题。</p><p>那是什么时候出现问题了呢？大概是从面对 Java 代码越来越陌生开始的吧。</p><p>还记得两年前，我还会关注 Java 8 新特性，一位前辈看到后说，还看什么 Java 啊，开发语言发展到现在，Java 跟其他相比，只是在浪费你的工作时间和拖慢你的电脑。我当时还义正言辞的说，虽然不常用了，但必须要多关注动态。</p><p>不过好像也就是说说而已，此后无数次的想要用 Java 写点东西，都被它的繁琐累赘所阻挠，是啊，有了更简洁的语言，为什么还要浪费时间用 Java 来写呢。</p><p>导致的结果就是，现在越来越不会写 Java 了，每次重整旗鼓，都会被包的导入这种小事情纠结半天。真的是因为太久不写了吗？</p><p>最近我常常在想这个问题，从 Python 开始，我每次接触新语言就会非常重视基础，因为当初学 Java 时就是这样的，我坚信不管学什么东西，基础都是最重要的。</p><p>我不断的回忆学 Java 的一些细节，我逐渐发现当时的基础其实并没有学好，我只是以为学好了而已，因为在以前，我从来没有深究过编译整个项目时 <code>javac</code> 的编译逻辑，我也没有深究过 <code>public</code> 明明已经可以像其它语言一样可以对参数赋值读取，却还要使用 <code>private</code> 再配上 <code>set, get</code> 方法。</p><p>我只是跟网上很多人一样，这是规范，这样用就好了，反正有 IDE，他就帮你编译打包了，你关注业务逻辑就行了。</p><p>所以我不断的练习 <code>System.out.println(&quot;Hello World&quot;)</code> 的编写，我不断的重复 <code>set, get</code> 的熟练度，我告诉自己熟能生巧，这样就对了。</p><p>所以我既没有把这些知识搞明明白白后存在大脑，也没有把它记录在博客上供以后查阅，我只把它交给了肌肉记忆。</p><p>重新燃起学习 Java 的欲望，是因为最近 Java 11 更新了，很多新特性，一个免编译运行单文件的新特性，更是让它显得不那么 Java 了，并且它是继 Java 8 后又一个长期维护版本，文章最后一句话是“如果你要入门 Java，这会是个不错的版本”。</p><p>好吧，我想我是属于那个重新入门 Java 的的老鸟了。</p><p>这次我不在借助 IDE，而是用 Vim 一点一点弄懂它的编译逻辑。</p><p>这次我会弄清楚更多的基础内容并把它记录在博客里，存在大脑里。</p><p>这次我希望在跟别人说，我是 Java 出身时，显得更有底气。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我经常自诩是个 Java 出身的程序员，虽然实际情况确实如此，但随着时间推移，说这句话越来越没了底气。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://wxnacy.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python 统计字符串中某个字符串出现的次数</title>
+    <link href="http://wxnacy.com/2018/12/28/python-str-count/"/>
+    <id>http://wxnacy.com/2018/12/28/python-str-count/</id>
+    <published>2018-12-28T07:04:13.000Z</published>
+    <updated>2018-12-28T07:04:13.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Python 的字符串函数还是很方便的，只需要调用 <code>count()</code> 方法即可。<br><a id="more"></a><div class="toc"></p><!-- toc --><!-- tocstop --></div><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"></div><div class="line">print(<span class="string">'Hello World'</span>.count(<span class="string">'o'</span>))</div><div class="line"><span class="comment"># 2</span></div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Python 的字符串函数还是很方便的，只需要调用 &lt;code&gt;count()&lt;/code&gt; 方法即可。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://wxnacy.com/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CentOS 7 如何安装 Java 11</title>
+    <link href="http://wxnacy.com/2018/12/27/centos7-install-java11/"/>
+    <id>http://wxnacy.com/2018/12/27/centos7-install-java11/</id>
+    <published>2018-12-27T01:26:01.000Z</published>
+    <updated>2018-12-27T01:26:01.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>几个月前我写过文章 <a href="/2018/06/15/centos-install-jdk/">CentOS 安装 JDK</a> ，当时是以 JDK 8 为例子，现在 Java 11 出来了，相应的更新一版。<br><a id="more"></a><div class="toc"></p><!-- toc --><ul><li><a href="#openjdk">OpenJDK</a></li><li><a href="#oracle">Oracle</a></li><li><a href="#xuan-ze-ban-ben">选择版本</a></li></ul><!-- tocstop --></div><h2><span id="openjdk">OpenJDK</span><a href="#openjdk" class="header-anchor"></a></h2><p>首先搜索可安装的 JDK</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo yum search java-11</div></pre></td></tr></table></figure><p>从结果中我们可以找出两个条目</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">java-11-openjdk.x86_64 : OpenJDK Runtime Environment 11</div><div class="line">java-11-openjdk-devel.x86_64 : OpenJDK Development Environment 11</div></pre></td></tr></table></figure><p>他们分别是 JRE 和 JDK，根据你的需求安装即可，比如安装 JRE</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo yum install java-11-openjdk -y</div></pre></td></tr></table></figure><p>安装目录为</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/lib/jvm/java-11-openjdk-11.0.1.13-3.el7_6.x86_64</div></pre></td></tr></table></figure><p>查看版本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ java -version</div><div class="line"></div><div class="line">openjdk version <span class="string">"11.0.1"</span> 2018-10-16 LTS</div><div class="line">OpenJDK Runtime Environment 18.9 (build 11.0.1+13-LTS)</div><div class="line">OpenJDK 64-Bit Server VM 18.9 (build 11.0.1+13-LTS, mixed mode, sharing)</div></pre></td></tr></table></figure><h2><span id="oracle">Oracle</span><a href="#oracle" class="header-anchor"></a></h2><p>Oracle 的 JDK 安装要稍微麻烦点，首先获取<a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html" target="_blank" rel="external">官网</a>的 JDK RPM 地址</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://download.oracle.com/otn-pub/java/jdk/11.0.1+13/90cf5d8f270a4347a95050320eef3fb7/jdk-11.0.1_linux-x64_bin.rpm</div></pre></td></tr></table></figure><p>下载到服务器</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ wget --no-cookies --no-check-certificate --header <span class="string">"Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie"</span> https://download.oracle.com/otn-pub/java/jdk/11.0.1+13/90cf5d8f270a4347a95050320eef3fb7/jdk-11.0.1_linux-x64_bin.rpm</div></pre></td></tr></table></figure><p>安装</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo yum -y localinstall jdk-11.0.1_linux-x64_bin.rpm</div></pre></td></tr></table></figure><p>安装目录为</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/java/jdk-11.0.1</div></pre></td></tr></table></figure><h2><span id="xuan-ze-ban-ben">选择版本</span><a href="#xuan-ze-ban-ben" class="header-anchor"></a></h2><p>查看所有本机 JDK 版本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ sudo alternatives --config java</div><div class="line"></div><div class="line">There are 2 programs <span class="built_in">which</span> provide <span class="string">'java'</span>.</div><div class="line"></div><div class="line">  Selection    Command</div><div class="line">-----------------------------------------------</div><div class="line"> + 1           java-11-openjdk.x86_64 (/usr/lib/jvm/java-11-openjdk-11.0.1.13-3.el7_6.x86_64/bin/java)</div><div class="line">*  2           /usr/java/jdk-11.0.1/bin/java</div><div class="line"></div><div class="line">Enter to keep the current selection[+], or <span class="built_in">type</span> selection number: 2</div></pre></td></tr></table></figure><p><code>*+</code> 代表当前使用的版本，该命令下输入版本对应的数字即可更改版本，我们输入 2 更<br>改为 oracle 版本，然后查看版本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ java -version</div><div class="line">java version <span class="string">"11.0.1"</span> 2018-10-16 LTS</div><div class="line">Java(TM) SE Runtime Environment 18.9 (build 11.0.1+13-LTS)</div><div class="line">Java HotSpot(TM) 64-Bit Server VM 18.9 (build 11.0.1+13-LTS, mixed mode)</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;几个月前我写过文章 &lt;a href=&quot;/2018/06/15/centos-install-jdk/&quot;&gt;CentOS 安装 JDK&lt;/a&gt; ，当时是以 JDK 8 为例子，现在 Java 11 出来了，相应的更新一版。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://wxnacy.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu 如何安装 Java 11</title>
+    <link href="http://wxnacy.com/2018/12/26/ubuntu-install-jdk11/"/>
+    <id>http://wxnacy.com/2018/12/26/ubuntu-install-jdk11/</id>
+    <published>2018-12-26T02:56:36.000Z</published>
+    <updated>2018-12-26T08:06:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>几个月前我写过文章 <a href="/2018/06/19/ubuntu-install-jdk/">Ubuntu 16.04 安装 JDK</a> ，当时是以 JDK 8 为例子，现在 Java 11 出来了，相应的更新一版。<br><a id="more"></a><div class="toc"></p><!-- toc --><ul><li><a href="#oracle-jdk">Oracle JDK</a></li><li><a href="#openjdk">OpenJDK</a><ul><li><a href="#18-04-lts">18.04 LTS</a></li><li><a href="#geng-lao-ban-ben">更老版本</a></li></ul></li><li><a href="#qie-huan-ban-ben">切换版本</a></li></ul><!-- tocstop --></div><p>我们首选使用 apt 来进行安装管理</p><h2><span id="oracle-jdk">Oracle JDK</span><a href="#oracle-jdk" class="header-anchor"></a></h2><p>首先添加 LinuxUprising Java PPA 仓库到软件源中，并下载 Oracle Java 11</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo add-apt-repository ppa:linuxuprising/java</div><div class="line">$ sudo apt update</div><div class="line">$ sudo apt install oracle-java11-installer</div></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ java -version</div><div class="line">java version <span class="string">"11.0.1"</span> 2018-10-16 LTS</div><div class="line">Java(TM) SE Runtime Environment 18.9 (build 11.0.1+13-LTS)</div><div class="line">Java HotSpot(TM) 64-Bit Server VM 18.9 (build 11.0.1+13-LTS, mixed mode)</div></pre></td></tr></table></figure><h2><span id="openjdk">OpenJDK</span><a href="#openjdk" class="header-anchor"></a></h2><h3><span id="18-04-lts">18.04 LTS</span><a href="#18-04-lts" class="header-anchor"></a></h3><p>首先我们使用 <code>apt</code> 进行搜索</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt search openjdk</div></pre></td></tr></table></figure><p>如果你的系统版本足够新，比如 18.04 LTS，那么很有可能搜索出这样的条目</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">openjdk-11-jdk/bionic-updates,bionic-security,now 10.0.2+13-1ubuntu0.18.04.4 amd64 [installed,automatic]</div><div class="line">  OpenJDK Development Kit (JDK)</div></pre></td></tr></table></figure><p>这代表软件源已经更新了 Java 11，这样直接安装默认版本即可</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt install -y default-jdk</div></pre></td></tr></table></figure><h3><span id="geng-lao-ban-ben">更老版本</span><a href="#geng-lao-ban-ben" class="header-anchor"></a></h3><p>如果是更早的版本，那么很大程度上并没有更新该源，那么这时候我们需要使用 tar 包进行安装</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ wget https://download.java.net/java/GA/jdk11/28/GPL/openjdk-11+28_linux-x64_bin.tar.gz -O /tmp/openjdk-11+28_linux-x64_bin.tar.gz</div><div class="line">$ sudo tar xfvz /tmp/openjdk-11+28_linux-x64_bin.tar.gz --directory /usr/lib/jvm</div><div class="line">$ rm -f /tmp/openjdk-11+28_linux-x64_bin.tar.gz</div></pre></td></tr></table></figure><p>使用 <code>update-alternatives</code> 对它进行管理</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo sh -c <span class="string">'for bin in /usr/lib/jvm/jdk-11/bin/*; do update-alternatives --install /usr/bin/$(basename $bin) $(basename $bin) $bin 100; done'</span></div><div class="line">$ sudo sh -c <span class="string">'for bin in /usr/lib/jvm/jdk-11/bin/*; do update-alternatives --set $(basename $bin) $bin; done'</span></div></pre></td></tr></table></figure><p>最后查看 java 版本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ java -version</div><div class="line">openjdk version <span class="string">"10.0.2"</span> 2018-07-17</div><div class="line">OpenJDK Runtime Environment (build 10.0.2+13-Ubuntu-1ubuntu0.18.04.4)</div><div class="line">OpenJDK 64-Bit Server VM (build 10.0.2+13-Ubuntu-1ubuntu0.18.04.4, mixed mode)</div></pre></td></tr></table></figure><h2><span id="qie-huan-ban-ben">切换版本</span><a href="#qie-huan-ban-ben" class="header-anchor"></a></h2><p>现在我们已经有两个版本的 Java，我们可以通过 <code>update-alternatives</code> 来选择一个作为默认版本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ sudo update-alternatives --config java</div><div class="line">There are 2 choices <span class="keyword">for</span> the alternative java (providing /usr/bin/java).</div><div class="line"></div><div class="line">  Selection    Path                                  Priority   Status</div><div class="line">------------------------------------------------------------</div><div class="line">  0            /usr/lib/jvm/java-11-oracle/bin/java   1091      auto mode</div><div class="line">* 1            /usr/lib/jvm/java-11-oracle/bin/java   1091      manual mode</div><div class="line">  2            /usr/lib/jvm/jdk-11/bin/java           100       manual mode</div><div class="line"></div><div class="line">Press &lt;enter&gt; to keep the current choice[*], or <span class="built_in">type</span> selection number:</div></pre></td></tr></table></figure><p>随后输入 <code>Selection</code> 对应的数字即可完成切换</p><ul><li><a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html" target="_blank" rel="external">Java SE Development Kit 11 Downloads</a></li><li><a href="https://dzone.com/articles/installing-openjdk-11-on-ubuntu-1804-for-real" target="_blank" rel="external">Installing OpenJDK 11 on Ubuntu 18.04</a></li><li><a href="https://www.linuxuprising.com/2018/10/how-to-install-oracle-java-11-in-ubuntu.html" target="_blank" rel="external">How To Install Oracle Java 11 In Ubuntu, Linux Mint Or Debian (From PPA Repository)</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;几个月前我写过文章 &lt;a href=&quot;/2018/06/19/ubuntu-install-jdk/&quot;&gt;Ubuntu 16.04 安装 JDK&lt;/a&gt; ，当时是以 JDK 8 为例子，现在 Java 11 出来了，相应的更新一版。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://wxnacy.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java 11 新特性：java 命令直接运行单文件</title>
+    <link href="http://wxnacy.com/2018/12/25/java-11-new1/"/>
+    <id>http://wxnacy.com/2018/12/25/java-11-new1/</id>
+    <published>2018-12-25T02:47:43.000Z</published>
+    <updated>2018-12-27T08:23:29.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>虽然现在很少使用 Java 进行开发，但是仍然时不时的关注着它的动态，最近发现 Java 11 发布了，并且带来了很多新特性，关键它是 Java8 以后又一长期维护版本，可以在生产环境使用，这又增加了我关注它的动力，今天先介绍一个新特性：java 命令可以直接运行单文件。<br><a id="more"></a><div class="toc"></p><!-- toc --><ul><li><a href="#yun-xing-dan-wen-jian">运行单文件</a></li><li><a href="#wei-shi-me">为什么？</a><ul><li><a href="#jiao-ben-yun-xing">脚本运行</a></li><li><a href="#tong-yi-ge-wen-jian-duo-ge-gong-gong-lei">同一个文件多个公共类</a></li></ul></li></ul><!-- tocstop --></div><h2><span id="yun-xing-dan-wen-jian">运行单文件</span><a href="#yun-xing-dan-wen-jian" class="header-anchor"></a></h2><p>举个例子，写一个类文件 <code>HelloWorld.java</code></p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"Hello World"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>以前需要这样运行</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ javac HelloWorld.java</div><div class="line">$ java HelloWorld</div><div class="line">Hello World</div></pre></td></tr></table></figure><p>现在只需要这样</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ java HelloWorld.java</div><div class="line">Hello World</div></pre></td></tr></table></figure><p>嗯，Python 你闭嘴，还有你 Go。呵呵</p><h2><span id="wei-shi-me">为什么？</span><a href="#wei-shi-me" class="header-anchor"></a></h2><p>其他介绍 Java 11 新特性的文章，到这里也就点到为止了，但是我总觉得这事不是这么简单。</p><p>Java 为什么要这么做，真的是想用 <code>java</code> 取代 <code>javac</code> 吗，很显然不是，你可以做些实验，再多文件打包运行时，我们仍然需要 <code>javac</code> 来进行编译，也就是说 <code>java</code> 有其他的用途。</p><p>这几年 Java 一直在追赶脚本语言（如：Python、NodeJS）的脚步，比如 lambda 函数、服务器组件、轻量级的 JSON 组件，还有 Java 11 才增加的 Http Client Api。这无疑都在想让自己往脚本语言方向发展，并且现在已经越来越像了。</p><p>我们来做一些对比，拿入门的打印 <code>Hello World</code> 来举例，在 Python 中我们这样</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line">print(<span class="string">"Hello World"</span>)</div><div class="line"><span class="comment"># python Hello.py</span></div></pre></td></tr></table></figure><p>Java 中这样</p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"Hello World"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// javac Hello.java</span></div><div class="line"><span class="comment">// java Hello</span></div></pre></td></tr></table></figure><p>好了，先不要笑，也先不要管 <code>public, static, void</code> 是个什么东西，Java 一直都很臃肿，你又不是不知道，至少现在它已经把 <code>javac Hello.java</code> 干掉了。</p><h3><span id="jiao-ben-yun-xing">脚本运行</span><a href="#jiao-ben-yun-xing" class="header-anchor"></a></h3><p>脚本语言的特性是可以在文件第一行以 <code>#!</code> 开头，并指定运行命令，然后可以直接在终端中运行，比如 Python</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ chmod +x hello.py</div><div class="line">$ ./hello.py</div><div class="line">Hello World</div></pre></td></tr></table></figure><p>那 Java 呢，因为本身的特性，<code>.java</code> 后缀的文件不运行出现 <code>#!</code>，所以我们首先需要改一下名字，听到这里，你是不是已经开始心跳加速了。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ mv Hello.java hello.sh</div><div class="line">$ chmod +x hello.sh</div></pre></td></tr></table></figure><p>然后修改文件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env java --source 11</span></div><div class="line"></div><div class="line">public class HelloWorld&#123;</div><div class="line">    public static void main(String args[])&#123;</div><div class="line">        System.out.println(<span class="string">"Hello World"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>然后执行该文件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ./hello.sh</div><div class="line">Hello World</div></pre></td></tr></table></figure><p>啊！我看到了什么，这真的是 Java 吗？</p><p>OK，现在为止，已经挑战了我的认知，这有悖于我们多年以来的认知。</p><p>当然文件还可以使用 java 运行</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ java -Dtrace=<span class="literal">true</span> --<span class="built_in">source</span> 11 hello.sh</div></pre></td></tr></table></figure><h3><span id="tong-yi-ge-wen-jian-duo-ge-gong-gong-lei">同一个文件多个公共类</span><a href="#tong-yi-ge-wen-jian-duo-ge-gong-gong-lei" class="header-anchor"></a></h3><p>我们刚才已经知道了两个有悖“常识”的知识点<strong><em>Java 可以作为脚本运行</em></strong>和<strong><em>文件名可以和第一个公共类名不相同</em></strong></p><p>看到第二点，我有个大胆的想法。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"Hello World"</span>);</div><div class="line">        User u = <span class="keyword">new</span> User();</div><div class="line">        u.id = <span class="number">1</span>;</div><div class="line">        System.out.println(u.id);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> id;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"User"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>这样的写法，如果放在几个月以前，是会被别人破口大骂的，因为只学过几天的菜鸟也知道，一个类中不能出现两个公共类，它会报这个错误。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">error: class User is public, should be declared <span class="keyword">in</span> a file named User.java</div></pre></td></tr></table></figure><p>你把 <code>User</code> 类前边的 <code>public</code> 去掉就行了，那在 Java 11 中呢</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ java hello.java</div><div class="line">Hello World</div><div class="line">1</div></pre></td></tr></table></figure><p>现在 Java 11 会正常运行该文件，并直接第一个公共类的 <code>main</code> 函数。</p><p>好吧，这确实颠覆了 20 几年来 Java 固守的东西，还有对于新手来说，这真的是一个痛苦的过程。</p><p>最后我们再来总结一下，在单文件运行的情况下 Java 11 做了哪些改变</p><ul><li><strong><em>Java 11 可以将单文件作为脚本来运行</em></strong></li><li><strong><em>文件名不在需要跟第一个公共类名相同</em></strong></li><li><strong><em>同一个文件下可以存在多个公共类</em></strong></li><li><strong><em>单文件下不再需要 class 文件</em></strong></li></ul><p>参考：</p><ul><li><a href="https://medium.com/the-java-report/new-java-11-feature-launch-single-file-source-code-programs-fadd698abf54" target="_blank" rel="external">New Java 11 Feature: Launch Single-File Source-Code Programs</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;虽然现在很少使用 Java 进行开发，但是仍然时不时的关注着它的动态，最近发现 Java 11 发布了，并且带来了很多新特性，关键它是 Java8 以后又一长期维护版本，可以在生产环境使用，这又增加了我关注它的动力，今天先介绍一个新特性：java 命令可以直接运行单文件。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://wxnacy.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java 11 新特性：String 增强</title>
+    <link href="http://wxnacy.com/2018/12/24/java-11-new-string/"/>
+    <id>http://wxnacy.com/2018/12/24/java-11-new-string/</id>
+    <published>2018-12-24T03:51:01.000Z</published>
+    <updated>2018-12-25T04:01:17.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>虽然现在很少使用 Java 进行开发，但是仍然时不时的关注着它的动态，最近发现 Java 11 发布了，并且带来了很多新特性，关键它是 Java8 以后又一长期维护版本，可以在生产环境使用，这又增加了我关注它的动力，今天先介绍一个新特性：String 增强<br><a id="more"></a><div class="toc"></p><!-- toc --><!-- tocstop --><p></div><br>我们来看这段代码</p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringExample</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</div><div class="line">        Java11Upgrade();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Java11Upgrade</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">// 判断字符串是否为空白</span></div><div class="line">        System.out.println(<span class="string">" "</span>.isBlank());              <span class="comment">// true</span></div><div class="line">        <span class="comment">// 去除首尾空格</span></div><div class="line">        System.out.println(<span class="string">" Java "</span>.strip());           <span class="comment">// Java</span></div><div class="line">        <span class="comment">// 去除首部空格</span></div><div class="line">        System.out.println(<span class="string">" Java"</span>.stripLeading());     <span class="comment">// Java</span></div><div class="line">        <span class="comment">// 去除尾部空格</span></div><div class="line">        System.out.println(<span class="string">"Java "</span>.stripTrailing());    <span class="comment">// Java</span></div><div class="line">        <span class="comment">// 重复字符串</span></div><div class="line">        System.out.println(<span class="string">"Java"</span>.repeat(<span class="number">2</span>));           <span class="comment">// JavaJava</span></div><div class="line">        <span class="comment">// 获取字符串中的行数</span></div><div class="line">        System.out.println(<span class="string">"A\nB\nC"</span>.lines().count());  <span class="comment">// 3</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>还是一些其他语言早就有的特性，不过很高兴 Java 在逐渐补足这些东西，这也是让 Java 保持霸主地位的必要操作。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;虽然现在很少使用 Java 进行开发，但是仍然时不时的关注着它的动态，最近发现 Java 11 发布了，并且带来了很多新特性，关键它是 Java8 以后又一长期维护版本，可以在生产环境使用，这又增加了我关注它的动力，今天先介绍一个新特性：String 增强&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://wxnacy.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python 报错：local variable &#39;count&#39; referenced before assignment</title>
+    <link href="http://wxnacy.com/2018/12/20/python-error-loca-variable/"/>
+    <id>http://wxnacy.com/2018/12/20/python-error-loca-variable/</id>
+    <published>2018-12-20T08:06:16.000Z</published>
+    <updated>2018-12-20T08:14:24.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>使用 Python 很久了，仍然会碰到一些莫名其妙的错误。<br><a id="more"></a><div class="toc"></p><!-- toc --><!-- tocstop --></div><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"></div><div class="line">count = <span class="number">0</span></div><div class="line"></div><div class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fmt</span><span class="params">(i)</span>:</span></div><div class="line">    count += i</div><div class="line"></div><div class="line">[fmt(o) <span class="keyword">for</span> o <span class="keyword">in</span> a]</div><div class="line">print(count)</div></pre></td></tr></table></figure><p>我的本意是想在 <code>fmt</code> 方法中对 <code>count</code> 进行累加，但是会报错</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">local</span> variable <span class="string">'count'</span> referenced before assignment</div></pre></td></tr></table></figure><p>google 后发现</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">count = <span class="number">0</span></div></pre></td></tr></table></figure><p>定义为全局变量</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fmt</span><span class="params">(i)</span>:</span></div><div class="line">    count += i</div></pre></td></tr></table></figure><p>方法中只能对局部变量进行修改，<strong><em>如果想要修改全局变量，需要在方法内使用 global 对变量进行修改</em></strong></p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fmt</span><span class="params">(i)</span>:</span></div><div class="line">    <span class="keyword">global</span> count</div><div class="line">    count += i</div></pre></td></tr></table></figure><p>完整代码如下</p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"></div><div class="line">count = <span class="number">0</span></div><div class="line"></div><div class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fmt</span><span class="params">(i)</span>:</span></div><div class="line">    <span class="keyword">global</span> count</div><div class="line">    count += i</div><div class="line"></div><div class="line">[fmt(o) <span class="keyword">for</span> o <span class="keyword">in</span> a]</div><div class="line">print(count)</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;使用 Python 很久了，仍然会碰到一些莫名其妙的错误。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://wxnacy.com/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>dig 写一条最简单的查询 DNS 命令</title>
+    <link href="http://wxnacy.com/2018/12/18/dig-simple/"/>
+    <id>http://wxnacy.com/2018/12/18/dig-simple/</id>
+    <published>2018-12-18T10:24:31.000Z</published>
+    <updated>2018-12-18T10:33:52.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>dig（域信息搜索器）命令是一个用于询问 DNS 域名服务器的灵活的工具。它执行 DNS 查询，显示从已查询名称服务器返回的应答。<br><a id="more"></a><div class="toc"></p><!-- toc --><!-- tocstop --><p></div><br>dig 的功能非常强大，我们这篇不展开讨论，只看最简单的查询域名的 DNS 映射。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">$ dig baidu.com</div><div class="line"></div><div class="line">; &lt;&lt;&gt;&gt; DiG 9.8.3-P1 &lt;&lt;&gt;&gt; baidu.com</div><div class="line">;; global options: +cmd</div><div class="line">;; Got answer:</div><div class="line">;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 28439</div><div class="line">;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 0</div><div class="line"></div><div class="line">;; QUESTION SECTION:</div><div class="line">;baidu.com.INA</div><div class="line"></div><div class="line">;; ANSWER SECTION:</div><div class="line">baidu.com.110INA220.181.57.216</div><div class="line">baidu.com.110INA123.125.115.110</div><div class="line"></div><div class="line">;; Query time: 198 msec</div><div class="line">;; SERVER: 1.1.1.1<span class="comment">#53(1.1.1.1)</span></div><div class="line">;; WHEN: Tue Dec 18 18:25:21 2018</div><div class="line">;; MSG SIZE  rcvd: 59</div></pre></td></tr></table></figure><p>我们取关键的应答部分</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">;; ANSWER SECTION:</div><div class="line">baidu.com.110INA220.181.57.216</div><div class="line">baidu.com.110INA123.125.115.110</div></pre></td></tr></table></figure><p>从这里我们可以看到目前 <code>baidu.com</code> 域名映射了两个 ip 地址。</p><p>这虽然是非常简单的命令行，但却是非常好用的检测工具。如果你不是专业的运维，了解到这个命令，就已经在工作中帮了大忙。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;dig（域信息搜索器）命令是一个用于询问 DNS 域名服务器的灵活的工具。它执行 DNS 查询，显示从已查询名称服务器返回的应答。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="http://wxnacy.com/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>玩儿</title>
+    <link href="http://wxnacy.com/2018/12/17/waner/"/>
+    <id>http://wxnacy.com/2018/12/17/waner/</id>
+    <published>2018-12-17T10:08:46.000Z</published>
+    <updated>2018-12-17T10:10:29.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>看于谦的《玩儿》真的很有意思，这是一部表面极为不正经，其实蕴含很多人生道理，看完让人回味无穷的书。<br><a id="more"></a><div class="toc"></p><!-- toc --><!-- tocstop --></div><p>你说玩儿就玩儿吧，干嘛非得学什么大道理，话是这么说，但是如果你好好玩儿，认真玩儿，还真就能在玩儿的时候就把道理给学了。</p><p>知道于谦，是从郭德纲相声开始的，抽烟喝酒烫头是几乎所有人都知道的梗，但郭德纲也早就说过，于大娘主业是玩儿，相声只是他玩儿的一部分。</p><p>玩儿简单，也难。简单之处无需多言，可难就难在两个字，认真。玩儿的认真，以前只对这句话有个模糊的概念，为什么呢？因为什么事认真起来都难呗！</p><p>从下面这段就能看出来。</p><blockquote><p>七哥从水中捞起那团麻，挤干了水，用一小片羊肉裹住，让鹰吞了下去，“这个行话叫‘下轴’，鹰有一个习性，在野外捕到鸡、兔时，皮毛骨肉一起吞下，遇有消化不了的东西，会在胃中团成一个椭圆状的球形吐出来。咱们就利用它这个特点，给它喂下一团麻。麻，鹰是消化不了的，下肚以后，麻粗糙的纤维会刮下鹰肚中的膛油，带着油脂被鹰吐出来。这样，双管齐下，里外结合，用不了几天，它就会俯首帖耳。”<br>    听了这番话，我当时的反应就是：人真是太聪明了，可也够损的。这主意是怎么想出来的呢？就这么折腾，甭说鹰，搁人也受不了。<br>天渐渐黑了下来，七嫂又摆上了一桌子的菜，七哥说：“来吧，都坐，喝酒，吃饭，鹰先不遛了。这遛是让它熟悉人多的环境，现在晩上人也少了，它也看不见了，咱就不出去了，但在家喝酒可也不能闲着。”七哥边说边慢慢来回转动左臂，臂上的黄鹰站立不稳，被动地来回倒着脚步，“看见没有？这叫倒拳儿，为的是不让它睡觉，老得让它活动着。这鹰肚里没食，要靠睡觉来补充体力，不让它睡觉也是消耗它的一个重要手段。之所以叫熬鹰，说的就是这个。但是鹰有一个与众不同之处，你如果只是盯着它不让睡，它会闭一只眼睛睡觉。你看到的这只眼睛总是睁着的，其实是一个假象，也许背面你看不到的那只眼睛已经闭上睡觉了，你很难发现。所以只能这样来回倒拳儿让它总是站不稳，它就无法入睡。”<br>听七哥说完，我随口一句：“这人是真够缺德的，不给饭吃，从肚子里往外刮油，再不让睡觉，这也太狠了吧？”<br>七哥听我说完，反倒像逮着理了似的，马上说：“哎！就得狠！老话讲善不赢人，说的就是这个道理。你要不这么狠，你但凡心疼它一点儿，它永远也驯不出来，那咱们就输了手艺了！那咱就不如不养。这道理跟人一样，你想学点儿东西，你不下功夫不吃苦能学会吗？你要想出好成绩，所下的功夫必须要超过常人。这就叫吃得苦中苦，方为人上人呀！</p></blockquote><p>这是讲“熬鹰”的一个片段，咋一听是挺渗人的，也挺长见识的。想想被影视作品里只会睁着眼“瞪鹰”骗了这么多年，还挺可笑的。</p><p>你要是动物保护协会的，这会肯定蹦起来要去抵制这种做法。还好我不是，我更关注的最后一句话。</p><p>这道理跟人一样，你想学点儿东西，你不下功夫不吃苦能学会吗？你要想出好成绩，所下的功夫必须要超过常人。这就叫吃得苦中苦，方为人上人呀！</p><p>看到这话真的是感触良多，我虽然不是多爱学习的人，但也确实为了几件事真的拼过，个中滋味也只有经历过才能了解。</p><p>你身边一定一两个这样的人，回看他们的人生，异样的精彩。几乎每过段时间，就可以看到他们专注在某一件事上，并且付出远高于我们的努力。</p><p>所以你看到他们顺利的考取了几个证书，学习了几门一辈子都学不会的语言，连玩“杀人游戏”你都不一定能赢过他。这些“比我们优秀还比我们努力的人”，或许只是做每件事的时候都比我们认真一些。</p><p>提到“玩儿”，更多人第一反应就是不务正业，我读完整本书，还是这么觉得。但事情的发展就在于，我们现在所处的时代，不管什么事情，认真的做，做到极致，都能挣到钱。能挣到钱，那就不是不务正业。</p><p>果然于大娘最后真的将自己的马场进行了开放，完成了“从玩儿到商业再到更好的玩儿”的闭环，这时候不管前边你再怎么不理解，这时候你都得承认人家比你强，为什么？因为人家连玩儿都比你认真。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;看于谦的《玩儿》真的很有意思，这是一部表面极为不正经，其实蕴含很多人生道理，看完让人回味无穷的书。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="杂谈" scheme="http://wxnacy.com/tags/%E6%9D%82%E8%B0%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis 常用命令</title>
+    <link href="http://wxnacy.com/2018/12/13/redis-cli/"/>
+    <id>http://wxnacy.com/2018/12/13/redis-cli/</id>
+    <published>2018-12-13T07:22:47.000Z</published>
+    <updated>2018-12-18T10:17:26.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>现在公司里或多或少总是要用到 Redis 来处理缓存数据，虽然有 Redis Manageer 这样的客户端工具，但是现在 AWS、Aliyun 提供的服务都是内网访问的，显然客户端就用不到了，那么熟记几个简单的命令行工具就显得尤为重要。<br><a id="more"></a><div class="toc"></p><!-- toc --><ul><li><a href="#ming-ling-xing">命令行</a></li><li><a href="#set-shu-ju">set 数据</a></li><li><a href="#huo-qu-xin-xi">获取信息</a></li><li><a href="#shan-chu-jian">删除键</a></li><li><a href="#zi-zeng-zi-jian">自增自减</a></li></ul><!-- tocstop --></div><h2><span id="ming-ling-xing">命令行</span><a href="#ming-ling-xing" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ redis-cli get name</div><div class="line"><span class="string">"10"</span></div></pre></td></tr></table></figure><p><code>redis-cli</code> 是 Redis 的基础命令脚本，后续跟上必要参数进行缓存的操作，不过一般情况下，我们先登录数据库后在进行操作。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ redis-cli</div><div class="line">127.0.0.1:6379&gt;</div></pre></td></tr></table></figure><p>加上 <code>--raw</code> 可以避免中文乱码</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ redis-cli --raw</div></pre></td></tr></table></figure><p>指定端口和地址登录</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ redis-cli -h redis_host -p redis_port -a redis_password</div></pre></td></tr></table></figure><p>试想这种情况下，每次都跟上 <code>get name</code> 查询，简直不敢想象</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ redis-cli ping</div><div class="line">PONG</div></pre></td></tr></table></figure><p>这种情况下，代表可以 ping 通，及可以登录。</p><h2><span id="set-shu-ju">set 数据</span><a href="#set-shu-ju" class="header-anchor"></a></h2><p>登录后我们开始设置数据</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">SET key value [EX seconds] [PX milliseconds] [NX|XX]</div><div class="line"><span class="comment"># EX second ：设置键的过期时间为 second 秒。 SET key value EX second 效果等同于 SETEX key second value 。</span></div><div class="line"><span class="comment"># PX millisecond ：设置键的过期时间为 millisecond 毫秒。 SET key value PX millisecond 效果等同于 PSETEX key millisecond value 。</span></div><div class="line"><span class="comment"># NX ：只在键不存在时，才对键进行设置操作。 SET key value NX 效果等同于 SETNX key value 。</span></div><div class="line"><span class="comment"># XX ：只在键已经存在时，才对键进行设置操作。</span></div></pre></td></tr></table></figure><p>设置键值对</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="built_in">set</span> name wxnacy</div><div class="line">OK</div></pre></td></tr></table></figure><p>设置键值对，并设置 10 秒有效期</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="built_in">set</span> name wxnacy ex 10</div><div class="line">OK</div></pre></td></tr></table></figure><p>只在不存在 name 键时才设置数据</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="built_in">set</span> name wxnacy</div><div class="line">OK</div><div class="line">&gt; <span class="built_in">set</span> name wxnacy nx</div><div class="line">(nil)</div><div class="line"><span class="comment"># (nil) 表示没有设置成功</span></div></pre></td></tr></table></figure><h2><span id="huo-qu-xin-xi">获取信息</span><a href="#huo-qu-xin-xi" class="header-anchor"></a></h2><p>获取值</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; get name</div><div class="line"><span class="string">"wxnacy"</span></div></pre></td></tr></table></figure><p>获取键还有几秒的有效期</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="built_in">set</span> name wxnacy ex 10</div><div class="line">OK</div><div class="line">&gt; ttl name</div><div class="line">(<span class="built_in">integer</span>) 8</div></pre></td></tr></table></figure><p>查询 key 列表</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">KEY pattern</div><div class="line"><span class="comment"># 查找所有符合给定模式 pattern 的 key 。</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># KEYS * 匹配数据库中所有 key 。</span></div><div class="line"><span class="comment"># KEYS h?llo 匹配 hello ， hallo 和 hxllo 等。</span></div><div class="line"><span class="comment"># KEYS h*llo 匹配 hllo 和 heeeeello 等。</span></div><div class="line"><span class="comment"># KEYS h[ae]llo 匹配 hello 和 hallo ，但不匹配 hillo 。</span></div><div class="line"><span class="comment"># 特殊符号用 \ 隔开</span></div></pre></td></tr></table></figure><p>模糊查询</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="built_in">set</span> id:1 wxnacy</div><div class="line">OK</div><div class="line">&gt; <span class="built_in">set</span> id:1 wxnacy</div><div class="line">OK</div><div class="line">&gt; <span class="built_in">set</span> name:1 wxnacy</div><div class="line">OK</div><div class="line">&gt; keys id*</div><div class="line">1) <span class="string">"id:1"</span></div><div class="line">2) <span class="string">"id:2"</span></div></pre></td></tr></table></figure><h2><span id="shan-chu-jian">删除键</span><a href="#shan-chu-jian" class="header-anchor"></a></h2><p>删除一个 key</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="built_in">set</span> name wxnacy</div><div class="line">OK</div><div class="line">&gt; del name</div><div class="line">(<span class="built_in">integer</span>) 1</div></pre></td></tr></table></figure><p>删除多个 key</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="built_in">set</span> name wxnacy</div><div class="line">OK</div><div class="line">&gt; <span class="built_in">set</span> age 0</div><div class="line">OK</div><div class="line">&gt; del name age</div><div class="line">(<span class="built_in">integer</span>) 2</div></pre></td></tr></table></figure><h2><span id="zi-zeng-zi-jian">自增自减</span><a href="#zi-zeng-zi-jian" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">INCR key</div><div class="line"></div><div class="line"><span class="comment"># 将 key 中储存的数字值增一。</span></div><div class="line"><span class="comment"># 如果 key 不存在，那么 key 的值会先被初始化为 0 ，然后再执行 INCR 操作。</span></div><div class="line"></div><div class="line">DECR key</div><div class="line"></div><div class="line"><span class="comment"># 将 KEY 中储存的数字值减一。</span></div><div class="line"><span class="comment"># 如果 KEY 不存在，那么 KEY 的值会先被初始化为 0 ，然后再执行 DECR 操作。</span></div><div class="line"><span class="comment"># 如果值包含错误的类型，或字符串类型的值不能表示为数字，那么返回一个错误。</span></div><div class="line"><span class="comment"># 本操作的值限制在 64 位(BIT)有符号数字表示之内。</span></div></pre></td></tr></table></figure><p>自增</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; incr id</div><div class="line">(<span class="built_in">integer</span>) 1</div><div class="line">&gt; <span class="built_in">set</span> ids 20</div><div class="line">OK</div><div class="line">&gt; incr ids</div><div class="line">(<span class="built_in">integer</span>) 21</div></pre></td></tr></table></figure><p>自减</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; decr id</div><div class="line">(<span class="built_in">integer</span>) -1</div><div class="line">&gt; <span class="built_in">set</span> ids 20</div><div class="line">OK</div><div class="line">&gt; decr ids</div><div class="line">(<span class="built_in">integer</span>) 19</div></pre></td></tr></table></figure><p>Redis 的功能非常强大，还有很多有用的命令，不过我想如果不是重度使用 Redis，没必要也记不住这么多的命令，有这几个键位，我们已经可以完成很多常用功能，再多的就使用的时候再查询文档吧。</p><ul><li><a href="http://redisdoc.com/index.html" target="_blank" rel="external">Redis 命令参考</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;现在公司里或多或少总是要用到 Redis 来处理缓存数据，虽然有 Redis Manageer 这样的客户端工具，但是现在 AWS、Aliyun 提供的服务都是内网访问的，显然客户端就用不到了，那么熟记几个简单的命令行工具就显得尤为重要。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="redis" scheme="http://wxnacy.com/tags/redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何给 Hexo 博客添加 RSS 订阅功能</title>
+    <link href="http://wxnacy.com/2018/12/12/hexo-add-rss/"/>
+    <id>http://wxnacy.com/2018/12/12/hexo-add-rss/</id>
+    <published>2018-12-12T10:09:28.000Z</published>
+    <updated>2018-12-12T10:09:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>写这个博客有一年多了，一直都没有增加像样的订阅功能，因为觉得暂时还不会有人想专门看我的博客，也就把更多的精力放在写博客本身上了。<br><a id="more"></a><div class="toc"></p><!-- toc --><!-- tocstop --><p></div><br>最近收到一位网友的邮件，说希望我可以增加 RSS 订阅功能，这才想到可能有人，已经开始想更多的了解我的内容了。</p><p>那我一定是要加一下这个功能的，这样订阅功能也就加的更有目的性，更有意义了。</p><p>本篇就介绍下用 Hexo 构建的博客，如何添加 RSS 订阅功能。</p><p>首先添加功能插件，在 hexo 项目根目录下执行该命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yarn add hexo-generator-feed</div></pre></td></tr></table></figure><p>然后在 hexo 根目录下的 <code>_config.yml</code> 文件中添加配置</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">feed:</div><div class="line">    <span class="built_in">type</span>: atom</div><div class="line">    path: atom.xml</div><div class="line">    <span class="built_in">limit</span>: 20</div></pre></td></tr></table></figure><p>配置含义：</p><ul><li><code>type</code>: RSS的类型(atom/rss2)</li><li><code>path</code>: 文件路径，默认是 atom.xml/rss2.xml</li><li><code>limit</code>: 展示文章的数量,使用 0 或则 false 代表展示全部</li><li><code>hub</code>: URL of the PubSubHubbub hubs (如果使用不到可以为空)</li><li><code>content</code>: （可选）设置 <code>true</code> 可以在 RSS 文件中包含文章全部内容，默认：false</li><li><code>content_limit</code>: （可选）摘要中使用的帖子内容的默认长度。 仅在内容设置为false且未显示自定义帖子描述时才使用。</li><li><code>content_limit_delim</code>: （可选）If content_limit is used to shorten post contents, only cut at the last occurrence of this delimiter before reaching the character limit. Not used by default.</li><li><code>order_by</code>: 订阅内容的顺序. (默认: -date)<br>（后面几个选项一般用不到，有两个也没找到比较准确的翻译，所以感觉放上原文，如果你知道一定要告诉我）</li></ul><p>然后在 theme 目录下的 <code>_config.yml</code> 文件中添加配置</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rss: /atom.xml</div></pre></td></tr></table></figure><p>随后重新生成博客静态文件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo clean &amp;&amp; hexo g</div></pre></td></tr></table></figure><p>在 <code>public</code> 文件夹中就会生成 <code>atom.xml</code> 文件，部署后直接在根目录中访问该文件即可</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://wxnacy.com/atom.xml</div></pre></td></tr></table></figure><p>我使用的是 yilia 皮肤，在 <code>_config.yml</code> 中添加配置</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">subnav:</div><div class="line">    rss: <span class="string">"atom.xml"</span></div></pre></td></tr></table></figure><p>即可在导航栏生成 RSS 图标</p><p><img src="/images/rss.png" alt="rss"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;写这个博客有一年多了，一直都没有增加像样的订阅功能，因为觉得暂时还不会有人想专门看我的博客，也就把更多的精力放在写博客本身上了。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="hexo" scheme="http://wxnacy.com/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mac 系统实时显示键位操作软件：KeyCastr</title>
+    <link href="http://wxnacy.com/2018/12/11/mac-KeyCastr/"/>
+    <id>http://wxnacy.com/2018/12/11/mac-KeyCastr/</id>
+    <published>2018-12-11T03:51:58.000Z</published>
+    <updated>2018-12-11T05:43:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近想做一些 Vim 教程的视频，在屏幕上显示键位操作是很有必要的，网上找了下发现 KeyCastr 软件非常好用。<br><a id="more"></a><div class="toc"></p><!-- toc --><ul><li><a href="#yu-lan">预览</a></li><li><a href="#an-zhuang">安装</a></li><li><a href="#pei-zhi">配置</a></li></ul><!-- tocstop --></div><h2><span id="yu-lan">预览</span><a href="#yu-lan" class="header-anchor"></a></h2><p><img src="/images/KeyCastr4.gif" alt="key4"></p><h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><p>KeyCastr 是开源软件完全免费，源码可以在 <a href="https://github.com/keycastr/keycastr" target="_blank" rel="external">Github</a> 中找到，Mac 中安装非常方便</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew cask install keycastr</div></pre></td></tr></table></figure><p>也可以从<a href="https://github.com/keycastr/keycastr/releases" target="_blank" rel="external">下载</a>页面下载最新版安装</p><h2><span id="pei-zhi">配置</span><a href="#pei-zhi" class="header-anchor"></a></h2><p>第一次使用时需要打开系统的辅助功能</p><p><img src="/images/KeyCastr6.png" alt="KeyCastr6"></p><p>配置完成后再次打开，即可像预览中一样在屏幕左下角显示键位操作。</p><p>同时在顶部状态栏可以显示 KeyCastr 的图标，用于更多配置</p><p><img src="/images/KeyCastr2.png" alt="KeyCastr2"></p><p>通过 Preferences -&gt; General 配置可以修改图标展示在顶部或底部状态栏</p><p><img src="/images/KeyCastr1.png" alt="KeyCastr1"></p><p>通过 Preferences -&gt; Display 配置可以扩展显示区域，将 ⌘（Command）、⌥（Option）符号展示出来，很多人（包括我）经常会分不清楚他们对应的键位。</p><p><img src="/images/KeyCastr5.gif" alt="KeyCastr5"></p><p>如下图，将显示模式改为 Svelte 即可</p><p><img src="/images/KeyCastr3.png" alt="KeyCastr3"></p><p>默认情况下，该模式只显示四个特殊键位，勾选上 [Display all keystrokes] 即可显示全部键位</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近想做一些 Vim 教程的视频，在屏幕上显示键位操作是很有必要的，网上找了下发现 KeyCastr 软件非常好用。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="mac" scheme="http://wxnacy.com/tags/mac/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Supervisord 启动报错</title>
+    <link href="http://wxnacy.com/2018/12/10/supervisord-start-error/"/>
+    <id>http://wxnacy.com/2018/12/10/supervisord-start-error/</id>
+    <published>2018-12-10T09:04:38.000Z</published>
+    <updated>2018-12-10T09:14:36.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>error: <class 'socket.error'="">, [Errno 2] No such file or directory: file: /usr/lib/python2.7/socket.py line: 224</class></p></blockquote><a id="more"></a><div class="toc"><br><br><!-- toc --><!-- tocstop --><p></div><br>如上，如果 supervisord 正常启动过，突然报这个错误，则有可能是非正常关闭导致的。</p><p>此时，需要强行关闭后，再正常启动即可。</p><p>关闭</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo <span class="built_in">kill</span> -9 `ps aux | grep supervisord | aws <span class="string">'&#123;print $2&#125;'</span>`</div></pre></td></tr></table></figure><p>启动</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo /bin/supervisord -c /etc/supervisord/supervisord.conf</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;error: &lt;class &#39;socket.error&#39;=&quot;&quot;&gt;, [Errno 2] No such file or directory: file: /usr/lib/python2.7/socket.py line: 224&lt;/class&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://wxnacy.com/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>小宝贝，6 个月，第一次叫爸爸</title>
+    <link href="http://wxnacy.com/2018/12/06/baby-first-baba/"/>
+    <id>http://wxnacy.com/2018/12/06/baby-first-baba/</id>
+    <published>2018-12-06T14:49:25.000Z</published>
+    <updated>2018-12-12T03:56:59.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近几天欣欣又不好好睡觉了，每天晚上都是一个小时一醒，昨天晚上忘了几点，哭醒以后赶紧抱起来走走，迷迷糊糊的把她放下，突然听见一声</p><p>“爸爸”<br><a id="more"></a><div class="toc"></p><!-- toc --><!-- tocstop --></div><p>我心里一惊，动作瞬间僵住，生怕是听错了，再一听。</p><p>“啪啪…唔…啪”</p><p>声音并不清晰，却是这几个月来第一次发出这类的声音。</p><p>我抬起头看向欣妈，虽然屋里只有很暗的夜灯，但我还是看到了她脸上跟我一样的难以置信。</p><p>“不是喊爸爸，只是类似呼气的声音”</p><p>过了一会儿，欣妈这样“安慰”我。</p><p>或许真的是巧合，加上实在是太困，我俩没一会儿就睡下了。</p><p>白天醒后想着要不要跟妈妈说这事，她每天乐于发现小孙女一些细微的成长，但是我也感觉可能是个巧合，还是算了。</p><p>等晚上回家，欣妈还在哄孩子睡觉，白天带她去体检反而有点感冒，没办法，今天太冷了。</p><p>吃完饭孩子也醒了，一看到我，欣欣开心的一笑，每天我回家欣欣都这样对我笑，我照例进行每天的功课。</p><p>“我是谁，我是爸爸，欣欣叫爸爸”</p><p>如此对着她重复，欣妈对我不屑一顾。</p><p>“啪啪”</p><p>又是一声，我心里又是一颤，赶紧趁热打铁。</p><p>“爸爸，我是爸爸，叫爸爸”</p><p>“啪…爸爸”</p><p>越来越清晰，现在可以确认，欣欣真的叫爸爸了，虽然还是太清晰，但是这已经不是偶尔蹦出一个词了。欣妈也傻眼了，赶紧拿出手机录下了这个时刻。</p><p>“嘿，眼看她妈马上生日了，她来了句爸爸”</p><p>得，欣妈吃上醋了，边往外走着，打算让爸妈也看看视频，嘴里还不歇着。</p><p>“嘿，成天不在家的，第一个还喊了爸爸”</p><p>老妈看了几遍，确认了是叫了“爸爸”，这才一脸惊喜的找着原因。</p><p>“可不嘛，天天晚上回来都逗孩子，让喊爸爸”</p><p>可不是，不这样逗，谁生下来会叫人啊，嘿，我一脸得意的看着他们，我的方法奏效了，就得天天冲她说才行。</p><p>欣妈一脸嫉妒的看着我俩，哼！</p><p>“跟爸爸这么亲，让爸爸哄睡觉吧，让爸爸擦屁股吧”</p><p>“我说你这是嫉妒啊”</p><p>“我这是羡慕嫉妒恨！”</p><p>我笑着出了屋，临关上门听见欣妈冲着欣欣</p><p>“欣欣，我是妈妈，叫妈妈”</p><p>过了一会儿，回来给孩子做好睡前工作，妈妈推门进来半个身子，看见欣欣一笑，欣欣还以微笑，然后关门之前来了句</p><p>“欣欣，叫奶奶”</p><p>得，嫉妒的还不是一人。</p><p>过了一会儿，出门坐会儿，听见爸爸在沙发算着，今天叫爸爸，明天叫妈妈，后天叫奶奶，然后叫爷爷。</p><p>………</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近几天欣欣又不好好睡觉了，每天晚上都是一个小时一醒，昨天晚上忘了几点，哭醒以后赶紧抱起来走走，迷迷糊糊的把她放下，突然听见一声&lt;/p&gt;
+&lt;p&gt;“爸爸”&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="宝贝" scheme="http://wxnacy.com/tags/%E5%AE%9D%E8%B4%9D/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Node 运行 Linux 命令</title>
+    <link href="http://wxnacy.com/2018/11/28/node-rune-command/"/>
+    <id>http://wxnacy.com/2018/11/28/node-rune-command/</id>
+    <published>2018-11-28T09:54:47.000Z</published>
+    <updated>2018-11-28T09:56:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在 Node 中可以使用 <a href="https://nodejs.org/docs/v8.1.4/api/child_process.html#child_process_child_process_exec_command_options_callback" target="_blank" rel="external">child_process.exec</a> 方法来实现<br><a id="more"></a><div class="toc"></p><!-- toc --><!-- tocstop --></div><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> &#123; exec &#125; = <span class="built_in">require</span>(<span class="string">'child_process'</span>);</div><div class="line">exec(<span class="string">'ls'</span>, (err, stdout, stderr) =&gt; &#123;</div><div class="line">  <span class="keyword">if</span> (err) &#123;</div><div class="line">    <span class="comment">// node couldn't execute the command</span></div><div class="line">    <span class="keyword">return</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">// the *entire* stdout and stderr (buffered)</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`stdout: <span class="subst">$&#123;stdout&#125;</span>`</span>);</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`stderr: <span class="subst">$&#123;stderr&#125;</span>`</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在 Node 中可以使用 &lt;a href=&quot;https://nodejs.org/docs/v8.1.4/api/child_process.html#child_process_child_process_exec_command_options_callback&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;child_process.exec&lt;/a&gt; 方法来实现&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="node" scheme="http://wxnacy.com/tags/node/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux 安装 ffmpeg</title>
+    <link href="http://wxnacy.com/2018/11/27/linux-install-ffmpeg/"/>
+    <id>http://wxnacy.com/2018/11/27/linux-install-ffmpeg/</id>
+    <published>2018-11-27T09:30:25.000Z</published>
+    <updated>2018-11-27T09:46:41.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="http://ffmpeg.org/" target="_blank" rel="external">ffmpeg</a> 是一个很强大的音视频处理工具，它是一个完整的、跨平台的解决方案，可以记录、转换和传输音频和视频。ffmpeg 既可以播放视频，也提供命令行工具来处理视频，另外还有强大的视频处理库用于开发</p></blockquote><a id="more"></a><div class="toc"><br><br><!-- toc --><ul><li><a href="#ubuntu">Ubuntu</a></li><li><a href="#centos">CentOS</a></li></ul><!-- tocstop --></div><h2><span id="ubuntu">Ubuntu</span><a href="#ubuntu" class="header-anchor"></a></h2><p>Ubuntu 中安装比较简单，直接使用 <code>apt</code> 安装即可</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt install -y ffmpeg</div></pre></td></tr></table></figure><h2><span id="centos">CentOS</span><a href="#centos" class="header-anchor"></a></h2><p>CentOS 中则比较麻烦，需要使用源码安装</p><p><strong>下载并解压</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ wget https://ffmpeg.org/releases/ffmpeg-4.1.tar.bz2</div><div class="line">$ tar -xjvf ffmpeg-4.1.tar.bz2</div><div class="line">$ <span class="built_in">cd</span> ffmpeg-4.1</div></pre></td></tr></table></figure><p><strong>编译</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ./configure</div><div class="line">nasm/yasm not found or too old. Use --<span class="built_in">disable</span>-x86asm <span class="keyword">for</span> a crippled build.</div></pre></td></tr></table></figure><p>可以使用 <code>--disable-x86asm</code> 参数略过该配置或者直接安装</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo yum install -y yasm</div></pre></td></tr></table></figure><p>也可以从<a href="http://yasm.tortall.net/Download.html" target="_blank" rel="external">官网</a>下载源码安装</p><p>随后再次编译安装即可</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ./configure</div><div class="line">$ sudo make &amp;&amp; sudo make install</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;http://ffmpeg.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ffmpeg&lt;/a&gt; 是一个很强大的音视频处理工具，它是一个完整的、跨平台的解决方案，可以记录、转换和传输音频和视频。ffmpeg 既可以播放视频，也提供命令行工具来处理视频，另外还有强大的视频处理库用于开发&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="http://wxnacy.com/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Go 判断数组中是否包含某个 item</title>
+    <link href="http://wxnacy.com/2018/11/20/go-in-array/"/>
+    <id>http://wxnacy.com/2018/11/20/go-in-array/</id>
+    <published>2018-11-20T09:50:48.000Z</published>
+    <updated>2018-11-20T09:57:09.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Go 中不像 Python 那样可以通过 <code>a in []</code> 判断数组是否包含某个 item，项目中只能自己编写该方法。<br><a id="more"></a><div class="toc"></p><!-- toc --><!-- tocstop --><p></div><br>刚入门时第一个想到的方法就是对某个类型的数组进行遍历，再逐个对比，但这样有个最大的问题就是我们只能对一种类型的数组进行对比，不能灵活的应对各种类型。</p><p>在 stackexchange 中看到一个方法，充分的利用了 <code>reflect</code> 包对 <code>interface{}</code> 进行判断，如下</p><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></div><div class="line"><span class="keyword">import</span> <span class="string">"reflect"</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">in_array</span><span class="params">(val <span class="keyword">interface</span>&#123;&#125;, array <span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">(exists <span class="keyword">bool</span>, index <span class="keyword">int</span>)</span></span> &#123;</div><div class="line">    exists = <span class="literal">false</span></div><div class="line">    index = <span class="number">-1</span></div><div class="line"></div><div class="line">    <span class="keyword">switch</span> reflect.TypeOf(array).Kind() &#123;</div><div class="line">    <span class="keyword">case</span> reflect.Slice:</div><div class="line">        s := reflect.ValueOf(array)</div><div class="line"></div><div class="line">        <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; s.Len(); i++ &#123;</div><div class="line">            <span class="keyword">if</span> reflect.DeepEqual(val, s.Index(i).Interface()) == <span class="literal">true</span> &#123;</div><div class="line">                index = i</div><div class="line">                exists = <span class="literal">true</span></div><div class="line">                <span class="keyword">return</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span></div><div class="line">&#125;</div></pre></td></tr></table></figure><ul><li><a href="https://codereview.stackexchange.com/questions/60074/in-array-in-go" target="_blank" rel="external">in_array() in Go</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Go 中不像 Python 那样可以通过 &lt;code&gt;a in []&lt;/code&gt; 判断数组是否包含某个 item，项目中只能自己编写该方法。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="go" scheme="http://wxnacy.com/tags/go/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Go JSON 数据格式化输出</title>
+    <link href="http://wxnacy.com/2018/11/19/go-json-fmt-print/"/>
+    <id>http://wxnacy.com/2018/11/19/go-json-fmt-print/</id>
+    <published>2018-11-19T03:13:00.000Z</published>
+    <updated>2018-11-19T06:01:57.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Go 中 <code>encoding/json</code> 包提供了格式化输出 JSON 数据的方法。<br><a id="more"></a><div class="toc"></p><!-- toc --><!-- tocstop --></div><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">"encoding/json"</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> data = <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>&#123;<span class="string">"name"</span>: <span class="string">"wxnacy"</span>&#125;</div><div class="line"></div><div class="line">json.MarshalIndent(data, <span class="string">""</span>, <span class="string">"    "</span>)</div></pre></td></tr></table></figure><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"wxnacy"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure><p>使用制表格来缩进可以使用</p><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">json.MarshalIndent(data, <span class="string">""</span>, <span class="string">"/t"</span>)</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Go 中 &lt;code&gt;encoding/json&lt;/code&gt; 包提供了格式化输出 JSON 数据的方法。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="go" scheme="http://wxnacy.com/tags/go/"/>
+    
+  </entry>
+  
+</feed>

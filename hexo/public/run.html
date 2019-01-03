@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>在线编辑 | wxnacy 博客</title>
+
+    <meta name="description" content="在线编辑 html js css">
+    <meta name="keywords" content="在线编辑 html js css">
+    <meta property="og:type" content="tool">
+    <meta property="og:title" content="在线编辑 | wxnacy 博客">
+    <meta property="og:url" content="http://wxnacy.com/run.html">
+    <meta property="og:site_name" content="wxnacy 博客">
+    <meta property="og:description" content="在线编辑 html js css">
+    <meta property="og:locale" content="zh-cn">
+    <meta property="og:updated_time" content="2018-03-29T21:27:18.000Z">
+    <meta name="twitter:title" content="在线编辑 | wxnacy 博客">
+    <meta name="twitter:description" content="在线编辑 html js css">
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <button type="button" onClick="run()" class="btn btn-primary" id="run">运行</button>
+          <button type="button" onClick="save()" class="btn btn-primary" id="save">保存</button>
+        </div>
+        <div class="col">
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">标题</span>
+  </div>
+  <input type="text"  id="name" style="width: 300px" aria-label="标题" aria-describedby="inputGroup-sizing-default">
+</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <textarea class="form-control" id="html" rows="25">
+            <!DOCTYPE html>
+            <html lang="en">
+              <head>
+                <meta charset="UTF-8">
+                <title></title>
+              </head>
+              <body>
+                Hello World 
+              </body>
+            </html>
+          </textarea>
+        </div>
+        <div class="col">
+          <div style="height: 610px" class="card card-body">
+            <iframe id="preview" style="height: 610px" frameBorder="no" border="0"  ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="/js/wxnacy.min.js" ></script>
+  <script>
+    init()
+function init(){
+  var id = getValue('id')
+  if(!isEmpty(id)){
+    fetchGet(`/api/v1/code/${id}`).then(function(data){
+      var html = decodeURIComponent(data.data.code.html)
+      var name = data.data.name
+
+      document.getElementById('html').value=html
+      document.getElementById('name').value=name
+      document.title = name
+      run()
+    })
+  } else {
+    run()
+  }
+}
+function run(){
+  var content = document.getElementById('html').value;
+  var preview = document.getElementById('preview');
+  preview.srcdoc = content;
+}
+function save(){
+  var content = document.getElementById('html').value;
+  var code = {
+    html: encodeURIComponent(content),
+    js: "",
+    css: ""
+  }
+  var params = {
+    name: document.getElementById('name').value,
+    description: '',
+    code: code
+  }
+
+  fetchPost(`/api/v1/code`, params).then(data => {
+    console.log(data);
+    let id = data.data.id
+    window.location.href = `/run.html?id=${id}`
+  })
+}
+  </script>
+</html>
