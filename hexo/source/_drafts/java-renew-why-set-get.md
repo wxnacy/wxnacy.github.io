@@ -13,5 +13,32 @@ tags: [java]
 
 大家都很忙的，晚上还要加班呢，谁有空在去深究为什么，大家都这么写嘛，规范嘛。
 
+既然要重新学习，那自然要搞明白为什么。
 
+首先我们先来弄清楚变量的作用域，详情可以看我的这篇文章[重新学 Java 系列：public private protected friendly 的区别](/2018/12/30/java-renew-modification/)(https://wxnacy.com/2018/12/30/java-renew-modification/)
+
+我们用到最多的两个修饰符为 `public, private`，它们的区别在于
+
+- `public`: 所有地方都可以调用。
+- `private`: 只有当前类可以调用。
+
+通常当修饰符为 `private` 时才需要用到 `set, get` 方法，因为该修饰符不能像 `public` 一样被外部方法和修改，那为什么我们不直接用 `public` 修饰呢。
+
+真正的原因在于，作为一个类，我的变量想让你访问和修改，但我不希望你随便修改，而是按照我的方式来访问修改。
+
+比如
+
+```java
+public void setName(String name) {
+    this.name = "wxnacy_" + name
+}
+
+public String getAge() {
+    return this.age + 10
+}
+```
+
+两个方法都不是将原数据传入和传出，都经过了类的独特修改才进行的相应操作。
+
+所以平常我们觉得它们多余，只是很多时候用不到这个特点而已。
 
