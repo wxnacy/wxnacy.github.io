@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-01-03T08:52:13.000Z</updated>
+  <updated>2019-01-06T03:00:58.000Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux ab 压力测试</title>
+    <link href="http://wxnacy.com/2019/01/06/linux-ab/"/>
+    <id>http://wxnacy.com/2019/01/06/linux-ab/</id>
+    <published>2019-01-06T02:06:23.000Z</published>
+    <updated>2019-01-06T03:00:58.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>ab 是 Apache 附带的接口压力测试功能，非常简单易用。在测试服务端程序自身运行时长和跨区测试接口反馈时长时非常有用。<br><a id="more"></a><div class="toc"></p><!-- toc --><ul><li><a href="#xia-zai">下载</a></li><li><a href="#shi-yong">使用</a></li></ul><!-- tocstop --><p></div></p><h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><p>CentOS</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo yum install -y httpd</div></pre></td></tr></table></figure><p>Ubuntu</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt install -y apache2-utils</div></pre></td></tr></table></figure><h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ab -c 10 -n 100 http://ip-api.com/json</div></pre></td></tr></table></figure><p><strong>参数</strong></p><ul><li><code>-c</code>: 表示并发数</li><li><code>-n</code>: 表示请求总数</li></ul><p><strong>结果</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">&gt; $ ab -c 10 -n 100 http://ip-api.com/json</div><div class="line">This is ApacheBench, Version 2.3 &lt;<span class="variable">$Revision</span>: 1807734 $&gt;</div><div class="line">Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/</div><div class="line">Licensed to The Apache Software Foundation, http://www.apache.org/</div><div class="line"></div><div class="line">Benchmarking ip-api.com (be patient).....<span class="keyword">done</span></div><div class="line"></div><div class="line"></div><div class="line">Server Software:</div><div class="line">Server Hostname:        ip-api.com</div><div class="line">Server Port:            80</div><div class="line"></div><div class="line">Document Path:          /json</div><div class="line">Document Length:        306 bytes</div><div class="line"></div><div class="line">Concurrency Level:      10</div><div class="line">Time taken <span class="keyword">for</span> tests:   6.184 seconds</div><div class="line">Complete requests:      100</div><div class="line">Failed requests:        0</div><div class="line">Total transferred:      46200 bytes</div><div class="line">HTML transferred:       30600 bytes</div><div class="line">Requests per second:    16.17 [<span class="comment">#/sec] (mean)</span></div><div class="line">Time per request:       618.369 [ms] (mean)</div><div class="line">Time per request:       61.837 [ms] (mean, across all concurrent requests)</div><div class="line">Transfer rate:          7.30 [Kbytes/sec] received</div><div class="line"></div><div class="line">Connection Times (ms)</div><div class="line">              min  mean[+/-sd] median   max</div><div class="line">Connect:        1    3   1.1      3       6</div><div class="line">Processing:   528  572  58.4    550     889</div><div class="line">Waiting:      528  571  58.7    549     888</div><div class="line">Total:        531  575  58.3    552     891</div><div class="line"></div><div class="line">Percentage of the requests served within a certain time (ms)</div><div class="line">  50%    552</div><div class="line">  66%    565</div><div class="line">  75%    574</div><div class="line">  80%    600</div><div class="line">  90%    635</div><div class="line">  95%    656</div><div class="line">  98%    890</div><div class="line">  99%    891</div><div class="line"> 100%    891 (longest request)</div></pre></td></tr></table></figure><p><strong>结果详解</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">Server Software:        web服务器软件及版本</div><div class="line">Server Hostname:        请求的地址</div><div class="line">Server Port:            请求的端口</div><div class="line"></div><div class="line">Document Path:          请求的页面路径</div><div class="line">Document Length:        页面大小</div><div class="line"></div><div class="line">Concurrency Level:      并发数</div><div class="line">Time taken <span class="keyword">for</span> tests:   测试总共花费的时间</div><div class="line">Complete requests:      完成的请求数</div><div class="line">Failed requests:        失败的请求数</div><div class="line">Write errors:           写入错误</div><div class="line">Total transferred:      总共传输字节数，包含http的头信息等</div><div class="line">HTML transferred:       html字节数，实际的页面传递字节数</div><div class="line">Requests per second:    每秒处理的请求数，服务器的吞吐量（重要）</div><div class="line">Time per request:       平均数，用户平均请求等待时间</div><div class="line">Time per request:       服务器平均处理时间</div><div class="line">Transfer rate:          平均传输速率（每秒收到的速率）</div></pre></td></tr></table></figure><p><code>Time per request</code> 是我们测试接口时长时非常关键的字段。</p><ul><li><a href="http://blog.51cto.com/zhangdiandong/1166557" target="_blank" rel="external">linux下web压力测试工具ab使用及详解</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;ab 是 Apache 附带的接口压力测试功能，非常简单易用。在测试服务端程序自身运行时长和跨区测试接口反馈时长时非常有用。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="http://wxnacy.com/tags/linux/"/>
+    
+  </entry>
   
   <entry>
     <title>重新学 Java 系列：为什么要用 set、get 方法</title>
@@ -402,26 +422,6 @@
     
     
       <category term="linux" scheme="http://wxnacy.com/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Go 判断数组中是否包含某个 item</title>
-    <link href="http://wxnacy.com/2018/11/20/go-in-array/"/>
-    <id>http://wxnacy.com/2018/11/20/go-in-array/</id>
-    <published>2018-11-20T09:50:48.000Z</published>
-    <updated>2018-11-20T09:57:09.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Go 中不像 Python 那样可以通过 <code>a in []</code> 判断数组是否包含某个 item，项目中只能自己编写该方法。<br><a id="more"></a><div class="toc"></p><!-- toc --><!-- tocstop --><p></div><br>刚入门时第一个想到的方法就是对某个类型的数组进行遍历，再逐个对比，但这样有个最大的问题就是我们只能对一种类型的数组进行对比，不能灵活的应对各种类型。</p><p>在 stackexchange 中看到一个方法，充分的利用了 <code>reflect</code> 包对 <code>interface{}</code> 进行判断，如下</p><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></div><div class="line"><span class="keyword">import</span> <span class="string">"reflect"</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">in_array</span><span class="params">(val <span class="keyword">interface</span>&#123;&#125;, array <span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">(exists <span class="keyword">bool</span>, index <span class="keyword">int</span>)</span></span> &#123;</div><div class="line">    exists = <span class="literal">false</span></div><div class="line">    index = <span class="number">-1</span></div><div class="line"></div><div class="line">    <span class="keyword">switch</span> reflect.TypeOf(array).Kind() &#123;</div><div class="line">    <span class="keyword">case</span> reflect.Slice:</div><div class="line">        s := reflect.ValueOf(array)</div><div class="line"></div><div class="line">        <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; s.Len(); i++ &#123;</div><div class="line">            <span class="keyword">if</span> reflect.DeepEqual(val, s.Index(i).Interface()) == <span class="literal">true</span> &#123;</div><div class="line">                index = i</div><div class="line">                exists = <span class="literal">true</span></div><div class="line">                <span class="keyword">return</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span></div><div class="line">&#125;</div></pre></td></tr></table></figure><ul><li><a href="https://codereview.stackexchange.com/questions/60074/in-array-in-go" target="_blank" rel="external">in_array() in Go</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Go 中不像 Python 那样可以通过 &lt;code&gt;a in []&lt;/code&gt; 判断数组是否包含某个 item，项目中只能自己编写该方法。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="go" scheme="http://wxnacy.com/tags/go/"/>
     
   </entry>
   
