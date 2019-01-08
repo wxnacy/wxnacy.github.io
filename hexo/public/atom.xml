@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-01-07T05:52:52.514Z</updated>
+  <updated>2019-01-08T06:55:53.714Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>重新学 Java 系列：获取 jar 包中类名列表</title>
+    <link href="http://wxnacy.com/2019/01/08/java-jar-class-list/"/>
+    <id>http://wxnacy.com/2019/01/08/java-jar-class-list/</id>
+    <published>2019-01-08T06:55:53.000Z</published>
+    <updated>2019-01-08T06:55:53.714Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近想要自己写一下 Vim 中 Java 代码的自动补全，涉及到 <code>import</code> 部分的自动导入，记录下关键步骤。<br><a id="more"></a><div class="toc"></p><!-- toc --><!-- tocstop --><p></div><br>想要做自动导入，首先需要知道依赖包中类名的列表，也就是需要反解出 jar 中 class 列表。</p><p>这里需要 <code>java.util.jar</code> 包中的几个类，直接上代码</p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.Enumeration;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"><span class="keyword">import</span> java.util.jar.JarEntry;</div><div class="line"><span class="keyword">import</span> java.util.jar.JarFile;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Created by wxnacy</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassList</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</div><div class="line"></div><div class="line">        List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            JarFile jarFile = <span class="keyword">new</span> JarFile(<span class="string">"/Users/wxnacy/.m2/repository/com/alibaba/fastjson/1.1.34/fastjson-1.1.34.jar"</span>);</div><div class="line">            Enumeration enu = jarFile.entries();</div><div class="line">            <span class="keyword">while</span> (enu.hasMoreElements()) &#123;</div><div class="line">                JarEntry jarEntry = (JarEntry) enu.nextElement();</div><div class="line">                String name = jarEntry.getName();</div><div class="line">                <span class="comment">// 过滤出 class 文件</span></div><div class="line">                <span class="keyword">if</span> (name.endsWith(<span class="string">".class"</span>) &amp;&amp; name.indexOf(<span class="string">"$"</span>) == -<span class="number">1</span> ) &#123;</div><div class="line">                    <span class="comment">// 重新格式化文件名</span></div><div class="line">                    name = name.substring(<span class="number">0</span>, name.indexOf(<span class="string">".class"</span>));</div><div class="line">                    name = name.replaceAll(<span class="string">"/"</span>, <span class="string">"."</span>);</div><div class="line">                    System.out.println(name);</div><div class="line">                    list.add(name);</div><div class="line">                &#125;</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        System.out.println(<span class="string">"list length "</span> + list.size());</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近想要自己写一下 Vim 中 Java 代码的自动补全，涉及到 &lt;code&gt;import&lt;/code&gt; 部分的自动导入，记录下关键步骤。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://wxnacy.com/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>2019 年读书目录</title>
@@ -399,27 +419,6 @@
     
     
       <category term="python" scheme="http://wxnacy.com/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>小宝贝，6 个月，第一次叫爸爸</title>
-    <link href="http://wxnacy.com/2018/12/06/baby-first-baba/"/>
-    <id>http://wxnacy.com/2018/12/06/baby-first-baba/</id>
-    <published>2018-12-06T14:49:25.000Z</published>
-    <updated>2018-12-12T03:56:59.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近几天欣欣又不好好睡觉了，每天晚上都是一个小时一醒，昨天晚上忘了几点，哭醒以后赶紧抱起来走走，迷迷糊糊的把她放下，突然听见一声</p><p>“爸爸”<br><a id="more"></a><div class="toc"></p><!-- toc --><!-- tocstop --></div><p>我心里一惊，动作瞬间僵住，生怕是听错了，再一听。</p><p>“啪啪…唔…啪”</p><p>声音并不清晰，却是这几个月来第一次发出这类的声音。</p><p>我抬起头看向欣妈，虽然屋里只有很暗的夜灯，但我还是看到了她脸上跟我一样的难以置信。</p><p>“不是喊爸爸，只是类似呼气的声音”</p><p>过了一会儿，欣妈这样“安慰”我。</p><p>或许真的是巧合，加上实在是太困，我俩没一会儿就睡下了。</p><p>白天醒后想着要不要跟妈妈说这事，她每天乐于发现小孙女一些细微的成长，但是我也感觉可能是个巧合，还是算了。</p><p>等晚上回家，欣妈还在哄孩子睡觉，白天带她去体检反而有点感冒，没办法，今天太冷了。</p><p>吃完饭孩子也醒了，一看到我，欣欣开心的一笑，每天我回家欣欣都这样对我笑，我照例进行每天的功课。</p><p>“我是谁，我是爸爸，欣欣叫爸爸”</p><p>如此对着她重复，欣妈对我不屑一顾。</p><p>“啪啪”</p><p>又是一声，我心里又是一颤，赶紧趁热打铁。</p><p>“爸爸，我是爸爸，叫爸爸”</p><p>“啪…爸爸”</p><p>越来越清晰，现在可以确认，欣欣真的叫爸爸了，虽然还是太清晰，但是这已经不是偶尔蹦出一个词了。欣妈也傻眼了，赶紧拿出手机录下了这个时刻。</p><p>“嘿，眼看她妈马上生日了，她来了句爸爸”</p><p>得，欣妈吃上醋了，边往外走着，打算让爸妈也看看视频，嘴里还不歇着。</p><p>“嘿，成天不在家的，第一个还喊了爸爸”</p><p>老妈看了几遍，确认了是叫了“爸爸”，这才一脸惊喜的找着原因。</p><p>“可不嘛，天天晚上回来都逗孩子，让喊爸爸”</p><p>可不是，不这样逗，谁生下来会叫人啊，嘿，我一脸得意的看着他们，我的方法奏效了，就得天天冲她说才行。</p><p>欣妈一脸嫉妒的看着我俩，哼！</p><p>“跟爸爸这么亲，让爸爸哄睡觉吧，让爸爸擦屁股吧”</p><p>“我说你这是嫉妒啊”</p><p>“我这是羡慕嫉妒恨！”</p><p>我笑着出了屋，临关上门听见欣妈冲着欣欣</p><p>“欣欣，我是妈妈，叫妈妈”</p><p>过了一会儿，回来给孩子做好睡前工作，妈妈推门进来半个身子，看见欣欣一笑，欣欣还以微笑，然后关门之前来了句</p><p>“欣欣，叫奶奶”</p><p>得，嫉妒的还不是一人。</p><p>过了一会儿，出门坐会儿，听见爸爸在沙发算着，今天叫爸爸，明天叫妈妈，后天叫奶奶，然后叫爷爷。</p><p>………</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近几天欣欣又不好好睡觉了，每天晚上都是一个小时一醒，昨天晚上忘了几点，哭醒以后赶紧抱起来走走，迷迷糊糊的把她放下，突然听见一声&lt;/p&gt;
-&lt;p&gt;“爸爸”&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="宝贝" scheme="http://wxnacy.com/tags/%E5%AE%9D%E8%B4%9D/"/>
     
   </entry>
   

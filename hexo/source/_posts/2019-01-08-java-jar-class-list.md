@@ -1,7 +1,10 @@
 ---
 title: 重新学 Java 系列：获取 jar 包中类名列表
-tags: [java]
+tags:
+  - java
+date: 2019-01-08 14:55:53
 ---
+
 
 最近想要自己写一下 Vim 中 Java 代码的自动补全，涉及到 `import` 部分的自动导入，记录下关键步骤。
 <!-- more --><!-- toc -->
