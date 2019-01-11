@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-01-10T02:24:40.319Z</updated>
+  <updated>2019-01-11T10:18:45.513Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>重新学 Java 系列：Maven 下载的 jar 包去哪了</title>
+    <link href="http://wxnacy.com/2019/01/11/java-renew-maven-where-jar/"/>
+    <id>http://wxnacy.com/2019/01/11/java-renew-maven-where-jar/</id>
+    <published>2019-01-11T10:18:45.000Z</published>
+    <updated>2019-01-11T10:18:45.513Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>这个是一个系列阅读，关于为什么重新学习，我在文章 <a href="/2018/12/29/java-renew-why/">重新学 Java 系列：新系列、新开始</a>(<a href="https://wxnacy.com/2018/12/29/java-renew-why/">https://wxnacy.com/2018/12/29/java-renew-why/</a>) 中有提到，这个系列是在有 Java 基础的情况下，重新学习讨论一下以前可能忽略掉，或者没理解的知识细节，我想要永远在学习的路上。</p></blockquote><a id="more"></a><div class="toc"><br><br><!-- toc --><ul><li><a href="#ben-di-cang-ku">本地仓库</a></li><li><a href="#an-zhuang-ben-di-xiang-mu-dao-cang-ku">安装本地项目到仓库</a></li></ul><!-- tocstop --><p></div></p><h2><span id="ben-di-cang-ku">本地仓库</span><a href="#ben-di-cang-ku" class="header-anchor"></a></h2><p>在 Maven 项目中，<code>pom.xml</code> 文件中的 <code>dependencies</code> 节点为项目需要的数据包，那编<br>译运行时 jar 包都下载到哪里呢？</p><p>Maven 有本地的仓库，地址默认为 <code>~/.m2/repository</code></p><p>进入目录会发现，本地所以项目的依赖包都以包名加版本号的形式存放在里边，例如</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> ~/.m2/repository/org/jdom/jdom/1.1</div><div class="line">$ tree</div><div class="line">.</div><div class="line">├── _remote.repositories</div><div class="line">├── jdom-1.1.jar</div><div class="line">├── jdom-1.1.jar.sha1</div><div class="line">├── jdom-1.1.pom</div><div class="line">└── jdom-1.1.pom.sha1</div><div class="line"></div><div class="line">0 directories, 5 files</div></pre></td></tr></table></figure><p>本地仓库的位置可以通过配置文件修改</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vim /usr/<span class="built_in">local</span>/Cellar/maven/3.6.0/libexec/conf/settings.xml</div></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;localRepository&gt;/path/to/<span class="built_in">local</span>/repo&lt;/localRepository&gt;</div></pre></td></tr></table></figure><h2><span id="an-zhuang-ben-di-xiang-mu-dao-cang-ku">安装本地项目到仓库</span><a href="#an-zhuang-ben-di-xiang-mu-dao-cang-ku" class="header-anchor"></a></h2><p>假如我们写完一个项目，希望它可以像其他 jar 包一样，可以在其他项目中使用，首先我们可以先安装到本地仓库。</p><p>根目录下执行安装命令即可</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mvn install</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;这个是一个系列阅读，关于为什么重新学习，我在文章 &lt;a href=&quot;/2018/12/29/java-renew-why/&quot;&gt;重新学 Java 系列：新系列、新开始&lt;/a&gt;(&lt;a href=&quot;https://wxnacy.com/2018/12/29/java-renew-why/&quot;&gt;https://wxnacy.com/2018/12/29/java-renew-why/&lt;/a&gt;) 中有提到，这个系列是在有 Java 基础的情况下，重新学习讨论一下以前可能忽略掉，或者没理解的知识细节，我想要永远在学习的路上。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://wxnacy.com/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>重新学 Java 系列：Maven 快速入门</title>
@@ -403,26 +425,6 @@
     
     
       <category term="redis" scheme="http://wxnacy.com/tags/redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何给 Hexo 博客添加 RSS 订阅功能</title>
-    <link href="http://wxnacy.com/2018/12/12/hexo-add-rss/"/>
-    <id>http://wxnacy.com/2018/12/12/hexo-add-rss/</id>
-    <published>2018-12-12T10:09:28.000Z</published>
-    <updated>2018-12-12T10:09:28.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>写这个博客有一年多了，一直都没有增加像样的订阅功能，因为觉得暂时还不会有人想专门看我的博客，也就把更多的精力放在写博客本身上了。<br><a id="more"></a><div class="toc"></p><!-- toc --><!-- tocstop --><p></div><br>最近收到一位网友的邮件，说希望我可以增加 RSS 订阅功能，这才想到可能有人，已经开始想更多的了解我的内容了。</p><p>那我一定是要加一下这个功能的，这样订阅功能也就加的更有目的性，更有意义了。</p><p>本篇就介绍下用 Hexo 构建的博客，如何添加 RSS 订阅功能。</p><p>首先添加功能插件，在 hexo 项目根目录下执行该命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yarn add hexo-generator-feed</div></pre></td></tr></table></figure><p>然后在 hexo 根目录下的 <code>_config.yml</code> 文件中添加配置</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">feed:</div><div class="line">    <span class="built_in">type</span>: atom</div><div class="line">    path: atom.xml</div><div class="line">    <span class="built_in">limit</span>: 20</div></pre></td></tr></table></figure><p>配置含义：</p><ul><li><code>type</code>: RSS的类型(atom/rss2)</li><li><code>path</code>: 文件路径，默认是 atom.xml/rss2.xml</li><li><code>limit</code>: 展示文章的数量,使用 0 或则 false 代表展示全部</li><li><code>hub</code>: URL of the PubSubHubbub hubs (如果使用不到可以为空)</li><li><code>content</code>: （可选）设置 <code>true</code> 可以在 RSS 文件中包含文章全部内容，默认：false</li><li><code>content_limit</code>: （可选）摘要中使用的帖子内容的默认长度。 仅在内容设置为false且未显示自定义帖子描述时才使用。</li><li><code>content_limit_delim</code>: （可选）If content_limit is used to shorten post contents, only cut at the last occurrence of this delimiter before reaching the character limit. Not used by default.</li><li><code>order_by</code>: 订阅内容的顺序. (默认: -date)<br>（后面几个选项一般用不到，有两个也没找到比较准确的翻译，所以感觉放上原文，如果你知道一定要告诉我）</li></ul><p>然后在 theme 目录下的 <code>_config.yml</code> 文件中添加配置</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rss: /atom.xml</div></pre></td></tr></table></figure><p>随后重新生成博客静态文件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo clean &amp;&amp; hexo g</div></pre></td></tr></table></figure><p>在 <code>public</code> 文件夹中就会生成 <code>atom.xml</code> 文件，部署后直接在根目录中访问该文件即可</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://wxnacy.com/atom.xml</div></pre></td></tr></table></figure><p>我使用的是 yilia 皮肤，在 <code>_config.yml</code> 中添加配置</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">subnav:</div><div class="line">    rss: <span class="string">"atom.xml"</span></div></pre></td></tr></table></figure><p>即可在导航栏生成 RSS 图标</p><p><img src="/images/rss.png" alt="rss"></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;写这个博客有一年多了，一直都没有增加像样的订阅功能，因为觉得暂时还不会有人想专门看我的博客，也就把更多的精力放在写博客本身上了。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="hexo" scheme="http://wxnacy.com/tags/hexo/"/>
     
   </entry>
   
