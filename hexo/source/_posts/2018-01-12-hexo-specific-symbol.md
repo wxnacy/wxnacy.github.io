@@ -41,6 +41,7 @@ $ &#36; — 美元标志 Dollar sign
 + &#43; — 加号 Plus sign
 < &#60; &lt; 小于号 Less than
 = &#61; — 等于符号 Equals sign
+- &#45; &minus; — 减号
 > &#62; &gt; 大于号 Greater than
 ? &#63; — 问号 Question mark
 @ &#64; — Commercial at
