@@ -5,6 +5,7 @@ tags: [docker]
 ---
 
 简单介绍下 CentOS 环境下安装 Docker。
+
 <!-- more --><!-- toc -->
 
 **准备工作**

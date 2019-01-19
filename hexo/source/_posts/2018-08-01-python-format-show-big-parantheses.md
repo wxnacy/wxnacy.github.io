@@ -5,6 +5,7 @@ tags: [python]
 ---
 
 Python format 语句如何对大括号（{}）进行转义。
+
 <!-- more --><!-- toc -->
 我想要达到一个效果，将
 

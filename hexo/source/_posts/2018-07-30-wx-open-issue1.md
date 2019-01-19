@@ -5,6 +5,7 @@ tags: [微信]
 ---
 
 在微信第三方平台[授权](https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=open1453779503&token=&lang=zh_CN)的时候碰见一个错误。
+
 <!-- more --><!-- toc -->
 ![/image/wxsq1.png](/images/wxsq1.png)
 

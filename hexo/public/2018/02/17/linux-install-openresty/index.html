@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Linux 安装 openresty | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="Linux 系统在安装 openresty 时，无法直接用 yum, apt 等安装包工具，需要手动添加 openresty 的仓库。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-03-31T13:23:44.000Z">
+<meta property="og:updated_time" content="2019-01-19T05:30:00.642Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux 安装 openresty">
 <meta name="twitter:description" content="Linux 系统在安装 openresty 时，无法直接用 yum, apt 等安装包工具，需要手动添加 openresty 的仓库。">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-linux-install-openresty" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-linux-install-openresty" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -197,8 +197,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Linux 系统在安装 openresty 时，无法直接用 <code>yum, apt</code> 等安装包工具，需要手动添加 openresty 的仓库。<br><a id="more"></a><div class="toc"></p>
-<!-- toc -->
+        <p>Linux 系统在安装 openresty 时，无法直接用 <code>yum, apt</code> 等安装包工具，需要手动添加 openresty 的仓库。</p>
+<a id="more"></a><div class="toc"><br><br><!-- toc -->
 <ul>
 <li><a href="#ubuntu">Ubuntu</a><ul>
 <li><a href="#an-zhuang">安装</a></li>
@@ -213,19 +213,19 @@
 <li><a href="#shou-dong-bian-yi">手动编译</a></li>
 </ul>
 <!-- tocstop -->
-<p></div></p>
-<h2><span id="ubuntu">Ubuntu</span><a href="#ubuntu" class="header-anchor"></a></h2><h3><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 导入我们的 GPG 密钥：</span></div><div class="line">wget -qO - https://openresty.org/package/pubkey.gpg | sudo apt-key add -</div><div class="line"></div><div class="line"><span class="comment"># 安装 add-apt-repository 命令</span></div><div class="line"><span class="comment"># （之后你可以删除这个包以及对应的关联包）</span></div><div class="line">sudo apt-get -y install software-properties-common</div><div class="line"></div><div class="line"><span class="comment"># 添加我们官方 official APT 仓库：</span></div><div class="line">sudo add-apt-repository -y <span class="string">"deb http://openresty.org/package/ubuntu <span class="variable">$(lsb_release -sc)</span> main"</span></div><div class="line"></div><div class="line"><span class="comment"># 更新 APT 索引：</span></div><div class="line">sudo apt-get update</div><div class="line"><span class="comment"># 然后就可以像下面这样安装软件包，比如 openresty：</span></div><div class="line">sudo apt-get install openresty</div></pre></td></tr></table></figure>
-<h3><span id="zi-qi-dong">自启动</span><a href="#zi-qi-dong" class="header-anchor"></a></h3><p>修改 <code>/etc/rc.local</code> 文件，在 <code>exit 0</code> 之前加入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/bin/supervisord</div></pre></td></tr></table></figure></p>
-<p>保存退出，并修改权限<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x /etc/rc.local</div></pre></td></tr></table></figure></p>
-<h2><span id="centos">CentOS</span><a href="#centos" class="header-anchor"></a></h2><h3><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 添加仓库</span></div><div class="line">sudo yum install yum-utils</div><div class="line">sudo yum-config-manager --add-repo https://openresty.org/package/centos/openresty.repo</div><div class="line"></div><div class="line"><span class="comment"># 然后就可以像下面这样安装软件包，比如 openresty：</span></div><div class="line">sudo yum install openresty</div></pre></td></tr></table></figure>
-<h3><span id="zi-qi-dong">自启动</span><a href="#zi-qi-dong" class="header-anchor"></a></h3><p>适用 CentOS &gt;= 7 的版本<br>新建 <code>/usr/lib/systemd/system/openresty.service</code> 文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">[Unit]</div><div class="line">Description=openresty daemon</div><div class="line"></div><div class="line">[Service]</div><div class="line">Type=forking</div><div class="line">PIDFile=/usr/<span class="built_in">local</span>/openresty/nginx/logs/nginx.pid</div><div class="line">ExecStartPre=/usr/<span class="built_in">local</span>/openresty/nginx/sbin/nginx -t</div><div class="line">ExecStart=/usr/<span class="built_in">local</span>/openresty/nginx/sbin/nginx</div><div class="line">ExecReload=/bin/<span class="built_in">kill</span> -s HUP <span class="variable">$MAINPID</span></div><div class="line">ExecStop=/bin/<span class="built_in">kill</span> -s QUIT <span class="variable">$MAINPID</span></div><div class="line">PrivateTmp=<span class="literal">true</span></div><div class="line"></div><div class="line">[Install]</div><div class="line">WantedBy=multi-user.target</div></pre></td></tr></table></figure></p>
-<p>开启自启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl <span class="built_in">enable</span> openresty</div></pre></td></tr></table></figure></p>
-<p>查看启动状态<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl status openresty</div></pre></td></tr></table></figure></p>
+<p></p></div><p></p>
+<h2><span id="ubuntu">Ubuntu</span><a href="#ubuntu" class="header-anchor"></a></h2><h3><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入我们的 GPG 密钥：</span></span><br><span class="line">wget -qO - https://openresty.org/package/pubkey.gpg | sudo apt-key add -</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 add-apt-repository 命令</span></span><br><span class="line"><span class="comment"># （之后你可以删除这个包以及对应的关联包）</span></span><br><span class="line">sudo apt-get -y install software-properties-common</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加我们官方 official APT 仓库：</span></span><br><span class="line">sudo add-apt-repository -y <span class="string">"deb http://openresty.org/package/ubuntu <span class="variable">$(lsb_release -sc)</span> main"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新 APT 索引：</span></span><br><span class="line">sudo apt-get update</span><br><span class="line"><span class="comment"># 然后就可以像下面这样安装软件包，比如 openresty：</span></span><br><span class="line">sudo apt-get install openresty</span><br></pre></td></tr></table></figure>
+<h3><span id="zi-qi-dong">自启动</span><a href="#zi-qi-dong" class="header-anchor"></a></h3><p>修改 <code>/etc/rc.local</code> 文件，在 <code>exit 0</code> 之前加入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/supervisord</span><br></pre></td></tr></table></figure></p>
+<p>保存退出，并修改权限<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x /etc/rc.local</span><br></pre></td></tr></table></figure></p>
+<h2><span id="centos">CentOS</span><a href="#centos" class="header-anchor"></a></h2><h3><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加仓库</span></span><br><span class="line">sudo yum install yum-utils</span><br><span class="line">sudo yum-config-manager --add-repo https://openresty.org/package/centos/openresty.repo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 然后就可以像下面这样安装软件包，比如 openresty：</span></span><br><span class="line">sudo yum install openresty</span><br></pre></td></tr></table></figure>
+<h3><span id="zi-qi-dong">自启动</span><a href="#zi-qi-dong" class="header-anchor"></a></h3><p>适用 CentOS &gt;= 7 的版本<br>新建 <code>/usr/lib/systemd/system/openresty.service</code> 文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=openresty daemon</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=forking</span><br><span class="line">PIDFile=/usr/<span class="built_in">local</span>/openresty/nginx/logs/nginx.pid</span><br><span class="line">ExecStartPre=/usr/<span class="built_in">local</span>/openresty/nginx/sbin/nginx -t</span><br><span class="line">ExecStart=/usr/<span class="built_in">local</span>/openresty/nginx/sbin/nginx</span><br><span class="line">ExecReload=/bin/<span class="built_in">kill</span> -s HUP <span class="variable">$MAINPID</span></span><br><span class="line">ExecStop=/bin/<span class="built_in">kill</span> -s QUIT <span class="variable">$MAINPID</span></span><br><span class="line">PrivateTmp=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure></p>
+<p>开启自启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> openresty</span><br></pre></td></tr></table></figure></p>
+<p>查看启动状态<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status openresty</span><br></pre></td></tr></table></figure></p>
 <h2><span id="shou-dong-bian-yi">手动编译</span><a href="#shou-dong-bian-yi" class="header-anchor"></a></h2><p>如果服务器重度依赖 Nginx 来做请求判断，那最好还是用编译的方式，<code>yum, apt</code> 安装的方式模块依赖非常有限，并不方便更改。</p>
-<p>安装依赖<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install pcre pcre-devel openssl openssl-devel</div></pre></td></tr></table></figure></p>
-<p>从 <a href="https://openresty.org/cn/download.html" target="_blank" rel="external">download</a> 页面找到最新版，或者你想要的版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">$ wget https://openresty.org/download/openresty-1.13.6.1.tar.gz</div><div class="line">$ tar -zxvf openresty-1.13.6.1.tar.gz</div><div class="line">$ <span class="built_in">cd</span> openresty-1.13.6.1</div><div class="line">$ ./configure --user=nginx --group=nginx \</div><div class="line">    --with-http_ssl_module \</div><div class="line">    --with-http_realip_module \</div><div class="line">    --with-http_addition_module \</div><div class="line">    --with-http_sub_module \</div><div class="line">    --with-http_dav_module \</div><div class="line">    --with-http_flv_module \</div><div class="line">    --with-http_mp4_module \</div><div class="line">    --with-http_gunzip_module \</div><div class="line">    --with-http_gzip_static_module \</div><div class="line">    --with-http_random_index_module \</div><div class="line">    --with-http_secure_link_module \</div><div class="line">    --with-http_stub_status_module \</div><div class="line">    --with-mail \</div><div class="line">    --with-mail_ssl_module \</div><div class="line">    --with-file-aio</div><div class="line"></div><div class="line">$ gmake &amp;&amp; gmake install</div></pre></td></tr></table></figure></p>
+<p>安装依赖<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install pcre pcre-devel openssl openssl-devel</span><br></pre></td></tr></table></figure></p>
+<p>从 <a href="https://openresty.org/cn/download.html" target="_blank" rel="noopener">download</a> 页面找到最新版，或者你想要的版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://openresty.org/download/openresty-1.13.6.1.tar.gz</span><br><span class="line">$ tar -zxvf openresty-1.13.6.1.tar.gz</span><br><span class="line">$ <span class="built_in">cd</span> openresty-1.13.6.1</span><br><span class="line">$ ./configure --user=nginx --group=nginx \</span><br><span class="line">    --with-http_ssl_module \</span><br><span class="line">    --with-http_realip_module \</span><br><span class="line">    --with-http_addition_module \</span><br><span class="line">    --with-http_sub_module \</span><br><span class="line">    --with-http_dav_module \</span><br><span class="line">    --with-http_flv_module \</span><br><span class="line">    --with-http_mp4_module \</span><br><span class="line">    --with-http_gunzip_module \</span><br><span class="line">    --with-http_gzip_static_module \</span><br><span class="line">    --with-http_random_index_module \</span><br><span class="line">    --with-http_secure_link_module \</span><br><span class="line">    --with-http_stub_status_module \</span><br><span class="line">    --with-mail \</span><br><span class="line">    --with-mail_ssl_module \</span><br><span class="line">    --with-file-aio</span><br><span class="line"></span><br><span class="line">$ gmake &amp;&amp; gmake install</span><br></pre></td></tr></table></figure></p>
 <ul>
-<li><a href="https://openresty.org/cn/linux-packages.html" target="_blank" rel="external">OpenResty® Linux 包</a></li>
+<li><a href="https://openresty.org/cn/linux-packages.html" target="_blank" rel="noopener">OpenResty® Linux 包</a></li>
 </ul>
 
       
@@ -524,6 +524,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -532,19 +536,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -556,7 +556,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -565,10 +565,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -589,6 +585,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -708,11 +708,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -724,7 +724,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

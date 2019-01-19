@@ -8,6 +8,7 @@ date: 2018-02-24 09:16:32
 
 
 在使用 Splinter 等 web 测试工具时，机器需要安装对应浏览器的 WebDriver 才能运行，在这总结下 Chrome Driver 在几种环境下的安装方式
+
 <!-- more --><!-- toc -->
 
 ## MacOS

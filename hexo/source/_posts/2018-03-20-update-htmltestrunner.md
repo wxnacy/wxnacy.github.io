@@ -7,6 +7,7 @@ date: 2018-03-20 18:46:14
 
 
 原版的 [HTMLTestRunner](http://tungwaiyip.info/software/HTMLTestRunner.html) 只支持 python2 环境，为了使用我做了适配 python3 的改动，并记录在此
+
 <!-- more --><!-- toc -->
 ## No module named StringIO
 ```python

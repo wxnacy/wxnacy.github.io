@@ -9,6 +9,7 @@ date: 2018-06-19 12:34:16
 ***现以更新安装 Java 11 版本，传送门 [Ubuntu 如何安装 Java 11](/2018/12/26/ubuntu-install-jdk11/)***
 
 Ubuntu 安装 JDK 与 CentOS 很相似，但更简单。
+
 <!-- more --><!-- toc -->
 
 ## OpenJDK

@@ -9,6 +9,7 @@ tags: [vim]
 > [vim-repeat](https://github.com/tpope/vim-repeat) 重复一个插件的操作
 
 <!-- more -->
+
 <!-- toc -->
 ## 安装
 ### Pathogen

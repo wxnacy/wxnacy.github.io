@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>CentOS 安装 JDK | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="现以更新安装 Java 11 版本，传送门 CentOS 7 如何安装 Java 11 Java 最常用的安装方式是从官网下载 tar.gz 文件，解压后配置环境变量，这样的安装方式并不利于自动化，今天来看下通过 rpm 的安装方式。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-12-27T01:27:34.000Z">
+<meta property="og:updated_time" content="2019-01-19T05:30:00.625Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS 安装 JDK">
 <meta name="twitter:description" content="现以更新安装 Java 11 版本，传送门 CentOS 7 如何安装 Java 11 Java 最常用的安装方式是从官网下载 tar.gz 文件，解压后配置环境变量，这样的安装方式并不利于自动化，今天来看下通过 rpm 的安装方式。">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-centos-install-jdk" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-centos-install-jdk" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -198,8 +198,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><strong><em>现以更新安装 Java 11 版本，传送门 <a href="/2018/12/27/centos7-install-java11/">CentOS 7 如何安装 Java 11</a></em></strong></p>
-<p>Java 最常用的安装方式是从<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk10-downloads-4416644.html" target="_blank" rel="external">官网</a>下载 <code>tar.gz</code> 文件，解压后配置环境变量，这样的安装方式并不利于自动化，今天来看下通过 <code>rpm</code> 的安装方式。<br><a id="more"></a><div class="toc"></p>
-<!-- toc -->
+<p>Java 最常用的安装方式是从<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk10-downloads-4416644.html" target="_blank" rel="noopener">官网</a>下载 <code>tar.gz</code> 文件，解压后配置环境变量，这样的安装方式并不利于自动化，今天来看下通过 <code>rpm</code> 的安装方式。</p>
+<a id="more"></a><div class="toc"><br><br><!-- toc -->
 <ul>
 <li><a href="#openjdk">OpenJDK</a></li>
 <li><a href="#oracle">Oracle</a></li>
@@ -209,31 +209,31 @@
 </div>
 
 <h2><span id="openjdk">OpenJDK</span><a href="#openjdk" class="header-anchor"></a></h2><p>首先搜索可安装的 JDK</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo yum search jdk</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">java-1.6.0-openjdk.x86_64 : OpenJDK Runtime Environment</div><div class="line">java-1.6.0-openjdk-demo.x86_64 : OpenJDK Demos</div><div class="line">java-1.6.0-openjdk-devel.x86_64 : OpenJDK Development Environment</div><div class="line">java-1.6.0-openjdk-javadoc.x86_64 : OpenJDK API Documentation</div><div class="line">java-1.6.0-openjdk-src.x86_64 : OpenJDK Source Bundle</div><div class="line">java-1.7.0-openjdk.x86_64 : OpenJDK Runtime Environment</div><div class="line">java-1.7.0-openjdk-accessibility.x86_64 : OpenJDK accessibility connector</div><div class="line">java-1.7.0-openjdk-demo.x86_64 : OpenJDK Demos</div><div class="line">java-1.7.0-openjdk-devel.x86_64 : OpenJDK Development Environment</div><div class="line">java-1.7.0-openjdk-headless.x86_64 : The OpenJDK runtime environment without audio and video support</div><div class="line">java-1.7.0-openjdk-javadoc.noarch : OpenJDK API Documentation</div><div class="line">java-1.7.0-openjdk-src.x86_64 : OpenJDK Source Bundle</div><div class="line">java-1.8.0-openjdk.i686 : OpenJDK Runtime Environment</div><div class="line">java-1.8.0-openjdk.x86_64 : OpenJDK Runtime Environment</div><div class="line">java-1.8.0-openjdk-accessibility.i686 : OpenJDK accessibility connector</div><div class="line">java-1.8.0-openjdk-accessibility.x86_64 : OpenJDK accessibility connector</div><div class="line">java-1.8.0-openjdk-accessibility-debug.i686 : OpenJDK accessibility connector <span class="keyword">for</span> packages with debug on</div><div class="line">java-1.8.0-openjdk-accessibility-debug.x86_64 : OpenJDK accessibility connector <span class="keyword">for</span> packages with debug on</div><div class="line">java-1.8.0-openjdk-debug.i686 : OpenJDK Runtime Environment with full debug on</div><div class="line">java-1.8.0-openjdk-debug.x86_64 : OpenJDK Runtime Environment with full debug on</div><div class="line">java-1.8.0-openjdk-demo.i686 : OpenJDK Demos</div><div class="line">java-1.8.0-openjdk-demo.x86_64 : OpenJDK Demos</div><div class="line">java-1.8.0-openjdk-demo-debug.i686 : OpenJDK Demos with full debug on</div><div class="line">java-1.8.0-openjdk-demo-debug.x86_64 : OpenJDK Demos with full debug on</div><div class="line">java-1.8.0-openjdk-devel.i686 : OpenJDK Development Environment</div><div class="line">java-1.8.0-openjdk-devel.x86_64 : OpenJDK Development Environment</div><div class="line">java-1.8.0-openjdk-devel-debug.i686 : OpenJDK Development Environment with full debug on</div><div class="line">java-1.8.0-openjdk-devel-debug.x86_64 : OpenJDK Development Environment with full debug on</div><div class="line">java-1.8.0-openjdk-headless.i686 : OpenJDK Runtime Environment</div><div class="line">java-1.8.0-openjdk-headless.x86_64 : OpenJDK Runtime Environment</div><div class="line">java-1.8.0-openjdk-headless-debug.i686 : OpenJDK Runtime Environment with full debug on</div><div class="line">java-1.8.0-openjdk-headless-debug.x86_64 : OpenJDK Runtime Environment with full debug on</div><div class="line">java-1.8.0-openjdk-javadoc.noarch : OpenJDK API Documentation</div><div class="line">java-1.8.0-openjdk-javadoc-debug.noarch : OpenJDK API Documentation <span class="keyword">for</span> packages with debug on</div><div class="line">java-1.8.0-openjdk-javadoc-zip.noarch : OpenJDK API Documentation compressed <span class="keyword">in</span> single archive</div><div class="line">java-1.8.0-openjdk-javadoc-zip-debug.noarch : OpenJDK API Documentation compressed <span class="keyword">in</span> single archive <span class="keyword">for</span> packages with debug on</div><div class="line">java-1.8.0-openjdk-src.i686 : OpenJDK Source Bundle</div><div class="line">java-1.8.0-openjdk-src.x86_64 : OpenJDK Source Bundle</div><div class="line">java-1.8.0-openjdk-src-debug.i686 : OpenJDK Source Bundle <span class="keyword">for</span> packages with debug on</div><div class="line">java-1.8.0-openjdk-src-debug.x86_64 : OpenJDK Source Bundle <span class="keyword">for</span> packages with debug on</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum search jdk</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">java-1.6.0-openjdk.x86_64 : OpenJDK Runtime Environment</span><br><span class="line">java-1.6.0-openjdk-demo.x86_64 : OpenJDK Demos</span><br><span class="line">java-1.6.0-openjdk-devel.x86_64 : OpenJDK Development Environment</span><br><span class="line">java-1.6.0-openjdk-javadoc.x86_64 : OpenJDK API Documentation</span><br><span class="line">java-1.6.0-openjdk-src.x86_64 : OpenJDK Source Bundle</span><br><span class="line">java-1.7.0-openjdk.x86_64 : OpenJDK Runtime Environment</span><br><span class="line">java-1.7.0-openjdk-accessibility.x86_64 : OpenJDK accessibility connector</span><br><span class="line">java-1.7.0-openjdk-demo.x86_64 : OpenJDK Demos</span><br><span class="line">java-1.7.0-openjdk-devel.x86_64 : OpenJDK Development Environment</span><br><span class="line">java-1.7.0-openjdk-headless.x86_64 : The OpenJDK runtime environment without audio and video support</span><br><span class="line">java-1.7.0-openjdk-javadoc.noarch : OpenJDK API Documentation</span><br><span class="line">java-1.7.0-openjdk-src.x86_64 : OpenJDK Source Bundle</span><br><span class="line">java-1.8.0-openjdk.i686 : OpenJDK Runtime Environment</span><br><span class="line">java-1.8.0-openjdk.x86_64 : OpenJDK Runtime Environment</span><br><span class="line">java-1.8.0-openjdk-accessibility.i686 : OpenJDK accessibility connector</span><br><span class="line">java-1.8.0-openjdk-accessibility.x86_64 : OpenJDK accessibility connector</span><br><span class="line">java-1.8.0-openjdk-accessibility-debug.i686 : OpenJDK accessibility connector <span class="keyword">for</span> packages with debug on</span><br><span class="line">java-1.8.0-openjdk-accessibility-debug.x86_64 : OpenJDK accessibility connector <span class="keyword">for</span> packages with debug on</span><br><span class="line">java-1.8.0-openjdk-debug.i686 : OpenJDK Runtime Environment with full debug on</span><br><span class="line">java-1.8.0-openjdk-debug.x86_64 : OpenJDK Runtime Environment with full debug on</span><br><span class="line">java-1.8.0-openjdk-demo.i686 : OpenJDK Demos</span><br><span class="line">java-1.8.0-openjdk-demo.x86_64 : OpenJDK Demos</span><br><span class="line">java-1.8.0-openjdk-demo-debug.i686 : OpenJDK Demos with full debug on</span><br><span class="line">java-1.8.0-openjdk-demo-debug.x86_64 : OpenJDK Demos with full debug on</span><br><span class="line">java-1.8.0-openjdk-devel.i686 : OpenJDK Development Environment</span><br><span class="line">java-1.8.0-openjdk-devel.x86_64 : OpenJDK Development Environment</span><br><span class="line">java-1.8.0-openjdk-devel-debug.i686 : OpenJDK Development Environment with full debug on</span><br><span class="line">java-1.8.0-openjdk-devel-debug.x86_64 : OpenJDK Development Environment with full debug on</span><br><span class="line">java-1.8.0-openjdk-headless.i686 : OpenJDK Runtime Environment</span><br><span class="line">java-1.8.0-openjdk-headless.x86_64 : OpenJDK Runtime Environment</span><br><span class="line">java-1.8.0-openjdk-headless-debug.i686 : OpenJDK Runtime Environment with full debug on</span><br><span class="line">java-1.8.0-openjdk-headless-debug.x86_64 : OpenJDK Runtime Environment with full debug on</span><br><span class="line">java-1.8.0-openjdk-javadoc.noarch : OpenJDK API Documentation</span><br><span class="line">java-1.8.0-openjdk-javadoc-debug.noarch : OpenJDK API Documentation <span class="keyword">for</span> packages with debug on</span><br><span class="line">java-1.8.0-openjdk-javadoc-zip.noarch : OpenJDK API Documentation compressed <span class="keyword">in</span> single archive</span><br><span class="line">java-1.8.0-openjdk-javadoc-zip-debug.noarch : OpenJDK API Documentation compressed <span class="keyword">in</span> single archive <span class="keyword">for</span> packages with debug on</span><br><span class="line">java-1.8.0-openjdk-src.i686 : OpenJDK Source Bundle</span><br><span class="line">java-1.8.0-openjdk-src.x86_64 : OpenJDK Source Bundle</span><br><span class="line">java-1.8.0-openjdk-src-debug.i686 : OpenJDK Source Bundle <span class="keyword">for</span> packages with debug on</span><br><span class="line">java-1.8.0-openjdk-src-debug.x86_64 : OpenJDK Source Bundle <span class="keyword">for</span> packages with debug on</span><br></pre></td></tr></table></figure>
 <p>我们选取两个条目</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">java-1.8.0-openjdk.x86_64 : OpenJDK Runtime Environment</div><div class="line">java-1.8.0-openjdk-devel.x86_64 : OpenJDK Development Environment</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">java-1.8.0-openjdk.x86_64 : OpenJDK Runtime Environment</span><br><span class="line">java-1.8.0-openjdk-devel.x86_64 : OpenJDK Development Environment</span><br></pre></td></tr></table></figure>
 <p>他们分别是 JRE 和 JDK，根据你的需求安装即可，比如安装 JRE</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo yum install java-1.8.0-openjdk -y</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install java-1.8.0-openjdk -y</span><br></pre></td></tr></table></figure>
 <p>安装目录为</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.el7_5.x86_64</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.el7_5.x86_64</span><br></pre></td></tr></table></figure>
 <p>查看版本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ java -version</div><div class="line"></div><div class="line">openjdk version <span class="string">"1.8.0_171"</span></div><div class="line">OpenJDK Runtime Environment (build 1.8.0_171-b10)</div><div class="line">OpenJDK 64-Bit Server VM (build 25.171-b10, mixed mode)</div></pre></td></tr></table></figure>
-<h2><span id="oracle">Oracle</span><a href="#oracle" class="header-anchor"></a></h2><p>Oracle 的 JDK 安装要稍微麻烦点，首先获取<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk10-downloads-4416644.html" target="_blank" rel="external">官网</a>的 JDK RPM 地址</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://download.oracle.com/otn-pub/java/jdk/10.0.1+10/fb4372174a714e6b8c52526dc134031e/jdk-10.0.1_linux-x64_bin.rpm</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ java -version</span><br><span class="line"></span><br><span class="line">openjdk version <span class="string">"1.8.0_171"</span></span><br><span class="line">OpenJDK Runtime Environment (build 1.8.0_171-b10)</span><br><span class="line">OpenJDK 64-Bit Server VM (build 25.171-b10, mixed mode)</span><br></pre></td></tr></table></figure>
+<h2><span id="oracle">Oracle</span><a href="#oracle" class="header-anchor"></a></h2><p>Oracle 的 JDK 安装要稍微麻烦点，首先获取<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk10-downloads-4416644.html" target="_blank" rel="noopener">官网</a>的 JDK RPM 地址</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://download.oracle.com/otn-pub/java/jdk/10.0.1+10/fb4372174a714e6b8c52526dc134031e/jdk-10.0.1_linux-x64_bin.rpm</span><br></pre></td></tr></table></figure>
 <p>下载到服务器</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget --no-cookies --no-check-certificate --header <span class="string">"Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie"</span> http://download.oracle.com/otn-pub/java/jdk/10.0.1+10/fb4372174a714e6b8c52526dc134031e/jdk-10.0.1_linux-x64_bin.rpm</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget --no-cookies --no-check-certificate --header <span class="string">"Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie"</span> http://download.oracle.com/otn-pub/java/jdk/10.0.1+10/fb4372174a714e6b8c52526dc134031e/jdk-10.0.1_linux-x64_bin.rpm</span><br></pre></td></tr></table></figure>
 <p>安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo yum -y localinstall jdk-10.0.1_linux-x64_bin.rpm</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum -y localinstall jdk-10.0.1_linux-x64_bin.rpm</span><br></pre></td></tr></table></figure>
 <p>安装目录为</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/java/jdk-10.0.1</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/java/jdk-10.0.1</span><br></pre></td></tr></table></figure>
 <p>查看版本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ java -version</div><div class="line"></div><div class="line">java version <span class="string">"10.0.1"</span> 2018-04-17</div><div class="line">Java(TM) SE Runtime Environment 18.3 (build 10.0.1+10)</div><div class="line">Java HotSpot(TM) 64-Bit Server VM 18.3 (build 10.0.1+10, mixed mode)</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ java -version</span><br><span class="line"></span><br><span class="line">java version <span class="string">"10.0.1"</span> 2018-04-17</span><br><span class="line">Java(TM) SE Runtime Environment 18.3 (build 10.0.1+10)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM 18.3 (build 10.0.1+10, mixed mode)</span><br></pre></td></tr></table></figure>
 <h2><span id="xuan-ze-ban-ben">选择版本</span><a href="#xuan-ze-ban-ben" class="header-anchor"></a></h2><p>查看所有本机 JDK 版本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ sudo alternatives --config java</div><div class="line"></div><div class="line">There are 2 programs <span class="built_in">which</span> provide <span class="string">'java'</span>.</div><div class="line"></div><div class="line">  Selection    Command</div><div class="line">-----------------------------------------------</div><div class="line">*+ 1           /usr/java/jdk-10.0.1/bin/java</div><div class="line">   2           java-1.8.0-openjdk.x86_64 (/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.el7_5.x86_64/jre/bin/java)</div><div class="line"></div><div class="line">Enter to keep the current selection[+], or <span class="built_in">type</span> selection number:</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ sudo alternatives --config java</span><br><span class="line"></span><br><span class="line">There are 2 programs <span class="built_in">which</span> provide <span class="string">'java'</span>.</span><br><span class="line"></span><br><span class="line">  Selection    Command</span><br><span class="line">-----------------------------------------------</span><br><span class="line">*+ 1           /usr/java/jdk-10.0.1/bin/java</span><br><span class="line">   2           java-1.8.0-openjdk.x86_64 (/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.171-8.b10.el7_5.x86_64/jre/bin/java)</span><br><span class="line"></span><br><span class="line">Enter to keep the current selection[+], or <span class="built_in">type</span> selection number:</span><br></pre></td></tr></table></figure>
 <p><code>*+</code> 代表当前使用的版本，该命令下输入版本对应的数字即可更改版本</p>
 <ul>
-<li><a href="https://www.digitalocean.com/community/tutorials/how-to-install-java-on-centos-and-fedora#set-default-java" target="_blank" rel="external">How To Install Java on CentOS and Fedora</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-install-java-on-centos-and-fedora#set-default-java" target="_blank" rel="noopener">How To Install Java on CentOS and Fedora</a></li>
 </ul>
 
       
@@ -536,6 +536,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -544,19 +548,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -568,7 +568,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -577,10 +577,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -601,6 +597,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -720,11 +720,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -736,7 +736,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

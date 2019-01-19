@@ -5,6 +5,7 @@ tags: [python]
 ---
 
 在 Python 中推荐使用 `isinstance()` 函数来判断两个对象类型是否相同
+
 <!-- more --><!-- toc -->
 ## 用法
 ```python

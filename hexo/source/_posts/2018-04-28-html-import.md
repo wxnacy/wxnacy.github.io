@@ -5,6 +5,7 @@ tags: [html, javascript]
 ---
 
 在写静态页面的时候动态加载模块一直是个问题，以前只能用 `iframe, ajax` 等动态加载，这样整体的加载效果很差，最近才发现 HTML 中可以使用 `import` 导入。
+
 <!-- more --><!-- toc -->
 ## 使用
 

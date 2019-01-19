@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Javascript 给 Fetch 加上 Timeout | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="使用 setTimeout() 函数给 Fetch Api 加上 timeout 效果">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-02-16T11:34:53.000Z">
+<meta property="og:updated_time" content="2019-01-19T04:29:42.710Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Javascript 给 Fetch 加上 Timeout">
 <meta name="twitter:description" content="使用 setTimeout() 函数给 Fetch Api 加上 timeout 效果">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-fetch-timeout" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-fetch-timeout" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -197,11 +197,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>使用 <code>setTimeout()</code> 函数给 Fetch Api 加上 timeout 效果<br><a id="more"></a><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> fetchRequest = <span class="function">(<span class="params">url, params=&#123;&#125;, timeout=<span class="number">10000</span></span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">let</span> isTimeout = <span class="literal">false</span>;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</div><div class="line">        <span class="keyword">const</span> TO = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            isTimeout = <span class="literal">true</span>;</div><div class="line">            reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Fetch timeout'</span>));</div><div class="line">        &#125;, timeout);</div><div class="line"></div><div class="line">        fetch(url, params)</div><div class="line">            .then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</div><div class="line">                clearTimeout(TO)</div><div class="line">                <span class="keyword">if</span>(!isTimeout) &#123;</div><div class="line">                    resolve(res)</div><div class="line">                &#125;</div><div class="line">            &#125;).catch(<span class="function"><span class="params">e</span> =&gt;</span> &#123;</div><div class="line">                <span class="keyword">if</span>( isTimeout )&#123;</div><div class="line">                    <span class="keyword">return</span></div><div class="line">                &#125;</div><div class="line">                reject(e)</div><div class="line">            &#125;)</div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">fetchRequest(<span class="string">'https://ipapi.co/json'</span>, <span class="literal">null</span>).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(res);</div><div class="line">&#125;)</div><div class="line">fetchRequest(<span class="string">'http://localhost:8010/test'</span>, <span class="literal">null</span>, <span class="number">1000</span>).catch(<span class="function"><span class="params">e</span> =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(e)</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<p>原理很简单，首先在 <code>fetch()</code> 函数外包一层 <code>Promise</code>，然后关键点在于 <code>setTimeout()</code><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> TO = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    isTimeout = <span class="literal">true</span>;</div><div class="line">    reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Fetch timeout'</span>));</div><div class="line">&#125;, timeout);</div></pre></td></tr></table></figure></p>
+        <p>使用 <code>setTimeout()</code> 函数给 Fetch Api 加上 timeout 效果<br><a id="more"></a><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fetchRequest = <span class="function">(<span class="params">url, params=&#123;&#125;, timeout=<span class="number">10000</span></span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> isTimeout = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> TO = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            isTimeout = <span class="literal">true</span>;</span><br><span class="line">            reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Fetch timeout'</span>));</span><br><span class="line">        &#125;, timeout);</span><br><span class="line"></span><br><span class="line">        fetch(url, params)</span><br><span class="line">            .then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">                clearTimeout(TO)</span><br><span class="line">                <span class="keyword">if</span>(!isTimeout) &#123;</span><br><span class="line">                    resolve(res)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;).catch(<span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>( isTimeout )&#123;</span><br><span class="line">                    <span class="keyword">return</span></span><br><span class="line">                &#125;</span><br><span class="line">                reject(e)</span><br><span class="line">            &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fetchRequest(<span class="string">'https://ipapi.co/json'</span>, <span class="literal">null</span>).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res);</span><br><span class="line">&#125;)</span><br><span class="line">fetchRequest(<span class="string">'http://localhost:8010/test'</span>, <span class="literal">null</span>, <span class="number">1000</span>).catch(<span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>原理很简单，首先在 <code>fetch()</code> 函数外包一层 <code>Promise</code>，然后关键点在于 <code>setTimeout()</code><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> TO = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    isTimeout = <span class="literal">true</span>;</span><br><span class="line">    reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Fetch timeout'</span>));</span><br><span class="line">&#125;, timeout);</span><br></pre></td></tr></table></figure></p>
 <p>在执行 <code>setTimeout()</code> 中的函数时，抛出异常，强行中断 <code>fetch</code> 动作，也就达到了 timeout 的效果，另外在 <code>Promise</code> 外面在封装一层，使方法调用起来更加方便。</p>
 <ul>
-<li><a href="https://davidwalsh.name/fetch-timeout" target="_blank" rel="external">JavaScript fetch with Timeout</a></li>
+<li><a href="https://davidwalsh.name/fetch-timeout" target="_blank" rel="noopener">JavaScript fetch with Timeout</a></li>
 </ul>
 
       
@@ -500,6 +500,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -508,19 +512,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -532,7 +532,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -541,10 +541,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -565,6 +561,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -684,11 +684,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -700,7 +700,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

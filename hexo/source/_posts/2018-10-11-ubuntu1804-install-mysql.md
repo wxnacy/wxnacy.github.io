@@ -5,6 +5,7 @@ tags: [linux, mysql]
 ---
 
 本章介绍在 `Ubuntu 18.04` 版本中安装 Mysql
+
 <!-- more --><!-- toc -->
 
 **安装**

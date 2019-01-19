@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Git 解决 refusing to merge unrelated histories 错误 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="在昨天写 Maven 构建项目文章的时候，因为要把 demo 放到 GitHub 上，结果在 pull 代码的时候报错">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-01-09T01:03:54.000Z">
+<meta property="og:updated_time" content="2019-01-19T04:29:42.698Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git 解决 refusing to merge unrelated histories 错误">
 <meta name="twitter:description" content="在昨天写 Maven 构建项目文章的时候，因为要把 demo 放到 GitHub 上，结果在 pull 代码的时候报错">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-fix-refusing-to-merge-unrelated-histories" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-fix-refusing-to-merge-unrelated-histories" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -197,16 +197,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在昨天写 Maven 构建项目文章的时候，因为要把 demo 放到 GitHub 上，结果在 <code>pull</code> 代码的时候报错<br><a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fatal: refusing to merge unrelated histories</div></pre></td></tr></table></figure></p>
+        <p>在昨天写 Maven 构建项目文章的时候，因为要把 demo 放到 GitHub 上，结果在 <code>pull</code> 代码的时候报错<br><a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fatal: refusing to merge unrelated histories</span><br></pre></td></tr></table></figure></p>
 <p>这个问题以前也碰到过，但因为懒，我通过一些讨巧的办法避开了这个问题，今天实在受不了了，赶紧 Google 了下，发现还是<strong>正面面对问题</strong>更简单。</p>
 <blockquote>
 <p>“git merge” used to allow merging two branches that have no common base by default, which led to a brand new history of an existing project created and then get pulled by an unsuspecting maintainer, which allowed an unnecessary parallel history merged into the existing project.  The command has been taught not to allow this by default, with an escape hatch “–allow-unrelated-histories” option to be used in a rare event that merges histories of two projects that started their lives independently.</p>
 </blockquote>
-<p>在 Git 2.9.0 以后两个仓库的代码合并需要添加一个参数 <code>--allow-unrelated-histories</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git pull origin master --allow-unrelated-histories</div></pre></td></tr></table></figure></p>
+<p>在 Git 2.9.0 以后两个仓库的代码合并需要添加一个参数 <code>--allow-unrelated-histories</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git pull origin master --allow-unrelated-histories</span><br></pre></td></tr></table></figure></p>
 <p>完美解决</p>
 <h2><span id="can-kao">参考</span><a href="#can-kao" class="header-anchor"></a></h2><ul>
-<li><a href="https://github.com/git/git/blob/master/Documentation/RelNotes/2.9.0.txt#L58-L68" target="_blank" rel="external">Git 2.9 Release Notes</a></li>
-<li><a href="https://stackoverflow.com/questions/37937984/git-refusing-to-merge-unrelated-histories" target="_blank" rel="external">Git refusing to merge unrelated histories</a></li>
+<li><a href="https://github.com/git/git/blob/master/Documentation/RelNotes/2.9.0.txt#L58-L68" target="_blank" rel="noopener">Git 2.9 Release Notes</a></li>
+<li><a href="https://stackoverflow.com/questions/37937984/git-refusing-to-merge-unrelated-histories" target="_blank" rel="noopener">Git refusing to merge unrelated histories</a></li>
 </ul>
 
       
@@ -505,6 +505,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -513,19 +517,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -537,7 +537,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -546,10 +546,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -570,6 +566,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -689,11 +689,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -705,7 +705,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

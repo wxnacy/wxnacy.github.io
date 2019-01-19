@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>HTTP Accept-Ranges 头信息的作用 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="最近想写一个断点下载视频的小工具，发现头信息 Accept-Ranges 在里面发挥了非常大的作用。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-09-05T09:17:54.000Z">
+<meta property="og:updated_time" content="2019-01-19T05:30:00.572Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTP Accept-Ranges 头信息的作用">
 <meta name="twitter:description" content="最近想写一个断点下载视频的小工具，发现头信息 Accept-Ranges 在里面发挥了非常大的作用。">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-http-accept-ranges" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-http-accept-ranges" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -197,24 +197,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近想写一个断点下载视频的小工具，发现头信息 <code>Accept-Ranges</code> 在里面发挥了非常大的作用。<br><a id="more"></a><div class="toc"></p>
-<!-- toc -->
+        <p>最近想写一个断点下载视频的小工具，发现头信息 <code>Accept-Ranges</code> 在里面发挥了非常大的作用。</p>
+<a id="more"></a><div class="toc"><br><br><!-- toc -->
 <!-- tocstop -->
 </div>
 
 <p>比如请求百度官网</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$ curl https://www.baiud.com -I</div><div class="line"></div><div class="line">HTTP/1.1 200 OK</div><div class="line">Accept-Ranges: bytes</div><div class="line">Cache-Control: private, no-cache, no-store, proxy-revalidate, no-transform</div><div class="line">Connection: Keep-Alive</div><div class="line">Content-Length: 277</div><div class="line">Content-Type: text/html</div><div class="line">Date: Tue, 04 Sep 2018 09:41:52 GMT</div><div class="line">Etag: <span class="string">"575e1f60-115"</span></div><div class="line">Last-Modified: Mon, 13 Jun 2016 02:50:08 GMT</div><div class="line">Pragma: no-cache</div><div class="line">Server: bfe/1.0.8.18</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ curl https://www.baiud.com -I</span><br><span class="line"></span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Accept-Ranges: bytes</span><br><span class="line">Cache-Control: private, no-cache, no-store, proxy-revalidate, no-transform</span><br><span class="line">Connection: Keep-Alive</span><br><span class="line">Content-Length: 277</span><br><span class="line">Content-Type: text/html</span><br><span class="line">Date: Tue, 04 Sep 2018 09:41:52 GMT</span><br><span class="line">Etag: <span class="string">"575e1f60-115"</span></span><br><span class="line">Last-Modified: Mon, 13 Jun 2016 02:50:08 GMT</span><br><span class="line">Pragma: no-cache</span><br><span class="line">Server: bfe/1.0.8.18</span><br></pre></td></tr></table></figure>
 <p>其中 <code>Accept-Ranges</code> 返回值为 <code>bytes</code>，这代表了该服务器可以接受范围请求，这样我们就可以做断点下载的功能了。如果该值为 <code>none</code>，则代表不允许范围请求。</p>
 <p>我们可以通过请求头 <code>Range</code> 来定义获取的字节范围，格式为 <code>bytes=0-8</code></p>
 <p><strong>使用 curl 来请求</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ curl https://www.baidu.com --header <span class="string">"Range: bytes=0-8"</span></div><div class="line"></div><div class="line">&lt;!DOCTYPE%</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ curl https://www.baidu.com --header <span class="string">"Range: bytes=0-8"</span></span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE%</span><br></pre></td></tr></table></figure>
 <p>看到请求回来的数据只有 9 个字节</p>
 <p>我们也可以使用更简单的方式请求</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ curl https://www.baidu.com -r 0-8</div><div class="line"></div><div class="line">&lt;!DOCTYPE%</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ curl https://www.baidu.com -r 0-8</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE%</span><br></pre></td></tr></table></figure>
 <p>利用这个特性，再加上多线程运行，即可写出下载更快的工具。</p>
 <ul>
-<li><a href="http://www.cnblogs.com/ziyunfei/archive/2012/11/18/2775499.html" target="_blank" rel="external">译-实践HTTP206状态:部分内容和范围请求</a></li>
-<li><a href="https://cloud.tencent.com/developer/section/1189892" target="_blank" rel="external">Accept-Ranges</a></li>
+<li><a href="http://www.cnblogs.com/ziyunfei/archive/2012/11/18/2775499.html" target="_blank" rel="noopener">译-实践HTTP206状态:部分内容和范围请求</a></li>
+<li><a href="https://cloud.tencent.com/developer/section/1189892" target="_blank" rel="noopener">Accept-Ranges</a></li>
 </ul>
 
       
@@ -513,6 +513,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -521,19 +525,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -545,7 +545,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -554,10 +554,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -578,6 +574,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -697,11 +697,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -713,7 +713,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

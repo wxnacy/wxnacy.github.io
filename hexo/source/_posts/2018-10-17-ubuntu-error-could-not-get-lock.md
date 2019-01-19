@@ -5,6 +5,7 @@ tags: [linux]
 ---
 
 在 Ubuntu 中使用 `apt` 下载软件时报了错误
+
 <!-- more --><!-- toc -->
 ```bash
 E: Could not get lock /var/lib/dpkg/lock - open (11 Resource temporarily unavailable)

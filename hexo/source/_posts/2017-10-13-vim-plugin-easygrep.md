@@ -11,6 +11,7 @@ tags: [vim]
 它基于 vimgrep 进行封装，让搜索变得更简单，EasyGrep 有快捷键和命令行两种使用方式
 
 <!-- more -->
+
 <!-- toc -->
 ## 预览
 ![/images/easygrep.gif](/images/easygrep.gif)

@@ -5,6 +5,7 @@ tags: [mysql]
 ---
 
 MySQL 字符串截取函数：left(), right(), substring(), substring_index()
+
 <!-- more --><!-- toc -->
 
 ## left()

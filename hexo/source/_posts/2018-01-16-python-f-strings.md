@@ -7,6 +7,7 @@ date: 2018-01-16 13:50:15
 
 
 差不多半个月前我介绍了 Python 最新的字符串格式化函数 [format()](/2018/01/03/python-format/)，今天来介绍下 3.6 版本增加的新功能 [formatted string literals](https://docs.python.org/3.6/reference/lexical_analysis.html#f-strings) ，简称 `f-strings`
+
 <!-- more --><!-- toc -->
 ## 使用
 这是一个让人兴奋的格式化字符串的方式，为什么这么说，先来看看效果

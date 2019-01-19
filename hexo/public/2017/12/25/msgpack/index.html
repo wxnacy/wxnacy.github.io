@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>MessagePack 实现序列化 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="MessagePack是一种高效的二进制序列化格式。它允许您像JSON一样在多个语言之间交换数据。但是，它更快并且更小。小整数被编码为一个字节,和典型的短字符串只需要除了字符串本身的一个额外字节。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-12-25T13:58:57.000Z">
+<meta property="og:updated_time" content="2019-01-19T04:06:41.985Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MessagePack 实现序列化">
 <meta name="twitter:description" content="MessagePack是一种高效的二进制序列化格式。它允许您像JSON一样在多个语言之间交换数据。但是，它更快并且更小。小整数被编码为一个字节,和典型的短字符串只需要除了字符串本身的一个额外字节。">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-msgpack" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-msgpack" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -207,15 +207,15 @@
 <li><a href="#json">JSON</a></li>
 </ul>
 <!-- tocstop -->
-<p></div><br>在使用 Python 做 Redis 开发时，发现 Python 自带的序列化都不太好用，对于复杂的数据结构的处理都不到位，经过领导推荐，开始使用 <a href="https://msgpack.org/" target="_blank" rel="external">MessagePack</a> 进行序列化编程。它是一个跨语言工具，支持十几种语言，在传输数据上号称比 JSON 更小更快。</p>
+<p></p></div><br>在使用 Python 做 Redis 开发时，发现 Python 自带的序列化都不太好用，对于复杂的数据结构的处理都不到位，经过领导推荐，开始使用 <a href="https://msgpack.org/" target="_blank" rel="noopener">MessagePack</a> 进行序列化编程。它是一个跨语言工具，支持十几种语言，在传输数据上号称比 JSON 更小更快。<p></p>
 <p>本文以 Python 为例简单介绍</p>
-<h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install msgpack-python</div></pre></td></tr></table></figure>
-<h2><span id="hello-world">Hello World</span><a href="#hello-world" class="header-anchor"></a></h2><p>MessagePack 的序列化方法很简单 <code>packb()</code> ，反序列 <code>unpackb()</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">1</span>]: <span class="keyword">import</span> msgpack</div><div class="line"></div><div class="line">In [<span class="number">2</span>]: msgpack.packb(<span class="string">'Hello World'</span>)                    <span class="comment"># 序列化</span></div><div class="line">Out[<span class="number">2</span>]: <span class="string">b'\xabHello World'</span></div><div class="line"></div><div class="line">In [<span class="number">3</span>]: msgpack.unpackb(msgpack.packb(<span class="string">'Hello World'</span>))   <span class="comment"># 反序列</span></div><div class="line">Out[<span class="number">3</span>]: <span class="string">b'Hello World'</span></div></pre></td></tr></table></figure></p>
-<p>反序列后输出结果依然是字节数组类型，这不是我们想要的，想要得到字符串类型，我们需要用到 <code>encoding</code> 参数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">4</span>]: msgpack.unpackb(msgpack.packb(<span class="string">'Hello World'</span>), encoding=<span class="string">'utf-8'</span>)</div><div class="line">Out[<span class="number">4</span>]: <span class="string">'Hello World'</span></div></pre></td></tr></table></figure></p>
-<h2><span id="json">JSON</span><a href="#json" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">In [<span class="number">10</span>]: msgpack.unpackb(msgpack.packb(&#123;<span class="string">"name"</span>: <span class="string">"wxnacy"</span>&#125;), encoding=<span class="string">'utf-8'</span>)</div><div class="line">Out[<span class="number">10</span>]: &#123;<span class="string">'name'</span>: <span class="string">'wxnacy'</span>&#125;</div></pre></td></tr></table></figure>
-<p>简单的 JSON 数据直接使用即可，但是如果 JSON 中的数据类型比较特殊，比如 <code>datetime</code> 就会有点麻烦<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> msgpack</div><div class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</div><div class="line"></div><div class="line">useful_dict = &#123;</div><div class="line">    <span class="string">"id"</span>: <span class="number">1</span>,</div><div class="line">    <span class="string">"created"</span>: datetime.now(),</div><div class="line">&#125;</div><div class="line">packed_dict = msgpack.packb(useful_dict)</div></pre></td></tr></table></figure></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">TypeError: can<span class="string">'t serialize datetime.datetime(2017, 12, 25, 21, 26, 48, 277551)</span></div></pre></td></tr></table></figure>
-<p>如上，直接进行序列化会报错，此时需要教给它怎么处理这种类型<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> msgpack</div><div class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</div><div class="line"></div><div class="line">useful_dict = &#123;</div><div class="line">    <span class="string">"id"</span>: <span class="number">1</span>,</div><div class="line">    <span class="string">"created"</span>: datetime.now(),</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">decode_datetime</span><span class="params">(obj)</span>:</span></div><div class="line">    <span class="keyword">if</span> <span class="string">'__datetime__'</span> <span class="keyword">in</span> obj:</div><div class="line">        obj = datetime.strptime(obj[<span class="string">"as_str"</span>], <span class="string">"%Y%m%dT%H:%M:%S.%f"</span>)</div><div class="line">    <span class="keyword">return</span> obj</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">encode_datetime</span><span class="params">(obj)</span>:</span></div><div class="line">    <span class="keyword">if</span> isinstance(obj, datetime):</div><div class="line">        <span class="keyword">return</span> &#123;<span class="string">'__datetime__'</span>: <span class="keyword">True</span>, <span class="string">'as_str'</span>: obj.strftime(<span class="string">"%Y%m%dT%H:%M:%S.%f"</span>)&#125;</div><div class="line">    <span class="keyword">return</span> obj</div><div class="line"></div><div class="line">packed_dict = msgpack.packb(useful_dict, default=encode_datetime)</div><div class="line">this_dict_again = msgpack.unpackb(packed_dict, object_hook=decode_datetime,</div><div class="line">        encoding=<span class="string">'utf-8'</span>)</div></pre></td></tr></table></figure></p>
+<h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install msgpack-python</span><br></pre></td></tr></table></figure>
+<h2><span id="hello-world">Hello World</span><a href="#hello-world" class="header-anchor"></a></h2><p>MessagePack 的序列化方法很简单 <code>packb()</code> ，反序列 <code>unpackb()</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">1</span>]: <span class="keyword">import</span> msgpack</span><br><span class="line"></span><br><span class="line">In [<span class="number">2</span>]: msgpack.packb(<span class="string">'Hello World'</span>)                    <span class="comment"># 序列化</span></span><br><span class="line">Out[<span class="number">2</span>]: <span class="string">b'\xabHello World'</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">3</span>]: msgpack.unpackb(msgpack.packb(<span class="string">'Hello World'</span>))   <span class="comment"># 反序列</span></span><br><span class="line">Out[<span class="number">3</span>]: <span class="string">b'Hello World'</span></span><br></pre></td></tr></table></figure></p>
+<p>反序列后输出结果依然是字节数组类型，这不是我们想要的，想要得到字符串类型，我们需要用到 <code>encoding</code> 参数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">4</span>]: msgpack.unpackb(msgpack.packb(<span class="string">'Hello World'</span>), encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">Out[<span class="number">4</span>]: <span class="string">'Hello World'</span></span><br></pre></td></tr></table></figure></p>
+<h2><span id="json">JSON</span><a href="#json" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">10</span>]: msgpack.unpackb(msgpack.packb(&#123;<span class="string">"name"</span>: <span class="string">"wxnacy"</span>&#125;), encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">Out[<span class="number">10</span>]: &#123;<span class="string">'name'</span>: <span class="string">'wxnacy'</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>简单的 JSON 数据直接使用即可，但是如果 JSON 中的数据类型比较特殊，比如 <code>datetime</code> 就会有点麻烦<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> msgpack</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line">useful_dict = &#123;</span><br><span class="line">    <span class="string">"id"</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">"created"</span>: datetime.now(),</span><br><span class="line">&#125;</span><br><span class="line">packed_dict = msgpack.packb(useful_dict)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TypeError: can<span class="string">'t serialize datetime.datetime(2017, 12, 25, 21, 26, 48, 277551)</span></span><br></pre></td></tr></table></figure>
+<p>如上，直接进行序列化会报错，此时需要教给它怎么处理这种类型<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> msgpack</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line">useful_dict = &#123;</span><br><span class="line">    <span class="string">"id"</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">"created"</span>: datetime.now(),</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decode_datetime</span><span class="params">(obj)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="string">'__datetime__'</span> <span class="keyword">in</span> obj:</span><br><span class="line">        obj = datetime.strptime(obj[<span class="string">"as_str"</span>], <span class="string">"%Y%m%dT%H:%M:%S.%f"</span>)</span><br><span class="line">    <span class="keyword">return</span> obj</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encode_datetime</span><span class="params">(obj)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> isinstance(obj, datetime):</span><br><span class="line">        <span class="keyword">return</span> &#123;<span class="string">'__datetime__'</span>: <span class="keyword">True</span>, <span class="string">'as_str'</span>: obj.strftime(<span class="string">"%Y%m%dT%H:%M:%S.%f"</span>)&#125;</span><br><span class="line">    <span class="keyword">return</span> obj</span><br><span class="line"></span><br><span class="line">packed_dict = msgpack.packb(useful_dict, default=encode_datetime)</span><br><span class="line">this_dict_again = msgpack.unpackb(packed_dict, object_hook=decode_datetime,</span><br><span class="line">        encoding=<span class="string">'utf-8'</span>)</span><br></pre></td></tr></table></figure></p>
 <p>通过 <code>default</code> 和 <code>object_hook</code> 分别制定序列和反序列的解析方法，通过上边这个例子，我们照葫芦画瓢把其他它不能识别的类都解析出来。</p>
 
       
@@ -514,6 +514,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -522,19 +526,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -546,7 +546,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -555,10 +555,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -579,6 +575,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -698,11 +698,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -714,7 +714,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

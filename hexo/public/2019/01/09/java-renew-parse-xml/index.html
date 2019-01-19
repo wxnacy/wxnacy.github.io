@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>重新学 Java 系列：简单解析 xml 文件的方式 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="这个是一个系列阅读，关于为什么重新学习，我在文章 重新学 Java 系列：新系列、新开始(https://wxnacy.com/2018/12/29/java-renew-why/) 中有提到，这个系列是在有 Java 基础的情况下，重新学习讨论一下以前可能忽略掉，或者没理解的知识细节，我想要永远在学习的路上。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2019-01-09T09:12:49.372Z">
+<meta property="og:updated_time" content="2019-01-19T04:06:42.180Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="重新学 Java 系列：简单解析 xml 文件的方式">
 <meta name="twitter:description" content="这个是一个系列阅读，关于为什么重新学习，我在文章 重新学 Java 系列：新系列、新开始(https://wxnacy.com/2018/12/29/java-renew-why/) 中有提到，这个系列是在有 Java 基础的情况下，重新学习讨论一下以前可能忽略掉，或者没理解的知识细节，我想要永远在学习的路上。">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-java-renew-parse-xml" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-java-renew-parse-xml" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -202,26 +202,26 @@
 </blockquote>
 <a id="more"></a><div class="toc"><br><br><!-- toc -->
 <!-- tocstop -->
-<p></div><br>现在公认的最好的文本解析格式为 JSON，XML 已经是过时的标准，但是不可避免的一些历史悠久的项目还在用，比如微信的部分 api，比如 Maven 的 pom.xml 文件。</p>
+<p></p></div><br>现在公认的最好的文本解析格式为 JSON，XML 已经是过时的标准，但是不可避免的一些历史悠久的项目还在用，比如微信的部分 api，比如 Maven 的 pom.xml 文件。<p></p>
 <p>Java 有很多解析 XML 格式的包，不过我想关注的是最简单的原生方式。</p>
 <p>优先准备一个文件 <code>Stocks.xml</code></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">stocks</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">stock</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">symbol</span>&gt;</span>Citibank<span class="tag">&lt;/<span class="name">symbol</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">price</span>&gt;</span>100<span class="tag">&lt;/<span class="name">price</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">quantity</span>&gt;</span>1000<span class="tag">&lt;/<span class="name">quantity</span>&gt;</span></div><div class="line">       <span class="tag">&lt;/<span class="name">stock</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">stock</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">symbol</span>&gt;</span>Axis bank<span class="tag">&lt;/<span class="name">symbol</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">price</span>&gt;</span>90<span class="tag">&lt;/<span class="name">price</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">quantity</span>&gt;</span>2000<span class="tag">&lt;/<span class="name">quantity</span>&gt;</span></div><div class="line">       <span class="tag">&lt;/<span class="name">stock</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">stocks</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">stocks</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">stock</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">symbol</span>&gt;</span>Citibank<span class="tag">&lt;/<span class="name">symbol</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">price</span>&gt;</span>100<span class="tag">&lt;/<span class="name">price</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">quantity</span>&gt;</span>1000<span class="tag">&lt;/<span class="name">quantity</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">stock</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">stock</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">symbol</span>&gt;</span>Axis bank<span class="tag">&lt;/<span class="name">symbol</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">price</span>&gt;</span>90<span class="tag">&lt;/<span class="name">price</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">quantity</span>&gt;</span>2000<span class="tag">&lt;/<span class="name">quantity</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">stock</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">stocks</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p><strong>必备包</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.io.File;</div><div class="line"><span class="keyword">import</span> javax.xml.parsers.DocumentBuilder;</div><div class="line"><span class="keyword">import</span> javax.xml.parsers.DocumentBuilderFactory;</div><div class="line"><span class="keyword">import</span> org.w3c.dom.Document;</div><div class="line"><span class="keyword">import</span> org.w3c.dom.Element;</div><div class="line"><span class="keyword">import</span> org.w3c.dom.Node;</div><div class="line"><span class="keyword">import</span> org.w3c.dom.NodeList;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> javax.xml.parsers.DocumentBuilder;</span><br><span class="line"><span class="keyword">import</span> javax.xml.parsers.DocumentBuilderFactory;</span><br><span class="line"><span class="keyword">import</span> org.w3c.dom.Document;</span><br><span class="line"><span class="keyword">import</span> org.w3c.dom.Element;</span><br><span class="line"><span class="keyword">import</span> org.w3c.dom.Node;</span><br><span class="line"><span class="keyword">import</span> org.w3c.dom.NodeList;</span><br></pre></td></tr></table></figure>
 <p><strong>解析 DOM</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">File stocks = <span class="keyword">new</span> File(<span class="string">"Stocks.xml"</span>);</div><div class="line">DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();</div><div class="line">DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();</div><div class="line">Document doc = dBuilder.parse(stocks);</div><div class="line">doc.getDocumentElement().normalize();</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">File stocks = <span class="keyword">new</span> File(<span class="string">"Stocks.xml"</span>);</span><br><span class="line">DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();</span><br><span class="line">DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();</span><br><span class="line">Document doc = dBuilder.parse(stocks);</span><br><span class="line">doc.getDocumentElement().normalize();</span><br></pre></td></tr></table></figure>
 <p><strong>获取根节点名</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">doc.getDocumentElement().getNodeName();</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">doc.getDocumentElement().getNodeName();</span><br></pre></td></tr></table></figure>
 <p><strong>获取节点列表</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">NodeList nodes = doc.getElementsByTagName(<span class="string">"stock"</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NodeList nodes = doc.getElementsByTagName(<span class="string">"stock"</span>);</span><br></pre></td></tr></table></figure>
 <p><strong>遍历节点</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nodes.getLength(); i++) &#123;</div><div class="line">    Node node = nodes.item(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nodes.getLength(); i++) &#123;</span><br><span class="line">    Node node = nodes.item(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>获取原件内容</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (node.getNodeType() == Node.ELEMENT_NODE) &#123;</div><div class="line">    Element element = (Element) node;</div><div class="line">    NodeList nodes = element.getElementsByTagName(<span class="string">"symbol"</span>).item(<span class="number">0</span>).getChildNodes();</div><div class="line">    Node node = (Node) nodes.item(<span class="number">0</span>);</div><div class="line">    System.out.println(node.getNodeValue());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (node.getNodeType() == Node.ELEMENT_NODE) &#123;</span><br><span class="line">    Element element = (Element) node;</span><br><span class="line">    NodeList nodes = element.getElementsByTagName(<span class="string">"symbol"</span>).item(<span class="number">0</span>).getChildNodes();</span><br><span class="line">    Node node = (Node) nodes.item(<span class="number">0</span>);</span><br><span class="line">    System.out.println(node.getNodeValue());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>完整代码</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.io.File;</div><div class="line"><span class="keyword">import</span> javax.xml.parsers.DocumentBuilder;</div><div class="line"><span class="keyword">import</span> javax.xml.parsers.DocumentBuilderFactory;</div><div class="line"><span class="keyword">import</span> org.w3c.dom.Document;</div><div class="line"><span class="keyword">import</span> org.w3c.dom.Element;</div><div class="line"><span class="keyword">import</span> org.w3c.dom.Node;</div><div class="line"><span class="keyword">import</span> org.w3c.dom.NodeList;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DOMExampleJava</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line"></div><div class="line">            File stocks = <span class="keyword">new</span> File(<span class="string">"Stocks.xml"</span>);</div><div class="line">            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();</div><div class="line">            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();</div><div class="line">            Document doc = dBuilder.parse(stocks);</div><div class="line">            doc.getDocumentElement().normalize();</div><div class="line"></div><div class="line">                System.out.println(<span class="string">"root of xml file "</span> + doc.getDocumentElement().getNodeName());</div><div class="line">            NodeList nodes = doc.getElementsByTagName(<span class="string">"stock"</span>);</div><div class="line">            System.out.println(<span class="string">"=========================="</span>);</div><div class="line"></div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nodes.getLength(); i++) &#123;</div><div class="line">                Node node = nodes.item(i);</div><div class="line"></div><div class="line">                <span class="keyword">if</span> (node.getNodeType() == Node.ELEMENT_NODE) &#123;</div><div class="line">                    Element element = (Element) node;</div><div class="line">                    System.out.println(<span class="string">"Stock Symbol: "</span> + getValue(<span class="string">"symbol"</span>, element));</div><div class="line">                    System.out.println(<span class="string">"Stock Price: "</span> + getValue(<span class="string">"price"</span>, element));</div><div class="line">                    System.out.println(<span class="string">"Stock Quantity: "</span> + getValue(<span class="string">"quantity"</span>, element));</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception ex) &#123;</div><div class="line">            ex.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">getValue</span><span class="params">(String tag, Element element)</span> </span>&#123;</div><div class="line">        NodeList nodes = element.getElementsByTagName(tag).item(<span class="number">0</span>).getChildNodes();</div><div class="line">        Node node = (Node) nodes.item(<span class="number">0</span>);</div><div class="line">        <span class="keyword">return</span> node.getNodeValue();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> javax.xml.parsers.DocumentBuilder;</span><br><span class="line"><span class="keyword">import</span> javax.xml.parsers.DocumentBuilderFactory;</span><br><span class="line"><span class="keyword">import</span> org.w3c.dom.Document;</span><br><span class="line"><span class="keyword">import</span> org.w3c.dom.Element;</span><br><span class="line"><span class="keyword">import</span> org.w3c.dom.Node;</span><br><span class="line"><span class="keyword">import</span> org.w3c.dom.NodeList;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DOMExampleJava</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">            File stocks = <span class="keyword">new</span> File(<span class="string">"Stocks.xml"</span>);</span><br><span class="line">            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();</span><br><span class="line">            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();</span><br><span class="line">            Document doc = dBuilder.parse(stocks);</span><br><span class="line">            doc.getDocumentElement().normalize();</span><br><span class="line"></span><br><span class="line">                System.out.println(<span class="string">"root of xml file "</span> + doc.getDocumentElement().getNodeName());</span><br><span class="line">            NodeList nodes = doc.getElementsByTagName(<span class="string">"stock"</span>);</span><br><span class="line">            System.out.println(<span class="string">"=========================="</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nodes.getLength(); i++) &#123;</span><br><span class="line">                Node node = nodes.item(i);</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (node.getNodeType() == Node.ELEMENT_NODE) &#123;</span><br><span class="line">                    Element element = (Element) node;</span><br><span class="line">                    System.out.println(<span class="string">"Stock Symbol: "</span> + getValue(<span class="string">"symbol"</span>, element));</span><br><span class="line">                    System.out.println(<span class="string">"Stock Price: "</span> + getValue(<span class="string">"price"</span>, element));</span><br><span class="line">                    System.out.println(<span class="string">"Stock Quantity: "</span> + getValue(<span class="string">"quantity"</span>, element));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">            ex.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">getValue</span><span class="params">(String tag, Element element)</span> </span>&#123;</span><br><span class="line">        NodeList nodes = element.getElementsByTagName(tag).item(<span class="number">0</span>).getChildNodes();</span><br><span class="line">        Node node = (Node) nodes.item(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> node.getNodeValue();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li><a href="https://javarevisited.blogspot.com/2011/12/parse-xml-file-in-java-example-tutorial.html" target="_blank" rel="external">How to Parse or Read XML File in Java &gt;&gt; XML Tutorial Example</a></li>
+<li><a href="https://javarevisited.blogspot.com/2011/12/parse-xml-file-in-java-example-tutorial.html" target="_blank" rel="noopener">How to Parse or Read XML File in Java &gt;&gt; XML Tutorial Example</a></li>
 </ul>
 
       
@@ -520,6 +520,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -528,19 +532,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -552,7 +552,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -561,10 +561,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -585,6 +581,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -704,11 +704,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -720,7 +720,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

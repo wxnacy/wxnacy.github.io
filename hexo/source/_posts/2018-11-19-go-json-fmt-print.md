@@ -5,6 +5,7 @@ tags: [go]
 ---
 
 Go 中 `encoding/json` 包提供了格式化输出 JSON 数据的方法。
+
 <!-- more --><!-- toc -->
 
 ```go

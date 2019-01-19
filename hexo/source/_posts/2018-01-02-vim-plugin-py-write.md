@@ -5,6 +5,7 @@ tags: [vim]
 ---
 
 前两天我讨论了怎么使用 Vim 编写最简单的插件 Hello World，今天聊聊怎么使用 Python 辅助插件开发，这在辅助开发插件时很有用。
+
 <!-- more --><!-- toc -->
 VimScript 语言非常小众，在处理一些数据时也不如我们常见的语言，如：Python／Ruby 等方便
 ```bash

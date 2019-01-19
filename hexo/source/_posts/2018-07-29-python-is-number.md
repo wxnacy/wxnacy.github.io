@@ -5,6 +5,7 @@ tags: [python]
 ---
 
 Python 判断字符串是否由数字组成的几种方法
+
 <!-- more --><!-- toc -->
 ```python
 #!/usr/bin/env python

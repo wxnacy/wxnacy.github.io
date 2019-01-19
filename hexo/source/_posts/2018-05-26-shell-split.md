@@ -5,6 +5,7 @@ tags: [shell]
 ---
 
 shell 语言本身不支持 `split` 语法，但是我们可以通过一些变通的方法来实现。
+
 <!-- more --><!-- toc -->
 
 ```bash

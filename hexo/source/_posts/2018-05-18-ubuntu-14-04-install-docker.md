@@ -5,6 +5,7 @@ tags: [docker]
 ---
 
 Ubuntu Trusty 14.04 版本安装 Docker。
+
 <!-- more --><!-- toc -->
 
 **删掉老版本**

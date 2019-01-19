@@ -5,6 +5,7 @@ tags: [go]
 ---
 
 Go 中 time.Sleep 不能传入数字来实现延时，而是传入 `time.Duration`
+
 <!-- more --><!-- toc -->
 
 ```go

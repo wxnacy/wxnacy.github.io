@@ -9,6 +9,7 @@ date: 2018-01-10 13:44:19
 
 
 前两天使用 Maven 构建了 SpringMVC 最简单的功能，访问地址跳转到页面并显示 Hello World ，今天来介绍如何返回 JSON 格式数据。
+
 <!-- more --><!-- toc -->
 如果你还没有看过 [使用 Maven 构建 SpringMVC ：Hello World](/2018/01/08/maven-spring-hello-world/) 这篇文章，最好先看一下，因为今天不再赘述项目结构的内容。
 ## Controller

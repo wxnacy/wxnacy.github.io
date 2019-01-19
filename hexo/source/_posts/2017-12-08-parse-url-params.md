@@ -5,6 +5,7 @@ tags: [算法, javascript, java, python]
 ---
 
 在 React 之前 html 页面想要获取当前地址参数，只能通过静态解析的方式在获取，列举几种语言的获取方式
+
 <!-- more --><!-- toc -->
 ## Javascript
 ```javascript

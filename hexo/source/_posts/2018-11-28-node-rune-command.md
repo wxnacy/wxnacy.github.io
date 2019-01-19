@@ -5,6 +5,7 @@ tags: [node]
 ---
 
 在 Node 中可以使用 [child_process.exec](https://nodejs.org/docs/v8.1.4/api/child_process.html#child_process_child_process_exec_command_options_callback) 方法来实现
+
 <!-- more --><!-- toc -->
 
 ```javascript

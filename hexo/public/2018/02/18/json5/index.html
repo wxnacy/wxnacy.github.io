@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>JSON5 更舒服的 JSON 格式 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="JSON is an excellent data format, but we think it can be better">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-02-18T13:32:08.000Z">
+<meta property="og:updated_time" content="2019-01-19T04:06:42.017Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JSON5 更舒服的 JSON 格式">
 <meta name="twitter:description" content="JSON is an excellent data format, but we think it can be better">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-json5" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-json5" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -206,10 +206,10 @@
 <li><a href="#shi-yong">使用</a></li>
 </ul>
 <!-- tocstop -->
-<p></div></p>
-<h2><span id="shi-me-shi-json5">什么是 JSON5</span><a href="#shi-me-shi-json5" class="header-anchor"></a></h2><p><a href="http://json5.org/" target="_blank" rel="external">JSON5</a> 是对 JSON 的一种推荐扩展，旨在使人类更易于手动编写和维护。 它通过直接从 ECMAScript 5 添加一些最小的语法功能来实现这一点。</p>
+<p></p></div><p></p>
+<h2><span id="shi-me-shi-json5">什么是 JSON5</span><a href="#shi-me-shi-json5" class="header-anchor"></a></h2><p><a href="http://json5.org/" target="_blank" rel="noopener">JSON5</a> 是对 JSON 的一种推荐扩展，旨在使人类更易于手动编写和维护。 它通过直接从 ECMAScript 5 添加一些最小的语法功能来实现这一点。</p>
 <p>JSON5 仍然是 JavaScript 的严格子集，不添加任何新的数据类型，并且可以处理所有现有的 JSON 内容。</p>
-<p>先通过一个例子看看 JSON5 的结构<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	foo: <span class="string">'11.1.5，bar'</span>],</div><div class="line">	<span class="keyword">while</span>: <span class="literal">true</span>,</div><div class="line"></div><div class="line">	<span class="keyword">this</span>: <span class="string">'is a \</span></div><div class="line"><span class="string">multi-line string'</span>,</div><div class="line"></div><div class="line">	<span class="comment">// this is an inline comment</span></div><div class="line">	here: <span class="string">'is another'</span>, <span class="comment">// inline comment</span></div><div class="line"></div><div class="line">	<span class="comment">/* this is a block comment</span></div><div class="line"><span class="comment">	   that continues on another line */</span></div><div class="line"></div><div class="line">	hex: <span class="number">0xDEADbeef</span>,</div><div class="line">	half: <span class="number">.5</span>,</div><div class="line">	delta: +<span class="number">10</span>,</div><div class="line">	to: <span class="literal">Infinity</span>,   <span class="comment">// and beyond!</span></div><div class="line"></div><div class="line">	<span class="keyword">finally</span>: <span class="string">'a trailing comma'</span>,</div><div class="line">	oh: [</div><div class="line">		<span class="string">"we shouldn't forget"</span>,</div><div class="line">		<span class="string">'arrays can have'</span>,</div><div class="line">		<span class="string">'trailing commas too'</span>,</div><div class="line">	],</div><div class="line">    <span class="string">'gulp-jshint'</span>: <span class="string">"^2.0.0"</span>,</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>先通过一个例子看看 JSON5 的结构<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	foo: <span class="string">'11.1.5，bar'</span>],</span><br><span class="line">	<span class="keyword">while</span>: <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">	<span class="keyword">this</span>: <span class="string">'is a \</span></span><br><span class="line"><span class="string">multi-line string'</span>,</span><br><span class="line"></span><br><span class="line">	<span class="comment">// this is an inline comment</span></span><br><span class="line">	here: <span class="string">'is another'</span>, <span class="comment">// inline comment</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/* this is a block comment</span></span><br><span class="line"><span class="comment">	   that continues on another line */</span></span><br><span class="line"></span><br><span class="line">	hex: <span class="number">0xDEADbeef</span>,</span><br><span class="line">	half: <span class="number">.5</span>,</span><br><span class="line">	delta: +<span class="number">10</span>,</span><br><span class="line">	to: <span class="literal">Infinity</span>,   <span class="comment">// and beyond!</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">finally</span>: <span class="string">'a trailing comma'</span>,</span><br><span class="line">	oh: [</span><br><span class="line">		<span class="string">"we shouldn't forget"</span>,</span><br><span class="line">		<span class="string">'arrays can have'</span>,</span><br><span class="line">		<span class="string">'trailing commas too'</span>,</span><br><span class="line">	],</span><br><span class="line">    <span class="string">'gulp-jshint'</span>: <span class="string">"^2.0.0"</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>由此我们可以来讨论下它与 JSON 格式的区别</p>
 <ul>
 <li><code>key</code> 只要是有效的标识符，则可以不加引号。即使是 ES5 中的保留关键字</li>
@@ -220,11 +220,11 @@
 <li>允许使用注视，单行多行都可以</li>
 </ul>
 <p>JSON5 更像 Javascript 对象了，就像开始说的，它更适合人们编写了。但是它并不是 JSON 官方的扩展，所以需要 <code>json5</code> 作为文件扩展名，下面的 <code>package.json5</code> 是现在普遍的写法。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// This file is written in JSON5 syntax, naturally, but npm needs a regular</span></div><div class="line"><span class="comment">// JSON file, so compile via `npm run build`. Be sure to keep both in sync!</span></div><div class="line"></div><div class="line">&#123;</div><div class="line">	name: <span class="string">'json5'</span>,</div><div class="line">	version: <span class="string">'0.5.0'</span>,</div><div class="line">	description: <span class="string">'JSON for the ES5 era.'</span>,</div><div class="line">	keywords: [<span class="string">'json'</span>, <span class="string">'es5'</span>],</div><div class="line">	author: <span class="string">'Aseem Kishore &lt;aseem.kishore@gmail.com&gt;'</span>,</div><div class="line">	contributors: [</div><div class="line">		<span class="comment">// <span class="doctag">TODO:</span> Should we remove this section in favor of GitHub's list?</span></div><div class="line">		<span class="comment">// https://github.com/json5/json5/contributors</span></div><div class="line">		<span class="string">'Max Nanasy &lt;max.nanasy@gmail.com&gt;'</span>,</div><div class="line">		<span class="string">'Andrew Eisenberg &lt;andrew@eisenberg.as&gt;'</span>,</div><div class="line">		<span class="string">'Jordan Tucker &lt;jordanbtucker@gmail.com&gt;'</span>,</div><div class="line">	],</div><div class="line">	main: <span class="string">'lib/json5.js'</span>,</div><div class="line">	bin: <span class="string">'lib/cli.js'</span>,</div><div class="line">	files: [<span class="string">"lib/"</span>],</div><div class="line">	dependencies: &#123;&#125;,</div><div class="line">	devDependencies: &#123;</div><div class="line">		gulp: <span class="string">"^3.9.1"</span>,</div><div class="line">		<span class="string">'gulp-jshint'</span>: <span class="string">"^2.0.0"</span>,</div><div class="line">		jshint: <span class="string">"^2.9.1"</span>,</div><div class="line">		<span class="string">'jshint-stylish'</span>: <span class="string">"^2.1.0"</span>,</div><div class="line">		mocha: <span class="string">"^2.4.5"</span></div><div class="line">	&#125;,</div><div class="line">	scripts: &#123;</div><div class="line">		build: <span class="string">'node ./lib/cli.js -c package.json5'</span>,</div><div class="line">		test: <span class="string">'mocha --ui exports --reporter spec'</span>,</div><div class="line">			<span class="comment">// <span class="doctag">TODO:</span> Would it be better to define these in a mocha.opts file?</span></div><div class="line">	&#125;,</div><div class="line">	homepage: <span class="string">'http://json5.org/'</span>,</div><div class="line">	license: <span class="string">'MIT'</span>,</div><div class="line">	repository: &#123;</div><div class="line">		type: <span class="string">'git'</span>,</div><div class="line">		url: <span class="string">'https://github.com/json5/json5'</span>,</div><div class="line">	&#125;,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><p>Node<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yarn add json5</div></pre></td></tr></table></figure></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> JSON5 = <span class="built_in">require</span>(<span class="string">'json5'</span>);</div></pre></td></tr></table></figure>
-<p>browser<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"json5.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
-<p>转换<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = JSON5.parse(<span class="string">'&#123;unquoted:"key",trailing:"comma",&#125;'</span>);</div><div class="line"><span class="keyword">var</span> str = JSON5.stringify(obj);</div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// This file is written in JSON5 syntax, naturally, but npm needs a regular</span></span><br><span class="line"><span class="comment">// JSON file, so compile via `npm run build`. Be sure to keep both in sync!</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">	name: <span class="string">'json5'</span>,</span><br><span class="line">	version: <span class="string">'0.5.0'</span>,</span><br><span class="line">	description: <span class="string">'JSON for the ES5 era.'</span>,</span><br><span class="line">	keywords: [<span class="string">'json'</span>, <span class="string">'es5'</span>],</span><br><span class="line">	author: <span class="string">'Aseem Kishore &lt;aseem.kishore@gmail.com&gt;'</span>,</span><br><span class="line">	contributors: [</span><br><span class="line">		<span class="comment">// <span class="doctag">TODO:</span> Should we remove this section in favor of GitHub's list?</span></span><br><span class="line">		<span class="comment">// https://github.com/json5/json5/contributors</span></span><br><span class="line">		<span class="string">'Max Nanasy &lt;max.nanasy@gmail.com&gt;'</span>,</span><br><span class="line">		<span class="string">'Andrew Eisenberg &lt;andrew@eisenberg.as&gt;'</span>,</span><br><span class="line">		<span class="string">'Jordan Tucker &lt;jordanbtucker@gmail.com&gt;'</span>,</span><br><span class="line">	],</span><br><span class="line">	main: <span class="string">'lib/json5.js'</span>,</span><br><span class="line">	bin: <span class="string">'lib/cli.js'</span>,</span><br><span class="line">	files: [<span class="string">"lib/"</span>],</span><br><span class="line">	dependencies: &#123;&#125;,</span><br><span class="line">	devDependencies: &#123;</span><br><span class="line">		gulp: <span class="string">"^3.9.1"</span>,</span><br><span class="line">		<span class="string">'gulp-jshint'</span>: <span class="string">"^2.0.0"</span>,</span><br><span class="line">		jshint: <span class="string">"^2.9.1"</span>,</span><br><span class="line">		<span class="string">'jshint-stylish'</span>: <span class="string">"^2.1.0"</span>,</span><br><span class="line">		mocha: <span class="string">"^2.4.5"</span></span><br><span class="line">	&#125;,</span><br><span class="line">	scripts: &#123;</span><br><span class="line">		build: <span class="string">'node ./lib/cli.js -c package.json5'</span>,</span><br><span class="line">		test: <span class="string">'mocha --ui exports --reporter spec'</span>,</span><br><span class="line">			<span class="comment">// <span class="doctag">TODO:</span> Would it be better to define these in a mocha.opts file?</span></span><br><span class="line">	&#125;,</span><br><span class="line">	homepage: <span class="string">'http://json5.org/'</span>,</span><br><span class="line">	license: <span class="string">'MIT'</span>,</span><br><span class="line">	repository: &#123;</span><br><span class="line">		type: <span class="string">'git'</span>,</span><br><span class="line">		url: <span class="string">'https://github.com/json5/json5'</span>,</span><br><span class="line">	&#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><p>Node<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yarn add json5</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> JSON5 = <span class="built_in">require</span>(<span class="string">'json5'</span>);</span><br></pre></td></tr></table></figure>
+<p>browser<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"json5.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>转换<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = JSON5.parse(<span class="string">'&#123;unquoted:"key",trailing:"comma",&#125;'</span>);</span><br><span class="line"><span class="keyword">var</span> str = JSON5.stringify(obj);</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -522,6 +522,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -530,19 +534,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -554,7 +554,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -563,10 +563,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -587,6 +583,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -706,11 +706,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -722,7 +722,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

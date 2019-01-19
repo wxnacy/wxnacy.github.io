@@ -9,6 +9,7 @@ date: 2018-01-08 09:41:30
 
 
 本文简单介绍如何使用 Maven 框架搭建并配置 StringMVC，完成输入 Hello World 的功能。
+
 <!-- more --><!-- toc -->
 看本文前最好了解 Maven 和 Spring 基本知识
 ## Maven 创建 Web 项目

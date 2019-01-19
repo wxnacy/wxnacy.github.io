@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Nginx http 强制跳转 https 地址 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="https 越来越普及，但是当用户自己访问 http 是控制不了的，所以强制跳转的功能就必不可少了，下面是几种强制跳转的方法">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-05-30T05:55:35.000Z">
+<meta property="og:updated_time" content="2019-01-19T05:30:00.644Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nginx http 强制跳转 https 地址">
 <meta name="twitter:description" content="https 越来越普及，但是当用户自己访问 http 是控制不了的，所以强制跳转的功能就必不可少了，下面是几种强制跳转的方法">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-nginx-http-https" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-nginx-http-https" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -197,8 +197,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><code>https</code> 越来越普及，但是当用户自己访问 <code>http</code> 是控制不了的，所以强制跳转的功能就必不可少了，下面是几种强制跳转的方法<br><a id="more"></a><div class="toc"></p>
-<!-- toc -->
+        <p><code>https</code> 越来越普及，但是当用户自己访问 <code>http</code> 是控制不了的，所以强制跳转的功能就必不可少了，下面是几种强制跳转的方法</p>
+<a id="more"></a><div class="toc"><br><br><!-- toc -->
 <ul>
 <li><a href="#return-301">return 301</a></li>
 <li><a href="#rewrite">rewrite</a></li>
@@ -208,15 +208,15 @@
 <!-- tocstop -->
 </div>
 
-<h2><span id="return-301">return 301</span><a href="#return-301" class="header-anchor"></a></h2><p>返回 301 错误，并跳转到 https 地址<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    listen       80;</div><div class="line">    server_name  wxnacy.com;</div><div class="line">    <span class="built_in">return</span>       301 https://<span class="variable">$server_name</span><span class="variable">$request_uri</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2><span id="return-301">return 301</span><a href="#return-301" class="header-anchor"></a></h2><p>返回 301 错误，并跳转到 https 地址<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  wxnacy.com;</span><br><span class="line">    <span class="built_in">return</span>       301 https://<span class="variable">$server_name</span><span class="variable">$request_uri</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2><span id="rewrite">rewrite</span><a href="#rewrite" class="header-anchor"></a></h2><p>将 http 请求重写到 https 地址</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rewrite ^(.*)$  https://<span class="variable">$host</span><span class="variable">$1</span> permanent;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rewrite ^(.*)$  https://<span class="variable">$host</span><span class="variable">$1</span> permanent;</span><br></pre></td></tr></table></figure>
 <p>两者相比，<code>301</code> 的方式在搜索引擎速度上要块一些。</p>
-<h2><span id="error-page-497">error_page 497</span><a href="#error-page-497" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">error code 497: normal request was sent to HTTPS</div></pre></td></tr></table></figure>
+<h2><span id="error-page-497">error_page 497</span><a href="#error-page-497" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error code 497: normal request was sent to HTTPS</span><br></pre></td></tr></table></figure>
 <p>在一个站点只允许 https 访问时, 如果使用 http 访问会报出497错误码</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">error_page 497  https://<span class="variable">$host</span><span class="variable">$uri</span>?<span class="variable">$args</span>;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error_page 497  https://<span class="variable">$host</span><span class="variable">$uri</span>?<span class="variable">$args</span>;</span><br></pre></td></tr></table></figure>
 <h2><span id="index-html-refresh">index.html refresh</span><a href="#index-html-refresh" class="header-anchor"></a></h2><p>百度页面 <code>http://baidu.com</code> 自动跳转 <code>http://www.baidu.com</code> 是灵活利用了 <code>meta</code> 的刷新属性</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt; $ curl http://baidu.com</div><div class="line"></div><div class="line">&lt;html&gt;</div><div class="line">&lt;meta http-equiv=<span class="string">"refresh"</span> content=<span class="string">"0;url=http://www.baidu.com/"</span>&gt;</div><div class="line">&lt;/meta&gt;html&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; $ curl http://baidu.com</span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;meta http-equiv=<span class="string">"refresh"</span> content=<span class="string">"0;url=http://www.baidu.com/"</span>&gt;</span><br><span class="line">&lt;/meta&gt;html&gt;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -514,6 +514,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -522,19 +526,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -546,7 +546,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -555,10 +555,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -579,6 +575,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -698,11 +698,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -714,7 +714,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>ansible入门案例1 远程部署项目 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="专辑：ansible学习笔记">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-07-02T02:30:05.000Z">
+<meta property="og:updated_time" content="2019-01-19T05:30:00.702Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ansible入门案例1 远程部署项目">
 <meta name="twitter:description" content="专辑：ansible学习笔记">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ansible-task1" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-ansible-task1" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -197,8 +197,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>专辑：<a href="/2017/08/14/ansible-2017-08-14-album-study-notes/">ansible学习笔记</a><br><a id="more"></a><div class="toc"></p>
-<!-- toc -->
+        <p>专辑：<a href="/2017/08/14/ansible-2017-08-14-album-study-notes/">ansible学习笔记</a></p>
+<a id="more"></a><div class="toc"><br><br><!-- toc -->
 <!-- tocstop -->
 </div>
 
@@ -216,21 +216,21 @@
 <p><strong>文件内容分别如下：</strong></p>
 <p><strong>push_tag.sh</strong></p>
 <p>该脚本的功能在于传入 <code>tag_name</code> 和提交 msg ，并提交打包推到远程仓库中</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/usr/bin/env bash</span></div><div class="line"></div><div class="line">TAG_NAME=<span class="variable">$1</span></div><div class="line">PUSH_MSG=<span class="variable">$2</span></div><div class="line"></div><div class="line"><span class="function"><span class="title">main</span></span>()&#123;</div><div class="line">    git pull origin master</div><div class="line">    git add .</div><div class="line">    git commit -m <span class="variable">$&#123;PUSH_MSG&#125;</span></div><div class="line">    git push origin master</div><div class="line">    git tag <span class="variable">$&#123;TAG_NAME&#125;</span></div><div class="line">    git push origin <span class="variable">$&#123;TAG_NAME&#125;</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span> [ ! <span class="variable">$&#123;TAG_NAME&#125;</span> ]</div><div class="line"><span class="keyword">then</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">'UAGE: ./push_tag.sh &lt;regex:tag_name&gt;'</span></div><div class="line"><span class="keyword">else</span></div><div class="line">    main</div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"></span><br><span class="line">TAG_NAME=<span class="variable">$1</span></span><br><span class="line">PUSH_MSG=<span class="variable">$2</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">main</span></span>()&#123;</span><br><span class="line">    git pull origin master</span><br><span class="line">    git add .</span><br><span class="line">    git commit -m <span class="variable">$&#123;PUSH_MSG&#125;</span></span><br><span class="line">    git push origin master</span><br><span class="line">    git tag <span class="variable">$&#123;TAG_NAME&#125;</span></span><br><span class="line">    git push origin <span class="variable">$&#123;TAG_NAME&#125;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ ! <span class="variable">$&#123;TAG_NAME&#125;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">'UAGE: ./push_tag.sh &lt;regex:tag_name&gt;'</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    main</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
 <p><strong>deploy.sh</strong></p>
 <p>该脚本需要在远程服务器执行，通过传入 <code>tag_name</code> 从 git 获取相应版本代码，并通过 supervisor 来重启项目</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/usr/bin/env bash</span></div><div class="line"><span class="comment"># 部署指定tag 的api程序</span></div><div class="line"><span class="comment"># __author__ = "wenxiaoning(wenxiaoning@gochinatv.com)"</span></div><div class="line"><span class="comment"># __copyright__ = "Copyright of GoChinaTV (2017)."</span></div><div class="line"></div><div class="line">TAG_NAME=<span class="variable">$1</span></div><div class="line"></div><div class="line"><span class="function"><span class="title">deploy_tag</span></span>()&#123;</div><div class="line">    <span class="built_in">echo</span> <span class="string">'******************************'</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">'********开始部署tag：'</span> <span class="variable">$&#123;TAG_NAME&#125;</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">'******************************'</span></div><div class="line">    git fetch</div><div class="line">    git checkout <span class="variable">$&#123;TAG_NAME&#125;</span></div><div class="line">    sudo /usr/<span class="built_in">local</span>/bin/supervisorctl  -c /etc/supervisord/supervisord.conf restart tmd</div><div class="line">    <span class="built_in">echo</span> <span class="string">'******************************'</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">'********部署成功'</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">'******************************'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="title">main</span></span>()&#123;</div><div class="line">    <span class="keyword">if</span> [ ! <span class="variable">$&#123;TAG_NAME&#125;</span> ]</div><div class="line">    <span class="keyword">then</span></div><div class="line">        <span class="built_in">echo</span> <span class="string">'UAGE: 需要传入想要部署的tag名称'</span></div><div class="line">    <span class="keyword">else</span></div><div class="line">        deploy_tag</div><div class="line">    <span class="keyword">fi</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">main</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"><span class="comment"># 部署指定tag 的api程序</span></span><br><span class="line"><span class="comment"># __author__ = "wenxiaoning(wenxiaoning@gochinatv.com)"</span></span><br><span class="line"><span class="comment"># __copyright__ = "Copyright of GoChinaTV (2017)."</span></span><br><span class="line"></span><br><span class="line">TAG_NAME=<span class="variable">$1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">deploy_tag</span></span>()&#123;</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">'******************************'</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">'********开始部署tag：'</span> <span class="variable">$&#123;TAG_NAME&#125;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">'******************************'</span></span><br><span class="line">    git fetch</span><br><span class="line">    git checkout <span class="variable">$&#123;TAG_NAME&#125;</span></span><br><span class="line">    sudo /usr/<span class="built_in">local</span>/bin/supervisorctl  -c /etc/supervisord/supervisord.conf restart tmd</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">'******************************'</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">'********部署成功'</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">'******************************'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">main</span></span>()&#123;</span><br><span class="line">    <span class="keyword">if</span> [ ! <span class="variable">$&#123;TAG_NAME&#125;</span> ]</span><br><span class="line">    <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">'UAGE: 需要传入想要部署的tag名称'</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        deploy_tag</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">main</span><br></pre></td></tr></table></figure>
 <p><strong>ansible_hosts</strong></p>
 <p>该文件配置远程服务器信息，并通过sshkey进行连接</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[api_prod]</div><div class="line">prod.server.org ansible_ssh_user=root ansible_ssh_private_key_file=~/.ssh/sshkey.pem</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[api_prod]</span><br><span class="line">prod.server.org ansible_ssh_user=root ansible_ssh_private_key_file=~/.ssh/sshkey.pem</span><br></pre></td></tr></table></figure>
 <p><strong>deploy_remote.yml</strong></p>
 <p>改yml完成远程命令为，进入tmd目录，并执行 <code>./deploy_api.sh</code> 脚本部署项目</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- hosts: api_prod</div><div class="line">  tasks:</div><div class="line">    - name: deploy</div><div class="line">      shell: ./deploy_api.sh <span class="string">'&#123;&#123;tag_name&#125;&#125;'</span></div><div class="line">      args:</div><div class="line">      <span class="built_in">chdir</span>: ~/tmd</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- hosts: api_prod</span><br><span class="line">  tasks:</span><br><span class="line">    - name: deploy</span><br><span class="line">      shell: ./deploy_api.sh <span class="string">'&#123;&#123;tag_name&#125;&#125;'</span></span><br><span class="line">      args:</span><br><span class="line">      <span class="built_in">chdir</span>: ~/tmd</span><br></pre></td></tr></table></figure>
 <p><strong>deploy_remote.sh</strong></p>
 <p>改脚本作为一个桥梁连接完成本地提交代码和执行远程部署两项工作</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/usr/bin/env bash</span></div><div class="line">TAG_NAME=<span class="variable">$1</span></div><div class="line">MSG=<span class="variable">$2</span></div><div class="line"></div><div class="line"><span class="function"><span class="title">deploy</span></span>()&#123;</div><div class="line">    <span class="built_in">echo</span> <span class="string">'******************************'</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">'********开始远程部署tag：'</span> <span class="variable">$&#123;TAG_NAME&#125;</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">'******************************'</span></div><div class="line">    ./push_tag.sh <span class="variable">$&#123;TAG_NAME&#125;</span> <span class="variable">$&#123;MSG&#125;</span></div><div class="line">    ansible-playbook deploy_remote_api.yml --extra-vars <span class="string">"tag_name=<span class="variable">$&#123;TAG_NAME&#125;</span>"</span> --inventory-file=ansible_hosts</div><div class="line">    <span class="built_in">echo</span> <span class="string">'******************************'</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">'********部署成功'</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">'******************************'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span> [ ! <span class="variable">$&#123;TAG_NAME&#125;</span> ]</div><div class="line"><span class="keyword">then</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">'UAGE: ./git_push.sh &lt;regex:tag_name&gt;'</span></div><div class="line"><span class="keyword">else</span></div><div class="line">    deploy</div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line">TAG_NAME=<span class="variable">$1</span></span><br><span class="line">MSG=<span class="variable">$2</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">deploy</span></span>()&#123;</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">'******************************'</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">'********开始远程部署tag：'</span> <span class="variable">$&#123;TAG_NAME&#125;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">'******************************'</span></span><br><span class="line">    ./push_tag.sh <span class="variable">$&#123;TAG_NAME&#125;</span> <span class="variable">$&#123;MSG&#125;</span></span><br><span class="line">    ansible-playbook deploy_remote_api.yml --extra-vars <span class="string">"tag_name=<span class="variable">$&#123;TAG_NAME&#125;</span>"</span> --inventory-file=ansible_hosts</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">'******************************'</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">'********部署成功'</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">'******************************'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ ! <span class="variable">$&#123;TAG_NAME&#125;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">'UAGE: ./git_push.sh &lt;regex:tag_name&gt;'</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    deploy</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
 <p><strong>运行</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./deploy_remote.sh 1.0.0 <span class="string">'我的第一个版本'</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./deploy_remote.sh 1.0.0 <span class="string">'我的第一个版本'</span></span><br></pre></td></tr></table></figure>
 
       
 
@@ -528,6 +528,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -536,19 +540,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -560,7 +560,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -569,10 +569,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -593,6 +589,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -712,11 +712,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -728,7 +728,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

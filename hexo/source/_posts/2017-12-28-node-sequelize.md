@@ -7,6 +7,7 @@ date: 2017-12-28 16:40:44
 
 
 我感觉使用任何一门语言作为后台开发都应该了解他的 [ORM（Object Relational Mapping）](https://zh.wikipedia.org/wiki/%E5%AF%B9%E8%B1%A1%E5%85%B3%E7%B3%BB%E6%98%A0%E5%B0%84) 框架，这是对开发效率的负责，省掉写 Sql 的时间，把它留给更有意义的地方。
+
 <!-- more --><!-- toc -->
 本篇以 Mysql 数据库为例，带大家了解 Node 中最多人用的 ORM 框架 [Sequelize](http://docs.sequelizejs.com/)
 ## 下载

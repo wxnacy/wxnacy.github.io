@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Flask Restless 20 行代码搞定服务器 CURD 接口 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="在使用 Flask 开发 web 接口时，设计到简单 RESTful 风格接口，使用 Restless 插件会非常方便，只需要几行代码就可以搞定一个服务器接口">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-03-09T08:57:32.000Z">
+<meta property="og:updated_time" content="2019-01-19T05:30:00.686Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flask Restless 20 行代码搞定服务器 CURD 接口">
 <meta name="twitter:description" content="在使用 Flask 开发 web 接口时，设计到简单 RESTful 风格接口，使用 Restless 插件会非常方便，只需要几行代码就可以搞定一个服务器接口">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-flask-restless" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-flask-restless" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -197,8 +197,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在使用 Flask 开发 web 接口时，设计到简单 RESTful 风格接口，使用 Restless 插件会非常方便，只需要几行代码就可以搞定一个服务器接口<br><a id="more"></a><div class="toc"></p>
-<!-- toc -->
+        <p>在使用 Flask 开发 web 接口时，设计到简单 RESTful 风格接口，使用 Restless 插件会非常方便，只需要几行代码就可以搞定一个服务器接口</p>
+<a id="more"></a><div class="toc"><br><br><!-- toc -->
 <ul>
 <li><a href="#xia-zai">下载</a></li>
 <li><a href="#kuai-su-kai-shi">快速开始</a><ul>
@@ -220,29 +220,29 @@
 <!-- tocstop -->
 </div>
 
-<h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install Flask-Restless</div></pre></td></tr></table></figure>
-<h2><span id="kuai-su-kai-shi">快速开始</span><a href="#kuai-su-kai-shi" class="header-anchor"></a></h2><p>编辑 <code>run.py</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"><span class="comment"># Description:</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</div><div class="line"><span class="keyword">from</span> flask_sqlalchemy <span class="keyword">import</span> SQLAlchemy</div><div class="line"><span class="keyword">from</span> flask_restless <span class="keyword">import</span> APIManager</div><div class="line"></div><div class="line">app = Flask(__name__)</div><div class="line">SQLALCHEMY_DATABASE_URI = <span class="string">'mysql+pymysql://root:wxnacy@127.0.0.1:3306/study?charset=utf8mb4'</span></div><div class="line">app.config[<span class="string">'SQLALCHEMY_DATABASE_URI'</span>] = SQLALCHEMY_DATABASE_URI</div><div class="line"></div><div class="line">db = SQLAlchemy(app)</div><div class="line">manager = APIManager(app, flask_sqlalchemy_db=db)</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span><span class="params">(db.Model)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'book'</span></div><div class="line">    id = db.Column(db.BIGINT, primary_key=<span class="keyword">True</span>)</div><div class="line">    name = db.Column(db.String, default=<span class="string">""</span>, doc=<span class="string">'名称'</span>)</div><div class="line"></div><div class="line"></div><div class="line">manager.create_api(Book, methods=[<span class="string">'GET'</span>, <span class="string">'POST'</span>, <span class="string">'PUT'</span>, <span class="string">'DELETE'</span>])</div><div class="line"></div><div class="line">app.run()</div></pre></td></tr></table></figure></p>
-<p>启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ python run.py</div></pre></td></tr></table></figure></p>
-<h3><span id="post">POST</span><a href="#post" class="header-anchor"></a></h3><p>创建<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl -X POST localhost:5000/api/book -H <span class="string">"Content-Type:application/json"</span> -d <span class="string">'&#123;"name":"wxnacy"&#125;'</span></div></pre></td></tr></table></figure></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="string">"id"</span>: 96,</div><div class="line">    <span class="string">"name"</span>: <span class="string">"wxnacy"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3><span id="get">GET</span><a href="#get" class="header-anchor"></a></h3><p>查看列表<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl localhost:5000/api/book</div></pre></td></tr></table></figure></p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"num_results"</span>: <span class="number">95</span>,</div><div class="line">        <span class="attr">"objects"</span>: [</div><div class="line">        &#123;</div><div class="line">            <span class="attr">"id"</span>: <span class="number">2</span>,</div><div class="line">            <span class="attr">"name"</span>: <span class="string">"2-book"</span></div><div class="line"></div><div class="line">        &#125;,</div><div class="line">        ...</div><div class="line">        &#123;</div><div class="line">            <span class="attr">"id"</span>: <span class="number">11</span>,</div><div class="line">            <span class="attr">"name"</span>: <span class="string">"wxnacy"</span></div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        ],</div><div class="line">        <span class="attr">"page"</span>: <span class="number">1</span>,</div><div class="line">        <span class="attr">"total_pages"</span>: <span class="number">10</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>查看单个<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl localhost:5000/api/book/96</div></pre></td></tr></table></figure></p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"id"</span>: <span class="number">96</span>,</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"wxnacy"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3><span id="put">PUT</span><a href="#put" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl -X PUT localhost:5000/api/book/96 -H <span class="string">"Content-Type:application/json"</span> -d <span class="string">'&#123;"name":"new_name"&#125;'</span></div></pre></td></tr></table></figure>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"id"</span>: <span class="number">96</span>,</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"new_name"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3><span id="delete">DELETE</span><a href="#delete" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl -X DELETE localhost:5000/api/book/96</div></pre></td></tr></table></figure>
-<p>看，几行代码就搞定了增删改查四大功能，如果你只是搭个自己的小服务，这就已经足够了，再也不用吭哧吭哧写代码了，关于 Methods 的更多解释见<a href="https://flask-restless.readthedocs.io/en/stable/customizing.html#http-methods" target="_blank" rel="external">文档 </a></p>
-<h2><span id="xiu-gai-di-zhi-qian-zhui">修改地址前缀</span><a href="#xiu-gai-di-zhi-qian-zhui" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">manager.create_api(Book, url_prefix=<span class="string">'/api/v2'</span>, methods=[<span class="string">'GET'</span>])</div></pre></td></tr></table></figure>
-<p>在 <code>create_api</code> 的时候作如上改动，就可以修改接口前缀<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl localhost:5000/api/v2/book</div></pre></td></tr></table></figure></p>
-<h2><span id="sou-suo-qing-qiu">搜索请求</span><a href="#sou-suo-qing-qiu" class="header-anchor"></a></h2><p>Restless 非常强大的功能是，他可以在不改动代码的情况下做基于数据的条件查询<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">curl \</div><div class="line">    -G \</div><div class="line">    -H <span class="string">"Content-type: application/json"</span> \</div><div class="line">    -d <span class="string">"q=&#123;\"filters\":[&#123;\"name\":\"name\",\"op\":\"like\",\"val\":\"%new%\"&#125;]&#125;"</span> \</div><div class="line">    http://127.0.0.1:5000/api/book</div></pre></td></tr></table></figure></p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"num_results"</span>: <span class="number">2</span>,</div><div class="line">    <span class="attr">"objects"</span>: [</div><div class="line">    &#123;</div><div class="line">        <span class="attr">"id"</span>: <span class="number">6</span>,</div><div class="line">        <span class="attr">"name"</span>: <span class="string">"new book"</span></div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">        <span class="attr">"id"</span>: <span class="number">7</span>,</div><div class="line">        <span class="attr">"name"</span>: <span class="string">"new book"</span></div><div class="line">    &#125;],</div><div class="line">    <span class="attr">"page"</span>: <span class="number">1</span>,</div><div class="line">    <span class="attr">"total_pages"</span>: <span class="number">1</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install Flask-Restless</span><br></pre></td></tr></table></figure>
+<h2><span id="kuai-su-kai-shi">快速开始</span><a href="#kuai-su-kai-shi" class="header-anchor"></a></h2><p>编辑 <code>run.py</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"><span class="comment"># Description:</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"><span class="keyword">from</span> flask_sqlalchemy <span class="keyword">import</span> SQLAlchemy</span><br><span class="line"><span class="keyword">from</span> flask_restless <span class="keyword">import</span> APIManager</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">SQLALCHEMY_DATABASE_URI = <span class="string">'mysql+pymysql://root:wxnacy@127.0.0.1:3306/study?charset=utf8mb4'</span></span><br><span class="line">app.config[<span class="string">'SQLALCHEMY_DATABASE_URI'</span>] = SQLALCHEMY_DATABASE_URI</span><br><span class="line"></span><br><span class="line">db = SQLAlchemy(app)</span><br><span class="line">manager = APIManager(app, flask_sqlalchemy_db=db)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span><span class="params">(db.Model)</span>:</span></span><br><span class="line">    __tablename__ = <span class="string">'book'</span></span><br><span class="line">    id = db.Column(db.BIGINT, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    name = db.Column(db.String, default=<span class="string">""</span>, doc=<span class="string">'名称'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">manager.create_api(Book, methods=[<span class="string">'GET'</span>, <span class="string">'POST'</span>, <span class="string">'PUT'</span>, <span class="string">'DELETE'</span>])</span><br><span class="line"></span><br><span class="line">app.run()</span><br></pre></td></tr></table></figure></p>
+<p>启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ python run.py</span><br></pre></td></tr></table></figure></p>
+<h3><span id="post">POST</span><a href="#post" class="header-anchor"></a></h3><p>创建<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl -X POST localhost:5000/api/book -H <span class="string">"Content-Type:application/json"</span> -d <span class="string">'&#123;"name":"wxnacy"&#125;'</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"id"</span>: 96,</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"wxnacy"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="get">GET</span><a href="#get" class="header-anchor"></a></h3><p>查看列表<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl localhost:5000/api/book</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"num_results"</span>: <span class="number">95</span>,</span><br><span class="line">        <span class="attr">"objects"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"id"</span>: <span class="number">2</span>,</span><br><span class="line">            <span class="attr">"name"</span>: <span class="string">"2-book"</span></span><br><span class="line"></span><br><span class="line">        &#125;,</span><br><span class="line">        ...</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"id"</span>: <span class="number">11</span>,</span><br><span class="line">            <span class="attr">"name"</span>: <span class="string">"wxnacy"</span></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">"page"</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="attr">"total_pages"</span>: <span class="number">10</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>查看单个<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl localhost:5000/api/book/96</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"id"</span>: <span class="number">96</span>,</span><br><span class="line">    <span class="attr">"name"</span>: <span class="string">"wxnacy"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="put">PUT</span><a href="#put" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl -X PUT localhost:5000/api/book/96 -H <span class="string">"Content-Type:application/json"</span> -d <span class="string">'&#123;"name":"new_name"&#125;'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"id"</span>: <span class="number">96</span>,</span><br><span class="line">    <span class="attr">"name"</span>: <span class="string">"new_name"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="delete">DELETE</span><a href="#delete" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl -X DELETE localhost:5000/api/book/96</span><br></pre></td></tr></table></figure>
+<p>看，几行代码就搞定了增删改查四大功能，如果你只是搭个自己的小服务，这就已经足够了，再也不用吭哧吭哧写代码了，关于 Methods 的更多解释见<a href="https://flask-restless.readthedocs.io/en/stable/customizing.html#http-methods" target="_blank" rel="noopener">文档 </a></p>
+<h2><span id="xiu-gai-di-zhi-qian-zhui">修改地址前缀</span><a href="#xiu-gai-di-zhi-qian-zhui" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">manager.create_api(Book, url_prefix=<span class="string">'/api/v2'</span>, methods=[<span class="string">'GET'</span>])</span><br></pre></td></tr></table></figure>
+<p>在 <code>create_api</code> 的时候作如上改动，就可以修改接口前缀<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl localhost:5000/api/v2/book</span><br></pre></td></tr></table></figure></p>
+<h2><span id="sou-suo-qing-qiu">搜索请求</span><a href="#sou-suo-qing-qiu" class="header-anchor"></a></h2><p>Restless 非常强大的功能是，他可以在不改动代码的情况下做基于数据的条件查询<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl \</span><br><span class="line">    -G \</span><br><span class="line">    -H <span class="string">"Content-type: application/json"</span> \</span><br><span class="line">    -d <span class="string">"q=&#123;\"filters\":[&#123;\"name\":\"name\",\"op\":\"like\",\"val\":\"%new%\"&#125;]&#125;"</span> \</span><br><span class="line">    http://127.0.0.1:5000/api/book</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"num_results"</span>: <span class="number">2</span>,</span><br><span class="line">    <span class="attr">"objects"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">"id"</span>: <span class="number">6</span>,</span><br><span class="line">        <span class="attr">"name"</span>: <span class="string">"new book"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">"id"</span>: <span class="number">7</span>,</span><br><span class="line">        <span class="attr">"name"</span>: <span class="string">"new book"</span></span><br><span class="line">    &#125;],</span><br><span class="line">    <span class="attr">"page"</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">"total_pages"</span>: <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>什么代码都没动，就完成 <code>like</code> 的查询的操作，妈妈再也不用担心我写 API 了</p>
-<h3><span id="qing-qiu-ge-shi">请求格式</span><a href="#qing-qiu-ge-shi" class="header-anchor"></a></h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;<span class="attr">"name"</span>: &lt;fieldname&gt;, <span class="attr">"op"</span>: &lt;operatorname&gt;, <span class="attr">"val"</span>: &lt;argument&gt;&#125;</div></pre></td></tr></table></figure>
-<p>或<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;&quot;name&quot;: &lt;fieldname&gt;, &quot;op&quot;: &lt;operatorname&gt;, &quot;field&quot;: &lt;fieldname&gt;&#125;</div></pre></td></tr></table></figure></p>
+<h3><span id="qing-qiu-ge-shi">请求格式</span><a href="#qing-qiu-ge-shi" class="header-anchor"></a></h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">"name"</span>: &lt;fieldname&gt;, <span class="attr">"op"</span>: &lt;operatorname&gt;, <span class="attr">"val"</span>: &lt;argument&gt;&#125;</span><br></pre></td></tr></table></figure>
+<p>或<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;name&quot;: &lt;fieldname&gt;, &quot;op&quot;: &lt;operatorname&gt;, &quot;field&quot;: &lt;fieldname&gt;&#125;</span><br></pre></td></tr></table></figure></p>
 <p><code>fieldname</code> 是字段名，<code>operatorname</code> 是查询条件，<code>argument</code> 是条件值，通过不同的 <code>op</code> 值来完成相应操作，更多的 Operators 值</p>
 <ul>
-<li>==, 371032668@qq.com, equals, equals_to</li>
+<li>==, <a href="mailto:371032668@qq.com" target="_blank" rel="noopener">371032668@qq.com</a>, equals, equals_to</li>
 <li>!=, neq, does_not_equal, not_equal_to</li>
 <li><code>&gt;, gt, &lt;, lt</code></li>
 <li><code>&gt;=, ge, gte, geq, &lt;=, le, lte, leq</code></li>
@@ -250,18 +250,18 @@
 <li>is_null, is_not_null</li>
 <li>like</li>
 <li>has</li>
-<li>any<br>更多用法见<a href="https://flask-restless.readthedocs.io/en/stable/searchformat.html#query-format" target="_blank" rel="external">文档</a></li>
+<li>any<br>更多用法见<a href="https://flask-restless.readthedocs.io/en/stable/searchformat.html#query-format" target="_blank" rel="noopener">文档</a></li>
 </ul>
-<h2><span id="fang-fa-qiu-zhi">方法求值</span><a href="#fang-fa-qiu-zhi" class="header-anchor"></a></h2><p>Restless 另一个比较牛逼的功能，是可以使用数据库的函数，比如<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ curl localhost:5000/api/<span class="built_in">eval</span>/book?q=&#123;<span class="string">"functions"</span>: [&#123;<span class="string">"name"</span>: <span class="string">"count"</span>, <span class="string">"field"</span>: <span class="string">"id"</span>&#125;]&#125;</div><div class="line"><span class="comment"># urlencode 编码后请求</span></div><div class="line">$ curl localhost:5000/api/<span class="built_in">eval</span>/book?q=%7B%22functions%22%3A%20%5B%7B%22name%22%3A%20%22count%22%2C%20%22field%22%3A%20%22id%22%7D%5D%7D</div></pre></td></tr></table></figure></p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;<span class="attr">"count__id"</span>: <span class="number">94</span>&#125;</div></pre></td></tr></table></figure>
-<p>就这样，我们得到了数据总和，不过这个功能默认是不打开的，需要设置 <code>allow_functions</code> 手动打开<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">manager.create_api(Book, allow_functions=<span class="keyword">True</span>, methods=[<span class="string">'GET'</span>, <span class="string">'POST'</span>, <span class="string">'PUT'</span>, <span class="string">'DELETE'</span>])</div></pre></td></tr></table></figure></p>
-<p>更多介绍见<a href="https://flask-restless.readthedocs.io/en/stable/requestformat.html#function-evaluation" target="_blank" rel="external">文档</a></p>
-<h2><span id="jsonp">JSONP</span><a href="#jsonp" class="header-anchor"></a></h2><p>Restless 默认支持 JSONP，使用正常访问方式即可<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl localhost:5000/api/book/10?callback=foo</div></pre></td></tr></table></figure></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">foo(&#123;<span class="string">"data"</span>: &#123;<span class="string">"id"</span>: 10, <span class="string">"name"</span>: <span class="string">"wxnacy"</span>&#125;, <span class="string">"meta"</span>: &#123;<span class="string">"Content-Type"</span>: <span class="string">"application/javascript"</span>, <span class="string">"status"</span>: 200&#125;&#125;)</div></pre></td></tr></table></figure>
+<h2><span id="fang-fa-qiu-zhi">方法求值</span><a href="#fang-fa-qiu-zhi" class="header-anchor"></a></h2><p>Restless 另一个比较牛逼的功能，是可以使用数据库的函数，比如<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ curl localhost:5000/api/<span class="built_in">eval</span>/book?q=&#123;<span class="string">"functions"</span>: [&#123;<span class="string">"name"</span>: <span class="string">"count"</span>, <span class="string">"field"</span>: <span class="string">"id"</span>&#125;]&#125;</span><br><span class="line"><span class="comment"># urlencode 编码后请求</span></span><br><span class="line">$ curl localhost:5000/api/<span class="built_in">eval</span>/book?q=%7B%22functions%22%3A%20%5B%7B%22name%22%3A%20%22count%22%2C%20%22field%22%3A%20%22id%22%7D%5D%7D</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">"count__id"</span>: <span class="number">94</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>就这样，我们得到了数据总和，不过这个功能默认是不打开的，需要设置 <code>allow_functions</code> 手动打开<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">manager.create_api(Book, allow_functions=<span class="keyword">True</span>, methods=[<span class="string">'GET'</span>, <span class="string">'POST'</span>, <span class="string">'PUT'</span>, <span class="string">'DELETE'</span>])</span><br></pre></td></tr></table></figure></p>
+<p>更多介绍见<a href="https://flask-restless.readthedocs.io/en/stable/requestformat.html#function-evaluation" target="_blank" rel="noopener">文档</a></p>
+<h2><span id="jsonp">JSONP</span><a href="#jsonp" class="header-anchor"></a></h2><p>Restless 默认支持 JSONP，使用正常访问方式即可<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl localhost:5000/api/book/10?callback=foo</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foo(&#123;<span class="string">"data"</span>: &#123;<span class="string">"id"</span>: 10, <span class="string">"name"</span>: <span class="string">"wxnacy"</span>&#125;, <span class="string">"meta"</span>: &#123;<span class="string">"Content-Type"</span>: <span class="string">"application/javascript"</span>, <span class="string">"status"</span>: 200&#125;&#125;)</span><br></pre></td></tr></table></figure>
 <h2><span id="can-kao">参考</span><a href="#can-kao" class="header-anchor"></a></h2><ul>
-<li><a href="https://flask-restless.readthedocs.io/en/stable/" target="_blank" rel="external">Flask-Restless</a></li>
-<li><a href="https://flask-restless.readthedocs.io/en/stable/customizing.html#request-preprocessors-and-postprocessors" target="_blank" rel="external">Request preprocessors and postprocessors</a></li>
-<li><a href="https://flask-restless.readthedocs.io/en/latest/processors.html" target="_blank" rel="external">Request preprocessors and postprocessors</a></li>
+<li><a href="https://flask-restless.readthedocs.io/en/stable/" target="_blank" rel="noopener">Flask-Restless</a></li>
+<li><a href="https://flask-restless.readthedocs.io/en/stable/customizing.html#request-preprocessors-and-postprocessors" target="_blank" rel="noopener">Request preprocessors and postprocessors</a></li>
+<li><a href="https://flask-restless.readthedocs.io/en/latest/processors.html" target="_blank" rel="noopener">Request preprocessors and postprocessors</a></li>
 </ul>
 
       
@@ -560,6 +560,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -568,19 +572,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -592,7 +592,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -601,10 +601,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -625,6 +621,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -744,11 +744,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -760,7 +760,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

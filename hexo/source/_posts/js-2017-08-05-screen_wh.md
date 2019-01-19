@@ -5,6 +5,7 @@ tags: [javascript]
 ---
 
 [原文：https://segmentfault.com/q/1010000004605042](https://segmentfault.com/q/1010000004605042)
+
 <!-- more --><!-- toc -->
 ## js
 ```javascript

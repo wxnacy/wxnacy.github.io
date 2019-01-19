@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Python 使用 pycrypto 进行 rsa 公私钥加解密和签名验证 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="公私钥加密是现在公认最安全的加密方式。因为普通的对称加密方式，加密和解密是用相同的秘钥来进行的，那不管这个算法多么复杂，只要你需要将秘钥发送给解密方，这个秘钥就一定可能会泄露给第三方，为此我们只能定期更改秘钥来减少加密信息被破解的几率，但这明显不是一个很好的方法。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-08-21T06:44:29.000Z">
+<meta property="og:updated_time" content="2019-01-19T05:30:00.670Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 使用 pycrypto 进行 rsa 公私钥加解密和签名验证">
 <meta name="twitter:description" content="公私钥加密是现在公认最安全的加密方式。因为普通的对称加密方式，加密和解密是用相同的秘钥来进行的，那不管这个算法多么复杂，只要你需要将秘钥发送给解密方，这个秘钥就一定可能会泄露给第三方，为此我们只能定期更改秘钥来减少加密信息被破解的几率，但这明显不是一个很好的方法。">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-python-pycrypto-rsa" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-python-pycrypto-rsa" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -197,21 +197,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>公私钥加密是现在公认最安全的加密方式。因为普通的对称加密方式，加密和解密是用相同的秘钥来进行的，那不管这个算法多么复杂，只要你需要将秘钥发送给解密方，这个秘钥就一定可能会泄露给第三方，为此我们只能定期更改秘钥来减少加密信息被破解的几率，但这明显不是一个很好的方法。<br><a id="more"></a><div class="toc"></p>
-<!-- toc -->
+        <p>公私钥加密是现在公认最安全的加密方式。因为普通的对称加密方式，加密和解密是用相同的秘钥来进行的，那不管这个算法多么复杂，只要你需要将秘钥发送给解密方，这个秘钥就一定可能会泄露给第三方，为此我们只能定期更改秘钥来减少加密信息被破解的几率，但这明显不是一个很好的方法。</p>
+<a id="more"></a><div class="toc"><br><br><!-- toc -->
 <ul>
 <li><a href="#sheng-cheng-mi-yao">生成秘钥</a></li>
 <li><a href="#jia-jie-mi">加解密</a></li>
 <li><a href="#qian-ming-yan-zheng">签名验证</a></li>
 </ul>
 <!-- tocstop -->
-<p></div><br>如果你的数据需要绝对的保密，那已经要选用公私钥加密的方式，简单来说公私钥的原理为：</p>
+<p></p></div><br>如果你的数据需要绝对的保密，那已经要选用公私钥加密的方式，简单来说公私钥的原理为：<p></p>
 <ul>
 <li>公钥加密，私钥解密</li>
 <li>私钥签名，公钥验证</li>
 </ul>
 <h2><span id="sheng-cheng-mi-yao">生成秘钥</span><a href="#sheng-cheng-mi-yao" class="header-anchor"></a></h2><p>在 Unix 系统中可以很方便的生成公私钥</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C <span class="string">"your_email"</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">"your_email"</span></span><br></pre></td></tr></table></figure>
 <p>使用你自己的邮箱，一路回车即可生成 <code>id_rsa, id_rsa.pub</code> 秘钥对，在目录 <code>~/.ssh</code> 中，你也可以根据提示生成自己想要的名字</p>
 <h2><span id="jia-jie-mi">加解密</span><a href="#jia-jie-mi" class="header-anchor"></a></h2><p>很多人开始接触非对称加密时，经常分不清公私钥到底谁来加密谁来解密，其实只要搞清楚公私钥由谁来保管就行了。</p>
 <p>公钥，顾名思义是可以公之于众的秘钥，理论上谁都可以拿到。如果公钥可以解密的话，那岂不是跟用明文没什么区别了吗？</p>
@@ -219,17 +219,17 @@
 <p>假设我老婆要对我说，我爱你，但是她不想让别人听见，所以使用了我给她的公钥对其进行加密，私钥只在我这里，所以即使任何人拿到公钥和密文都不能听到这句话。</p>
 <p>在 Python 中使用 <code>pycrypto</code> 模块可以进行公私钥的加解密算法。</p>
 <p><strong>下载</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install pycrypto</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install pycrypto</span><br></pre></td></tr></table></figure>
 <p><strong>代码</strong></p>
 <p>py 版本 3.5+</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> Crypto <span class="keyword">import</span> Random</div><div class="line"><span class="keyword">from</span> Crypto.Hash <span class="keyword">import</span> SHA</div><div class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> PKCS1_v1_5 <span class="keyword">as</span> Cipher_pkcs1_v1_5</div><div class="line"><span class="keyword">from</span> Crypto.Signature <span class="keyword">import</span> PKCS1_v1_5 <span class="keyword">as</span> Signature_pkcs1_v1_5</div><div class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</div><div class="line"><span class="keyword">import</span> base64</div><div class="line"></div><div class="line"><span class="comment"># 伪随机数生成器</span></div><div class="line">random_generator = Random.new().read</div><div class="line"><span class="comment"># rsa算法生成实例</span></div><div class="line">rsa = RSA.generate(<span class="number">1024</span>, random_generator)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">encrypt</span><span class="params">(message, pub_rsa_path)</span>:</span></div><div class="line">    <span class="string">'''使用公钥加密'''</span></div><div class="line">    <span class="keyword">with</span> open(pub_rsa_path) <span class="keyword">as</span> f:</div><div class="line">        key = f.read()</div><div class="line">        rsakey = RSA.importKey(key)</div><div class="line">        cipher = Cipher_pkcs1_v1_5.new(rsakey)</div><div class="line">        cipher_text = base64.b64encode(cipher.encrypt(message.encode()))</div><div class="line">        <span class="keyword">return</span> cipher_text</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">decrypt</span><span class="params">(secret_message, rsa_path)</span>:</span></div><div class="line">    <span class="string">'''使用私钥解密'''</span></div><div class="line">    <span class="keyword">with</span> open(rsa_path) <span class="keyword">as</span> f:</div><div class="line">        key = f.read()</div><div class="line">        rsakey = RSA.importKey(key)</div><div class="line">        cipher = Cipher_pkcs1_v1_5.new(rsakey)</div><div class="line">        text = cipher.decrypt(base64.b64decode(secret_message), random_generator)</div><div class="line">        <span class="keyword">return</span> text</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    plain = <span class="string">'message'</span></div><div class="line">    pub_rsa_path = <span class="string">'/Users/wxnacy/.ssh/id_rsa.pub'</span></div><div class="line">    rsa_path = <span class="string">'/Users/wxnacy/.ssh/id_rsa'</span></div><div class="line"></div><div class="line">    print(<span class="string">'明文：'</span>, plain)</div><div class="line">    secret = encrypt(plain, pub_rsa_path)</div><div class="line">    print(<span class="string">'加密文：'</span>, secret)</div><div class="line">    text = decrypt(secret, rsa_path)</div><div class="line">    print(<span class="string">'解密文：'</span>, text)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> Crypto <span class="keyword">import</span> Random</span><br><span class="line"><span class="keyword">from</span> Crypto.Hash <span class="keyword">import</span> SHA</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> PKCS1_v1_5 <span class="keyword">as</span> Cipher_pkcs1_v1_5</span><br><span class="line"><span class="keyword">from</span> Crypto.Signature <span class="keyword">import</span> PKCS1_v1_5 <span class="keyword">as</span> Signature_pkcs1_v1_5</span><br><span class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line"><span class="comment"># 伪随机数生成器</span></span><br><span class="line">random_generator = Random.new().read</span><br><span class="line"><span class="comment"># rsa算法生成实例</span></span><br><span class="line">rsa = RSA.generate(<span class="number">1024</span>, random_generator)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encrypt</span><span class="params">(message, pub_rsa_path)</span>:</span></span><br><span class="line">    <span class="string">'''使用公钥加密'''</span></span><br><span class="line">    <span class="keyword">with</span> open(pub_rsa_path) <span class="keyword">as</span> f:</span><br><span class="line">        key = f.read()</span><br><span class="line">        rsakey = RSA.importKey(key)</span><br><span class="line">        cipher = Cipher_pkcs1_v1_5.new(rsakey)</span><br><span class="line">        cipher_text = base64.b64encode(cipher.encrypt(message.encode()))</span><br><span class="line">        <span class="keyword">return</span> cipher_text</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decrypt</span><span class="params">(secret_message, rsa_path)</span>:</span></span><br><span class="line">    <span class="string">'''使用私钥解密'''</span></span><br><span class="line">    <span class="keyword">with</span> open(rsa_path) <span class="keyword">as</span> f:</span><br><span class="line">        key = f.read()</span><br><span class="line">        rsakey = RSA.importKey(key)</span><br><span class="line">        cipher = Cipher_pkcs1_v1_5.new(rsakey)</span><br><span class="line">        text = cipher.decrypt(base64.b64decode(secret_message), random_generator)</span><br><span class="line">        <span class="keyword">return</span> text</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    plain = <span class="string">'message'</span></span><br><span class="line">    pub_rsa_path = <span class="string">'/Users/wxnacy/.ssh/id_rsa.pub'</span></span><br><span class="line">    rsa_path = <span class="string">'/Users/wxnacy/.ssh/id_rsa'</span></span><br><span class="line"></span><br><span class="line">    print(<span class="string">'明文：'</span>, plain)</span><br><span class="line">    secret = encrypt(plain, pub_rsa_path)</span><br><span class="line">    print(<span class="string">'加密文：'</span>, secret)</span><br><span class="line">    text = decrypt(secret, rsa_path)</span><br><span class="line">    print(<span class="string">'解密文：'</span>, text)</span><br></pre></td></tr></table></figure>
 <h2><span id="qian-ming-yan-zheng">签名验证</span><a href="#qian-ming-yan-zheng" class="header-anchor"></a></h2><p>刚才说了，随便有个公钥的人对信息加密，我就能进行解密，那公钥是公开的，我怎么知道解密的明文是我老婆要对我说的话呢，万一是谁朝我借钱怎么办。</p>
 <p>这时候我老婆需要对“我爱你”进行签名，我解密出明文后，要对签名进行验证，验证通过后，我就知道这确实是我老婆说的话了。</p>
 <p>签名的公私钥顺序跟加密是反过来的，我老婆在自己的机器上也生成一对秘钥，然后将公钥给我，私钥保留，然后她用私钥签名，我用公钥验证，这时候虽然任何人拿到公钥都可以验证，但是不能拿到明文，只是验证明文没有被篡改。</p>
 <p>这样我们双方互换公钥，各自保留私钥，加密和签名双管齐下，互发消息都可以做到非常安全。</p>
 <p><strong>代码</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> Crypto <span class="keyword">import</span> Random</div><div class="line"><span class="keyword">from</span> Crypto.Hash <span class="keyword">import</span> SHA</div><div class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> PKCS1_v1_5 <span class="keyword">as</span> Cipher_pkcs1_v1_5</div><div class="line"><span class="keyword">from</span> Crypto.Signature <span class="keyword">import</span> PKCS1_v1_5 <span class="keyword">as</span> Signature_pkcs1_v1_5</div><div class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</div><div class="line"><span class="keyword">import</span> base64</div><div class="line"></div><div class="line"><span class="comment"># 伪随机数生成器</span></div><div class="line">random_generator = Random.new().read</div><div class="line"><span class="comment"># rsa算法生成实例</span></div><div class="line">rsa = RSA.generate(<span class="number">1024</span>, random_generator)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">signature</span><span class="params">(message, rsa_path)</span>:</span></div><div class="line">    <span class="string">'''使用私钥签名'''</span></div><div class="line">    <span class="keyword">with</span> open(rsa_path) <span class="keyword">as</span> f:</div><div class="line">        key = f.read()</div><div class="line">        rsakey = RSA.importKey(key)</div><div class="line">        signer = Signature_pkcs1_v1_5.new(rsakey)</div><div class="line">        digest = SHA.new()</div><div class="line">        digest.update(message.encode())</div><div class="line">        sign = signer.sign(digest)</div><div class="line">        signature = base64.b64encode(sign)</div><div class="line"></div><div class="line">        <span class="keyword">return</span> signature</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">verify_signature</span><span class="params">(message, signature, pub_rsa_path)</span>:</span></div><div class="line">    <span class="string">'''验证签名'''</span></div><div class="line">    <span class="keyword">with</span> open(pub_rsa_path) <span class="keyword">as</span> f:</div><div class="line">        key = f.read()</div><div class="line">        rsakey = RSA.importKey(key)</div><div class="line">        verifier = Signature_pkcs1_v1_5.new(rsakey)</div><div class="line">        digest = SHA.new()</div><div class="line">        <span class="comment"># Assumes the data is base64 encoded to begin with</span></div><div class="line">        digest.update(message.encode())</div><div class="line">        print(digest)</div><div class="line">        is_verify = verifier.verify(digest, base64.b64decode(signature))</div><div class="line">        <span class="keyword">return</span> is_verify</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    plain = <span class="string">'message'</span></div><div class="line"></div><div class="line">    sign_pub_rsa_path = <span class="string">'/Users/wxnacy/.ssh/test_gmail_rsa.pub'</span></div><div class="line">    sign_rsa_path = <span class="string">'/Users/wxnacy/.ssh/test_gmail_rsa'</span></div><div class="line"></div><div class="line">    sign = signature(plain, sign_rsa_path)</div><div class="line">    print(<span class="string">'签名：'</span>, sign)</div><div class="line">    flag = verify_signature(plain, sign, sign_pub_rsa_path)</div><div class="line">    print(<span class="string">'验证结果：'</span>, flag)</div></pre></td></tr></table></figure>
-<p><a href="https://github.com/wxnacy/study/blob/master/python/simple/rsa_encrypt.py" target="_blank" rel="external">demo</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> Crypto <span class="keyword">import</span> Random</span><br><span class="line"><span class="keyword">from</span> Crypto.Hash <span class="keyword">import</span> SHA</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> PKCS1_v1_5 <span class="keyword">as</span> Cipher_pkcs1_v1_5</span><br><span class="line"><span class="keyword">from</span> Crypto.Signature <span class="keyword">import</span> PKCS1_v1_5 <span class="keyword">as</span> Signature_pkcs1_v1_5</span><br><span class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line"><span class="comment"># 伪随机数生成器</span></span><br><span class="line">random_generator = Random.new().read</span><br><span class="line"><span class="comment"># rsa算法生成实例</span></span><br><span class="line">rsa = RSA.generate(<span class="number">1024</span>, random_generator)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">signature</span><span class="params">(message, rsa_path)</span>:</span></span><br><span class="line">    <span class="string">'''使用私钥签名'''</span></span><br><span class="line">    <span class="keyword">with</span> open(rsa_path) <span class="keyword">as</span> f:</span><br><span class="line">        key = f.read()</span><br><span class="line">        rsakey = RSA.importKey(key)</span><br><span class="line">        signer = Signature_pkcs1_v1_5.new(rsakey)</span><br><span class="line">        digest = SHA.new()</span><br><span class="line">        digest.update(message.encode())</span><br><span class="line">        sign = signer.sign(digest)</span><br><span class="line">        signature = base64.b64encode(sign)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> signature</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">verify_signature</span><span class="params">(message, signature, pub_rsa_path)</span>:</span></span><br><span class="line">    <span class="string">'''验证签名'''</span></span><br><span class="line">    <span class="keyword">with</span> open(pub_rsa_path) <span class="keyword">as</span> f:</span><br><span class="line">        key = f.read()</span><br><span class="line">        rsakey = RSA.importKey(key)</span><br><span class="line">        verifier = Signature_pkcs1_v1_5.new(rsakey)</span><br><span class="line">        digest = SHA.new()</span><br><span class="line">        <span class="comment"># Assumes the data is base64 encoded to begin with</span></span><br><span class="line">        digest.update(message.encode())</span><br><span class="line">        print(digest)</span><br><span class="line">        is_verify = verifier.verify(digest, base64.b64decode(signature))</span><br><span class="line">        <span class="keyword">return</span> is_verify</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    plain = <span class="string">'message'</span></span><br><span class="line"></span><br><span class="line">    sign_pub_rsa_path = <span class="string">'/Users/wxnacy/.ssh/test_gmail_rsa.pub'</span></span><br><span class="line">    sign_rsa_path = <span class="string">'/Users/wxnacy/.ssh/test_gmail_rsa'</span></span><br><span class="line"></span><br><span class="line">    sign = signature(plain, sign_rsa_path)</span><br><span class="line">    print(<span class="string">'签名：'</span>, sign)</span><br><span class="line">    flag = verify_signature(plain, sign, sign_pub_rsa_path)</span><br><span class="line">    print(<span class="string">'验证结果：'</span>, flag)</span><br></pre></td></tr></table></figure>
+<p><a href="https://github.com/wxnacy/study/blob/master/python/simple/rsa_encrypt.py" target="_blank" rel="noopener">demo</a></p>
 
       
 
@@ -527,6 +527,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -535,19 +539,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -559,7 +559,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -568,10 +568,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -592,6 +588,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -711,11 +711,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -727,7 +727,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

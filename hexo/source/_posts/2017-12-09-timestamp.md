@@ -14,6 +14,7 @@ tags: [算法, 工具, javascript]
 <script async type="text/javascript" src="/js/ts.min.js"></script>
 <!-- more -->
 最近在做时间相关的功能，涉及到换算各个时区，干脆写了一个时间戳和北京时间转换的一个小工具，如上。顺便总结下几种语言在时间方面的操作
+
 <!-- toc -->
 ## 获取时间戳
 ### Javascript

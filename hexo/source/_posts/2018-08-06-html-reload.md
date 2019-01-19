@@ -5,6 +5,7 @@ tags: [html, javascript]
 ---
 
 页面刷新有几种方式
+
 <!-- more --><!-- toc -->
 ## reload
 

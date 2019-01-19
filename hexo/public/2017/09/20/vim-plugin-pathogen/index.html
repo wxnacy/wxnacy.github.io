@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Vim 插件 pathogen 插件管理 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="专辑：Vim 练级手册  pathogen 更好的插件管理方案">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-11-23T07:11:19.000Z">
+<meta property="og:updated_time" content="2019-01-19T04:06:41.934Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vim 插件 pathogen 插件管理">
 <meta name="twitter:description" content="专辑：Vim 练级手册  pathogen 更好的插件管理方案">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-vim-plugin-pathogen" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-vim-plugin-pathogen" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -202,15 +202,15 @@
 <p>pathogen 更好的插件管理方案</p>
 </blockquote>
 <a id="more"></a>
-<p>改用 vim 做主开发工具有一段时间了，之前一直在用 <a href="https://github.com/VundleVim/Vundle.vim" target="_blank" rel="external">Vundle</a><br>管理插件回想起用 Vundle 装第一个插件，当时的痛苦现在还历历在目，对于一个新手来<br>说去哪里写 <code>:PluginInstall</code> 都折腾了好久 pathogen 可以将插件都集中管理到<br><strong><em>~/.vim/bundle</em></strong> 中，并且各个插件都拥有自己的目录（这点 Vundle 也可以做到），<br>他的优点在于只依赖与 git 来管理插件，无需在 vim 做过多的配置</p>
-<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ mkdir .vim &amp;&amp; <span class="built_in">cd</span> .vim</div><div class="line">$ mkdir bundle &amp;&amp; mkdir <span class="built_in">autoload</span> &amp;&amp; <span class="built_in">cd</span> bundle</div><div class="line">$ git <span class="built_in">clone</span> https://github.com/tpope/vim-pathogen.git</div><div class="line">$ cp vim-pathogen/<span class="built_in">autoload</span>/pathogen.vim ~/.vim/<span class="built_in">autoload</span>/</div></pre></td></tr></table></figure>
+<p>改用 vim 做主开发工具有一段时间了，之前一直在用 <a href="https://github.com/VundleVim/Vundle.vim" target="_blank" rel="noopener">Vundle</a><br>管理插件回想起用 Vundle 装第一个插件，当时的痛苦现在还历历在目，对于一个新手来<br>说去哪里写 <code>:PluginInstall</code> 都折腾了好久 pathogen 可以将插件都集中管理到<br><strong><em>~/.vim/bundle</em></strong> 中，并且各个插件都拥有自己的目录（这点 Vundle 也可以做到），<br>他的优点在于只依赖与 git 来管理插件，无需在 vim 做过多的配置</p>
+<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir .vim &amp;&amp; <span class="built_in">cd</span> .vim</span><br><span class="line">$ mkdir bundle &amp;&amp; mkdir <span class="built_in">autoload</span> &amp;&amp; <span class="built_in">cd</span> bundle</span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/tpope/vim-pathogen.git</span><br><span class="line">$ cp vim-pathogen/<span class="built_in">autoload</span>/pathogen.vim ~/.vim/<span class="built_in">autoload</span>/</span><br></pre></td></tr></table></figure>
 <h2><span id="pei-zhi">配置</span><a href="#pei-zhi" class="header-anchor"></a></h2><p>在 <strong><em>~/.vimrc</em></strong> 文件里, <code>filetype plugin indent on</code> 之前的任何地方，加入这句<br>：<code>call pathogen#infect()</code></p>
 <p>这样 pathogen 就已经安装完成了，接下来我们下载一个插件看下效果</p>
-<h2><span id="di-yi-ge-cha-jian">第一个插件</span><a href="#di-yi-ge-cha-jian" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> ~/.vim/bundle</div><div class="line">$ git <span class="built_in">clone</span> http://github.com/scrooloose/nerdtree.git</div></pre></td></tr></table></figure>
+<h2><span id="di-yi-ge-cha-jian">第一个插件</span><a href="#di-yi-ge-cha-jian" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~/.vim/bundle</span><br><span class="line">$ git <span class="built_in">clone</span> http://github.com/scrooloose/nerdtree.git</span><br></pre></td></tr></table></figure>
 <p>执行完两条命令后，bundle 文件夹中就会出现 nerdtree 文件，<br>这样就已经安装完成，pathogen 会自动加载 bundle 中的插件</p>
-<h2><span id="geng-xin-cha-jian">更新插件</span><a href="#geng-xin-cha-jian" class="header-anchor"></a></h2><p>如果想要更新某个插件，只需要进入到相应插件目录 <code>~/.vim/bundle/nerdtree</code> 中执行<br>下拉命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git pull</div></pre></td></tr></table></figure></p>
+<h2><span id="geng-xin-cha-jian">更新插件</span><a href="#geng-xin-cha-jian" class="header-anchor"></a></h2><p>如果想要更新某个插件，只需要进入到相应插件目录 <code>~/.vim/bundle/nerdtree</code> 中执行<br>下拉命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git pull</span><br></pre></td></tr></table></figure></p>
 <p>如果插件特别多，不想一个一个下拉代码，也可以使用 Git 的 <strong><em>submodule</em></strong> 模块<br>托管到 GitHub 中<br>在我的文章 <a href="/2017/09/19/git-submodule">Git 工具 submodule</a> 中有介绍</p>
-<h2><span id="shan-chu-cha-jian">删除插件</span><a href="#shan-chu-cha-jian" class="header-anchor"></a></h2><p>删除插件也很简单，需要进入 <strong><em>~/.vim/bundle</em></strong> 执行删除目录命令即可<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ rm -rf nerdtree</div></pre></td></tr></table></figure></p>
+<h2><span id="shan-chu-cha-jian">删除插件</span><a href="#shan-chu-cha-jian" class="header-anchor"></a></h2><p>删除插件也很简单，需要进入 <strong><em>~/.vim/bundle</em></strong> 执行删除目录命令即可<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rm -rf nerdtree</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -508,6 +508,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -516,19 +520,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -540,7 +540,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -549,10 +549,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -573,6 +569,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -692,11 +692,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -708,7 +708,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

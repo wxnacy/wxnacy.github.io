@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Vim 插件 YouCompleteMe 代码自动补全 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -17,7 +17,7 @@
 <meta property="og:description" content="专辑：Vim 练级手册  Vim 代码补全神器 YouCompleteMe">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="http://wxnacy.com/images/ycm.gif">
-<meta property="og:updated_time" content="2017-11-29T01:12:23.000Z">
+<meta property="og:updated_time" content="2019-01-19T04:06:41.941Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vim 插件 YouCompleteMe 代码自动补全">
 <meta name="twitter:description" content="专辑：Vim 练级手册  Vim 代码补全神器 YouCompleteMe">
@@ -40,7 +40,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -57,7 +57,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -179,7 +179,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-vim-plugin-youcompleteme" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-vim-plugin-youcompleteme" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -201,21 +201,21 @@
       
         <p><a href="/vim">专辑：Vim 练级手册</a></p>
 <blockquote>
-<p>Vim 代码补全神器 <a href="https://github.com/Valloric/YouCompleteMe.git" target="_blank" rel="external">YouCompleteMe</a></p>
+<p>Vim 代码补全神器 <a href="https://github.com/Valloric/YouCompleteMe.git" target="_blank" rel="noopener">YouCompleteMe</a></p>
 </blockquote>
 <a id="more"></a>
 <p>说到 <strong><em>YouCompleteMe</em></strong> 真是 Vim 开发必不可少的一个插件，功能全，速度快，<br>唯一的缺点就是安装起来太复杂，这也算是变相的“能量守恒”吧<br>废话不多说进入使用教程</p>
 <h2><span id="yu-lan">预览</span><a href="#yu-lan" class="header-anchor"></a></h2><p><img src="/images/ycm.gif" alt="ycm"></p>
-<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><h3><span id="pathogen">Pathogen</span><a href="#pathogen" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> ~/.vim/bundle</div><div class="line">$ git <span class="built_in">clone</span> --recursive https://github.com/Valloric/YouCompleteMe</div></pre></td></tr></table></figure>
-<p>正常插件做到这一步就完成了，但是它还需要手动安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> ~/.vim/bundle/YouCompleteMe</div><div class="line">$ ./install.sh --clang-completer</div></pre></td></tr></table></figure></p>
+<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><h3><span id="pathogen">Pathogen</span><a href="#pathogen" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~/.vim/bundle</span><br><span class="line">$ git <span class="built_in">clone</span> --recursive https://github.com/Valloric/YouCompleteMe</span><br></pre></td></tr></table></figure>
+<p>正常插件做到这一步就完成了，但是它还需要手动安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~/.vim/bundle/YouCompleteMe</span><br><span class="line">$ ./install.sh --clang-completer</span><br></pre></td></tr></table></figure></p>
 <p><code>--clang-completer</code> 代表支持 c-family 的补全，如果不需要可以去掉<br>如果想支持 Javascript 补全，需要加上参数 <code>--tern-completer</code> 详情见 <a href="/2017/09/22/vim-plugin-tern">Vim 插件 tern_for_vim</a></p>
-<p>安装程序默认使用 py2 ，如果你使用 <strong><em>pyenv</em></strong> 可以使用 <code>./install.py</code> 进行安装，需要修改下环境变量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="string">'export PYTHON_CONFIGURE_OPTS="--enable-framework"'</span> &gt;&gt; ~/.bash_profile</div><div class="line">$ <span class="built_in">source</span> ~/.bash_profile</div></pre></td></tr></table></figure></p>
-<p>随后需要重新下载新 pyenv 环境并且换到该环境进行安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ pyenv install 3.5.0</div><div class="line">$ pyenv virtualenv 3.5.0 env_ycm</div><div class="line">$ <span class="built_in">cd</span> ~/.vim/bundle/YouCompleteMe</div><div class="line">$ pyenv <span class="built_in">local</span> env_ycm</div><div class="line">$ ./install.py</div></pre></td></tr></table></figure></p>
+<p>安装程序默认使用 py2 ，如果你使用 <strong><em>pyenv</em></strong> 可以使用 <code>./install.py</code> 进行安装，需要修改下环境变量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'export PYTHON_CONFIGURE_OPTS="--enable-framework"'</span> &gt;&gt; ~/.bash_profile</span><br><span class="line">$ <span class="built_in">source</span> ~/.bash_profile</span><br></pre></td></tr></table></figure></p>
+<p>随后需要重新下载新 pyenv 环境并且换到该环境进行安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ pyenv install 3.5.0</span><br><span class="line">$ pyenv virtualenv 3.5.0 env_ycm</span><br><span class="line">$ <span class="built_in">cd</span> ~/.vim/bundle/YouCompleteMe</span><br><span class="line">$ pyenv <span class="built_in">local</span> env_ycm</span><br><span class="line">$ ./install.py</span><br></pre></td></tr></table></figure></p>
 <p>这样一来就静静的等待安装完成并体验了<br><strong><em>温馨提示：整个安装过程时间非常长，强烈建议找个网络环境好并且翻墙的环境</em></strong></p>
-<h3><span id="vundle">Vundle</span><a href="#vundle" class="header-anchor"></a></h3><p>修改 <code>~/.vimrc</code> 文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Plugin <span class="string">'Valloric/YouCompleteMe'</span></div></pre></td></tr></table></figure></p>
-<p>在 Vim 中运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:PluginInstall</div></pre></td></tr></table></figure></p>
+<h3><span id="vundle">Vundle</span><a href="#vundle" class="header-anchor"></a></h3><p>修改 <code>~/.vimrc</code> 文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Plugin <span class="string">'Valloric/YouCompleteMe'</span></span><br></pre></td></tr></table></figure></p>
+<p>在 Vim 中运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:PluginInstall</span><br></pre></td></tr></table></figure></p>
 <p>剩下的步骤就是跟上面以上执行 <code>./install.sh</code> 或 <code>./install.py</code> 了</p>
-<h2><span id="pei-zhi">配置</span><a href="#pei-zhi" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="string">" 方法跳转 "</span></div><div class="line">nnoremap &lt;leader&gt;gl :YcmCompleter GoToDeclaration&lt;CR&gt;</div><div class="line">nnoremap &lt;leader&gt;gf :YcmCompleter GoToDefinition&lt;CR&gt;</div><div class="line">nnoremap &lt;leader&gt;gg :YcmCompleter GoToDefinitionElseDeclaration&lt;CR&gt;</div></pre></td></tr></table></figure>
+<h2><span id="pei-zhi">配置</span><a href="#pei-zhi" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">" 方法跳转 "</span></span><br><span class="line">nnoremap &lt;leader&gt;gl :YcmCompleter GoToDeclaration&lt;CR&gt;</span><br><span class="line">nnoremap &lt;leader&gt;gf :YcmCompleter GoToDefinition&lt;CR&gt;</span><br><span class="line">nnoremap &lt;leader&gt;gg :YcmCompleter GoToDefinitionElseDeclaration&lt;CR&gt;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -521,6 +521,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -529,19 +533,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -553,7 +553,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -562,10 +562,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -586,6 +582,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -705,11 +705,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -721,7 +721,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

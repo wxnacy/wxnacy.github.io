@@ -5,6 +5,7 @@ tags: [linux, go]
 ---
 
 Linux 系统中有个很有意思的命令，管道，也就是竖线（|），使用方法为
+
 <!-- more --><!-- toc -->
 ```bash
 $ cmd1 | cmd2

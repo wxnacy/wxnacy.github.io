@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Node 使用 puppeteer 抓取动态页面 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -17,7 +17,7 @@
 <meta property="og:description" content="现在越来越多的网页采用前端渲染页面，这给抓取工作带来了很大的麻烦，通过往常的方法只会拿到一堆 js 方法或者 api 接口，我们当然不想每个网站都去这么费劲的探索他们的 api。">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="http://wxnacy.com/images/ins.png">
-<meta property="og:updated_time" content="2018-02-06T03:24:45.000Z">
+<meta property="og:updated_time" content="2019-01-19T05:30:00.701Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Node 使用 puppeteer 抓取动态页面">
 <meta name="twitter:description" content="现在越来越多的网页采用前端渲染页面，这给抓取工作带来了很大的麻烦，通过往常的方法只会拿到一堆 js 方法或者 api 接口，我们当然不想每个网站都去这么费劲的探索他们的 api。">
@@ -40,7 +40,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -57,7 +57,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -179,7 +179,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-puppeteer-crawler" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-puppeteer-crawler" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -199,18 +199,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>现在越来越多的网页采用前端渲染页面，这给抓取工作带来了很大的麻烦，通过往常的方法只会拿到一堆 js 方法或者 api 接口，我们当然不想每个网站都去这么费劲的探索他们的 api。<br><a id="more"></a><div class="toc"></p>
-<!-- toc -->
+        <p>现在越来越多的网页采用前端渲染页面，这给抓取工作带来了很大的麻烦，通过往常的方法只会拿到一堆 js 方法或者 api 接口，我们当然不想每个网站都去这么费劲的探索他们的 api。</p>
+<a id="more"></a><div class="toc"><br><br><!-- toc -->
 <ul>
 <li><a href="#xia-zai">下载</a></li>
 <li><a href="#shi-yong">使用</a></li>
 <li><a href="#fen-xi-selector">分析 selector</a></li>
 </ul>
 <!-- tocstop -->
-<p></div><br>那还有什么好方法嘛，呼叫万能的 Google 爸爸，<a href="https://github.com/GoogleChrome/puppeteer" target="_blank" rel="external">puppeteer</a> 可以模拟 chrome 打开网页，并可以进行截图、转为 pdf 文件，当然抓取数据也不在话下，因为截图的前提就是它模拟了前端渲染的效果，就像真的打开了网站一样。</p>
+<p></p></div><br>那还有什么好方法嘛，呼叫万能的 Google 爸爸，<a href="https://github.com/GoogleChrome/puppeteer" target="_blank" rel="noopener">puppeteer</a> 可以模拟 chrome 打开网页，并可以进行截图、转为 pdf 文件，当然抓取数据也不在话下，因为截图的前提就是它模拟了前端渲染的效果，就像真的打开了网站一样。<p></p>
 <p>这篇文章主要介绍如何通过 puppeteer 进行简单抓取</p>
-<h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yarn add puppeteer</div></pre></td></tr></table></figure>
-<h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><p>首先看一个简单例子，我们依然在不问为什么的前提下，运行一下代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">'puppeteer'</span>);</div><div class="line"></div><div class="line">(<span class="keyword">async</span> () =&gt; &#123;</div><div class="line">	<span class="keyword">const</span> browser = <span class="keyword">await</span> puppeteer.launch();</div><div class="line">	<span class="keyword">const</span> page = <span class="keyword">await</span> browser.newPage();</div><div class="line">	<span class="keyword">await</span> page.goto(<span class="string">'https://www.instagram.com/nike/'</span>);</div><div class="line"></div><div class="line">	<span class="comment">// Get the "viewport" of the page, as reported by the page.</span></div><div class="line">	<span class="keyword">const</span> dimensions = <span class="keyword">await</span> page.evaluate(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">		<span class="keyword">return</span> &#123;</div><div class="line">			width: <span class="built_in">document</span>.documentElement.clientWidth,</div><div class="line">			height: <span class="built_in">document</span>.documentElement.clientHeight,</div><div class="line">            title: <span class="built_in">document</span>.title</div><div class="line">		&#125;;</div><div class="line">	&#125;);</div><div class="line"></div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'Dimensions:'</span>, dimensions);</div><div class="line"></div><div class="line">	<span class="keyword">await</span> browser.close();</div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
+<h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yarn add puppeteer</span><br></pre></td></tr></table></figure>
+<h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><p>首先看一个简单例子，我们依然在不问为什么的前提下，运行一下代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">'puppeteer'</span>);</span><br><span class="line"></span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">	<span class="keyword">const</span> browser = <span class="keyword">await</span> puppeteer.launch();</span><br><span class="line">	<span class="keyword">const</span> page = <span class="keyword">await</span> browser.newPage();</span><br><span class="line">	<span class="keyword">await</span> page.goto(<span class="string">'https://www.instagram.com/nike/'</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Get the "viewport" of the page, as reported by the page.</span></span><br><span class="line">	<span class="keyword">const</span> dimensions = <span class="keyword">await</span> page.evaluate(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> &#123;</span><br><span class="line">			width: <span class="built_in">document</span>.documentElement.clientWidth,</span><br><span class="line">			height: <span class="built_in">document</span>.documentElement.clientHeight,</span><br><span class="line">            title: <span class="built_in">document</span>.title</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'Dimensions:'</span>, dimensions);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">await</span> browser.close();</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
 <p>运行后，你会发现它打印出了 <code>document</code> 的宽、高、标题单个属性，现在我们来分析下这段代码都做了些什么。</p>
 <ul>
 <li><code>puppeteer.launch()</code> 模拟启动一个浏览器</li>
@@ -220,12 +220,12 @@
 <li><code>browser.close()</code> 最后关闭浏览器</li>
 </ul>
 <h2><span id="fen-xi-selector">分析 selector</span><a href="#fen-xi-selector" class="header-anchor"></a></h2><p>在抓取页面时，可以直接借助谷歌浏览器的开发者工具复制 selector<br><img src="/images/ins.png" alt="/images/ins.png"></p>
-<p>我们想要获取该页面的头像信息，通过开发者工具复制出来的 selector 如下<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#react-root</span> &gt; <span class="selector-tag">section</span> &gt; <span class="selector-tag">main</span> &gt; <span class="selector-tag">article</span> &gt; <span class="selector-tag">header</span> &gt; <span class="selector-tag">div</span> &gt; <span class="selector-tag">div</span> &gt; <span class="selector-tag">div</span> &gt; <span class="selector-tag">img</span></div></pre></td></tr></table></figure></p>
-<p>这时我们直接使用它既可<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> avatarSelector = <span class="string">'#react-root &gt; section &gt; main &gt; article &gt; header &gt; div &gt; div &gt; div &gt; img'</span></div><div class="line"><span class="keyword">let</span> avatarDom = <span class="built_in">document</span>.querySelector(avatarSelector)</div><div class="line">avatar = avatarDom.src</div></pre></td></tr></table></figure></p>
+<p>我们想要获取该页面的头像信息，通过开发者工具复制出来的 selector 如下<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#react-root</span> &gt; <span class="selector-tag">section</span> &gt; <span class="selector-tag">main</span> &gt; <span class="selector-tag">article</span> &gt; <span class="selector-tag">header</span> &gt; <span class="selector-tag">div</span> &gt; <span class="selector-tag">div</span> &gt; <span class="selector-tag">div</span> &gt; <span class="selector-tag">img</span></span><br></pre></td></tr></table></figure></p>
+<p>这时我们直接使用它既可<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> avatarSelector = <span class="string">'#react-root &gt; section &gt; main &gt; article &gt; header &gt; div &gt; div &gt; div &gt; img'</span></span><br><span class="line"><span class="keyword">let</span> avatarDom = <span class="built_in">document</span>.querySelector(avatarSelector)</span><br><span class="line">avatar = avatarDom.src</span><br></pre></td></tr></table></figure></p>
 <p>这样我们可以非常方便的分析某个 dom 元素，当然这样的粘贴复制不是万能的，很多时候我们还需要通过分析页面样式来找到更优的解析方式。</p>
-<p>完整的使用方式如下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">'puppeteer'</span>);</div><div class="line"></div><div class="line">(<span class="keyword">async</span> () =&gt; &#123;</div><div class="line">	<span class="keyword">const</span> browser = <span class="keyword">await</span> puppeteer.launch(&#123;<span class="attr">headless</span>: <span class="literal">false</span>&#125;);</div><div class="line">	<span class="keyword">const</span> page = <span class="keyword">await</span> browser.newPage();</div><div class="line">    <span class="keyword">await</span> page.setJavaScriptEnabled(<span class="literal">true</span>);</div><div class="line">	<span class="keyword">await</span> page.goto(<span class="string">'https://www.instagram.com/nike/'</span>);</div><div class="line"></div><div class="line">	<span class="comment">// Get the "viewport" of the page, as reported by the page.</span></div><div class="line">	<span class="keyword">const</span> dimensions = <span class="keyword">await</span> page.evaluate(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">        <span class="comment">// avatar</span></div><div class="line">        <span class="keyword">let</span> avatarSelector = <span class="string">'#react-root &gt; section &gt; main &gt; article &gt; header &gt; div &gt; div &gt; div &gt; img'</span></div><div class="line">        <span class="keyword">let</span> avatarDom = <span class="built_in">document</span>.querySelector(avatarSelector)</div><div class="line">        <span class="keyword">let</span> avatar = <span class="string">''</span></div><div class="line">        <span class="keyword">if</span>( avatarDom )&#123;</div><div class="line">            avatar = avatarDom.src</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// name</span></div><div class="line">        <span class="keyword">let</span> nameSelector = <span class="string">'#react-root &gt; section &gt; main &gt; article &gt; header &gt; section &gt; div._ienqf &gt; h1'</span></div><div class="line">        <span class="keyword">let</span> nameDom = <span class="built_in">document</span>.querySelector(nameSelector)</div><div class="line">        <span class="keyword">let</span> name = <span class="string">''</span></div><div class="line">        <span class="keyword">if</span>( nameDom )&#123;</div><div class="line">            name = nameDom.innerText;</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">		<span class="keyword">return</span> &#123;</div><div class="line">            avatar: avatar,</div><div class="line">            name: name,</div><div class="line">		&#125;;</div><div class="line">	&#125;);</div><div class="line"></div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'Dimensions:'</span>, dimensions);</div><div class="line"></div><div class="line">	<span class="keyword">await</span> browser.close();</div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
+<p>完整的使用方式如下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">'puppeteer'</span>);</span><br><span class="line"></span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">	<span class="keyword">const</span> browser = <span class="keyword">await</span> puppeteer.launch(&#123;<span class="attr">headless</span>: <span class="literal">false</span>&#125;);</span><br><span class="line">	<span class="keyword">const</span> page = <span class="keyword">await</span> browser.newPage();</span><br><span class="line">    <span class="keyword">await</span> page.setJavaScriptEnabled(<span class="literal">true</span>);</span><br><span class="line">	<span class="keyword">await</span> page.goto(<span class="string">'https://www.instagram.com/nike/'</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Get the "viewport" of the page, as reported by the page.</span></span><br><span class="line">	<span class="keyword">const</span> dimensions = <span class="keyword">await</span> page.evaluate(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// avatar</span></span><br><span class="line">        <span class="keyword">let</span> avatarSelector = <span class="string">'#react-root &gt; section &gt; main &gt; article &gt; header &gt; div &gt; div &gt; div &gt; img'</span></span><br><span class="line">        <span class="keyword">let</span> avatarDom = <span class="built_in">document</span>.querySelector(avatarSelector)</span><br><span class="line">        <span class="keyword">let</span> avatar = <span class="string">''</span></span><br><span class="line">        <span class="keyword">if</span>( avatarDom )&#123;</span><br><span class="line">            avatar = avatarDom.src</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// name</span></span><br><span class="line">        <span class="keyword">let</span> nameSelector = <span class="string">'#react-root &gt; section &gt; main &gt; article &gt; header &gt; section &gt; div._ienqf &gt; h1'</span></span><br><span class="line">        <span class="keyword">let</span> nameDom = <span class="built_in">document</span>.querySelector(nameSelector)</span><br><span class="line">        <span class="keyword">let</span> name = <span class="string">''</span></span><br><span class="line">        <span class="keyword">if</span>( nameDom )&#123;</span><br><span class="line">            name = nameDom.innerText;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> &#123;</span><br><span class="line">            avatar: avatar,</span><br><span class="line">            name: name,</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'Dimensions:'</span>, dimensions);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">await</span> browser.close();</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
 <ul>
-<li><a href="https://developers.google.com/web/updates/2017/04/headless-chrome" target="_blank" rel="external">Getting Started with Headless Chrome</a></li>
+<li><a href="https://developers.google.com/web/updates/2017/04/headless-chrome" target="_blank" rel="noopener">Getting Started with Headless Chrome</a></li>
 </ul>
 
       
@@ -524,6 +524,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -532,19 +536,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -556,7 +556,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -565,10 +565,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -589,6 +585,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -708,11 +708,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -724,7 +724,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

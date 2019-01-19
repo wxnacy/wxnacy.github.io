@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Java 11 新特性：String 增强 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="虽然现在很少使用 Java 进行开发，但是仍然时不时的关注着它的动态，最近发现 Java 11 发布了，并且带来了很多新特性，关键它是 Java8 以后又一长期维护版本，可以在生产环境使用，这又增加了我关注它的动力，今天先介绍一个新特性：String 增强">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-12-25T04:01:17.000Z">
+<meta property="og:updated_time" content="2019-01-19T05:30:00.641Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 11 新特性：String 增强">
 <meta name="twitter:description" content="虽然现在很少使用 Java 进行开发，但是仍然时不时的关注着它的动态，最近发现 Java 11 发布了，并且带来了很多新特性，关键它是 Java8 以后又一长期维护版本，可以在生产环境使用，这又增加了我关注它的动力，今天先介绍一个新特性：String 增强">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-java-11-new-string" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-java-11-new-string" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -197,11 +197,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>虽然现在很少使用 Java 进行开发，但是仍然时不时的关注着它的动态，最近发现 Java 11 发布了，并且带来了很多新特性，关键它是 Java8 以后又一长期维护版本，可以在生产环境使用，这又增加了我关注它的动力，今天先介绍一个新特性：String 增强<br><a id="more"></a><div class="toc"></p>
-<!-- toc -->
+        <p>虽然现在很少使用 Java 进行开发，但是仍然时不时的关注着它的动态，最近发现 Java 11 发布了，并且带来了很多新特性，关键它是 Java8 以后又一长期维护版本，可以在生产环境使用，这又增加了我关注它的动力，今天先介绍一个新特性：String 增强</p>
+<a id="more"></a><div class="toc"><br><br><!-- toc -->
 <!-- tocstop -->
-<p></div><br>我们来看这段代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringExample</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</div><div class="line">        Java11Upgrade();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Java11Upgrade</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">// 判断字符串是否为空白</span></div><div class="line">        System.out.println(<span class="string">" "</span>.isBlank());              <span class="comment">// true</span></div><div class="line">        <span class="comment">// 去除首尾空格</span></div><div class="line">        System.out.println(<span class="string">" Java "</span>.strip());           <span class="comment">// Java</span></div><div class="line">        <span class="comment">// 去除首部空格</span></div><div class="line">        System.out.println(<span class="string">" Java"</span>.stripLeading());     <span class="comment">// Java</span></div><div class="line">        <span class="comment">// 去除尾部空格</span></div><div class="line">        System.out.println(<span class="string">"Java "</span>.stripTrailing());    <span class="comment">// Java</span></div><div class="line">        <span class="comment">// 重复字符串</span></div><div class="line">        System.out.println(<span class="string">"Java"</span>.repeat(<span class="number">2</span>));           <span class="comment">// JavaJava</span></div><div class="line">        <span class="comment">// 获取字符串中的行数</span></div><div class="line">        System.out.println(<span class="string">"A\nB\nC"</span>.lines().count());  <span class="comment">// 3</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p></p></div><br>我们来看这段代码<p></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringExample</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</span><br><span class="line">        Java11Upgrade();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Java11Upgrade</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 判断字符串是否为空白</span></span><br><span class="line">        System.out.println(<span class="string">" "</span>.isBlank());              <span class="comment">// true</span></span><br><span class="line">        <span class="comment">// 去除首尾空格</span></span><br><span class="line">        System.out.println(<span class="string">" Java "</span>.strip());           <span class="comment">// Java</span></span><br><span class="line">        <span class="comment">// 去除首部空格</span></span><br><span class="line">        System.out.println(<span class="string">" Java"</span>.stripLeading());     <span class="comment">// Java</span></span><br><span class="line">        <span class="comment">// 去除尾部空格</span></span><br><span class="line">        System.out.println(<span class="string">"Java "</span>.stripTrailing());    <span class="comment">// Java</span></span><br><span class="line">        <span class="comment">// 重复字符串</span></span><br><span class="line">        System.out.println(<span class="string">"Java"</span>.repeat(<span class="number">2</span>));           <span class="comment">// JavaJava</span></span><br><span class="line">        <span class="comment">// 获取字符串中的行数</span></span><br><span class="line">        System.out.println(<span class="string">"A\nB\nC"</span>.lines().count());  <span class="comment">// 3</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>还是一些其他语言早就有的特性，不过很高兴 Java 在逐渐补足这些东西，这也是让 Java 保持霸主地位的必要操作。</p>
 
       
@@ -500,6 +500,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -508,19 +512,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -532,7 +532,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -541,10 +541,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -565,6 +561,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -684,11 +684,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -700,7 +700,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

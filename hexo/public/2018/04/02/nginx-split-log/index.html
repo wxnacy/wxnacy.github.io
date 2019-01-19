@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Nginx 分割日志 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="Nginx 有个非常大的缺点，就是日志不能自动分割，死磕着一个文件写到死">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-04-02T01:50:08.000Z">
+<meta property="og:updated_time" content="2019-01-19T05:30:00.577Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nginx 分割日志">
 <meta name="twitter:description" content="Nginx 有个非常大的缺点，就是日志不能自动分割，死磕着一个文件写到死">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-nginx-split-log" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-nginx-split-log" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -197,19 +197,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Nginx 有个非常大的缺点，就是日志不能自动分割，死磕着一个文件写到死<br><a id="more"></a><div class="toc"></p>
-<!-- toc -->
+        <p>Nginx 有个非常大的缺点，就是日志不能自动分割，死磕着一个文件写到死</p>
+<a id="more"></a><div class="toc"><br><br><!-- toc -->
 <!-- tocstop -->
-<p></div><br>如果你重度依赖 <code>access.log</code> 日志进行分析，那长时间面对动辄上 G 的文件，你会很头痛，所以只能自己来写脚本来分割</p>
+<p></p></div><br>如果你重度依赖 <code>access.log</code> 日志进行分析，那长时间面对动辄上 G 的文件，你会很头痛，所以只能自己来写脚本来分割<p></p>
 <p>首先确定思路，最容易想到的方法就是将现在的日志文件挪走，然后期望 Nginx 重新生成一个日志，然后把这个动作定时执行，接下来我们一步一步实现</p>
-<p>挪走日志<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/nginx/logs</div><div class="line">$ sudo mv access.log access.log.1</div><div class="line">$ ll</div><div class="line"></div><div class="line">-rw-r--r--. 1 nginx root   97 Mar 31 23:12 access.log.1</div><div class="line">-rw-r--r--. 1 nginx root 4575 Mar 31 23:12 error.log</div></pre></td></tr></table></figure></p>
-<p>做完后，Nginx 程序并没有停止，但是也没有生成新的 <code>access.log</code> 文件，查看日志<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ tail -f access.log.1</div></pre></td></tr></table></figure></p>
-<p>发现日志继续写在了 <code>access.log.1</code> 中，虽然名字改变了，但对于 Nginx 来说文件指向<br>依然是它，那就需要强迫它重新打开日志文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ nginx -s reopen</div><div class="line">$ ll</div><div class="line"></div><div class="line">-rw-r--r--. 1 nginx root   97 Mar 31 23:12 access.log</div><div class="line">-rw-r--r--. 1 nginx root   97 Mar 31 23:12 access.log.1</div><div class="line">-rw-r--r--. 1 nginx root 4575 Mar 31 23:12 error.log</div></pre></td></tr></table></figure></p>
+<p>挪走日志<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/nginx/logs</span><br><span class="line">$ sudo mv access.log access.log.1</span><br><span class="line">$ ll</span><br><span class="line"></span><br><span class="line">-rw-r--r--. 1 nginx root   97 Mar 31 23:12 access.log.1</span><br><span class="line">-rw-r--r--. 1 nginx root 4575 Mar 31 23:12 error.log</span><br></pre></td></tr></table></figure></p>
+<p>做完后，Nginx 程序并没有停止，但是也没有生成新的 <code>access.log</code> 文件，查看日志<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ tail -f access.log.1</span><br></pre></td></tr></table></figure></p>
+<p>发现日志继续写在了 <code>access.log.1</code> 中，虽然名字改变了，但对于 Nginx 来说文件指向<br>依然是它，那就需要强迫它重新打开日志文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ nginx -s reopen</span><br><span class="line">$ ll</span><br><span class="line"></span><br><span class="line">-rw-r--r--. 1 nginx root   97 Mar 31 23:12 access.log</span><br><span class="line">-rw-r--r--. 1 nginx root   97 Mar 31 23:12 access.log.1</span><br><span class="line">-rw-r--r--. 1 nginx root 4575 Mar 31 23:12 error.log</span><br></pre></td></tr></table></figure></p>
 <p>执行后，我们会发现新的 <code>access.log</code> 生成了，至此单次流程完成。</p>
 <p>我们总不能每次都手动完成这个操作，定时任务是必须的</p>
-<p>首先完善下分割脚本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/nginx/logs</div><div class="line">$ touch split_log.sh</div><div class="line">$ vim split_log.sh</div><div class="line"></div><div class="line"><span class="meta">#!/usr/bin/env bash</span></div><div class="line">LOG_DIR=/usr/<span class="built_in">local</span>/nginx/logs</div><div class="line">LOG_FILE=<span class="variable">$&#123;LOG_DIR&#125;</span>/access.log</div><div class="line">DT=`date <span class="string">"+%Y%m%d%H%M%S"</span>`</div><div class="line"><span class="comment"># 检查日志文件是否存在</span></div><div class="line"><span class="built_in">test</span> -f <span class="variable">$&#123;LOG_FILE&#125;</span> &amp;&amp; mv <span class="variable">$&#123;LOG_FILE&#125;</span> <span class="variable">$&#123;LOG_FILE&#125;</span>.<span class="variable">$&#123;DT&#125;</span></div><div class="line">nginx -s reopen</div></pre></td></tr></table></figure></p>
-<p>添加执行权限<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ chmod +x split_log.sh</div></pre></td></tr></table></figure></p>
-<p>添加定时任务<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ crontab -e</div><div class="line"></div><div class="line">* */1 * * * /bin/bash /usr/<span class="built_in">local</span>/nginx/logs/split_log.sh</div></pre></td></tr></table></figure></p>
+<p>首先完善下分割脚本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/nginx/logs</span><br><span class="line">$ touch split_log.sh</span><br><span class="line">$ vim split_log.sh</span><br><span class="line"></span><br><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line">LOG_DIR=/usr/<span class="built_in">local</span>/nginx/logs</span><br><span class="line">LOG_FILE=<span class="variable">$&#123;LOG_DIR&#125;</span>/access.log</span><br><span class="line">DT=`date <span class="string">"+%Y%m%d%H%M%S"</span>`</span><br><span class="line"><span class="comment"># 检查日志文件是否存在</span></span><br><span class="line"><span class="built_in">test</span> -f <span class="variable">$&#123;LOG_FILE&#125;</span> &amp;&amp; mv <span class="variable">$&#123;LOG_FILE&#125;</span> <span class="variable">$&#123;LOG_FILE&#125;</span>.<span class="variable">$&#123;DT&#125;</span></span><br><span class="line">nginx -s reopen</span><br></pre></td></tr></table></figure></p>
+<p>添加执行权限<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ chmod +x split_log.sh</span><br></pre></td></tr></table></figure></p>
+<p>添加定时任务<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ crontab -e</span><br><span class="line"></span><br><span class="line">* */1 * * * /bin/bash /usr/<span class="built_in">local</span>/nginx/logs/split_log.sh</span><br></pre></td></tr></table></figure></p>
 <p>然后执行 <code>:wq</code> 退出，系统会自动生成定时任务，每小时执行一次。</p>
 <ul>
 <li><a href="/2018/01/15/linux-crontab/">Linux Crontab 定时任务</a></li>
@@ -511,6 +511,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -519,19 +523,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -543,7 +543,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -552,10 +552,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -576,6 +572,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -695,11 +695,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -711,7 +711,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

@@ -10,6 +10,7 @@ date: 2018-09-17 18:12:42
 [专辑：Vim 练级手册](/vim)
 
 [gocode](https://github.com/nsf/gocode) 可以在 Vim 中实现 Go 语言的代码补全提示。
+
 <!-- more --><!-- toc -->
 
 ## 预览

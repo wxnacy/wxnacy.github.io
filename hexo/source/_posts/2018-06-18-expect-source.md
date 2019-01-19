@@ -5,6 +5,7 @@ tags: [expect]
 ---
 
 在 Expect 中 source 的用户和 Shell 很类似，可以将变量作用到当前命令中。
+
 <!-- more --><!-- toc -->
 
 **用法**

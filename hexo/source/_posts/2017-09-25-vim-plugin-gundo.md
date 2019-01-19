@@ -10,6 +10,7 @@ tags: [vim]
 [gundo](https://github.com/sjl/gundo.vim) 也可以帮助 Vim 实现查看历史记录和回滚的功能
 
 <!-- more -->
+
 <!-- toc -->
 ## 预览
 ![gundo](/images/gundo.gif)

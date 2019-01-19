@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Mysql 自动生成 id 算法 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="本章介绍一种 Mysql 生成 id 的算法，主要用于某些特定数据表，希望有统一的 id 空间，但不是简单的自增">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-03-17T14:13:49.000Z">
+<meta property="og:updated_time" content="2019-01-19T05:30:00.664Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql 自动生成 id 算法">
 <meta name="twitter:description" content="本章介绍一种 Mysql 生成 id 的算法，主要用于某些特定数据表，希望有统一的 id 空间，但不是简单的自增">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-mysql-auto-generate-id" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-mysql-auto-generate-id" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -197,15 +197,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本章介绍一种 Mysql 生成 id 的算法，主要用于某些特定数据表，希望有统一的 id 空间，但不是简单的自增<br><a id="more"></a><div class="toc"></p>
-<!-- toc -->
+        <p>本章介绍一种 Mysql 生成 id 的算法，主要用于某些特定数据表，希望有统一的 id 空间，但不是简单的自增</p>
+<a id="more"></a><div class="toc"><br><br><!-- toc -->
 <!-- tocstop -->
-<p></div><br>需求是 id 为数值型，可以在 js 环境中安全的使用，每个表有独立的 id 空间，并且全局唯一</p>
+<p></p></div><br>需求是 id 为数值型，可以在 js 环境中安全的使用，每个表有独立的 id 空间，并且全局唯一<p></p>
 <p>思路是这样的</p>
 <p>为了在 js 中安全使用，长度最大为 52 位，所以分为区域位（8位）、表位（8位）、id 长度（36位）</p>
 <p>为了生成效率直接在 Mysql 自定义方法，首先建立一个表来作为目标表的 id 生成器，利用 <code>replace INTO</code> 方法在达到生成自增 id 的目的，然后根据表名判断位移长度计算出最终 id，完整代码如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line">DROP TABLE IF EXISTS `auto_user_id`;</div><div class="line">CREATE TABLE `auto_user_id` (</div><div class="line">  `id` bigint(20) NOT NULL AUTO_INCREMENT,</div><div class="line">  `max_id` bigint(20) NOT NULL DEFAULT 0 COMMENT &apos;占位字段&apos;,</div><div class="line">  `create_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT &apos;记录创建时间&apos;,</div><div class="line">  PRIMARY KEY (`id`),</div><div class="line">  UNIQUE KEY `auto_max_id_uindex` (`max_id`)</div><div class="line">) ENGINE=InnoDB CHARSET=utf8mb4 COMMENT=&apos;自动生成 id&apos;;</div><div class="line"></div><div class="line">DROP TABLE IF EXISTS `auto_article_id`;</div><div class="line">CREATE TABLE `auto_article_id` (</div><div class="line">  `id` bigint(20) NOT NULL AUTO_INCREMENT,</div><div class="line">  `max_id` bigint(20) NOT NULL DEFAULT 0 COMMENT &apos;占位字段&apos;,</div><div class="line">  `create_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT &apos;记录创建时间&apos;,</div><div class="line">  PRIMARY KEY (`id`),</div><div class="line">  UNIQUE KEY `auto_max_id_uindex` (`max_id`)</div><div class="line">) ENGINE=InnoDB CHARSET=utf8mb4 COMMENT=&apos;自动生成 id&apos;;</div><div class="line"></div><div class="line">DROP TABLE IF EXISTS `auto_id`;</div><div class="line">CREATE TABLE `auto_id` (</div><div class="line">  `id` bigint(20) NOT NULL AUTO_INCREMENT,</div><div class="line">  `max_id` bigint(20) NOT NULL DEFAULT 0 COMMENT &apos;占位字段&apos;,</div><div class="line">  `create_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT &apos;记录创建时间&apos;,</div><div class="line">  PRIMARY KEY (`id`),</div><div class="line">  UNIQUE KEY `auto_max_id_uindex` (`max_id`)</div><div class="line">) ENGINE=InnoDB CHARSET=utf8mb4 COMMENT=&apos;自动生成 id&apos;;</div><div class="line"></div><div class="line">DROP FUNCTION IF EXISTS `func_gen_auto_id`;</div><div class="line">DELIMITER $$</div><div class="line">CREATE FUNCTION `func_gen_auto_id`(shard_seed BIGINT, item_name VARCHAR(10)) RETURNS BIGINT(20)</div><div class="line">BEGIN</div><div class="line">    DECLARE shard_offset    INT;</div><div class="line">    DECLARE item_offset     INT;</div><div class="line">    DECLARE item_seed       INT;</div><div class="line"></div><div class="line">    DECLARE final_id        BIGINT;</div><div class="line">    DECLARE shard_id        BIGINT;</div><div class="line">    DECLARE item_type       BIGINT;</div><div class="line">    DECLARE last_insert_id  BIGINT;</div><div class="line"></div><div class="line">    SET shard_offset = 44;</div><div class="line">    SET item_offset  = 36;</div><div class="line"></div><div class="line">    CASE item_name</div><div class="line">        WHEN &apos;user&apos;         THEN SET item_seed = 1;</div><div class="line">        WHEN &apos;article&apos;      THEN SET item_seed = 2;</div><div class="line">        ELSE                     SET item_seed = 0;</div><div class="line">    END CASE;</div><div class="line"></div><div class="line">    SET shard_id  = (SELECT shard_seed &lt;&lt; shard_offset);</div><div class="line">    SET item_type = (SELECT item_seed  &lt;&lt; item_offset);</div><div class="line"></div><div class="line">    CASE item_name</div><div class="line">        WHEN &apos;user&apos;         THEN replace INTO auto_user_id      (`max_id`) VALUES (1);</div><div class="line">        WHEN &apos;article&apos;      THEN replace INTO auto_article_id   (`max_id`) VALUES (1);</div><div class="line">        ELSE                     replace INTO auto_id           (`max_id`) VALUES (1);</div><div class="line">    END CASE;</div><div class="line"></div><div class="line">    SET last_insert_id = (SELECT last_insert_id());</div><div class="line"></div><div class="line">    SET final_id = (SELECT shard_id + item_type + last_insert_id);</div><div class="line">    RETURN final_id;</div><div class="line">END $$</div><div class="line">DELIMITER ;</div></pre></td></tr></table></figure>
-<p>最后直接查询即可得到最终 id<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select func_gen_auto_id(1, &apos;user&apos;);</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLE IF EXISTS `auto_user_id`;</span><br><span class="line">CREATE TABLE `auto_user_id` (</span><br><span class="line">  `id` bigint(20) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `max_id` bigint(20) NOT NULL DEFAULT 0 COMMENT &apos;占位字段&apos;,</span><br><span class="line">  `create_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT &apos;记录创建时间&apos;,</span><br><span class="line">  PRIMARY KEY (`id`),</span><br><span class="line">  UNIQUE KEY `auto_max_id_uindex` (`max_id`)</span><br><span class="line">) ENGINE=InnoDB CHARSET=utf8mb4 COMMENT=&apos;自动生成 id&apos;;</span><br><span class="line"></span><br><span class="line">DROP TABLE IF EXISTS `auto_article_id`;</span><br><span class="line">CREATE TABLE `auto_article_id` (</span><br><span class="line">  `id` bigint(20) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `max_id` bigint(20) NOT NULL DEFAULT 0 COMMENT &apos;占位字段&apos;,</span><br><span class="line">  `create_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT &apos;记录创建时间&apos;,</span><br><span class="line">  PRIMARY KEY (`id`),</span><br><span class="line">  UNIQUE KEY `auto_max_id_uindex` (`max_id`)</span><br><span class="line">) ENGINE=InnoDB CHARSET=utf8mb4 COMMENT=&apos;自动生成 id&apos;;</span><br><span class="line"></span><br><span class="line">DROP TABLE IF EXISTS `auto_id`;</span><br><span class="line">CREATE TABLE `auto_id` (</span><br><span class="line">  `id` bigint(20) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `max_id` bigint(20) NOT NULL DEFAULT 0 COMMENT &apos;占位字段&apos;,</span><br><span class="line">  `create_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT &apos;记录创建时间&apos;,</span><br><span class="line">  PRIMARY KEY (`id`),</span><br><span class="line">  UNIQUE KEY `auto_max_id_uindex` (`max_id`)</span><br><span class="line">) ENGINE=InnoDB CHARSET=utf8mb4 COMMENT=&apos;自动生成 id&apos;;</span><br><span class="line"></span><br><span class="line">DROP FUNCTION IF EXISTS `func_gen_auto_id`;</span><br><span class="line">DELIMITER $$</span><br><span class="line">CREATE FUNCTION `func_gen_auto_id`(shard_seed BIGINT, item_name VARCHAR(10)) RETURNS BIGINT(20)</span><br><span class="line">BEGIN</span><br><span class="line">    DECLARE shard_offset    INT;</span><br><span class="line">    DECLARE item_offset     INT;</span><br><span class="line">    DECLARE item_seed       INT;</span><br><span class="line"></span><br><span class="line">    DECLARE final_id        BIGINT;</span><br><span class="line">    DECLARE shard_id        BIGINT;</span><br><span class="line">    DECLARE item_type       BIGINT;</span><br><span class="line">    DECLARE last_insert_id  BIGINT;</span><br><span class="line"></span><br><span class="line">    SET shard_offset = 44;</span><br><span class="line">    SET item_offset  = 36;</span><br><span class="line"></span><br><span class="line">    CASE item_name</span><br><span class="line">        WHEN &apos;user&apos;         THEN SET item_seed = 1;</span><br><span class="line">        WHEN &apos;article&apos;      THEN SET item_seed = 2;</span><br><span class="line">        ELSE                     SET item_seed = 0;</span><br><span class="line">    END CASE;</span><br><span class="line"></span><br><span class="line">    SET shard_id  = (SELECT shard_seed &lt;&lt; shard_offset);</span><br><span class="line">    SET item_type = (SELECT item_seed  &lt;&lt; item_offset);</span><br><span class="line"></span><br><span class="line">    CASE item_name</span><br><span class="line">        WHEN &apos;user&apos;         THEN replace INTO auto_user_id      (`max_id`) VALUES (1);</span><br><span class="line">        WHEN &apos;article&apos;      THEN replace INTO auto_article_id   (`max_id`) VALUES (1);</span><br><span class="line">        ELSE                     replace INTO auto_id           (`max_id`) VALUES (1);</span><br><span class="line">    END CASE;</span><br><span class="line"></span><br><span class="line">    SET last_insert_id = (SELECT last_insert_id());</span><br><span class="line"></span><br><span class="line">    SET final_id = (SELECT shard_id + item_type + last_insert_id);</span><br><span class="line">    RETURN final_id;</span><br><span class="line">END $$</span><br><span class="line">DELIMITER ;</span><br></pre></td></tr></table></figure>
+<p>最后直接查询即可得到最终 id<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select func_gen_auto_id(1, &apos;user&apos;);</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -503,6 +503,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -511,19 +515,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -535,7 +535,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -544,10 +544,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -568,6 +564,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -687,11 +687,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -703,7 +703,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>网络请求断线重连工具 Mosh | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="Mosh 是一个替代 SSH 的免费软件，它最大的特点是支持网络漫游和间歇性连接。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-11-22T10:40:51.000Z">
+<meta property="og:updated_time" content="2019-01-19T05:30:00.682Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络请求断线重连工具 Mosh">
 <meta name="twitter:description" content="Mosh 是一个替代 SSH 的免费软件，它最大的特点是支持网络漫游和间歇性连接。">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-mosh" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-mosh" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -216,21 +216,21 @@
 <li><a href="#shi-yong">使用</a></li>
 </ul>
 <!-- tocstop -->
-<p></div></p>
+<p></p></div><p></p>
 <h2><span id="you-dian">优点</span><a href="#you-dian" class="header-anchor"></a></h2><ul>
 <li>持续连接：如果您的网络中断，Mosh将会在新网络可用的时候自动重新连接服务器。</li>
 <li>减少网络延时：SSH 需要等待服务器响应后，才显示您的输入内容。而 Mosh 会马上显示<br>  您的输入，编辑，删除等内容。</li>
 <li>像 SSH，但比 SSH 更好：Mosh 会通过 SSH 登录到服务器，然后运行普通终端应用程序。</li>
 </ul>
-<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><h3><span id="mac">Mac</span><a href="#mac" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install mobile-shell</div></pre></td></tr></table></figure>
-<h3><span id="centos">Centos</span><a href="#centos" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yum install mosh</div></pre></td></tr></table></figure>
-<h3><span id="ubuntu">Ubuntu</span><a href="#ubuntu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ apt-get install mosh</div></pre></td></tr></table></figure>
+<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><h3><span id="mac">Mac</span><a href="#mac" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install mobile-shell</span><br></pre></td></tr></table></figure>
+<h3><span id="centos">Centos</span><a href="#centos" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum install mosh</span><br></pre></td></tr></table></figure>
+<h3><span id="ubuntu">Ubuntu</span><a href="#ubuntu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-get install mosh</span><br></pre></td></tr></table></figure>
 <p><strong><em>注意：想要使用 Mosh ，客户端和服务器必须同时安装</em></strong></p>
-<h2><span id="she-zhi-fang-huo-qiang">设置防火墙</span><a href="#she-zhi-fang-huo-qiang" class="header-anchor"></a></h2><p>因为 Mosh 使用的是 UDP 端口，所以服务器上需要打开60000-61000 UDP 端口<br>打开：<code>/etc/iptables.firewall.rules</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-A INPUT -p udp --dport 60000:61000 -j ACCEPT</div></pre></td></tr></table></figure></p>
-<p>加入如上这行后，然后重新载入您的防火墙规则：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo iptables-restore &lt; /etc/iptables.firewall.rules</div></pre></td></tr></table></figure></p>
-<h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><p>Mosh 可以像 SSH 那样去连接服务器<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mosh username@host</div></pre></td></tr></table></figure></p>
-<p>如果你设置了 <code>~/.ssh/config</code> 文件，则可以直接连接服务器名称<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mosh wxnacy</div></pre></td></tr></table></figure></p>
-<p>如果SSH监听在非正规端口（比如 23），需要如下连接：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mosh username@host --ssh=<span class="string">"ssh -p 23"</span></div></pre></td></tr></table></figure></p>
+<h2><span id="she-zhi-fang-huo-qiang">设置防火墙</span><a href="#she-zhi-fang-huo-qiang" class="header-anchor"></a></h2><p>因为 Mosh 使用的是 UDP 端口，所以服务器上需要打开60000-61000 UDP 端口<br>打开：<code>/etc/iptables.firewall.rules</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-A INPUT -p udp --dport 60000:61000 -j ACCEPT</span><br></pre></td></tr></table></figure></p>
+<p>加入如上这行后，然后重新载入您的防火墙规则：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo iptables-restore &lt; /etc/iptables.firewall.rules</span><br></pre></td></tr></table></figure></p>
+<h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><p>Mosh 可以像 SSH 那样去连接服务器<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mosh username@host</span><br></pre></td></tr></table></figure></p>
+<p>如果你设置了 <code>~/.ssh/config</code> 文件，则可以直接连接服务器名称<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mosh wxnacy</span><br></pre></td></tr></table></figure></p>
+<p>如果SSH监听在非正规端口（比如 23），需要如下连接：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mosh username@host --ssh=<span class="string">"ssh -p 23"</span></span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -536,6 +536,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -544,19 +548,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -568,7 +568,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -577,10 +577,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -601,6 +597,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -720,11 +720,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -736,7 +736,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

@@ -7,6 +7,7 @@ date: 2018-03-22 16:34:12
 
 
 简单总结下 JavaScript 环境下获取当前地址相关信息
+
 <!-- more --><!-- toc -->
 ## window.location
 `window.location` 中包含了很丰富的地址信息

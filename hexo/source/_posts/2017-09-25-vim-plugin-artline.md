@@ -11,6 +11,7 @@ tags: [vim]
 ![airline](/images/airline.png)
 
 <!-- more -->
+
 <!-- toc -->
 ## 安装
 ### Pathogen

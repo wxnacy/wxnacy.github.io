@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>银行卡校验规则(Luhn算法) | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="原文:http://www.icloudyin.com/?p=61  检验数字算法（Luhn Check Digit Algorithm），也叫做模数10公式，是一种简单的算法，用于验证银行卡、信用卡号码的有效性的算法。对所有大型信用卡公司发行的信用卡都起作用，这些公司包括美国Express、护照、万事达卡、Discover和用餐者俱乐部等。这种算法最初是在20世纪60年代由一组数学家制定，现在L">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-12-07T08:34:11.000Z">
+<meta property="og:updated_time" content="2019-01-19T04:06:42.183Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="银行卡校验规则(Luhn算法)">
 <meta name="twitter:description" content="原文:http://www.icloudyin.com/?p=61  检验数字算法（Luhn Check Digit Algorithm），也叫做模数10公式，是一种简单的算法，用于验证银行卡、信用卡号码的有效性的算法。对所有大型信用卡公司发行的信用卡都起作用，这些公司包括美国Express、护照、万事达卡、Discover和用餐者俱乐部等。这种算法最初是在20世纪60年代由一组数学家制定，现在L">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-algorithm-2017-08-05-bank-verify" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-algorithm-2017-08-05-bank-verify" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -197,15 +197,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="http://www.icloudyin.com/?p=61" target="_blank" rel="external">原文:http://www.icloudyin.com/?p=61</a></p>
+        <p><a href="http://www.icloudyin.com/?p=61" target="_blank" rel="noopener">原文:http://www.icloudyin.com/?p=61</a></p>
 <ul>
 <li>检验数字算法（Luhn Check Digit Algorithm），也叫做模数10公式，是一种简单的算法，用于验证银行卡、信用卡号码的有效性的算法。对所有大型信用卡公司发行的信用卡都起作用，这些公司包括美国Express、护照、万事达卡、Discover和用餐者俱乐部等。这种算法最初是在20世纪60年代由一组数学家制定，现在Luhn检验数字算法属于大众，任何人都可以使用它。</li>
 <li>将卡号上的每个数字乘上其权重（weight），如果卡号上的数字个数是偶数，那么第一个数字的权重就是2，若是奇数，那么权重就给1，剩下来的数字，根据第一个数字依序给定。例如某信用卡卡号的数字个数为偶数，那么从第一个数字开始的权重依序为 2、1、2、1、2、1 …。</li>
 <li>如果数字乘上自己的权重后比9还大，那么就从这加权数字里扣除9。</li>
 <li>接下来将所有处理过的加权数字全部加总起来，并且除以10，取其余数。</li>
 </ul>
-<h2><span id="java">java</span><a href="#java" class="header-anchor"></a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">	<span class="keyword">boolean</span> even = <span class="keyword">true</span>;</div><div class="line">	<span class="keyword">for</span> ( <span class="keyword">int</span> index = digits.size() - <span class="number">1</span>; index &gt;= <span class="number">0</span>; index-- ) &#123;</div><div class="line">		<span class="keyword">int</span> digit = digits.get( index );</div><div class="line"></div><div class="line">		<span class="keyword">if</span> ( even ) &#123;</div><div class="line">			digit &lt;&lt;= <span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> ( digit &gt; <span class="number">9</span> ) &#123;</div><div class="line">			digit -= <span class="number">9</span>;</div><div class="line">		&#125;</div><div class="line">		sum += digit;</div><div class="line">		even = !even;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> ( <span class="number">10</span> - ( sum % <span class="number">10</span> ) ) % <span class="number">10</span>;</div></pre></td></tr></table></figure>
-<h2><span id="python">python</span><a href="#python" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_bank_card</span><span class="params">(card_num)</span>:</span></div><div class="line">    <span class="string">"""检查银行卡的合法性"""</span></div><div class="line">    total = <span class="number">0</span></div><div class="line">    even = <span class="keyword">True</span></div><div class="line">    <span class="keyword">if</span> isinstance(card_num, int):</div><div class="line">        card_num = str(card_num)</div><div class="line">    check_num = card_num[<span class="number">-1</span>]</div><div class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> card_num[<span class="number">-2</span>::<span class="number">-1</span>]:</div><div class="line">        item = int(item)</div><div class="line">        <span class="keyword">if</span> even:</div><div class="line">            item &lt;&lt;= <span class="number">1</span></div><div class="line">        <span class="keyword">if</span> item &gt; <span class="number">9</span>:</div><div class="line">            item -= <span class="number">9</span></div><div class="line">        total += item</div><div class="line">        even = <span class="keyword">not</span> even</div><div class="line">    <span class="keyword">return</span> int(check_num) <span class="keyword">is</span> (<span class="number">10</span> - (total % <span class="number">10</span>)) % <span class="number">10</span></div></pre></td></tr></table></figure>
+<h2><span id="java">java</span><a href="#java" class="header-anchor"></a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">boolean</span> even = <span class="keyword">true</span>;</span><br><span class="line">	<span class="keyword">for</span> ( <span class="keyword">int</span> index = digits.size() - <span class="number">1</span>; index &gt;= <span class="number">0</span>; index-- ) &#123;</span><br><span class="line">		<span class="keyword">int</span> digit = digits.get( index );</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> ( even ) &#123;</span><br><span class="line">			digit &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> ( digit &gt; <span class="number">9</span> ) &#123;</span><br><span class="line">			digit -= <span class="number">9</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		sum += digit;</span><br><span class="line">		even = !even;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ( <span class="number">10</span> - ( sum % <span class="number">10</span> ) ) % <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+<h2><span id="python">python</span><a href="#python" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_bank_card</span><span class="params">(card_num)</span>:</span></span><br><span class="line">    <span class="string">"""检查银行卡的合法性"""</span></span><br><span class="line">    total = <span class="number">0</span></span><br><span class="line">    even = <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">if</span> isinstance(card_num, int):</span><br><span class="line">        card_num = str(card_num)</span><br><span class="line">    check_num = card_num[<span class="number">-1</span>]</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> card_num[<span class="number">-2</span>::<span class="number">-1</span>]:</span><br><span class="line">        item = int(item)</span><br><span class="line">        <span class="keyword">if</span> even:</span><br><span class="line">            item &lt;&lt;= <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> item &gt; <span class="number">9</span>:</span><br><span class="line">            item -= <span class="number">9</span></span><br><span class="line">        total += item</span><br><span class="line">        even = <span class="keyword">not</span> even</span><br><span class="line">    <span class="keyword">return</span> int(check_num) <span class="keyword">is</span> (<span class="number">10</span> - (total % <span class="number">10</span>)) % <span class="number">10</span></span><br></pre></td></tr></table></figure>
 
       
 
@@ -308,18 +308,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/06/mysql-2017-08-06-basic-cmd/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/08/05/js-2017-08-05-screen-wh/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Mysql 基础命令
+          js和css获取屏幕大小
         
       </div>
     </a>
   
   
-    <a href="/2017/08/05/js-2017-08-05-screen-wh/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">js和css获取屏幕大小</div>
+    <a href="/2017/08/04/git-2017-08-04-basic-cmd/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Git 常用命令</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -503,6 +503,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -511,19 +515,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -535,7 +535,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -544,10 +544,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -568,6 +564,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -687,11 +687,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -703,7 +703,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

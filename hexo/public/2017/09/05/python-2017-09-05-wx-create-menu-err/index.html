@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Python 微信公众号接口创建菜单编码问题 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="错误 {“errcode”:40033,”errmsg”:”invalid charset. please check your request, if include \uxxxx will create fail!”}">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-01-31T13:24:53.000Z">
+<meta property="og:updated_time" content="2019-01-19T04:06:42.206Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 微信公众号接口创建菜单编码问题">
 <meta name="twitter:description" content="错误 {“errcode”:40033,”errmsg”:”invalid charset. please check your request, if include \uxxxx will create fail!”}">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-python-2017-09-05-wx-create-menu-err" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-python-2017-09-05-wx-create-menu-err" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -201,8 +201,8 @@
 <p>错误 {“errcode”:40033,”errmsg”:”invalid charset. please check your request, if include \uxxxx will create fail!”}</p>
 </blockquote>
 <a id="more"></a>
-<h2><span id="fang-fa">方法</span><a href="#fang-fa" class="header-anchor"></a></h2><p>利用 Python 的 json 内置模块，在进行 dumps 操作时，使用 <code>ensure_ascii=False</code><br>参数是中文不会被转码<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">data = json.dumps(data,ensure_ascii=<span class="keyword">False</span>).encode(<span class="string">'utf-8'</span>)</div></pre></td></tr></table></figure></p>
-<h2><span id="wan-zheng-shi-li">完整实例</span><a href="#wan-zheng-shi-li" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> json</div><div class="line"><span class="keyword">import</span> requests</div><div class="line"></div><div class="line">url = <span class="string">'https://api.weixin.qq.com/cgi-bin/menu/create?access_token=...'</span></div><div class="line">data = json.dumps(data,ensure_ascii=<span class="keyword">False</span>).encode(<span class="string">'utf-8'</span>)</div><div class="line">res = requests.post(url,data=data)</div><div class="line">print(res)</div></pre></td></tr></table></figure>
+<h2><span id="fang-fa">方法</span><a href="#fang-fa" class="header-anchor"></a></h2><p>利用 Python 的 json 内置模块，在进行 dumps 操作时，使用 <code>ensure_ascii=False</code><br>参数是中文不会被转码<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data = json.dumps(data,ensure_ascii=<span class="keyword">False</span>).encode(<span class="string">'utf-8'</span>)</span><br></pre></td></tr></table></figure></p>
+<h2><span id="wan-zheng-shi-li">完整实例</span><a href="#wan-zheng-shi-li" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">'https://api.weixin.qq.com/cgi-bin/menu/create?access_token=...'</span></span><br><span class="line">data = json.dumps(data,ensure_ascii=<span class="keyword">False</span>).encode(<span class="string">'utf-8'</span>)</span><br><span class="line">res = requests.post(url,data=data)</span><br><span class="line">print(res)</span><br></pre></td></tr></table></figure>
 
       
 
@@ -309,11 +309,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/09/06/life-2017-09-06-beijing/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/09/06/life-2017-09-06-fixed-point-hospital/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          北京生活
+          北京不是定点也可以报销的三甲医院
         
       </div>
     </a>
@@ -504,6 +504,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -512,19 +516,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -536,7 +536,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -545,10 +545,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -569,6 +565,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -688,11 +688,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -704,7 +704,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

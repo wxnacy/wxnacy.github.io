@@ -8,6 +8,7 @@ date: 2018-01-21 16:50:24
 
 
 昨天介绍了如何使用 StringBoot，今天讲讲怎么使用 [JPA](https://en.wikipedia.org/wiki/Java_Persistence_API) 操作数据库，并完成简单的 RESTful 风格接口。
+
 <!-- more --><!-- toc -->
 本章代码的 DEMO 地址：https://github.com/wxnacy/study/tree/master/java/SpringBoot-JPA
 

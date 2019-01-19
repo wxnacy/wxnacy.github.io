@@ -9,6 +9,7 @@ tags: [vim]
 > [vim-surround](https://github.com/tpope/vim-surround) 可以给单词或句子加上各种标签符号
 
 <!-- more -->
+
 <!-- toc -->
 ![/images/surround.gif](/images/surround.gif)
 ## 安装

@@ -5,6 +5,7 @@ tags: [mysql]
 ---
 
 最近需要给数据库表某个字段加上前缀，我想当然的这样操作。
+
 <!-- more --><!-- toc -->
 ```mysql
 > update table set field = '-' + field;

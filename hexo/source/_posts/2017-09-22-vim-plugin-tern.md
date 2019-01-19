@@ -10,6 +10,7 @@ tags: [vim, javascript]
 后来发现 ***Tern*** 可以跟 YouCompleteMe 很好的配合来完成自动补全
 下面我来介绍 Tern 在 Vim 中的插件 [tern_for_vim](https://github.com/ternjs/tern_for_vim.git)
 <!-- more -->
+
 <!-- toc -->
 
 ## 预览

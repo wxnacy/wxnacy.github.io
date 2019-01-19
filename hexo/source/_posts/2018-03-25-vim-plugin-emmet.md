@@ -6,6 +6,7 @@ tags:
 
 
 最近开发些 web 页面，忍着敲标签的痛苦，想起来以前用过但不熟练的插件 [Emmet](https://emmet.io/)，用完以后在写起代码感觉欲罢不能。
+
 <!-- more --><!-- toc -->
 ![/images/emmet.gif](/images/emmet.gif)
 

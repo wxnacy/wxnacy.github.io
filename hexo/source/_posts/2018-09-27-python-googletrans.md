@@ -5,6 +5,7 @@ tags: [python]
 ---
 
 Google 为 Python 提供了可以实时翻译的模块 googletrans，使用非常简单。
+
 <!-- more --><!-- toc -->
 ## 下载
 

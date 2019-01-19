@@ -5,6 +5,7 @@ tags: [ansible]
 ---
 
 专辑：[ansible学习笔记](/2017/08/14/ansible-2017-08-14-album-study-notes/)
+
 <!-- more --><!-- toc -->
 
 > 根据前几章讲到的内容，我们已经可以完成一些简单的功能。本章带领大家写一个通过git打tag包远程部署python项目。

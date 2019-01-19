@@ -5,6 +5,7 @@ tags: [linux]
 ---
 
 对于程序员来说，`CapsLock` 键位基本是没用的，但是它又占着一个黄金位置，将它换成 `Control` 键，在各个终端命令中作为 Leader 键是非常合适的，在 Mac 中可以直接从设置面板中修改，在 Deepin 中稍微费点事。
+
 <!-- more --><!-- toc -->
 
 **打开 Terminal**

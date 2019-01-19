@@ -5,6 +5,7 @@ tags: [go]
 ---
 
 在 Go 中打印 error 可以直接使用 `fmt.Println(err)`，那么如何将 error 转换为 string 呢。
+
 <!-- more --><!-- toc -->
 
 `toString()` ?，这个是在 java 中，Go 并没有一个统一的方法来转换 string。

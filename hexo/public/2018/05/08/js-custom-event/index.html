@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>JavaScript 自定义监听事件 Event | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="这个需求的由来是在做点击或拖拽获取文件信息时，获取文件这一步操作不希望每次都写，而是封装起来，同时希望可以自定义一个监听事件，以后我只需要监听 Element 的该监听事件就可以拿到需要上传的文件。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-05-08T07:50:30.000Z">
+<meta property="og:updated_time" content="2019-01-19T05:30:00.621Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 自定义监听事件 Event">
 <meta name="twitter:description" content="这个需求的由来是在做点击或拖拽获取文件信息时，获取文件这一步操作不希望每次都写，而是封装起来，同时希望可以自定义一个监听事件，以后我只需要监听 Element 的该监听事件就可以拿到需要上传的文件。">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-js-custom-event" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-js-custom-event" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -197,14 +197,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这个需求的由来是在做<a href="/run/?id=68719489588">点击或拖拽获取文件信息</a>时，获取文件这一步操作不希望每次都写，而是封装起来，同时希望可以自定义一个监听事件，以后我只需要监听 Element 的该监听事件就可以拿到需要上传的文件。<br><a id="more"></a><div class="toc"></p>
-<!-- toc -->
+        <p>这个需求的由来是在做<a href="/run/?id=68719489588">点击或拖拽获取文件信息</a>时，获取文件这一步操作不希望每次都写，而是封装起来，同时希望可以自定义一个监听事件，以后我只需要监听 Element 的该监听事件就可以拿到需要上传的文件。</p>
+<a id="more"></a><div class="toc"><br><br><!-- toc -->
 <!-- tocstop -->
 </div>
 
 <p>首先来看如何定义一个监听事件</p>
 <p><strong>语法</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">event = <span class="keyword">new</span> Event(typeArg, eventInit);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">event = <span class="keyword">new</span> Event(typeArg, eventInit);</span><br></pre></td></tr></table></figure>
 <p><strong>参数</strong></p>
 <ul>
 <li>typeArg 是DOMString 类型，表示所创建事件的名称</li>
@@ -215,16 +215,16 @@
 </ul>
 </li>
 </ul>
-<p>以前也有 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Document/createEvent" target="_blank" rel="external">Document.createEvent()</a> 创建方法，但是已经被废弃。</p>
+<p>以前也有 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Document/createEvent" target="_blank" rel="noopener">Document.createEvent()</a> 创建方法，但是已经被废弃。</p>
 <p><strong>使用</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 定义事件类型</span></div><div class="line"><span class="keyword">var</span> evt = <span class="keyword">new</span> Event(<span class="string">'upload'</span>, &#123;<span class="string">"bubbles"</span>:<span class="literal">true</span>, <span class="string">"cancelable"</span>:<span class="literal">true</span>&#125;)</div><div class="line"><span class="comment">// 在元素上监听事件</span></div><div class="line"><span class="keyword">var</span> obj = <span class="built_in">document</span>.getElementById(<span class="string">'file'</span>);</div><div class="line">obj.addEventListener(<span class="string">'upload'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'upload 事件触发了'</span>);</div><div class="line">&#125;, <span class="literal">false</span>);</div><div class="line"></div><div class="line">obj.dispatchEvent(evt)  <span class="comment">// 调用监听事件</span></div><div class="line"><span class="comment">// upload 事件触发了</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义事件类型</span></span><br><span class="line"><span class="keyword">var</span> evt = <span class="keyword">new</span> Event(<span class="string">'upload'</span>, &#123;<span class="string">"bubbles"</span>:<span class="literal">true</span>, <span class="string">"cancelable"</span>:<span class="literal">true</span>&#125;)</span><br><span class="line"><span class="comment">// 在元素上监听事件</span></span><br><span class="line"><span class="keyword">var</span> obj = <span class="built_in">document</span>.getElementById(<span class="string">'file'</span>);</span><br><span class="line">obj.addEventListener(<span class="string">'upload'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'upload 事件触发了'</span>);</span><br><span class="line">&#125;, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">obj.dispatchEvent(evt)  <span class="comment">// 调用监听事件</span></span><br><span class="line"><span class="comment">// upload 事件触发了</span></span><br></pre></td></tr></table></figure>
 <p>以上模拟了事件创建和触发的过程。</p>
 <p>在获取文件信息的例子中完成使用详见<a href="/run/?id=68719489633">自定义监听事件</a></p>
 <ul>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Event/Event" target="_blank" rel="external">Event</a></li>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/Events/Creating_and_triggering_events" target="_blank" rel="external">创建和触发 events</a></li>
-<li><a href="http://www.itxueyuan.org/view/6340.html" target="_blank" rel="external">JavaScript event对象：当前事件</a></li>
-<li><a href="https://juejin.im/entry/57a4a7427db2a2005a98bcf0" target="_blank" rel="external">JavaScript 自定义事件</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Event/Event" target="_blank" rel="noopener">Event</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/Events/Creating_and_triggering_events" target="_blank" rel="noopener">创建和触发 events</a></li>
+<li><a href="http://www.itxueyuan.org/view/6340.html" target="_blank" rel="noopener">JavaScript event对象：当前事件</a></li>
+<li><a href="https://juejin.im/entry/57a4a7427db2a2005a98bcf0" target="_blank" rel="noopener">JavaScript 自定义事件</a></li>
 </ul>
 
       
@@ -523,6 +523,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -531,19 +535,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -555,7 +555,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -564,10 +564,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -588,6 +584,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -707,11 +707,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -723,7 +723,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

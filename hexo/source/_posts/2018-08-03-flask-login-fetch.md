@@ -5,6 +5,7 @@ tags: [flask]
 ---
 
 使用 flask-login 模块时，如果在 controller 中使用 `@login_required` 检查是否登录的话，在使用 fetch 请求接口，就会报没有登录的错误。
+
 <!-- more --><!-- toc -->
 这是因为 fetch 在请求时，默认并没有携带 flask-login 所需要的登录信息，了解这一点就好说了
 

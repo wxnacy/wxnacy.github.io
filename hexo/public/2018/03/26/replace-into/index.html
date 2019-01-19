@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Mysql REPLACE INTO 语法 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="Mysql 中插入数据的语法除了 INSERT INTO，还有一个 REPLACE INTO 语法，只不过该语法在没有插入数据时是插入，表中有时是替换，并且会更改主键 id">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-03-26T13:29:36.000Z">
+<meta property="og:updated_time" content="2019-01-19T04:29:42.721Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql REPLACE INTO 语法">
 <meta name="twitter:description" content="Mysql 中插入数据的语法除了 INSERT INTO，还有一个 REPLACE INTO 语法，只不过该语法在没有插入数据时是插入，表中有时是替换，并且会更改主键 id">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-replace-into" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-replace-into" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -198,10 +198,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Mysql 中插入数据的语法除了 <code>INSERT INTO</code>，还有一个 <code>REPLACE INTO</code> 语法，只不过该语法在没有插入数据时是插入，表中有时是替换，并且会更改主键 id<br><a id="more"></a><br>更改主键 id 这个设定，就决定了正常的业务程序是用不到这个语法的，一条数据老改 id 谁受得了。</p>
-<p>但是换一种情况就会显得很有用，比如，你就是想要得到每次都变化的 id，举个例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">DROP TABLE IF EXISTS `auto_id`;</div><div class="line">CREATE TABLE `auto_id` (</div><div class="line">  `id` bigint(20) NOT NULL AUTO_INCREMENT,</div><div class="line">  `max_id` bigint(20) NOT NULL DEFAULT 0 COMMENT &apos;占位字段&apos;,</div><div class="line">  `create_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT &apos;记录创建时间&apos;,</div><div class="line">  PRIMARY KEY (`id`),</div><div class="line">  UNIQUE KEY `auto_max_id_uindex` (`max_id`)</div><div class="line">) ENGINE=InnoDB CHARSET=utf8mb4 COMMENT=&apos;自动生成 id&apos;;</div></pre></td></tr></table></figure></p>
-<p>新建一个表，我通过不断的插入相同的 <code>mac_id</code> 字段来获取自增的 id<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">replace into auto_id(max_id) values (1);</div><div class="line">select last_insert_id();    -- 1</div><div class="line">replace into auto_id(max_id) values (1);</div><div class="line">select last_insert_id();    -- 2</div></pre></td></tr></table></figure></p>
-<p>想要达到这样的效果需要一个条件，想要替换的数据字段需要设为唯一键<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UNIQUE KEY `auto_max_id_uindex` (`max_id`)</div></pre></td></tr></table></figure></p>
-<p><code>REPLACE INTO</code> 一共三种写法分别为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">replace into auto_id(max_id) values (1);</div><div class="line">replace into auto_id(max_id) select 1;</div><div class="line">replace into auto_id set max_id = 1;</div></pre></td></tr></table></figure></p>
+<p>但是换一种情况就会显得很有用，比如，你就是想要得到每次都变化的 id，举个例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLE IF EXISTS `auto_id`;</span><br><span class="line">CREATE TABLE `auto_id` (</span><br><span class="line">  `id` bigint(20) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `max_id` bigint(20) NOT NULL DEFAULT 0 COMMENT &apos;占位字段&apos;,</span><br><span class="line">  `create_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT &apos;记录创建时间&apos;,</span><br><span class="line">  PRIMARY KEY (`id`),</span><br><span class="line">  UNIQUE KEY `auto_max_id_uindex` (`max_id`)</span><br><span class="line">) ENGINE=InnoDB CHARSET=utf8mb4 COMMENT=&apos;自动生成 id&apos;;</span><br></pre></td></tr></table></figure></p>
+<p>新建一个表，我通过不断的插入相同的 <code>mac_id</code> 字段来获取自增的 id<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">replace into auto_id(max_id) values (1);</span><br><span class="line">select last_insert_id();    -- 1</span><br><span class="line">replace into auto_id(max_id) values (1);</span><br><span class="line">select last_insert_id();    -- 2</span><br></pre></td></tr></table></figure></p>
+<p>想要达到这样的效果需要一个条件，想要替换的数据字段需要设为唯一键<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UNIQUE KEY `auto_max_id_uindex` (`max_id`)</span><br></pre></td></tr></table></figure></p>
+<p><code>REPLACE INTO</code> 一共三种写法分别为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">replace into auto_id(max_id) values (1);</span><br><span class="line">replace into auto_id(max_id) select 1;</span><br><span class="line">replace into auto_id set max_id = 1;</span><br></pre></td></tr></table></figure></p>
 <p>只是为了得到这个自增 id，多少有点脱裤子放屁，不过配合一些算法，我们可以根据表来得到对应的命名空间的 id，详见 <a href="Mysql 自动生成 id 算法">Mysql 自动生成 id 算法</a></p>
 
       
@@ -500,6 +500,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -508,19 +512,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -532,7 +532,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -541,10 +541,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -565,6 +561,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -684,11 +684,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -700,7 +700,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

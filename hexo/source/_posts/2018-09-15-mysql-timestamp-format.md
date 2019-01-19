@@ -5,6 +5,7 @@ tags: [mysql]
 ---
 
 Mysql 使用 `unix_timestamp, from_unixtime` 可以实现 `timestamp` 和 `date` 类型的转换。
+
 <!-- more --><!-- toc -->
 
 ## unix_timestamp

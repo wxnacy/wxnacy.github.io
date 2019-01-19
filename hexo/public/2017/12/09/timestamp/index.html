@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>获取时间戳及世界时间转换 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="现在的 Unix 时间戳:  开始 停止现在的北京时间: 现在的 UTC 时间: 时间戳  秒 转为北京时间 北京时间(YYYY/MM/dd HH:mm:ss)  秒 转为时间戳 北京时间  年  月  日  时  分  秒 转为时间戳">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-02-24T06:02:21.000Z">
+<meta property="og:updated_time" content="2019-01-19T05:30:00.667Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="获取时间戳及世界时间转换">
 <meta name="twitter:description" content="现在的 Unix 时间戳:  开始 停止现在的北京时间: 现在的 UTC 时间: 时间戳  秒 转为北京时间 北京时间(YYYY/MM/dd HH:mm:ss)  秒 转为时间戳 北京时间  年  月  日  时  分  秒 转为时间戳">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-timestamp" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-timestamp" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -220,23 +220,23 @@
 <li><a href="#can-kao">参考</a></li>
 </ul>
 <!-- tocstop -->
-<p></div></p>
-<h2><span id="huo-qu-shi-jian-chuo">获取时间戳</span><a href="#huo-qu-shi-jian-chuo" class="header-anchor"></a></h2><h3><span id="javascript">Javascript</span><a href="#javascript" class="header-anchor"></a></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> timestamp = <span class="built_in">Date</span>.parse(<span class="keyword">new</span> <span class="built_in">Date</span>());     <span class="comment">// ==&gt; 1512825782000</span></div><div class="line"><span class="keyword">var</span> timestamp = (<span class="keyword">new</span> <span class="built_in">Date</span>()).valueOf();     <span class="comment">// ==&gt; 1512825782232</span></div><div class="line"><span class="keyword">var</span> timestamp=<span class="keyword">new</span> <span class="built_in">Date</span>().getTime();         <span class="comment">// ==&gt; 1512825782232</span></div></pre></td></tr></table></figure>
+<p></p></div><p></p>
+<h2><span id="huo-qu-shi-jian-chuo">获取时间戳</span><a href="#huo-qu-shi-jian-chuo" class="header-anchor"></a></h2><h3><span id="javascript">Javascript</span><a href="#javascript" class="header-anchor"></a></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> timestamp = <span class="built_in">Date</span>.parse(<span class="keyword">new</span> <span class="built_in">Date</span>());     <span class="comment">// ==&gt; 1512825782000</span></span><br><span class="line"><span class="keyword">var</span> timestamp = (<span class="keyword">new</span> <span class="built_in">Date</span>()).valueOf();     <span class="comment">// ==&gt; 1512825782232</span></span><br><span class="line"><span class="keyword">var</span> timestamp=<span class="keyword">new</span> <span class="built_in">Date</span>().getTime();         <span class="comment">// ==&gt; 1512825782232</span></span><br></pre></td></tr></table></figure>
 <p>三个方法都可以获取时间戳，不同的地方在于第一种方法精确到秒，毫秒为用 0 补全，剩下两种方法结果是一致的</p>
-<h3><span id="java">Java</span><a href="#java" class="header-anchor"></a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.Date;</div><div class="line"><span class="keyword">import</span> java.util.Calendar;</div><div class="line"></div><div class="line"></div><div class="line">System.currentTimeMillis()              <span class="comment">// 1 ==&gt; 1512896121862</span></div><div class="line"><span class="keyword">new</span> Date().getTime()                    <span class="comment">// 2 ==&gt; 1512896121862</span></div><div class="line">Calendar.getInstance().getTimeInMillis()<span class="comment">// 3 ==&gt; 1512896121862</span></div></pre></td></tr></table></figure>
+<h3><span id="java">Java</span><a href="#java" class="header-anchor"></a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">import</span> java.util.Calendar;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">System.currentTimeMillis()              <span class="comment">// 1 ==&gt; 1512896121862</span></span><br><span class="line"><span class="keyword">new</span> Date().getTime()                    <span class="comment">// 2 ==&gt; 1512896121862</span></span><br><span class="line">Calendar.getInstance().getTimeInMillis()<span class="comment">// 3 ==&gt; 1512896121862</span></span><br></pre></td></tr></table></figure>
 <p>三个方法返回的结果是一致的，都精确到毫秒数。效率方面方法 1 最快，因为是直接获取机器的时间。方法 3 最慢，因为需要处理时区的问题。</p>
-<h2><span id="shi-jian-chuo-zhuan-xi-tong-shi-jian">时间戳转系统时间</span><a href="#shi-jian-chuo-zhuan-xi-tong-shi-jian" class="header-anchor"></a></h2><h3><span id="javascript">Javascript</span><a href="#javascript" class="header-anchor"></a></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(timestamp * <span class="number">1000</span>);</div></pre></td></tr></table></figure>
-<p>这样获取到的时间是当前系统时区的时间，想要获取 UTC 时间需要手动算下偏移量<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> offset = <span class="keyword">new</span> <span class="built_in">Date</span>().getTimezoneOffset()     <span class="comment">// ==&gt; -480 分钟</span></div></pre></td></tr></table></figure></p>
-<p>这个方法返回当前时区和 UTC 时间的偏移量，<code>-480分钟</code> 代表当前时区减去 480 分钟，即为 UTC 时间<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> <span class="built_in">Date</span>((ts + offset * <span class="number">60</span>) * <span class="number">1000</span>)             <span class="comment">// ==&gt; UTC 时间</span></div></pre></td></tr></table></figure></p>
-<p>Javascript 没有时间格式化方法，需要自己扩展，这个方法是从网上找的，相对其他方法是比较好的，推荐使用。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Date</span>.prototype.format=<span class="function"><span class="keyword">function</span>(<span class="params">fmt</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> o = &#123;</div><div class="line">        <span class="string">"M+"</span> : <span class="keyword">this</span>.getMonth()+<span class="number">1</span>, <span class="comment">//月份</span></div><div class="line">        <span class="string">"d+"</span> : <span class="keyword">this</span>.getDate(), <span class="comment">//日</span></div><div class="line">        <span class="string">"h+"</span> : <span class="keyword">this</span>.getHours()%<span class="number">12</span> == <span class="number">0</span> ? <span class="number">12</span> : <span class="keyword">this</span>.getHours()%<span class="number">12</span>, <span class="comment">//小时</span></div><div class="line">        <span class="string">"H+"</span> : <span class="keyword">this</span>.getHours(), <span class="comment">//小时</span></div><div class="line">        <span class="string">"m+"</span> : <span class="keyword">this</span>.getMinutes(), <span class="comment">//分</span></div><div class="line">        <span class="string">"s+"</span> : <span class="keyword">this</span>.getSeconds(), <span class="comment">//秒</span></div><div class="line">        <span class="string">"q+"</span> : <span class="built_in">Math</span>.floor((<span class="keyword">this</span>.getMonth()+<span class="number">3</span>)/<span class="number">3</span>), <span class="comment">//季度</span></div><div class="line">        <span class="string">"S"</span> : <span class="keyword">this</span>.getMilliseconds() <span class="comment">//毫秒</span></div><div class="line">        &#125;;</div><div class="line">    <span class="keyword">var</span> week = &#123;</div><div class="line">        <span class="string">"0"</span> : <span class="string">"/u65e5"</span>,</div><div class="line">        <span class="string">"1"</span> : <span class="string">"/u4e00"</span>,</div><div class="line">        <span class="string">"2"</span> : <span class="string">"/u4e8c"</span>,</div><div class="line">        <span class="string">"3"</span> : <span class="string">"/u4e09"</span>,</div><div class="line">        <span class="string">"4"</span> : <span class="string">"/u56db"</span>,</div><div class="line">        <span class="string">"5"</span> : <span class="string">"/u4e94"</span>,</div><div class="line">        <span class="string">"6"</span> : <span class="string">"/u516d"</span></div><div class="line">        &#125;;</div><div class="line">    <span class="keyword">if</span>(<span class="regexp">/(y+)/</span>.test(fmt))&#123;</div><div class="line">            fmt=fmt.replace(<span class="built_in">RegExp</span>.$<span class="number">1</span>, (<span class="keyword">this</span>.getFullYear()+<span class="string">""</span>).substr(<span class="number">4</span> - <span class="built_in">RegExp</span>.$<span class="number">1.</span>length));</div><div class="line">        &#125;</div><div class="line">    <span class="keyword">if</span>(<span class="regexp">/(E+)/</span>.test(fmt))&#123;</div><div class="line">            fmt=fmt.replace(<span class="built_in">RegExp</span>.$<span class="number">1</span>, ((<span class="built_in">RegExp</span>.$<span class="number">1.</span>length&gt;<span class="number">1</span>) ? (<span class="built_in">RegExp</span>.$<span class="number">1.</span>length&gt;<span class="number">2</span> ? <span class="string">"/u661f/u671f"</span> : <span class="string">"/u5468"</span>) : <span class="string">""</span>)+week[<span class="keyword">this</span>.getDay()+<span class="string">""</span>]);</div><div class="line">        &#125;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> k <span class="keyword">in</span> o)&#123;</div><div class="line">            <span class="keyword">if</span>(<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"("</span>+ k +<span class="string">")"</span>).test(fmt))&#123;</div><div class="line">                        fmt = fmt.replace(<span class="built_in">RegExp</span>.$<span class="number">1</span>, (<span class="built_in">RegExp</span>.$<span class="number">1.</span>length==<span class="number">1</span>) ? (o[k]) : ((<span class="string">"00"</span>+ o[k]).substr((<span class="string">""</span>+ o[k]).length)));</div><div class="line">                    &#125;</div><div class="line">        &#125;</div><div class="line">    <span class="keyword">return</span> fmt;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-<h2><span id="xi-tong-shi-jian-zhuan-shi-jian-chuo">系统时间转时间戳</span><a href="#xi-tong-shi-jian-zhuan-shi-jian-chuo" class="header-anchor"></a></h2><h3><span id="javascript">Javascript</span><a href="#javascript" class="header-anchor"></a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Math.round(<span class="keyword">new</span> Date(<span class="string">'2017-12-10 10:21:12'</span>).getTime()/<span class="number">1000</span>)</div><div class="line">Math.round(<span class="keyword">new</span> Date(<span class="string">'2017/12/10 10:21:12'</span>).getTime()/<span class="number">1000</span>)</div></pre></td></tr></table></figure>
+<h2><span id="shi-jian-chuo-zhuan-xi-tong-shi-jian">时间戳转系统时间</span><a href="#shi-jian-chuo-zhuan-xi-tong-shi-jian" class="header-anchor"></a></h2><h3><span id="javascript">Javascript</span><a href="#javascript" class="header-anchor"></a></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(timestamp * <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+<p>这样获取到的时间是当前系统时区的时间，想要获取 UTC 时间需要手动算下偏移量<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> offset = <span class="keyword">new</span> <span class="built_in">Date</span>().getTimezoneOffset()     <span class="comment">// ==&gt; -480 分钟</span></span><br></pre></td></tr></table></figure></p>
+<p>这个方法返回当前时区和 UTC 时间的偏移量，<code>-480分钟</code> 代表当前时区减去 480 分钟，即为 UTC 时间<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>((ts + offset * <span class="number">60</span>) * <span class="number">1000</span>)             <span class="comment">// ==&gt; UTC 时间</span></span><br></pre></td></tr></table></figure></p>
+<p>Javascript 没有时间格式化方法，需要自己扩展，这个方法是从网上找的，相对其他方法是比较好的，推荐使用。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Date</span>.prototype.format=<span class="function"><span class="keyword">function</span>(<span class="params">fmt</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> o = &#123;</span><br><span class="line">        <span class="string">"M+"</span> : <span class="keyword">this</span>.getMonth()+<span class="number">1</span>, <span class="comment">//月份</span></span><br><span class="line">        <span class="string">"d+"</span> : <span class="keyword">this</span>.getDate(), <span class="comment">//日</span></span><br><span class="line">        <span class="string">"h+"</span> : <span class="keyword">this</span>.getHours()%<span class="number">12</span> == <span class="number">0</span> ? <span class="number">12</span> : <span class="keyword">this</span>.getHours()%<span class="number">12</span>, <span class="comment">//小时</span></span><br><span class="line">        <span class="string">"H+"</span> : <span class="keyword">this</span>.getHours(), <span class="comment">//小时</span></span><br><span class="line">        <span class="string">"m+"</span> : <span class="keyword">this</span>.getMinutes(), <span class="comment">//分</span></span><br><span class="line">        <span class="string">"s+"</span> : <span class="keyword">this</span>.getSeconds(), <span class="comment">//秒</span></span><br><span class="line">        <span class="string">"q+"</span> : <span class="built_in">Math</span>.floor((<span class="keyword">this</span>.getMonth()+<span class="number">3</span>)/<span class="number">3</span>), <span class="comment">//季度</span></span><br><span class="line">        <span class="string">"S"</span> : <span class="keyword">this</span>.getMilliseconds() <span class="comment">//毫秒</span></span><br><span class="line">        &#125;;</span><br><span class="line">    <span class="keyword">var</span> week = &#123;</span><br><span class="line">        <span class="string">"0"</span> : <span class="string">"/u65e5"</span>,</span><br><span class="line">        <span class="string">"1"</span> : <span class="string">"/u4e00"</span>,</span><br><span class="line">        <span class="string">"2"</span> : <span class="string">"/u4e8c"</span>,</span><br><span class="line">        <span class="string">"3"</span> : <span class="string">"/u4e09"</span>,</span><br><span class="line">        <span class="string">"4"</span> : <span class="string">"/u56db"</span>,</span><br><span class="line">        <span class="string">"5"</span> : <span class="string">"/u4e94"</span>,</span><br><span class="line">        <span class="string">"6"</span> : <span class="string">"/u516d"</span></span><br><span class="line">        &#125;;</span><br><span class="line">    <span class="keyword">if</span>(<span class="regexp">/(y+)/</span>.test(fmt))&#123;</span><br><span class="line">            fmt=fmt.replace(<span class="built_in">RegExp</span>.$<span class="number">1</span>, (<span class="keyword">this</span>.getFullYear()+<span class="string">""</span>).substr(<span class="number">4</span> - <span class="built_in">RegExp</span>.$<span class="number">1.</span>length));</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="regexp">/(E+)/</span>.test(fmt))&#123;</span><br><span class="line">            fmt=fmt.replace(<span class="built_in">RegExp</span>.$<span class="number">1</span>, ((<span class="built_in">RegExp</span>.$<span class="number">1.</span>length&gt;<span class="number">1</span>) ? (<span class="built_in">RegExp</span>.$<span class="number">1.</span>length&gt;<span class="number">2</span> ? <span class="string">"/u661f/u671f"</span> : <span class="string">"/u5468"</span>) : <span class="string">""</span>)+week[<span class="keyword">this</span>.getDay()+<span class="string">""</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> k <span class="keyword">in</span> o)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"("</span>+ k +<span class="string">")"</span>).test(fmt))&#123;</span><br><span class="line">                        fmt = fmt.replace(<span class="built_in">RegExp</span>.$<span class="number">1</span>, (<span class="built_in">RegExp</span>.$<span class="number">1.</span>length==<span class="number">1</span>) ? (o[k]) : ((<span class="string">"00"</span>+ o[k]).substr((<span class="string">""</span>+ o[k]).length)));</span><br><span class="line">                    &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">return</span> fmt;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2><span id="xi-tong-shi-jian-zhuan-shi-jian-chuo">系统时间转时间戳</span><a href="#xi-tong-shi-jian-zhuan-shi-jian-chuo" class="header-anchor"></a></h2><h3><span id="javascript">Javascript</span><a href="#javascript" class="header-anchor"></a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Math.round(<span class="keyword">new</span> Date(<span class="string">'2017-12-10 10:21:12'</span>).getTime()/<span class="number">1000</span>)</span><br><span class="line">Math.round(<span class="keyword">new</span> Date(<span class="string">'2017/12/10 10:21:12'</span>).getTime()/<span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
 <h2><span id="qi-ta-yu-yan">其他语言</span><a href="#qi-ta-yu-yan" class="header-anchor"></a></h2><ul>
 <li><a href="/2017/12/10/python-datetime/">Python</a></li>
 </ul>
 <h2><span id="can-kao">参考</span><a href="#can-kao" class="header-anchor"></a></h2><ul>
-<li><a href="http://tool.chinaz.com/Tools/unixtime.aspx" target="_blank" rel="external">Unix时间戳转换工具</a></li>
-<li><a href="https://time.artjoey.com/cn/" target="_blank" rel="external">世界时区查询</a></li>
-<li><a href="http://zh.thetimenow.com/utc/coordinated_universal_time" target="_blank" rel="external">世界协调时间</a></li>
+<li><a href="http://tool.chinaz.com/Tools/unixtime.aspx" target="_blank" rel="noopener">Unix时间戳转换工具</a></li>
+<li><a href="https://time.artjoey.com/cn/" target="_blank" rel="noopener">世界时区查询</a></li>
+<li><a href="http://zh.thetimenow.com/utc/coordinated_universal_time" target="_blank" rel="noopener">世界协调时间</a></li>
 </ul>
 
       
@@ -543,6 +543,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -551,19 +555,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -575,7 +575,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -584,10 +584,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -608,6 +604,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -727,11 +727,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -743,7 +743,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

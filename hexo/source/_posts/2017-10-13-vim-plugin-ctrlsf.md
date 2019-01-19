@@ -11,6 +11,7 @@ tags: [vim]
 这时候我们需要用到 [CtrlSF](https://github.com/dyng/ctrlsf.vim)
 ![/images/ctrlsf.gif](/images/ctrlsf.gif)
 <!-- more -->
+
 <!-- toc -->
 ## 安装
 ### Pathogen

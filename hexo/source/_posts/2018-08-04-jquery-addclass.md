@@ -5,6 +5,7 @@ tags: [jquery]
 ---
 
 使用 jquery 操作 class 样式非常方便，使用 `addClass, removeClass` 即可进行增加和删除
+
 <!-- more --><!-- toc -->
 
 **addClass**

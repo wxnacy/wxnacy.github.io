@@ -5,6 +5,7 @@ tags: [flask]
 ---
 
 flask 中 redirect 方法可以重镜像地址。
+
 <!-- more --><!-- toc -->
 
 ```python

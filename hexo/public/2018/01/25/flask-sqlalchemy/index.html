@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Flask SQLAlchemy 框架的使用 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="昨天介绍了 SQLAlchemy 的使用，今天介绍下在 Flask 框架中如何使用它。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-03-13T10:40:49.000Z">
+<meta property="og:updated_time" content="2019-01-19T05:30:00.586Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flask SQLAlchemy 框架的使用">
 <meta name="twitter:description" content="昨天介绍了 SQLAlchemy 的使用，今天介绍下在 Flask 框架中如何使用它。">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-flask-sqlalchemy" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-flask-sqlalchemy" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -197,8 +197,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>昨天介绍了 SQLAlchemy 的使用，今天介绍下在 Flask 框架中如何使用它。<br><a id="more"></a><div class="toc"></p>
-<!-- toc -->
+        <p>昨天介绍了 SQLAlchemy 的使用，今天介绍下在 Flask 框架中如何使用它。</p>
+<a id="more"></a><div class="toc"><br><br><!-- toc -->
 <ul>
 <li><a href="#xia-zai">下载</a></li>
 <li><a href="#chuang-jian-db">创建 db</a></li>
@@ -208,22 +208,22 @@
 <li><a href="#can-kao">参考</a></li>
 </ul>
 <!-- tocstop -->
-<p></div><br>本章代码 Demo 地址：<a href="https://github.com/wxnacy/study/tree/master/python/flask_sqlalchemy_demo" target="_blank" rel="external">https://github.com/wxnacy/study/tree/master/python/flask_sqlalchemy_demo</a></p>
-<h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ pip install Flask</div><div class="line">$ pip install Flask_SQLAlchemy</div></pre></td></tr></table></figure>
+<p></p></div><br>本章代码 Demo 地址：<a href="https://github.com/wxnacy/study/tree/master/python/flask_sqlalchemy_demo" target="_blank" rel="noopener">https://github.com/wxnacy/study/tree/master/python/flask_sqlalchemy_demo</a><p></p>
+<h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ pip install Flask</span><br><span class="line">$ pip install Flask_SQLAlchemy</span><br></pre></td></tr></table></figure>
 <p><code>Flask_SQLAlchemy</code> 将 SQLAlchemy 整合到 Flask 框架中，使用起来非常方便。</p>
-<h2><span id="chuang-jian-db">创建 db</span><a href="#chuang-jian-db" class="header-anchor"></a></h2><p>SQLAlchemy 需要的 <code>Base, engine, session</code> 都被整合到了一起，用 <code>SQLAlchemy</code> 类实现，该类实例需要传入 <code>Flask</code> 对象，并利用 <code>app.config[&#39;SQLALCHEMY_DATABASE_URI&#39;]</code> 来赋值 <code>database</code> 的 URI，<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</div><div class="line"><span class="keyword">from</span> flask_sqlalchemy <span class="keyword">import</span> SQLAlchemy</div><div class="line"></div><div class="line">app = Flask(__name__)</div><div class="line">SQLALCHEMY_DATABASE_URI = <span class="string">'mysql+pymysql://root:wxnacy@127.0.0.1:3306/study?charset=utf8mb4'</span></div><div class="line">app.config[<span class="string">'SQLALCHEMY_DATABASE_URI'</span>] = SQLALCHEMY_DATABASE_URI</div><div class="line"></div><div class="line">db = SQLAlchemy(app)</div></pre></td></tr></table></figure></p>
+<h2><span id="chuang-jian-db">创建 db</span><a href="#chuang-jian-db" class="header-anchor"></a></h2><p>SQLAlchemy 需要的 <code>Base, engine, session</code> 都被整合到了一起，用 <code>SQLAlchemy</code> 类实现，该类实例需要传入 <code>Flask</code> 对象，并利用 <code>app.config[&#39;SQLALCHEMY_DATABASE_URI&#39;]</code> 来赋值 <code>database</code> 的 URI，<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"><span class="keyword">from</span> flask_sqlalchemy <span class="keyword">import</span> SQLAlchemy</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">SQLALCHEMY_DATABASE_URI = <span class="string">'mysql+pymysql://root:wxnacy@127.0.0.1:3306/study?charset=utf8mb4'</span></span><br><span class="line">app.config[<span class="string">'SQLALCHEMY_DATABASE_URI'</span>] = SQLALCHEMY_DATABASE_URI</span><br><span class="line"></span><br><span class="line">db = SQLAlchemy(app)</span><br></pre></td></tr></table></figure></p>
 <p>通过 db 可以获取基类 <code>db.Model</code>，Session <code>db.session</code>，引擎 <code>db.engine</code></p>
-<h2><span id="ying-she-lei">映射类</span><a href="#ying-she-lei" class="header-anchor"></a></h2><p>在构造映射类的时候，需要继承的基类由 <code>db.Model</code> 来实现<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span><span class="params">(db.Model)</span>:</span></div><div class="line">    __tablename__ = <span class="string">'book'</span></div><div class="line">    id = db.Column(db.INT, primary_key=<span class="keyword">True</span>)</div><div class="line">    name = db.Column(db.String, default=<span class="string">""</span>)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">format</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> dict(id=self.id, name=self.name)</div></pre></td></tr></table></figure></p>
-<h2><span id="chuang-jian-api">创建 api</span><a href="#chuang-jian-api" class="header-anchor"></a></h2><p>我们创建两个 RESTful 风格的接口，创建和查询<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@app.route('/book', methods=['POST'])</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_book</span><span class="params">()</span>:</span></div><div class="line">    args = request.json</div><div class="line">    book = Book(**args)</div><div class="line">    db.session.add(book)</div><div class="line">    db.session.commit()</div><div class="line">    <span class="keyword">return</span> jsonify(book.format())</div><div class="line"></div><div class="line"><span class="meta">@app.route('/book/&lt;int:id&gt;', methods=['GET'])</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_book</span><span class="params">(id)</span>:</span></div><div class="line">    book = Book.query.filter_by(id=id).first()</div><div class="line">    <span class="keyword">return</span> jsonify(book.format())</div></pre></td></tr></table></figure></p>
+<h2><span id="ying-she-lei">映射类</span><a href="#ying-she-lei" class="header-anchor"></a></h2><p>在构造映射类的时候，需要继承的基类由 <code>db.Model</code> 来实现<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span><span class="params">(db.Model)</span>:</span></span><br><span class="line">    __tablename__ = <span class="string">'book'</span></span><br><span class="line">    id = db.Column(db.INT, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    name = db.Column(db.String, default=<span class="string">""</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">format</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> dict(id=self.id, name=self.name)</span><br></pre></td></tr></table></figure></p>
+<h2><span id="chuang-jian-api">创建 api</span><a href="#chuang-jian-api" class="header-anchor"></a></h2><p>我们创建两个 RESTful 风格的接口，创建和查询<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route('/book', methods=['POST'])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_book</span><span class="params">()</span>:</span></span><br><span class="line">    args = request.json</span><br><span class="line">    book = Book(**args)</span><br><span class="line">    db.session.add(book)</span><br><span class="line">    db.session.commit()</span><br><span class="line">    <span class="keyword">return</span> jsonify(book.format())</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route('/book/&lt;int:id&gt;', methods=['GET'])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_book</span><span class="params">(id)</span>:</span></span><br><span class="line">    book = Book.query.filter_by(id=id).first()</span><br><span class="line">    <span class="keyword">return</span> jsonify(book.format())</span><br></pre></td></tr></table></figure></p>
 <p>在创建部分，与直接使用 SQLAlchemy 没有什么不同，但是在查询方面，除了可以使用 <code>session.query(Book)</code> 的方式查询，还可以使用 <code>Book.query</code> 的方式查询，这样书写会更方便。</p>
-<h2><span id="yun-xing">运行</span><a href="#yun-xing" class="header-anchor"></a></h2><p>最后加上 <code>app.run()</code> 来启动 web 服务，运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ python run.py</div></pre></td></tr></table></figure></p>
+<h2><span id="yun-xing">运行</span><a href="#yun-xing" class="header-anchor"></a></h2><p>最后加上 <code>app.run()</code> 来启动 web 服务，运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ python run.py</span><br></pre></td></tr></table></figure></p>
 <p>启动项目</p>
-<p>创建<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl -X POST localhost:5000/book -H <span class="string">"Content-Type:application/json"</span> -d <span class="string">'&#123;"name":"wxnacy"&#125;'</span></div></pre></td></tr></table></figure></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="string">"id"</span>: 94,</div><div class="line">    <span class="string">"name"</span>: <span class="string">"wxnacy"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>获取<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ curl localhost:5000/book/94</div></pre></td></tr></table></figure></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="string">"id"</span>: 94,</div><div class="line">    <span class="string">"name"</span>: <span class="string">"wxnacy"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>创建<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl -X POST localhost:5000/book -H <span class="string">"Content-Type:application/json"</span> -d <span class="string">'&#123;"name":"wxnacy"&#125;'</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"id"</span>: 94,</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"wxnacy"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>获取<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl localhost:5000/book/94</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"id"</span>: 94,</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"wxnacy"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2><span id="can-kao">参考</span><a href="#can-kao" class="header-anchor"></a></h2><ul>
-<li><a href="http://flask-sqlalchemy.pocoo.org/2.3/" target="_blank" rel="external">Flask SQLAlchemy</a></li>
+<li><a href="http://flask-sqlalchemy.pocoo.org/2.3/" target="_blank" rel="noopener">Flask SQLAlchemy</a></li>
 </ul>
 
       
@@ -526,6 +526,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -534,19 +538,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -558,7 +558,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -567,10 +567,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -591,6 +587,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -710,11 +710,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -726,7 +726,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

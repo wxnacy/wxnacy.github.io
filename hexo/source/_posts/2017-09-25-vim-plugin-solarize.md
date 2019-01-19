@@ -9,6 +9,7 @@ tags: [vim]
 [vim-colors-solarized](https://github.com/altercation/vim-colors-solarized) 不用多说现在最流行的 Vim 主题
 
 <!-- more -->
+
 <!-- toc -->
 ## 安装
 ### Pathogen

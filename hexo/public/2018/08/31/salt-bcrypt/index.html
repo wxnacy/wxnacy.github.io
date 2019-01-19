@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Salt 算法和 Bcrypt 散列函数 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="这两天华住数据库密码泄露，导致上亿人的开放记录和用户信息被放到黑市贩卖（机智的我从来不开房），这再次抛弃了大家对信息安全的关注。今天讨论下信息安全中的密码安全。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-08-31T02:37:08.000Z">
+<meta property="og:updated_time" content="2019-01-19T05:30:00.689Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Salt 算法和 Bcrypt 散列函数">
 <meta name="twitter:description" content="这两天华住数据库密码泄露，导致上亿人的开放记录和用户信息被放到黑市贩卖（机智的我从来不开房），这再次抛弃了大家对信息安全的关注。今天讨论下信息安全中的密码安全。">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-salt-bcrypt" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-salt-bcrypt" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -197,8 +197,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这两天华住数据库密码泄露，导致上亿人的开放记录和用户信息被放到黑市贩卖（机智的我从来不开房），这再次抛弃了大家对信息安全的关注。今天讨论下信息安全中的密码安全。<br><a id="more"></a><div class="toc"></p>
-<!-- toc -->
+        <p>这两天华住数据库密码泄露，导致上亿人的开放记录和用户信息被放到黑市贩卖（机智的我从来不开房），这再次抛弃了大家对信息安全的关注。今天讨论下信息安全中的密码安全。</p>
+<a id="more"></a><div class="toc"><br><br><!-- toc -->
 <ul>
 <li><a href="#salt-suan-fa">Salt 算法</a></li>
 <li><a href="#bcrypt">bcrypt</a></li>
@@ -211,17 +211,17 @@
 </blockquote>
 <p>现在基本没有程序员在将密码明文存在数据库了，但是如果只是简单的做 MD5 加密，那跟明文也没什么区别了。</p>
 <p>MD5 被破解的原理很简单（首先声明 MD5 的破解不是被解密的，每次提到这个问题，就能想起以前跟我较真的一个同事，想起他一脸严肃的跟我说 MD5 可以解密，我就想笑，一句话就可以反驳，如果 MD5 可以解密，那它就是全世界最牛逼的压缩工具）。MD5 的长度是固定的，无限的数据组合散列出固定长度的密文，就一定会有两个不同的明文可以得到相同的 MD5 值。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">其他明文：md5(abc)    ==&gt;     xyz</div><div class="line">用户密码：md5(def)    ==&gt;     xyz</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">其他明文：md5(abc)    ==&gt;     xyz</span><br><span class="line">用户密码：md5(def)    ==&gt;     xyz</span><br></pre></td></tr></table></figure>
 <p>这样攻击者将 key（密码明文）和 value（MD5 值）存入数据库，然后用密文反查明文，及时得不到 <code>def</code>，使用 <code>abc</code> 也是可以通过登录验证的，这样的暴力破解已经非常成熟。</p>
 <h2><span id="salt-suan-fa">Salt 算法</span><a href="#salt-suan-fa" class="header-anchor"></a></h2><p>为了应对这种情况，我需要在明文上加上一点“佐料”是明文变长，这种算法我们成为加盐算法，也就是 salt 算法这样上述发生的几率就会降低，大大增加了破解的难度。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">其他明文：md5(abc+salt)    ==&gt;     yyyyy</div><div class="line">用户密码：md5(def+salt)    ==&gt;     xxxxx</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">其他明文：md5(abc+salt)    ==&gt;     yyyyy</span><br><span class="line">用户密码：md5(def+salt)    ==&gt;     xxxxx</span><br></pre></td></tr></table></figure>
 <p>因为 <code>MD5, SHA1</code> 已经不再安全，我们使用 <code>SHA512</code> 来进行加盐算法</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SHA512(SHA512(password), salt)</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHA512(SHA512(password), salt)</span><br></pre></td></tr></table></figure>
 <p>比较安全的加盐算法应该每个密码的 salt 值都不同，最简单的做法是随机获取 salt 并存入数据库。</p>
 <p>存入数据库，那如果被拖库了怎么办？就像这次华住事件，整个库都被人家拿走了，拿到了 salt 岂不是什么都完了。</p>
 <p>到也未必，上述公式，只是加盐算法的简单原理，我们可以在 salt 也做散列运算，或者在 salt 上再次加盐，等等复杂的操作都可以提现在代码中，这样即使攻击者拿到 salt 想要暴力破解出用户的原密码，仍然是非常难得。</p>
 <h2><span id="bcrypt">bcrypt</span><a href="#bcrypt" class="header-anchor"></a></h2><p>而另一种方式则是不将 salt 存在数据库，而是通过加密密码得到，这样每个密码的 salt 也是不同的</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SHA512(SHA512(password), SHA512(password)[40:60])</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHA512(SHA512(password), SHA512(password)[40:60])</span><br></pre></td></tr></table></figure>
 <p>这个 salt 的获取方式，是我随意写的，具体实现需要更复杂的加密才行。</p>
 <p>而 bcrypt 算法，就是建立在这个原理之上的，它的 salt 获取方式极其复杂，并且每次不同，导致每次对密码的加密结果都是不同的，但是 bcrypt 自己提供了验证上一次加密结果的方法，在散列加密中 bcrypt 被认为是最安全的。</p>
 <p>而安全换了的是性能的损失，因为它的复杂性，导致了每次计算的耗时远远大于普通的加盐算法。</p>
@@ -523,6 +523,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -531,19 +535,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -555,7 +555,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -564,10 +564,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -588,6 +584,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -707,11 +707,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -723,7 +723,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

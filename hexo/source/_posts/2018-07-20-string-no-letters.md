@@ -5,6 +5,7 @@ tags: [python]
 ---
 
 很多人说 Python3 与 Python2 没什么不同，无非就是 `print` 写法不同而已，很显然他没怎么处理过兼容问题。
+
 <!-- more --><!-- toc -->
 
 ```python

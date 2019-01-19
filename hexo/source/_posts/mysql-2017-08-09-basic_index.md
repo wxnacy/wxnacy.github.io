@@ -5,6 +5,7 @@ tags: [mysql]
 ---
 
 原文：[http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html](http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html)
+
 <!-- more --><!-- toc -->
 ## 索引类型
 在创建索引时，可以规定索引能否包含重复值。如果不包含，则索引应该创建为PRIMARY KEY或UNIQUE索引。对于单列惟一性索引，这保证单列不包含重复的值。对于多列惟一性索引，保证多个值的组合不重复。 PRIMARY KEY索引和UNIQUE索引非常类似。事实上，PRIMARY KEY索引仅是一个具有名称PRIMARY的UNIQUE索引。这表示一个表只能包含一个PRIMARY KEY，因为一个表中不可能具有两个同名的索引。下面的SQL语句对students表在sid上添加PRIMARY KEY索引。

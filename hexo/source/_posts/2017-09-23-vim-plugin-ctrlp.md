@@ -9,6 +9,7 @@ tags: [vim]
 > Vim 中的 find
 
 <!-- more -->
+
 <!-- toc -->
 我认为是 Vim 中必不可少的插件，作用是可以模糊搜索文件 ***/buf/mru/tag*** 等等
 我用的是改进版的 [ctrlpvim/ctrlp.vim](https://github.com/ctrlpvim/ctrlp.vim) 原版是 [kien/ctrlp.vim](https://github.com/kien/ctrlp.vim)

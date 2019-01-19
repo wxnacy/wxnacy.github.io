@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Linux 解决 du 与 df 查询结果不一致的问题 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="最近碰到一个怪事，再生产环境部署应用时提示空间不足，随后使用 df 和 du 分别查询磁盘使用情况，结果 df 显示空间已满，但 du 现在所有文件加起来远远没有达到磁盘的总空间，简直是灵异事件，百思不得姐，后来查询发现，还是要相信科学，碰见这种情况就要开始使用 lsof 了。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-08-07T08:37:20.000Z">
+<meta property="og:updated_time" content="2019-01-19T05:30:00.565Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux 解决 du 与 df 查询结果不一致的问题">
 <meta name="twitter:description" content="最近碰到一个怪事，再生产环境部署应用时提示空间不足，随后使用 df 和 du 分别查询磁盘使用情况，结果 df 显示空间已满，但 du 现在所有文件加起来远远没有达到磁盘的总空间，简直是灵异事件，百思不得姐，后来查询发现，还是要相信科学，碰见这种情况就要开始使用 lsof 了。">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-du-diff-df" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-du-diff-df" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -197,12 +197,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近碰到一个怪事，再生产环境部署应用时提示空间不足，随后使用 df 和 du 分别查询磁盘使用情况，结果 df 显示空间已满，但 du 现在所有文件加起来远远没有达到磁盘的总空间，简直是灵异事件，百思不得姐，后来查询发现，还是要相信科学，碰见这种情况就要开始使用 lsof 了。<br><a id="more"></a><div class="toc"></p>
-<!-- toc -->
+        <p>最近碰到一个怪事，再生产环境部署应用时提示空间不足，随后使用 df 和 du 分别查询磁盘使用情况，结果 df 显示空间已满，但 du 现在所有文件加起来远远没有达到磁盘的总空间，简直是灵异事件，百思不得姐，后来查询发现，还是要相信科学，碰见这种情况就要开始使用 lsof 了。</p>
+<a id="more"></a><div class="toc"><br><br><!-- toc -->
 <!-- tocstop -->
 </div>
 
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ sudo lsof | grep delete</div><div class="line"></div><div class="line">gunicorn  12684     root    9u      REG              202,1         0     262218 /tmp/wgunicorn-8i1jdgje (deleted)</div><div class="line">gunicorn  12684     root   10u      REG              202,1         0     266807 /tmp/wgunicorn-mm95v3yh (deleted)</div><div class="line">gunicorn  12684     root   11u      REG              202,1         0     266812 /tmp/wgunicorn-5m96ndz5 (deleted)</div><div class="line">gunicorn  12684     root   12u      REG              202,1         0     266894 /tmp/wgunicorn-gq5yj56p (deleted)</div><div class="line">gunicorn  12687     root    6u      REG              202,1         0     262184 /tmp/wgunicorn-5furub77 (deleted)</div><div class="line">gunicorn  12687     root    7u      REG              202,1         0     262186 /tmp/wgunicorn-wbxhe1yf (deleted)</div><div class="line">gunicorn  12687     root    8u      REG              202,1         0     262204 /tmp/wgunicorn-xc3x68bt (deleted)</div><div class="line">gunicorn  12687     root    9u      REG              202,1         0     262218 /tmp/wgunicorn-8i1jdgje (deleted)</div><div class="line">gunicorn  12687     root   10u      REG              202,1         0     266807 /tmp/wgunicorn-mm95v3yh (deleted)</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ sudo lsof | grep delete</span><br><span class="line"></span><br><span class="line">gunicorn  12684     root    9u      REG              202,1         0     262218 /tmp/wgunicorn-8i1jdgje (deleted)</span><br><span class="line">gunicorn  12684     root   10u      REG              202,1         0     266807 /tmp/wgunicorn-mm95v3yh (deleted)</span><br><span class="line">gunicorn  12684     root   11u      REG              202,1         0     266812 /tmp/wgunicorn-5m96ndz5 (deleted)</span><br><span class="line">gunicorn  12684     root   12u      REG              202,1         0     266894 /tmp/wgunicorn-gq5yj56p (deleted)</span><br><span class="line">gunicorn  12687     root    6u      REG              202,1         0     262184 /tmp/wgunicorn-5furub77 (deleted)</span><br><span class="line">gunicorn  12687     root    7u      REG              202,1         0     262186 /tmp/wgunicorn-wbxhe1yf (deleted)</span><br><span class="line">gunicorn  12687     root    8u      REG              202,1         0     262204 /tmp/wgunicorn-xc3x68bt (deleted)</span><br><span class="line">gunicorn  12687     root    9u      REG              202,1         0     262218 /tmp/wgunicorn-8i1jdgje (deleted)</span><br><span class="line">gunicorn  12687     root   10u      REG              202,1         0     266807 /tmp/wgunicorn-mm95v3yh (deleted)</span><br></pre></td></tr></table></figure>
 <p>通过上述命令查询得到的文件全都为删除状态，这就好比是电脑的回收站，你以为删除了没用的日志文件，其实某些启动它的程序因为没有重启，并没有真正的删除掉，而这些文件并不会被 du 读取到。</p>
 <p>这样事情就简单多了，只需要重启改程序（第一列数据）或者直接 kill 掉进行（pid 为第二列数据），随后在执行 df 就会发现空间瞬间增加。</p>
 
@@ -502,6 +502,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -510,19 +514,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -534,7 +534,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -543,10 +543,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -567,6 +563,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -686,11 +686,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -702,7 +702,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

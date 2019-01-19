@@ -5,6 +5,7 @@ tags: [node]
 ---
 
 在 Node 中发送邮件是很简单的，[Nodemailer](https://nodemailer.com/about/) 包提供了很完善的接口来实现该功能。
+
 <!-- more --><!-- toc -->
 ## 下载
 npm

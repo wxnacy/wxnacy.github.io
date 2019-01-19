@@ -5,6 +5,7 @@ tags: [vagrant]
 ---
 
 记录下 Vagrant 常用配置
+
 <!-- more --><!-- toc -->
 
 ```ruby

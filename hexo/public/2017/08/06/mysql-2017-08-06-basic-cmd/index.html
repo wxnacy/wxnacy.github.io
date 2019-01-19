@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Mysql 基础命令 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="整理 Mysql 的一些基础命令以便查阅">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-12-06T02:51:39.000Z">
+<meta property="og:updated_time" content="2019-01-19T05:30:00.672Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql 基础命令">
 <meta name="twitter:description" content="整理 Mysql 的一些基础命令以便查阅">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-mysql-2017-08-06-basic-cmd" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-mysql-2017-08-06-basic-cmd" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -197,8 +197,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>整理 Mysql 的一些基础命令以便查阅<br><a id="more"></a><div class="toc"></p>
-<!-- toc -->
+        <p>整理 Mysql 的一些基础命令以便查阅</p>
+<a id="more"></a><div class="toc"><br><br><!-- toc -->
 <ul>
 <li><a href="#shu-ju-ku">数据库</a><ul>
 <li><a href="#chuang-jian-ku">创建库</a></li>
@@ -221,16 +221,16 @@
 </li>
 </ul>
 <!-- tocstop -->
-<p></div></p>
-<h2><span id="shu-ju-ku">数据库</span><a href="#shu-ju-ku" class="header-anchor"></a></h2><h3><span id="chuang-jian-ku">创建库</span><a href="#chuang-jian-ku" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create database name character utf8mb4;</div></pre></td></tr></table></figure>
-<h2><span id="biao-jie-gou">表结构</span><a href="#biao-jie-gou" class="header-anchor"></a></h2><h3><span id="chuang-jian-biao">创建表</span><a href="#chuang-jian-biao" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">drop table if exists `user`;</div><div class="line">create table `user`(</div><div class="line">    id int(11) not null auto_increment,</div><div class="line">    name varchar(32) not null comment &apos;姓名&apos;,</div><div class="line">    mobile varchar(11) not null default &apos;&apos; comment &apos;手机号&apos;,</div><div class="line">    ext JSON default null comment &apos;扩展信息&apos;,</div><div class="line">    create_ts timestamp not null default current_timestamp comment &apos;创建时间&apos;,</div><div class="line">    update_ts timestamp not null default current_timestamp on update current_timestamp comment &apos;修改时间&apos;,</div><div class="line">    primary key(`id`)</div><div class="line">) engine=InnoDB default charset=utf8mb4 comment &apos;用户表&apos;;</div></pre></td></tr></table></figure>
-<h3><span id="cha-kan-lie">查看列</span><a href="#cha-kan-lie" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">desc table_name</div></pre></td></tr></table></figure>
-<h3><span id="xiu-gai-biao-ming">修改表名</span><a href="#xiu-gai-biao-ming" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table table_name rename to new_name;</div></pre></td></tr></table></figure>
-<h3><span id="tian-jia-lie">添加列</span><a href="#tian-jia-lie" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table table_name add column col_name varchar(11) not null ...;</div></pre></td></tr></table></figure>
-<h3><span id="shan-chu-lie">删除列</span><a href="#shan-chu-lie" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table table_name drop column col_name;</div></pre></td></tr></table></figure>
-<h3><span id="xiu-gai-lie-ming">修改列名</span><a href="#xiu-gai-lie-ming" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table table_name change old_name new_name int(11)...;</div></pre></td></tr></table></figure>
-<h3><span id="xiu-gai-lie-shu-xing">修改列属性</span><a href="#xiu-gai-lie-shu-xing" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alter table table_name modify col_name int(11) not null...;</div></pre></td></tr></table></figure>
-<h3><span id="cha-kan-lie-shu-xing">查看列属性</span><a href="#cha-kan-lie-shu-xing" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">show columns from table_name;</div><div class="line">show full columns from table_name; # 全部信息</div></pre></td></tr></table></figure>
+<p></p></div><p></p>
+<h2><span id="shu-ju-ku">数据库</span><a href="#shu-ju-ku" class="header-anchor"></a></h2><h3><span id="chuang-jian-ku">创建库</span><a href="#chuang-jian-ku" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database name character utf8mb4;</span><br></pre></td></tr></table></figure>
+<h2><span id="biao-jie-gou">表结构</span><a href="#biao-jie-gou" class="header-anchor"></a></h2><h3><span id="chuang-jian-biao">创建表</span><a href="#chuang-jian-biao" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">drop table if exists `user`;</span><br><span class="line">create table `user`(</span><br><span class="line">    id int(11) not null auto_increment,</span><br><span class="line">    name varchar(32) not null comment &apos;姓名&apos;,</span><br><span class="line">    mobile varchar(11) not null default &apos;&apos; comment &apos;手机号&apos;,</span><br><span class="line">    ext JSON default null comment &apos;扩展信息&apos;,</span><br><span class="line">    create_ts timestamp not null default current_timestamp comment &apos;创建时间&apos;,</span><br><span class="line">    update_ts timestamp not null default current_timestamp on update current_timestamp comment &apos;修改时间&apos;,</span><br><span class="line">    primary key(`id`)</span><br><span class="line">) engine=InnoDB default charset=utf8mb4 comment &apos;用户表&apos;;</span><br></pre></td></tr></table></figure>
+<h3><span id="cha-kan-lie">查看列</span><a href="#cha-kan-lie" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">desc table_name</span><br></pre></td></tr></table></figure>
+<h3><span id="xiu-gai-biao-ming">修改表名</span><a href="#xiu-gai-biao-ming" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table table_name rename to new_name;</span><br></pre></td></tr></table></figure>
+<h3><span id="tian-jia-lie">添加列</span><a href="#tian-jia-lie" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table table_name add column col_name varchar(11) not null ...;</span><br></pre></td></tr></table></figure>
+<h3><span id="shan-chu-lie">删除列</span><a href="#shan-chu-lie" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table table_name drop column col_name;</span><br></pre></td></tr></table></figure>
+<h3><span id="xiu-gai-lie-ming">修改列名</span><a href="#xiu-gai-lie-ming" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table table_name change old_name new_name int(11)...;</span><br></pre></td></tr></table></figure>
+<h3><span id="xiu-gai-lie-shu-xing">修改列属性</span><a href="#xiu-gai-lie-shu-xing" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table table_name modify col_name int(11) not null...;</span><br></pre></td></tr></table></figure>
+<h3><span id="cha-kan-lie-shu-xing">查看列属性</span><a href="#cha-kan-lie-shu-xing" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">show columns from table_name;</span><br><span class="line">show full columns from table_name; # 全部信息</span><br></pre></td></tr></table></figure>
 <ul>
 <li><strong>Field</strong> ：字段名</li>
 <li><strong>Type</strong>：字段类型</li>
@@ -242,7 +242,7 @@
 <li><strong>Privileges</strong>：权限</li>
 <li><strong>Comment</strong>：备注（mysql 5.0以上有)</li>
 </ul>
-<h2><span id="cha-xun">查询</span><a href="#cha-xun" class="header-anchor"></a></h2><h3><span id="qu-diao-chong-fu-shu-ju">去掉重复数据</span><a href="#qu-diao-chong-fu-shu-ju" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select distinct name from user;</div></pre></td></tr></table></figure>
+<h2><span id="cha-xun">查询</span><a href="#cha-xun" class="header-anchor"></a></h2><h3><span id="qu-diao-chong-fu-shu-ju">去掉重复数据</span><a href="#qu-diao-chong-fu-shu-ju" class="header-anchor"></a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select distinct name from user;</span><br></pre></td></tr></table></figure>
 <p>需要注意亮点，第一，<code>distinct</code> 必须放到查询字段最前边。第二，如果查询的字段很多，必须所有字段都相同才会过滤</p>
 
       
@@ -356,8 +356,8 @@
     </a>
   
   
-    <a href="/2017/08/05/algorithm-2017-08-05-bank-verify/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">银行卡校验规则(Luhn算法)</div>
+    <a href="/2017/08/05/algorithm-2017-08-05-identity-verify/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">身份证号码校验规则</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -541,6 +541,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -549,19 +553,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -573,7 +573,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -582,10 +582,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -606,6 +602,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -725,11 +725,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -741,7 +741,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

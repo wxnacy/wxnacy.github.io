@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>如何解析地址参数 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="在 React 之前 html 页面想要获取当前地址参数，只能通过静态解析的方式在获取，列举几种语言的获取方式">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-12-08T09:00:50.000Z">
+<meta property="og:updated_time" content="2019-01-19T05:30:00.630Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何解析地址参数">
 <meta name="twitter:description" content="在 React 之前 html 页面想要获取当前地址参数，只能通过静态解析的方式在获取，列举几种语言的获取方式">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-parse-url-params" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-parse-url-params" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -197,18 +197,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在 React 之前 html 页面想要获取当前地址参数，只能通过静态解析的方式在获取，列举几种语言的获取方式<br><a id="more"></a><div class="toc"></p>
-<!-- toc -->
+        <p>在 React 之前 html 页面想要获取当前地址参数，只能通过静态解析的方式在获取，列举几种语言的获取方式</p>
+<a id="more"></a><div class="toc"><br><br><!-- toc -->
 <ul>
 <li><a href="#javascript">Javascript</a></li>
 <li><a href="#python">Python</a></li>
 <li><a href="#java">Java</a></li>
 </ul>
 <!-- tocstop -->
-<p></div></p>
-<h2><span id="javascript">Javascript</span><a href="#javascript" class="header-anchor"></a></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getValue</span>(<span class="params">key</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> name = key + <span class="string">"="</span>;</div><div class="line">    <span class="keyword">var</span> str = <span class="built_in">window</span>.location.search;</div><div class="line">    <span class="keyword">var</span> beginIndex = str.indexOf(<span class="string">"?"</span> + name);</div><div class="line">    <span class="keyword">if</span> (beginIndex == <span class="number">-1</span>) &#123;</div><div class="line">        beginIndex = str.indexOf(<span class="string">"&amp;"</span> + name);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (beginIndex != <span class="number">-1</span>) &#123;</div><div class="line">        <span class="keyword">var</span> pos_start = beginIndex + name.length + <span class="number">1</span>;</div><div class="line">        <span class="keyword">var</span> pos_end = str.indexOf(<span class="string">"&amp;"</span>, pos_start);</div><div class="line">        <span class="keyword">if</span> (pos_end == <span class="number">-1</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="built_in">decodeURIComponent</span>(str.substring(pos_start));</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> <span class="built_in">decodeURIComponent</span>(str.substring(pos_start, pos_end));</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2><span id="python">Python</span><a href="#python" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_value</span><span class="params">(url, k)</span>:</span></div><div class="line">    <span class="string">"""获取地址中参数值"""</span></div><div class="line">    nk = <span class="string">'&#123;&#125;='</span>.format(k)</div><div class="line">    <span class="keyword">if</span> nk <span class="keyword">not</span> <span class="keyword">in</span> url:</div><div class="line">        <span class="keyword">return</span> <span class="keyword">None</span></div><div class="line"></div><div class="line">    b = url.find(nk) + len(nk)  <span class="comment"># 获取开始位置</span></div><div class="line">    e = url.find(<span class="string">'&amp;'</span>, b) <span class="keyword">if</span> url.find(<span class="string">'&amp;'</span>, b) != <span class="number">-1</span> <span class="keyword">else</span> len(url)    <span class="comment"># 结束位置</span></div><div class="line">    v = url[b:e]</div><div class="line">    <span class="keyword">return</span> v</div></pre></td></tr></table></figure>
-<h2><span id="java">Java</span><a href="#java" class="header-anchor"></a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getValue</span><span class="params">(String url, String key)</span></span>&#123;</div><div class="line">    String k = key + <span class="string">"="</span>;</div><div class="line">    <span class="keyword">int</span> begin = url.indexOf(k);</div><div class="line">    <span class="keyword">if</span>(begin == -<span class="number">1</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">    begin = begin + k.length();</div><div class="line">    <span class="keyword">int</span> end = url.indexOf(<span class="string">"&amp;"</span>, begin);</div><div class="line">    <span class="keyword">if</span>(end == -<span class="number">1</span>)&#123;</div><div class="line">        <span class="keyword">return</span> url.substring(begin);</div><div class="line">    &#125;<span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> url.substring(begin, end);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p></p></div><p></p>
+<h2><span id="javascript">Javascript</span><a href="#javascript" class="header-anchor"></a></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getValue</span>(<span class="params">key</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name = key + <span class="string">"="</span>;</span><br><span class="line">    <span class="keyword">var</span> str = <span class="built_in">window</span>.location.search;</span><br><span class="line">    <span class="keyword">var</span> beginIndex = str.indexOf(<span class="string">"?"</span> + name);</span><br><span class="line">    <span class="keyword">if</span> (beginIndex == <span class="number">-1</span>) &#123;</span><br><span class="line">        beginIndex = str.indexOf(<span class="string">"&amp;"</span> + name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (beginIndex != <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> pos_start = beginIndex + name.length + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">var</span> pos_end = str.indexOf(<span class="string">"&amp;"</span>, pos_start);</span><br><span class="line">        <span class="keyword">if</span> (pos_end == <span class="number">-1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">decodeURIComponent</span>(str.substring(pos_start));</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">decodeURIComponent</span>(str.substring(pos_start, pos_end));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2><span id="python">Python</span><a href="#python" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_value</span><span class="params">(url, k)</span>:</span></span><br><span class="line">    <span class="string">"""获取地址中参数值"""</span></span><br><span class="line">    nk = <span class="string">'&#123;&#125;='</span>.format(k)</span><br><span class="line">    <span class="keyword">if</span> nk <span class="keyword">not</span> <span class="keyword">in</span> url:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line">    b = url.find(nk) + len(nk)  <span class="comment"># 获取开始位置</span></span><br><span class="line">    e = url.find(<span class="string">'&amp;'</span>, b) <span class="keyword">if</span> url.find(<span class="string">'&amp;'</span>, b) != <span class="number">-1</span> <span class="keyword">else</span> len(url)    <span class="comment"># 结束位置</span></span><br><span class="line">    v = url[b:e]</span><br><span class="line">    <span class="keyword">return</span> v</span><br></pre></td></tr></table></figure>
+<h2><span id="java">Java</span><a href="#java" class="header-anchor"></a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getValue</span><span class="params">(String url, String key)</span></span>&#123;</span><br><span class="line">    String k = key + <span class="string">"="</span>;</span><br><span class="line">    <span class="keyword">int</span> begin = url.indexOf(k);</span><br><span class="line">    <span class="keyword">if</span>(begin == -<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    begin = begin + k.length();</span><br><span class="line">    <span class="keyword">int</span> end = url.indexOf(<span class="string">"&amp;"</span>, begin);</span><br><span class="line">    <span class="keyword">if</span>(end == -<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> url.substring(begin);</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> url.substring(begin, end);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -518,6 +518,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -526,19 +530,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -550,7 +550,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -559,10 +559,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -583,6 +579,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -702,11 +702,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -718,7 +718,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>SQLAlchemy Paginate 分页查询 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="在 SQLAlchemy 中查询分页使用 paginate() 方法">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-03-27T10:37:54.000Z">
+<meta property="og:updated_time" content="2019-01-19T05:30:00.705Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQLAlchemy Paginate 分页查询">
 <meta name="twitter:description" content="在 SQLAlchemy 中查询分页使用 paginate() 方法">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-sqlalchemy-paginate" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-sqlalchemy-paginate" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -197,8 +197,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在 SQLAlchemy 中查询分页使用 <code>paginate()</code> 方法<br><a id="more"></a><div class="toc"></p>
-<!-- toc -->
+        <p>在 SQLAlchemy 中查询分页使用 <code>paginate()</code> 方法</p>
+<a id="more"></a><div class="toc"><br><br><!-- toc -->
 <ul>
 <li><a href="#fang-fa">方法</a></li>
 <li><a href="#pagination">Pagination</a><ul>
@@ -207,8 +207,8 @@
 </li>
 </ul>
 <!-- tocstop -->
-<p></div></p>
-<h2><span id="fang-fa">方法</span><a href="#fang-fa" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">db.session.query(User).filter_by().paginate(page=<span class="keyword">None</span>, per_page=<span class="keyword">None</span>,</div><div class="line">    error_out=<span class="keyword">True</span>, max_per_page=<span class="keyword">None</span>)</div></pre></td></tr></table></figure>
+<p></p></div><p></p>
+<h2><span id="fang-fa">方法</span><a href="#fang-fa" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.session.query(User).filter_by().paginate(page=<span class="keyword">None</span>, per_page=<span class="keyword">None</span>,</span><br><span class="line">    error_out=<span class="keyword">True</span>, max_per_page=<span class="keyword">None</span>)</span><br></pre></td></tr></table></figure>
 <p>参数定义：</p>
 <ul>
 <li><code>page</code> 查询的页数</li>
@@ -235,13 +235,13 @@
 <li><code>query</code> 用于创建此分页对象的无限查询对象。</li>
 <li><code>total</code> 总条数</li>
 <li><p><code>iter_pages(left_edge=2, left_current=2, right_current=5, right_edge=2)</code><br>  迭代分页中的页码，四个参数，分别控制了省略号左右两侧各显示多少页码，在模板中可以这样渲染</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&#123;% macro render_pagination(pagination, endpoint) %&#125;</div><div class="line">  &lt;div class=pagination&gt;</div><div class="line">  &#123;% <span class="keyword">for</span> page <span class="keyword">in</span> pagination.iter_pages() %&#125;</div><div class="line">    &#123;% <span class="keyword">if</span> page %&#125;</div><div class="line">      &#123;% <span class="keyword">if</span> page != pagination.page %&#125;</div><div class="line">        &lt;a href="&#123;&#123; url_for(endpoint, page=page) &#125;&#125;"&gt;&#123;&#123; page &#125;&#125;&lt;/a&gt;</div><div class="line">      &#123;% <span class="keyword">else</span> %&#125;</div><div class="line">        &lt;strong&gt;&#123;&#123; page &#125;&#125;&lt;/strong&gt;</div><div class="line">      &#123;% endif %&#125;</div><div class="line">    &#123;% <span class="keyword">else</span> %&#125;</div><div class="line">      &lt;span class=ellipsis&gt;…&lt;/span&gt;</div><div class="line">    &#123;% endif %&#125;</div><div class="line">  &#123;%- endfor %&#125;</div><div class="line">  &lt;/div&gt;</div><div class="line">&#123;% endmacro %&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;% macro render_pagination(pagination, endpoint) %&#125;</span><br><span class="line">  &lt;div class=pagination&gt;</span><br><span class="line">  &#123;% <span class="keyword">for</span> page <span class="keyword">in</span> pagination.iter_pages() %&#125;</span><br><span class="line">    &#123;% <span class="keyword">if</span> page %&#125;</span><br><span class="line">      &#123;% <span class="keyword">if</span> page != pagination.page %&#125;</span><br><span class="line">        &lt;a href="&#123;&#123; url_for(endpoint, page=page) &#125;&#125;"&gt;&#123;&#123; page &#125;&#125;&lt;/a&gt;</span><br><span class="line">      &#123;% <span class="keyword">else</span> %&#125;</span><br><span class="line">        &lt;strong&gt;&#123;&#123; page &#125;&#125;&lt;/strong&gt;</span><br><span class="line">      &#123;% endif %&#125;</span><br><span class="line">    &#123;% <span class="keyword">else</span> %&#125;</span><br><span class="line">      &lt;span class=ellipsis&gt;…&lt;/span&gt;</span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line">  &#123;%- endfor %&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&#123;% endmacro %&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>next(error_out=False)</code> 返回下一页的分页对象</p>
 </li>
 <li><p><code>prev(error_out=False)</code> 返回上一页的分页对象</p>
 </li>
-<li><p><a href="http://flask-sqlalchemy.pocoo.org/2.3/api/#flask_sqlalchemy.Pagination" target="_blank" rel="external">Pagination</a></p>
+<li><p><a href="http://flask-sqlalchemy.pocoo.org/2.3/api/#flask_sqlalchemy.Pagination" target="_blank" rel="noopener">Pagination</a></p>
 </li>
 </ul>
 
@@ -545,6 +545,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -553,19 +557,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -577,7 +577,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -586,10 +586,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -610,6 +606,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -729,11 +729,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -745,7 +745,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

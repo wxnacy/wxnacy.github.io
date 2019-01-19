@@ -7,6 +7,7 @@ date: 2018-12-27 09:26:01
 
 
 几个月前我写过文章 [CentOS 安装 JDK](/2018/06/15/centos-install-jdk/) ，当时是以 JDK 8 为例子，现在 Java 11 出来了，相应的更新一版。
+
 <!-- more --><!-- toc -->
 
 ## OpenJDK

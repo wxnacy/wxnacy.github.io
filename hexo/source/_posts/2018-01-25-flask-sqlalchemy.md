@@ -5,6 +5,7 @@ tags: [python, flask]
 ---
 
 昨天介绍了 SQLAlchemy 的使用，今天介绍下在 Flask 框架中如何使用它。
+
 <!-- more --><!-- toc -->
 本章代码 Demo 地址：https://github.com/wxnacy/study/tree/master/python/flask_sqlalchemy_demo
 

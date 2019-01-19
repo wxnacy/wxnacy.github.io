@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Vim 高级应用 Abbreviations 快速输入 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -17,7 +17,7 @@
 <meta property="og:description" content="懒是第一生产力">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="http://wxnacy.com/images/abbreviations.gif">
-<meta property="og:updated_time" content="2017-12-06T03:28:09.000Z">
+<meta property="og:updated_time" content="2019-01-19T04:06:41.963Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vim 高级应用 Abbreviations 快速输入">
 <meta name="twitter:description" content="懒是第一生产力">
@@ -40,7 +40,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -57,7 +57,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -179,7 +179,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-vim-abbreviations" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-vim-abbreviations" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -205,16 +205,16 @@
 <a id="more"></a>
 <p>在开发时候我们更希望把时间花在思考怎样优化代码性能，而不是浪费在做重复无意义的事情上，我们先来看一个场景</p>
 <p><img src="/images/abbreviations.gif" alt="abbrev"></p>
-<p>试想一下，如果手动输入上边这些代码，我需要多长时间呢，而且可能是需要重复很多的工作。说到这里我又要吐槽 Java 了，想想输出 <code>Hello World</code> Python 需要做什么呢<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print(<span class="string">'Hello World'</span>)</div></pre></td></tr></table></figure></p>
+<p>试想一下，如果手动输入上边这些代码，我需要多长时间呢，而且可能是需要重复很多的工作。说到这里我又要吐槽 Java 了，想想输出 <code>Hello World</code> Python 需要做什么呢<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'Hello World'</span>)</span><br></pre></td></tr></table></figure></p>
 <p>是的，只需要一行就可以了，当然这是脚本语言和编译语言的大差异。</p>
-<h2><span id="hello-world">Hello World</span><a href="#hello-world" class="header-anchor"></a></h2><p>程序员学什么最开始都是 <code>Hello World</code> ，这不是必要的，但是我们切入一点的习惯，如何使用 Abbreviations 快速输入 <code>Hello World</code> ，是的，及时这么短的语句我也不想每次手动输入，<strong><em>懒是第一生产力</em></strong>，实现很简单编辑 <code>~/.vimrc</code> 文件<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">iabbrev</span> hw Hello World</div></pre></td></tr></table></figure></p>
+<h2><span id="hello-world">Hello World</span><a href="#hello-world" class="header-anchor"></a></h2><p>程序员学什么最开始都是 <code>Hello World</code> ，这不是必要的，但是我们切入一点的习惯，如何使用 Abbreviations 快速输入 <code>Hello World</code> ，是的，及时这么短的语句我也不想每次手动输入，<strong><em>懒是第一生产力</em></strong>，实现很简单编辑 <code>~/.vimrc</code> 文件<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">iabbrev</span> hw Hello World</span><br></pre></td></tr></table></figure></p>
 <p>然后在输入 <code>hw</code> ，然后输入空格即可完成输入，是的就是这么简单，不过一定要记得，退出 <code>~/.vimrc</code> 重新进入 Vim 使配置生效</p>
-<h2><span id="geng-fu-za-de-shi-yong">更复杂的使用</span><a href="#geng-fu-za-de-shi-yong" class="header-anchor"></a></h2><p>在截图中的 <code>Hello World</code> 就是通过这种方式快速输入的，接下来我们来探讨怎样重现预览中的效果，首先来看 <code>class</code> 的生成<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">iabbrev</span> class public class&#123;&#125;<span class="symbol">&lt;esc&gt;</span>i<span class="symbol">&lt;cr&gt;</span><span class="symbol">&lt;esc&gt;</span><span class="keyword">k</span>$Fsli</div></pre></td></tr></table></figure></p>
+<h2><span id="geng-fu-za-de-shi-yong">更复杂的使用</span><a href="#geng-fu-za-de-shi-yong" class="header-anchor"></a></h2><p>在截图中的 <code>Hello World</code> 就是通过这种方式快速输入的，接下来我们来探讨怎样重现预览中的效果，首先来看 <code>class</code> 的生成<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">iabbrev</span> class public class&#123;&#125;<span class="symbol">&lt;esc&gt;</span>i<span class="symbol">&lt;cr&gt;</span><span class="symbol">&lt;esc&gt;</span><span class="keyword">k</span>$Fsli</span><br></pre></td></tr></table></figure></p>
 <p>先什么都不要管，直接复制到 <code>~/.vimrc</code> 中，自己输入 <code>class</code> 试验一下看看效果，第一次看的话你可能会感觉懵逼，不过不要着急，我们一步步来解释，<code>publich class{}</code> 应该不用解释，就是简单输入 ，<code>&lt;esc&gt;</code> 代表输入键盘的 esc 键，这时光标会在大括号中间，接下来 <code>i</code> 进入插入模式，<code>&lt;cr&gt;</code> 输入回车，再次输入 esc 退出插入模式后， <code>k</code> 光标上移一行，<code>$</code> 光标来到行尾，<code>F</code> 反向查找第一个 s 字母，<code>l</code> 右移动一格，并再次进入插入模式，看，全部是都是 Vim 的基本操作，我们只是不想每次都手动输入而已。</p>
-<p>接下来 <code>main</code> 方法和 <code>print</code> 方法<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">iabbrev</span> main public static void main(String <span class="keyword">args</span>[])&#123;&#125;<span class="symbol">&lt;esc&gt;</span>i<span class="symbol">&lt;cr&gt;</span></div><div class="line"><span class="keyword">iabbrev</span> <span class="keyword">print</span> System.out.println()<span class="symbol">&lt;esc&gt;</span>i<span class="string">""</span><span class="symbol">&lt;esc&gt;</span>i</div></pre></td></tr></table></figure></p>
+<p>接下来 <code>main</code> 方法和 <code>print</code> 方法<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">iabbrev</span> main public static void main(String <span class="keyword">args</span>[])&#123;&#125;<span class="symbol">&lt;esc&gt;</span>i<span class="symbol">&lt;cr&gt;</span></span><br><span class="line"><span class="keyword">iabbrev</span> <span class="keyword">print</span> System.out.println()<span class="symbol">&lt;esc&gt;</span>i<span class="string">""</span><span class="symbol">&lt;esc&gt;</span>i</span><br></pre></td></tr></table></figure></p>
 <p>这个更简单一些我就不解释了，这样通过几个关键词我们就可以输入平常很久才能完成的任务，你可以试试更复杂的输入 <code>classm</code> 将 class 和 main 方法同时输出，那样更方便，就当是个练习，因为想要熟练的唯一方法就是不断的练习</p>
-<h2><span id="keyword-characters">Keyword Characters</span><a href="#keyword-characters" class="header-anchor"></a></h2><p>在 <code>hw</code> 后输入空格就可以出现<code>Hello World</code> ，这已经很方便了，但你一定会问是不是可以用其他字符替换，答案是肯定的，运行命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:<span class="built_in">set</span> iskeyword?</div></pre></td></tr></table></figure></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iskeyword=@,48-57,_,192-255</div></pre></td></tr></table></figure>
+<h2><span id="keyword-characters">Keyword Characters</span><a href="#keyword-characters" class="header-anchor"></a></h2><p>在 <code>hw</code> 后输入空格就可以出现<code>Hello World</code> ，这已经很方便了，但你一定会问是不是可以用其他字符替换，答案是肯定的，运行命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="built_in">set</span> iskeyword?</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iskeyword=@,48-57,_,192-255</span><br></pre></td></tr></table></figure>
 <p>结果会让人很费解，但是其实 <code>keyword characters</code> 就是代表以下含义</p>
 <ul>
 <li>下划线字符 <code>(_).</code></li>
@@ -521,6 +521,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -529,19 +533,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -553,7 +553,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -562,10 +562,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -586,6 +582,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -705,11 +705,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -721,7 +721,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

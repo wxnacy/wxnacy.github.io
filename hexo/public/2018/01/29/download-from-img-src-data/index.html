@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Javascript 如何从下载 src 为 data 数据的 img | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="在做二维码生成器的时候，设计到下载图片的功能">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-01-29T00:44:52.000Z">
+<meta property="og:updated_time" content="2019-01-19T04:29:42.705Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Javascript 如何从下载 src 为 data 数据的 img">
 <meta name="twitter:description" content="在做二维码生成器的时候，设计到下载图片的功能">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-download-from-img-src-data" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-download-from-img-src-data" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -197,10 +197,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在做<a href="/2018/01/28/qrcode-marker/">二维码生成器</a>的时候，设计到下载图片的功能<br><a id="more"></a><br>在线生成图片的结果是这样的<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgICAgM...."</span>/&gt;</span></div></pre></td></tr></table></figure></p>
-<p>经过搜索，发现 stackoverflow 上的的一篇问答 <a href="https://stackoverflow.com/questions/10473932/browser-html-force-download-of-image-from-src-dataimage-jpegbase64" target="_blank" rel="external">https://stackoverflow.com/questions/10473932/browser-html-force-download-of-image-from-src-dataimage-jpegbase64</a> 是可行的方法，记录如下</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> url = img.src.replace(<span class="regexp">/^data:image\/[^;]+/</span>, <span class="string">'data:application/octet-stream'</span>);</div><div class="line"><span class="built_in">window</span>.open(url);</div></pre></td></tr></table></figure>
-<p>或者<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> img = <span class="built_in">document</span>.images[<span class="number">0</span>];</div><div class="line">img.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="comment">// atob to base64_decode the data-URI</span></div><div class="line">	<span class="keyword">var</span> image_data = atob(img.src.split(<span class="string">','</span>)[<span class="number">1</span>]);</div><div class="line">	<span class="comment">// Use typed arrays to convert the binary data to a Blob</span></div><div class="line">	<span class="keyword">var</span> arraybuffer = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(image_data.length);</div><div class="line">	<span class="keyword">var</span> view = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(arraybuffer);</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;image_data.length; i++) &#123;</div><div class="line">		view[i] = image_data.charCodeAt(i) &amp; <span class="number">0xff</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">		<span class="comment">// This is the recommended method:</span></div><div class="line">		<span class="keyword">var</span> blob = <span class="keyword">new</span> Blob([arraybuffer], &#123;<span class="attr">type</span>: <span class="string">'application/octet-stream'</span>&#125;);</div><div class="line">	&#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">		<span class="comment">// The BlobBuilder API has been deprecated in favour of Blob, but older</span></div><div class="line">		<span class="comment">// browsers don't know about the Blob constructor</span></div><div class="line">		<span class="comment">// IE10 also supports BlobBuilder, but since the `Blob` constructor</span></div><div class="line">		<span class="comment">//  also works, there's no need to add `MSBlobBuilder`.</span></div><div class="line">		<span class="keyword">var</span> bb = <span class="keyword">new</span> (<span class="built_in">window</span>.WebKitBlobBuilder || <span class="built_in">window</span>.MozBlobBuilder);</div><div class="line">		bb.append(arraybuffer);</div><div class="line">		<span class="keyword">var</span> blob = bb.getBlob(<span class="string">'application/octet-stream'</span>); <span class="comment">// &lt;-- Here's the Blob</span></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// Use the URL object to create a temporary URL</span></div><div class="line">	<span class="keyword">var</span> url = (<span class="built_in">window</span>.webkitURL || <span class="built_in">window</span>.URL).createObjectURL(blob);</div><div class="line">	location.href = url; <span class="comment">// &lt;-- Download!</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+        <p>在做<a href="/2018/01/28/qrcode-marker/">二维码生成器</a>的时候，设计到下载图片的功能<br><a id="more"></a><br>在线生成图片的结果是这样的<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgICAgM...."</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>经过搜索，发现 stackoverflow 上的的一篇问答 <a href="https://stackoverflow.com/questions/10473932/browser-html-force-download-of-image-from-src-dataimage-jpegbase64" target="_blank" rel="noopener">https://stackoverflow.com/questions/10473932/browser-html-force-download-of-image-from-src-dataimage-jpegbase64</a> 是可行的方法，记录如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> url = img.src.replace(<span class="regexp">/^data:image\/[^;]+/</span>, <span class="string">'data:application/octet-stream'</span>);</span><br><span class="line"><span class="built_in">window</span>.open(url);</span><br></pre></td></tr></table></figure>
+<p>或者<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> img = <span class="built_in">document</span>.images[<span class="number">0</span>];</span><br><span class="line">img.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="comment">// atob to base64_decode the data-URI</span></span><br><span class="line">	<span class="keyword">var</span> image_data = atob(img.src.split(<span class="string">','</span>)[<span class="number">1</span>]);</span><br><span class="line">	<span class="comment">// Use typed arrays to convert the binary data to a Blob</span></span><br><span class="line">	<span class="keyword">var</span> arraybuffer = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(image_data.length);</span><br><span class="line">	<span class="keyword">var</span> view = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(arraybuffer);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;image_data.length; i++) &#123;</span><br><span class="line">		view[i] = image_data.charCodeAt(i) &amp; <span class="number">0xff</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		<span class="comment">// This is the recommended method:</span></span><br><span class="line">		<span class="keyword">var</span> blob = <span class="keyword">new</span> Blob([arraybuffer], &#123;<span class="attr">type</span>: <span class="string">'application/octet-stream'</span>&#125;);</span><br><span class="line">	&#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">		<span class="comment">// The BlobBuilder API has been deprecated in favour of Blob, but older</span></span><br><span class="line">		<span class="comment">// browsers don't know about the Blob constructor</span></span><br><span class="line">		<span class="comment">// IE10 also supports BlobBuilder, but since the `Blob` constructor</span></span><br><span class="line">		<span class="comment">//  also works, there's no need to add `MSBlobBuilder`.</span></span><br><span class="line">		<span class="keyword">var</span> bb = <span class="keyword">new</span> (<span class="built_in">window</span>.WebKitBlobBuilder || <span class="built_in">window</span>.MozBlobBuilder);</span><br><span class="line">		bb.append(arraybuffer);</span><br><span class="line">		<span class="keyword">var</span> blob = bb.getBlob(<span class="string">'application/octet-stream'</span>); <span class="comment">// &lt;-- Here's the Blob</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Use the URL object to create a temporary URL</span></span><br><span class="line">	<span class="keyword">var</span> url = (<span class="built_in">window</span>.webkitURL || <span class="built_in">window</span>.URL).createObjectURL(blob);</span><br><span class="line">	location.href = url; <span class="comment">// &lt;-- Download!</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -498,6 +498,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -506,19 +510,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -530,7 +530,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -539,10 +539,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -563,6 +559,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -682,11 +682,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -698,7 +698,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

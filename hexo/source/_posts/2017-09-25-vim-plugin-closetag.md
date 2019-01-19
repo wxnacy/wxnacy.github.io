@@ -11,6 +11,7 @@ tags: [vim]
 在 Vim 中想要达到这样的效果需要借助插件 [closetag](https://github.com/docunext/closetag.vim)
 
 <!-- more -->
+
 <!-- toc -->
 ## 预览
 ![closetag](/images/closetag.gif)

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Mac 上反编译 Android APK | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -17,7 +17,7 @@
 <meta property="og:description" content="最近在对一款 app 软件进行抓包，但是接口的返回数据是加密的，没办法只能试着反编译 apk，然后分析它的代码，当然我是抱着学习的心态来进行如下操作的">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="http://wxnacy.com/images/uncomplete.png">
-<meta property="og:updated_time" content="2018-03-09T03:26:24.000Z">
+<meta property="og:updated_time" content="2019-01-19T05:30:00.574Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac 上反编译 Android APK">
 <meta name="twitter:description" content="最近在对一款 app 软件进行抓包，但是接口的返回数据是加密的，没办法只能试着反编译 apk，然后分析它的代码，当然我是抱着学习的心态来进行如下操作的">
@@ -40,7 +40,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -57,7 +57,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -179,7 +179,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-apk-decompile" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-apk-decompile" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -199,8 +199,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近在对一款 app 软件进行抓包，但是接口的返回数据是加密的，没办法只能试着反编译 apk，然后分析它的代码，当然我是抱着学习的心态来进行如下操作的<br><a id="more"></a><div class="toc"></p>
-<!-- toc -->
+        <p>最近在对一款 app 软件进行抓包，但是接口的返回数据是加密的，没办法只能试着反编译 apk，然后分析它的代码，当然我是抱着学习的心态来进行如下操作的</p>
+<a id="more"></a><div class="toc"><br><br><!-- toc -->
 <ul>
 <li><a href="#tiao-jian">条件</a></li>
 <li><a href="#apktool">Apktool</a></li>
@@ -208,7 +208,7 @@
 <li><a href="#jd-gui">JD-GUI</a></li>
 </ul>
 <!-- tocstop -->
-<p></div></p>
+<p></p></div><p></p>
 <h2><span id="tiao-jian">条件</span><a href="#tiao-jian" class="header-anchor"></a></h2><ul>
 <li>JDK 7 及以上</li>
 <li>demo.apk 想要反编译的 apk</li>
@@ -217,16 +217,16 @@
 <li>JD-GUI</li>
 </ul>
 <h2><span id="apktool">Apktool</span><a href="#apktool" class="header-anchor"></a></h2><p>JDK 就不再说了，如果不知道怎么装，请移步google</p>
-<p>首先安装 <a href="https://ibotpeaches.github.io/Apktool/install/" target="_blank" rel="external">Apktool</a> 环境，这是反编译的基础，接下跟紧我的脚步</p>
-<p>下载 Apktool 命令脚本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ wget https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/osx/apktool</div><div class="line">$ chmod +x apktool</div><div class="line">$ mv apktool /usr/<span class="built_in">local</span>/bin</div></pre></td></tr></table></figure></p>
-<p>这里需要注意名字不要加上 <code>.sh</code> 后缀，然后从 <a href="https://bitbucket.org/iBotPeaches/apktool/downloads/" target="_blank" rel="external">https://bitbucket.org/iBotPeaches/apktool/downloads/</a> 下载最新的 jar 包<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ mv apktool_x.x.x.jar apktool.jar</div><div class="line">$ chmod +x apktool.jar</div><div class="line">$ mv apktool.jar /usr/<span class="built_in">local</span>/bin</div><div class="line">$ apktool --version</div><div class="line">2.3.1</div></pre></td></tr></table></figure></p>
-<p>这样我们就安装好了 Apktool，下面我们来测试下反编译和编译是否能成功<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">$ apktool d demo.apk</div><div class="line"></div><div class="line">I: Using Apktool 2.3.1 on sp.apk</div><div class="line">I: Loading resource table...</div><div class="line">I: Decoding AndroidManifest.xml with resources...</div><div class="line">S: WARNING: Could not write to (/Users/wxnacy/Library/apktool/framework), using /var/folders/kz/8syfctw919zdt3shr9w5j8v00000gn/T/ instead...</div><div class="line">S: Please be aware this is a volatile directory and frameworks could go missing, please utilize --frame-path <span class="keyword">if</span> the default storage directory is unavailable</div><div class="line">I: Loading resource table from file: /var/folders/kz/8syfctw919zdt3shr9w5j8v00000gn/T/1.apk</div><div class="line">I: Regular manifest package...</div><div class="line">I: Decoding file-resources...</div><div class="line">I: Decoding values */* XMLs...</div><div class="line">I: Baksmaling classes.dex...</div><div class="line">I: Copying assets and libs...</div><div class="line">I: Copying unknown files...</div><div class="line">I: Copying original files...</div></pre></td></tr></table></figure></p>
+<p>首先安装 <a href="https://ibotpeaches.github.io/Apktool/install/" target="_blank" rel="noopener">Apktool</a> 环境，这是反编译的基础，接下跟紧我的脚步</p>
+<p>下载 Apktool 命令脚本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/osx/apktool</span><br><span class="line">$ chmod +x apktool</span><br><span class="line">$ mv apktool /usr/<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure></p>
+<p>这里需要注意名字不要加上 <code>.sh</code> 后缀，然后从 <a href="https://bitbucket.org/iBotPeaches/apktool/downloads/" target="_blank" rel="noopener">https://bitbucket.org/iBotPeaches/apktool/downloads/</a> 下载最新的 jar 包<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ mv apktool_x.x.x.jar apktool.jar</span><br><span class="line">$ chmod +x apktool.jar</span><br><span class="line">$ mv apktool.jar /usr/<span class="built_in">local</span>/bin</span><br><span class="line">$ apktool --version</span><br><span class="line">2.3.1</span><br></pre></td></tr></table></figure></p>
+<p>这样我们就安装好了 Apktool，下面我们来测试下反编译和编译是否能成功<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ apktool d demo.apk</span><br><span class="line"></span><br><span class="line">I: Using Apktool 2.3.1 on sp.apk</span><br><span class="line">I: Loading resource table...</span><br><span class="line">I: Decoding AndroidManifest.xml with resources...</span><br><span class="line">S: WARNING: Could not write to (/Users/wxnacy/Library/apktool/framework), using /var/folders/kz/8syfctw919zdt3shr9w5j8v00000gn/T/ instead...</span><br><span class="line">S: Please be aware this is a volatile directory and frameworks could go missing, please utilize --frame-path <span class="keyword">if</span> the default storage directory is unavailable</span><br><span class="line">I: Loading resource table from file: /var/folders/kz/8syfctw919zdt3shr9w5j8v00000gn/T/1.apk</span><br><span class="line">I: Regular manifest package...</span><br><span class="line">I: Decoding file-resources...</span><br><span class="line">I: Decoding values */* XMLs...</span><br><span class="line">I: Baksmaling classes.dex...</span><br><span class="line">I: Copying assets and libs...</span><br><span class="line">I: Copying unknown files...</span><br><span class="line">I: Copying original files...</span><br></pre></td></tr></table></figure></p>
 <p>运行命令后，如果出现上述类似信息，并在当前目录下生成一个 demo 文件夹，代表反编译成功了，文件夹内就是反编译后的内容</p>
-<p>也可以将文件夹反编译为 apk<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ apktool b demo</div><div class="line"></div><div class="line">I: Using Apktool 2.3.1</div><div class="line">I: Checking whether sources has changed...</div><div class="line">I: Smaling smali folder into classes.dex...</div><div class="line">I: Checking whether resources has changed...</div><div class="line">I: Building resources...</div><div class="line">S: WARNING: Could not write to (/Users/wxnacy/Library/apktool/framework), using /var/folders/kz/8syfctw919zdt3shr9w5j8v00000gn/T/ instead...</div><div class="line">S: Please be aware this is a volatile directory and frameworks could go missing, please utilize --frame-path <span class="keyword">if</span> the default storage directory is unavailable</div><div class="line">I: Copying libs... (/lib)</div><div class="line">I: Building apk file...</div></pre></td></tr></table></figure></p>
+<p>也可以将文件夹反编译为 apk<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ apktool b demo</span><br><span class="line"></span><br><span class="line">I: Using Apktool 2.3.1</span><br><span class="line">I: Checking whether sources has changed...</span><br><span class="line">I: Smaling smali folder into classes.dex...</span><br><span class="line">I: Checking whether resources has changed...</span><br><span class="line">I: Building resources...</span><br><span class="line">S: WARNING: Could not write to (/Users/wxnacy/Library/apktool/framework), using /var/folders/kz/8syfctw919zdt3shr9w5j8v00000gn/T/ instead...</span><br><span class="line">S: Please be aware this is a volatile directory and frameworks could go missing, please utilize --frame-path <span class="keyword">if</span> the default storage directory is unavailable</span><br><span class="line">I: Copying libs... (/lib)</span><br><span class="line">I: Building apk file...</span><br></pre></td></tr></table></figure></p>
 <p>在 demo 文件夹中生成 <code>build, dist</code> 两个文件夹，这就是编译后生成的文件，apk 在 dist 中</p>
-<h2><span id="dex2jar">dex2jar</span><a href="#dex2jar" class="header-anchor"></a></h2><p>接下来我们需要使用 dex2jar 将 apk 转为 jar 文件，首先从网址 <a href="https://github.com/pxb1988/dex2jar/releases" target="_blank" rel="external">https://github.com/pxb1988/dex2jar/releases</a> 下载最新版的 dex2jar，并解压到 dex2jar 文件夹<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> dex2jar</div><div class="line"><span class="comment"># 添加执行权限</span></div><div class="line">$ chmod +x d2j_invoke.sh</div><div class="line">$ chmod +x d2j-dex2jar.sh</div><div class="line">$ ./d2j-dex2jar.sh ~/demo.apk</div></pre></td></tr></table></figure></p>
+<h2><span id="dex2jar">dex2jar</span><a href="#dex2jar" class="header-anchor"></a></h2><p>接下来我们需要使用 dex2jar 将 apk 转为 jar 文件，首先从网址 <a href="https://github.com/pxb1988/dex2jar/releases" target="_blank" rel="noopener">https://github.com/pxb1988/dex2jar/releases</a> 下载最新版的 dex2jar，并解压到 dex2jar 文件夹<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> dex2jar</span><br><span class="line"><span class="comment"># 添加执行权限</span></span><br><span class="line">$ chmod +x d2j_invoke.sh</span><br><span class="line">$ chmod +x d2j-dex2jar.sh</span><br><span class="line">$ ./d2j-dex2jar.sh ~/demo.apk</span><br></pre></td></tr></table></figure></p>
 <p>随后会在当前目录得到 demo-dex2jar.jar 文件</p>
-<h2><span id="jd-gui">JD-GUI</span><a href="#jd-gui" class="header-anchor"></a></h2><p>最后就剩打开源码了，从 <a href="http://jd.benow.ca/" target="_blank" rel="external">http://jd.benow.ca/</a> 中下载最新的 jar 文件，在电脑上打开这个文件会启动一个 jar 客户端，并将生成的 demo-dex2jar.jar 拖入其中即可<br><img src="/images/uncomplete.png" alt="/images/uncomplete.png"></p>
+<h2><span id="jd-gui">JD-GUI</span><a href="#jd-gui" class="header-anchor"></a></h2><p>最后就剩打开源码了，从 <a href="http://jd.benow.ca/" target="_blank" rel="noopener">http://jd.benow.ca/</a> 中下载最新的 jar 文件，在电脑上打开这个文件会启动一个 jar 客户端，并将生成的 demo-dex2jar.jar 拖入其中即可<br><img src="/images/uncomplete.png" alt="/images/uncomplete.png"></p>
 
       
 
@@ -528,6 +528,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -536,19 +540,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -560,7 +560,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -569,10 +569,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -593,6 +589,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -712,11 +712,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -728,7 +728,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

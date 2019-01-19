@@ -11,6 +11,7 @@ tags: [ansible]
 或物理机，也可以是本地主机。
 
 <!-- move -->
+
 <!-- toc -->
 
 ## 安装ansible

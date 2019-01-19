@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Ubuntu 16.04 安装 Mysql | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="本章介绍在 Ubuntu 16.04 版本中安装 Mysql">
-<meta name="keywords" content="mysql,linux">
+<meta name="keywords" content="linux,mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu 16.04 安装 Mysql">
 <meta property="og:url" content="http://wxnacy.com/2018/06/05/ubuntu1604-install-mysql/index.html">
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="本章介绍在 Ubuntu 16.04 版本中安装 Mysql">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-10-11T09:28:33.000Z">
+<meta property="og:updated_time" content="2019-01-19T05:30:00.616Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu 16.04 安装 Mysql">
 <meta name="twitter:description" content="本章介绍在 Ubuntu 16.04 版本中安装 Mysql">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ubuntu1604-install-mysql" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-ubuntu1604-install-mysql" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -197,8 +197,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本章介绍在 <code>Ubuntu 16.04</code> 版本中安装 Mysql<br><a id="more"></a><div class="toc"></p>
-<!-- toc -->
+        <p>本章介绍在 <code>Ubuntu 16.04</code> 版本中安装 Mysql</p>
+<a id="more"></a><div class="toc"><br><br><!-- toc -->
 <ul>
 <li><a href="#dui-wai-kai-fang">对外开放</a></li>
 </ul>
@@ -206,30 +206,30 @@
 </div>
 
 <p><strong>安装</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo apt update -y</div><div class="line">$ sudo apt install -y mysql-server</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt update -y</span><br><span class="line">$ sudo apt install -y mysql-server</span><br></pre></td></tr></table></figure>
 <p>在安装的过程中，进程会提示输入两次密码，作为 <code>root</code> 用户登录使用</p>
 <p><strong>设置</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo mysql_secure_installation</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo mysql_secure_installation</span><br></pre></td></tr></table></figure>
 <p>执行该命令可以修改 Mysql 密码强度并修改密码。</p>
 <p>Mysql 默认启动，并且状态为开机自启</p>
 <p>如果没有启动可以手动启动</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ systemctl start mysql</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl start mysql</span><br></pre></td></tr></table></figure>
 <p><strong>查看版本信息</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">$ mysqladmin -p -u root version</div><div class="line"></div><div class="line">Enter password:</div><div class="line">mysqladmin  Ver 8.42 Distrib 5.7.22, <span class="keyword">for</span> Linux on x86_64</div><div class="line">Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.</div><div class="line"></div><div class="line">Oracle is a registered trademark of Oracle Corporation and/or its</div><div class="line">affiliates. Other names may be trademarks of their respective</div><div class="line">owners.</div><div class="line"></div><div class="line">Server version          5.7.22-0ubuntu0.16.04.1</div><div class="line">Protocol version        10</div><div class="line">Connection              Localhost via UNIX socket</div><div class="line">UNIX socket             /var/run/mysqld/mysqld.sock</div><div class="line">Uptime:                 18 min 33 sec</div><div class="line"></div><div class="line">Threads: 1  Questions: 18  Slow queries: 0  Opens: 115  Flush tables: 1  Open tables: 34  Queries per second avg: 0.016</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ mysqladmin -p -u root version</span><br><span class="line"></span><br><span class="line">Enter password:</span><br><span class="line">mysqladmin  Ver 8.42 Distrib 5.7.22, <span class="keyword">for</span> Linux on x86_64</span><br><span class="line">Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Server version          5.7.22-0ubuntu0.16.04.1</span><br><span class="line">Protocol version        10</span><br><span class="line">Connection              Localhost via UNIX socket</span><br><span class="line">UNIX socket             /var/run/mysqld/mysqld.sock</span><br><span class="line">Uptime:                 18 min 33 sec</span><br><span class="line"></span><br><span class="line">Threads: 1  Questions: 18  Slow queries: 0  Opens: 115  Flush tables: 1  Open tables: 34  Queries per second avg: 0.016</span><br></pre></td></tr></table></figure>
 <p><strong>修改密码</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; set password=password(&apos;wxnacy&apos;);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; set password=password(&apos;wxnacy&apos;);</span><br></pre></td></tr></table></figure>
 <p>因为 mysql 的安全策略，密码的最低长度为 8 位，所以这个命令会报错，想要修改它的安全策略可以参见<a href="/2018/06/10/centos7-install-mysql/#pei-zhi">配置</a></p>
 <h2><span id="dui-wai-kai-fang">对外开放</span><a href="#dui-wai-kai-fang" class="header-anchor"></a></h2><p><strong>打开防火墙 3306 端口</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo ufw allow 3306</div><div class="line">$ sudo ufw <span class="built_in">disable</span></div><div class="line">$ sudo ufw <span class="built_in">enable</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ufw allow 3306</span><br><span class="line">$ sudo ufw <span class="built_in">disable</span></span><br><span class="line">$ sudo ufw <span class="built_in">enable</span></span><br></pre></td></tr></table></figure>
 <p><strong>注释绑定 ip</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf</div><div class="line"></div><div class="line"><span class="comment"># bind-address      = 127.0.0.1</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf</span><br><span class="line"></span><br><span class="line"><span class="comment"># bind-address      = 127.0.0.1</span></span><br></pre></td></tr></table></figure>
 <p><strong>允许所有ip访问</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; GRANT ALL PRIVILEGES ON *.* TO &apos;root&apos;@&apos;%&apos; IDENTIFIED BY &apos;wxnacy&apos; WITH GRANT OPTION;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; GRANT ALL PRIVILEGES ON *.* TO &apos;root&apos;@&apos;%&apos; IDENTIFIED BY &apos;wxnacy&apos; WITH GRANT OPTION;</span><br></pre></td></tr></table></figure>
 <p><strong>重启 Mysql</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo systemctl restart mysql</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl restart mysql</span><br></pre></td></tr></table></figure>
 <ul>
-<li><a href="https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/" target="_blank" rel="external">A Quick Guide to Using the MySQL APT Repository</a></li>
-<li><a href="https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-16-04" target="_blank" rel="external">How To Install MySQL on Ubuntu 16.04</a></li>
+<li><a href="https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/" target="_blank" rel="noopener">A Quick Guide to Using the MySQL APT Repository</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-16-04" target="_blank" rel="noopener">How To Install MySQL on Ubuntu 16.04</a></li>
 <li><a href="/2018/06/10/centos7-install-mysql/">CentOS 7 安装 Mysql</a></li>
 </ul>
 
@@ -315,11 +315,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
         		</li>
       		
 		</ul>
@@ -533,6 +533,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -541,19 +545,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -565,7 +565,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -574,10 +574,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -598,6 +594,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -717,11 +717,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -733,7 +733,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

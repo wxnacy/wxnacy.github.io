@@ -5,6 +5,7 @@ tags: [python, linux]
 ---
 
 在 Python 开发中经常会需要处理一些 Linux 命令，下面介绍几种常见的处理此类命令模块，以下命令均在 `ipython` 中进行
+
 <!-- more --><!-- toc -->
 ## os 模块
 ```python

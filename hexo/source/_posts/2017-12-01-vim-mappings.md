@@ -5,6 +5,7 @@ tags: [vim]
 ---
 
 Vim 的 `dd, hjkl` 等基础按键操作已经可以很好的完成基本编辑工作，然而它还是会不太方便，尤其是熟悉了成熟 IDE 很多人性化设计的人们，曾经的我也是。所幸 Vim 提供了 Mapping 映射可以更好的进行文本操作，甚至比 IDE 更好方便。
+
 <!-- more --><!-- toc -->
 ![mapping](/images/mapping.gif)
 

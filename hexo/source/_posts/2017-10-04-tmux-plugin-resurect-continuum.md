@@ -7,6 +7,7 @@ tags: [tmux]
 Tmux 好用，但是在电脑重启后，之前开启过的回话都不会保存，
 而 [tmux-resurect](https://github.com/tmux-plugins/tmux-resurrect) 和 [tmux-continuum](https://github.com/tmux-plugins/tmux-continuum) 可以很好的自动保存 Tmux 使用状态
 <!-- more -->
+
 <!-- toc -->
 
 ## Tmux Resurect

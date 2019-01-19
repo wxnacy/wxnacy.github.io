@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Go 结构体 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="在 Go 语言中类似 Java 类的概念叫做结构体，使用 type, struct 两个关键词修饰">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-08-22T10:04:51.000Z">
+<meta property="og:updated_time" content="2019-01-19T05:30:00.594Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Go 结构体">
 <meta name="twitter:description" content="在 Go 语言中类似 Java 类的概念叫做结构体，使用 type, struct 两个关键词修饰">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-go-struct" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-go-struct" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -197,8 +197,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在 Go 语言中类似 Java 类的概念叫做结构体，使用 <code>type, struct</code> 两个关键词修饰<br><a id="more"></a><div class="toc"></p>
-<!-- toc -->
+        <p>在 Go 语言中类似 Java 类的概念叫做结构体，使用 <code>type, struct</code> 两个关键词修饰</p>
+<a id="more"></a><div class="toc"><br><br><!-- toc -->
 <ul>
 <li><a href="#kai-shi">开始</a><ul>
 <li><a href="#ding-yi-jie-gou-ti">定义结构体</a></li>
@@ -212,32 +212,32 @@
 <!-- tocstop -->
 </div>
 
-<h2><span id="kai-shi">开始</span><a href="#kai-shi" class="header-anchor"></a></h2><h3><span id="ding-yi-jie-gou-ti">定义结构体</span><a href="#ding-yi-jie-gou-ti" class="header-anchor"></a></h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> User <span class="keyword">struct</span> &#123;</div><div class="line">    Id <span class="keyword">int</span></div><div class="line">    Name String</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2><span id="kai-shi">开始</span><a href="#kai-shi" class="header-anchor"></a></h2><h3><span id="ding-yi-jie-gou-ti">定义结构体</span><a href="#ding-yi-jie-gou-ti" class="header-anchor"></a></h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> User <span class="keyword">struct</span> &#123;</span><br><span class="line">    Id <span class="keyword">int</span></span><br><span class="line">    Name String</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>结构体的属性希望被外部访问则首字母大写，否则小写。</p>
 <h3><span id="shi-li-hua">实例化</span><a href="#shi-li-hua" class="header-anchor"></a></h3><p>结构体实例化有很多种方式</p>
 <ul>
 <li><strong>普通实例化</strong></li>
 </ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a User</div><div class="line">fmt.Println(a)              <span class="comment">// &#123;0 &#125;</span></div><div class="line">a.Id = <span class="number">1</span></div><div class="line">fmt.Println(a)              <span class="comment">// &#123;1 &#125;</span></div></pre></td></tr></table></figure>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">a := User&#123;<span class="number">1</span>, <span class="string">"wxnacy"</span>&#125;</div><div class="line">fmt.Println(a)              <span class="comment">// &#123;1 wxnacy&#125;</span></div></pre></td></tr></table></figure>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">a := User(Id: <span class="number">1</span>, Name: <span class="string">"wxnacy"</span>)</div><div class="line">fmt.Println(a)              <span class="comment">// &#123;1 wxnacy&#125;</span></div><div class="line">a = User(Name: <span class="string">"wxnacy"</span>)</div><div class="line">fmt.Println(a)              <span class="comment">// &#123;wxnacy&#125;</span></div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a User</span><br><span class="line">fmt.Println(a)              <span class="comment">// &#123;0 &#125;</span></span><br><span class="line">a.Id = <span class="number">1</span></span><br><span class="line">fmt.Println(a)              <span class="comment">// &#123;1 &#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a := User&#123;<span class="number">1</span>, <span class="string">"wxnacy"</span>&#125;</span><br><span class="line">fmt.Println(a)              <span class="comment">// &#123;1 wxnacy&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a := User(Id: <span class="number">1</span>, Name: <span class="string">"wxnacy"</span>)</span><br><span class="line">fmt.Println(a)              <span class="comment">// &#123;1 wxnacy&#125;</span></span><br><span class="line">a = User(Name: <span class="string">"wxnacy"</span>)</span><br><span class="line">fmt.Println(a)              <span class="comment">// &#123;wxnacy&#125;</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li><strong>指针实例化</strong></li>
 </ul>
 <p>使用 <code>new(T)</code> 或者 <code>$T{}</code> 的方式实例化，并返回指针</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">a := <span class="built_in">new</span>(User)</div><div class="line">fmt.Println(a)              <span class="comment">// &amp;&#123;0 &#125;</span></div></pre></td></tr></table></figure>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">a := &amp;User&#123;<span class="number">1</span>, <span class="string">"wxnacy"</span>&#125;</div><div class="line">fmt.Println(a)              <span class="comment">// &amp;&#123;1 wxnacy&#125;</span></div></pre></td></tr></table></figure>
-<h3><span id="fang-wen-cheng-yuan-bian-liang">访问成员变量</span><a href="#fang-wen-cheng-yuan-bian-liang" class="header-anchor"></a></h3><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a := User&#123;<span class="number">1</span> <span class="string">"wxnacy"</span>&#125;</div><div class="line">fmt.Println(a.Id)           <span class="comment">// 1</span></div><div class="line">fmt.Println(a.Name)         <span class="comment">// wxnacy</span></div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a := <span class="built_in">new</span>(User)</span><br><span class="line">fmt.Println(a)              <span class="comment">// &amp;&#123;0 &#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a := &amp;User&#123;<span class="number">1</span>, <span class="string">"wxnacy"</span>&#125;</span><br><span class="line">fmt.Println(a)              <span class="comment">// &amp;&#123;1 wxnacy&#125;</span></span><br></pre></td></tr></table></figure>
+<h3><span id="fang-wen-cheng-yuan-bian-liang">访问成员变量</span><a href="#fang-wen-cheng-yuan-bian-liang" class="header-anchor"></a></h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a := User&#123;<span class="number">1</span> <span class="string">"wxnacy"</span>&#125;</span><br><span class="line">fmt.Println(a.Id)           <span class="comment">// 1</span></span><br><span class="line">fmt.Println(a.Name)         <span class="comment">// wxnacy</span></span><br></pre></td></tr></table></figure>
 <h2><span id="ding-yi-jie-gou-ti-fang-fa">定义结构体方法</span><a href="#ding-yi-jie-gou-ti-fang-fa" class="header-anchor"></a></h2><p>结构体的方法不像 Java 一样是写在类内部的，反而像 Javascript 一样是写在外部的。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this User)</span> <span class="title">ToString</span> <span class="title">string</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> fmt.Sprintf(<span class="string">"User Id: %d, Name: %s"</span>, u.Id, u.Name)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this User)</span> <span class="title">ToString</span> <span class="title">string</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> fmt.Sprintf(<span class="string">"User Id: %d, Name: %s"</span>, u.Id, u.Name)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>访问</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">u := User&#123;<span class="number">1</span>, <span class="string">"wxnacy"</span>&#125;</div><div class="line">fmt.Println(u.ToString())   <span class="comment">// User Id: 1, Name: wxnacy</span></div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">u := User&#123;<span class="number">1</span>, <span class="string">"wxnacy"</span>&#125;</span><br><span class="line">fmt.Println(u.ToString())   <span class="comment">// User Id: 1, Name: wxnacy</span></span><br></pre></td></tr></table></figure>
 <p>方法名 <code>ToString</code> 前面的形参是实例化后的结构体将本身拷贝出一份传入的，所以如果想在方法内修改结构体的属性值，需要将形参改为指针。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *User)</span> <span class="title">SetId</span><span class="params">(id <span class="keyword">int</span>)</span></span>&#123;</div><div class="line">    this.Id = id</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *User)</span> <span class="title">SetId</span><span class="params">(id <span class="keyword">int</span>)</span></span>&#123;</span><br><span class="line">    this.Id = id</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>即使将结构体实例化为指针，也要这样写，应为传入的拷贝是普通实例化的数据</strong></p>
-<h2><span id="ji-cheng">继承</span><a href="#ji-cheng" class="header-anchor"></a></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> Human <span class="keyword">struct</span> &#123;</div><div class="line">    Msg <span class="keyword">string</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this Human)</span> <span class="title">ToString</span><span class="params">()</span> <span class="title">string</span></span> &#123;</div><div class="line">    <span class="keyword">return</span> this.Msg</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">type</span> Man <span class="keyword">struct</span> &#123;</div><div class="line">    Human</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2><span id="ji-cheng">继承</span><a href="#ji-cheng" class="header-anchor"></a></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Human <span class="keyword">struct</span> &#123;</span><br><span class="line">    Msg <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this Human)</span> <span class="title">ToString</span><span class="params">()</span> <span class="title">string</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> this.Msg</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Man <span class="keyword">struct</span> &#123;</span><br><span class="line">    Human</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>结构体 Man 将 Human 作为成员定义在成员列表即可</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">h := Human&#123;Msg: <span class="string">"I am a Human"</span>&#125;</div><div class="line">fmt.Println(h.ToString())</div><div class="line">m := Man&#123;Human&#123;Msg: <span class="string">"I am a Man"</span>&#125;&#125;</div><div class="line">fmt.Println(m.ToString())</div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">h := Human&#123;Msg: <span class="string">"I am a Human"</span>&#125;</span><br><span class="line">fmt.Println(h.ToString())</span><br><span class="line">m := Man&#123;Human&#123;Msg: <span class="string">"I am a Man"</span>&#125;&#125;</span><br><span class="line">fmt.Println(m.ToString())</span><br></pre></td></tr></table></figure>
 
       
 
@@ -535,6 +535,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -543,19 +547,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -567,7 +567,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -576,10 +576,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -600,6 +596,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -719,11 +719,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -735,7 +735,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

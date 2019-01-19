@@ -7,6 +7,7 @@ date: 2018-05-28 14:53:54
 
 
 macOS 使用 `sw_vers` 命令即可查看系统版本。
+
 <!-- more --><!-- toc -->
 ```bash
 > $ sw_vers

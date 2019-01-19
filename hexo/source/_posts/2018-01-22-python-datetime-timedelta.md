@@ -7,6 +7,7 @@ date: 2018-01-22 14:15:17
 
 
 timedelta 本身代表一个时间差，可以在 date 或 datetime 类型间做时间差运算。
+
 <!-- more --><!-- toc -->
 ## 时间差运算
 ```python

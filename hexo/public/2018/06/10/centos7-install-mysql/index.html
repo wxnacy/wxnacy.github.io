@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>CentOS 7 安装 Mysql | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -17,7 +17,7 @@
 <meta property="og:description" content="CentOS7 安装 Mysql 要不 Ubuntu 复杂不少。">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="http://wxnacy.com/images/mysqlrpm.png">
-<meta property="og:updated_time" content="2018-06-28T07:36:43.000Z">
+<meta property="og:updated_time" content="2019-01-19T05:30:00.631Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS 7 安装 Mysql">
 <meta name="twitter:description" content="CentOS7 安装 Mysql 要不 Ubuntu 复杂不少。">
@@ -40,7 +40,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -57,7 +57,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -179,7 +179,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-centos7-install-mysql" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-centos7-install-mysql" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -199,8 +199,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>CentOS7 安装 Mysql 要不 Ubuntu 复杂不少。<br><a id="more"></a><div class="toc"></p>
-<!-- toc -->
+        <p>CentOS7 安装 Mysql 要不 Ubuntu 复杂不少。</p>
+<a id="more"></a><div class="toc"><br><br><!-- toc -->
 <ul>
 <li><a href="#tian-jia-cang-ku">添加仓库</a></li>
 <li><a href="#an-zhuang">安装</a><ul>
@@ -214,56 +214,56 @@
 </div>
 
 <h2><span id="tian-jia-cang-ku">添加仓库</span><a href="#tian-jia-cang-ku" class="header-anchor"></a></h2><p>访问地址</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://dev.mysql.com/downloads/repo/yum/</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://dev.mysql.com/downloads/repo/yum/</span><br></pre></td></tr></table></figure>
 <p>查找最新的 rpm<br><img src="/images/mysqlrpm.png" alt="mysqlrpm"></p>
 <p>下载</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ wget https://dev.mysql.com/get/mysql80-community-release-el7-1.noarch.rpm</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://dev.mysql.com/get/mysql80-community-release-el7-1.noarch.rpm</span><br></pre></td></tr></table></figure>
 <p>确定 md5 值</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ md5sum mysql80-community-release-el7-1.noarch.rpm</div><div class="line"></div><div class="line">739dc44566d739c5d7b893de96ee6848  mysql80-community-release-el7-1.noarch.rpm</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ md5sum mysql80-community-release-el7-1.noarch.rpm</span><br><span class="line"></span><br><span class="line">739dc44566d739c5d7b893de96ee6848  mysql80-community-release-el7-1.noarch.rpm</span><br></pre></td></tr></table></figure>
 <p>安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo rpm -ivh mysql80-community-release-el7-1.noarch.rpm</div></pre></td></tr></table></figure>
-<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><h3><span id="8-0-ban-ben">8.0 版本</span><a href="#8-0-ban-ben" class="header-anchor"></a></h3><p>添加完成仓库，直接下载即可得到最新的 <code>8.0</code> 版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo yum update -y</div><div class="line">$ sudo yum install -y mysql-server</div></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo rpm -ivh mysql80-community-release-el7-1.noarch.rpm</span><br></pre></td></tr></table></figure>
+<h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><h3><span id="8-0-ban-ben">8.0 版本</span><a href="#8-0-ban-ben" class="header-anchor"></a></h3><p>添加完成仓库，直接下载即可得到最新的 <code>8.0</code> 版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum update -y</span><br><span class="line">$ sudo yum install -y mysql-server</span><br></pre></td></tr></table></figure></p>
 <h3><span id="5-7-ban-ben">5.7 版本</span><a href="#5-7-ban-ben" class="header-anchor"></a></h3><p>但是现在比较稳定的版本还是 <code>5.7</code>，想要下载这个版本，还需要做一些工作。</p>
 <p><strong>查看可安装版本</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">$ yum repolist all | grep mysql</div><div class="line"></div><div class="line">mysql-cluster-7.5-community/x86_64 MySQL Cluster 7.5 Community    disabled</div><div class="line">mysql-cluster-7.5-community-source MySQL Cluster 7.5 Community -  disabled</div><div class="line">mysql-cluster-7.6-community/x86_64 MySQL Cluster 7.6 Community    disabled</div><div class="line">mysql-cluster-7.6-community-source MySQL Cluster 7.6 Community -  disabled</div><div class="line">mysql-connectors-community/x86_64  MySQL Connectors Community     enabled:    51</div><div class="line">mysql-connectors-community-source  MySQL Connectors Community - S disabled</div><div class="line">mysql-tools-community/x86_64       MySQL Tools Community          enabled:    63</div><div class="line">mysql-tools-community-source       MySQL Tools Community - Source disabled</div><div class="line">mysql-tools-preview/x86_64         MySQL Tools Preview            disabled</div><div class="line">mysql-tools-preview-source         MySQL Tools Preview - Source   disabled</div><div class="line">mysql55-community/x86_64           MySQL 5.5 Community Server     disabled</div><div class="line">mysql55-community-source           MySQL 5.5 Community Server - S disabled</div><div class="line">mysql56-community/x86_64           MySQL 5.6 Community Server     disabled</div><div class="line">mysql56-community-source           MySQL 5.6 Community Server - S disabled</div><div class="line">mysql57-community/x86_64           MySQL 5.7 Community Server     disabled</div><div class="line">mysql57-community-source           MySQL 5.7 Community Server - S disabled</div><div class="line">mysql80-community/x86_64           MySQL 8.0 Community Server     enabled:    17</div><div class="line">mysql80-community-source           MySQL 8.0 Community Server - S disabled</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$ yum repolist all | grep mysql</span><br><span class="line"></span><br><span class="line">mysql-cluster-7.5-community/x86_64 MySQL Cluster 7.5 Community    disabled</span><br><span class="line">mysql-cluster-7.5-community-source MySQL Cluster 7.5 Community -  disabled</span><br><span class="line">mysql-cluster-7.6-community/x86_64 MySQL Cluster 7.6 Community    disabled</span><br><span class="line">mysql-cluster-7.6-community-source MySQL Cluster 7.6 Community -  disabled</span><br><span class="line">mysql-connectors-community/x86_64  MySQL Connectors Community     enabled:    51</span><br><span class="line">mysql-connectors-community-source  MySQL Connectors Community - S disabled</span><br><span class="line">mysql-tools-community/x86_64       MySQL Tools Community          enabled:    63</span><br><span class="line">mysql-tools-community-source       MySQL Tools Community - Source disabled</span><br><span class="line">mysql-tools-preview/x86_64         MySQL Tools Preview            disabled</span><br><span class="line">mysql-tools-preview-source         MySQL Tools Preview - Source   disabled</span><br><span class="line">mysql55-community/x86_64           MySQL 5.5 Community Server     disabled</span><br><span class="line">mysql55-community-source           MySQL 5.5 Community Server - S disabled</span><br><span class="line">mysql56-community/x86_64           MySQL 5.6 Community Server     disabled</span><br><span class="line">mysql56-community-source           MySQL 5.6 Community Server - S disabled</span><br><span class="line">mysql57-community/x86_64           MySQL 5.7 Community Server     disabled</span><br><span class="line">mysql57-community-source           MySQL 5.7 Community Server - S disabled</span><br><span class="line">mysql80-community/x86_64           MySQL 8.0 Community Server     enabled:    17</span><br><span class="line">mysql80-community-source           MySQL 8.0 Community Server - S disabled</span><br></pre></td></tr></table></figure>
 <p><strong>选择默认版本为 5.7</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo yum-config-manager --<span class="built_in">disable</span> mysql80-community</div><div class="line">$ sudo yum-config-manager --<span class="built_in">enable</span> mysql57-community</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum-config-manager --<span class="built_in">disable</span> mysql80-community</span><br><span class="line">$ sudo yum-config-manager --<span class="built_in">enable</span> mysql57-community</span><br></pre></td></tr></table></figure>
 <p><strong>下载</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo yum install mysql-community-server</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install mysql-community-server</span><br></pre></td></tr></table></figure>
 <p><strong>启动</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo systemctl start mysqld</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl start mysqld</span><br></pre></td></tr></table></figure>
 <p>查看运行状态</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">$ sudo systemctl status mysqld</div><div class="line"></div><div class="line">● mysqld.service - MySQL Server</div><div class="line">   Loaded: loaded (/usr/lib/systemd/system/mysqld.service; enabled; vendor preset: disabled)</div><div class="line">   Active: active (running) since Fri 2018-06-01 10:35:58 UTC; 1h 39min ago</div><div class="line">     Docs: man:mysqld(8)</div><div class="line">           http://dev.mysql.com/doc/refman/en/using-systemd.html</div><div class="line">  Process: 7474 ExecStartPre=/usr/bin/mysqld_pre_systemd (code=exited, status=0/SUCCESS)</div><div class="line"> Main PID: 7542 (mysqld)</div><div class="line">   Status: <span class="string">"SERVER_OPERATING"</span></div><div class="line">   CGroup: /system.slice/mysqld.service</div><div class="line">           └─7542 /usr/sbin/mysqld</div><div class="line"></div><div class="line">Jun 01 10:35:49 bogon systemd[1]: Starting MySQL Server...</div><div class="line">Jun 01 10:35:58 bogon systemd[1]: Started MySQL Server.</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl status mysqld</span><br><span class="line"></span><br><span class="line">● mysqld.service - MySQL Server</span><br><span class="line">   Loaded: loaded (/usr/lib/systemd/system/mysqld.service; enabled; vendor preset: disabled)</span><br><span class="line">   Active: active (running) since Fri 2018-06-01 10:35:58 UTC; 1h 39min ago</span><br><span class="line">     Docs: man:mysqld(8)</span><br><span class="line">           http://dev.mysql.com/doc/refman/en/using-systemd.html</span><br><span class="line">  Process: 7474 ExecStartPre=/usr/bin/mysqld_pre_systemd (code=exited, status=0/SUCCESS)</span><br><span class="line"> Main PID: 7542 (mysqld)</span><br><span class="line">   Status: <span class="string">"SERVER_OPERATING"</span></span><br><span class="line">   CGroup: /system.slice/mysqld.service</span><br><span class="line">           └─7542 /usr/sbin/mysqld</span><br><span class="line"></span><br><span class="line">Jun 01 10:35:49 bogon systemd[1]: Starting MySQL Server...</span><br><span class="line">Jun 01 10:35:58 bogon systemd[1]: Started MySQL Server.</span><br></pre></td></tr></table></figure>
 <p>默认是开机自启的，可以手动关闭</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo systemctl <span class="built_in">disable</span> mysqld</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl <span class="built_in">disable</span> mysqld</span><br></pre></td></tr></table></figure>
 <h2><span id="pei-zhi">配置</span><a href="#pei-zhi" class="header-anchor"></a></h2><p>Mysql 在安装时会默认设置一个随机密码，需要在第一次使用时修改</p>
 <p><strong>查看密码</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo grep <span class="string">'temporary password'</span> /var/<span class="built_in">log</span>/mysqld.log</div><div class="line"></div><div class="line">2018-06-01T10:35:51.710406Z 5 [Note] [MY-010454] [Server] A temporary password is generated <span class="keyword">for</span> root@localhost: Vq9wOQ&amp;trFs*</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo grep <span class="string">'temporary password'</span> /var/<span class="built_in">log</span>/mysqld.log</span><br><span class="line"></span><br><span class="line">2018-06-01T10:35:51.710406Z 5 [Note] [MY-010454] [Server] A temporary password is generated <span class="keyword">for</span> root@localhost: Vq9wOQ&amp;trFs*</span><br></pre></td></tr></table></figure>
 <p><strong>配置</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo mysql_secure_installation</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo mysql_secure_installation</span><br></pre></td></tr></table></figure>
 <p>执行该命令后，输入刚查询的密码即可进行后续操作，但是在修改密码后你可能会遇到错误</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Failed! Error: Your password does not satisfy the current policy requirements</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Failed! Error: Your password does not satisfy the current policy requirements</span><br></pre></td></tr></table></figure>
 <p>提示你的密码不符合当前策略，Mysql 密码策略有三种</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">There are three levels of password validation policy:</div><div class="line"></div><div class="line"><span class="comment"># 长度大于 8 位</span></div><div class="line">LOW    Length &gt;= 8</div><div class="line"><span class="comment"># 长度大于 8 位，数字，混合大小写和特殊字符</span></div><div class="line">MEDIUM Length &gt;= 8, numeric, mixed <span class="keyword">case</span>, and special characters</div><div class="line"><span class="comment"># 长度大于 8 位，数字，混合大小写，特殊字符和字典</span></div><div class="line">STRONG Length &gt;= 8, numeric, mixed <span class="keyword">case</span>, special characters and dictionary</div><div class="line"></div><div class="line">Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG:</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">There are three levels of password validation policy:</span><br><span class="line"></span><br><span class="line"><span class="comment"># 长度大于 8 位</span></span><br><span class="line">LOW    Length &gt;= 8</span><br><span class="line"><span class="comment"># 长度大于 8 位，数字，混合大小写和特殊字符</span></span><br><span class="line">MEDIUM Length &gt;= 8, numeric, mixed <span class="keyword">case</span>, and special characters</span><br><span class="line"><span class="comment"># 长度大于 8 位，数字，混合大小写，特殊字符和字典</span></span><br><span class="line">STRONG Length &gt;= 8, numeric, mixed <span class="keyword">case</span>, special characters and dictionary</span><br><span class="line"></span><br><span class="line">Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG:</span><br></pre></td></tr></table></figure>
 <p>他们分别对应了数字 <code>0, 1, 2</code>，Mysql 默认的等级为 <code>MEDIUM</code>，所以输入普通的密码就会报错，怎样修改策略呢？</p>
 <p>首先使用默认密码登录 Mysql</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mysql -uroot -p</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysql -uroot -p</span><br></pre></td></tr></table></figure>
 <p>查看所有 <code>validatei_password</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">mysql&gt; SHOW VARIABLES LIKE &apos;validate_password%&apos;;</div><div class="line"></div><div class="line">+--------------------------------------+-------+</div><div class="line">| Variable_name                        | Value |</div><div class="line">+--------------------------------------+-------+</div><div class="line">| validate_password.check_user_name    | ON    |</div><div class="line">| validate_password.dictionary_file    |       |</div><div class="line">| validate_password.length             | 8     |</div><div class="line">| validate_password.mixed_case_count   | 1     |</div><div class="line">| validate_password.number_count       | 1     |</div><div class="line">| validate_password.policy             | MEDIUM|</div><div class="line">| validate_password.special_char_count | 1     |</div><div class="line">| validate_password_check_user_name    | ON    |</div><div class="line">| validate_password_dictionary_file    |       |</div><div class="line">| validate_password_length             | 8     |</div><div class="line">| validate_password_mixed_case_count   | 1     |</div><div class="line">| validate_password_number_count       | 1     |</div><div class="line">| validate_password_policy             | MEDIUM|</div><div class="line">| validate_password_special_char_count | 1     |</div><div class="line">+--------------------------------------+-------+</div><div class="line">14 rows in set (0.00 sec)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW VARIABLES LIKE &apos;validate_password%&apos;;</span><br><span class="line"></span><br><span class="line">+--------------------------------------+-------+</span><br><span class="line">| Variable_name                        | Value |</span><br><span class="line">+--------------------------------------+-------+</span><br><span class="line">| validate_password.check_user_name    | ON    |</span><br><span class="line">| validate_password.dictionary_file    |       |</span><br><span class="line">| validate_password.length             | 8     |</span><br><span class="line">| validate_password.mixed_case_count   | 1     |</span><br><span class="line">| validate_password.number_count       | 1     |</span><br><span class="line">| validate_password.policy             | MEDIUM|</span><br><span class="line">| validate_password.special_char_count | 1     |</span><br><span class="line">| validate_password_check_user_name    | ON    |</span><br><span class="line">| validate_password_dictionary_file    |       |</span><br><span class="line">| validate_password_length             | 8     |</span><br><span class="line">| validate_password_mixed_case_count   | 1     |</span><br><span class="line">| validate_password_number_count       | 1     |</span><br><span class="line">| validate_password_policy             | MEDIUM|</span><br><span class="line">| validate_password_special_char_count | 1     |</span><br><span class="line">+--------------------------------------+-------+</span><br><span class="line">14 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
 <p>将策略改为 <code>LOW</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; set global validate_password.policy=0;</div><div class="line">&gt; set global validate_password_policy=0;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; set global validate_password.policy=0;</span><br><span class="line">&gt; set global validate_password_policy=0;</span><br></pre></td></tr></table></figure>
 <p>如果你不想让长度必须大于 8 位，也可以改为 4，这是最低长度</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="built_in">set</span> global validate_password_length=4;</div><div class="line">&gt; <span class="built_in">set</span> global validate_password.length=4;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">set</span> global validate_password_length=4;</span><br><span class="line">&gt; <span class="built_in">set</span> global validate_password.length=4;</span><br></pre></td></tr></table></figure>
 <p>随后执行 sql 修改密码即可</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="built_in">set</span> password=password(<span class="string">'wxnacy'</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">set</span> password=password(<span class="string">'wxnacy'</span>);</span><br></pre></td></tr></table></figure>
 <p>最后可以将访问权限全部对外开放</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; GRANT ALL PRIVILEGES ON *.* TO <span class="string">'root'</span>@<span class="string">'%'</span> IDENTIFIED BY <span class="string">'wxnacy'</span> WITH GRANT OPTION;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; GRANT ALL PRIVILEGES ON *.* TO <span class="string">'root'</span>@<span class="string">'%'</span> IDENTIFIED BY <span class="string">'wxnacy'</span> WITH GRANT OPTION;</span><br></pre></td></tr></table></figure>
 <p>也可以指定 ip 开放</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; GRANT ALL PRIVILEGES ON *.* TO <span class="string">'root'</span>@<span class="string">'192.168.33.11'</span> IDENTIFIED BY <span class="string">'wxnacy'</span> WITH GRANT OPTION;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; GRANT ALL PRIVILEGES ON *.* TO <span class="string">'root'</span>@<span class="string">'192.168.33.11'</span> IDENTIFIED BY <span class="string">'wxnacy'</span> WITH GRANT OPTION;</span><br></pre></td></tr></table></figure>
 <ul>
-<li><a href="https://dev.mysql.com/doc/mysql-yum-repo-quick-guide/en/" target="_blank" rel="external">A Quick Guide to Using the MySQL Yum Repository</a></li>
-<li><a href="https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-centos-7" target="_blank" rel="external">How To Install MySQL on CentOS 7</a></li>
-<li><a href="https://blog.csdn.net/maxsky/article/details/51171474" target="_blank" rel="external">解决 MySQL 5.7 中 Your password does not satisfy the current policy requirements. 问题</a></li>
+<li><a href="https://dev.mysql.com/doc/mysql-yum-repo-quick-guide/en/" target="_blank" rel="noopener">A Quick Guide to Using the MySQL Yum Repository</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-centos-7" target="_blank" rel="noopener">How To Install MySQL on CentOS 7</a></li>
+<li><a href="https://blog.csdn.net/maxsky/article/details/51171474" target="_blank" rel="noopener">解决 MySQL 5.7 中 Your password does not satisfy the current policy requirements. 问题</a></li>
 </ul>
 
       
@@ -562,6 +562,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -570,19 +574,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -594,7 +594,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -603,10 +603,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -627,6 +623,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -746,11 +746,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -762,7 +762,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

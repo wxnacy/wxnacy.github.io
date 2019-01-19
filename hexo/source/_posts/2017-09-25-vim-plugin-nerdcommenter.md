@@ -10,6 +10,7 @@ tags: [vim]
 Vim 必备的插件
 
 <!-- more -->
+
 <!-- toc -->
 ![/images/nerdc.gif](/images/nerdc.gif)
 ## 安装

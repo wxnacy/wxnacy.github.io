@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Nginx 使用 GeoIP 模块区分用户地区 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="昨天介绍了 Nginx 的安装，今天说说 GeoIP 模块的使用">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-04-01T03:35:35.000Z">
+<meta property="og:updated_time" content="2019-01-19T05:30:00.614Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nginx 使用 GeoIP 模块区分用户地区">
 <meta name="twitter:description" content="昨天介绍了 Nginx 的安装，今天说说 GeoIP 模块的使用">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-nginx-geoip" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-nginx-geoip" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -197,8 +197,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>昨天介绍了 Nginx 的安装，今天说说 GeoIP 模块的使用<br><a id="more"></a><div class="toc"></p>
-<!-- toc -->
+        <p>昨天介绍了 Nginx 的安装，今天说说 GeoIP 模块的使用</p>
+<a id="more"></a><div class="toc"><br><br><!-- toc -->
 <ul>
 <li><a href="#jian-cha-geoip-shi-fou-an-zhuang">检查 GeoIP 是否安装</a></li>
 <li><a href="#an-zhuang-geoip">安装 GeoIP</a></li>
@@ -206,18 +206,18 @@
 <li><a href="#shi-yong-geoip">使用 GeoIP</a></li>
 </ul>
 <!-- tocstop -->
-<p></div></p>
-<h2><span id="jian-cha-geoip-shi-fou-an-zhuang">检查 GeoIP 是否安装</span><a href="#jian-cha-geoip-shi-fou-an-zhuang" class="header-anchor"></a></h2><p>首先需要确认当前安装的 Nginx 是否安装了 GeoIP 模块<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ nginx -V</div><div class="line">nginx version: nginx/1.12.2</div><div class="line">built by gcc 4.8.5 20150623 (Red Hat 4.8.5-11) (GCC)</div><div class="line">built with OpenSSL 1.0.2k-fips  26 Jan 2017</div><div class="line">TLS SNI support enabled</div><div class="line">configure arguments: --user=nginx --group=nginx --with-http_geoip_module --with-http_ssl_module --with-http_realip_module --with-http_addition_module --with-http_sub_module --with-http_dav_module --with-http_flv_module --with-http_mp4_module --with-http_gunzip_module --with-http_gzip_static_module --with-http_random_index_module --with-http_secure_link_module --with-http_stub_status_module --with-mail --with-mail_ssl_module --with-file-aio</div></pre></td></tr></table></figure></p>
+<p></p></div><p></p>
+<h2><span id="jian-cha-geoip-shi-fou-an-zhuang">检查 GeoIP 是否安装</span><a href="#jian-cha-geoip-shi-fou-an-zhuang" class="header-anchor"></a></h2><p>首先需要确认当前安装的 Nginx 是否安装了 GeoIP 模块<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ nginx -V</span><br><span class="line">nginx version: nginx/1.12.2</span><br><span class="line">built by gcc 4.8.5 20150623 (Red Hat 4.8.5-11) (GCC)</span><br><span class="line">built with OpenSSL 1.0.2k-fips  26 Jan 2017</span><br><span class="line">TLS SNI support enabled</span><br><span class="line">configure arguments: --user=nginx --group=nginx --with-http_geoip_module --with-http_ssl_module --with-http_realip_module --with-http_addition_module --with-http_sub_module --with-http_dav_module --with-http_flv_module --with-http_mp4_module --with-http_gunzip_module --with-http_gzip_static_module --with-http_random_index_module --with-http_secure_link_module --with-http_stub_status_module --with-mail --with-mail_ssl_module --with-file-aio</span><br></pre></td></tr></table></figure></p>
 <p>如果版本信息中包含 <code>--with-http_geoip_module</code>，则说明已经支持该模块，如果不支持请往下看</p>
-<h2><span id="an-zhuang-geoip">安装 GeoIP</span><a href="#an-zhuang-geoip" class="header-anchor"></a></h2><p>首先安装依赖<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ yum -y install zlib zlib-devel</div></pre></td></tr></table></figure></p>
-<p>安装 GeoIP<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ wget http://geolite.maxmind.com/download/geoip/api/c/GeoIP.tar.gz</div><div class="line">$ tar -zxvf GeoIP.tar.gz</div><div class="line">$ <span class="built_in">cd</span> GeoIP-1.4.8</div><div class="line">$ ./configure</div><div class="line">$ make</div><div class="line">$ make install</div></pre></td></tr></table></figure></p>
-<p>使用ldconfig将库索引到系统中<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="string">'/usr/local/lib'</span> &gt; /etc/ld.so.conf.d/geoip.conf</div><div class="line">$ ldconfig</div></pre></td></tr></table></figure></p>
-<p>检查库是否加载成功<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ ldconfig -v | grep GeoIP</div><div class="line"></div><div class="line">libGeoIPUpdate.so.0 -&gt; libGeoIPUpdate.so.0.0.0</div><div class="line">libGeoIP.so.1 -&gt; libGeoIP.so.1.4.8</div><div class="line">libGeoIPUpdate.so.0 -&gt; libGeoIPUpdate.so.0.0.0</div><div class="line">libGeoIP.so.1 -&gt; libGeoIP.so.1.5.0</div></pre></td></tr></table></figure></p>
-<h2><span id="jiang-geoip-mo-kuai-bian-yi-dao-nginx-zhong">将 GeoIP 模块编译到 Nginx 中</span><a href="#jiang-geoip-mo-kuai-bian-yi-dao-nginx-zhong" class="header-anchor"></a></h2><p>根据你当前 Nginx 的安装参数带上 <code>--with-http_geoip_module</code> 重新编译<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">$ ./configure --user=nginx --group=nginx \</div><div class="line">    --with-http_geoip_module \</div><div class="line">    --with-http_ssl_module \</div><div class="line">    --with-http_realip_module \</div><div class="line">    --with-http_addition_module \</div><div class="line">    --with-http_sub_module \</div><div class="line">    --with-http_dav_module \</div><div class="line">    --with-http_flv_module \</div><div class="line">    --with-http_mp4_module \</div><div class="line">    --with-http_gunzip_module \</div><div class="line">    --with-http_gzip_static_module \</div><div class="line">    --with-http_random_index_module \</div><div class="line">    --with-http_secure_link_module \</div><div class="line">    --with-http_stub_status_module \</div><div class="line">    --with-mail \</div><div class="line">    --with-mail_ssl_module \</div><div class="line">    --with-file-aio</div><div class="line">$ make &amp;&amp; make install</div></pre></td></tr></table></figure></p>
-<p>或者重新安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">$ wget https://nginx.org/download/nginx-1.12.2.tar.gz</div><div class="line">$ tar zxvf nginx-1.12.2.tar.gz</div><div class="line">$ <span class="built_in">cd</span> nginx-1.12.2</div><div class="line">$ ./configure --user=nginx --group=nginx \</div><div class="line">    --with-http_geoip_module \</div><div class="line">    --with-http_ssl_module \</div><div class="line">    --with-http_realip_module \</div><div class="line">    --with-http_addition_module \</div><div class="line">    --with-http_sub_module \</div><div class="line">    --with-http_dav_module \</div><div class="line">    --with-http_flv_module \</div><div class="line">    --with-http_mp4_module \</div><div class="line">    --with-http_gunzip_module \</div><div class="line">    --with-http_gzip_static_module \</div><div class="line">    --with-http_random_index_module \</div><div class="line">    --with-http_secure_link_module \</div><div class="line">    --with-http_stub_status_module \</div><div class="line">    --with-mail \</div><div class="line">    --with-mail_ssl_module \</div><div class="line">    --with-file-aio</div><div class="line">$ make &amp;&amp; make install</div></pre></td></tr></table></figure></p>
-<h2><span id="shi-yong-geoip">使用 GeoIP</span><a href="#shi-yong-geoip" class="header-anchor"></a></h2><p>首先查看本地是否已有 GeoIP 数据库<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/share/GeoIP</div><div class="line">$ ll</div><div class="line">-rw-r--r--. 1 root root  1183408 Mar 31 06:00 GeoIP.dat</div><div class="line">-rw-r--r--. 1 root root 20539238 Mar 27 05:05 GeoLiteCity.dat</div></pre></td></tr></table></figure></p>
-<p>如果没有这两个库，则手动下载<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz</div><div class="line">gzip GeoLiteCity.dat.gz</div><div class="line">wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz</div><div class="line">gzip GeoIP.dat.gz</div></pre></td></tr></table></figure></p>
-<p>将库地址配置到 <code>nginx.conf</code> 中这个位置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">http&#123;</div><div class="line">    ...</div><div class="line">    geoip_country /usr/<span class="built_in">local</span>/share/GeoIP/GeoIP.dat;</div><div class="line">    geoip_city /usr/<span class="built_in">local</span>/share/GeoIP/GeoLiteCity.dat;</div><div class="line">    server &#123;</div><div class="line">        location / &#123;</div><div class="line">            root /www;</div><div class="line">            <span class="keyword">if</span>( <span class="variable">$geo_country_code</span> = CN )&#123;</div><div class="line">                root /www/zh;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2><span id="an-zhuang-geoip">安装 GeoIP</span><a href="#an-zhuang-geoip" class="header-anchor"></a></h2><p>首先安装依赖<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum -y install zlib zlib-devel</span><br></pre></td></tr></table></figure></p>
+<p>安装 GeoIP<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ wget http://geolite.maxmind.com/download/geoip/api/c/GeoIP.tar.gz</span><br><span class="line">$ tar -zxvf GeoIP.tar.gz</span><br><span class="line">$ <span class="built_in">cd</span> GeoIP-1.4.8</span><br><span class="line">$ ./configure</span><br><span class="line">$ make</span><br><span class="line">$ make install</span><br></pre></td></tr></table></figure></p>
+<p>使用ldconfig将库索引到系统中<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'/usr/local/lib'</span> &gt; /etc/ld.so.conf.d/geoip.conf</span><br><span class="line">$ ldconfig</span><br></pre></td></tr></table></figure></p>
+<p>检查库是否加载成功<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ ldconfig -v | grep GeoIP</span><br><span class="line"></span><br><span class="line">libGeoIPUpdate.so.0 -&gt; libGeoIPUpdate.so.0.0.0</span><br><span class="line">libGeoIP.so.1 -&gt; libGeoIP.so.1.4.8</span><br><span class="line">libGeoIPUpdate.so.0 -&gt; libGeoIPUpdate.so.0.0.0</span><br><span class="line">libGeoIP.so.1 -&gt; libGeoIP.so.1.5.0</span><br></pre></td></tr></table></figure></p>
+<h2><span id="jiang-geoip-mo-kuai-bian-yi-dao-nginx-zhong">将 GeoIP 模块编译到 Nginx 中</span><a href="#jiang-geoip-mo-kuai-bian-yi-dao-nginx-zhong" class="header-anchor"></a></h2><p>根据你当前 Nginx 的安装参数带上 <code>--with-http_geoip_module</code> 重新编译<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$ ./configure --user=nginx --group=nginx \</span><br><span class="line">    --with-http_geoip_module \</span><br><span class="line">    --with-http_ssl_module \</span><br><span class="line">    --with-http_realip_module \</span><br><span class="line">    --with-http_addition_module \</span><br><span class="line">    --with-http_sub_module \</span><br><span class="line">    --with-http_dav_module \</span><br><span class="line">    --with-http_flv_module \</span><br><span class="line">    --with-http_mp4_module \</span><br><span class="line">    --with-http_gunzip_module \</span><br><span class="line">    --with-http_gzip_static_module \</span><br><span class="line">    --with-http_random_index_module \</span><br><span class="line">    --with-http_secure_link_module \</span><br><span class="line">    --with-http_stub_status_module \</span><br><span class="line">    --with-mail \</span><br><span class="line">    --with-mail_ssl_module \</span><br><span class="line">    --with-file-aio</span><br><span class="line">$ make &amp;&amp; make install</span><br></pre></td></tr></table></figure></p>
+<p>或者重新安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://nginx.org/download/nginx-1.12.2.tar.gz</span><br><span class="line">$ tar zxvf nginx-1.12.2.tar.gz</span><br><span class="line">$ <span class="built_in">cd</span> nginx-1.12.2</span><br><span class="line">$ ./configure --user=nginx --group=nginx \</span><br><span class="line">    --with-http_geoip_module \</span><br><span class="line">    --with-http_ssl_module \</span><br><span class="line">    --with-http_realip_module \</span><br><span class="line">    --with-http_addition_module \</span><br><span class="line">    --with-http_sub_module \</span><br><span class="line">    --with-http_dav_module \</span><br><span class="line">    --with-http_flv_module \</span><br><span class="line">    --with-http_mp4_module \</span><br><span class="line">    --with-http_gunzip_module \</span><br><span class="line">    --with-http_gzip_static_module \</span><br><span class="line">    --with-http_random_index_module \</span><br><span class="line">    --with-http_secure_link_module \</span><br><span class="line">    --with-http_stub_status_module \</span><br><span class="line">    --with-mail \</span><br><span class="line">    --with-mail_ssl_module \</span><br><span class="line">    --with-file-aio</span><br><span class="line">$ make &amp;&amp; make install</span><br></pre></td></tr></table></figure></p>
+<h2><span id="shi-yong-geoip">使用 GeoIP</span><a href="#shi-yong-geoip" class="header-anchor"></a></h2><p>首先查看本地是否已有 GeoIP 数据库<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/share/GeoIP</span><br><span class="line">$ ll</span><br><span class="line">-rw-r--r--. 1 root root  1183408 Mar 31 06:00 GeoIP.dat</span><br><span class="line">-rw-r--r--. 1 root root 20539238 Mar 27 05:05 GeoLiteCity.dat</span><br></pre></td></tr></table></figure></p>
+<p>如果没有这两个库，则手动下载<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz</span><br><span class="line">gzip GeoLiteCity.dat.gz</span><br><span class="line">wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz</span><br><span class="line">gzip GeoIP.dat.gz</span><br></pre></td></tr></table></figure></p>
+<p>将库地址配置到 <code>nginx.conf</code> 中这个位置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">http&#123;</span><br><span class="line">    ...</span><br><span class="line">    geoip_country /usr/<span class="built_in">local</span>/share/GeoIP/GeoIP.dat;</span><br><span class="line">    geoip_city /usr/<span class="built_in">local</span>/share/GeoIP/GeoLiteCity.dat;</span><br><span class="line">    server &#123;</span><br><span class="line">        location / &#123;</span><br><span class="line">            root /www;</span><br><span class="line">            <span class="keyword">if</span>( <span class="variable">$geo_country_code</span> = CN )&#123;</span><br><span class="line">                root /www/zh;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>其他参数</p>
 <ul>
 <li>$geoip_country_code; - 两个字母的国家代码，如：”RU”, “US”。</li>
@@ -230,7 +230,7 @@
 <li>$geoip_latitude - 所在维度。</li>
 <li><p>$geoip_longitude - 所在经度。</p>
 </li>
-<li><p><a href="https://www.scalescale.com/tips/nginx/how-to-install-nginx-geoip-module/" target="_blank" rel="external">How to install Nginx GeoIP module</a></p>
+<li><p><a href="https://www.scalescale.com/tips/nginx/how-to-install-nginx-geoip-module/" target="_blank" rel="noopener">How to install Nginx GeoIP module</a></p>
 </li>
 </ul>
 
@@ -530,6 +530,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -538,19 +542,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -562,7 +562,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -571,10 +571,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -595,6 +591,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -714,11 +714,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -730,7 +730,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

@@ -5,6 +5,7 @@ tags: [linux]
 ---
 
 Linux 中如果想要判断某个软件是否安装过，可以使用 `command` 命令
+
 <!-- more --><!-- toc -->
 
 **使用**

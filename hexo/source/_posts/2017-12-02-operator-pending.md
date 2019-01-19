@@ -5,6 +5,7 @@ tags: [vim]
 ---
 
 在文章 [Vim 高级功能 Mapping 映射](/2017/12/01/vim-mappings/) 中我介绍了映射功能，今天这篇来介绍更高级的 Operator-Pending 映射
+
 <!-- more --><!-- toc -->
 ![/images/operator.gif](/images/operator.gif)
 

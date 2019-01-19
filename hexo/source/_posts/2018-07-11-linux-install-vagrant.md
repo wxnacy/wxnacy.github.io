@@ -5,6 +5,7 @@ tags: [vagrant]
 ---
 
 本章介绍如何在 Linux 中安装 Vagrant
+
 <!-- more --><!-- toc -->
 
 **Ubuntu**

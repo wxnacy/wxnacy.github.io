@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Go 数组 array | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="本章简单了解下 Go 语言的数组（array）。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-08-24T01:53:30.000Z">
+<meta property="og:updated_time" content="2019-01-19T05:30:00.581Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Go 数组 array">
 <meta name="twitter:description" content="本章简单了解下 Go 语言的数组（array）。">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-go-array-go" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-go-array-go" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -197,8 +197,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本章简单了解下 Go 语言的数组（array）。<br><a id="more"></a><div class="toc"></p>
-<!-- toc -->
+        <p>本章简单了解下 Go 语言的数组（array）。</p>
+<a id="more"></a><div class="toc"><br><br><!-- toc -->
 <ul>
 <li><a href="#chu-shi-hua">初始化</a></li>
 <li><a href="#qie-pian">切片</a></li>
@@ -209,39 +209,39 @@
 </div>
 
 <h2><span id="chu-shi-hua">初始化</span><a href="#chu-shi-hua" class="header-anchor"></a></h2><p>初始化固定长度的数组，并根据索引赋值</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a [<span class="number">2</span>]<span class="keyword">int</span></div><div class="line">fmt.Println(a)      <span class="comment">// [0 0]</span></div><div class="line">a[<span class="number">0</span>] = <span class="number">1</span></div><div class="line">fmt.Println(a)      <span class="comment">// [1 0]</span></div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a [<span class="number">2</span>]<span class="keyword">int</span></span><br><span class="line">fmt.Println(a)      <span class="comment">// [0 0]</span></span><br><span class="line">a[<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">fmt.Println(a)      <span class="comment">// [1 0]</span></span><br></pre></td></tr></table></figure>
 <p>初始化固定长度的数组，并直接赋值</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">a := [<span class="number">2</span>]<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>&#125;</div><div class="line">fmt.Println(a)      <span class="comment">// [1 2]</span></div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a := [<span class="number">2</span>]<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>&#125;</span><br><span class="line">fmt.Println(a)      <span class="comment">// [1 2]</span></span><br></pre></td></tr></table></figure>
 <p>初始化不确定长度的数组</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">a := [...]<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>&#125;</div><div class="line">fmt.Println(a)      <span class="comment">// [1 2]</span></div><div class="line"></div><div class="line">b := []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>&#125;</div><div class="line">fmt.Println(b)      <span class="comment">// [1 2]</span></div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a := [...]<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>&#125;</span><br><span class="line">fmt.Println(a)      <span class="comment">// [1 2]</span></span><br><span class="line"></span><br><span class="line">b := []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>&#125;</span><br><span class="line">fmt.Println(b)      <span class="comment">// [1 2]</span></span><br></pre></td></tr></table></figure>
 <p>数组一旦确定长度，便不能更改，否则就会报错</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">a := [<span class="number">2</span>]<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>&#125;</div><div class="line">fmt.Println(a)      <span class="comment">// [1 2]</span></div><div class="line">a = [<span class="number">4</span>]<span class="keyword">int</span>&#123;<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>&#125;</div><div class="line"><span class="comment">// arrays.go|23 col 7| cannot use [4]int literal (type [4]int) as type [2]int in assignment</span></div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a := [<span class="number">2</span>]<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>&#125;</span><br><span class="line">fmt.Println(a)      <span class="comment">// [1 2]</span></span><br><span class="line">a = [<span class="number">4</span>]<span class="keyword">int</span>&#123;<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>&#125;</span><br><span class="line"><span class="comment">// arrays.go|23 col 7| cannot use [4]int literal (type [4]int) as type [2]int in assignment</span></span><br></pre></td></tr></table></figure>
 <h2><span id="qie-pian">切片</span><a href="#qie-pian" class="header-anchor"></a></h2><blockquote>
 <p>Go 数组的长度不可改变，在特定场景中这样的集合就不太适用，Go中提供了一种灵活，功能强悍的内置类型切片(“动态数组”),与数组相比切片的长度是不固定的，可以追加元素，在追加时可能使切片的容量增大。</p>
 </blockquote>
 <p>切片可以像 Python 一样支持 <code>[x:y]</code> 的截取方式，<code>x</code> 表示截取开始的索引数字，<code>y</code> 表示截取结束的索引数字，截取后返回一个切片</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">h := []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>&#125;</div><div class="line"></div><div class="line">fmt.Println(h[:])           <span class="comment">// [1 2 3 4 5 6 7]</span></div><div class="line">fmt.Println(h[<span class="number">0</span>:])          <span class="comment">// [1 2 3 4 5 6 7]</span></div><div class="line">fmt.Println(h[<span class="number">0</span>:<span class="built_in">len</span>(h)])    <span class="comment">// [1 2 3 4 5 6 7]</span></div><div class="line">fmt.Println(h[<span class="number">2</span>:<span class="number">4</span>])         <span class="comment">// [3 4]</span></div><div class="line">fmt.Println(h[:<span class="number">4</span>])          <span class="comment">// [1 2 3 4]</span></div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">h := []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>&#125;</span><br><span class="line"></span><br><span class="line">fmt.Println(h[:])           <span class="comment">// [1 2 3 4 5 6 7]</span></span><br><span class="line">fmt.Println(h[<span class="number">0</span>:])          <span class="comment">// [1 2 3 4 5 6 7]</span></span><br><span class="line">fmt.Println(h[<span class="number">0</span>:<span class="built_in">len</span>(h)])    <span class="comment">// [1 2 3 4 5 6 7]</span></span><br><span class="line">fmt.Println(h[<span class="number">2</span>:<span class="number">4</span>])         <span class="comment">// [3 4]</span></span><br><span class="line">fmt.Println(h[:<span class="number">4</span>])          <span class="comment">// [1 2 3 4]</span></span><br></pre></td></tr></table></figure>
 <p>这要比 Java 不知道简单了多少，可惜不像 Python 那样支持负数索引，不然截取尾部数据会更方便。</p>
 <p>此时切片可以任意改变大小</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">h = []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>,<span class="number">4</span>&#125;</div><div class="line">h = []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">h = []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>,<span class="number">4</span>&#125;</span><br><span class="line">h = []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>初始化切片</strong></p>
 <p>切片也可以自定义</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="built_in">len</span>, <span class="built_in">cap</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="built_in">len</span>, <span class="built_in">cap</span>)</span><br></pre></td></tr></table></figure>
 <p><code>len(), cap()</code> 可以获取切片的长度和长度最长可以达到多少</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> m = <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="number">3</span>, <span class="number">4</span>)</div><div class="line">fmt.Printf(<span class="string">"slice %v len %d cap %d"</span>, m, <span class="built_in">len</span>(m), <span class="built_in">cap</span>(m))</div><div class="line"><span class="comment">// slice [0 0 0] len 3 cap 4</span></div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> m = <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">fmt.Printf(<span class="string">"slice %v len %d cap %d"</span>, m, <span class="built_in">len</span>(m), <span class="built_in">cap</span>(m))</span><br><span class="line"><span class="comment">// slice [0 0 0] len 3 cap 4</span></span><br></pre></td></tr></table></figure>
 <p>说实话 <code>cap</code> 在使用中，并没有起到什么作用，肯定是我还了解的不够，以后明白了在更新上。</p>
-<h2><span id="zuo-wei-han-shu-can-shu">作为函数参数</span><a href="#zuo-wei-han-shu-can-shu" class="header-anchor"></a></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Test</span><span class="params">(a []<span class="keyword">int</span>)</span></span> &#123;</div><div class="line">	fmt.Println(a)</div><div class="line">&#125;</div><div class="line">a := []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>&#125;</div><div class="line">Test(a)     <span class="comment">// [1 2]</span></div></pre></td></tr></table></figure>
+<h2><span id="zuo-wei-han-shu-can-shu">作为函数参数</span><a href="#zuo-wei-han-shu-can-shu" class="header-anchor"></a></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Test</span><span class="params">(a []<span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	fmt.Println(a)</span><br><span class="line">&#125;</span><br><span class="line">a := []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>&#125;</span><br><span class="line">Test(a)     <span class="comment">// [1 2]</span></span><br></pre></td></tr></table></figure>
 <h2><span id="fang-fa">方法</span><a href="#fang-fa" class="header-anchor"></a></h2><p>通过 Go 的一些内置方法可以更好的操作数组</p>
 <p><strong>append</strong></p>
 <p>数组长度不可更改，但是我们可以通过 <code>append</code> 方法返回一个新数组，并添加上元素。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">a := []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>&#125;</div><div class="line">a = <span class="built_in">append</span>(a, <span class="number">1</span>)</div><div class="line">fmt.Println(a)      <span class="comment">// [1 2]</span></div><div class="line"></div><div class="line">a = <span class="built_in">append</span>(a, <span class="number">3</span>, <span class="number">4</span>)</div><div class="line">fmt.Println(a)      <span class="comment">// [1 2 3 4]</span></div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a := []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>&#125;</span><br><span class="line">a = <span class="built_in">append</span>(a, <span class="number">1</span>)</span><br><span class="line">fmt.Println(a)      <span class="comment">// [1 2]</span></span><br><span class="line"></span><br><span class="line">a = <span class="built_in">append</span>(a, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">fmt.Println(a)      <span class="comment">// [1 2 3 4]</span></span><br></pre></td></tr></table></figure>
 <p>当 <code>append</code> 的第一个参数为切片时，可以另一个数组或切片的数据整个添加过来。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a := []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>&#125;</div><div class="line">b := []<span class="keyword">int</span>&#123;<span class="number">3</span>, <span class="number">4</span>&#125;</div><div class="line">fmt.Println(<span class="built_in">append</span>(a[:], b...)) <span class="comment">// [1 2 3 4]</span></div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a := []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>&#125;</span><br><span class="line">b := []<span class="keyword">int</span>&#123;<span class="number">3</span>, <span class="number">4</span>&#125;</span><br><span class="line">fmt.Println(<span class="built_in">append</span>(a[:], b...)) <span class="comment">// [1 2 3 4]</span></span><br></pre></td></tr></table></figure>
 <p><strong>delete</strong></p>
 <p>Go 中貌似是没有数组的删除方法的，不过我们可以利用 <code>append</code> 来实现这个功能。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">Remove</span><span class="params">(slice []<span class="keyword">int</span>, s <span class="keyword">int</span>)</span> []<span class="title">int</span></span> &#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">append</span>(slice[:s], slice[s+<span class="number">1</span>:]...)</div><div class="line">&#125;</div><div class="line"></div><div class="line">a := []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>&#125;</div><div class="line">a = Remove(a, <span class="number">0</span>)</div><div class="line">fmt.Println(a)      <span class="comment">// [2]</span></div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Remove</span><span class="params">(slice []<span class="keyword">int</span>, s <span class="keyword">int</span>)</span> []<span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">append</span>(slice[:s], slice[s+<span class="number">1</span>:]...)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">a := []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>&#125;</span><br><span class="line">a = Remove(a, <span class="number">0</span>)</span><br><span class="line">fmt.Println(a)      <span class="comment">// [2]</span></span><br></pre></td></tr></table></figure>
 <p><strong>copy</strong></p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> n = []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>&#125;</div><div class="line"><span class="keyword">var</span> l = <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="built_in">len</span>(n), <span class="built_in">cap</span>(n) * <span class="number">2</span>)</div><div class="line"><span class="built_in">copy</span>(l, n)</div><div class="line">fmt.Println(l)  <span class="comment">// [1 2]</span></div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> n = []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>&#125;</span><br><span class="line"><span class="keyword">var</span> l = <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="built_in">len</span>(n), <span class="built_in">cap</span>(n) * <span class="number">2</span>)</span><br><span class="line"><span class="built_in">copy</span>(l, n)</span><br><span class="line">fmt.Println(l)  <span class="comment">// [1 2]</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li><a href="/2018/08/24/go-loops/">Go 循环语句</a></li>
 </ul>
@@ -542,6 +542,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -550,19 +554,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -574,7 +574,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -583,10 +583,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -607,6 +603,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -726,11 +726,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -742,7 +742,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

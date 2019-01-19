@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Javascript 常用 DOM 操作 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="使用 jQuery 时间长了，对 dom 的基本操作难免生疏，总结些常用的，免得使用时捉急。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-05-14T07:20:10.000Z">
+<meta property="og:updated_time" content="2019-01-19T05:30:00.680Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Javascript 常用 DOM 操作">
 <meta name="twitter:description" content="使用 jQuery 时间长了，对 dom 的基本操作难免生疏，总结些常用的，免得使用时捉急。">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-js-dom" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-js-dom" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -197,8 +197,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>使用 <code>jQuery</code> 时间长了，对 <code>dom</code> 的基本操作难免生疏，总结些常用的，免得使用时捉急。<br><a id="more"></a><div class="toc"></p>
-<!-- toc -->
+        <p>使用 <code>jQuery</code> 时间长了，对 <code>dom</code> 的基本操作难免生疏，总结些常用的，免得使用时捉急。</p>
+<a id="more"></a><div class="toc"><br><br><!-- toc -->
 <ul>
 <li><a href="#dom-chuang-jian">DOM 创建</a></li>
 <li><a href="#dom-cha-xun">DOM 查询</a><ul>
@@ -209,14 +209,14 @@
 </li>
 </ul>
 <!-- tocstop -->
-<p></div></p>
-<h2><span id="dom-chuang-jian">DOM 创建</span><a href="#dom-chuang-jian" class="header-anchor"></a></h2><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">document.createElement('div');</div><div class="line">document.createTextNode('wxnacy');</div></pre></td></tr></table></figure>
-<h2><span id="dom-cha-xun">DOM 查询</span><a href="#dom-cha-xun" class="header-anchor"></a></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.querySelector(<span class="string">".myclass"</span>);</div><div class="line"><span class="built_in">document</span>.querySelectorAll(<span class="string">"div.note, div.alert"</span>);</div><div class="line"></div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'id'</span>);</div><div class="line"><span class="built_in">document</span>.getElementsByClassName(<span class="string">'className'</span>);</div><div class="line"><span class="built_in">document</span>.getElementsByTagName(<span class="string">'td'</span>);</div></pre></td></tr></table></figure>
-<h3><span id="element-cha-xun">Element 查询</span><a href="#element-cha-xun" class="header-anchor"></a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 获取父元素、父节点</span></div><div class="line">var parent = ele.parentElement;</div><div class="line">var parent = ele.parentNode;</div><div class="line"></div><div class="line"><span class="comment">// 获取子节点，子节点可以是任何一种节点，可以通过nodeType来判断</span></div><div class="line">var nodes = ele.children;</div><div class="line"></div><div class="line"><span class="comment">// 查询子元素</span></div><div class="line">var els = ele.getElementsByTagName(<span class="string">'td'</span>);</div><div class="line">var els = ele.getElementsByClassName(<span class="string">'highlight'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 当前元素的第一个/最后一个子元素节点</span></div><div class="line">var el = ele.firstElementChild;</div><div class="line">var el = ele.lastElementChild;</div><div class="line"></div><div class="line"><span class="comment">// 下一个/上一个兄弟元素节点</span></div><div class="line">var el = ele.nextElementSibling;</div><div class="line">var el = ele.previousElementSibling;</div></pre></td></tr></table></figure>
-<h3><span id="shan-chu-yuan-su">删除元素</span><a href="#shan-chu-yuan-su" class="header-anchor"></a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ele.parentNode.removeChild(ele);</div></pre></td></tr></table></figure>
-<h3><span id="class">class</span><a href="#class" class="header-anchor"></a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">element.classList</div><div class="line">element.classList.add(c1, c2)</div><div class="line">element.classList.remove(c1, c2)</div><div class="line">element.classList.contains(className)</div></pre></td></tr></table></figure>
+<p></p></div><p></p>
+<h2><span id="dom-chuang-jian">DOM 创建</span><a href="#dom-chuang-jian" class="header-anchor"></a></h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">document.createElement('div');</span><br><span class="line">document.createTextNode('wxnacy');</span><br></pre></td></tr></table></figure>
+<h2><span id="dom-cha-xun">DOM 查询</span><a href="#dom-cha-xun" class="header-anchor"></a></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">".myclass"</span>);</span><br><span class="line"><span class="built_in">document</span>.querySelectorAll(<span class="string">"div.note, div.alert"</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'id'</span>);</span><br><span class="line"><span class="built_in">document</span>.getElementsByClassName(<span class="string">'className'</span>);</span><br><span class="line"><span class="built_in">document</span>.getElementsByTagName(<span class="string">'td'</span>);</span><br></pre></td></tr></table></figure>
+<h3><span id="element-cha-xun">Element 查询</span><a href="#element-cha-xun" class="header-anchor"></a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取父元素、父节点</span></span><br><span class="line"><span class="keyword">var</span> parent = ele.parentElement;</span><br><span class="line"><span class="keyword">var</span> parent = ele.parentNode;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取子节点，子节点可以是任何一种节点，可以通过nodeType来判断</span></span><br><span class="line"><span class="keyword">var</span> nodes = ele.children;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查询子元素</span></span><br><span class="line"><span class="keyword">var</span> els = ele.getElementsByTagName(<span class="string">'td'</span>);</span><br><span class="line"><span class="keyword">var</span> els = ele.getElementsByClassName(<span class="string">'highlight'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当前元素的第一个/最后一个子元素节点</span></span><br><span class="line"><span class="keyword">var</span> el = ele.firstElementChild;</span><br><span class="line"><span class="keyword">var</span> el = ele.lastElementChild;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 下一个/上一个兄弟元素节点</span></span><br><span class="line"><span class="keyword">var</span> el = ele.nextElementSibling;</span><br><span class="line"><span class="keyword">var</span> el = ele.previousElementSibling;</span><br></pre></td></tr></table></figure>
+<h3><span id="shan-chu-yuan-su">删除元素</span><a href="#shan-chu-yuan-su" class="header-anchor"></a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ele.parentNode.removeChild(ele);</span><br></pre></td></tr></table></figure>
+<h3><span id="class">class</span><a href="#class" class="header-anchor"></a></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">element.classList</span><br><span class="line">element.classList.add(c1, c2)</span><br><span class="line">element.classList.remove(c1, c2)</span><br><span class="line">element.classList.contains(className)</span><br></pre></td></tr></table></figure>
 <ul>
-<li><a href="http://www.runoob.com/jsref/prop-element-classlist.html" target="_blank" rel="external">classList</a></li>
+<li><a href="http://www.runoob.com/jsref/prop-element-classlist.html" target="_blank" rel="noopener">classList</a></li>
 </ul>
 
       
@@ -515,6 +515,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -523,19 +527,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -547,7 +547,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -556,10 +556,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -580,6 +576,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -699,11 +699,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -715,7 +715,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

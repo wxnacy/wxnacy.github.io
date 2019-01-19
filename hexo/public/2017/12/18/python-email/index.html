@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>Python SMTP发送邮件 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="SMTP（Simple Mail Transfer Protocol）即简单邮件传输协议,它是一组用于由源地址到目的地址传送邮件的规则，由它来控制信件的中转方式。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-12-18T13:55:10.000Z">
+<meta property="og:updated_time" content="2019-01-19T04:06:41.979Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python SMTP发送邮件">
 <meta name="twitter:description" content="SMTP（Simple Mail Transfer Protocol）即简单邮件传输协议,它是一组用于由源地址到目的地址传送邮件的规则，由它来控制信件的中转方式。">
@@ -38,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,7 +55,7 @@
 		</hgroup>
 		
 
-        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()" />
+        <input style="height: 25px; width: 170px" id="w-search" onkeydown="doEnterSearch()">
         <!-- <button onClick="doSearchByGoogle()" style="height: 25px;
         line-height: 25px; width: 40px; font-size: 10px">搜索</button> -->
 
@@ -177,7 +177,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-python-email" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-python-email" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -212,33 +212,33 @@
 <li><a href="#can-kao">参考</a></li>
 </ul>
 <!-- tocstop -->
-<p></div><br>Python 中的 smtplib 模块，对 smtp 进行了简单的封装，提供了一套发送邮件的 api</p>
-<h2><span id="gou-zao-smtp">构造 SMTP</span><a href="#gou-zao-smtp" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> smtplib</div><div class="line">smtp = smtplib.SMTP()</div><div class="line">smtp.connect(host, port)</div><div class="line">smtp.login(user, password)</div></pre></td></tr></table></figure>
+<p></p></div><br>Python 中的 smtplib 模块，对 smtp 进行了简单的封装，提供了一套发送邮件的 api<p></p>
+<h2><span id="gou-zao-smtp">构造 SMTP</span><a href="#gou-zao-smtp" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> smtplib</span><br><span class="line">smtp = smtplib.SMTP()</span><br><span class="line">smtp.connect(host, port)</span><br><span class="line">smtp.login(user, password)</span><br></pre></td></tr></table></figure>
 <ul>
 <li>host SMTP 服务器主机，ip 或域名</li>
 <li>port SMTP 端口号，一般为 25</li>
 <li>user 发送人邮箱名</li>
 <li>password 发送人密码</li>
 </ul>
-<h2><span id="xiao-xi-ti">消息体</span><a href="#xiao-xi-ti" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> email.mime.text <span class="keyword">import</span> MIMEText</div><div class="line"><span class="keyword">from</span> email.header <span class="keyword">import</span> Header</div><div class="line"></div><div class="line">message = MIMEText(msg, mime_type, <span class="string">'utf-8'</span>)</div><div class="line">message[<span class="string">'From'</span>] = Header(<span class="string">'发件人'</span>, <span class="string">'utf-8'</span>)</div><div class="line">message[<span class="string">'To'</span>] = Header(<span class="string">'收件人'</span>, <span class="string">'utf-8'</span>)</div><div class="line">message[<span class="string">'Subject'</span>] = Header(<span class="string">'主题'</span>, <span class="string">'utf-8'</span>)</div></pre></td></tr></table></figure>
+<h2><span id="xiao-xi-ti">消息体</span><a href="#xiao-xi-ti" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> email.mime.text <span class="keyword">import</span> MIMEText</span><br><span class="line"><span class="keyword">from</span> email.header <span class="keyword">import</span> Header</span><br><span class="line"></span><br><span class="line">message = MIMEText(msg, mime_type, <span class="string">'utf-8'</span>)</span><br><span class="line">message[<span class="string">'From'</span>] = Header(<span class="string">'发件人'</span>, <span class="string">'utf-8'</span>)</span><br><span class="line">message[<span class="string">'To'</span>] = Header(<span class="string">'收件人'</span>, <span class="string">'utf-8'</span>)</span><br><span class="line">message[<span class="string">'Subject'</span>] = Header(<span class="string">'主题'</span>, <span class="string">'utf-8'</span>)</span><br></pre></td></tr></table></figure>
 <ul>
 <li>msg 邮件正文，普通文本或 html 代码</li>
 <li>mime_type 消息类型，html 或 text<br><code>From</code> 和 <code>To</code> 不是必填字段，但是不填的话，发送人和接受人的位置就会显示空。</li>
 </ul>
-<h2><span id="fa-song">发送</span><a href="#fa-song" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">smtp.sendmail(sender, receivers, msg)</div></pre></td></tr></table></figure>
+<h2><span id="fa-song">发送</span><a href="#fa-song" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">smtp.sendmail(sender, receivers, msg)</span><br></pre></td></tr></table></figure>
 <ul>
 <li>sender 发送人邮件</li>
 <li>receivers 接受人邮件，数组</li>
 <li>msg 消息体</li>
 </ul>
-<h2><span id="hello-world">Hello World</span><a href="#hello-world" class="header-anchor"></a></h2><p>完成的邮件发送代码如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> smtplib</div><div class="line"><span class="keyword">from</span> email.mime.text <span class="keyword">import</span> MIMEText</div><div class="line"><span class="keyword">from</span> email.header <span class="keyword">import</span> Header</div><div class="line"></div><div class="line">smtp = smtplib.SMTP()</div><div class="line">smtp.connect(host, port)</div><div class="line">smtp.login(user, password)</div><div class="line"></div><div class="line">message = MIMEText(<span class="string">'Hello World'</span>, <span class="string">'text'</span>, <span class="string">'utf-8'</span>)</div><div class="line">message[<span class="string">'From'</span>] = Header(<span class="string">'wxnacy'</span>, <span class="string">'utf-8'</span>)</div><div class="line">message[<span class="string">'To'</span>] = Header(<span class="string">'朋友'</span>, <span class="string">'utf-8'</span>)</div><div class="line">message[<span class="string">'Subject'</span>] = Header(<span class="string">'Hello World'</span>, <span class="string">'utf-8'</span>)</div><div class="line"></div><div class="line">smtp.sendmail(<span class="string">'wxnacy@gmail.com'</span>, [<span class="string">'bbb@bb.com'</span>], message.as_string())</div></pre></td></tr></table></figure></p>
-<h2><span id="chao-song-mi-song">抄送／密送</span><a href="#chao-song-mi-song" class="header-anchor"></a></h2><p>在 smtplib 中发送邮件没有普通和抄送之分，都是放在 <code>receivers</code> 中，只是在头信息中区分开<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cc = [<span class="string">'bb@bbb.com'</span>, <span class="string">'cc@ccc.com'</span>]</div><div class="line">message[<span class="string">'Cc'</span>] = Header(<span class="string">','</span>.join(cc), <span class="string">'utf-8'</span>)   <span class="comment"># 抄送</span></div><div class="line">message[<span class="string">'Bcc'</span>] = Header(<span class="string">','</span>.join(cc), <span class="string">'utf-8'</span>)  <span class="comment"># 密送</span></div></pre></td></tr></table></figure></p>
-<h2><span id="fu-jian">附件</span><a href="#fu-jian" class="header-anchor"></a></h2><p>发送附件的时候需要引入新模块 <code>MIMEMultipart</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> email.mime.multipart <span class="keyword">import</span> MIMEMultipart</div><div class="line"></div><div class="line">message = MIMEMultipart()</div><div class="line">message[<span class="string">'From'</span>] = Header(<span class="string">"发送人"</span>, <span class="string">'utf-8'</span>)</div><div class="line">message[<span class="string">'To'</span>] =  Header(<span class="string">"接受人"</span>, <span class="string">'utf-8'</span>)</div><div class="line">message[<span class="string">'Subject'</span>] = Header(<span class="string">'附件测试'</span>, <span class="string">'utf-8'</span>)</div><div class="line"></div><div class="line">message.attach(MIMEText(<span class="string">'这是一段正文'</span>, <span class="string">'plain'</span>, <span class="string">'utf-8'</span>))</div><div class="line"></div><div class="line">att1 = MIMEText(open(<span class="string">'./test.txt'</span>, <span class="string">'rb'</span>).read(), <span class="string">'base64'</span>, <span class="string">'utf-8'</span>)</div><div class="line">att1[<span class="string">"Content-Type"</span>] = <span class="string">'application/octet-stream'</span></div><div class="line">att1[<span class="string">"Content-Disposition"</span>] = <span class="string">'attachment; filename="test.txt"'</span></div><div class="line">message.attach(att1)</div><div class="line"></div><div class="line">smtp.sendmail(<span class="string">'wxnacy@gmail.com'</span>, [<span class="string">'bb@bbb.com'</span>], message.as_string())</div></pre></td></tr></table></figure></p>
-<h2><span id="html-wen-ben-zhong-xian-shi-tu-pian">HTML 文本中显示图片</span><a href="#html-wen-ben-zhong-xian-shi-tu-pian" class="header-anchor"></a></h2><p>使用 <code>MIMEImage</code> 模块可以接收图片格式数据，配合 <code>MIMEMultipart</code> 以附件的形式发送，并显示在文本中<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> email.mime.text <span class="keyword">import</span> MIMEText</div><div class="line"><span class="keyword">from</span> email.mime.image <span class="keyword">import</span> MIMEImage</div><div class="line"><span class="keyword">from</span> email.mime.multipart <span class="keyword">import</span> MIMEMultipart</div><div class="line"></div><div class="line">msgRoot = MIMEMultipart(<span class="string">'related'</span>)</div><div class="line">msgRoot[<span class="string">'From'</span>] = Header(<span class="string">"菜鸟教程"</span>, <span class="string">'utf-8'</span>)</div><div class="line">msgRoot[<span class="string">'To'</span>] =  Header(<span class="string">"测试"</span>, <span class="string">'utf-8'</span>)</div><div class="line">subject = <span class="string">'Python SMTP 邮件测试'</span></div><div class="line">msgRoot[<span class="string">'Subject'</span>] = Header(subject, <span class="string">'utf-8'</span>)</div><div class="line"></div><div class="line">msgAlternative = MIMEMultipart(<span class="string">'alternative'</span>)</div><div class="line">msgRoot.attach(msgAlternative)</div><div class="line"></div><div class="line"></div><div class="line">mail_msg = <span class="string">"""</span></div><div class="line"><span class="string">           &lt;p&gt;Hello World&lt;/p&gt;</span></div><div class="line"><span class="string">           &lt;p&gt;&lt;img src="cid:image1"&gt;&lt;/img&gt;&lt;/p&gt;</span></div><div class="line"><span class="string">           """</span></div><div class="line">msgAlternative.attach(MIMEText(mail_msg, <span class="string">'html'</span>, <span class="string">'utf-8'</span>))</div><div class="line"></div><div class="line"><span class="comment"># 指定图片为当前目录</span></div><div class="line">fp = open(<span class="string">'./test.png'</span>, <span class="string">'rb'</span>)</div><div class="line">msgImage = MIMEImage(fp.read())</div><div class="line">fp.close()</div><div class="line"></div><div class="line"><span class="comment"># 定义图片 ID，在 HTML 文本中引用</span></div><div class="line">msgImage.add_header(<span class="string">'Content-ID'</span>, <span class="string">'&lt;image1&gt;'</span>)</div><div class="line">msgRoot.attach(msgImage)</div><div class="line">self.client.sendmail(self.sender, receivers, msgRoot.as_string())</div></pre></td></tr></table></figure></p>
+<h2><span id="hello-world">Hello World</span><a href="#hello-world" class="header-anchor"></a></h2><p>完成的邮件发送代码如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> smtplib</span><br><span class="line"><span class="keyword">from</span> email.mime.text <span class="keyword">import</span> MIMEText</span><br><span class="line"><span class="keyword">from</span> email.header <span class="keyword">import</span> Header</span><br><span class="line"></span><br><span class="line">smtp = smtplib.SMTP()</span><br><span class="line">smtp.connect(host, port)</span><br><span class="line">smtp.login(user, password)</span><br><span class="line"></span><br><span class="line">message = MIMEText(<span class="string">'Hello World'</span>, <span class="string">'text'</span>, <span class="string">'utf-8'</span>)</span><br><span class="line">message[<span class="string">'From'</span>] = Header(<span class="string">'wxnacy'</span>, <span class="string">'utf-8'</span>)</span><br><span class="line">message[<span class="string">'To'</span>] = Header(<span class="string">'朋友'</span>, <span class="string">'utf-8'</span>)</span><br><span class="line">message[<span class="string">'Subject'</span>] = Header(<span class="string">'Hello World'</span>, <span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line">smtp.sendmail(<span class="string">'wxnacy@gmail.com'</span>, [<span class="string">'bbb@bb.com'</span>], message.as_string())</span><br></pre></td></tr></table></figure></p>
+<h2><span id="chao-song-mi-song">抄送／密送</span><a href="#chao-song-mi-song" class="header-anchor"></a></h2><p>在 smtplib 中发送邮件没有普通和抄送之分，都是放在 <code>receivers</code> 中，只是在头信息中区分开<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cc = [<span class="string">'bb@bbb.com'</span>, <span class="string">'cc@ccc.com'</span>]</span><br><span class="line">message[<span class="string">'Cc'</span>] = Header(<span class="string">','</span>.join(cc), <span class="string">'utf-8'</span>)   <span class="comment"># 抄送</span></span><br><span class="line">message[<span class="string">'Bcc'</span>] = Header(<span class="string">','</span>.join(cc), <span class="string">'utf-8'</span>)  <span class="comment"># 密送</span></span><br></pre></td></tr></table></figure></p>
+<h2><span id="fu-jian">附件</span><a href="#fu-jian" class="header-anchor"></a></h2><p>发送附件的时候需要引入新模块 <code>MIMEMultipart</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> email.mime.multipart <span class="keyword">import</span> MIMEMultipart</span><br><span class="line"></span><br><span class="line">message = MIMEMultipart()</span><br><span class="line">message[<span class="string">'From'</span>] = Header(<span class="string">"发送人"</span>, <span class="string">'utf-8'</span>)</span><br><span class="line">message[<span class="string">'To'</span>] =  Header(<span class="string">"接受人"</span>, <span class="string">'utf-8'</span>)</span><br><span class="line">message[<span class="string">'Subject'</span>] = Header(<span class="string">'附件测试'</span>, <span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line">message.attach(MIMEText(<span class="string">'这是一段正文'</span>, <span class="string">'plain'</span>, <span class="string">'utf-8'</span>))</span><br><span class="line"></span><br><span class="line">att1 = MIMEText(open(<span class="string">'./test.txt'</span>, <span class="string">'rb'</span>).read(), <span class="string">'base64'</span>, <span class="string">'utf-8'</span>)</span><br><span class="line">att1[<span class="string">"Content-Type"</span>] = <span class="string">'application/octet-stream'</span></span><br><span class="line">att1[<span class="string">"Content-Disposition"</span>] = <span class="string">'attachment; filename="test.txt"'</span></span><br><span class="line">message.attach(att1)</span><br><span class="line"></span><br><span class="line">smtp.sendmail(<span class="string">'wxnacy@gmail.com'</span>, [<span class="string">'bb@bbb.com'</span>], message.as_string())</span><br></pre></td></tr></table></figure></p>
+<h2><span id="html-wen-ben-zhong-xian-shi-tu-pian">HTML 文本中显示图片</span><a href="#html-wen-ben-zhong-xian-shi-tu-pian" class="header-anchor"></a></h2><p>使用 <code>MIMEImage</code> 模块可以接收图片格式数据，配合 <code>MIMEMultipart</code> 以附件的形式发送，并显示在文本中<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> email.mime.text <span class="keyword">import</span> MIMEText</span><br><span class="line"><span class="keyword">from</span> email.mime.image <span class="keyword">import</span> MIMEImage</span><br><span class="line"><span class="keyword">from</span> email.mime.multipart <span class="keyword">import</span> MIMEMultipart</span><br><span class="line"></span><br><span class="line">msgRoot = MIMEMultipart(<span class="string">'related'</span>)</span><br><span class="line">msgRoot[<span class="string">'From'</span>] = Header(<span class="string">"菜鸟教程"</span>, <span class="string">'utf-8'</span>)</span><br><span class="line">msgRoot[<span class="string">'To'</span>] =  Header(<span class="string">"测试"</span>, <span class="string">'utf-8'</span>)</span><br><span class="line">subject = <span class="string">'Python SMTP 邮件测试'</span></span><br><span class="line">msgRoot[<span class="string">'Subject'</span>] = Header(subject, <span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line">msgAlternative = MIMEMultipart(<span class="string">'alternative'</span>)</span><br><span class="line">msgRoot.attach(msgAlternative)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">mail_msg = <span class="string">"""</span></span><br><span class="line"><span class="string">           &lt;p&gt;Hello World&lt;/p&gt;</span></span><br><span class="line"><span class="string">           &lt;p&gt;&lt;img src="cid:image1"&gt;&lt;/img&gt;&lt;/p&gt;</span></span><br><span class="line"><span class="string">           """</span></span><br><span class="line">msgAlternative.attach(MIMEText(mail_msg, <span class="string">'html'</span>, <span class="string">'utf-8'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定图片为当前目录</span></span><br><span class="line">fp = open(<span class="string">'./test.png'</span>, <span class="string">'rb'</span>)</span><br><span class="line">msgImage = MIMEImage(fp.read())</span><br><span class="line">fp.close()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义图片 ID，在 HTML 文本中引用</span></span><br><span class="line">msgImage.add_header(<span class="string">'Content-ID'</span>, <span class="string">'&lt;image1&gt;'</span>)</span><br><span class="line">msgRoot.attach(msgImage)</span><br><span class="line">self.client.sendmail(self.sender, receivers, msgRoot.as_string())</span><br></pre></td></tr></table></figure></p>
 <p>图片以附件发送，并指定 <code>cid</code> ，在文本中引用该 id 即可</p>
 <h2><span id="can-kao">参考</span><a href="#can-kao" class="header-anchor"></a></h2><ul>
-<li><a href="https://docs.python.org/3.4/library/email-examples.html" target="_blank" rel="external">email</a></li>
-<li><a href="http://www.runoob.com/python3/python3-smtp.html" target="_blank" rel="external">Python3 SMTP发送邮件</a></li>
+<li><a href="https://docs.python.org/3.4/library/email-examples.html" target="_blank" rel="noopener">email</a></li>
+<li><a href="http://www.runoob.com/python3/python3-smtp.html" target="_blank" rel="noopener">Python3 SMTP发送邮件</a></li>
 </ul>
 
       
@@ -537,6 +537,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -545,19 +549,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -569,7 +569,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -578,10 +578,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -602,6 +598,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -721,11 +721,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -737,7 +737,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

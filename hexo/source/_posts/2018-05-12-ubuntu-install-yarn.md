@@ -5,6 +5,7 @@ tags: [node]
 ---
 
 在 Ubuntu 系统中不能直接通过 `apt` 安装，需要先添加 yarn 仓库。
+
 <!-- more --><!-- toc -->
 
 ```bash

@@ -5,6 +5,7 @@ tags: [go]
 ---
 
 Go 语言中 `encoding/json` 包可以很方便的将结构体、数组、字典转换为 json 字符串。
+
 <!-- more --><!-- toc -->
 
 **引用**

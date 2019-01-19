@@ -5,6 +5,7 @@ tags: [linux]
 ---
 
 我的第一反应是用 `yum install dig` 来下载，呵呵，告诉我不是只有我这样干了。
+
 <!-- more --><!-- toc -->
 
 **CentOS**

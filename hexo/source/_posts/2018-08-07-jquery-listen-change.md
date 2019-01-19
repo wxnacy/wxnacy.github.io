@@ -5,6 +5,7 @@ tags: [jquery]
 ---
 
 change 事件适用于文本域在值变化时触发，我们也可以在非标单元素中通过主动调用 `change()` 方法来触发 change 事件
+
 <!-- more --><!-- toc -->
 ```java
 <!DOCTYPE html>

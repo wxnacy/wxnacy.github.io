@@ -6,6 +6,7 @@ date: 2018-03-30 21:43:14
 ---
 
 记一个基础知识不好的异常
+
 <!-- more --><!-- toc -->
 ```bash
 nginx: [emerg] unknown directive "if(" in /usr/local/etc/openresty/nginx.conf:85
