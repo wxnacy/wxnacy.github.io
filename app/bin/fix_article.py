@@ -61,6 +61,7 @@ def fix(name):
     nf.close()
 
 
+
 if __name__ == "__main__":
     files = os.listdir(DIR)
     files = list(filter(lambda x: filter_art(x), files))
