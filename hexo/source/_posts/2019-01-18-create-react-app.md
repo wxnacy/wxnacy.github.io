@@ -35,7 +35,7 @@ $ yarn start
 
 随后会启动 `3000` 端口服务，并自动在浏览器中打开地址 `http://localhost:300`，如图
 
-![react-app](http://qiniu.wxnacy.com/image/blog/react-app1.png)
+![react-app](https://wxnacy-img.oss-cn-beijing.aliyuncs.com/blog/react.png)
 
 为什么使用 `yarn start` 命令可以启动，原因在于 `package.json` 中的关键代码
 
