@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-01-26T11:43:14.929Z</updated>
+  <updated>2019-02-01T04:15:55.803Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux wc 命令：计算行数、字数、字节数</title>
+    <link href="http://wxnacy.com/2019/02/01/linux-wc/"/>
+    <id>http://wxnacy.com/2019/02/01/linux-wc/</id>
+    <published>2019-02-01T03:56:30.000Z</published>
+    <updated>2019-02-01T04:15:55.803Z</updated>
+    
+    <content type="html"><![CDATA[<p>wc 命令用于查看文件的行数、字数、字节数</p><a id="more"></a><div class="toc"><br><br><!-- toc --><ul><li><a href="#kuai-su-shi-yong">快速使用</a></li><li><a href="#geng-duo-can-shu">更多参数</a></li><li><a href="#yan-shen-shi-yong">延伸使用</a></li></ul><!-- tocstop --></div><h2><span id="kuai-su-shi-yong">快速使用</span><a href="#kuai-su-shi-yong" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ wc wsh.log</span><br><span class="line">   901    3226   13803 wsh.log</span><br></pre></td></tr></table></figure><p>查询的三个数字分别为行数、单词数、字节数</p><h2><span id="geng-duo-can-shu">更多参数</span><a href="#geng-duo-can-shu" class="header-anchor"></a></h2><p>使用 <code>man</code> 命令可以查看 wc 的完整文档、还有如下参数</p><ul><li><code>-c</code>: 查看字节数</li><li><code>-m</code>: 查看字符数</li><li><code>-w</code>: 查看单词数</li><li><code>-l</code>: 查看行数<br>macOS 没有下面的命令</li><li><code>-L</code>: 查看最长行的长度</li><li><code>--help</code>: 查看在线帮助</li><li><code>--version</code>: 查看版本</li></ul><h2><span id="yan-shen-shi-yong">延伸使用</span><a href="#yan-shen-shi-yong" class="header-anchor"></a></h2><p>wc 也可以接受管道信息，我们可以查看当前目录文件数</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ls | wc -l</span><br></pre></td></tr></table></figure><p>这是包含文件夹的，如果只想要查看文件数，可以借助 <code>grep</code> 命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ll | grep ^- | wc -l</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;wc 命令用于查看文件的行数、字数、字节数&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="http://wxnacy.com/tags/linux/"/>
+    
+  </entry>
   
   <entry>
     <title>Mysql 查询 JSON 结果的相关函数</title>
@@ -405,26 +425,6 @@
     
     
       <category term="python" scheme="http://wxnacy.com/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CentOS 7 如何安装 Java 11</title>
-    <link href="http://wxnacy.com/2018/12/27/centos7-install-java11/"/>
-    <id>http://wxnacy.com/2018/12/27/centos7-install-java11/</id>
-    <published>2018-12-27T01:26:01.000Z</published>
-    <updated>2019-01-19T05:30:00.669Z</updated>
-    
-    <content type="html"><![CDATA[<p>几个月前我写过文章 <a href="/2018/06/15/centos-install-jdk/">CentOS 安装 JDK</a> ，当时是以 JDK 8 为例子，现在 Java 11 出来了，相应的更新一版。</p><a id="more"></a><div class="toc"><br><br><!-- toc --><ul><li><a href="#openjdk">OpenJDK</a></li><li><a href="#oracle">Oracle</a></li><li><a href="#xuan-ze-ban-ben">选择版本</a></li></ul><!-- tocstop --></div><h2><span id="openjdk">OpenJDK</span><a href="#openjdk" class="header-anchor"></a></h2><p>首先搜索可安装的 JDK</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum search java-11</span><br></pre></td></tr></table></figure><p>从结果中我们可以找出两个条目</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">java-11-openjdk.x86_64 : OpenJDK Runtime Environment 11</span><br><span class="line">java-11-openjdk-devel.x86_64 : OpenJDK Development Environment 11</span><br></pre></td></tr></table></figure><p>他们分别是 JRE 和 JDK，根据你的需求安装即可，比如安装 JRE</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install java-11-openjdk -y</span><br></pre></td></tr></table></figure><p>安装目录为</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/lib/jvm/java-11-openjdk-11.0.1.13-3.el7_6.x86_64</span><br></pre></td></tr></table></figure><p>查看版本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ java -version</span><br><span class="line"></span><br><span class="line">openjdk version <span class="string">"11.0.1"</span> 2018-10-16 LTS</span><br><span class="line">OpenJDK Runtime Environment 18.9 (build 11.0.1+13-LTS)</span><br><span class="line">OpenJDK 64-Bit Server VM 18.9 (build 11.0.1+13-LTS, mixed mode, sharing)</span><br></pre></td></tr></table></figure><h2><span id="oracle">Oracle</span><a href="#oracle" class="header-anchor"></a></h2><p>Oracle 的 JDK 安装要稍微麻烦点，首先获取<a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html" target="_blank" rel="noopener">官网</a>的 JDK RPM 地址</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://download.oracle.com/otn-pub/java/jdk/11.0.1+13/90cf5d8f270a4347a95050320eef3fb7/jdk-11.0.1_linux-x64_bin.rpm</span><br></pre></td></tr></table></figure><p>下载到服务器</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget --no-cookies --no-check-certificate --header <span class="string">"Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie"</span> https://download.oracle.com/otn-pub/java/jdk/11.0.1+13/90cf5d8f270a4347a95050320eef3fb7/jdk-11.0.1_linux-x64_bin.rpm</span><br></pre></td></tr></table></figure><p>安装</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum -y localinstall jdk-11.0.1_linux-x64_bin.rpm</span><br></pre></td></tr></table></figure><p>安装目录为</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/java/jdk-11.0.1</span><br></pre></td></tr></table></figure><h2><span id="xuan-ze-ban-ben">选择版本</span><a href="#xuan-ze-ban-ben" class="header-anchor"></a></h2><p>查看所有本机 JDK 版本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ sudo alternatives --config java</span><br><span class="line"></span><br><span class="line">There are 2 programs <span class="built_in">which</span> provide <span class="string">'java'</span>.</span><br><span class="line"></span><br><span class="line">  Selection    Command</span><br><span class="line">-----------------------------------------------</span><br><span class="line"> + 1           java-11-openjdk.x86_64 (/usr/lib/jvm/java-11-openjdk-11.0.1.13-3.el7_6.x86_64/bin/java)</span><br><span class="line">*  2           /usr/java/jdk-11.0.1/bin/java</span><br><span class="line"></span><br><span class="line">Enter to keep the current selection[+], or <span class="built_in">type</span> selection number: 2</span><br></pre></td></tr></table></figure><p><code>*+</code> 代表当前使用的版本，该命令下输入版本对应的数字即可更改版本，我们输入 2 更<br>改为 oracle 版本，然后查看版本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ java -version</span><br><span class="line">java version <span class="string">"11.0.1"</span> 2018-10-16 LTS</span><br><span class="line">Java(TM) SE Runtime Environment 18.9 (build 11.0.1+13-LTS)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM 18.9 (build 11.0.1+13-LTS, mixed mode)</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;几个月前我写过文章 &lt;a href=&quot;/2018/06/15/centos-install-jdk/&quot;&gt;CentOS 安装 JDK&lt;/a&gt; ，当时是以 JDK 8 为例子，现在 Java 11 出来了，相应的更新一版。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="java" scheme="http://wxnacy.com/tags/java/"/>
     
   </entry>
   
