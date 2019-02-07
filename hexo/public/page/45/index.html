@@ -177,32 +177,34 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-mac-2017-08-10-clear-dns" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-mysql-2017-08-12-item-daily" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/10/mac-2017-08-10-clear-dns/">mac清除DNS缓存</a>
+      <a class="article-title" href="/2017/08/12/mysql-2017-08-12-item-daily/">2017-08-12 新建等级表，完善`insert_user_event`</a>
     </h1>
   
 
         
-        <a href="/2017/08/10/mac-2017-08-10-clear-dns/" class="archive-article-date">
-  	<time datetime="2017-08-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-10</time>
+        <a href="/2017/08/12/mysql-2017-08-12-item-daily/" class="archive-article-date">
+  	<time datetime="2017-08-11T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-12</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>原文：<a href="https://support.apple.com/zh-cn/HT202516" target="_blank" rel="noopener">https://support.apple.com/zh-cn/HT202516</a></p>
-<h2><span id="guan-yu-dns-huan-cun">关于 DNS 缓存</span><a href="#guan-yu-dns-huan-cun" class="header-anchor"></a></h2><p>OS X 会将已解析的 DNS 查询的本地缓存保留一段时间，保留时间由 DNS 服务器定义。有时可能需要立即还原缓存设置并重新查询 DNS 服务器。例如，如果您是网络或服务器管理员且您的 DNS 服务器上的条目最近有更改，您可能需要执行此操作。<br>如果您的 Mac 使用的不是您服务器上的最新 DNS 条目，您可重新启动 Mac 以更新其缓存的信息。如果您需要更新使用 OS X 的服务器上的 DNS 条目但又不能重新启动服务器，请使用以下适用于您所使用的 OS X 版本的命令。</p>
-<h2><span id="os-x-yosemite-ji-geng-xin-ji-xing">OS X Yosemite及更新机型</span><a href="#os-x-yosemite-ji-geng-xin-ji-xing" class="header-anchor"></a></h2><p>在 OS X v10.10.4 或更高版本中，请使用以下“终端”命令来还原 DNS 缓存设置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo killall -HUP mDNSResponder</span><br></pre></td></tr></table></figure></p>
-<p>在 OS X v10.10 至 v10.10.3 中，请使用以下“终端”命令来还原 DNS 缓存设置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo discoveryutil mdnsflushcache</span><br></pre></td></tr></table></figure></p>
-<h2><span id="os-x-mavericks-mountain-lion-he-lion">OS X Mavericks、Mountain Lion 和 Lion</span><a href="#os-x-mavericks-mountain-lion-he-lion" class="header-anchor"></a></h2><p>在 OS X v10.9.5 及更低版本中，请使用以下“终端”命令来还原 DNS 缓存设置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo killall -HUP mDNSResponder</span><br></pre></td></tr></table></figure></p>
-<h2><span id="mac-os-x-snow-leopard">Mac OS X Snow Leopard</span><a href="#mac-os-x-snow-leopard" class="header-anchor"></a></h2><p>在 OS X v10.6 至 v10.6.8 中，请使用以下“终端”命令来还原 DNS 缓存设置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dscacheutil -flushcache</span><br></pre></td></tr></table></figure></p>
+        <blockquote>
+<p>今天练习目标，新建等级表，完善<code>insert_user_event</code>做到自动更新用户总积分和当前等级</p>
+</blockquote>
+<h2><span id="xin-jian-deng-ji-biao">新建等级表</span><a href="#xin-jian-deng-ji-biao" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">drop table if exists `rank`;</span><br><span class="line">create table `rank`(</span><br><span class="line">	id int(11) not null auto_increment,</span><br><span class="line">	rank int(11) not null default 0 comment &apos;等级&apos;,</span><br><span class="line">	name varchar(32) not null  comment &apos;等级名&apos;,</span><br><span class="line">	score int(11) not null comment &apos;等级所需值&apos;,</span><br><span class="line">	primary key(`id`)</span><br><span class="line">)engine=InnoDB default charset=utf8mb4 comment &apos;登记表&apos;;</span><br></pre></td></tr></table></figure>
+<h2><span id="cha-ru-shu-ju">插入数据</span><a href="#cha-ru-shu-ju" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">insert into rank (rank,name,score) values (1,&apos;等级1&apos;,0);</span><br><span class="line">insert into rank (rank,name,score) values (2,&apos;等级2&apos;,200);</span><br><span class="line">insert into rank (rank,name,score) values (3,&apos;等级3&apos;,500);</span><br><span class="line">insert into rank (rank,name,score) values (4,&apos;等级4&apos;,1000);</span><br><span class="line">insert into rank (rank,name,score) values (5,&apos;等级5&apos;,2000);</span><br><span class="line">insert into rank (rank,name,score) values (6,&apos;等级6&apos;,5000);</span><br><span class="line">insert into rank (rank,name,score) values (7,&apos;等级7&apos;,10000);</span><br><span class="line">insert into rank (rank,name,score) values (8,&apos;等级8&apos;,20000);</span><br></pre></td></tr></table></figure>
+<h2><span id="chong-xie-trigger">重写trigger</span><a href="#chong-xie-trigger" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">drop trigger if exists `insert_user_event`;</span><br><span class="line">DELIMITER $</span><br><span class="line">create trigger `insert_user_event` after insert on user_event for each row  </span><br><span class="line">begin</span><br><span class="line">	declare total_score int;</span><br><span class="line">	declare rank_val int;</span><br><span class="line">	if (new.type = &apos;get_score&apos;) then</span><br><span class="line">		select sum(val_num) into total_score from user_event where user_id = new.user_id and type = &apos;get_score&apos; and is_del = 0;</span><br><span class="line">		select rank into rank_val  from rank where score &lt;= total_score order by score desc limit 1;</span><br><span class="line">		update user set rank = rank_val , score = total_score where id = new.user_id;</span><br><span class="line">		</span><br><span class="line">	end if;</span><br><span class="line">end $</span><br><span class="line">DELIMITER ;</span><br></pre></td></tr></table></figure>
+<h2><span id="yun-xing">运行</span><a href="#yun-xing" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">update user set rank = 0 , score = 0 where id = 1;</span><br><span class="line">update user_event set is_del = 1 where user_id = 1 and type = &apos;get_score&apos;;</span><br><span class="line">insert into user_event (user_id,type,val_num) values (1,&apos;get_score&apos;,501);</span><br><span class="line">select * from user where id = 1;</span><br></pre></td></tr></table></figure>
+<p>运行后，用户rank=1 score=501</p>
 
       
 
@@ -221,7 +223,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">mac</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
         		</li>
       		
 		</ul>
@@ -231,7 +233,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/10/mac-2017-08-10-clear-dns/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/12/mysql-2017-08-12-item-daily/">展开全文 >></a>
         </p>
       
 
@@ -261,20 +263,20 @@
 
 
   
-    <article id="post-mysql-2017-08-10-item-daily" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-mysql-2017-08-11-item-daily" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/10/mysql-2017-08-10-item-daily/">2017-08-10 新建collection_resource表，新建trigger更新collection资源总数</a>
+      <a class="article-title" href="/2017/08/11/mysql-2017-08-11-item-daily/">2017-08-11 新建用户行为表，新建trigger完成用户总分数更新</a>
     </h1>
   
 
         
-        <a href="/2017/08/10/mysql-2017-08-10-item-daily/" class="archive-article-date">
-  	<time datetime="2017-08-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-10</time>
+        <a href="/2017/08/11/mysql-2017-08-11-item-daily/" class="archive-article-date">
+  	<time datetime="2017-08-10T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-11</time>
 </a>
         
       </header>
@@ -282,13 +284,13 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>今天练习的目标，新建collection_resource表，并新建trigger更新collection的资源数</p>
+<p>今天练习新建用户行为表user_event，并新建trigger做到更新用户总分数</p>
 </blockquote>
-<p>专辑：<a href="/?p=/doc/mysql/mysql_daily.md">mysql每天练习</a></p>
-<h2><span id="xin-jian-collection-resource">新建collection_resource</span><a href="#xin-jian-collection-resource" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">drop table if exists `collection_resource`;</span><br><span class="line">CREATE TABLE `collection_resource` (</span><br><span class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `collection_id` int(11) NOT NULL,</span><br><span class="line">  `resource_id` int(11) NOT NULL,</span><br><span class="line">  `resource_type` varchar(32) NOT NULL,</span><br><span class="line">  PRIMARY KEY (`id`)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT=&apos;合集资源对应表&apos;;</span><br></pre></td></tr></table></figure>
-<h2><span id="collection-biao-tian-jia-zi-yuan-shu-liang-zi-duan">collection表添加资源数量字段</span><a href="#collection-biao-tian-jia-zi-yuan-shu-liang-zi-duan" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table collection add column resource_count int(11) not null default 0 comment &apos;资源总数&apos;;</span><br></pre></td></tr></table></figure>
-<h2><span id="xin-jian-trigger">新建trigger</span><a href="#xin-jian-trigger" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">drop trigger if exists `insert_collection_resource`;</span><br><span class="line">delimiter $</span><br><span class="line">create trigger `insert_collection_resource` after insert on collection_resource for each row </span><br><span class="line">begin</span><br><span class="line">	declare count int;</span><br><span class="line">	select count(0) into count from collection where id = new.collection_id;</span><br><span class="line">	if (count &gt; 0) then </span><br><span class="line">		update collection set resource_count = resource_count + 1 where id = new.collection_id;</span><br><span class="line">	end if;</span><br><span class="line">end $</span><br><span class="line">delimiter ;</span><br></pre></td></tr></table></figure>
-<h2><span id="yun-xing">运行</span><a href="#yun-xing" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">insert into collection(name) values (&apos;合集&apos;);</span><br><span class="line">insert into collection_resource (collection_id,resource_id,resource_type) values(1,1,&apos;video&apos;);</span><br><span class="line">select * from collection;</span><br></pre></td></tr></table></figure>
+<h2><span id="xin-jian-user-event">新建user_event</span><a href="#xin-jian-user-event" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">drop table if exists `user_event`;</span><br><span class="line">create table `user_event`(</span><br><span class="line">	id int(11) not null auto_increment,</span><br><span class="line">	user_id int(11) not null comment &apos;用户id&apos;,</span><br><span class="line">	type varchar(32) not null comment &apos;行为类型&apos;,</span><br><span class="line">	resource_id int(11) not null default 0 comment &apos;资源id&apos;,</span><br><span class="line">	resource_type varchar(32) not null default &apos;&apos; comment &apos;资源类型&apos;,</span><br><span class="line">	val_num int(11) not null default 0 comment &apos;备用int值&apos;,</span><br><span class="line">	val_str varchar(512) not null default &apos;&apos; comment &apos;备用str值&apos;,</span><br><span class="line">	ext JSON default null comment &apos;扩展&apos;,</span><br><span class="line">	is_del tinyint(1) not null default 0 comment &apos;是否删除&apos;,</span><br><span class="line">	create_ts timestamp not null default current_timestamp comment &apos;创建时间&apos;,</span><br><span class="line">	update_ts timestamp not null default current_timestamp on update current_timestamp comment &apos;修改时间&apos;,</span><br><span class="line">	primary key(`id`)</span><br><span class="line">)engine=InnoDB default charset=utf8mb4 comment &apos;用户行为表&apos;;</span><br></pre></td></tr></table></figure>
+<h2><span id="yong-hu-biao-tian-jia-zong-fen-shu-he-deng-ji-zi-duan">用户表添加总分数和等级字段</span><a href="#yong-hu-biao-tian-jia-zong-fen-shu-he-deng-ji-zi-duan" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alter table user add column rank int(11) not null default 0 comment &apos;排行&apos;;</span><br><span class="line">alter table user add column score int(11) not null default 0 comment &apos;积分&apos;;</span><br></pre></td></tr></table></figure>
+<h2><span id="xin-jian-trigger">新建trigger</span><a href="#xin-jian-trigger" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">drop trigger if exists `insert_user_event`;</span><br><span class="line">delimiter $</span><br><span class="line">create trigger `insert_user_event` after insert on `user_event` for each row </span><br><span class="line">begin</span><br><span class="line">	declare total_score int;</span><br><span class="line">	if (new.type = &apos;get_score&apos;) then</span><br><span class="line">		select sum(val_num) into total_score from user_event where user_id = new.user_id and type  = &apos;get_score&apos;;</span><br><span class="line">		update user set score = total_score where id = new.user_id;</span><br><span class="line">	end if;</span><br><span class="line">end $</span><br><span class="line">delimiter ;</span><br></pre></td></tr></table></figure>
+<h2><span id="yun-xing">运行</span><a href="#yun-xing" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">insert into user_event (user_id,type,val_num) values (1,&apos;get_score&apos;,200);</span><br><span class="line">insert into user_event (user_id,type,val_num) values (1,&apos;get_score&apos;,200);</span><br><span class="line">select * from user where id = 1;</span><br></pre></td></tr></table></figure>
+<p>运行后user中score应该等于400</p>
 
       
 
@@ -317,7 +319,170 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/10/mysql-2017-08-10-item-daily/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/11/mysql-2017-08-11-item-daily/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-python-2017-08-11-os-file" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/11/python-2017-08-11-os-file/">Python 操作目录文件相关命令</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/11/python-2017-08-11-os-file/" class="archive-article-date">
+  	<time datetime="2017-08-10T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">cur_file = sys.argv[<span class="number">0</span>]              <span class="comment"># ==&gt; 获取当前文件名</span></span><br><span class="line">print(cur_file)</span><br><span class="line"><span class="comment"># python test.py                    ==&gt; test.py</span></span><br><span class="line"><span class="comment"># python test/test.py               ==&gt; test/test.py</span></span><br><span class="line"><span class="comment"># python /Users/wxnacy/test/test.py ==&gt; /Users/wxnacy/test/test.py</span></span><br><span class="line"><span class="comment"># __file__ 可以达到同样效果</span></span><br><span class="line"></span><br><span class="line">cmd_dir = os.getcwd()               <span class="comment"># ==&gt; 获取命令运行目录绝对路径</span></span><br><span class="line">print(cmd_dir)</span><br><span class="line"><span class="comment"># python test.py                    ==&gt; /Users/wxnacy/test</span></span><br><span class="line"><span class="comment"># python test/test.py               ==&gt; /Users/wxnacy</span></span><br><span class="line"></span><br><span class="line">print(os.listdir(cmd_dir))          <span class="comment"># ==&gt; 获取目录下的所有文件</span></span><br><span class="line">print(os.path.exists(cmd_dir))      <span class="comment"># ==&gt; 判断文件或目录是否存在</span></span><br><span class="line">print(os.path.isfile(cmd_dir))      <span class="comment"># ==&gt; 判断是否为文件</span></span><br><span class="line">print(os.path.isdir(cmd_dir))       <span class="comment"># ==&gt; 判断是否为目录</span></span><br><span class="line"></span><br><span class="line">dirname = os.path.dirname(cur_file) <span class="comment"># ==&gt; 获取文件目录名</span></span><br><span class="line">print(dirname)</span><br><span class="line"><span class="comment"># os.path.dirname('test.py')        ==&gt; 空</span></span><br><span class="line"><span class="comment"># os.path.dirname('test/test.py')   ==&gt; test</span></span><br><span class="line"></span><br><span class="line">abspath = os.path.abspath(cur_file) <span class="comment"># ==&gt; 获取文件名的绝对路径</span></span><br><span class="line">print(abspath)</span><br><span class="line"><span class="comment"># os.path.abspath('')               ==&gt; 运行命令所在目录</span></span><br><span class="line"><span class="comment"># os.path.abspath('test/test.py')   ==&gt; /Users/wxnacy/test/test.py</span></span><br><span class="line"><span class="comment"># os.path.abspath('/Users/wxnacy')  ==&gt; /Users/wxnacy</span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+      
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/11/python-2017-08-11-os-file/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-python-2017-08-10-pyenv-linux" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/10/python-2017-08-10-pyenv-linux/">Linux 环境下安装 pyenv 和 virtualenv</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/10/python-2017-08-10-pyenv-linux/" class="archive-article-date">
+  	<time datetime="2017-08-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>废话不多直接上命令</p>
+<h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><p>CentOS:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ yum -y install git</span><br><span class="line">$ curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash</span><br><span class="line">$ yum -y install gcc readline readline-devel readline-static openssl \</span><br><span class="line">    openssl-devel openssl-static sqlite-devel bzip2-devel bzip2-libs</span><br></pre></td></tr></table></figure></p>
+<p>Ubuntu<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ apt-get update</span><br><span class="line">$ apt-get -y install git gcc make patch zlib1g.dev libgdbm-dev libssl-dev \</span><br><span class="line">    libsqlite3-dev libbz2-dev libreadline-dev</span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/pyenv/pyenv.git ~/.pyenv</span><br></pre></td></tr></table></figure></p>
+<h2><span id="pei-zhi-huan-jing-bian-liang">配置环境变量</span><a href="#pei-zhi-huan-jing-bian-liang" class="header-anchor"></a></h2><p>vim ~/.bash_profile<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PYENV_ROOT=<span class="string">"<span class="variable">$HOME</span>/.pyenv"</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">"<span class="variable">$PYENV_ROOT</span>/bin:<span class="variable">$PATH</span>"</span></span><br><span class="line"><span class="built_in">export</span> PYENV_VIRTUALENV_DISABLE_PROMPT=1</span><br><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv init -)</span>"</span></span><br><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv virtualenv-init -)</span>"</span></span><br></pre></td></tr></table></figure></p>
+<h2><span id="sheng-ji">升级</span><a href="#sheng-ji" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pyenv update</span><br></pre></td></tr></table></figure>
+<h2><span id="xie-zai">卸载</span><a href="#xie-zai" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm -rf ~/.pyenv</span><br><span class="line">然后把~/.bash_profile环境变量配置中的添加的删掉</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+      
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/10/python-2017-08-10-pyenv-linux/">展开全文 >></a>
         </p>
       
 
@@ -438,6 +603,257 @@
 
 
   
+    <article id="post-mysql-2017-08-10-item-daily" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/10/mysql-2017-08-10-item-daily/">2017-08-10 新建collection_resource表，新建trigger更新collection资源总数</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/10/mysql-2017-08-10-item-daily/" class="archive-article-date">
+  	<time datetime="2017-08-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>今天练习的目标，新建collection_resource表，并新建trigger更新collection的资源数</p>
+</blockquote>
+<p>专辑：<a href="/?p=/doc/mysql/mysql_daily.md">mysql每天练习</a></p>
+<h2><span id="xin-jian-collection-resource">新建collection_resource</span><a href="#xin-jian-collection-resource" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">drop table if exists `collection_resource`;</span><br><span class="line">CREATE TABLE `collection_resource` (</span><br><span class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `collection_id` int(11) NOT NULL,</span><br><span class="line">  `resource_id` int(11) NOT NULL,</span><br><span class="line">  `resource_type` varchar(32) NOT NULL,</span><br><span class="line">  PRIMARY KEY (`id`)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT=&apos;合集资源对应表&apos;;</span><br></pre></td></tr></table></figure>
+<h2><span id="collection-biao-tian-jia-zi-yuan-shu-liang-zi-duan">collection表添加资源数量字段</span><a href="#collection-biao-tian-jia-zi-yuan-shu-liang-zi-duan" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table collection add column resource_count int(11) not null default 0 comment &apos;资源总数&apos;;</span><br></pre></td></tr></table></figure>
+<h2><span id="xin-jian-trigger">新建trigger</span><a href="#xin-jian-trigger" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">drop trigger if exists `insert_collection_resource`;</span><br><span class="line">delimiter $</span><br><span class="line">create trigger `insert_collection_resource` after insert on collection_resource for each row </span><br><span class="line">begin</span><br><span class="line">	declare count int;</span><br><span class="line">	select count(0) into count from collection where id = new.collection_id;</span><br><span class="line">	if (count &gt; 0) then </span><br><span class="line">		update collection set resource_count = resource_count + 1 where id = new.collection_id;</span><br><span class="line">	end if;</span><br><span class="line">end $</span><br><span class="line">delimiter ;</span><br></pre></td></tr></table></figure>
+<h2><span id="yun-xing">运行</span><a href="#yun-xing" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">insert into collection(name) values (&apos;合集&apos;);</span><br><span class="line">insert into collection_resource (collection_id,resource_id,resource_type) values(1,1,&apos;video&apos;);</span><br><span class="line">select * from collection;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+      
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/10/mysql-2017-08-10-item-daily/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-mac-2017-08-10-clear-dns" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/10/mac-2017-08-10-clear-dns/">mac清除DNS缓存</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/10/mac-2017-08-10-clear-dns/" class="archive-article-date">
+  	<time datetime="2017-08-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文：<a href="https://support.apple.com/zh-cn/HT202516" target="_blank" rel="noopener">https://support.apple.com/zh-cn/HT202516</a></p>
+<h2><span id="guan-yu-dns-huan-cun">关于 DNS 缓存</span><a href="#guan-yu-dns-huan-cun" class="header-anchor"></a></h2><p>OS X 会将已解析的 DNS 查询的本地缓存保留一段时间，保留时间由 DNS 服务器定义。有时可能需要立即还原缓存设置并重新查询 DNS 服务器。例如，如果您是网络或服务器管理员且您的 DNS 服务器上的条目最近有更改，您可能需要执行此操作。<br>如果您的 Mac 使用的不是您服务器上的最新 DNS 条目，您可重新启动 Mac 以更新其缓存的信息。如果您需要更新使用 OS X 的服务器上的 DNS 条目但又不能重新启动服务器，请使用以下适用于您所使用的 OS X 版本的命令。</p>
+<h2><span id="os-x-yosemite-ji-geng-xin-ji-xing">OS X Yosemite及更新机型</span><a href="#os-x-yosemite-ji-geng-xin-ji-xing" class="header-anchor"></a></h2><p>在 OS X v10.10.4 或更高版本中，请使用以下“终端”命令来还原 DNS 缓存设置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo killall -HUP mDNSResponder</span><br></pre></td></tr></table></figure></p>
+<p>在 OS X v10.10 至 v10.10.3 中，请使用以下“终端”命令来还原 DNS 缓存设置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo discoveryutil mdnsflushcache</span><br></pre></td></tr></table></figure></p>
+<h2><span id="os-x-mavericks-mountain-lion-he-lion">OS X Mavericks、Mountain Lion 和 Lion</span><a href="#os-x-mavericks-mountain-lion-he-lion" class="header-anchor"></a></h2><p>在 OS X v10.9.5 及更低版本中，请使用以下“终端”命令来还原 DNS 缓存设置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo killall -HUP mDNSResponder</span><br></pre></td></tr></table></figure></p>
+<h2><span id="mac-os-x-snow-leopard">Mac OS X Snow Leopard</span><a href="#mac-os-x-snow-leopard" class="header-anchor"></a></h2><p>在 OS X v10.6 至 v10.6.8 中，请使用以下“终端”命令来还原 DNS 缓存设置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dscacheutil -flushcache</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+      
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">mac</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/10/mac-2017-08-10-clear-dns/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-mysql-2017-08-09-basic-index" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-basic-index/">Mysql 索引的增删查</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/09/mysql-2017-08-09-basic-index/" class="archive-article-date">
+  	<time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文：<a href="http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html" target="_blank" rel="noopener">http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html</a></p>
+        
+          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-basic-index/#more">阅读全文 >></a>
+        
+      
+
+      
+      
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-basic-index/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-mysql-2017-08-09-skill" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -490,90 +906,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-skill/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-mysql-2017-08-09-prompt" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-prompt/">mysql prompt 提示符</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/09/mysql-2017-08-09-prompt/" class="archive-article-date">
-  	<time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文：<a href="http://www.thegeekstuff.com/2010/02/mysql_ps1-6-examples-to-make-your-mysql-prompt-like-angelina-jolie/" target="_blank" rel="noopener">http://www.thegeekstuff.com/2010/02/mysql_ps1-6-examples-to-make-your-mysql-prompt-like-angelina-jolie/</a></p>
-<h2><span id="zai-ming-ling-xing-zhong-shi-yong">在命令行中使用</span><a href="#zai-ming-ling-xing-zhong-shi-yong" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; prompt \u@\d&gt;</span><br><span class="line">PROMPT set to &apos;\u@\d&gt; &apos;</span><br><span class="line">root@(none)&gt; use test</span><br><span class="line">Reading table information for completion of table and column names</span><br><span class="line">You can turn off this feature to get a quicker startup with -A</span><br><span class="line"></span><br><span class="line">Database changed</span><br><span class="line">root@test&gt;</span><br></pre></td></tr></table></figure>
-<h2><span id="zai-ming-ling-xing-can-shu-zhong-shi-yong">在命令行参数中使用</span><a href="#zai-ming-ling-xing-can-shu-zhong-shi-yong" class="header-anchor"></a></h2><p>需要使用双引号括起来<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wxnacy@wxnacydeMacBook-Pro: ~ $ mysql -u root -p --prompt=&quot;\u@\d&gt; &quot;    </span><br><span class="line">root@(none)&gt; use test;</span><br><span class="line">root@test&gt;</span><br></pre></td></tr></table></figure></p>
-<h3><span id="zai-bash-ceng-xiu-gai-mysql-ps1-bian-liang">在bash层修改 MYSQL_PS1 变量</span><a href="#zai-bash-ceng-xiu-gai-mysql-ps1-bian-liang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wxnacy@wxnacydeMacBook-Pro: ~ $ <span class="built_in">export</span> MYSQL_PS1=<span class="string">"\u@\d&gt; "</span>                              </span><br><span class="line">wxnacy@wxnacydeMacBook-Pro: ~ $ mysql -u root -p                            </span><br><span class="line">root@(none)&gt;</span><br></pre></td></tr></table></figure>
-<h2><span id="zai-etc-my-cnf-zhong-pei-zhi">在/etc/my.cnf中配置</span><a href="#zai-etc-my-cnf-zhong-pei-zhi" class="header-anchor"></a></h2><p>也可以在配置中一劳永逸<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[mysql]  </span><br><span class="line">prompt=\\u@\\d&gt;\\ <span class="comment"># 要多加一个反斜线\</span></span><br><span class="line">  </span><br><span class="line">又或者：  </span><br><span class="line">[mysql]  </span><br><span class="line">prompt=<span class="string">"\u@\d&gt; "</span></span><br></pre></td></tr></table></figure></p>
-<h3><span id="geng-duo-can-shu">更多参数</span><a href="#geng-duo-can-shu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">Option  Description  </span><br><span class="line">  </span><br><span class="line">\c  A counter that increments <span class="keyword">for</span> each statement you issue  </span><br><span class="line">\D  The full current date  </span><br><span class="line">\d  The default database  </span><br><span class="line">\h  The server host  </span><br><span class="line">\l  The current delimiter (new <span class="keyword">in</span> 5.0.25)  </span><br><span class="line">\m  Minutes of the current time  </span><br><span class="line">\n  A newline character  </span><br><span class="line">\O  The current month <span class="keyword">in</span> three-letter format (Jan, Feb, …)  </span><br><span class="line">\o  The current month <span class="keyword">in</span> numeric format  </span><br><span class="line">\P  am/pm  </span><br><span class="line">\p  The current TCP/IP port or socket file  </span><br><span class="line">\R  The current time, <span class="keyword">in</span> 24-hour military time (0–23)  </span><br><span class="line">\r  The current time, standard 12-hour time (1–12)  </span><br><span class="line">\S  Semicolon  </span><br><span class="line">\s  Seconds of the current time  </span><br><span class="line">\t  A tab character  </span><br><span class="line">\U  Your full user_name@host_name account name  </span><br><span class="line">   </span><br><span class="line">\u  Your user name  </span><br><span class="line">\v  The server version  </span><br><span class="line">\w  The current day of the week <span class="keyword">in</span> three-letter format (Mon, Tue, …)  </span><br><span class="line">\Y  The current year, four digits  </span><br><span class="line">\y  The current year, two digits  </span><br><span class="line">\_  A space  </span><br><span class="line">\   A space (a space follows the backslash)  </span><br><span class="line">\<span class="string">'  Single quote  </span></span><br><span class="line"><span class="string">\"  Double quote  </span></span><br><span class="line"><span class="string">\\  A literal “\” backslash character  </span></span><br><span class="line"><span class="string">\x  x, for any “x” not listed above</span></span><br></pre></td></tr></table></figure>
-
-      
-
-      
-      
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-prompt/">展开全文 >></a>
         </p>
       
 
@@ -698,358 +1030,9 @@
 
 
   
-    <article id="post-mysql-2017-08-09-basic-index" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-basic-index/">Mysql 索引的增删查</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/09/mysql-2017-08-09-basic-index/" class="archive-article-date">
-  	<time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文：<a href="http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html" target="_blank" rel="noopener">http://www.cnblogs.com/tianhuilove/archive/2011/09/05/2167795.html</a></p>
-        
-          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-basic-index/#more">阅读全文 >></a>
-        
-      
-
-      
-      
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-basic-index/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-mysql-2017-08-09-select-format" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-select-format/">mysql select 格式化输出</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/09/mysql-2017-08-09-select-format/" class="archive-article-date">
-  	<time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2><span id="shi-yong-g-shu-chu-jie-guo-an-xing-chui-zhi-xian-shi-jie-guo">使用\G输出结果按行垂直显示结果</span><a href="#shi-yong-g-shu-chu-jie-guo-an-xing-chui-zhi-xian-shi-jie-guo" class="header-anchor"></a></h2><p>当使用命令 select 结果，如果表属性特别多的时候，查看起来非常难受，在 select 语句<br>后使用<code>\G</code>(必须大写)，可以让结果按行垂直显示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from user\G;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">       id: 1</span><br><span class="line">     name: wxnacy</span><br><span class="line">   is_del: 0</span><br><span class="line">create_ts: 2017-08-08 07:46:42</span><br><span class="line">update_ts: 2017-08-08 07:46:42</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h2><span id="yi-html-ge-shi-shu-chu">以html格式输出</span><a href="#yi-html-ge-shi-shu-chu" class="header-anchor"></a></h2><p>使用mysql客户端的参数–html或者-T，则所有SQL的查询结果会自动生成为html的table代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ mysql -u root --html -p</span><br><span class="line">mysql&gt; select * from user;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TABLE</span> <span class="attr">BORDER</span>=<span class="string">1</span>&gt;</span><span class="tag">&lt;<span class="name">TR</span>&gt;</span><span class="tag">&lt;<span class="name">TH</span>&gt;</span>id<span class="tag">&lt;/<span class="name">TH</span>&gt;</span><span class="tag">&lt;<span class="name">TH</span>&gt;</span>name<span class="tag">&lt;/<span class="name">TH</span>&gt;</span><span class="tag">&lt;<span class="name">TH</span>&gt;</span>is_del<span class="tag">&lt;/<span class="name">TH</span>&gt;</span><span class="tag">&lt;<span class="name">TH</span>&gt;</span>create_ts<span class="tag">&lt;/<span class="name">TH</span>&gt;</span> <span class="tag">&lt;<span class="name">TH</span>&gt;</span>update_ts<span class="tag">&lt;/<span class="name">TH</span>&gt;</span><span class="tag">&lt;/<span class="name">TR</span>&gt;</span><span class="tag">&lt;<span class="name">TR</span>&gt;</span><span class="tag">&lt;<span class="name">TD</span>&gt;</span>1<span class="tag">&lt;/<span class="name">TD</span>&gt;</span><span class="tag">&lt;<span class="name">TD</span>&gt;</span>wxnacy<span class="tag">&lt;/<span class="name">TD</span>&gt;</span><span class="tag">&lt;<span class="name">TD</span>&gt;</span>0<span class="tag">&lt;/<span class="name">TD</span>&gt;</span><span class="tag">&lt;<span class="name">TD</span>&gt;</span>2017-08-08 07:46:42<span class="tag">&lt;/<span class="name">TD</span>&gt;</span><span class="tag">&lt;<span class="name">TD</span>&gt;</span>2017-08-08 07:46:42<span class="tag">&lt;/<span class="name">TD</span>&gt;</span><span class="tag">&lt;/<span class="name">TR</span>&gt;</span><span class="tag">&lt;/<span class="name">TABLE</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2><span id="yi-xml-ge-shi-shu-chu">以xml格式输出</span><a href="#yi-xml-ge-shi-shu-chu" class="header-anchor"></a></h2><p>使用mysql客户端的参数–xml或者-X选项，可以将结果输出为xml格式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ mysql -u root --xml -p</span><br><span class="line">mysql&gt; select * from user;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0"?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">resultset</span> <span class="attr">statement</span>=<span class="string">"select * from user;"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">row</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"id"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span>&gt;</span>wxnacy<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"is_del"</span>&gt;</span>0<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"create_ts"</span>&gt;</span>2017-08-08 07:46:42<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"update_ts"</span>&gt;</span>2017-08-08 07:46:42<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">row</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultset</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2><span id="shi-yong-pager-jin-ru-more-huo-less-cha-kan-jie-guo">使用pager进入more或less查看结果</span><a href="#shi-yong-pager-jin-ru-more-huo-less-cha-kan-jie-guo" class="header-anchor"></a></h2><p>当select查询结果很多时，一屏幕往往无法装下。使用pager命令后在进行select命令，可以进入类似linux中more或less查看文件的效果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; pager more</span><br><span class="line">PAGER set to &apos;more&apos;</span><br><span class="line">mysql&gt; select * from user;</span><br><span class="line">...</span><br><span class="line">mysql&gt; nopager #退出pager状态</span><br><span class="line">PAGER set to stdout</span><br></pre></td></tr></table></figure></p>
-
-      
-
-      
-      
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-select-format/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ansible-2017-08-08-item-basic-playbooks" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">ansible入门笔记2 Playbooks</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/" class="archive-article-date">
-  	<time datetime="2017-08-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>专辑：<a href="/2017/08/14/ansible-2017-08-14-album-study-notes/">ansible学习笔记</a></p>
-<blockquote>
-<p>Playbooks 是 Ansible的配置,部署,编排语言.他们可以被描述为一个需要希望远程主机执行命令的方案,或者一组IT程序运行的命令集合.</p>
-</blockquote>
-<p>一个playbook就是一个YAML文件，所以playbook文件一般都以.yml结尾，一个playbook文件由一个或多个play组成，每个play定义了在一个或多个远程主机上执行的一系列的task，其中每个task一般就是调用一个ansible的模块，如调用copy模块复制文件到远程主机或调用shell模块执行命令。</p>
-<h2><span id="jian-dan-de-pei-zhi">简单的配置</span><a href="#jian-dan-de-pei-zhi" class="header-anchor"></a></h2><p>配置deploy.yml完成进入远程服务器的某个目录并执行git pull操作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- hosts: wxnacy <span class="comment"># 它会默认使用/etc/ansible/hosts 中配置的服务器组名 也可以单独设置hosts地址</span></span><br><span class="line">  tasks:</span><br><span class="line">  - name: <span class="built_in">cd</span> path and git pull <span class="comment"># 命令名称</span></span><br><span class="line">    shell: git pull <span class="comment"># 执行命令</span></span><br><span class="line">    args:</span><br><span class="line">      <span class="built_in">chdir</span>: ~/workdir <span class="comment"># 进入目录</span></span><br></pre></td></tr></table></figure></p>
-<p>运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ ansible-playbook deploy.yml</span><br><span class="line"></span><br><span class="line">PLAY [wxnacy] **********************************************************************************************************************************************************************************************</span><br><span class="line"></span><br><span class="line">TASK [<span class="built_in">cd</span> path and git pull] *************************************************************************************************************************************************************************************</span><br><span class="line">ok: [wxnacy.server.org]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">PLAY RECAP *************************************************************************************************************************************************************************************************</span><br><span class="line">wxnacy.server.org             : ok=2    changed=1    unreachable=0    failed=0</span><br></pre></td></tr></table></figure></p>
-<p>执行完运行命令ansible会在webservers组中依次执行tasks，返回以上样式结果极为成功，结果通过红黄绿三种颜色标明了不同的执行结果，红色表示有task执行失败，黄色表示改变了远程主机状态。</p>
-
-      
-
-      
-      
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ansible</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-mysql-2017-08-08-item-daily" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/08/mysql-2017-08-08-item-daily/">2017-08-08 新建article表，完善`insert_comment_trigger`</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/08/mysql-2017-08-08-item-daily/" class="archive-article-date">
-  	<time datetime="2017-08-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>今天目标创建acticle表，并完善<code>insert_comment_trigger</code>，以支持更新article中的comment_count,comment表新增comment_id字段</p>
-</blockquote>
-<p>专辑：<a href="/?p=/doc/mysql/mysql_daily.md">mysql每天练习</a></p>
-<ul>
-<li><p>新建article</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">drop table if exists `article`;</span><br><span class="line">create table `article`(</span><br><span class="line">	id int(11) not null auto_increment,</span><br><span class="line">	name varchar(32) not null comment &apos;标题&apos;,</span><br><span class="line">	url varchar(512) not null comment &apos;地址&apos;,</span><br><span class="line">	comment_count int(11) not null default 0 comment &apos;评论数量&apos;,</span><br><span class="line">	is_del tinyint(1) not null default 0 comment &apos;是否删除&apos;,</span><br><span class="line">	create_ts timestamp not null default current_timestamp comment &apos;创建时间&apos;,</span><br><span class="line">	update_ts timestamp not null default current_timestamp on update current_timestamp comment &apos;修改时间&apos;,</span><br><span class="line">	primary key(`id`)</span><br><span class="line">)engine=InnoDB default charset=utf8mb4 comment &apos;文章表&apos;;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改<code>insert_comment</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">drop trigger if exists `insert_comment`;</span><br><span class="line">delimiter $</span><br><span class="line">create trigger `insert_comment` after insert on comment for each row </span><br><span class="line">begin</span><br><span class="line">	declare count int;</span><br><span class="line">	if (new.resource_type = &apos;video&apos;) then</span><br><span class="line">		update video set comment_count = comment_count + 1 where id  = new.resource_id;</span><br><span class="line">	elseif (new.resource_type = &apos;article&apos;) then</span><br><span class="line">		update article set comment_count = comment_count + 1 where id = new.resource_id;</span><br><span class="line">	elseif (new.resource_type = &apos;user&apos;) then</span><br><span class="line">		select count(0) into count from user_data where user_id = new.resource_id;</span><br><span class="line">		if (count &gt;0) then</span><br><span class="line">			update user_data set comment_count = comment_count + 1 where user_id = new.resource_id;</span><br><span class="line">		else</span><br><span class="line">			insert into user_data (user_id,comment_count) values (new.resource_id,1);</span><br><span class="line">		end if;</span><br><span class="line">	end if;</span><br><span class="line">end $</span><br><span class="line">delimiter ;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>添加字段</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table comment add column comment_id int(11) not null default 0 comment &apos;回复的评论注解id&apos;;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>测试</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">insert into article (name,url) values (&apos;好文章&apos;,&apos;http://wen.com/wen.html&apos;);</span><br><span class="line">insert into comment(resource_id,resource_type,content) values(1,&apos;article&apos;,&apos;好文章&apos;);</span><br><span class="line">select * from article;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>执行完后，article中comment_count应该等于1</p>
-
-      
-
-      
-      
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/08/mysql-2017-08-08-item-daily/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/44/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/43/">43</a><a class="page-number" href="/page/44/">44</a><span class="page-number current">45</span><a class="page-number" href="/page/46/">46</a><a class="extend next" rel="next" href="/page/46/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/44/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/43/">43</a><a class="page-number" href="/page/44/">44</a><span class="page-number current">45</span><a class="page-number" href="/page/46/">46</a><a class="page-number" href="/page/47/">47</a><a class="extend next" rel="next" href="/page/46/">Next &raquo;</a>
     </nav>
   
 
@@ -1189,15 +1172,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">jpa</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1221,15 +1204,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1370,6 +1353,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">漫威</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssr</a>
               </li>
              
               <li class="article-tag-list-item">

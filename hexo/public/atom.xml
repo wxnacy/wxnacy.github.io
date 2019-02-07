@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-02-01T04:15:55.803Z</updated>
+  <updated>2019-02-07T04:29:23.982Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,50 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CentOS 6 搭建 SS 服务器（自动脚本）</title>
+    <link href="http://wxnacy.com/2019/02/07/linux-install-ssr/"/>
+    <id>http://wxnacy.com/2019/02/07/linux-install-ssr/</id>
+    <published>2019-02-07T04:27:33.000Z</published>
+    <updated>2019-02-07T04:29:23.982Z</updated>
+    
+    <content type="html"><![CDATA[<p>以 <a href="https://github.com/Alvin9999/new-pac/wiki/%E8%87%AA%E5%BB%BAss%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%95%99%E7%A8%8B" target="_blank" rel="noopener">自建ss服务器教程</a> 为教程，使用 expect 编写了自动部署脚本。</p><a id="more"></a><div class="toc"><br><br><!-- toc --><ul><li><a href="#an-zhuang-ssr">安装 SSR</a></li><li><a href="#an-zhuang-rui-su">安装锐速</a></li></ul><!-- tocstop --></div><p>直接安装</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ wget -N --no-check-certificate https://raw.githubusercontent.com/wxnacy/wshell/master/bin/ssr/centos_install_ssr</span><br><span class="line">$ bash centos_install_ssr</span><br></pre></td></tr></table></figure><p>执行完后服务器自动重启，稍后登陆执行命令，完成锐速加速</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ bash serverspeeder-all.sh</span><br></pre></td></tr></table></figure><p>或者使用 <a href="https://github.com/wxnacy/wshell" target="_blank" rel="noopener">wshell</a> 进行安装</p><p>原理：</p><ul><li>选用 CentOS6 系统</li><li>安装 SSR 客户端</li><li>使用锐速加速器</li></ul><p>使用 vultr 购买 CentOS 6 服务器，教程有很详细的讲解，不再赘述。</p><h2><span id="an-zhuang-ssr">安装 SSR</span><a href="#an-zhuang-ssr" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install -y wget expect</span><br><span class="line">$ wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssr.sh &amp;&amp; chmod +x ssr.sh</span><br></pre></td></tr></table></figure><p>创建自动部署脚本 <code>install_ssr</code></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env expect</span><br><span class="line"></span><br><span class="line">spawn sh -c &quot;bash ssr.sh&quot;</span><br><span class="line">expect &quot;*1-15*&quot;</span><br><span class="line"># 安装</span><br><span class="line">send &quot;1\r&quot;</span><br><span class="line">expect &quot;(默认: 2333):&quot;</span><br><span class="line">send &quot;\r&quot;</span><br><span class="line">expect &quot;(默认: doub.io)&quot;</span><br><span class="line">send &quot;\r&quot;</span><br><span class="line">expect &quot;(默认: 5. aes-128-ctr):&quot;</span><br><span class="line">send &quot;10\r&quot;</span><br><span class="line">expect &quot;(默认: 2. auth_sha1_v4):&quot;</span><br><span class="line">send &quot;\r&quot;</span><br><span class="line">expect &quot;*Y*n&quot;</span><br><span class="line">send &quot;y\r&quot;</span><br><span class="line">expect &quot;(默认: 1. plain):&quot;</span><br><span class="line">send &quot;\r&quot;</span><br><span class="line">expect &quot;(默认: 无限):&quot;</span><br><span class="line">send &quot;\r&quot;</span><br><span class="line">expect &quot;(默认: 无限):&quot;</span><br><span class="line">send &quot;\r&quot;</span><br><span class="line">expect &quot;(默认: 无限):&quot;</span><br><span class="line">send &quot;\r&quot;</span><br><span class="line">expect &quot;*y*N*&quot;</span><br><span class="line">send &quot;y\r&quot;</span><br><span class="line">expect &quot;*y*N*&quot;</span><br><span class="line">send &quot;y\r&quot;</span><br><span class="line">interact</span><br></pre></td></tr></table></figure><p>使用 expect 运行脚本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ chmod +x install_ssr</span><br><span class="line">$ expect install_ssr</span><br></pre></td></tr></table></figure><p>随后会使用教程使用的默认参数进行自动安装</p><h2><span id="an-zhuang-rui-su">安装锐速</span><a href="#an-zhuang-rui-su" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ wget --no-check-certificate https://blog.asuhu.com/sh/ruisu.sh</span><br><span class="line">$ wget -N --no-check-certificate https://raw.githubusercontent.com/91yun/serverspeeder/master/serverspeeder-all.sh</span><br><span class="line">$ bash ruisu.sh</span><br></pre></td></tr></table></figure><p>执行时间会有点长，完毕后机器会自动重启，稍后登陆在进行加速操作</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ bash serverspeeder-all.sh</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;以 &lt;a href=&quot;https://github.com/Alvin9999/new-pac/wiki/%E8%87%AA%E5%BB%BAss%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%95%99%E7%A8%8B&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;自建ss服务器教程&lt;/a&gt; 为教程，使用 expect 编写了自动部署脚本。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="http://wxnacy.com/tags/linux/"/>
+    
+      <category term="ssr" scheme="http://wxnacy.com/tags/ssr/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python 实现 Mysql hash 分表的增删改查</title>
+    <link href="http://wxnacy.com/2019/02/02/python-mysql-hash-split-table/"/>
+    <id>http://wxnacy.com/2019/02/02/python-mysql-hash-split-table/</id>
+    <published>2019-02-02T05:59:44.000Z</published>
+    <updated>2019-02-02T06:16:22.405Z</updated>
+    
+    <content type="html"><![CDATA[<p>Mysql 水平分表方式中，比较适合频繁操作全部数据的方式为 hash 取模，比如用户表，所有数据都会频繁使用，使用 hash 取模的方式可以平均的将数据分配到各个表中。</p><a id="more"></a><div class="toc"><br><br><!-- toc --><!-- tocstop --></div><p>理解起来并不难，但是在写代码时需要讲究一些方法，如果有 10 个表，我们总不能写 10 个 Model 进行查询操作吧。</p><p>好在 Python 中可以利用 <code>type()</code> 方法动态创建 <code>class</code>，我们可以根据 id 来生成相应的 Model。</p><p>先来创建两个表</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE `test_1` (</span><br><span class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `name` varchar(32) NOT NULL DEFAULT &apos;&apos; COMMENT &apos;名字&apos;,</span><br><span class="line">  PRIMARY KEY (`id`)</span><br><span class="line">) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT=&apos;测试&apos;;</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE `test_0` (</span><br><span class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `name` varchar(32) NOT NULL DEFAULT &apos;&apos; COMMENT &apos;名字&apos;,</span><br><span class="line">  PRIMARY KEY (`id`)</span><br><span class="line">) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT=&apos;测试&apos;;</span><br></pre></td></tr></table></figure><p>我们使用 <code>flask-sqlalchemy</code> 模块来进行 ORM 操作，正常的写法应该是</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span><span class="params">(db.Model)</span>:</span></span><br><span class="line">    __tablename__ = <span class="string">'test_0'</span></span><br><span class="line">    id = db.Column(db.Integer, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    name = db.Column(db.String, default=<span class="string">''</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 插入数据</span></span><br><span class="line"></span><br><span class="line">t = Test()</span><br><span class="line">t.id = <span class="number">1</span></span><br><span class="line">t.name  = <span class="string">'test'</span></span><br><span class="line">db.session.add(t)</span><br><span class="line">db.session.commit()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询</span></span><br><span class="line"></span><br><span class="line">Test.query.filter_by(id=<span class="number">1</span>).first()</span><br></pre></td></tr></table></figure><p>我说过我不想在写一个 <code>Test1</code> 来对应 <code>test_1</code> 表了，所以我需要对 <code>Test</code> 做一些修改</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span><span class="params">()</span>:</span></span><br><span class="line">    _model = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">model</span><span class="params">(test_id)</span>:</span></span><br><span class="line">        <span class="comment"># 通过取余的方式将数据平均分配到两个表中</span></span><br><span class="line">        index = test_id % <span class="number">2</span></span><br><span class="line">        tablename = <span class="string">'test_&#123;&#125;'</span>.format(index)</span><br><span class="line">        classname = <span class="string">'Test_&#123;&#125;'</span>.format(index)</span><br><span class="line"></span><br><span class="line">        Model = Test._model.get(classname)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> Model:</span><br><span class="line">            Model = type(classname, (BaseModel, db.Model), &#123;</span><br><span class="line">                <span class="string">'__module__'</span>: __name__,</span><br><span class="line">                <span class="string">'__name__'</span>: classname,</span><br><span class="line">                <span class="string">'__tablename__'</span>: tablename,</span><br><span class="line"></span><br><span class="line">                <span class="string">'id'</span> : db.Column(db.BIGINT, primary_key=<span class="keyword">True</span>),</span><br><span class="line">                <span class="string">'name'</span> : db.Column(db.String, default=<span class="string">""</span>, doc=<span class="string">""</span>),</span><br><span class="line">            &#125;)</span><br><span class="line">            Test._model[classname] = Model</span><br><span class="line">        <span class="keyword">return</span> Model</span><br><span class="line"></span><br><span class="line"><span class="comment"># 插入数据</span></span><br><span class="line"></span><br><span class="line">T = Test.model(<span class="number">1</span>)</span><br><span class="line">t = T()</span><br><span class="line">t.id = <span class="number">1</span></span><br><span class="line">t.name = <span class="string">'test'</span></span><br><span class="line">db.session.add(t)</span><br><span class="line">db.session.commit()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询</span></span><br><span class="line"></span><br><span class="line">T.query.filter_by(id=<span class="number">1</span>).first()</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Mysql 水平分表方式中，比较适合频繁操作全部数据的方式为 hash 取模，比如用户表，所有数据都会频繁使用，使用 hash 取模的方式可以平均的将数据分配到各个表中。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://wxnacy.com/tags/python/"/>
+    
+      <category term="mysql" scheme="http://wxnacy.com/tags/mysql/"/>
+    
+  </entry>
   
   <entry>
     <title>Linux wc 命令：计算行数、字数、字节数</title>
@@ -385,46 +429,6 @@
     
     
       <category term="java" scheme="http://wxnacy.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>重新学 Java 系列：新系列、新开始</title>
-    <link href="http://wxnacy.com/2018/12/29/java-renew-why/"/>
-    <id>http://wxnacy.com/2018/12/29/java-renew-why/</id>
-    <published>2018-12-29T08:09:17.000Z</published>
-    <updated>2019-01-19T05:30:00.657Z</updated>
-    
-    <content type="html"><![CDATA[<p>我经常自诩是个 Java 出身的程序员，虽然实际情况确实如此，但随着时间推移，说这句话越来越没了底气。</p><a id="more"></a><div class="toc"><br><br><!-- toc --><!-- tocstop --><p></div><br>以前作为 Java 程序员，我是很自豪的，原因呢？可能只是因为 Java 本身的市场占比。</p><p>后来因为工作原因接触了 Python，并逐渐成为主力语言，Java 就慢慢从我的开发生活中淡出了，这次的原因呢？好吧，我已经不想在用打印 <code>Hello World</code> 这个玩笑来自嘲了。</p><p>在这个过程中，我接触了 Ruby、NodeJS、Go。他们每个都比 Java 简洁，比 Java 更有效率。我沉醉于吸收新语言，觉得这是在给自己修炼各种劳作工具，免得遇到各种问题都只能想到 Java 这一把“锤子”来解决问题。</p><p>那是什么时候出现问题了呢？大概是从面对 Java 代码越来越陌生开始的吧。</p><p>还记得两年前，我还会关注 Java 8 新特性，一位前辈看到后说，还看什么 Java 啊，开发语言发展到现在，Java 跟其他相比，只是在浪费你的工作时间和拖慢你的电脑。我当时还义正言辞的说，虽然不常用了，但必须要多关注动态。</p><p>不过好像也就是说说而已，此后无数次的想要用 Java 写点东西，都被它的繁琐累赘所阻挠，是啊，有了更简洁的语言，为什么还要浪费时间用 Java 来写呢。</p><p>导致的结果就是，现在越来越不会写 Java 了，每次重整旗鼓，都会被包的导入这种小事情纠结半天。真的是因为太久不写了吗？</p><p>最近我常常在想这个问题，从 Python 开始，我每次接触新语言就会非常重视基础，因为当初学 Java 时就是这样的，我坚信不管学什么东西，基础都是最重要的。</p><p>我不断的回忆学 Java 的一些细节，我逐渐发现当时的基础其实并没有学好，我只是以为学好了而已，因为在以前，我从来没有深究过编译整个项目时 <code>javac</code> 的编译逻辑，我也没有深究过 <code>public</code> 明明已经可以像其它语言一样可以对参数赋值读取，却还要使用 <code>private</code> 再配上 <code>set, get</code> 方法。</p><p>我只是跟网上很多人一样，这是规范，这样用就好了，反正有 IDE，他就帮你编译打包了，你关注业务逻辑就行了。</p><p>所以我不断的练习 <code>System.out.println(&quot;Hello World&quot;)</code> 的编写，我不断的重复 <code>set, get</code> 的熟练度，我告诉自己熟能生巧，这样就对了。</p><p>所以我既没有把这些知识搞明明白白后存在大脑，也没有把它记录在博客上供以后查阅，我只把它交给了肌肉记忆。</p><p>重新燃起学习 Java 的欲望，是因为最近 Java 11 更新了，很多新特性，一个免编译运行单文件的新特性，更是让它显得不那么 Java 了，并且它是继 Java 8 后又一个长期维护版本，文章最后一句话是“如果你要入门 Java，这会是个不错的版本”。</p><p>好吧，我想我是属于那个重新入门 Java 的的老鸟了。</p><p>这次我不在借助 IDE，而是用 Vim 一点一点弄懂它的编译逻辑。</p><p>这次我会弄清楚更多的基础内容并把它记录在博客里，存在大脑里。</p><p>这次我希望在跟别人说，我是 Java 出身时，显得更有底气。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;我经常自诩是个 Java 出身的程序员，虽然实际情况确实如此，但随着时间推移，说这句话越来越没了底气。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="java" scheme="http://wxnacy.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python 统计字符串中某个字符串出现的次数</title>
-    <link href="http://wxnacy.com/2018/12/28/python-str-count/"/>
-    <id>http://wxnacy.com/2018/12/28/python-str-count/</id>
-    <published>2018-12-28T07:04:13.000Z</published>
-    <updated>2019-01-19T05:30:00.611Z</updated>
-    
-    <content type="html"><![CDATA[<p>Python 的字符串函数还是很方便的，只需要调用 <code>count()</code> 方法即可。</p><a id="more"></a><div class="toc"><br><br><!-- toc --><!-- tocstop --></div><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">'Hello World'</span>.count(<span class="string">'o'</span>))</span><br><span class="line"><span class="comment"># 2</span></span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Python 的字符串函数还是很方便的，只需要调用 &lt;code&gt;count()&lt;/code&gt; 方法即可。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="python" scheme="http://wxnacy.com/tags/python/"/>
     
   </entry>
   

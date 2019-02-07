@@ -10,10 +10,26 @@
 #  print(result.text)
 
 
-from pytz import timezone
-from datetime import datetime
-tz = timezone("America/New_York")
-res = datetime.now(tz).utcoffset().total_seconds()/60/60
-print(res)
+#  from pytz import timezone
+#  from datetime import datetime
+#  tz = timezone("America/New_York")
+#  res = datetime.now(tz).utcoffset().total_seconds()/60/60
+#  print(res)
 
+class User():
+    def get(self):
+        print("user")
 
+u = User()
+print(type(User))
+print(type(u))
+
+def get(self):
+    print('user')
+Class = type('User', (object,), {
+    'get': get
+})
+
+u = Class()
+print(type(Class))
+print(type(u))
