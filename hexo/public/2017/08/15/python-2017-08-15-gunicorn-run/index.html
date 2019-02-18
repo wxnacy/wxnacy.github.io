@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="虽然 Python 自带服务器服务，但是最多只能用作开发环境调试用，在生产环境中如同玩具一样，一碰就坏，今天给大家介绍使用 gunicorn 启动 Python 项目">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2019-01-19T05:30:00.586Z">
+<meta property="og:updated_time" content="2019-02-18T10:14:17.425Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 使用 gunicorn 启动你的项目">
 <meta name="twitter:description" content="虽然 Python 自带服务器服务，但是最多只能用作开发环境调试用，在生产环境中如同玩具一样，一碰就坏，今天给大家介绍使用 gunicorn 启动 Python 项目">
@@ -198,12 +198,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>虽然 Python 自带服务器服务，但是最多只能用作开发环境调试用，在生产环境中如同<br>玩具一样，一碰就坏，今天给大家介绍使用 gunicorn 启动 Python 项目</p>
+<p>虽然 Python 自带服务器服务，但是最多只能用作开发环境调试用，在生产环境中如同玩具一样，一碰就坏，今天给大家介绍使用 gunicorn 启动 Python 项目</p>
 </blockquote>
-<a id="more"></a>
-<div class="toc">
-
-<!-- toc -->
+<a id="more"></a><div class="toc"><br><br><!-- toc -->
 <ul>
 <li><a href="#an-zhuang">安装</a></li>
 <li><a href="#qi-dong">启动</a></li>
@@ -219,8 +216,15 @@
 <h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install gunicorn</span><br></pre></td></tr></table></figure>
 <h2><span id="qi-dong">启动</span><a href="#qi-dong" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ gunicorn run:app</span><br><span class="line"></span><br><span class="line">[2017-08-15 15:25:28 +0800] [26628] [INFO] Starting gunicorn 19.7.1</span><br><span class="line">[2017-08-15 15:25:28 +0800] [26628] [INFO] Listening at: http://127.0.0.1:8000 (26628)</span><br><span class="line">[2017-08-15 15:25:28 +0800] [26628] [INFO] Using worker: sync</span><br><span class="line">[2017-08-15 15:25:28 +0800] [26631] [INFO] Booting worker with pid: 26631</span><br></pre></td></tr></table></figure>
 <h2><span id="pei-zhi-can-shu">配置参数</span><a href="#pei-zhi-can-shu" class="header-anchor"></a></h2><h3><span id="ming-ling-xing-can-shu">命令行参数</span><a href="#ming-ling-xing-can-shu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gunicorn -w 2 -b 0.0.0.0:8000 run:app</span><br></pre></td></tr></table></figure>
-<p>其中<code>-b 或 --bind</code> 指定项目启动绑定域名和端口，<code>-w 或 --workers</code> 指定启动几个<br>线程</p>
-<h3><span id="pei-zhi-can-shu-wen-jian">配置参数文件</span><a href="#pei-zhi-can-shu-wen-jian" class="header-anchor"></a></h3><p>在项目根目录下创建配置文件 <code>touch gunicorn_config.py</code> 并编辑<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">配置信息</span></span><br><span class="line"><span class="string">https://github.com/benoitc/gunicorn/blob/master/examples/example_config.py</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line">__author__ = <span class="string">"wxnacy(wxnacy@gmail.com)"</span></span><br><span class="line">__copyright__ = <span class="string">"Copyright of wxnacy (2017)."</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> multiprocessing</span><br><span class="line"></span><br><span class="line">bind = <span class="string">'0.0.0.0:8002'</span> <span class="comment"># 绑定地址</span></span><br><span class="line">workers =  multiprocessing.cpu_count() * <span class="number">2</span> + <span class="number">1</span> <span class="comment"># 根据cpu数量指定线程数量</span></span><br></pre></td></tr></table></figure></p>
+<p>其中<code>-b 或 --bind</code> 指定项目启动绑定域名和端口，<code>-w 或 --workers</code> 指定启动几个进程</p>
+<p><strong>异步进程</strong></p>
+<p>虽然启动了两个进程，但它并不是异步进行，我需要指定实现异步进程的类，通常我们使用 <code>gevent</code></p>
+<p>下载</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install gevent</span><br></pre></td></tr></table></figure>
+<p>使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gunicorn -w 2 -b 0.0.0.0:8000 -k gevent run:app</span><br></pre></td></tr></table></figure>
+<p>其中 <code>-k, --worker-class</code> 可以指定异步进程类</p>
+<h3><span id="pei-zhi-can-shu-wen-jian">配置参数文件</span><a href="#pei-zhi-can-shu-wen-jian" class="header-anchor"></a></h3><p>在项目根目录下创建配置文件 <code>touch gunicorn_config.py</code> 并编辑<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">配置信息</span></span><br><span class="line"><span class="string">https://github.com/benoitc/gunicorn/blob/master/examples/example_config.py</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line">__author__ = <span class="string">"wxnacy(wxnacy@gmail.com)"</span></span><br><span class="line">__copyright__ = <span class="string">"Copyright of wxnacy (2017)."</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> multiprocessing</span><br><span class="line"></span><br><span class="line">bind = <span class="string">'0.0.0.0:8002'</span> <span class="comment"># 绑定地址</span></span><br><span class="line">workers =  multiprocessing.cpu_count() * <span class="number">2</span> + <span class="number">1</span> <span class="comment"># 根据cpu数量指定线程数量</span></span><br><span class="line">worker_class = <span class="string">'gevent'</span> <span class="comment"># 异步进程类</span></span><br></pre></td></tr></table></figure></p>
 <p>启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gunicorn -c gunicorn_config.py run:app</span><br></pre></td></tr></table></figure></p>
 <p><a href="http://docs.gunicorn.org/en/stable/settings.html" target="_blank" rel="noopener">更多配置</a></p>
 
@@ -335,8 +339,8 @@
     </a>
   
   
-    <a href="/2017/08/15/linux-2017-08-15-nohup/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Linux 使用nohup在后台不挂断执行命令</div>
+    <a href="/2017/08/15/python-2017-08-15-flask-hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Flask 运行 Hello World</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -516,11 +520,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -556,6 +560,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -564,7 +572,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -573,10 +581,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -688,11 +692,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">go</a>
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color3">go</a>
               </li>
              
               <li class="article-tag-list-item">
