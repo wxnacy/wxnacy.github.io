@@ -3,6 +3,8 @@
 # Author: wxnacy(wxnacy@gmail.com)
 # Description:
 
+import os
+import time
 
 #  from googletrans import Translator
 #  translate = Translator()
@@ -33,3 +35,5 @@ Class = type('User', (object,), {
 u = Class()
 print(type(Class))
 print(type(u))
+
+print(time.time())

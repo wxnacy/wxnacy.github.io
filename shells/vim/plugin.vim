@@ -338,3 +338,13 @@ nmap <Leader><Leader>c :CtrlSF<space>
 "===============================
 let g:jsx_ext_required = 0
 let g:jsx_pragma_required = 1
+
+"===============================
+" jedi-vim 配置
+" https://github.com/davidhalter/jedi-vim
+"===============================
+let g:jedi#popup_on_dot = 0                 " 禁用点后自动补全"
+let g:jedi#popup_select_first = 0           " 禁用自动补全第一个"
+let g:jedi#rename_command = "<leader>R"     " 修改改名的快捷键"
+let g:pymode_rope = 0                       " 禁用 python-mode 的绳索模式"
+" let g:jedi#completions_enabled = 0
