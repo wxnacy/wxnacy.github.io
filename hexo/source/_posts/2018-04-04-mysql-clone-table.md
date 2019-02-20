@@ -57,7 +57,7 @@ mysql> CREATE TABLE `user2` (
 ```
 随后复制数据
 ```mysql
-mysql> insert table `user2` select * from `user`;
+mysql> insert into `user2` select * from `user`;
 ```
 这样可以完全复制表结构和数据，但是却不方便
 
@@ -68,5 +68,5 @@ mysql> create table `user2` like `user`;
 ```
 复制数据
 ```mysql
-mysql> insert table `user2` select * from `user`;
+mysql> insert into `user2` select * from `user`;
 ```
