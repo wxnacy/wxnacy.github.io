@@ -16,13 +16,15 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="平常工作中经常需要查询当前 ip 地址，开发中也需要通过 ip 获取一些位置信息，在这里记录几款可以使用的免费 api 接口。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:image" content="http://wxnacy.com/images/ip-api.png">
+<meta property="og:image" content="http://wxnacy.com/images/ip-api_1231.png">
 <meta property="og:image" content="http://wxnacy.com/images/ipapico.png">
-<meta property="og:updated_time" content="2019-01-19T05:30:00.575Z">
+<meta property="og:image" content="http://wxnacy.com/images/ipstack_1258.png">
+<meta property="og:image" content="http://wxnacy.com/images/ipstack1_1237.png">
+<meta property="og:updated_time" content="2019-02-20T08:45:09.188Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="推荐几款获取当前 ip 的免费 api 接口">
 <meta name="twitter:description" content="平常工作中经常需要查询当前 ip 地址，开发中也需要通过 ip 获取一些位置信息，在这里记录几款可以使用的免费 api 接口。">
-<meta name="twitter:image" content="http://wxnacy.com/images/ip-api.png">
+<meta name="twitter:image" content="http://wxnacy.com/images/ip-api_1231.png">
   
     <link rel="alternative" href="/atom.xml" title="温欣爸比的博客" type="application/atom+xml">
   
@@ -205,17 +207,32 @@
 <ul>
 <li><a href="#ip-api">ip-api</a></li>
 <li><a href="#ipapi">ipapi</a></li>
+<li><a href="#ipstack">ipstack</a></li>
 <li><a href="#qi-ta">其他</a></li>
 </ul>
 <!-- tocstop -->
-<p></p></div><p></p>
-<h2><span id="ip-api">ip-api</span><a href="#ip-api" class="header-anchor"></a></h2><p>ip-api 是我最早找过的服务，<a href="http://ip-api.com/" target="_blank" rel="noopener">官网</a>可以查询当前访问的 ip 位置等信息。<br><img src="/images/ip-api.png" alt="/images/ip-api.png"><br>接口文档为 <a href="http://ip-api.com/docs/api:json" target="_blank" rel="noopener">http://ip-api.com/docs/api:json</a></p>
-<p>访问非常简单<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl http://ip-api.com/json</span><br></pre></td></tr></table></figure></p>
+</div>
+
+<h2><span id="ip-api">ip-api</span><a href="#ip-api" class="header-anchor"></a></h2><p>ip-api 是我最早找过的服务，<a href="http://ip-api.com/" target="_blank" rel="noopener">官网</a>可以查询当前访问的 ip 位置等信息。</p>
+<p><img src="/images/ip-api_1231.png" alt="/images/ip-api.png"></p>
+<p>接口文档为 <a href="http://ip-api.com/docs/api:json" target="_blank" rel="noopener">http://ip-api.com/docs/api:json</a></p>
+<p>访问非常简单</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl http://ip-api.com/json</span><br></pre></td></tr></table></figure>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"as"</span>: <span class="string">"AS22552 eSited Solutions"</span>,</span><br><span class="line">    <span class="attr">"city"</span>: <span class="string">"Orlando"</span>,</span><br><span class="line">    <span class="attr">"country"</span>: <span class="string">"United States"</span>,</span><br><span class="line">    <span class="attr">"countryCode"</span>: <span class="string">"US"</span>,</span><br><span class="line">    <span class="attr">"isp"</span>: <span class="string">"eSited Solutions"</span>,</span><br><span class="line">    <span class="attr">"lat"</span>: <span class="number">28.5106</span>,</span><br><span class="line">    <span class="attr">"lon"</span>: <span class="number">-81.1976</span>,</span><br><span class="line">    <span class="attr">"org"</span>: <span class="string">"eSited Solutions"</span>,</span><br><span class="line">    <span class="attr">"query"</span>: <span class="string">"104.222.246.242"</span>,</span><br><span class="line">    <span class="attr">"region"</span>: <span class="string">"FL"</span>,</span><br><span class="line">    <span class="attr">"regionName"</span>: <span class="string">"Florida"</span>,</span><br><span class="line">    <span class="attr">"status"</span>: <span class="string">"success"</span>,</span><br><span class="line">    <span class="attr">"timezone"</span>: <span class="string">"America/New_York"</span>,</span><br><span class="line">    <span class="attr">"zip"</span>: <span class="string">"32825"</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>除了 ip 信息，还有当前位置的很多信息，虽然只能获取服务器的精准经纬度，但是在很多情况下已经很有用了。这个接口唯一的不足是不支持 https，所幸有支持的。</p>
-<h2><span id="ipapi">ipapi</span><a href="#ipapi" class="header-anchor"></a></h2><p><a href="https://ipapi.co/" target="_blank" rel="noopener">ipapi</a> 跟上边基本一样，官网要漂亮点<br><img src="/images/ipapico.png" alt="/images/ipapi.png"><br><a href="https://ipapi.co/api/?shell#introduction" target="_blank" rel="noopener">api</a> 文档也有更好的支持，关键是支持 https<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl <span class="string">'https://ipapi.co/json/'</span></span><br></pre></td></tr></table></figure></p>
+<h2><span id="ipapi">ipapi</span><a href="#ipapi" class="header-anchor"></a></h2><p><a href="https://ipapi.co/" target="_blank" rel="noopener">ipapi</a> 跟上边基本一样，官网要漂亮点</p>
+<p><img src="/images/ipapico.png" alt="/images/ipapi.png"></p>
+<p><a href="https://ipapi.co/api/?shell#introduction" target="_blank" rel="noopener">api</a> 文档也有更好的支持，关键是支持 https</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl <span class="string">'https://ipapi.co/json/'</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"ip"</span>: <span class="string">"104.222.246.242"</span>,</span><br><span class="line">    <span class="attr">"city"</span>: <span class="string">"Orlando"</span>,</span><br><span class="line">    <span class="attr">"region"</span>: <span class="string">"Florida"</span>,</span><br><span class="line">    <span class="attr">"region_code"</span>: <span class="string">"FL"</span>,</span><br><span class="line">    <span class="attr">"country"</span>: <span class="string">"US"</span>,</span><br><span class="line">    <span class="attr">"country_name"</span>: <span class="string">"United States"</span>,</span><br><span class="line">    <span class="attr">"postal"</span>: <span class="string">"32825"</span>,</span><br><span class="line">    <span class="attr">"latitude"</span>: <span class="number">28.5106</span>,</span><br><span class="line">    <span class="attr">"longitude"</span>: <span class="number">-81.1976</span>,</span><br><span class="line">    <span class="attr">"timezone"</span>: <span class="string">"America/New_York"</span>,</span><br><span class="line">    <span class="attr">"asn"</span>: <span class="string">"AS22552"</span>,</span><br><span class="line">    <span class="attr">"org"</span>: <span class="string">"eSited Solutions"</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>拿到的结果基本一致，看你的需求选择哪个吧，这两个都不需要 <code>secret-key</code> 即可使用，但也有限制，应该是根据 ip 来做的。</p>
+<h2><span id="ipstack">ipstack</span><a href="#ipstack" class="header-anchor"></a></h2><p>严格意义上，该方案不是免费的，但它有一定的免费额度，每月 1 万条，一般个人使用应该也足够了，优点是获取的信息更全，微软、三星等大厂都有使用。</p>
+<p><img src="/images/ipstack_1258.png" alt="ipstack1"></p>
+<p>api 的使用需要先选择一种付费方案注册账号，根据返回的信息不同，可以选择的方案还是挺多的。</p>
+<p><img src="/images/ipstack1_1237.png" alt="ipstack2"></p>
+<p>api 的调用也很简单</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://api.ipstack.com/104.222.246.242?access_key=&#123;access_key&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"city"</span>: null,</span><br><span class="line">    <span class="string">"continent_code"</span>: <span class="string">"NA"</span>,</span><br><span class="line">    <span class="string">"continent_name"</span>: <span class="string">"North America"</span>,</span><br><span class="line">    <span class="string">"country_code"</span>: <span class="string">"US"</span>,</span><br><span class="line">    <span class="string">"country_name"</span>: <span class="string">"United States"</span>,</span><br><span class="line">    <span class="string">"ip"</span>: <span class="string">"104.222.246.242"</span>,</span><br><span class="line">    <span class="string">"latitude"</span>: 37.751,</span><br><span class="line">    <span class="string">"location"</span>: &#123;</span><br><span class="line">        <span class="string">"calling_code"</span>: <span class="string">"1"</span>,</span><br><span class="line">        <span class="string">"capital"</span>: <span class="string">"Washington D.C."</span>,</span><br><span class="line">        <span class="string">"country_flag"</span>: <span class="string">"http://assets.ipstack.com/flags/us.svg"</span>,</span><br><span class="line">        <span class="string">"country_flag_emoji"</span>: <span class="string">"🇺🇸"</span>,</span><br><span class="line">        <span class="string">"country_flag_emoji_unicode"</span>: <span class="string">"U+1F1FA U+1F1F8"</span>,</span><br><span class="line">        <span class="string">"geoname_id"</span>: null,</span><br><span class="line">        <span class="string">"is_eu"</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="string">"languages"</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">"code"</span>: <span class="string">"en"</span>,</span><br><span class="line">                <span class="string">"name"</span>: <span class="string">"English"</span>,</span><br><span class="line">                <span class="string">"native"</span>: <span class="string">"English"</span></span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"longitude"</span>: -97.822,</span><br><span class="line">    <span class="string">"region_code"</span>: null,</span><br><span class="line">    <span class="string">"region_name"</span>: null,</span><br><span class="line">    <span class="string">"type"</span>: <span class="string">"ipv4"</span>,</span><br><span class="line">    <span class="string">"zip"</span>: null</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2><span id="qi-ta">其他</span><a href="#qi-ta" class="header-anchor"></a></h2><p>另外还有一些其他推荐，但使用起来都没有这两个方便</p>
 <ul>
 <li><a href="https://www.whatismyip.com/" target="_blank" rel="noopener">whatismyip</a></li>
@@ -361,7 +378,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">ip-api</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">ipapi</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">其他</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">ip-api</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">ipapi</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">ipstack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">其他</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -554,6 +571,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -562,19 +583,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
