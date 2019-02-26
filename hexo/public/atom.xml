@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-02-20T07:01:12.608Z</updated>
+  <updated>2019-02-26T10:05:43.418Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Vim8 内置插件管理方案</title>
+    <link href="http://wxnacy.com/2019/02/26/vim8-pack/"/>
+    <id>http://wxnacy.com/2019/02/26/vim8-pack/</id>
+    <published>2019-02-26T09:42:43.000Z</published>
+    <updated>2019-02-26T10:05:43.418Z</updated>
+    
+    <content type="html"><![CDATA[<p>Vim8，更新到这个版本，Vim 终于有自己的插件管理方案，引入了 <code>packages</code> 的概念。</p><a id="more"></a><div class="toc"><br><br><!-- toc --><!-- tocstop --></div><p>如果你对 <a href="/2017/09/20/vim-plugin-pathogen/">pathogen</a> 了解的话，应该会很喜欢这种方案，跟它一样，你只需要将插件扔到指定的目录下，Vim 会自动加载这个插件。</p><p>假如你有插件 <code>nerdtree</code>，现在只需要在放在 <code>~/.vim/pack/vendor/start/</code> 目录下即可。</p><p>Vim8 会自动加载 </p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/.vim/pack/*/start/</span><br></pre></td></tr></table></figure><p>目录下的插件，换句话说我也可以把它放在 <code>~/.vim/pack/foo/start/</code> 下，<code>*</code> 所代表的目录是任意值。</p><p>而那些我们不想自动加载的插件可以放到 <code>opt</code> 目录下</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/.vim/pack/*/opt</span><br></pre></td></tr></table></figure><p>随后在 <code>~/.vimrc</code> 中使用 <code>packadd</code> 来手动加载插件，有应用场景如下</p><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> foo_compiler_version &gt; <span class="number">34</span></span><br><span class="line">    packadd foo_new</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    packadd foo_old</span><br><span class="line"><span class="keyword">endif</span></span><br></pre></td></tr></table></figure><p>我们可以根据某个编译版本来选择使用插件的版本。</p><p>查看文档 <code>:h packages</code> 获取更多信息。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Vim8，更新到这个版本，Vim 终于有自己的插件管理方案，引入了 &lt;code&gt;packages&lt;/code&gt; 的概念。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="vim" scheme="http://wxnacy.com/tags/vim/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mysql insert ... on duplicate key update 的用法及在 SQLAlchemy 中的使用</title>
+    <link href="http://wxnacy.com/2019/02/24/mysql-insert-on-duplicate-key-update/"/>
+    <id>http://wxnacy.com/2019/02/24/mysql-insert-on-duplicate-key-update/</id>
+    <published>2019-02-24T04:09:12.000Z</published>
+    <updated>2019-02-24T04:53:03.357Z</updated>
+    
+    <content type="html"><![CDATA[<p>在项目高并发时，很容易出现数据库插入相同数据的情况，虽然可以使用唯一索引避免插入相同数据，但是不断的程序报错也是我们也避免的。</p><a id="more"></a><div class="toc"><br><br><!-- toc --><ul><li><a href="#yu-fa">语法</a></li><li><a href="#sqlalchemy-zhong-de-shi-yong">SQLAlchemy 中的使用</a></li></ul><!-- tocstop --></div><h2><span id="yu-fa">语法</span><a href="#yu-fa" class="header-anchor"></a></h2><p>使用 <code>insert ... on duplicate key update ..</code> 语法可以避免这种情况，举个例子</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">drop table if exists `test`;</span><br><span class="line">create table `test` (</span><br><span class="line">`id` int(11) not null AUTO_INCREMENT,</span><br><span class="line">`name` varchar(32) not null default &apos;&apos;,</span><br><span class="line">`update_ts` timestamp not null default current_timestamp(),</span><br><span class="line">primary key (`id`)</span><br><span class="line">) engine=InnoDB default charset=utf8mb4;</span><br></pre></td></tr></table></figure><p>主键 <code>id</code> 是天然的唯一索引，我们插入重复数据时会报错</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; INSERT INTO test (id, name) VALUES (1, &apos;wxnacy&apos;);</span><br><span class="line">&gt; INSERT INTO test (id, name) VALUES (1, &apos;wxnacy&apos;);</span><br><span class="line">Error 1062: Duplicate entry &apos;1&apos; for key &apos;PRIMARY&apos;</span><br></pre></td></tr></table></figure><p>查看数据</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; SELECT * FROM `test`;</span><br><span class="line">| id | name   | update_ts           |</span><br><span class="line">|------------------------------------</span><br><span class="line">| 1  | wxnacy | 2019-02-24 12:26:58 |</span><br></pre></td></tr></table></figure><p>下面我们来换个语句</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; insert into test (id, name) values (1, &apos;wxnacy&apos;) on duplicate key update update_ts = current_timestamp();</span><br><span class="line">&gt; SELECT * FROM `test`;</span><br><span class="line"></span><br><span class="line">+----+--------+---------------------+</span><br><span class="line">| id | name   | update_ts           |</span><br><span class="line">+----+--------+---------------------+</span><br><span class="line">|  1 | wxnacy | 2019-02-24 12:31:49 |</span><br><span class="line">+----+--------+---------------------+</span><br></pre></td></tr></table></figure><p><code>on duplicate key update</code> 前面是正常的插入语句，其后跟着的是当唯一索引冲突时，想要更新的数据。</p><p>再换个使用场景，如果我想让数据库中用户名是唯一的，则可以先建立唯一索引，在使用该语法。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&gt; alter table test add unique index_name (name);</span><br><span class="line">&gt; insert into test (name) values (&apos;wenn&apos;) on duplicate key update update_ts = current_timestamp();</span><br><span class="line">&gt; SELECT * FROM `test`;</span><br><span class="line">+----+--------+---------------------+</span><br><span class="line">| id | name   | update_ts           |</span><br><span class="line">+----+--------+---------------------+</span><br><span class="line">|  1 | wxnacy | 2019-02-24 12:31:49 |</span><br><span class="line">|  2 | wenn   | 2019-02-24 12:39:25 |</span><br><span class="line">+----+--------+---------------------+</span><br><span class="line"></span><br><span class="line">&gt; insert into test (name) values (&apos;wenn&apos;) on duplicate key update update_ts = current_timestamp();</span><br><span class="line">&gt; SELECT * FROM `test`;</span><br><span class="line"></span><br><span class="line">+----+--------+---------------------+</span><br><span class="line">| id | name   | update_ts           |</span><br><span class="line">+----+--------+---------------------+</span><br><span class="line">|  1 | wxnacy | 2019-02-24 12:31:49 |</span><br><span class="line">|  2 | wenn   | 2019-02-24 12:40:15 |</span><br><span class="line">+----+--------+---------------------+</span><br></pre></td></tr></table></figure><p>这样及保证了避免插入重复数据，同时程序也没有报错，我还可以根据 <code>update</code> 的数据来分析问题的根源。</p><h2><span id="sqlalchemy-zhong-de-shi-yong">SQLAlchemy 中的使用</span><a href="#sqlalchemy-zhong-de-shi-yong" class="header-anchor"></a></h2><p>这个功能需要 SQLAlchemy 1.2 版本以上才支持，官方的例子</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy.dialects.mysql <span class="keyword">import</span> insert</span><br><span class="line"></span><br><span class="line">insert_stmt = insert(my_table). \</span><br><span class="line">    values(id=<span class="string">'some_id'</span>, data=<span class="string">'some data to insert'</span>)</span><br><span class="line"></span><br><span class="line">on_conflict_stmt = insert_stmt.on_duplicate_key_update(</span><br><span class="line">    data=insert_stmt.inserted.data,</span><br><span class="line">    status=<span class="string">'U'</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">conn.execute(on_conflict_stmt)</span><br></pre></td></tr></table></figure><p>析出的 sql 语句为</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO my_table (id, data)</span><br><span class="line">VALUES (:id, :data)</span><br><span class="line">ON DUPLICATE KEY UPDATE data=VALUES(data), status=:status_1</span><br></pre></td></tr></table></figure><p>参考资料</p><ul><li><a href="https://dev.mysql.com/doc/refman/8.0/en/insert-on-duplicate.html" target="_blank" rel="noopener">INSERT … ON DUPLICATE KEY UPDATE Syntax</a></li><li><a href="https://docs.sqlalchemy.org/en/latest/changelog/migration_12.html#support-for-insert-on-duplicate-key-update" target="_blank" rel="noopener">Support for INSERT..ON DUPLICATE KEY UPDATE</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在项目高并发时，很容易出现数据库插入相同数据的情况，虽然可以使用唯一索引避免插入相同数据，但是不断的程序报错也是我们也避免的。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="mysql" scheme="http://wxnacy.com/tags/mysql/"/>
+    
+      <category term="sqlalchemy" scheme="http://wxnacy.com/tags/sqlalchemy/"/>
+    
+  </entry>
   
   <entry>
     <title>简单理解时间复杂度</title>
@@ -117,6 +159,26 @@
       <category term="linux" scheme="http://wxnacy.com/tags/linux/"/>
     
       <category term="ssr" scheme="http://wxnacy.com/tags/ssr/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Go GOPATH 的作用</title>
+    <link href="http://wxnacy.com/2019/02/03/go-gopath/"/>
+    <id>http://wxnacy.com/2019/02/03/go-gopath/</id>
+    <published>2019-02-03T06:11:22.000Z</published>
+    <updated>2019-02-25T06:26:12.988Z</updated>
+    
+    <content type="html"><![CDATA[<p><code>GOPATH</code> 是开发 Go 时必须设置的一个环境变量，通常在安装完 Go 以后就要在 <code>.bash_profile</code> 中进行配置。</p><a id="more"></a><div class="toc"><br><br><!-- toc --><!-- tocstop --></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="built_in">export</span> GOPATH=<span class="variable">$&#123;HOME&#125;</span>/project</span><br><span class="line">...</span><br></pre></td></tr></table></figure><p>使配置生效后，可以使用命令 <code>go env</code> 查看</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">source</span> ~/.bash_profile</span><br><span class="line">$ go env</span><br><span class="line">...</span><br><span class="line">GOPATH=/Users/wxnacy/project</span><br></pre></td></tr></table></figure><p>这样你就可以开发 Go 项目了。</p><p><code>GOPATH</code> 的作用是什么呢？该目录下可能会包含三个文件夹</p><table><thead><tr><th>名称</th><th>描述</th></tr></thead><tbody><tr><td>src</td><td>需要编译的代码和使用 <code>go get</code> 安装的外部依赖代码存放位置</td></tr><tr><td>bin</td><td>编译代码生成的二进制文件存放位置</td></tr><tr><td>pkg</td><td>编译生成的lib文件存储的地方</td></tr></tbody></table><p><code>src</code> 需要手动创建，<code>bin</code> 和 <code>pkg</code> 则是编译时自动生成的。</p><p><code>src</code> 很像 Python 的 site-packages 目录，用来存放依赖包，不过 Go 比较随性，你开发的代码也放在这个目录下，不然编译就会报错。</p><p>我们第一次设置了 <code>GOPATH</code> 后，也不用拘泥于每次将代码都 copy 到 <code>${GOPATH}/src</code> 中，我们只需要将当前代码放在 src 目录下，并将 src 的所在目录临时设置为 <code>GOPATH</code> 即可。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;code&gt;GOPATH&lt;/code&gt; 是开发 Go 时必须设置的一个环境变量，通常在安装完 Go 以后就要在 &lt;code&gt;.bash_profile&lt;/code&gt; 中进行配置。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="go" scheme="http://wxnacy.com/tags/go/"/>
     
   </entry>
   
@@ -365,68 +427,6 @@
     
     
       <category term="java" scheme="http://wxnacy.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>重新学 Java 系列：获取 jar 包中类名列表</title>
-    <link href="http://wxnacy.com/2019/01/08/java-jar-class-list/"/>
-    <id>http://wxnacy.com/2019/01/08/java-jar-class-list/</id>
-    <published>2019-01-08T06:55:53.000Z</published>
-    <updated>2019-01-19T04:06:42.179Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>这个是一个系列阅读，关于为什么重新学习，我在文章 <a href="/2018/12/29/java-renew-why/">重新学 Java 系列：新系列、新开始</a>(<a href="https://wxnacy.com/2018/12/29/java-renew-why/">https://wxnacy.com/2018/12/29/java-renew-why/</a>) 中有提到，这个系列是在有 Java 基础的情况下，重新学习讨论一下以前可能忽略掉，或者没理解的知识细节，我想要永远在学习的路上。</p></blockquote><a id="more"></a><div class="toc"><br><br><!-- toc --><!-- tocstop --><p></div><br>最近想要自己写一下 Vim 中 Java 代码的自动补全，涉及到 <code>import</code> 部分的自动导入，记录下关键步骤。</p><p>想要做自动导入，首先需要知道依赖包中类名的列表，也就是需要反解出 jar 中 class 列表。</p><p>这里需要 <code>java.util.jar</code> 包中的几个类，直接上代码</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Enumeration;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.jar.JarEntry;</span><br><span class="line"><span class="keyword">import</span> java.util.jar.JarFile;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by wxnacy</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassList</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            JarFile jarFile = <span class="keyword">new</span> JarFile(<span class="string">"/Users/wxnacy/.m2/repository/com/alibaba/fastjson/1.1.34/fastjson-1.1.34.jar"</span>);</span><br><span class="line">            Enumeration enu = jarFile.entries();</span><br><span class="line">            <span class="keyword">while</span> (enu.hasMoreElements()) &#123;</span><br><span class="line">                JarEntry jarEntry = (JarEntry) enu.nextElement();</span><br><span class="line">                String name = jarEntry.getName();</span><br><span class="line">                <span class="comment">// 过滤出 class 文件</span></span><br><span class="line">                <span class="keyword">if</span> (name.endsWith(<span class="string">".class"</span>) &amp;&amp; name.indexOf(<span class="string">"$"</span>) == -<span class="number">1</span> ) &#123;</span><br><span class="line">                    <span class="comment">// 重新格式化文件名</span></span><br><span class="line">                    name = name.substring(<span class="number">0</span>, name.indexOf(<span class="string">".class"</span>));</span><br><span class="line">                    name = name.replaceAll(<span class="string">"/"</span>, <span class="string">"."</span>);</span><br><span class="line">                    System.out.println(name);</span><br><span class="line">                    list.add(name);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"list length "</span> + list.size());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;这个是一个系列阅读，关于为什么重新学习，我在文章 &lt;a href=&quot;/2018/12/29/java-renew-why/&quot;&gt;重新学 Java 系列：新系列、新开始&lt;/a&gt;(&lt;a href=&quot;https://wxnacy.com/2018/12/29/java-renew-why/&quot;&gt;https://wxnacy.com/2018/12/29/java-renew-why/&lt;/a&gt;) 中有提到，这个系列是在有 Java 基础的情况下，重新学习讨论一下以前可能忽略掉，或者没理解的知识细节，我想要永远在学习的路上。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-      <category term="java" scheme="http://wxnacy.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2019 年读书目录</title>
-    <link href="http://wxnacy.com/2019/01/07/2019-books/"/>
-    <id>http://wxnacy.com/2019/01/07/2019-books/</id>
-    <published>2019-01-07T05:45:40.000Z</published>
-    <updated>2019-02-18T09:44:22.824Z</updated>
-    
-    <content type="html"><![CDATA[<p>本章记录 2019 年读书情况</p><a id="more"></a><div class="toc"><br><br><!-- toc --><ul><li><a href="#mu-biao">目标</a></li><li><a href="#zheng-zai-du">正在读</a></li><li><a href="#du-wan-de">读完的</a></li><li><a href="#shi-jian">时间</a></li><li><a href="#xiang-du-de">想读的</a></li></ul><!-- tocstop --></div><h2><span id="mu-biao">目标</span><a href="#mu-biao" class="header-anchor"></a></h2><p>2019 年每周要至少读够 8 小时书，一年至少读完 40 本书</p><h2><span id="zheng-zai-du">正在读</span><a href="#zheng-zai-du" class="header-anchor"></a></h2><p>《肖申克的救赎》<br>《别独自用餐》</p><h2><span id="du-wan-de">读完的</span><a href="#du-wan-de" class="header-anchor"></a></h2><ul><li>2019-01-18 09:31:48 读完《武动乾坤》                                             花费 36 小时 48 分钟</li><li>2019-01-23 13:08:00 读完《古董局中局》                                           花费 30 小时 30 分钟</li><li>2019-02-08 20:54:00 读完《三国机密》                                             花费 17 小时 41 分钟</li></ul><p>总共 3 本</p><h2><span id="shi-jian">时间</span><a href="#shi-jian" class="header-anchor"></a></h2><p>2019 年第一周读书   12.31 - 01.06 32小时13分钟<br>2019 年第二周读书   01.07 - 01.13 20小时55分钟<br>2019 年第三周读书   01.14 - 01.20 16小时12分钟<br>2019 年第四周读书   01.21 - 01.27 21小时41分钟<br>2019 年第五周读书   01.28 - 02.03 19小时07分钟<br>2019 年第六周读书   02.04 - 02.10 15小时04分钟<br>2019 年第七周读书   02.11 - 02.17 18小时56分钟</p><p>总共 144 小时 08 分钟</p><h2><span id="xiang-du-de">想读的</span><a href="#xiang-du-de" class="header-anchor"></a></h2><p>《瓦尔登湖》<br>《人类简史》<br>《悟空传》<br>《未来简史》<br>《神经浪游者》</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本章记录 2019 年读书情况&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="杂谈" scheme="http://wxnacy.com/tags/%E6%9D%82%E8%B0%88/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux ab 压力测试</title>
-    <link href="http://wxnacy.com/2019/01/06/linux-ab/"/>
-    <id>http://wxnacy.com/2019/01/06/linux-ab/</id>
-    <published>2019-01-06T02:06:23.000Z</published>
-    <updated>2019-01-19T05:30:00.702Z</updated>
-    
-    <content type="html"><![CDATA[<p>ab 是 Apache 附带的接口压力测试功能，非常简单易用。在测试服务端程序自身运行时长和跨区测试接口反馈时长时非常有用。</p><a id="more"></a><div class="toc"><br><br><!-- toc --><ul><li><a href="#xia-zai">下载</a></li><li><a href="#shi-yong">使用</a></li></ul><!-- tocstop --><p></div></p><h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><p>CentOS</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install -y httpd</span><br></pre></td></tr></table></figure><p>Ubuntu</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt install -y apache2-utils</span><br></pre></td></tr></table></figure><h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ab -c 10 -n 100 http://ip-api.com/json</span><br></pre></td></tr></table></figure><p><strong>参数</strong></p><ul><li><code>-c</code>: 表示并发数</li><li><code>-n</code>: 表示请求总数</li></ul><p><strong>结果</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">&gt; $ ab -c 10 -n 100 http://ip-api.com/json</span><br><span class="line">This is ApacheBench, Version 2.3 &lt;<span class="variable">$Revision</span>: 1807734 $&gt;</span><br><span class="line">Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/</span><br><span class="line">Licensed to The Apache Software Foundation, http://www.apache.org/</span><br><span class="line"></span><br><span class="line">Benchmarking ip-api.com (be patient).....<span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Server Software:</span><br><span class="line">Server Hostname:        ip-api.com</span><br><span class="line">Server Port:            80</span><br><span class="line"></span><br><span class="line">Document Path:          /json</span><br><span class="line">Document Length:        306 bytes</span><br><span class="line"></span><br><span class="line">Concurrency Level:      10</span><br><span class="line">Time taken <span class="keyword">for</span> tests:   6.184 seconds</span><br><span class="line">Complete requests:      100</span><br><span class="line">Failed requests:        0</span><br><span class="line">Total transferred:      46200 bytes</span><br><span class="line">HTML transferred:       30600 bytes</span><br><span class="line">Requests per second:    16.17 [<span class="comment">#/sec] (mean)</span></span><br><span class="line">Time per request:       618.369 [ms] (mean)</span><br><span class="line">Time per request:       61.837 [ms] (mean, across all concurrent requests)</span><br><span class="line">Transfer rate:          7.30 [Kbytes/sec] received</span><br><span class="line"></span><br><span class="line">Connection Times (ms)</span><br><span class="line">              min  mean[+/-sd] median   max</span><br><span class="line">Connect:        1    3   1.1      3       6</span><br><span class="line">Processing:   528  572  58.4    550     889</span><br><span class="line">Waiting:      528  571  58.7    549     888</span><br><span class="line">Total:        531  575  58.3    552     891</span><br><span class="line"></span><br><span class="line">Percentage of the requests served within a certain time (ms)</span><br><span class="line">  50%    552</span><br><span class="line">  66%    565</span><br><span class="line">  75%    574</span><br><span class="line">  80%    600</span><br><span class="line">  90%    635</span><br><span class="line">  95%    656</span><br><span class="line">  98%    890</span><br><span class="line">  99%    891</span><br><span class="line"> 100%    891 (longest request)</span><br></pre></td></tr></table></figure><p><strong>结果详解</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Server Software:        web服务器软件及版本</span><br><span class="line">Server Hostname:        请求的地址</span><br><span class="line">Server Port:            请求的端口</span><br><span class="line"></span><br><span class="line">Document Path:          请求的页面路径</span><br><span class="line">Document Length:        页面大小</span><br><span class="line"></span><br><span class="line">Concurrency Level:      并发数</span><br><span class="line">Time taken <span class="keyword">for</span> tests:   测试总共花费的时间</span><br><span class="line">Complete requests:      完成的请求数</span><br><span class="line">Failed requests:        失败的请求数</span><br><span class="line">Write errors:           写入错误</span><br><span class="line">Total transferred:      总共传输字节数，包含http的头信息等</span><br><span class="line">HTML transferred:       html字节数，实际的页面传递字节数</span><br><span class="line">Requests per second:    每秒处理的请求数，服务器的吞吐量（重要）</span><br><span class="line">Time per request:       平均数，用户平均请求等待时间</span><br><span class="line">Time per request:       服务器平均处理时间</span><br><span class="line">Transfer rate:          平均传输速率（每秒收到的速率）</span><br></pre></td></tr></table></figure><p><code>Time per request</code> 是我们测试接口时长时非常关键的字段。</p><ul><li><a href="http://blog.51cto.com/zhangdiandong/1166557" target="_blank" rel="noopener">linux下web压力测试工具ab使用及详解</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;ab 是 Apache 附带的接口压力测试功能，非常简单易用。在测试服务端程序自身运行时长和跨区测试接口反馈时长时非常有用。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="linux" scheme="http://wxnacy.com/tags/linux/"/>
     
   </entry>
   
