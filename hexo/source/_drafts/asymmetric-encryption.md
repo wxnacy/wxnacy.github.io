@@ -65,3 +65,27 @@ tags: [算法]
 下面我们来看看如何使用 Python 实现加密算法
 
 **生成公私钥**
+
+```bash
+$ ssh-keygen -t rsa -C your_email
+```
+
+**安装依赖**
+
+```bash
+$ pip install pycrypto
+```
+
+**代码**
+
+- [加解密](https://github.com/wxnacy/study/blob/master/python/crypto_demo/rsa_cipher.py)
+- [签名验证](https://github.com/wxnacy/study/blob/master/python/crypto_demo/rsa_signature.py)
+
+
+**youtube 视频**
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/OKIfTOEo7P0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+**youku 视频**
+
+<iframe height=498 width=510 src='http://player.youku.com/embed/XNDA2Nzg3NTY4MA==' frameborder=0 'allowfullscreen'></iframe>

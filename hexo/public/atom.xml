@@ -203,6 +203,26 @@
   </entry>
   
   <entry>
+    <title>Vagrant 常用命令</title>
+    <link href="http://wxnacy.com/2019/02/05/vagrant-commands/"/>
+    <id>http://wxnacy.com/2019/02/05/vagrant-commands/</id>
+    <published>2019-02-05T14:33:10.000Z</published>
+    <updated>2019-02-27T15:26:42.313Z</updated>
+    
+    <content type="html"><![CDATA[<p>记录些 Vagrant 经常用到的命令</p><a id="more"></a><div class="toc"><br><br><!-- toc --><ul><li><a href="#gong-zuo-mu-lu-zhong">工作目录中</a></li><li><a href="#quan-ju-ming-ling">全局命令</a></li></ul><!-- tocstop --></div><h2><span id="gong-zuo-mu-lu-zhong">工作目录中</span><a href="#gong-zuo-mu-lu-zhong" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant init centos/7             <span class="comment"># 初始化系统"</span></span><br><span class="line">$ vagrant up                        <span class="comment"># 启动虚拟机"</span></span><br><span class="line">$ vagrant ssh                       <span class="comment"># 登陆虚拟机"</span></span><br><span class="line">$ vagrant halt                      <span class="comment"># 登陆虚拟机"</span></span><br><span class="line">$ vagrant destroy                   <span class="comment"># 销毁虚拟机"</span></span><br><span class="line">$ vagrant destroy -f                <span class="comment"># 销毁虚拟机，并对询问回答 yes"</span></span><br><span class="line">$ vagrant package                   <span class="comment"># 打包 box"</span></span><br><span class="line">$ vagrant package --ouput=box-name  <span class="comment"># 打包 box，并指定包名"</span></span><br><span class="line">$ vagrant box update                <span class="comment"># 更新 box 版本"</span></span><br><span class="line">$ vagrant status                    <span class="comment"># 当前虚拟机状态</span></span><br><span class="line">$ vagrant reload                    <span class="comment"># 重新加载虚拟机配置</span></span><br></pre></td></tr></table></figure><h2><span id="quan-ju-ming-ling">全局命令</span><a href="#quan-ju-ming-ling" class="header-anchor"></a></h2><p>查看所有虚拟机状态</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant global-status</span><br><span class="line"></span><br><span class="line">id       name    provider   state        directory</span><br><span class="line">-----------------------------------------------------------------------------------------</span><br><span class="line">2ed1547  default virtualbox running      /Users/wxnacy/VagrantProjects/centos7-wshell</span><br><span class="line">1a7c506  default virtualbox inaccessible /Users/wxnacy/VagrantProjects/wxnacy-centos7</span><br><span class="line">a980255  default virtualbox inaccessible /Users/wxnacy/VagrantProjects/centos6</span><br><span class="line">d6edb01  default virtualbox running      /Users/wxnacy/VagrantProjects/wxnacy-ubuntu1604</span><br><span class="line">908baa1  default virtualbox running      /Users/wxnacy/VagrantProjects/xenial64</span><br><span class="line">da8e118  default virtualbox running      /Users/wxnacy/VagrantProjects/bionic64</span><br><span class="line">7a1fc36  default virtualbox poweroff     /Users/wxnacy/VagrantProjects/ubuntu1804</span><br><span class="line">40aa16f  default virtualbox running      /Users/wxnacy/VagrantProjects/centos7</span><br></pre></td></tr></table></figure><p>销毁指定虚拟机</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant destroy name|id</span><br></pre></td></tr></table></figure><p>查看所有 box 列表</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant box list</span><br><span class="line"></span><br><span class="line">centos/7          (virtualbox, 1811.02)</span><br><span class="line">debian/jessie64   (virtualbox, 8.11.0)</span><br><span class="line">ubuntu/bionic64   (virtualbox, 20190212.1.0)</span><br><span class="line">wxnacy/ubuntu1804 (virtualbox, 0)</span><br></pre></td></tr></table></figure><p>添加本地 box 到仓库</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant box add my-box-name box-path</span><br></pre></td></tr></table></figure><p>删除 box</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant box remove my-box-name</span><br><span class="line">$ vagrant box remove my-box-name --box-version &lt;version&gt;    <span class="comment"># 指定版本</span></span><br></pre></td></tr></table></figure><p>更新 box</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant box update --box &lt;box-name&gt;</span><br></pre></td></tr></table></figure><ul><li><a href="https://www.vagrantup.com/docs/cli/" target="_blank" rel="noopener">Command-Line Interface</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;记录些 Vagrant 经常用到的命令&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="vagrant" scheme="http://wxnacy.com/tags/vagrant/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Vim 查看环境信息</title>
     <link href="http://wxnacy.com/2019/02/04/vim-show-message/"/>
     <id>http://wxnacy.com/2019/02/04/vim-show-message/</id>
@@ -401,26 +421,6 @@
     
     
       <category term="go" scheme="http://wxnacy.com/tags/go/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux ab 使用 localhost 报错</title>
-    <link href="http://wxnacy.com/2019/01/14/ab-lh-error/"/>
-    <id>http://wxnacy.com/2019/01/14/ab-lh-error/</id>
-    <published>2019-01-14T07:34:36.000Z</published>
-    <updated>2019-01-19T05:30:00.709Z</updated>
-    
-    <content type="html"><![CDATA[<p>使用 ab 测试本地接口时报错</p><a id="more"></a><div class="toc"><br><br><!-- toc --><!-- tocstop --><p></div><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">This is ApacheBench, Version 2.3 &lt;<span class="variable">$Revision</span>: 1826891 $&gt;</span><br><span class="line">Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/</span><br><span class="line">Licensed to The Apache Software Foundation, http://www.apache.org/</span><br><span class="line"></span><br><span class="line">Benchmarking localhost (be patient)...</span><br><span class="line">Test aborted after 10 failures</span><br><span class="line"></span><br><span class="line">apr_socket_connect(): Invalid argument (22)</span><br></pre></td></tr></table></figure></p><p>原因在于它无法识别 <code>localhost</code> 地址替换为 <code>127.0.0.1</code> 即可</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;使用 ab 测试本地接口时报错&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="linux" scheme="http://wxnacy.com/tags/linux/"/>
     
   </entry>
   
