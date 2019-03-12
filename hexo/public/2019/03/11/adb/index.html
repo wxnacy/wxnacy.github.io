@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="adb 是 Android 的远程调试命令，在 Android 打开 USB 调试模式或直接打开 ADB 功能，就可以用 shell 命令来控制系统。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2019-03-11T14:59:00.969Z">
+<meta property="og:updated_time" content="2019-03-12T03:04:51.242Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 远程调试命令 adb">
 <meta name="twitter:description" content="adb 是 Android 的远程调试命令，在 Android 打开 USB 调试模式或直接打开 ADB 功能，就可以用 shell 命令来控制系统。">
@@ -235,6 +235,8 @@
 <h2><span id="shi-yong-shell-ming-ling">使用 shell 命令</span><a href="#shi-yong-shell-ming-ling" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell</span><br><span class="line">root@x86:/ <span class="comment">#</span></span><br></pre></td></tr></table></figure>
 <p>当有一个设备时，默认链接，如果有多个设备，需要指定设备</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ adb -s 10.0.2.1:5555 shell</span><br><span class="line">root@x86:/ <span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<p>如果不想每次都手动指定，可以设置环境变量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> ANDROID_SERIAL=<span class="string">"DC886B75"</span></span><br></pre></td></tr></table></figure>
 <p>shell 登陆后即可使用常见的脚本命令，比如 <code>ls</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell</span><br><span class="line">root@x86:/ <span class="comment"># ls</span></span><br><span class="line">mnt</span><br><span class="line">lib</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <p>如果只是执行简单的命令，我们也可以直接在本地执行</p>
@@ -250,18 +252,29 @@
 <p><strong>清除数据和缓存</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell pm clear com.test.abc</span><br></pre></td></tr></table></figure>
 <h2><span id="jin-cheng-guan-li">进程管理</span><a href="#jin-cheng-guan-li" class="header-anchor"></a></h2><p><strong>启动应用</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell am start -n &lt;package-name&gt;/&lt;package-name&gt;.&lt;activity-name&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell 进入 Android</span><br><span class="line">$ am start -n &lt;package-name&gt;/&lt;package-name&gt;.&lt;activity-name&gt;</span><br></pre></td></tr></table></figure>
+<p>一些系统应用打开方式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 日历</span></span><br><span class="line">$ am start -n com.android.calendar/com.android.calendar.LaunchActivity</span><br><span class="line"><span class="comment"># 闹钟</span></span><br><span class="line">$ am start -n com.android.alarmclock/com.android.alarmclock.AlarmClock</span><br><span class="line"><span class="comment"># 音乐和视频</span></span><br><span class="line">$ am start -n com.android.music/com.android.music.MusicBrowserActivity</span><br><span class="line">$ am start -n com.android.music/com.android.music.VideoBrowserActivity</span><br><span class="line">$ am start -n com.android.music/com.android.music.MediaPlaybackActivity</span><br><span class="line"><span class="comment"># 照相机</span></span><br><span class="line">$ am start -n com.android.camera/com.android.camera.Camera</span><br><span class="line"><span class="comment"># 浏览器</span></span><br><span class="line">$ am start -n com.android.browser/com.android.browser.BrowserActivity</span><br><span class="line"><span class="comment"># 打开网址</span></span><br><span class="line">$ am start -a android.intent.action.VIEW -d  http://www.google.cn/</span><br><span class="line"><span class="comment"># 拨打电话</span></span><br><span class="line">$ am start -a android.intent.action.CALL -d tel:10086</span><br></pre></td></tr></table></figure>
+<p>这里有个问题，我们可以通过 <code>pm</code> 命令查到 apk 的包名，但是 <code>activity</code> 就不方便知道了，我们希望只通过包名就能启动应用，从网上查到这个方法</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ am start -a android.intent.action.MAIN -n &lt;package-name&gt;</span><br></pre></td></tr></table></figure>
+<p>但是这种方式，我在模拟器中只可以打开系统应用，第三方应用会报错，再次查找发现可以使用 <code>monkey</code> 命令来启动应用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ monkey -p &lt;package-name&gt; -c android.intent.category.LAUNCHER 1</span><br></pre></td></tr></table></figure>
+<p>经过测试，这种方式是比较方便打开各种应用</p>
 <p><strong>杀掉应用</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb force-stop &lt;package-name&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ am force-stop &lt;package-name&gt;</span><br></pre></td></tr></table></figure>
 <p><strong>杀掉所有后台进程</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb <span class="built_in">kill</span>-all</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ am <span class="built_in">kill</span>-all</span><br></pre></td></tr></table></figure>
 <h2><span id="geng-duo-ming-ling">更多命令</span><a href="#geng-duo-ming-ling" class="header-anchor"></a></h2><p><strong>推送文件到设备</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb push test.apk /data</span><br></pre></td></tr></table></figure>
 <p><strong>拉取设备的文件到本地</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ adb pull /data/test.apk</span><br><span class="line">$ adb pull /data/test.apk ~/Downloads</span><br></pre></td></tr></table></figure>
 <p><strong>查看设备 SSN 号</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell getprop | grep ro.boot.serialno</span><br></pre></td></tr></table></figure>
-<p>更多命令见 <a href="http://adbshell.com/commands" target="_blank" rel="noopener">COMMANDS</a></p>
+<p><strong>参考</strong></p>
+<ul>
+<li><a href="http://adbshell.com/commands" target="_blank" rel="noopener">adb</a></li>
+<li><a href="https://blog.csdn.net/u012041204/article/details/53957664" target="_blank" rel="noopener">Android使用ADB启动应用程序</a></li>
+</ul>
 
       
 
@@ -542,11 +555,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -562,7 +579,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -571,10 +588,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -614,11 +627,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -742,11 +755,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
