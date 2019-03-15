@@ -177,19 +177,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-python-2017-08-22-get-image-size" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-linux-2017-08-22-sftp-scp" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/22/python-2017-08-22-get-image-size/">Python 获取本地或网络图片的宽高</a>
+      <a class="article-title" href="/2017/08/22/linux-2017-08-22-sftp-scp/">Linux 远程文件传输 SFTP 和 SCP</a>
     </h1>
   
 
         
-        <a href="/2017/08/22/python-2017-08-22-get-image-size/" class="archive-article-date">
+        <a href="/2017/08/22/linux-2017-08-22-sftp-scp/" class="archive-article-date">
   	<time datetime="2017-08-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
 </a>
         
@@ -197,8 +197,97 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2><span id="ben-di">本地</span><a href="#ben-di" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line">fp = <span class="string">'/Users/wxnacy/Documents/WX20170412-190958@2x.png'</span></span><br><span class="line">i = Image.open(fp)</span><br><span class="line">print(i.size) <span class="comment"># 获取宽高 (w,h)</span></span><br><span class="line">print(i.format) <span class="comment"># 获取图片格式</span></span><br></pre></td></tr></table></figure>
-<h2><span id="wang-luo-tu-pian">网络图片</span><a href="#wang-luo-tu-pian" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> io</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">''</span></span><br><span class="line">i = Image.open(io.BytesIO(requests.get(url).content))</span><br><span class="line">print(i.size) <span class="comment"># 获取宽高 (w,h)</span></span><br><span class="line">print(i.format) <span class="comment"># 获取图片格式</span></span><br></pre></td></tr></table></figure>
+        <blockquote>
+<p>熟悉linux的朋友都知道 SSH 可以登录远程服务器进行工作，但是如果想从远程服务器下载文件或上传到服务器呢，SSH 就做不到了，这时候我们可以用 SFTP 和 SCP 完成任务，这两个指令也是使用 SSH 的通道（Port 22），只是模拟 FTP 与复制的操作而已。下面我们一一介绍.</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2017/08/22/linux-2017-08-22-sftp-scp/#more">阅读全文 >></a>
+        
+      
+
+      
+      
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/22/linux-2017-08-22-sftp-scp/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-linux-2017-08-22-centos-start-stop-restart-sshd" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/">Linux CentOS 各个版本启动SSHD服务命令</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/" class="archive-article-date">
+  	<time datetime="2017-08-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>本篇介绍如何在 CentOS 系统中怎样启动sshd服务，如何开机自启</p>
+</blockquote>
+<h2><span id="ming-ling-gai-kuang">命令概况</span><a href="#ming-ling-gai-kuang" class="header-anchor"></a></h2><p>CentOS &lt; 7.x<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service <span class="built_in">command</span>     <span class="comment"># 使用service命令做start|stop|restart sshd</span></span><br><span class="line">chkconfig <span class="built_in">command</span>   <span class="comment"># turn on or off 机器自启sshd</span></span><br></pre></td></tr></table></figure></p>
+<p>CentOS &gt;= 7.x<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">command</span> <span class="comment"># 管理 start|stop|start 自启sshd</span></span><br></pre></td></tr></table></figure></p>
+<h2><span id="centos-lt-7-x">CentOS &lt; 7.x</span><a href="#centos-lt-7-x" class="header-anchor"></a></h2><h3><span id="chkconfig">chkconfig</span><a href="#chkconfig" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ chkconfig sshd on     <span class="comment"># 开机自启sshd</span></span><br><span class="line">$ chkconfig sshd off    <span class="comment"># 开机关闭自启sshd</span></span><br><span class="line">$ chkconfig --list sshd <span class="comment"># 查看每个运行级别类型中服务的当前状态</span></span><br></pre></td></tr></table></figure>
+<h3><span id="service">service</span><a href="#service" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ service sshd start | stop | restart</span><br><span class="line">or</span><br><span class="line">$ /etc/init.d/sshd start | stop | restart</span><br></pre></td></tr></table></figure>
+<h2><span id="centos-gt-7-x">CentOS &gt;= 7.x</span><a href="#centos-gt-7-x" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl <span class="built_in">enable</span> sshd.service     <span class="comment"># 开机自启sshd</span></span><br><span class="line">$ systemctl <span class="built_in">disable</span> sshd.service    <span class="comment"># 开机关闭自启sshd</span></span><br><span class="line">$ systemctl start sshd.service      <span class="comment"># 启动sshd</span></span><br><span class="line">$ systemctl restart sshd.service    <span class="comment"># 重启</span></span><br><span class="line">$ systemctl stop sshd.service       <span class="comment"># 停止</span></span><br><span class="line">$ systemctl reload sshd.service     <span class="comment"># 重新加载</span></span><br><span class="line">$ systemctl status sshd.service     <span class="comment"># 查看启动状态</span></span><br></pre></td></tr></table></figure>
 
       
 
@@ -217,7 +306,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
         		</li>
       		
 		</ul>
@@ -227,7 +316,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/22/python-2017-08-22-get-image-size/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/">展开全文 >></a>
         </p>
       
 
@@ -340,6 +429,87 @@
 
 
   
+    <article id="post-python-2017-08-18-pip-not-found" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/18/python-2017-08-18-pip-not-found/">Linux 执行 pip 报错 command not found</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/18/python-2017-08-18-pip-not-found/" class="archive-article-date">
+  	<time datetime="2017-08-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>使用各个系统的安装器进行安装</p>
+<h3><span id="centos">CentOS</span><a href="#centos" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ easy_install pip</span><br></pre></td></tr></table></figure>
+<h3><span id="ubuntu">Ubuntu</span><a href="#ubuntu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-get install python-pip</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+      
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/18/python-2017-08-18-pip-not-found/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-python-2017-08-18-basic-supervisor" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -423,30 +593,39 @@
 
 
   
-    <article id="post-python-2017-08-18-pip-not-found" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-openresty-2017-08-16-install" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/18/python-2017-08-18-pip-not-found/">Linux 执行 pip 报错 command not found</a>
+      <a class="article-title" href="/2017/08/16/openresty-2017-08-16-install/">openresty 安装</a>
     </h1>
   
 
         
-        <a href="/2017/08/18/python-2017-08-18-pip-not-found/" class="archive-article-date">
-  	<time datetime="2017-08-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-18</time>
+        <a href="/2017/08/16/openresty-2017-08-16-install/" class="archive-article-date">
+  	<time datetime="2017-08-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>使用各个系统的安装器进行安装</p>
-<h3><span id="centos">CentOS</span><a href="#centos" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ easy_install pip</span><br></pre></td></tr></table></figure>
-<h3><span id="ubuntu">Ubuntu</span><a href="#ubuntu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-get install python-pip</span><br></pre></td></tr></table></figure>
-
+        <p>专辑:<a href="/openresty/2017/08/16/album-study-notes">openresty 学习笔记</a></p>
+<h2><span id="mac-os">Mac OS</span><a href="#mac-os" class="header-anchor"></a></h2><p>推荐使用<code>brew</code>安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">brew install homebrew/nginx/openresty</span><br><span class="line">brew update</span><br><span class="line">brew install pcre openssl</span><br></pre></td></tr></table></figure></p>
+<h2><span id="centos">CentOS</span><a href="#centos" class="header-anchor"></a></h2><p>你可以在你的 CentOS 系统中添加 openresty 仓库，这样就可以便于未来安装或更新我们的软件包（通过 yum update 命令）。运行下面的命令就可以添加我们的仓库：</p>
+<pre><code>sudo yum install yum-utils
+sudo yum-config-manager --add-repo https://openresty.org/package/centos/openresty.repo
+</code></pre><p>然后就可以像下面这样安装软件包，比如 openresty：</p>
+<pre><code>sudo yum install openresty
+</code></pre><p>如果你想安装命令行工具 resty，那么可以像下面这样安装 openresty-resty 包：</p>
+<pre><code>sudo yum install openresty-resty
+</code></pre><p>命令行工具 opm 在 openresty-opm 包里，而 restydoc 工具在 openresty-doc 包里头。</p>
+<p>列出所有 openresty 仓库里头的软件包：</p>
+<pre><code>sudo yum --disablerepo=&quot;*&quot; --enablerepo=&quot;openresty&quot; list available
+</code></pre>
       
 
       
@@ -464,7 +643,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">openresty</a>
         		</li>
       		
 		</ul>
@@ -474,7 +653,94 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/18/python-2017-08-18-pip-not-found/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/16/openresty-2017-08-16-install/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-linux-2017-08-16-curl" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/16/linux-2017-08-16-curl/">网络请求工具 cURL</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/16/linux-2017-08-16-curl/" class="archive-article-date">
+  	<time datetime="2017-08-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>cRUL 是一种命令行工具，作用是发出网络请求，然后得到和提取数据，显示在 “标准输出”（stdout）上面。</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2017/08/16/linux-2017-08-16-curl/#more">阅读全文 >></a>
+        
+      
+
+      
+      
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/16/linux-2017-08-16-curl/">展开全文 >></a>
         </p>
       
 
@@ -616,183 +882,6 @@
 
 
   
-    <article id="post-linux-2017-08-16-curl" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/16/linux-2017-08-16-curl/">网络请求工具 cURL</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/16/linux-2017-08-16-curl/" class="archive-article-date">
-  	<time datetime="2017-08-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>cRUL 是一种命令行工具，作用是发出网络请求，然后得到和提取数据，显示在 “标准输出”（stdout）上面。</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2017/08/16/linux-2017-08-16-curl/#more">阅读全文 >></a>
-        
-      
-
-      
-      
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/16/linux-2017-08-16-curl/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-openresty-2017-08-16-install" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/16/openresty-2017-08-16-install/">openresty 安装</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/16/openresty-2017-08-16-install/" class="archive-article-date">
-  	<time datetime="2017-08-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>专辑:<a href="/openresty/2017/08/16/album-study-notes">openresty 学习笔记</a></p>
-<h2><span id="mac-os">Mac OS</span><a href="#mac-os" class="header-anchor"></a></h2><p>推荐使用<code>brew</code>安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">brew install homebrew/nginx/openresty</span><br><span class="line">brew update</span><br><span class="line">brew install pcre openssl</span><br></pre></td></tr></table></figure></p>
-<h2><span id="centos">CentOS</span><a href="#centos" class="header-anchor"></a></h2><p>你可以在你的 CentOS 系统中添加 openresty 仓库，这样就可以便于未来安装或更新我们的软件包（通过 yum update 命令）。运行下面的命令就可以添加我们的仓库：</p>
-<pre><code>sudo yum install yum-utils
-sudo yum-config-manager --add-repo https://openresty.org/package/centos/openresty.repo
-</code></pre><p>然后就可以像下面这样安装软件包，比如 openresty：</p>
-<pre><code>sudo yum install openresty
-</code></pre><p>如果你想安装命令行工具 resty，那么可以像下面这样安装 openresty-resty 包：</p>
-<pre><code>sudo yum install openresty-resty
-</code></pre><p>命令行工具 opm 在 openresty-opm 包里，而 restydoc 工具在 openresty-doc 包里头。</p>
-<p>列出所有 openresty 仓库里头的软件包：</p>
-<pre><code>sudo yum --disablerepo=&quot;*&quot; --enablerepo=&quot;openresty&quot; list available
-</code></pre>
-      
-
-      
-      
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">openresty</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/16/openresty-2017-08-16-install/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-http-2017-08-16-basic" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -856,89 +945,6 @@ sudo yum-config-manager --add-repo https://openresty.org/package/centos/openrest
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/16/http-2017-08-16-basic/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-python-2017-08-15-gunicorn-run" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/15/python-2017-08-15-gunicorn-run/">Python 使用 gunicorn 启动你的项目</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/15/python-2017-08-15-gunicorn-run/" class="archive-article-date">
-  	<time datetime="2017-08-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>虽然 Python 自带服务器服务，但是最多只能用作开发环境调试用，在生产环境中如同玩具一样，一碰就坏，今天给大家介绍使用 gunicorn 启动 Python 项目</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2017/08/15/python-2017-08-15-gunicorn-run/#more">阅读全文 >></a>
-        
-      
-
-      
-      
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/15/python-2017-08-15-gunicorn-run/">展开全文 >></a>
         </p>
       
 
@@ -1053,7 +1059,7 @@ sudo yum-config-manager --add-repo https://openresty.org/package/centos/openrest
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/44/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/43/">43</a><a class="page-number" href="/page/44/">44</a><span class="page-number current">45</span><a class="page-number" href="/page/46/">46</a><a class="page-number" href="/page/47/">47</a><a class="page-number" href="/page/48/">48</a><a class="extend next" rel="next" href="/page/46/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/44/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/43/">43</a><a class="page-number" href="/page/44/">44</a><span class="page-number current">45</span><a class="page-number" href="/page/46/">46</a><a class="page-number" href="/page/47/">47</a><span class="space">&hellip;</span><a class="page-number" href="/page/49/">49</a><a class="extend next" rel="next" href="/page/46/">Next &raquo;</a>
     </nav>
   
 
@@ -1193,15 +1199,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">jpa</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1225,6 +1231,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
@@ -1233,7 +1243,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1242,10 +1252,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1385,11 +1391,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
