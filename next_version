@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+last_ver=`git describe --abbrev=0 --tags --match "rc[0-9]*" $(git rev-list --tags --max-count=1)`
+VER=(${last_ver//./ })
+echo ${VER[0]}.${VER[1]}.`expr ${VER[2]} + 1`

@@ -43,9 +43,11 @@ date: 2017-09-20 18:02:20
 - [Vim 插件 tern_for_vim Javascript 自动补全](/2017/09/22/vim-plugin-tern)
 
 ## 参考文献
+- [Vim 参考手册](http://vimcdoc.sourceforge.net/doc/)
 - [像 IDE 一样使用 vim](http://treelib.com/book-detail-id-48-aid-2937.html)
 - [Vim 与系统剪切板交互](http://blog.fooleap.org/using-vim-with-clipboard-on-archlinux.html)
 - [笨方法学 Vimscript](http://learnvimscriptthehardway.onefloweroneworld.com/)
+- [笨方法学Vimscript - 看云](https://www.kancloud.cn/kancloud/learn-vimscript-the-hard-way/49321)
 - [Learn Vimscript the Hard Way](http://learnvimscriptthehardway.stevelosh.com/)
 - [Vim scripting cheatsheet](https://devhints.io/vimscript)
 - [Vim help files](http://vimhelp.appspot.com/)
