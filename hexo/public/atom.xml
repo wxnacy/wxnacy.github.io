@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-03-15T02:56:31.291Z</updated>
+  <updated>2019-03-16T08:40:29.518Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Shell 几种算术运算方式</title>
+    <link href="http://wxnacy.com/2019/03/16/shell-calculation/"/>
+    <id>http://wxnacy.com/2019/03/16/shell-calculation/</id>
+    <published>2019-03-16T08:40:29.000Z</published>
+    <updated>2019-03-16T08:40:29.518Z</updated>
+    
+    <content type="html"><![CDATA[<p>Shell 脚本中，我们可以使用几种方式来实现算数运算。</p><a id="more"></a><div class="toc"><br><br><!-- toc --><ul><li><a href="#expr">expr</a></li><li><a href="#xiao-gua-hao">小括号</a></li><li><a href="#zhong-gua-hao">中括号</a></li><li><a href="#let">let</a></li></ul><!-- tocstop --></div><h2><span id="expr">expr</span><a href="#expr" class="header-anchor"></a></h2><p>expr 本身是一个算数运算命令，Shell 可以直接拿到它的执行结果</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> `expr 1 + 2`</span><br><span class="line">3</span><br></pre></td></tr></table></figure><p>expr 有很多缺点，比如：只能运算整数、数字和符号之间必须都有空格、<code>*</code> 号需要转义、无法使用次方运算</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ expr 1+2</span><br><span class="line">1+2</span><br><span class="line"></span><br><span class="line">$ expr 1 +2</span><br><span class="line">expr: syntax error</span><br><span class="line"></span><br><span class="line">$ expr 1 \* 2</span><br><span class="line">2</span><br><span class="line"></span><br><span class="line">$ expr 1 + 2.3</span><br><span class="line">expr: not a decimal number: <span class="string">'2.3'</span></span><br></pre></td></tr></table></figure><h2><span id="xiao-gua-hao">小括号</span><a href="#xiao-gua-hao" class="header-anchor"></a></h2><p>下面我们来看 shell 本身的计算方式，第一个是小括号，这种方式需要把运算表达式用两层小括号包裹起来</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> $((1+2))</span><br><span class="line">3</span><br><span class="line"></span><br><span class="line">$ ((i=1+2))</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$i</span></span><br><span class="line">3</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> $((1 + 2.3))</span><br><span class="line">3.2999999999999998</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> $((2 ** 3))  <span class="comment"># 计算三次方</span></span><br><span class="line">8</span><br></pre></td></tr></table></figure><p>通过例子可以看到，这种方式比 <code>expr</code> 写起来更好更舒服，就是在计算浮点数字时会有精度损失。</p><h2><span id="zhong-gua-hao">中括号</span><a href="#zhong-gua-hao" class="header-anchor"></a></h2><p>中括号的方式必须加上 <code>$</code> 前缀，并不支持像小括号一样，在括号内赋值，其他与小括号无异。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> $[1 + 2]</span><br><span class="line">3</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> $[2 ** 3]</span><br><span class="line">8</span><br></pre></td></tr></table></figure><h2><span id="let">let</span><a href="#let" class="header-anchor"></a></h2><p>let 用来指示运算表达式，也可以达到效果，但是同样的有很多缺点，比如运算符和数字不能有空格、不支持次方运算、浮点运算会忽略小数点部分、<code>*</code> 需要转义</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&gt; $ <span class="built_in">let</span> i = 1 + 2</span><br><span class="line">zsh: bad math expression: operand expected at =</span><br><span class="line"></span><br><span class="line">&gt; $ <span class="built_in">let</span> i=1+2</span><br><span class="line">&gt; $ <span class="built_in">echo</span> <span class="variable">$i</span></span><br><span class="line">3</span><br><span class="line"></span><br><span class="line">&gt; $ <span class="built_in">let</span> i=1+2.3</span><br><span class="line">&gt; $ <span class="built_in">echo</span> <span class="variable">$i</span></span><br><span class="line">3</span><br><span class="line"></span><br><span class="line">&gt; $ <span class="built_in">let</span> i=2**3</span><br><span class="line">zsh: no matches found: i=2**3</span><br><span class="line"></span><br><span class="line">&gt; $ <span class="built_in">let</span> i=1+2.6</span><br><span class="line">&gt; $ <span class="built_in">echo</span> <span class="variable">$i</span></span><br><span class="line">3</span><br><span class="line"></span><br><span class="line">&gt; $ <span class="built_in">let</span> i=2\*3</span><br><span class="line">&gt; $ <span class="built_in">echo</span> <span class="variable">$i</span></span><br><span class="line">6</span><br></pre></td></tr></table></figure><p>经过对比可以发现，小括号和中括号的方式最好，两者只是书写存在细微差异，其他两个不建议使用。</p><ul><li><a href="https://www.cnblogs.com/f-ck-need-u/p/7231832.html" target="_blank" rel="noopener">SHELL脚本–expr命令全解</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Shell 脚本中，我们可以使用几种方式来实现算数运算。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="shell" scheme="http://wxnacy.com/tags/shell/"/>
+    
+  </entry>
   
   <entry>
     <title>Vim 报错：Caught deadly signal SEGV</title>
@@ -401,26 +421,6 @@
       <category term="python" scheme="http://wxnacy.com/tags/python/"/>
     
       <category term="mysql" scheme="http://wxnacy.com/tags/mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux wc 命令：计算行数、字数、字节数</title>
-    <link href="http://wxnacy.com/2019/02/01/linux-wc/"/>
-    <id>http://wxnacy.com/2019/02/01/linux-wc/</id>
-    <published>2019-02-01T03:56:30.000Z</published>
-    <updated>2019-02-01T04:15:55.803Z</updated>
-    
-    <content type="html"><![CDATA[<p>wc 命令用于查看文件的行数、字数、字节数</p><a id="more"></a><div class="toc"><br><br><!-- toc --><ul><li><a href="#kuai-su-shi-yong">快速使用</a></li><li><a href="#geng-duo-can-shu">更多参数</a></li><li><a href="#yan-shen-shi-yong">延伸使用</a></li></ul><!-- tocstop --></div><h2><span id="kuai-su-shi-yong">快速使用</span><a href="#kuai-su-shi-yong" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ wc wsh.log</span><br><span class="line">   901    3226   13803 wsh.log</span><br></pre></td></tr></table></figure><p>查询的三个数字分别为行数、单词数、字节数</p><h2><span id="geng-duo-can-shu">更多参数</span><a href="#geng-duo-can-shu" class="header-anchor"></a></h2><p>使用 <code>man</code> 命令可以查看 wc 的完整文档、还有如下参数</p><ul><li><code>-c</code>: 查看字节数</li><li><code>-m</code>: 查看字符数</li><li><code>-w</code>: 查看单词数</li><li><code>-l</code>: 查看行数<br>macOS 没有下面的命令</li><li><code>-L</code>: 查看最长行的长度</li><li><code>--help</code>: 查看在线帮助</li><li><code>--version</code>: 查看版本</li></ul><h2><span id="yan-shen-shi-yong">延伸使用</span><a href="#yan-shen-shi-yong" class="header-anchor"></a></h2><p>wc 也可以接受管道信息，我们可以查看当前目录文件数</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ls | wc -l</span><br></pre></td></tr></table></figure><p>这是包含文件夹的，如果只想要查看文件数，可以借助 <code>grep</code> 命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ll | grep ^- | wc -l</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;wc 命令用于查看文件的行数、字数、字节数&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="linux" scheme="http://wxnacy.com/tags/linux/"/>
     
   </entry>
   
