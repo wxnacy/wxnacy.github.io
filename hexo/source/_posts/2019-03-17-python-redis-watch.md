@@ -1,7 +1,11 @@
 ---
 title: Python 使用 Redis watch 完成秒杀活动防止超卖 demo
-tags: [python, redis]
+tags:
+  - python
+  - redis
+date: 2019-03-17 10:49:48
 ---
+
 
 在做类似抢购活动的程序，我们通常会使用“乐观锁”思路，既保证库存不会超卖，也能够应付大并发的情况，Redis 中 watch 就可以实现“乐观锁”。
 
