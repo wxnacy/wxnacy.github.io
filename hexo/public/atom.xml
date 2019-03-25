@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-03-17T02:49:48.511Z</updated>
+  <updated>2019-03-25T07:23:11.548Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>adb 如何连接夜神模拟器</title>
+    <link href="http://wxnacy.com/2019/03/25/adb-connect-yeshen/"/>
+    <id>http://wxnacy.com/2019/03/25/adb-connect-yeshen/</id>
+    <published>2019-03-25T07:16:27.000Z</published>
+    <updated>2019-03-25T07:23:11.548Z</updated>
+    
+    <content type="html"><![CDATA[<p>夜神模拟器无法自动出现在 <code>adb devices</code> 列表中，需要先打开开发者模式</p><a id="more"></a><p>步骤如下：</p><ul><li>点击<code>设置</code> -》<code>关于平板电脑</code> -》连续点击 5 次版本号，进入开发者模式</li><li>重新进入设置，滑到最下边，进入开发者模式，并打开 USB 调试模式</li><li>链接</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb connect 127.0.0.1:62001</span><br></pre></td></tr></table></figure><ul><li>查看</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb devices</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;夜神模拟器无法自动出现在 &lt;code&gt;adb devices&lt;/code&gt; 列表中，需要先打开开发者模式&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="android" scheme="http://wxnacy.com/tags/android/"/>
+    
+  </entry>
   
   <entry>
     <title>Python 使用 Redis watch 完成秒杀活动防止超卖 demo</title>
@@ -401,26 +421,6 @@
     
     
       <category term="vim" scheme="http://wxnacy.com/tags/vim/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Go GOPATH 的作用</title>
-    <link href="http://wxnacy.com/2019/02/03/go-gopath/"/>
-    <id>http://wxnacy.com/2019/02/03/go-gopath/</id>
-    <published>2019-02-03T06:11:22.000Z</published>
-    <updated>2019-02-25T06:26:12.988Z</updated>
-    
-    <content type="html"><![CDATA[<p><code>GOPATH</code> 是开发 Go 时必须设置的一个环境变量，通常在安装完 Go 以后就要在 <code>.bash_profile</code> 中进行配置。</p><a id="more"></a><div class="toc"><br><br><!-- toc --><!-- tocstop --></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="built_in">export</span> GOPATH=<span class="variable">$&#123;HOME&#125;</span>/project</span><br><span class="line">...</span><br></pre></td></tr></table></figure><p>使配置生效后，可以使用命令 <code>go env</code> 查看</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">source</span> ~/.bash_profile</span><br><span class="line">$ go env</span><br><span class="line">...</span><br><span class="line">GOPATH=/Users/wxnacy/project</span><br></pre></td></tr></table></figure><p>这样你就可以开发 Go 项目了。</p><p><code>GOPATH</code> 的作用是什么呢？该目录下可能会包含三个文件夹</p><table><thead><tr><th>名称</th><th>描述</th></tr></thead><tbody><tr><td>src</td><td>需要编译的代码和使用 <code>go get</code> 安装的外部依赖代码存放位置</td></tr><tr><td>bin</td><td>编译代码生成的二进制文件存放位置</td></tr><tr><td>pkg</td><td>编译生成的lib文件存储的地方</td></tr></tbody></table><p><code>src</code> 需要手动创建，<code>bin</code> 和 <code>pkg</code> 则是编译时自动生成的。</p><p><code>src</code> 很像 Python 的 site-packages 目录，用来存放依赖包，不过 Go 比较随性，你开发的代码也放在这个目录下，不然编译就会报错。</p><p>我们第一次设置了 <code>GOPATH</code> 后，也不用拘泥于每次将代码都 copy 到 <code>${GOPATH}/src</code> 中，我们只需要将当前代码放在 src 目录下，并将 src 的所在目录临时设置为 <code>GOPATH</code> 即可。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;code&gt;GOPATH&lt;/code&gt; 是开发 Go 时必须设置的一个环境变量，通常在安装完 Go 以后就要在 &lt;code&gt;.bash_profile&lt;/code&gt; 中进行配置。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="go" scheme="http://wxnacy.com/tags/go/"/>
     
   </entry>
   
