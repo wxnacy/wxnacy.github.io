@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-03-26T14:10:02.111Z</updated>
+  <updated>2019-03-27T07:11:12.743Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python 访问中文文档</title>
+    <link href="http://wxnacy.com/2019/03/27/python-doc-zh/"/>
+    <id>http://wxnacy.com/2019/03/27/python-doc-zh/</id>
+    <published>2019-03-27T06:42:32.000Z</published>
+    <updated>2019-03-27T07:11:12.743Z</updated>
+    
+    <content type="html"><![CDATA[<p>今天使用中文 Google 时，以外发现了 Python 的中文文档，地址： <a href="https://docs.python.org/zh-cn" target="_blank" rel="noopener">https://docs.python.org/zh-cn</a></p><a id="more"></a><p>它会默认跳转到 Python 3.7 的文档</p><p><img src="https://wxnacy-img.oss-cn-beijing.aliyuncs.com/blog/python-doc-zh_1411_705.png" alt="python"></p><p>有意思的是，如果使用地址：<a href="https://docs.python.org" target="_blank" rel="noopener">https://docs.python.org</a> 打开文档，左上角是看不到 <code>zh-cn</code> 选项的，大概是官方认为还没到直接开发的地步，因为确实很多东西还没做好。</p><p>比如搜索功能，现在还是只能搜索英文，如何的中文信息都搜索不到。</p><p>很多文档也还保留了大量的英文内容。</p><p>不过这不影响，一些基础模块的查看，毕竟有和没有是两个概念，这对很多初学者也是很重要的。</p><!-- 现在文档有 `2.7` `3.5` `3.6` `3.7` `3.8` 多个版本 --><p>文档左侧可以跳转其他版本，但是有个坑，直接点过去依然进入的是英文页面，我们需要<br>修改下地址，比如：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://docs.python.org/3.6/</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://docs.python.org/zh-cn/3.6/</span><br></pre></td></tr></table></figure><p>但是 <code>3.5</code> 版本修改后是 404，说明官方还完全没有开始这个版本的翻译工作，这里也是希望官方可以尽快完善。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天使用中文 Google 时，以外发现了 Python 的中文文档，地址： &lt;a href=&quot;https://docs.python.org/zh-cn&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://docs.python.org/zh-cn&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://wxnacy.com/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>Python 计时器 timeit</title>
@@ -274,9 +294,9 @@
     </summary>
     
     
-      <category term="mysql" scheme="http://wxnacy.com/tags/mysql/"/>
-    
       <category term="sqlalchemy" scheme="http://wxnacy.com/tags/sqlalchemy/"/>
+    
+      <category term="mysql" scheme="http://wxnacy.com/tags/mysql/"/>
     
   </entry>
   
@@ -401,26 +421,6 @@
       <category term="linux" scheme="http://wxnacy.com/tags/linux/"/>
     
       <category term="ssr" scheme="http://wxnacy.com/tags/ssr/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Vagrant 常用命令</title>
-    <link href="http://wxnacy.com/2019/02/05/vagrant-commands/"/>
-    <id>http://wxnacy.com/2019/02/05/vagrant-commands/</id>
-    <published>2019-02-05T14:33:10.000Z</published>
-    <updated>2019-02-27T15:26:42.313Z</updated>
-    
-    <content type="html"><![CDATA[<p>记录些 Vagrant 经常用到的命令</p><a id="more"></a><div class="toc"><br><br><!-- toc --><ul><li><a href="#gong-zuo-mu-lu-zhong">工作目录中</a></li><li><a href="#quan-ju-ming-ling">全局命令</a></li></ul><!-- tocstop --></div><h2><span id="gong-zuo-mu-lu-zhong">工作目录中</span><a href="#gong-zuo-mu-lu-zhong" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant init centos/7             <span class="comment"># 初始化系统"</span></span><br><span class="line">$ vagrant up                        <span class="comment"># 启动虚拟机"</span></span><br><span class="line">$ vagrant ssh                       <span class="comment"># 登陆虚拟机"</span></span><br><span class="line">$ vagrant halt                      <span class="comment"># 登陆虚拟机"</span></span><br><span class="line">$ vagrant destroy                   <span class="comment"># 销毁虚拟机"</span></span><br><span class="line">$ vagrant destroy -f                <span class="comment"># 销毁虚拟机，并对询问回答 yes"</span></span><br><span class="line">$ vagrant package                   <span class="comment"># 打包 box"</span></span><br><span class="line">$ vagrant package --ouput=box-name  <span class="comment"># 打包 box，并指定包名"</span></span><br><span class="line">$ vagrant box update                <span class="comment"># 更新 box 版本"</span></span><br><span class="line">$ vagrant status                    <span class="comment"># 当前虚拟机状态</span></span><br><span class="line">$ vagrant reload                    <span class="comment"># 重新加载虚拟机配置</span></span><br></pre></td></tr></table></figure><h2><span id="quan-ju-ming-ling">全局命令</span><a href="#quan-ju-ming-ling" class="header-anchor"></a></h2><p>查看所有虚拟机状态</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant global-status</span><br><span class="line"></span><br><span class="line">id       name    provider   state        directory</span><br><span class="line">-----------------------------------------------------------------------------------------</span><br><span class="line">2ed1547  default virtualbox running      /Users/wxnacy/VagrantProjects/centos7-wshell</span><br><span class="line">1a7c506  default virtualbox inaccessible /Users/wxnacy/VagrantProjects/wxnacy-centos7</span><br><span class="line">a980255  default virtualbox inaccessible /Users/wxnacy/VagrantProjects/centos6</span><br><span class="line">d6edb01  default virtualbox running      /Users/wxnacy/VagrantProjects/wxnacy-ubuntu1604</span><br><span class="line">908baa1  default virtualbox running      /Users/wxnacy/VagrantProjects/xenial64</span><br><span class="line">da8e118  default virtualbox running      /Users/wxnacy/VagrantProjects/bionic64</span><br><span class="line">7a1fc36  default virtualbox poweroff     /Users/wxnacy/VagrantProjects/ubuntu1804</span><br><span class="line">40aa16f  default virtualbox running      /Users/wxnacy/VagrantProjects/centos7</span><br></pre></td></tr></table></figure><p>销毁指定虚拟机</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant destroy name|id</span><br></pre></td></tr></table></figure><p>查看所有 box 列表</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant box list</span><br><span class="line"></span><br><span class="line">centos/7          (virtualbox, 1811.02)</span><br><span class="line">debian/jessie64   (virtualbox, 8.11.0)</span><br><span class="line">ubuntu/bionic64   (virtualbox, 20190212.1.0)</span><br><span class="line">wxnacy/ubuntu1804 (virtualbox, 0)</span><br></pre></td></tr></table></figure><p>添加本地 box 到仓库</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant box add my-box-name box-path</span><br></pre></td></tr></table></figure><p>删除 box</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant box remove my-box-name</span><br><span class="line">$ vagrant box remove my-box-name --box-version &lt;version&gt;    <span class="comment"># 指定版本</span></span><br></pre></td></tr></table></figure><p>更新 box</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant box update --box &lt;box-name&gt;</span><br></pre></td></tr></table></figure><ul><li><a href="https://www.vagrantup.com/docs/cli/" target="_blank" rel="noopener">Command-Line Interface</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;记录些 Vagrant 经常用到的命令&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="vagrant" scheme="http://wxnacy.com/tags/vagrant/"/>
     
   </entry>
   

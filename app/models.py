@@ -369,16 +369,17 @@ class VisitorLog(BaseModel, db.Model):
 
         res = db.session.query(cls.url, func.count(cls.url).label('rank')
             ).filter(cls.visit_date == qd
-            ).group_by(cls.url).order_by('rank desc').all()
+            ).group_by(cls.url).order_by(cls.rank.name.desc()).all()
 
         return res
 
     @classmethod
     def query_hot(cls):
 
-        res = db.session.query(cls.url, func.count(cls.url).label('rank')
+        rank = func.count(cls.url).label('rank')
+        res = db.session.query(cls.url, rank
             ).filter(cls.visit_date >= date.today() - timedelta(days = 7)
-            ).group_by(cls.url).order_by('rank desc').all()
+            ).group_by(cls.url).order_by(rank.desc()).all()
 
         return res
 

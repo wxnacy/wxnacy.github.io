@@ -1,0 +1,50 @@
+---
+title: OSSFS 阿里云 OSS 本地挂载工具
+tags: [工具]
+---
+
+> [ossfs](https://github.com/aliyun/ossfs) 能让您在Linux/Mac OS X 系统中把Aliyun OSS bucket 挂载到本地文件 系统中，您能够便捷的通过本地文件系统操作OSS 上的对象，实现数据的共享。
+
+<!-- more -->
+
+## 为什么需要用到这个软件呢？
+
+我的情况是这样的，公司微信 h5 的静态文件是放在 OSS 上的，因为代码框架选用的 React，正常情况下地址路由都是交给 `index.html` 处理的，但是返回的状态码是 404，而微信非常流氓的把 404 状态的地址都转到它自己的页面，使得页面无法正常显示，AWS 的 s3 可以设置 404 状态改为 200，不过 OSS 没有，所以我只能借助 ossfs 的同步功能，在本地加一个 nginx 反向代理，单独处理 404 的请求。
+
+## 安装
+
+首先从[版本发布页面](https://github.com/aliyun/ossfs/releases)下载合适的安装包
+
+**Ubuntu 16.04**
+
+```bash
+$ wget https://github.com/aliyun/ossfs/releases/download/v1.80.5/ossfs_1.80.5_ubuntu16.04_amd64.deb
+$ sudo apt-get update
+$ sudo apt-get install gdebi-core
+$ sudo gdebi ossfs_1.80.5_ubuntu16.04_amd64.deb
+```
+
+**CentOS 7**
+
+```bash
+$ wget https://github.com/aliyun/ossfs/releases/download/v1.80.5/ossfs_1.80.5_centos7.0_x86_64.rpm
+$ sudo yum localinstall ossfs_1.80.5_centos7.0_x86_64.rpm
+```
+
+## 使用
+
+**配置 bucket 信息**
+
+```bash
+$ echo my-bucket:my-access-key-id:my-access-key-secret > /etc/passwd-ossfs  # 配置 key 和 secret
+$ chmod 640 /etc/passwd-ossfs   # 修改文件权限
+$ ossfs my-bucket local_dir_path -ourl=my-oss-endpoint  # 将 bucket mount 到本地文件夹
+```
+
+如果机器使用了阿里云 ECS 实例，`-ourl` 可以使用内网 `endpoint` 来**避免流量收费**和**提高速度**
+
+挂载命令可以添加 `-f -d` 参数来让 ossfs 运行在前台并输出debug日志
+
+你也可以使用 [supervisor](http://supervisord.org/) 来管理 ossfs 进程，方法详见 [FAQ](https://github.com/aliyun/ossfs/wiki/FAQ#18)
+
+
