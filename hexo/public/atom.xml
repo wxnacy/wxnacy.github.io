@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-03-28T01:47:16.548Z</updated>
+  <updated>2019-03-29T01:47:02.823Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>OSSFS 阿里云 OSS 本地挂载工具</title>
+    <link href="http://wxnacy.com/2019/03/29/ossfs/"/>
+    <id>http://wxnacy.com/2019/03/29/ossfs/</id>
+    <published>2019-03-29T01:47:02.000Z</published>
+    <updated>2019-03-29T01:47:02.823Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://github.com/aliyun/ossfs" target="_blank" rel="noopener">ossfs</a> 能让您在Linux/Mac OS X 系统中把Aliyun OSS bucket 挂载到本地文件 系统中，您能够便捷的通过本地文件系统操作OSS 上的对象，实现数据的共享。</p></blockquote><a id="more"></a><h2><span id="wei-shi-me-xu-yao-yong-dao-zhe-ge-ruan-jian-ni">为什么需要用到这个软件呢？</span><a href="#wei-shi-me-xu-yao-yong-dao-zhe-ge-ruan-jian-ni" class="header-anchor"></a></h2><p>我的情况是这样的，公司微信 h5 的静态文件是放在 OSS 上的，因为代码框架选用的 React，正常情况下地址路由都是交给 <code>index.html</code> 处理的，但是返回的状态码是 404，而微信非常流氓的把 404 状态的地址都转到它自己的页面，使得页面无法正常显示，AWS 的 s3 可以设置 404 状态改为 200，不过 OSS 没有，所以我只能借助 ossfs 的同步功能，在本地加一个 nginx 反向代理，单独处理 404 的请求。</p><p>挂载了 ossfs，OSS 和本地挂在之间可以实现双向同步，这是很方便的。</p><h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><p>首先从<a href="https://github.com/aliyun/ossfs/releases" target="_blank" rel="noopener">版本发布页面</a>下载合适的安装包</p><p><strong>Ubuntu 16.04</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://github.com/aliyun/ossfs/releases/download/v1.80.5/ossfs_1.80.5_ubuntu16.04_amd64.deb</span><br><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install gdebi-core</span><br><span class="line">$ sudo gdebi ossfs_1.80.5_ubuntu16.04_amd64.deb</span><br></pre></td></tr></table></figure><p><strong>CentOS 7</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://github.com/aliyun/ossfs/releases/download/v1.80.5/ossfs_1.80.5_centos7.0_x86_64.rpm</span><br><span class="line">$ sudo yum localinstall ossfs_1.80.5_centos7.0_x86_64.rpm</span><br></pre></td></tr></table></figure><h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><p><strong>配置 bucket 信息</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> my-bucket:my-access-key-id:my-access-key-secret &gt; /etc/passwd-ossfs  <span class="comment"># 配置 key 和 secret</span></span><br><span class="line">$ chmod 640 /etc/passwd-ossfs   <span class="comment"># 修改文件权限</span></span><br><span class="line">$ ossfs my-bucket local_dir_path -ourl=my-oss-endpoint  <span class="comment"># 将 bucket mount 到本地文件夹</span></span><br></pre></td></tr></table></figure><p>如果机器使用了阿里云 ECS 实例，<code>-ourl</code> 可以使用内网 <code>endpoint</code> 来<strong>避免流量收费</strong>和<strong>提高速度</strong></p><p>挂载命令可以添加 <code>-f -d</code> 参数来让 ossfs 运行在前台并输出debug日志</p><p>你也可以使用 <a href="http://supervisord.org/" target="_blank" rel="noopener">supervisor</a> 来管理 ossfs 进程，方法详见 <a href="https://github.com/aliyun/ossfs/wiki/FAQ#18" target="_blank" rel="noopener">FAQ</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/aliyun/ossfs&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;ossfs&lt;/a&gt; 能让您在Linux/Mac OS X 系统中把Aliyun OSS bucket 挂载到本地文件 系统中，您能够便捷的通过本地文件系统操作OSS 上的对象，实现数据的共享。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="工具" scheme="http://wxnacy.com/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>Python 协程库 gevent</title>
@@ -401,26 +423,6 @@
     
     
       <category term="python" scheme="http://wxnacy.com/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Golang 获取当前机器用户信息</title>
-    <link href="http://wxnacy.com/2019/02/17/go-os-user/"/>
-    <id>http://wxnacy.com/2019/02/17/go-os-user/</id>
-    <published>2019-02-17T08:58:09.000Z</published>
-    <updated>2019-02-18T09:36:51.956Z</updated>
-    
-    <content type="html"><![CDATA[<p>在 Golang 语言中使用 <code>os/user</code> 包可以获取当前机器的用户信息。</p><a id="more"></a><div class="toc"><br><br><!-- toc --><!-- tocstop --></div><p>使用</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">     <span class="string">"fmt"</span></span><br><span class="line">     <span class="string">"os/user"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">handleErr</span><span class="params">(err error)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        fmt.Println(err)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    u, err := user.Current()</span><br><span class="line">    handleErr(err)</span><br><span class="line">    fmt.Println(<span class="string">"当前用户"</span>)</span><br><span class="line">    fmt.Printf(<span class="string">"Gid %s\n"</span>, u.Gid)</span><br><span class="line">    fmt.Printf(<span class="string">"Uid %s\n"</span>, u.Uid)</span><br><span class="line">    fmt.Printf(<span class="string">"Username %s\n"</span>, u.Username)</span><br><span class="line">    fmt.Printf(<span class="string">"Name %s\n"</span>, u.Name)</span><br><span class="line">    fmt.Printf(<span class="string">"HomeDir %s\n"</span>, u.HomeDir)</span><br><span class="line">    fmt.Println(<span class="string">""</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 当前用户</span></span><br><span class="line">    <span class="comment">// Gid 20</span></span><br><span class="line">    <span class="comment">// Uid 501</span></span><br><span class="line">    <span class="comment">// Username wxnacy</span></span><br><span class="line">    <span class="comment">// Name wxnacy</span></span><br><span class="line">    <span class="comment">// HomeDir /Users/wxnacy</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>User 结构体</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> User <span class="keyword">struct</span> &#123;</span><br><span class="line">    Uid      <span class="keyword">string</span>  <span class="comment">// 用户的 ID</span></span><br><span class="line">    Gid      <span class="keyword">string</span>  <span class="comment">// 用户所属组的 ID，如果属于多个组，那么此 ID 为主组的 ID</span></span><br><span class="line">    Username <span class="keyword">string</span>  <span class="comment">// 用户名</span></span><br><span class="line">    Name     <span class="keyword">string</span>  <span class="comment">// 属组名称，如果属于多个组，那么此名称为主组的名称</span></span><br><span class="line">    HomeDir  <span class="keyword">string</span>  <span class="comment">// 用户的宿主目录</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>当前用户</strong></p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Current</span><span class="params">()</span> <span class="params">(*User, error)</span></span></span><br></pre></td></tr></table></figure><p><strong>通过 Uid 获取用户</strong></p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">LookupId</span><span class="params">(uid <span class="keyword">string</span>)</span> <span class="params">(*User, error)</span></span></span><br></pre></td></tr></table></figure><p><strong>通过 Username 获取用户</strong></p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Lookup</span><span class="params">(username <span class="keyword">string</span>)</span> <span class="params">(*User, error)</span></span></span><br></pre></td></tr></table></figure><p>验证代码地址：<a href="https://github.com/wxnacy/study/blob/master/goland/src/simple/os_user.go" target="_blank" rel="noopener">https://github.com/wxnacy/study/blob/master/goland/src/simple/os_user.go</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在 Golang 语言中使用 &lt;code&gt;os/user&lt;/code&gt; 包可以获取当前机器的用户信息。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="go" scheme="http://wxnacy.com/tags/go/"/>
     
   </entry>
   
