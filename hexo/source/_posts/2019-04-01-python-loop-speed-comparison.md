@@ -1,7 +1,10 @@
 ---
 title: Python 中循环语句速度对比
-tags: [python]
+tags:
+  - python
+date: 2019-04-01 13:31:39
 ---
+
 
 今天来比较下 Python 中循环语句的性能，参赛选手为 `while` `for` `生成器` `内置函数` `列表解析`
 

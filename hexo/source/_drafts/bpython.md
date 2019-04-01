@@ -1,0 +1,85 @@
+---
+title: bpython 强大的自动补全 Python Shell 工具
+tags: [python]
+---
+
+提到 Python Shell 工具，要说 ipython 排老二，那没有哪位能排第一，它的功能强大是毋庸置疑的，然后强大归强大，这并不代表能适合所有人。
+
+<!-- more -->
+
+比如说我，我编写程序，最讲究的效率，自动补全和快速输入是必要的。但是 ipython 却远远满足不了我，如果你也用 `Vim + YouCompleteMe` 应该可以理解我。也许你会说，这本来就是 shell 命令工具，还能像 IDE 咋滴，嘿，巧了，今天要说的 [bpython](https://bpython-interpreter.org/) 就是个 shell 工具，但是它也能像 IDE 一样编写代码。
+
+![bpython](https://camo.githubusercontent.com/fffc539a28d2465c11b74ff3c06d0b5595037454/687474703a2f2f692e696d6775722e636f6d2f6a66386d4374502e676966)
+
+相信你看完这个官方的 demo，已经开始想去了解它了，跟着我一起来吧。
+
+**安装**
+
+```bash
+$ pip install bpython
+```
+
+**运行**
+
+```bash
+> $ bpython
+bpython version 0.17.1 on top of Python 3.7.2 /Users/wxnacy/.pyenv/versions/3.7.2/Python.framework/Versions/3.7/bin/python3.7
+>>>
+Welcome to bpython! Press <F1> for help.
+```
+
+使用 `<F1>` 可以查看帮助文档
+
+我挑一些常用的键位说一下
+
+```bash
+<Tab>           # 出现提示后，进行选择
+<C-a>           # 快速跳转行首
+<C-e>           # 快速跳转行尾，如果有上次输入记录，则自动输入
+<C-u>           # 清空当前行
+<C-w>           # 删除前一个单词
+<C-h>           # 删除删除前一个字符，免去了手指移动到 backspace 的时间，刚好我在 Vim 中也设置了这个按键
+
+<F1>            # 帮助文档
+<F3>            # 打开配置文件，第一次提示是否生成配置文件
+<F6>            # 重新加载 module，这在测试程序时非常有必要
+<F7>            # 将当前 shell 中的代码放在临时文件中，并使用 vim 进行编辑
+<F8>            # 将当前代码上传到 pastebin 上，并生成一个有效期为 7 天的链接
+```
+
+挑几个重点的说下
+
+**查看文档**
+
+ipython 中可以使用 `requests.get?` 来查看文档
+
+而 bpython 会自动出现该方法的文档
+
+![wpy1](https://wxnacy-img.oss-cn-beijing.aliyuncs.com/blog/bpy1.png)
+
+
+**重载 module**
+
+bpython 目前没有启动自动重载的能力，只能通过按键手动重载，不过我们可以修改它的按键，毕竟每次按 `<F6>` 还是很不方便的。
+
+- 进入 `bpython` 命令，按 `<F3>` 生成并编辑 `config` 文件
+    - 默认配置文件的位置为 `~/.config/bpython/config`，如果你想修改它的位置，那么启动的时候需要增加参数 `bpython --config <config-path>`
+- `<C-r>` 是我认为比较舒服的按键，但是它已经被撤销按键占住了，我认为撤销不是常用按键，所以进行了修改，最终配置如下
+
+```bash
+reimport = C-r  # 重载按键
+undo = C-q      # 撤销按键
+```
+
+- 然后退出 `bpython`，重新进入即可生效
+
+**上传 pastebin**
+
+这是个比较有意思的功能，假如你想与别人及时分享一段代码，这是很优雅的方式，按下 `<F8>` 即可将当前命令行中的代码上传并得到一个地址，点击效果如下。
+
+![bpy2](https://wxnacy-img.oss-cn-beijing.aliyuncs.com/blog/bpy2_514.png)
+
+当然 bpython 也不是没有缺点，比如在使用一些第三方模块时，自动补全有时会卡顿，这还是挺影响心情的，不过瑕不掩瑜，它仍然是让我爱不释手的 shell 工具。
+
+- [源代码](https://github.com/bpython/bpython)
+- [Configuration](https://docs.bpython-interpreter.org/configuration.html)

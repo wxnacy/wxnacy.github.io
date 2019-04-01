@@ -1,7 +1,11 @@
 ---
 title: SQLAlchemy 升级报错：Can't resolve label reference for ORDER BY / GROUP BY ...
-tags: [python,sqlalchemy]
+tags:
+  - python
+  - sqlalchemy
+date: 2019-03-30 17:53:36
 ---
+
 
 前段时间因为要使用 `insert ... on duplicate key update ..` 语句的功能，SQLAlchemy 从 1.1.5 升级到了 1.3.1，结果程序报了错
 

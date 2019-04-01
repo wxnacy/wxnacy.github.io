@@ -206,6 +206,10 @@ def timer(func, *args, reps=1000, **kwargs):
 
 
 def test():
+    '''
+    测试方法
+    '''
+    #  print("s")
     return 'Hello World Hello World '
 
 

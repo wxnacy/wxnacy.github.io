@@ -1,7 +1,10 @@
 ---
 title: Pyenv 安装 Python3.7 报错：zlib not available
-tags: [python]
+tags:
+  - python
+date: 2019-03-31 13:30:55
 ---
+
 
 最近升级 Mac 系统，又手贱升级了 pyenv，结果安装 Python3.7 时报了错
 
