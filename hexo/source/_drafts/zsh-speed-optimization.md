@@ -93,6 +93,6 @@ fi
 
 OK！终于可以愉快的使用 Zsh 了。
 
-- []()
+- [Zsh 配置文件加载顺序](https://wxnacy.com/2018/10/08/zsh-startup-files/)
 - [Profiling zsh shell scripts](http://blog.xebia.com/profiling-zsh-shell-scripts/)
 - [Speed up initial zsh startup with lazy-loading](https://frederic-hemberger.de/articles/speed-up-initial-zsh-startup-with-lazy-loading/)

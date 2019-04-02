@@ -190,19 +190,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-python-2017-08-23-scrapy-basic" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-linux-2017-08-23-ssh" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/23/python-2017-08-23-scrapy-basic/">Python Scrapy 入门教程</a>
+      <a class="article-title" href="/2017/08/23/linux-2017-08-23-ssh/">Linux SSH 登陆远程服务器和无密码操作</a>
     </h1>
   
 
         
-        <a href="/2017/08/23/python-2017-08-23-scrapy-basic/" class="archive-article-date">
+        <a href="/2017/08/23/linux-2017-08-23-ssh/" class="archive-article-date">
   	<time datetime="2017-08-22T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-23</time>
 </a>
         
@@ -210,19 +210,33 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install Scrapy</span><br></pre></td></tr></table></figure>
-<h2><span id="chuang-jian-xiang-mu">创建项目</span><a href="#chuang-jian-xiang-mu" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ scrapy startproject crawler</span><br><span class="line"></span><br><span class="line">New Scrapy project <span class="string">'crawler'</span>, using template directory <span class="string">'/Users/wxnacy/.pyenv/versions/3.5.0/envs/env_lightcircle/lib/python3.5/site-packages/scrapy/templates/project'</span>, created <span class="keyword">in</span>:</span><br><span class="line">    /Users/wxnacy/WebstormProjects/wxnacy.github.io/crawler</span><br><span class="line"></span><br><span class="line">You can start your first spider with:</span><br><span class="line">    <span class="built_in">cd</span> crawler</span><br><span class="line">    scrapy genspider example example.com</span><br></pre></td></tr></table></figure>
-<p>通过提示我们可以通过如下命令创建第一个spider<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> crawler</span><br><span class="line">$ scrapy genspider youtube youtube.com</span><br><span class="line"></span><br><span class="line">Created spider <span class="string">'youtube'</span> using template <span class="string">'basic'</span> <span class="keyword">in</span> module:</span><br><span class="line">  crawler.spiders.youtube</span><br></pre></td></tr></table></figure></p>
+        <div class="tocStart"></div>
+
+<!-- toc -->
+<ul>
+<li><a href="#shi-yong">使用</a></li>
+<li><a href="#sshd-fu-wu-qi-xi-bu-she-ding">sshd 服务器细部设定</a></li>
+<li><a href="#zhi-zuo-bu-yong-mi-ma-ke-li-ji-deng-ru-de-ssh-yong-hu">制作不用密码可立即登入的 ssh 用户</a><ul>
+<li><a href="#1-ke-hu-duan-jian-li-liang-ba-yao-chi">1. 客户端建立两把钥匙</a></li>
+<li><a href="#2-jiang-gong-yao-dang-an-shu-ju-shang-chuan-dao-fu-wu-qi-shang">2. 将公钥档案数据上传到服务器上</a></li>
+<li><a href="#3-jiang-gong-yao-fang-zhi-fu-wu-qi-duan-de-zheng-que-mu-lu-yu-wen-jian-ming">3. 将公钥放置服务器端的正确目录与文件名</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<p><div class="tocEnd"></div><br>
+        
+          <a class="article-more-a" href="/2017/08/23/linux-2017-08-23-ssh/#more">阅读全文 >></a>
+        
+      
+
+      
+      
 
       
 
       
-      
-
-      
-
-      
-    </div>
+    </p></div>
     <div class="article-info article-info-index">
       
       
@@ -231,7 +245,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ssh</a>
         		</li>
       		
 		</ul>
@@ -241,7 +259,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/23/python-2017-08-23-scrapy-basic/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/23/linux-2017-08-23-ssh/">展开全文 >></a>
         </p>
       
 
@@ -439,28 +457,29 @@
 
 
   
-    <article id="post-python-2017-08-22-get-image-size" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-python-2017-08-23-scrapy-basic" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/22/python-2017-08-22-get-image-size/">Python 获取本地或网络图片的宽高</a>
+      <a class="article-title" href="/2017/08/23/python-2017-08-23-scrapy-basic/">Python Scrapy 入门教程</a>
     </h1>
   
 
         
-        <a href="/2017/08/22/python-2017-08-22-get-image-size/" class="archive-article-date">
-  	<time datetime="2017-08-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
+        <a href="/2017/08/23/python-2017-08-23-scrapy-basic/" class="archive-article-date">
+  	<time datetime="2017-08-22T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2><span id="ben-di">本地</span><a href="#ben-di" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line">fp = <span class="string">'/Users/wxnacy/Documents/WX20170412-190958@2x.png'</span></span><br><span class="line">i = Image.open(fp)</span><br><span class="line">print(i.size) <span class="comment"># 获取宽高 (w,h)</span></span><br><span class="line">print(i.format) <span class="comment"># 获取图片格式</span></span><br></pre></td></tr></table></figure>
-<h2><span id="wang-luo-tu-pian">网络图片</span><a href="#wang-luo-tu-pian" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> io</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">''</span></span><br><span class="line">i = Image.open(io.BytesIO(requests.get(url).content))</span><br><span class="line">print(i.size) <span class="comment"># 获取宽高 (w,h)</span></span><br><span class="line">print(i.format) <span class="comment"># 获取图片格式</span></span><br></pre></td></tr></table></figure>
+        <h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install Scrapy</span><br></pre></td></tr></table></figure>
+<h2><span id="chuang-jian-xiang-mu">创建项目</span><a href="#chuang-jian-xiang-mu" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ scrapy startproject crawler</span><br><span class="line"></span><br><span class="line">New Scrapy project <span class="string">'crawler'</span>, using template directory <span class="string">'/Users/wxnacy/.pyenv/versions/3.5.0/envs/env_lightcircle/lib/python3.5/site-packages/scrapy/templates/project'</span>, created <span class="keyword">in</span>:</span><br><span class="line">    /Users/wxnacy/WebstormProjects/wxnacy.github.io/crawler</span><br><span class="line"></span><br><span class="line">You can start your first spider with:</span><br><span class="line">    <span class="built_in">cd</span> crawler</span><br><span class="line">    scrapy genspider example example.com</span><br></pre></td></tr></table></figure>
+<p>通过提示我们可以通过如下命令创建第一个spider<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> crawler</span><br><span class="line">$ scrapy genspider youtube youtube.com</span><br><span class="line"></span><br><span class="line">Created spider <span class="string">'youtube'</span> using template <span class="string">'basic'</span> <span class="keyword">in</span> module:</span><br><span class="line">  crawler.spiders.youtube</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -489,7 +508,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/22/python-2017-08-22-get-image-size/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/23/python-2017-08-23-scrapy-basic/">展开全文 >></a>
         </p>
       
 
@@ -659,6 +678,86 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-python-2017-08-22-get-image-size" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/22/python-2017-08-22-get-image-size/">Python 获取本地或网络图片的宽高</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/22/python-2017-08-22-get-image-size/" class="archive-article-date">
+  	<time datetime="2017-08-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2><span id="ben-di">本地</span><a href="#ben-di" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line">fp = <span class="string">'/Users/wxnacy/Documents/WX20170412-190958@2x.png'</span></span><br><span class="line">i = Image.open(fp)</span><br><span class="line">print(i.size) <span class="comment"># 获取宽高 (w,h)</span></span><br><span class="line">print(i.format) <span class="comment"># 获取图片格式</span></span><br></pre></td></tr></table></figure>
+<h2><span id="wang-luo-tu-pian">网络图片</span><a href="#wang-luo-tu-pian" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> io</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">''</span></span><br><span class="line">i = Image.open(io.BytesIO(requests.get(url).content))</span><br><span class="line">print(i.size) <span class="comment"># 获取宽高 (w,h)</span></span><br><span class="line">print(i.format) <span class="comment"># 获取图片格式</span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+      
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/22/python-2017-08-22-get-image-size/">展开全文 >></a>
         </p>
       
 
@@ -935,96 +1034,6 @@
 
 
   
-    <article id="post-openresty-2017-08-16-install" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/16/openresty-2017-08-16-install/">openresty 安装</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/16/openresty-2017-08-16-install/" class="archive-article-date">
-  	<time datetime="2017-08-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>专辑:<a href="/openresty/2017/08/16/album-study-notes">openresty 学习笔记</a></p>
-<h2><span id="mac-os">Mac OS</span><a href="#mac-os" class="header-anchor"></a></h2><p>推荐使用<code>brew</code>安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">brew install homebrew/nginx/openresty</span><br><span class="line">brew update</span><br><span class="line">brew install pcre openssl</span><br></pre></td></tr></table></figure></p>
-<h2><span id="centos">CentOS</span><a href="#centos" class="header-anchor"></a></h2><p>你可以在你的 CentOS 系统中添加 openresty 仓库，这样就可以便于未来安装或更新我们的软件包（通过 yum update 命令）。运行下面的命令就可以添加我们的仓库：</p>
-<pre><code>sudo yum install yum-utils
-sudo yum-config-manager --add-repo https://openresty.org/package/centos/openresty.repo
-</code></pre><p>然后就可以像下面这样安装软件包，比如 openresty：</p>
-<pre><code>sudo yum install openresty
-</code></pre><p>如果你想安装命令行工具 resty，那么可以像下面这样安装 openresty-resty 包：</p>
-<pre><code>sudo yum install openresty-resty
-</code></pre><p>命令行工具 opm 在 openresty-opm 包里，而 restydoc 工具在 openresty-doc 包里头。</p>
-<p>列出所有 openresty 仓库里头的软件包：</p>
-<pre><code>sudo yum --disablerepo=&quot;*&quot; --enablerepo=&quot;openresty&quot; list available
-</code></pre>
-      
-
-      
-      
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">openresty</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/16/openresty-2017-08-16-install/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/45/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/44/">44</a><a class="page-number" href="/page/45/">45</a><span class="page-number current">46</span><a class="page-number" href="/page/47/">47</a><a class="page-number" href="/page/48/">48</a><span class="space">&hellip;</span><a class="page-number" href="/page/50/">50</a><a class="extend next" rel="next" href="/page/47/">Next &raquo;</a>
@@ -1159,7 +1168,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1167,19 +1176,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">zsh</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">微信</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1188,6 +1185,18 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">jpa</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">zsh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1203,19 +1212,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1227,11 +1232,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
