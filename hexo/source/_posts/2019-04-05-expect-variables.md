@@ -1,7 +1,10 @@
 ---
 title: Expect 设置变量和读取环境变量
-tags: [expect]
+tags:
+  - expect
+date: 2019-04-05 20:34:00
 ---
+
 
 Expect 中设置变量跟 Bash 稍有不同
 

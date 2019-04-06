@@ -1,7 +1,10 @@
 ---
 title: Python 操作剪切板
-tags: [python]
+tags:
+  - python
+date: 2019-04-06 17:59:15
 ---
+
 
 Python 操作剪切板，需要调用系统的 C 动态库，或者使用自带的命令行。
 

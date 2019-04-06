@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-04-04T05:59:45.051Z</updated>
+  <updated>2019-04-06T09:59:15.248Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python 操作剪切板</title>
+    <link href="http://wxnacy.com/2019/04/06/python-clipboard/"/>
+    <id>http://wxnacy.com/2019/04/06/python-clipboard/</id>
+    <published>2019-04-06T09:59:15.000Z</published>
+    <updated>2019-04-06T09:59:15.248Z</updated>
+    
+    <content type="html"><![CDATA[<p>Python 操作剪切板，需要调用系统的 C 动态库，或者使用自带的命令行。</p><a id="more"></a><div class="toc"><br><br><!-- toc --><ul><li><a href="#shi-yong-pbcopy-he-pbpaste">使用 pbcopy 和 pbpaste</a></li><li><a href="#shi-yong-pyperclip-mo-kuai">使用 pyperclip 模块</a></li></ul><!-- tocstop --></div><p>Windows 系统可以动态调用 <code>ctypes</code> 库，具体操作步骤可以看看这篇文章：<a href="https://www.jianshu.com/p/430f4af2cb06" target="_blank" rel="noopener">https://www.jianshu.com/p/430f4af2cb06</a></p><p>下面我们主要来说下 Mac 系统的操作方式。</p><h2><span id="shi-yong-pbcopy-he-pbpaste">使用 pbcopy 和 pbpaste</span><a href="#shi-yong-pbcopy-he-pbpaste" class="header-anchor"></a></h2><p>在 Mac 系统中可以使用 <code>pbcopy</code> 和 <code>pbpaste</code> 来实现复制粘贴操作，这两个命令都是系统自带的。</p><p><code>pbcopy</code> 接收管道输入的文字，并复制到剪切板。<code>pbpaste</code> 直接输出剪切板的内容</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'我爱你中国'</span> | pbcopy</span><br><span class="line">$ pbpaste</span><br><span class="line">我爱你中国</span><br></pre></td></tr></table></figure><p>使用起来还是很方便的，接下来是 Python 中如何调用。</p><p>使用 <code>subprocess</code> 模块下的 <code>Popen</code> 方法，可以很方便的操作管道的输入输出信息。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"><span class="comment"># Description: 在 Mac 系统中使用剪切板</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_clipboard</span><span class="params">(data: str)</span>:</span></span><br><span class="line">    p = subprocess.Popen([<span class="string">'pbcopy'</span>], stdin=subprocess.PIPE)</span><br><span class="line">    p.stdin.write(data.encode(<span class="string">"utf-8"</span>))</span><br><span class="line">    p.stdin.close()</span><br><span class="line">    p.communicate()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_from_clipboard</span><span class="params">()</span>:</span></span><br><span class="line">    p = subprocess.Popen([<span class="string">'pbpaste'</span>], stdout=subprocess.PIPE)</span><br><span class="line">    p.wait()</span><br><span class="line">    byte_data = p.stdout.read()</span><br><span class="line">    p.stdout.close()</span><br><span class="line">    <span class="keyword">return</span> byte_data.decode(<span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    set_clipboard(<span class="string">'我爱你中国'</span>)</span><br><span class="line">    print(get_from_clipboard())</span><br><span class="line"></span><br><span class="line"><span class="comment"># python clipboard.py</span></span><br><span class="line"><span class="comment"># 我爱你中国</span></span><br></pre></td></tr></table></figure><h2><span id="shi-yong-pyperclip-mo-kuai">使用 pyperclip 模块</span><a href="#shi-yong-pyperclip-mo-kuai" class="header-anchor"></a></h2><p>如果你的系统需要适应各个平台，并且需要比较高的稳定性，那还是直接使用第三方模块 <a href="https://github.com/asweigart/pyperclip" target="_blank" rel="noopener">pyperclip</a> 比较方便。</p><p>它的源码地址为：<a href="https://github.com/asweigart/pyperclip/blob/master/src/pyperclip/__init__.py" target="_blank" rel="noopener">https://github.com/asweigart/pyperclip/blob/master/src/pyperclip/__init__.py</a></p><p>其实他就是整合了上述的方法，只是应该了这么多人的使用，已经非常稳定，使用方法也更简单。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> pyperclip</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>pyperclip.copy(<span class="string">'The text to be copied to the clipboard.'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>pyperclip.paste()</span><br><span class="line"><span class="string">'The text to be copied to the clipboard.'</span></span><br></pre></td></tr></table></figure><p><code>Windows</code> 和 <code>Mac</code> 平台可以直接使用。</p><p><code>Linux</code> 需要 <code>xclip</code> <code>xsel</code> <code>gtk</code> <code>PyQt4</code> 依赖包，可以根据平台通过 <code>apt</code> 或 <code>yum</code> 进行安装。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Python 操作剪切板，需要调用系统的 C 动态库，或者使用自带的命令行。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://wxnacy.com/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Expect 设置变量和读取环境变量</title>
+    <link href="http://wxnacy.com/2019/04/05/expect-variables/"/>
+    <id>http://wxnacy.com/2019/04/05/expect-variables/</id>
+    <published>2019-04-05T12:34:00.000Z</published>
+    <updated>2019-04-05T12:34:00.928Z</updated>
+    
+    <content type="html"><![CDATA[<p>Expect 中设置变量跟 Bash 稍有不同</p><a id="more"></a><p><strong>Bash</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name=wxnacy</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$name</span>  <span class="comment"># wxnacy</span></span><br></pre></td></tr></table></figure><p><strong>Expect</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> name wxnacy</span><br><span class="line">puts <span class="variable">$name</span>  <span class="comment"># wxnacy</span></span><br></pre></td></tr></table></figure><p>边境变量也是如此</p><p><strong>Bash</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$HOME</span>      <span class="comment"># /Users/wxnacy</span></span><br></pre></td></tr></table></figure><p><strong>Expect</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">puts <span class="variable">$env</span>(HOME) <span class="comment"># /Users/wxnacy</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Expect 中设置变量跟 Bash 稍有不同&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="expect" scheme="http://wxnacy.com/tags/expect/"/>
+    
+  </entry>
   
   <entry>
     <title>Zsh 加载速度优化</title>
@@ -381,46 +421,6 @@
     
     
       <category term="go" scheme="http://wxnacy.com/tags/go/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>简单了解非对称加密算法</title>
-    <link href="http://wxnacy.com/2019/02/28/asymmetric-encryption/"/>
-    <id>http://wxnacy.com/2019/02/28/asymmetric-encryption/</id>
-    <published>2019-02-28T02:01:48.000Z</published>
-    <updated>2019-02-28T02:01:48.056Z</updated>
-    
-    <content type="html"><![CDATA[<p>今天我们要讲的是非对称加密算法。</p><a id="more"></a><div class="toc"><br><br><!-- toc --><ul><li><a href="#why">why</a></li><li><a href="#what">what</a></li><li><a href="#how">how</a></li></ul><!-- tocstop --></div><p>课程分三个步骤</p><ul><li>为什么要用到非对称加密算法(why)</li><li>什么是非对称加密算法(what)</li><li>如何用 Python 实现加密算法(how)</li></ul><h2><span id="why">why</span><a href="#why" class="header-anchor"></a></h2><p>非对称加密提供了数据加密和数字签名两个功能。</p><p>而这两个功能分别有更简单的实现方式对称加密和散列运算。</p><p>那为什么还需要非对称加密呢？</p><p>先来看一个例子。</p><p>小明和小红是一对恋人，他们分居上海和北京，路途遥远不便见面，只能通过网络联系，这种方式快捷方便，开始两人并没有觉得不妥。</p><p>有一天两人到了谈婚论嫁的年纪，开始讨论结婚事宜，说到了彩礼的事情。</p><p>小明很有安全意识，他觉得涉及到钱的问题，应该小心翼翼，网络并不安全，如果谈的是 5 万，结果在网络中被人篡改了，变成 10 万怎么办？他想到了使用数字签名的方式，将数据进行 MD5 加密，并将加密过的签名，一起发给小红，并让小红对数据再次使用 MD5 加密，并将自己计算的结果跟小明发过来的进行对比，一致则数据没有被篡改。</p><p>在这个方案下，两人安全的将结婚事宜谈妥，小红很高兴，想对小明说些悄悄话，但是她又不想让网络中其他人听到她说的是什么。她想到了数据加密的方式，她先将要说的话使用 AES 算法做对称加密，然后将加密后密文和加密使用的秘钥发给小明，然后小明使用秘钥对密文进行解密，即可看到小红要说的话。</p><p>然而事情真的像他们想的这么安全吗？</p><p>小明的签名算法必须是公开的，小红才能用相同的算法验证，只要是公开的，别人就可以使用相同的算法，先将明文篡改，再对新明文进行签名再发给小红，这样小红验证到的只是被篡改的数据。</p><p>同样的道理，小红的对称加密算法，想要让小明对其进行解密，必须将加密用的秘钥公开出来。这样小明可以解密，别人也可以解密。</p><p>那怎么解决呢？你会想不公开不就行了吗，小明自己写一个签名算法偷偷告诉小红，小红将加密的秘钥偷偷告诉小明。说起来简单，做起来难，怎么偷偷告诉？小明先坐飞机到北京告诉小红，然后每次发现算法有漏洞，修改算法后在坐飞机到北京？</p><p>没有必要，此时非对称加密可以出场了。</p><h2><span id="what">what</span><a href="#what" class="header-anchor"></a></h2><p>什么是非对称加密？</p><p>对称加密是用相同的秘钥对数据进行加解密，那非对称加密顾名思义就是用不同的秘钥对数据进行加解密。</p><p>非对称加密算法有两个秘钥，公有秘钥和私有秘钥，两个秘钥是一对。每个人都可以生成属于自己的公私钥，公钥可以公布给任何人知道，所以它也叫公开密钥算法，私钥只能自己保留，不能泄露。</p><p>现在我们再来看小明的问题，小明使用非对称加密算法做数字签名，他先使用私钥将明文做签名，然后将明文、签名和公钥一起发给小红，小红可以使用公钥对签名进行验证。此时其他及时拿到了公钥也无济于事，因为<strong><em>签名只能使用私钥</em></strong>。</p><p>而小红的问题也很简单，她可以使用小明的公钥对明文进行加密，再将密文发给小明，小明使用自己的私钥对数据进行解密，即可拿到明文。此时其他人及时拿到公钥和密文也无济于事，因为<strong><em>公钥加密的密文只能用对应的秘钥进行解密</em></strong></p><p>然后小红再生成自己的公私钥，双方互换公钥，各自保留私钥，加密和签名双管齐下，互发消息都可以做到非常安全。</p><p>总结一下</p><p>公钥用来加密，对应秘钥解密<br>私钥用来签名，对应公钥验证</p><h2><span id="how">how</span><a href="#how" class="header-anchor"></a></h2><p>下面我们来看看如何使用 Python 实现加密算法</p><p><strong>生成公私钥</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C your_email</span><br></pre></td></tr></table></figure><p><strong>安装依赖</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install pycrypto</span><br></pre></td></tr></table></figure><p><strong>代码</strong></p><ul><li><a href="https://github.com/wxnacy/study/blob/master/python/crypto_demo/rsa_cipher.py" target="_blank" rel="noopener">加解密</a></li><li><a href="https://github.com/wxnacy/study/blob/master/python/crypto_demo/rsa_signature.py" target="_blank" rel="noopener">签名验证</a></li></ul><p><strong>youtube 视频</strong></p><iframe width="560" height="315" src="https://www.youtube.com/embed/OKIfTOEo7P0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><p><strong>youku 视频</strong></p><iframe height="498" width="510" src="http://player.youku.com/embed/XNDA2Nzg3NTY4MA==" frameborder="0" 'allowfullscreen'=""></iframe>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;今天我们要讲的是非对称加密算法。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="算法" scheme="http://wxnacy.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux Tab 命令提示时忽略大小写</title>
-    <link href="http://wxnacy.com/2019/02/27/linux-caseignore/"/>
-    <id>http://wxnacy.com/2019/02/27/linux-caseignore/</id>
-    <published>2019-02-27T01:56:39.000Z</published>
-    <updated>2019-02-27T02:01:37.183Z</updated>
-    
-    <content type="html"><![CDATA[<p>Linux 环境如何不装 <code>zsh</code> 等更加智能的 bash 工具，通常在 Tab 键提示命令时都会区分大小写，这样很不方便，我们可以做点简单修改让它忽略大小写。</p><a id="more"></a><div class="toc"><br><br><!-- toc --><!-- tocstop --></div><p>默认情况下 <code>~</code> 目录下是没有 <code>.inputrc</code> 文件的，手动创建并赋值</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'set completion-ignore-case on'</span> &gt;&gt; .inputrc</span><br></pre></td></tr></table></figure><p>然后退出终端，重新进入，这时命令行已经忽略大小写了。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Linux 环境如何不装 &lt;code&gt;zsh&lt;/code&gt; 等更加智能的 bash 工具，通常在 Tab 键提示命令时都会区分大小写，这样很不方便，我们可以做点简单修改让它忽略大小写。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="linux" scheme="http://wxnacy.com/tags/linux/"/>
     
   </entry>
   
