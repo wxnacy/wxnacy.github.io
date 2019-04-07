@@ -190,6 +190,189 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-mysql-2017-08-08-item-daily" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/08/mysql-2017-08-08-item-daily/">2017-08-08 新建article表，完善`insert_comment_trigger`</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/08/mysql-2017-08-08-item-daily/" class="archive-article-date">
+  	<time datetime="2017-08-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>今天目标创建acticle表，并完善<code>insert_comment_trigger</code>，以支持更新article中的comment_count,comment表新增comment_id字段</p>
+</blockquote>
+<p>专辑：<a href="/?p=/doc/mysql/mysql_daily.md">mysql每天练习</a></p>
+<ul>
+<li><p>新建article</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">drop table if exists `article`;</span><br><span class="line">create table `article`(</span><br><span class="line">	id int(11) not null auto_increment,</span><br><span class="line">	name varchar(32) not null comment &apos;标题&apos;,</span><br><span class="line">	url varchar(512) not null comment &apos;地址&apos;,</span><br><span class="line">	comment_count int(11) not null default 0 comment &apos;评论数量&apos;,</span><br><span class="line">	is_del tinyint(1) not null default 0 comment &apos;是否删除&apos;,</span><br><span class="line">	create_ts timestamp not null default current_timestamp comment &apos;创建时间&apos;,</span><br><span class="line">	update_ts timestamp not null default current_timestamp on update current_timestamp comment &apos;修改时间&apos;,</span><br><span class="line">	primary key(`id`)</span><br><span class="line">)engine=InnoDB default charset=utf8mb4 comment &apos;文章表&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改<code>insert_comment</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">drop trigger if exists `insert_comment`;</span><br><span class="line">delimiter $</span><br><span class="line">create trigger `insert_comment` after insert on comment for each row </span><br><span class="line">begin</span><br><span class="line">	declare count int;</span><br><span class="line">	if (new.resource_type = &apos;video&apos;) then</span><br><span class="line">		update video set comment_count = comment_count + 1 where id  = new.resource_id;</span><br><span class="line">	elseif (new.resource_type = &apos;article&apos;) then</span><br><span class="line">		update article set comment_count = comment_count + 1 where id = new.resource_id;</span><br><span class="line">	elseif (new.resource_type = &apos;user&apos;) then</span><br><span class="line">		select count(0) into count from user_data where user_id = new.resource_id;</span><br><span class="line">		if (count &gt;0) then</span><br><span class="line">			update user_data set comment_count = comment_count + 1 where user_id = new.resource_id;</span><br><span class="line">		else</span><br><span class="line">			insert into user_data (user_id,comment_count) values (new.resource_id,1);</span><br><span class="line">		end if;</span><br><span class="line">	end if;</span><br><span class="line">end $</span><br><span class="line">delimiter ;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加字段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table comment add column comment_id int(11) not null default 0 comment &apos;回复的评论注解id&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">insert into article (name,url) values (&apos;好文章&apos;,&apos;http://wen.com/wen.html&apos;);</span><br><span class="line">insert into comment(resource_id,resource_type,content) values(1,&apos;article&apos;,&apos;好文章&apos;);</span><br><span class="line">select * from article;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>执行完后，article中comment_count应该等于1</p>
+
+      
+
+      
+      
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/08/mysql-2017-08-08-item-daily/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-ansible-2017-08-08-item-basic-playbooks" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">ansible入门笔记2 Playbooks</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/" class="archive-article-date">
+  	<time datetime="2017-08-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>专辑：<a href="/2017/08/14/ansible-2017-08-14-album-study-notes/">ansible学习笔记</a></p>
+<blockquote>
+<p>Playbooks 是 Ansible的配置,部署,编排语言.他们可以被描述为一个需要希望远程主机执行命令的方案,或者一组IT程序运行的命令集合.</p>
+</blockquote>
+<p>一个playbook就是一个YAML文件，所以playbook文件一般都以.yml结尾，一个playbook文件由一个或多个play组成，每个play定义了在一个或多个远程主机上执行的一系列的task，其中每个task一般就是调用一个ansible的模块，如调用copy模块复制文件到远程主机或调用shell模块执行命令。</p>
+<h2><span id="jian-dan-de-pei-zhi">简单的配置</span><a href="#jian-dan-de-pei-zhi" class="header-anchor"></a></h2><p>配置deploy.yml完成进入远程服务器的某个目录并执行git pull操作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- hosts: wxnacy <span class="comment"># 它会默认使用/etc/ansible/hosts 中配置的服务器组名 也可以单独设置hosts地址</span></span><br><span class="line">  tasks:</span><br><span class="line">  - name: <span class="built_in">cd</span> path and git pull <span class="comment"># 命令名称</span></span><br><span class="line">    shell: git pull <span class="comment"># 执行命令</span></span><br><span class="line">    args:</span><br><span class="line">      <span class="built_in">chdir</span>: ~/workdir <span class="comment"># 进入目录</span></span><br></pre></td></tr></table></figure></p>
+<p>运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ ansible-playbook deploy.yml</span><br><span class="line"></span><br><span class="line">PLAY [wxnacy] **********************************************************************************************************************************************************************************************</span><br><span class="line"></span><br><span class="line">TASK [<span class="built_in">cd</span> path and git pull] *************************************************************************************************************************************************************************************</span><br><span class="line">ok: [wxnacy.server.org]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">PLAY RECAP *************************************************************************************************************************************************************************************************</span><br><span class="line">wxnacy.server.org             : ok=2    changed=1    unreachable=0    failed=0</span><br></pre></td></tr></table></figure></p>
+<p>执行完运行命令ansible会在webservers组中依次执行tasks，返回以上样式结果极为成功，结果通过红黄绿三种颜色标明了不同的执行结果，红色表示有task执行失败，黄色表示改变了远程主机状态。</p>
+
+      
+
+      
+      
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ansible</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/08/ansible-2017-08-08-item-basic-playbooks/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-ansible-2017-08-08-item-basic-get-started" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -300,103 +483,6 @@
 
 
   
-    <article id="post-mysql-2017-08-08-item-daily" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/08/mysql-2017-08-08-item-daily/">2017-08-08 新建article表，完善`insert_comment_trigger`</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/08/mysql-2017-08-08-item-daily/" class="archive-article-date">
-  	<time datetime="2017-08-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>今天目标创建acticle表，并完善<code>insert_comment_trigger</code>，以支持更新article中的comment_count,comment表新增comment_id字段</p>
-</blockquote>
-<p>专辑：<a href="/?p=/doc/mysql/mysql_daily.md">mysql每天练习</a></p>
-<ul>
-<li><p>新建article</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">drop table if exists `article`;</span><br><span class="line">create table `article`(</span><br><span class="line">	id int(11) not null auto_increment,</span><br><span class="line">	name varchar(32) not null comment &apos;标题&apos;,</span><br><span class="line">	url varchar(512) not null comment &apos;地址&apos;,</span><br><span class="line">	comment_count int(11) not null default 0 comment &apos;评论数量&apos;,</span><br><span class="line">	is_del tinyint(1) not null default 0 comment &apos;是否删除&apos;,</span><br><span class="line">	create_ts timestamp not null default current_timestamp comment &apos;创建时间&apos;,</span><br><span class="line">	update_ts timestamp not null default current_timestamp on update current_timestamp comment &apos;修改时间&apos;,</span><br><span class="line">	primary key(`id`)</span><br><span class="line">)engine=InnoDB default charset=utf8mb4 comment &apos;文章表&apos;;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改<code>insert_comment</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">drop trigger if exists `insert_comment`;</span><br><span class="line">delimiter $</span><br><span class="line">create trigger `insert_comment` after insert on comment for each row </span><br><span class="line">begin</span><br><span class="line">	declare count int;</span><br><span class="line">	if (new.resource_type = &apos;video&apos;) then</span><br><span class="line">		update video set comment_count = comment_count + 1 where id  = new.resource_id;</span><br><span class="line">	elseif (new.resource_type = &apos;article&apos;) then</span><br><span class="line">		update article set comment_count = comment_count + 1 where id = new.resource_id;</span><br><span class="line">	elseif (new.resource_type = &apos;user&apos;) then</span><br><span class="line">		select count(0) into count from user_data where user_id = new.resource_id;</span><br><span class="line">		if (count &gt;0) then</span><br><span class="line">			update user_data set comment_count = comment_count + 1 where user_id = new.resource_id;</span><br><span class="line">		else</span><br><span class="line">			insert into user_data (user_id,comment_count) values (new.resource_id,1);</span><br><span class="line">		end if;</span><br><span class="line">	end if;</span><br><span class="line">end $</span><br><span class="line">delimiter ;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>添加字段</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table comment add column comment_id int(11) not null default 0 comment &apos;回复的评论注解id&apos;;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>测试</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">insert into article (name,url) values (&apos;好文章&apos;,&apos;http://wen.com/wen.html&apos;);</span><br><span class="line">insert into comment(resource_id,resource_type,content) values(1,&apos;article&apos;,&apos;好文章&apos;);</span><br><span class="line">select * from article;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>执行完后，article中comment_count应该等于1</p>
-
-      
-
-      
-      
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/08/mysql-2017-08-08-item-daily/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-mysql-2017-08-07-item-daily" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -465,6 +551,87 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/07/mysql-2017-08-07-item-daily/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-mysql-2017-08-06-basic-cmd" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/mysql-2017-08-06-basic-cmd/">Mysql 基础命令</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/06/mysql-2017-08-06-basic-cmd/" class="archive-article-date">
+  	<time datetime="2017-08-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>整理 Mysql 的一些基础命令以便查阅</p>
+        
+          <a class="article-more-a" href="/2017/08/06/mysql-2017-08-06-basic-cmd/#more">阅读全文 >></a>
+        
+      
+
+      
+      
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/06/mysql-2017-08-06-basic-cmd/">展开全文 >></a>
         </p>
       
 
@@ -594,29 +761,29 @@
 
 
   
-    <article id="post-mysql-2017-08-06-basic-cmd" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-js-2017-08-05-screen-wh" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/06/mysql-2017-08-06-basic-cmd/">Mysql 基础命令</a>
+      <a class="article-title" href="/2017/08/05/js-2017-08-05-screen-wh/">js和css获取屏幕大小</a>
     </h1>
   
 
         
-        <a href="/2017/08/06/mysql-2017-08-06-basic-cmd/" class="archive-article-date">
-  	<time datetime="2017-08-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-06</time>
+        <a href="/2017/08/05/js-2017-08-05-screen-wh/" class="archive-article-date">
+  	<time datetime="2017-08-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-05</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>整理 Mysql 的一些基础命令以便查阅</p>
+        <p><a href="https://segmentfault.com/q/1010000004605042" target="_blank" rel="noopener">原文：https://segmentfault.com/q/1010000004605042</a></p>
         
-          <a class="article-more-a" href="/2017/08/06/mysql-2017-08-06-basic-cmd/#more">阅读全文 >></a>
+          <a class="article-more-a" href="/2017/08/05/js-2017-08-05-screen-wh/#more">阅读全文 >></a>
         
       
 
@@ -635,7 +802,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
         		</li>
       		
 		</ul>
@@ -645,7 +812,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/06/mysql-2017-08-06-basic-cmd/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/05/js-2017-08-05-screen-wh/">展开全文 >></a>
         </p>
       
 
@@ -739,87 +906,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/08/05/algorithm-2017-08-05-identity-verify/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-js-2017-08-05-screen-wh" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/05/js-2017-08-05-screen-wh/">js和css获取屏幕大小</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/05/js-2017-08-05-screen-wh/" class="archive-article-date">
-  	<time datetime="2017-08-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="https://segmentfault.com/q/1010000004605042" target="_blank" rel="noopener">原文：https://segmentfault.com/q/1010000004605042</a></p>
-        
-          <a class="article-more-a" href="/2017/08/05/js-2017-08-05-screen-wh/#more">阅读全文 >></a>
-        
-      
-
-      
-      
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/05/js-2017-08-05-screen-wh/">展开全文 >></a>
         </p>
       
 
@@ -1019,90 +1105,9 @@
 
 
   
-    <article id="post-life-so-hard" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/25/life-so-hard/">人生为什么活的这么艰难？</a>
-    </h1>
-  
-
-        
-        <a href="/2016/03/25/life-so-hard/" class="archive-article-date">
-  	<time datetime="2016-03-24T19:53:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>现在是北京凌晨两点多，差不多是平常快要入睡的时间。<br>但是今天不同，近一个月来首次12点之前陪老婆睡觉。<br>然而经历了两个多小时的代码梦加上翻来覆去的头疼，我忍无可忍的坐起身来清醒了一番。<br>然后，就再也睡不着了。</p>
-        
-          <a class="article-more-a" href="/2016/03/25/life-so-hard/#more">阅读全文 >></a>
-        
-      
-
-      
-      
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂谈</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/03/25/life-so-hard/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/49/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/48/">48</a><a class="page-number" href="/page/49/">49</a><span class="page-number current">50</span>
+      <a class="extend prev" rel="prev" href="/page/49/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/48/">48</a><a class="page-number" href="/page/49/">49</a><span class="page-number current">50</span><a class="page-number" href="/page/51/">51</a><a class="extend next" rel="next" href="/page/51/">Next &raquo;</a>
     </nav>
   
 
@@ -1266,15 +1271,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1290,15 +1295,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
