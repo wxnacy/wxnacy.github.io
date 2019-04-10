@@ -1,7 +1,10 @@
 ---
 title: Python 如何创建文件
-tags: [python]
+tags:
+  - python
+date: 2019-04-09 18:02:33
 ---
+
 
 Python 中可以使用 `open()` 内置方法来创建和打开文件。
 

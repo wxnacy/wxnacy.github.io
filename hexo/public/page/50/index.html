@@ -190,6 +190,90 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-mysql-2017-08-09-prompt" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/09/mysql-2017-08-09-prompt/">mysql prompt 提示符</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/09/mysql-2017-08-09-prompt/" class="archive-article-date">
+  	<time datetime="2017-08-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文：<a href="http://www.thegeekstuff.com/2010/02/mysql_ps1-6-examples-to-make-your-mysql-prompt-like-angelina-jolie/" target="_blank" rel="noopener">http://www.thegeekstuff.com/2010/02/mysql_ps1-6-examples-to-make-your-mysql-prompt-like-angelina-jolie/</a></p>
+<h2><span id="zai-ming-ling-xing-zhong-shi-yong">在命令行中使用</span><a href="#zai-ming-ling-xing-zhong-shi-yong" class="header-anchor"></a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; prompt \u@\d&gt;</span><br><span class="line">PROMPT set to &apos;\u@\d&gt; &apos;</span><br><span class="line">root@(none)&gt; use test</span><br><span class="line">Reading table information for completion of table and column names</span><br><span class="line">You can turn off this feature to get a quicker startup with -A</span><br><span class="line"></span><br><span class="line">Database changed</span><br><span class="line">root@test&gt;</span><br></pre></td></tr></table></figure>
+<h2><span id="zai-ming-ling-xing-can-shu-zhong-shi-yong">在命令行参数中使用</span><a href="#zai-ming-ling-xing-can-shu-zhong-shi-yong" class="header-anchor"></a></h2><p>需要使用双引号括起来<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wxnacy@wxnacydeMacBook-Pro: ~ $ mysql -u root -p --prompt=&quot;\u@\d&gt; &quot;    </span><br><span class="line">root@(none)&gt; use test;</span><br><span class="line">root@test&gt;</span><br></pre></td></tr></table></figure></p>
+<h3><span id="zai-bash-ceng-xiu-gai-mysql-ps1-bian-liang">在bash层修改 MYSQL_PS1 变量</span><a href="#zai-bash-ceng-xiu-gai-mysql-ps1-bian-liang" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wxnacy@wxnacydeMacBook-Pro: ~ $ <span class="built_in">export</span> MYSQL_PS1=<span class="string">"\u@\d&gt; "</span>                              </span><br><span class="line">wxnacy@wxnacydeMacBook-Pro: ~ $ mysql -u root -p                            </span><br><span class="line">root@(none)&gt;</span><br></pre></td></tr></table></figure>
+<h2><span id="zai-etc-my-cnf-zhong-pei-zhi">在/etc/my.cnf中配置</span><a href="#zai-etc-my-cnf-zhong-pei-zhi" class="header-anchor"></a></h2><p>也可以在配置中一劳永逸<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[mysql]  </span><br><span class="line">prompt=\\u@\\d&gt;\\ <span class="comment"># 要多加一个反斜线\</span></span><br><span class="line">  </span><br><span class="line">又或者：  </span><br><span class="line">[mysql]  </span><br><span class="line">prompt=<span class="string">"\u@\d&gt; "</span></span><br></pre></td></tr></table></figure></p>
+<h3><span id="geng-duo-can-shu">更多参数</span><a href="#geng-duo-can-shu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">Option  Description  </span><br><span class="line">  </span><br><span class="line">\c  A counter that increments <span class="keyword">for</span> each statement you issue  </span><br><span class="line">\D  The full current date  </span><br><span class="line">\d  The default database  </span><br><span class="line">\h  The server host  </span><br><span class="line">\l  The current delimiter (new <span class="keyword">in</span> 5.0.25)  </span><br><span class="line">\m  Minutes of the current time  </span><br><span class="line">\n  A newline character  </span><br><span class="line">\O  The current month <span class="keyword">in</span> three-letter format (Jan, Feb, …)  </span><br><span class="line">\o  The current month <span class="keyword">in</span> numeric format  </span><br><span class="line">\P  am/pm  </span><br><span class="line">\p  The current TCP/IP port or socket file  </span><br><span class="line">\R  The current time, <span class="keyword">in</span> 24-hour military time (0–23)  </span><br><span class="line">\r  The current time, standard 12-hour time (1–12)  </span><br><span class="line">\S  Semicolon  </span><br><span class="line">\s  Seconds of the current time  </span><br><span class="line">\t  A tab character  </span><br><span class="line">\U  Your full user_name@host_name account name  </span><br><span class="line">   </span><br><span class="line">\u  Your user name  </span><br><span class="line">\v  The server version  </span><br><span class="line">\w  The current day of the week <span class="keyword">in</span> three-letter format (Mon, Tue, …)  </span><br><span class="line">\Y  The current year, four digits  </span><br><span class="line">\y  The current year, two digits  </span><br><span class="line">\_  A space  </span><br><span class="line">\   A space (a space follows the backslash)  </span><br><span class="line">\<span class="string">'  Single quote  </span></span><br><span class="line"><span class="string">\"  Double quote  </span></span><br><span class="line"><span class="string">\\  A literal “\” backslash character  </span></span><br><span class="line"><span class="string">\x  x, for any “x” not listed above</span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+      
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/09/mysql-2017-08-09-prompt/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-mysql-2017-08-09-basic-index" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -745,87 +829,6 @@
 
 
   
-    <article id="post-mysql-2017-08-06-basic-cmd" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/06/mysql-2017-08-06-basic-cmd/">Mysql 基础命令</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/06/mysql-2017-08-06-basic-cmd/" class="archive-article-date">
-  	<time datetime="2017-08-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>整理 Mysql 的一些基础命令以便查阅</p>
-        
-          <a class="article-more-a" href="/2017/08/06/mysql-2017-08-06-basic-cmd/#more">阅读全文 >></a>
-        
-      
-
-      
-      
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/06/mysql-2017-08-06-basic-cmd/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-mysql-2017-08-06-item-daily" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -926,29 +929,29 @@
 
 
   
-    <article id="post-js-2017-08-05-screen-wh" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-mysql-2017-08-06-basic-cmd" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/05/js-2017-08-05-screen-wh/">js和css获取屏幕大小</a>
+      <a class="article-title" href="/2017/08/06/mysql-2017-08-06-basic-cmd/">Mysql 基础命令</a>
     </h1>
   
 
         
-        <a href="/2017/08/05/js-2017-08-05-screen-wh/" class="archive-article-date">
-  	<time datetime="2017-08-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-05</time>
+        <a href="/2017/08/06/mysql-2017-08-06-basic-cmd/" class="archive-article-date">
+  	<time datetime="2017-08-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="https://segmentfault.com/q/1010000004605042" target="_blank" rel="noopener">原文：https://segmentfault.com/q/1010000004605042</a></p>
+        <p>整理 Mysql 的一些基础命令以便查阅</p>
         
-          <a class="article-more-a" href="/2017/08/05/js-2017-08-05-screen-wh/#more">阅读全文 >></a>
+          <a class="article-more-a" href="/2017/08/06/mysql-2017-08-06-basic-cmd/#more">阅读全文 >></a>
         
       
 
@@ -967,7 +970,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
         		</li>
       		
 		</ul>
@@ -977,7 +980,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/05/js-2017-08-05-screen-wh/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/06/mysql-2017-08-06-basic-cmd/">展开全文 >></a>
         </p>
       
 
@@ -1007,19 +1010,19 @@
 
 
   
-    <article id="post-algorithm-2017-08-05-bank-verify" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-algorithm-2017-08-05-identity-verify" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/05/algorithm-2017-08-05-bank-verify/">银行卡校验规则(Luhn算法)</a>
+      <a class="article-title" href="/2017/08/05/algorithm-2017-08-05-identity-verify/">身份证号码校验规则</a>
     </h1>
   
 
         
-        <a href="/2017/08/05/algorithm-2017-08-05-bank-verify/" class="archive-article-date">
+        <a href="/2017/08/05/algorithm-2017-08-05-identity-verify/" class="archive-article-date">
   	<time datetime="2017-08-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-05</time>
 </a>
         
@@ -1027,15 +1030,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="http://www.icloudyin.com/?p=61" target="_blank" rel="noopener">原文:http://www.icloudyin.com/?p=61</a></p>
-<ul>
-<li>检验数字算法（Luhn Check Digit Algorithm），也叫做模数10公式，是一种简单的算法，用于验证银行卡、信用卡号码的有效性的算法。对所有大型信用卡公司发行的信用卡都起作用，这些公司包括美国Express、护照、万事达卡、Discover和用餐者俱乐部等。这种算法最初是在20世纪60年代由一组数学家制定，现在Luhn检验数字算法属于大众，任何人都可以使用它。</li>
-<li>将卡号上的每个数字乘上其权重（weight），如果卡号上的数字个数是偶数，那么第一个数字的权重就是2，若是奇数，那么权重就给1，剩下来的数字，根据第一个数字依序给定。例如某信用卡卡号的数字个数为偶数，那么从第一个数字开始的权重依序为 2、1、2、1、2、1 …。</li>
-<li>如果数字乘上自己的权重后比9还大，那么就从这加权数字里扣除9。</li>
-<li>接下来将所有处理过的加权数字全部加总起来，并且除以10，取其余数。</li>
+        <p><a href="http://www.icloudyin.com/?p=66" target="_blank" rel="noopener">原文:http://www.icloudyin.com/?p=66</a></p>
+<p>18位身份证号码组成：<code>ddddddyyyymmddxxsp</code>共18位，其中：其他部分都和15位的相同。年份代码由原来的2位升级到4位。最后一位为校验位。</p>
+<h2><span id="xiao-yan-gui-ze">校验规则：</span><a href="#xiao-yan-gui-ze" class="header-anchor"></a></h2><ul>
+<li><p>十七位数字本体码加权求和公式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">S = Sum(Ai * Wi), i = 0, … , 16 ，先对前17位数字的权求和</span><br><span class="line">Ai:表示第i位置上的身份证号码数字值</span><br><span class="line">Wi:表示第i位置上的加权因子</span><br><span class="line">Wi: 7 9 10 5 8 4 2 1 6 3 7 9 10 5 8 4 2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>计算模</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Y = mod(S, 11)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过模得到对应的校验码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Y: 0 1 2 3 4 5 6 7 8 9 10</span><br><span class="line">校验码: 1 0 X 9 8 7 6 5 4 3 2</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h2><span id="java">java</span><a href="#java" class="header-anchor"></a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">boolean</span> even = <span class="keyword">true</span>;</span><br><span class="line">	<span class="keyword">for</span> ( <span class="keyword">int</span> index = digits.size() - <span class="number">1</span>; index &gt;= <span class="number">0</span>; index-- ) &#123;</span><br><span class="line">		<span class="keyword">int</span> digit = digits.get( index );</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> ( even ) &#123;</span><br><span class="line">			digit &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> ( digit &gt; <span class="number">9</span> ) &#123;</span><br><span class="line">			digit -= <span class="number">9</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		sum += digit;</span><br><span class="line">		even = !even;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ( <span class="number">10</span> - ( sum % <span class="number">10</span> ) ) % <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
-<h2><span id="python">python</span><a href="#python" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_bank_card</span><span class="params">(card_num)</span>:</span></span><br><span class="line">    <span class="string">"""检查银行卡的合法性"""</span></span><br><span class="line">    total = <span class="number">0</span></span><br><span class="line">    even = <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">if</span> isinstance(card_num, int):</span><br><span class="line">        card_num = str(card_num)</span><br><span class="line">    check_num = card_num[<span class="number">-1</span>]</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> card_num[<span class="number">-2</span>::<span class="number">-1</span>]:</span><br><span class="line">        item = int(item)</span><br><span class="line">        <span class="keyword">if</span> even:</span><br><span class="line">            item &lt;&lt;= <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> item &gt; <span class="number">9</span>:</span><br><span class="line">            item -= <span class="number">9</span></span><br><span class="line">        total += item</span><br><span class="line">        even = <span class="keyword">not</span> even</span><br><span class="line">    <span class="keyword">return</span> int(check_num) <span class="keyword">is</span> (<span class="number">10</span> - (total % <span class="number">10</span>)) % <span class="number">10</span></span><br></pre></td></tr></table></figure>
+<h2><span id="java">java</span><a href="#java" class="header-anchor"></a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> String <span class="title">getCheckCode</span><span class="params">(String idCard)</span></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> String[] Wi = &#123; <span class="string">"7"</span>, <span class="string">"9"</span>, <span class="string">"10"</span>, <span class="string">"5"</span>, <span class="string">"8"</span>, <span class="string">"4"</span>, <span class="string">"2"</span>, <span class="string">"1"</span>, <span class="string">"6"</span>, <span class="string">"3"</span>, <span class="string">"7"</span>,</span><br><span class="line">        <span class="string">"9"</span>, <span class="string">"10"</span>, <span class="string">"5"</span>, <span class="string">"8"</span>, <span class="string">"4"</span>, <span class="string">"2"</span> &#125;;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; <span class="number">17</span> ; i ++)</span><br><span class="line">    &#123;</span><br><span class="line">        sum = sum + Integer.parseInt(String.valueOf(idCard.charAt(i))) * Integer.parseInt(String.valueOf(Wi[i]));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> T  = sum % <span class="number">11</span>;</span><br><span class="line">    <span class="keyword">int</span> R = (<span class="number">12</span> -T) % <span class="number">11</span>;</span><br><span class="line">    <span class="keyword">if</span>( R == <span class="number">10</span> )</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"X"</span>;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> String.valueOf(R);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2><span id="python">python</span><a href="#python" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_identity_card</span><span class="params">(card)</span>:</span></span><br><span class="line">    wi = [<span class="string">"7"</span>, <span class="string">"9"</span>, <span class="string">"10"</span>, <span class="string">"5"</span>, <span class="string">"8"</span>, <span class="string">"4"</span>, <span class="string">"2"</span>, <span class="string">"1"</span>, <span class="string">"6"</span>, <span class="string">"3"</span>, <span class="string">"7"</span>, <span class="string">"9"</span>, <span class="string">"10"</span>,<span class="string">"5"</span>, <span class="string">"8"</span>, <span class="string">"4"</span>, <span class="string">"2"</span>]</span><br><span class="line">    total = <span class="number">0</span></span><br><span class="line">    card = list(card)</span><br><span class="line">    index = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> card:</span><br><span class="line">        total += ord(item) * int(wi[index])</span><br><span class="line">        index += <span class="number">1</span></span><br><span class="line">        t = total % <span class="number">11</span></span><br><span class="line">    r = (<span class="number">12</span> - t) % <span class="number">11</span></span><br><span class="line">    <span class="keyword">if</span> r == <span class="number">10</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"X"</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> r</span><br></pre></td></tr></table></figure>
 
       
 
@@ -1064,7 +1073,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/05/algorithm-2017-08-05-bank-verify/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/05/algorithm-2017-08-05-identity-verify/">展开全文 >></a>
         </p>
       
 
@@ -1256,11 +1265,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1404,11 +1413,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color3">go</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">go</a>
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
