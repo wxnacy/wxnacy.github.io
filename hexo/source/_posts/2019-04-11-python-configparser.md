@@ -1,7 +1,10 @@
 ---
 title: Python 操作 ini 配置文件
-tags: [python]
+tags:
+  - python
+date: 2019-04-11 11:25:49
 ---
+
 
 Python 中使用 `configparser` 模块来操作 ini 文件。
 

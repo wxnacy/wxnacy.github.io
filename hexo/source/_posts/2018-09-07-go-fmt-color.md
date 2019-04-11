@@ -5,10 +5,12 @@ tags:
 date: 2018-09-07 11:13:45
 ---
 
-
 Go 语言可以很简单的给屏幕打印信息加上颜色。
 
-<!-- more --><!-- toc -->
+<!-- more -->
+
+![color1](https://raw.githubusercontent.com/wxnacy/test/master/blog/output-color.png)
+
 ```go
 conf := 0   // 配置、终端默认设置
 bg   := 0   // 背景色、终端默认设置
