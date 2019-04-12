@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-04-11T03:25:49.336Z</updated>
+  <updated>2019-04-12T14:48:11.317Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python 如何打印不换行进度条</title>
+    <link href="http://wxnacy.com/2019/04/12/python-single-line-progress/"/>
+    <id>http://wxnacy.com/2019/04/12/python-single-line-progress/</id>
+    <published>2019-04-12T14:36:10.000Z</published>
+    <updated>2019-04-12T14:48:11.317Z</updated>
+    
+    <content type="html"><![CDATA[<p>Python 中打印不换行进度条，可以说是简单透顶，使用内置方法 <code>print</code> 直接打印即可</p><a id="more"></a><p>先看下效果</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/python_progress.gif" alt="image"></p><p>大部分时间我们使用 <code>print</code> 是不带多与参数的，但是它有个带有默认值的参数 <code>end</code></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">''</span>, end=<span class="string">'\n'</span>)</span><br></pre></td></tr></table></figure><p>默认情况下 <code>end=&#39;\n&#39;</code>，表示打印完毕后进行换行。</p><p><code>\r</code> 则表示将光标移动到行首</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">''</span>, end=<span class="string">'\r'</span>)     <span class="comment"># 简而言之，这样就可以起到不换行的效果</span></span><br></pre></td></tr></table></figure><p>完整代码请见 <a href="https://github.com/wxnacy/study/blob/master/python/simple/single_line_progress.py" target="_blank" rel="noopener">single_line_progress.py</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Python 中打印不换行进度条，可以说是简单透顶，使用内置方法 &lt;code&gt;print&lt;/code&gt; 直接打印即可&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://wxnacy.com/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>Python 操作 ini 配置文件</title>
@@ -401,26 +421,6 @@
     
     
       <category term="shell" scheme="http://wxnacy.com/tags/shell/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Vim 报错：Caught deadly signal SEGV</title>
-    <link href="http://wxnacy.com/2019/03/15/vim-error-caught-deadly-signal-segv/"/>
-    <id>http://wxnacy.com/2019/03/15/vim-error-caught-deadly-signal-segv/</id>
-    <published>2019-03-15T02:15:35.000Z</published>
-    <updated>2019-03-15T02:56:31.291Z</updated>
-    
-    <content type="html"><![CDATA[<p>Mac 系统大版本的升级总是会引来一些灾难，这次升级到 macOS Mojave 就有很多软件都用不了了，Vim 就是其中一个。</p><a id="more"></a><div class="toc"><br><br><!-- toc --><!-- tocstop --></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Vim: Caught deadly signal SEGV</span><br><span class="line">Error detected <span class="keyword">while</span> processing <span class="keyword">function</span> 81_PollServerReady[7]..81_Pyeval:Vim: Finished.</span><br><span class="line"></span><br><span class="line">line 4:</span><br><span class="line">Exception MemoryError: MemoryError() <span class="keyword">in</span> &lt;module <span class="string">'threading'</span> from <span class="string">'/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/threading.pyc'</span>&gt; ignored</span><br></pre></td></tr></table></figure><p>这不，每次启动都报这个错误，然后闪退程序。这就很尴尬了，我现在的开发工作都是在 Vim 中进行，用不了可咋整，网上的说法是因为 YouCompleteMe 插件导致的，需要重新安装 Vim 并使之支持 lua。</p><p>我使用 <code>vim --version</code> 查看，发现果然当前不支持</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ vim --version</span><br><span class="line">...</span><br><span class="line">-lua</span><br><span class="line">...</span><br></pre></td></tr></table></figure><p>按照网上教程安装</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ brew install vim --with-lua --with-override-system-vi</span><br><span class="line">...</span><br><span class="line">Error: invalid option: --with-lua</span><br></pre></td></tr></table></figure><p>结果报错，无效的参数？？？但是翻遍了 Google 给出的都是这个教程，继续搜索，发现现在新版本的 brew 认为 <code>--</code> 会让使用者困惑，所以慢慢去掉了这些参数，去的真及时，那你倒是把新的方法贴出来啊。</p><p>我只能暂时退而求其次把 YouCompleteMe 插件删掉好了，结果果然正常了，反正是能用了，就是补全功能差劲点，别扭点就别扭点吧，还要工作呢。</p><p>勉强用了一天，觉得还是不行，已经被 YouCompleteMe 惯出毛病了，转了一圈，发现只输入点后自动提示补全和写入文字自动补全时忽略大小写这两点，就没有一个插件可以代替，无奈还是要想办法解决这个问题。</p><p>既然 brew 不能带这些参数，那去掉试试好了。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install vim</span><br></pre></td></tr></table></figure><p>再次运行 <code>vim</code> 还是不行，我试着查看了下 vim 的位置</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">which</span> vim</span><br><span class="line">/usr/bin/vim</span><br></pre></td></tr></table></figure><p>隐约觉得事情不太对，通常 brew 安装的软件二进制文件是在 <code>/usr/local/bin</code> 中的，查看了下发现果然没有链接过去，再次链接</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo chown $(whoami):wheel /usr/<span class="built_in">local</span>/share/man/de/man1</span><br><span class="line">$ brew link vim</span><br></pre></td></tr></table></figure><p>再次查看</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">which</span> vim</span><br><span class="line">/usr/bin/vim</span><br></pre></td></tr></table></figure><p>还是不行，查看环境变量发现 <code>$PATH</code> 中，<code>/usr/bin</code> 靠后，会覆盖的 <code>/usr/local/bin</code> 中的命令，再次调整</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ vim .bash_profile</span><br><span class="line"><span class="built_in">export</span> <span class="variable">$PATH</span>=<span class="variable">$PATH</span>:/usr/<span class="built_in">local</span>/bin</span><br><span class="line">$ <span class="built_in">source</span> .bash_profile</span><br></pre></td></tr></table></figure><p>再次查看</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">which</span> vim</span><br><span class="line">/usr/<span class="built_in">local</span>/bin/vim</span><br></pre></td></tr></table></figure><p>搞定，查看版本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ vim --version</span><br><span class="line">...</span><br><span class="line">+lua</span><br><span class="line">...</span><br></pre></td></tr></table></figure><p>好像有戏了，我怀着忐忑的心情，再次安装上 YouCompleteMe，打开 Vim，一切正常。</p><p><img src="https://wxnacy-img.oss-cn-beijing.aliyuncs.com/blog/vim1_1440_720.png" alt="vim"></p><p><strong><em>有些时候就是这样，事情总会得到解决，我们可以逃避过去，也可以休息一下，然后重新挑战。</em></strong></p><ul><li><a href="https://github.com/Valloric/YouCompleteMe/issues/3165" target="_blank" rel="noopener">#3165</a></li><li><a href="https://blog.csdn.net/weixin_39569611/article/details/87278729" target="_blank" rel="noopener">brew - Error: invalid option</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Mac 系统大版本的升级总是会引来一些灾难，这次升级到 macOS Mojave 就有很多软件都用不了了，Vim 就是其中一个。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="vim" scheme="http://wxnacy.com/tags/vim/"/>
     
   </entry>
   
