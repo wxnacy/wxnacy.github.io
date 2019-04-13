@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-04-12T14:48:11.317Z</updated>
+  <updated>2019-04-13T02:27:32.442Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux tar 打包命令</title>
+    <link href="http://wxnacy.com/2019/04/13/linux-tar/"/>
+    <id>http://wxnacy.com/2019/04/13/linux-tar/</id>
+    <published>2019-04-13T01:52:28.000Z</published>
+    <updated>2019-04-13T02:27:32.442Z</updated>
+    
+    <content type="html"><![CDATA[<p>在 Github 打标签的时候，它会自动归档两种压缩格式的文件 <code>.zip</code> 和 <code>.tar.gz</code>，如图</p><a id="more"></a><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/tar.png" alt="tar"></p><p><code>zip</code> 格式的压缩和解压可以参看我这篇文章 <a href="/2018/09/19/zip-unzip/">Linux zip 和 unzip 命令</a></p><p>今天我主要来说一下 <code>tar</code> 打包命令。</p><div class="toc"><!-- toc --><ul><li><a href="#da-bao-jie-bao">打包解包</a></li><li><a href="#ya-suo-jie-ya-gz-ge-shi">压缩解压 .gz 格式</a></li><li><a href="#ya-suo-jie-ya-bz2-ge-shi">压缩解压 .bz2 格式</a></li><li><a href="#geng-duo-yu-fa">更多语法</a></li></ul><!-- tocstop --></div><p>首先要强调的是 <code>tar</code> 是打包命令，本身不压缩，需要调用 <code>gzip</code> 压缩命令才可以生成 <code>.gz</code> 后缀的压缩文件。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ tar cvf pm2.log.tar pm2.log       <span class="comment"># 打包</span></span><br><span class="line">$ tar zcvf pm2.log.tar.gz pm2.log   <span class="comment"># 打包，并压缩</span></span><br><span class="line">$ zip pm2.zip pm2.log               <span class="comment"># 使用 zip 压缩</span></span><br><span class="line">$ ll</span><br><span class="line">-rw-r--r--    1 wxnacy  staff  259615701 Apr 13 06:37 pm2.log</span><br><span class="line">-rw-r--r--    1 wxnacy  staff  259617280 Apr 13 09:47 pm2.log.tar</span><br><span class="line">-rw-r--r--    1 wxnacy  staff    7746015 Apr 13 09:48 pm2.log.tar.gz</span><br><span class="line">-rw-r--r--    1 wxnacy  staff    7763656 Apr 13 09:51 pm2.zip</span><br></pre></td></tr></table></figure><p>从结果来看，只是打包命令的话，不但不压缩，本身比原文件还要大一点，调用压缩命令后，压缩比很明显，并且比 <code>zip</code> 的压缩比要高，所以在文件压缩时，我们可以优先使用 <code>tar</code> 打包并压缩。</p><h2><span id="da-bao-jie-bao">打包解包</span><a href="#da-bao-jie-bao" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ tar cvf &lt;filename&gt;.tar &lt;filename|dirname&gt;     <span class="comment"># 打包</span></span><br><span class="line">$ tar xvf &lt;filename&gt;.tar                        <span class="comment"># 解包</span></span><br></pre></td></tr></table></figure><h2><span id="ya-suo-jie-ya-gz-ge-shi">压缩解压 .gz 格式</span><a href="#ya-suo-jie-ya-gz-ge-shi" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ tar zcvf &lt;filename&gt;.tar.gz &lt;filename|dirname&gt;     <span class="comment"># 压缩</span></span><br><span class="line">$ tar zxvf &lt;filename&gt;.tar.gz                        <span class="comment"># 解压</span></span><br></pre></td></tr></table></figure><h2><span id="ya-suo-jie-ya-bz2-ge-shi">压缩解压 .bz2 格式</span><a href="#ya-suo-jie-ya-bz2-ge-shi" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ tar jcvf &lt;filename&gt;.tar.bz2 &lt;filename|dirname&gt;     <span class="comment"># 压缩</span></span><br><span class="line">$ tar jxvf &lt;filename&gt;.tar.bz2                        <span class="comment"># 解压</span></span><br></pre></td></tr></table></figure><h2><span id="geng-duo-yu-fa">更多语法</span><a href="#geng-duo-yu-fa" class="header-anchor"></a></h2><p>必要参数有如下：</p><ul><li><code>-A</code> 新增压缩文件到已存在的压缩</li><li><code>-B</code> 设置区块大小</li><li><code>-c</code> 建立新的压缩文件</li><li><code>-d</code> 记录文件的差别</li><li><code>-r</code> 添加文件到已经压缩的文件</li><li><code>-u</code> 添加改变了和现有的文件到已经存在的压缩文件</li><li><code>-x</code> 从压缩的文件中提取文件</li><li><code>-t</code> 显示压缩文件的内容</li><li><code>-z</code> 支持gzip解压文件</li><li><code>-j</code> 支持bzip2解压文件</li><li><code>-Z</code> 支持compress解压文件</li><li><code>-v</code> 显示操作过程</li><li><code>-l</code> 文件系统边界设置</li><li><code>-k</code> 保留原有文件不覆盖</li><li><code>-m</code> 保留文件不被覆盖</li><li><code>-W</code> 确认压缩文件的正确性</li></ul><p>可选参数如下：</p><ul><li><code>-b</code> 设置区块数目</li><li><code>-C</code> 切换到指定目录</li><li><code>-f</code> 指定压缩文件</li><li><code>--help</code> 显示帮助信息</li><li><code>--version</code> 显示版本信息</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在 Github 打标签的时候，它会自动归档两种压缩格式的文件 &lt;code&gt;.zip&lt;/code&gt; 和 &lt;code&gt;.tar.gz&lt;/code&gt;，如图&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="http://wxnacy.com/tags/linux/"/>
+    
+  </entry>
   
   <entry>
     <title>Python 如何打印不换行进度条</title>
@@ -401,26 +421,6 @@
       <category term="python" scheme="http://wxnacy.com/tags/python/"/>
     
       <category term="redis" scheme="http://wxnacy.com/tags/redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Shell 几种算术运算方式</title>
-    <link href="http://wxnacy.com/2019/03/16/shell-calculation/"/>
-    <id>http://wxnacy.com/2019/03/16/shell-calculation/</id>
-    <published>2019-03-16T08:40:29.000Z</published>
-    <updated>2019-03-16T08:40:29.518Z</updated>
-    
-    <content type="html"><![CDATA[<p>Shell 脚本中，我们可以使用几种方式来实现算数运算。</p><a id="more"></a><div class="toc"><br><br><!-- toc --><ul><li><a href="#expr">expr</a></li><li><a href="#xiao-gua-hao">小括号</a></li><li><a href="#zhong-gua-hao">中括号</a></li><li><a href="#let">let</a></li></ul><!-- tocstop --></div><h2><span id="expr">expr</span><a href="#expr" class="header-anchor"></a></h2><p>expr 本身是一个算数运算命令，Shell 可以直接拿到它的执行结果</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> `expr 1 + 2`</span><br><span class="line">3</span><br></pre></td></tr></table></figure><p>expr 有很多缺点，比如：只能运算整数、数字和符号之间必须都有空格、<code>*</code> 号需要转义、无法使用次方运算</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ expr 1+2</span><br><span class="line">1+2</span><br><span class="line"></span><br><span class="line">$ expr 1 +2</span><br><span class="line">expr: syntax error</span><br><span class="line"></span><br><span class="line">$ expr 1 \* 2</span><br><span class="line">2</span><br><span class="line"></span><br><span class="line">$ expr 1 + 2.3</span><br><span class="line">expr: not a decimal number: <span class="string">'2.3'</span></span><br></pre></td></tr></table></figure><h2><span id="xiao-gua-hao">小括号</span><a href="#xiao-gua-hao" class="header-anchor"></a></h2><p>下面我们来看 shell 本身的计算方式，第一个是小括号，这种方式需要把运算表达式用两层小括号包裹起来</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> $((1+2))</span><br><span class="line">3</span><br><span class="line"></span><br><span class="line">$ ((i=1+2))</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$i</span></span><br><span class="line">3</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> $((1 + 2.3))</span><br><span class="line">3.2999999999999998</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> $((2 ** 3))  <span class="comment"># 计算三次方</span></span><br><span class="line">8</span><br></pre></td></tr></table></figure><p>通过例子可以看到，这种方式比 <code>expr</code> 写起来更好更舒服，就是在计算浮点数字时会有精度损失。</p><h2><span id="zhong-gua-hao">中括号</span><a href="#zhong-gua-hao" class="header-anchor"></a></h2><p>中括号的方式必须加上 <code>$</code> 前缀，并不支持像小括号一样，在括号内赋值，其他与小括号无异。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> $[1 + 2]</span><br><span class="line">3</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> $[2 ** 3]</span><br><span class="line">8</span><br></pre></td></tr></table></figure><h2><span id="let">let</span><a href="#let" class="header-anchor"></a></h2><p>let 用来指示运算表达式，也可以达到效果，但是同样的有很多缺点，比如运算符和数字不能有空格、不支持次方运算、浮点运算会忽略小数点部分、<code>*</code> 需要转义</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&gt; $ <span class="built_in">let</span> i = 1 + 2</span><br><span class="line">zsh: bad math expression: operand expected at =</span><br><span class="line"></span><br><span class="line">&gt; $ <span class="built_in">let</span> i=1+2</span><br><span class="line">&gt; $ <span class="built_in">echo</span> <span class="variable">$i</span></span><br><span class="line">3</span><br><span class="line"></span><br><span class="line">&gt; $ <span class="built_in">let</span> i=1+2.3</span><br><span class="line">&gt; $ <span class="built_in">echo</span> <span class="variable">$i</span></span><br><span class="line">3</span><br><span class="line"></span><br><span class="line">&gt; $ <span class="built_in">let</span> i=2**3</span><br><span class="line">zsh: no matches found: i=2**3</span><br><span class="line"></span><br><span class="line">&gt; $ <span class="built_in">let</span> i=1+2.6</span><br><span class="line">&gt; $ <span class="built_in">echo</span> <span class="variable">$i</span></span><br><span class="line">3</span><br><span class="line"></span><br><span class="line">&gt; $ <span class="built_in">let</span> i=2\*3</span><br><span class="line">&gt; $ <span class="built_in">echo</span> <span class="variable">$i</span></span><br><span class="line">6</span><br></pre></td></tr></table></figure><p>经过对比可以发现，小括号和中括号的方式最好，两者只是书写存在细微差异，其他两个不建议使用。</p><ul><li><a href="https://www.cnblogs.com/f-ck-need-u/p/7231832.html" target="_blank" rel="noopener">SHELL脚本–expr命令全解</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Shell 脚本中，我们可以使用几种方式来实现算数运算。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="shell" scheme="http://wxnacy.com/tags/shell/"/>
     
   </entry>
   
