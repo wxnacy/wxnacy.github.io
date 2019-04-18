@@ -75,6 +75,10 @@ Vim 编写程序时，无须退出 Vim 或者新建 Terminal 窗口即可执行 
 
 ![4](https://raw.githubusercontent.com/wxnacy/image/master/blog/vim-shell4.gif)
 
+最后提一句 `:!!` 可以执行上一次执行的命令，没错，就像 Shell 中一样。
+
 直接在 Vim 中执行 Shell 命令，只是一种方式，我们还可以直接切换到 Shell 模式在执行复杂的操作。
 
 不过今天先到这里，想要学好 Vim，一次输入太多知识不是个好习惯，还需要大量的练习来巩固它，下一章我们再来探讨怎样切换 Shell 环境。
+
+传送门 [Vim 执行 Shell 命令（2）](/2019/04/18/vim-in-shell/)
