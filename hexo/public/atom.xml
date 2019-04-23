@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-04-18T14:34:35.327Z</updated>
+  <updated>2019-04-23T07:56:25.497Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Redis get 报错 a key holding the wrong kind of value</title>
+    <link href="http://wxnacy.com/2019/04/23/redis-error-wrong-kind/"/>
+    <id>http://wxnacy.com/2019/04/23/redis-error-wrong-kind/</id>
+    <published>2019-04-23T07:45:17.000Z</published>
+    <updated>2019-04-23T07:56:25.497Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近发现使用 <code>redis-cli</code> 命令来获取数据报错，如下</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(error) WRONGTYPE Operation against a key holding the wrong kind of value</span><br></pre></td></tr></table></figure><p>比较费解，因为线上程序并没有报错，时间紧迫也没有多关注，今天有时间感觉搜索了下。</p><p>这个错误是因为对 <code>key</code> 的 <code>value</code> 使用了错误的操作，比如 <code>lpush</code> 的数据只能使用 <code>lrange</code> 获取数据，使用 <code>get</code> 就会报错。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; lpush test_key 1</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; get test_key</span><br><span class="line">(error) WRONGTYPE Operation against a key holding the wrong kind of value</span><br><span class="line">127.0.0.1:6379&gt; lrange test_key 0 1</span><br><span class="line">1) <span class="string">"1"</span></span><br></pre></td></tr></table></figure><p>同样的使用 <code>set</code> 报错的数据，在使用 <code>lpush</code> 就会报错。</p><p>因为是很久之前写的代码，已经忘记了是用 <code>lpush</code> 保存的数据，所以在命令行中使用 <code>get</code> 自然报错。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近发现使用 &lt;code&gt;redis-cli&lt;/code&gt; 命令来获取数据报错，如下&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="redis" scheme="http://wxnacy.com/tags/redis/"/>
+    
+  </entry>
   
   <entry>
     <title>Vim 执行 Shell 命令（2）</title>
@@ -397,28 +417,6 @@
       <category term="python" scheme="http://wxnacy.com/tags/python/"/>
     
       <category term="sqlalchemy" scheme="http://wxnacy.com/tags/sqlalchemy/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>OSSFS 阿里云 OSS 本地挂载工具</title>
-    <link href="http://wxnacy.com/2019/03/29/ossfs/"/>
-    <id>http://wxnacy.com/2019/03/29/ossfs/</id>
-    <published>2019-03-29T01:47:02.000Z</published>
-    <updated>2019-03-29T01:47:02.823Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://github.com/aliyun/ossfs" target="_blank" rel="noopener">ossfs</a> 能让您在Linux/Mac OS X 系统中把Aliyun OSS bucket 挂载到本地文件 系统中，您能够便捷的通过本地文件系统操作OSS 上的对象，实现数据的共享。</p></blockquote><a id="more"></a><h2><span id="wei-shi-me-xu-yao-yong-dao-zhe-ge-ruan-jian-ni">为什么需要用到这个软件呢？</span><a href="#wei-shi-me-xu-yao-yong-dao-zhe-ge-ruan-jian-ni" class="header-anchor"></a></h2><p>我的情况是这样的，公司微信 h5 的静态文件是放在 OSS 上的，因为代码框架选用的 React，正常情况下地址路由都是交给 <code>index.html</code> 处理的，但是返回的状态码是 404，而微信非常流氓的把 404 状态的地址都转到它自己的页面，使得页面无法正常显示，AWS 的 s3 可以设置 404 状态改为 200，不过 OSS 没有，所以我只能借助 ossfs 的同步功能，在本地加一个 nginx 反向代理，单独处理 404 的请求。</p><p>挂载了 ossfs，OSS 和本地挂在之间可以实现双向同步，这是很方便的。</p><h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><p>首先从<a href="https://github.com/aliyun/ossfs/releases" target="_blank" rel="noopener">版本发布页面</a>下载合适的安装包</p><p><strong>Ubuntu 16.04</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://github.com/aliyun/ossfs/releases/download/v1.80.5/ossfs_1.80.5_ubuntu16.04_amd64.deb</span><br><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install gdebi-core</span><br><span class="line">$ sudo gdebi ossfs_1.80.5_ubuntu16.04_amd64.deb</span><br></pre></td></tr></table></figure><p><strong>CentOS 7</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://github.com/aliyun/ossfs/releases/download/v1.80.5/ossfs_1.80.5_centos7.0_x86_64.rpm</span><br><span class="line">$ sudo yum localinstall ossfs_1.80.5_centos7.0_x86_64.rpm</span><br></pre></td></tr></table></figure><h2><span id="shi-yong">使用</span><a href="#shi-yong" class="header-anchor"></a></h2><p><strong>配置 bucket 信息</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> my-bucket:my-access-key-id:my-access-key-secret &gt; /etc/passwd-ossfs  <span class="comment"># 配置 key 和 secret</span></span><br><span class="line">$ chmod 640 /etc/passwd-ossfs   <span class="comment"># 修改文件权限</span></span><br><span class="line">$ ossfs my-bucket local_dir_path -ourl=my-oss-endpoint  <span class="comment"># 将 bucket mount 到本地文件夹</span></span><br></pre></td></tr></table></figure><p>如果机器使用了阿里云 ECS 实例，<code>-ourl</code> 可以使用内网 <code>endpoint</code> 来<strong>避免流量收费</strong>和<strong>提高速度</strong></p><p>挂载命令可以添加 <code>-f -d</code> 参数来让 ossfs 运行在前台并输出debug日志</p><p>你也可以使用 <a href="http://supervisord.org/" target="_blank" rel="noopener">supervisor</a> 来管理 ossfs 进程，方法详见 <a href="https://github.com/aliyun/ossfs/wiki/FAQ#18" target="_blank" rel="noopener">FAQ</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/aliyun/ossfs&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;ossfs&lt;/a&gt; 能让您在Linux/Mac OS X 系统中把Aliyun OSS bucket 挂载到本地文件 系统中，您能够便捷的通过本地文件系统操作OSS 上的对象，实现数据的共享。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-      <category term="工具" scheme="http://wxnacy.com/tags/%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
