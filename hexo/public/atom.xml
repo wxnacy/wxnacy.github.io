@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-04-24T05:31:54.732Z</updated>
+  <updated>2019-04-25T01:35:51.950Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SQLAlchemy 解决其他连接修改数据后，查询不到的问题</title>
+    <link href="http://wxnacy.com/2019/04/25/sqlalchemy-isolation-level/"/>
+    <id>http://wxnacy.com/2019/04/25/sqlalchemy-isolation-level/</id>
+    <published>2019-04-25T01:35:51.000Z</published>
+    <updated>2019-04-25T01:35:51.950Z</updated>
+    
+    <content type="html"><![CDATA[<p>使用 SQLAlchemy 做数据库的读写分离，创建了主从两个 DB，结果发现使用主 DB 写入的数据，从 DB 无法实时查询，必须要重启服务才可以查到。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>做了各种尝试发现都得不到解决，突然想起以前碰见过类似的问题，但是当时通过其他方式绕了过去，果然不是不报，时候未到。这次必须得正面解决了。</p><p>经过 Google 后发现，这是事务的问题，在多个实例进行链接数据库时，如果不执行 <code>commit</code>，就得不到最新的数据。</p><p>我们可以使用 <code>session.commit()</code> 来单个解决，或者可以在创建引擎时通过调整隔离级别参数来永久解决。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">engine = create_engine(<span class="string">'db_url'</span>, isolation_level = <span class="string">'READ COMMITTED'</span>)</span><br></pre></td></tr></table></figure><p><code>isolation_level</code> 的值包含了：</p><ul><li>READ COMMITTED</li><li>READ UNCOMMITTED</li><li>REPEATABLE READ</li><li>SERIALIZABLE</li><li>AUTOCOMMIT</li></ul><p>因为我使用只读，所以 <code>READ COMMITTED</code> 就可以满足要求，如果你是读写公用的 DB，直接使用 <code>AUTOCOMMIT</code> 就无脑解决了。</p><p>如果你使用 <code>flask_sqlalchemy</code>，在 <code>app.config</code> 中加入如下参数即可</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQLALCHEMY_COMMIT_ON_TEARDOWN = <span class="keyword">True</span></span><br></pre></td></tr></table></figure><p>通过源码可以发现，当该参数设置为 <code>True</code> 时，它会自动进行 <code>commit</code> 操作</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.teardown_appcontext</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shutdown_session</span><span class="params">(response_or_exc)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> app.config[<span class="string">'SQLALCHEMY_COMMIT_ON_TEARDOWN'</span>]:</span><br><span class="line">        <span class="keyword">if</span> response_or_exc <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            self.session.commit()</span><br><span class="line"></span><br><span class="line">    self.session.remove()</span><br><span class="line">    <span class="keyword">return</span> response_or_exc</span><br></pre></td></tr></table></figure><ul><li><a href="https://docs.sqlalchemy.org/en/13/core/engines.html#engine-creation-api" target="_blank" rel="noopener">Engine Creation API</a></li><li><a href="https://docs.sqlalchemy.org/en/13/dialects/mysql.html#transaction-isolation-level" target="_blank" rel="noopener">Mysql Transaction Isolation Level</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;使用 SQLAlchemy 做数据库的读写分离，创建了主从两个 DB，结果发现使用主 DB 写入的数据，从 DB 无法实时查询，必须要重启服务才可以查到。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="sqlalchemy" scheme="http://wxnacy.com/tags/sqlalchemy/"/>
+    
+  </entry>
   
   <entry>
     <title>Python 如何给屏幕打印信息加上颜色</title>
@@ -390,26 +410,6 @@
     <summary type="html">
     
       &lt;p&gt;今天来比较下 Python 中循环语句的性能，参赛选手为 &lt;code&gt;while&lt;/code&gt; &lt;code&gt;for&lt;/code&gt; &lt;code&gt;生成器&lt;/code&gt; &lt;code&gt;内置函数&lt;/code&gt; &lt;code&gt;列表解析&lt;/code&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="python" scheme="http://wxnacy.com/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Pyenv 安装 Python3.7 报错：zlib not available</title>
-    <link href="http://wxnacy.com/2019/03/31/pyenv-zlib-not-available/"/>
-    <id>http://wxnacy.com/2019/03/31/pyenv-zlib-not-available/</id>
-    <published>2019-03-31T05:30:55.000Z</published>
-    <updated>2019-04-01T05:33:15.866Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近升级 Mac 系统，又手贱升级了 pyenv，结果安装 Python3.7 时报了错</p><a id="more"></a><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyenv install 3.7 zipimport.ZipImportError: can<span class="string">'t decompress data; zlib not available</span></span><br></pre></td></tr></table></figure><p>查询了下，发现是因为 Xcode 命令行工具没有安装需要的头，需要手动进行安装，运行如下命令可以解决这个问题</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ xcode-select --install</span><br><span class="line">$ sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /</span><br></pre></td></tr></table></figure><p>我的环境是</p><ul><li>macOS Mojave 10.14.3</li><li>pyenv 1.2.9</li><li><p>安装 3.7.2 版本</p></li><li><p><a href="https://github.com/pyenv/pyenv/issues/1219" target="_blank" rel="noopener">Install failed, “zlib not available” on macOS Mojave</a></p></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近升级 Mac 系统，又手贱升级了 pyenv，结果安装 Python3.7 时报了错&lt;/p&gt;
     
     </summary>
     

@@ -1,7 +1,10 @@
 ---
 title: SQLAlchemy 解决其他连接修改数据后，查询不到的问题
-tags: [sqlalchemy]
+tags:
+  - sqlalchemy
+date: 2019-04-25 09:35:51
 ---
+
 
 使用 SQLAlchemy 做数据库的读写分离，创建了主从两个 DB，结果发现使用主 DB 写入的数据，从 DB 无法实时查询，必须要重启服务才可以查到。
 
