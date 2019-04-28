@@ -1,7 +1,10 @@
 ---
 title: Python 判断字符串是否为大写及 is 方法延伸
-tags: [python]
+tags:
+  - python
+date: 2019-04-28 21:16:02
 ---
+
 
 Python 判断字符串是否为大写及延伸
 

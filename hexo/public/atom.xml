@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-04-26T00:08:55.487Z</updated>
+  <updated>2019-04-28T13:16:02.299Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python 判断字符串是否为大写及 is 方法延伸</title>
+    <link href="http://wxnacy.com/2019/04/28/python-isupper/"/>
+    <id>http://wxnacy.com/2019/04/28/python-isupper/</id>
+    <published>2019-04-28T13:16:02.000Z</published>
+    <updated>2019-04-28T13:16:02.299Z</updated>
+    
+    <content type="html"><![CDATA[<p>Python 判断字符串是否为大写及延伸</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>以下方法仅判断字符，数字和符号不影响结果</p><p><strong>isupper()</strong> 判断是否都为大写</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'1a!'</span>.isupper()</span><br><span class="line"><span class="keyword">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'1A!'</span>.isupper()</span><br><span class="line"><span class="keyword">True</span></span><br></pre></td></tr></table></figure><p><strong>islower()</strong> 判断是否都为小写</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'1As!'</span>.islower()</span><br><span class="line"><span class="keyword">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'1s!'</span>.islower()</span><br><span class="line"><span class="keyword">True</span></span><br></pre></td></tr></table></figure><p><strong>istitle()</strong> 判断所有的单词首字符都是大写</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'This Is Upper'</span>.istitle()</span><br><span class="line"><span class="keyword">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'This Is upper1'</span>.istitle()</span><br><span class="line"><span class="keyword">False</span></span><br></pre></td></tr></table></figure><p><strong>isspace()</strong> 判断所有的字符都是空格</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'This Is upper1'</span>.isspace()</span><br><span class="line"><span class="keyword">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">' '</span>.isspace()</span><br><span class="line"><span class="keyword">True</span></span><br></pre></td></tr></table></figure><p><strong>isalnum()</strong> 判断所有的字符都是数字或字母</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'1a!'</span>.isalnum()</span><br><span class="line"><span class="keyword">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'1a'</span>.isalnum()</span><br><span class="line"><span class="keyword">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'aa'</span>.isalnum()</span><br><span class="line"><span class="keyword">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'11'</span>.isalnum()</span><br><span class="line"><span class="keyword">True</span></span><br></pre></td></tr></table></figure><p><strong>isalpha()</strong> 判断所有的字符都是字母</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'11'</span>.isalpha()</span><br><span class="line"><span class="keyword">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'1a'</span>.isalpha()</span><br><span class="line"><span class="keyword">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'aa'</span>.isalpha()</span><br><span class="line"><span class="keyword">True</span></span><br></pre></td></tr></table></figure><p><strong>isdigit()</strong> 判断所有的字符都是数字</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'aa'</span>.isdigit()</span><br><span class="line"><span class="keyword">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'11'</span>.isdigit()</span><br><span class="line"><span class="keyword">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'1a'</span>.isdigit()</span><br><span class="line"><span class="keyword">False</span></span><br></pre></td></tr></table></figure><p>还有两个类似的方法 <strong>isdecimal()</strong> 和 <strong>isnumeric()</strong></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Python 判断字符串是否为大写及延伸&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://wxnacy.com/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>awk 正则表达式中使用参数</title>
@@ -397,26 +417,6 @@
     
     
       <category term="mac" scheme="http://wxnacy.com/tags/mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>bpython 强大的自动补全 Python Shell 工具</title>
-    <link href="http://wxnacy.com/2019/04/02/bpython/"/>
-    <id>http://wxnacy.com/2019/04/02/bpython/</id>
-    <published>2019-04-02T01:48:16.000Z</published>
-    <updated>2019-04-02T01:48:16.437Z</updated>
-    
-    <content type="html"><![CDATA[<p>提到 Python Shell 工具，要说 ipython 排老二，那没有哪位能排第一，它的功能强大是毋庸置疑的，然后强大归强大，这并不代表能适合所有人。</p><a id="more"></a><p>比如说我，我编写程序，最讲究的效率，自动补全和快速输入是必要的。但是 ipython 却远远满足不了我，如果你也用 <code>Vim + YouCompleteMe</code> 应该可以理解我。也许你会说，这本来就是 shell 命令工具，还能像 IDE 咋滴，嘿，巧了，今天要说的 <a href="https://bpython-interpreter.org/" target="_blank" rel="noopener">bpython</a> 就是个 shell 工具，但是它也能像 IDE 一样编写代码。</p><p><img src="https://camo.githubusercontent.com/fffc539a28d2465c11b74ff3c06d0b5595037454/687474703a2f2f692e696d6775722e636f6d2f6a66386d4374502e676966" alt="bpython"></p><p>相信你看完这个官方的 demo，已经开始想去了解它了，跟着我一起来吧。</p><p><strong>安装</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install bpython</span><br></pre></td></tr></table></figure><p><strong>运行</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; $ bpython</span><br><span class="line">bpython version 0.17.1 on top of Python 3.7.2 /Users/wxnacy/.pyenv/versions/3.7.2/Python.framework/Versions/3.7/bin/python3.7</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">Welcome to bpython! Press &lt;F1&gt; <span class="keyword">for</span> <span class="built_in">help</span>.</span><br></pre></td></tr></table></figure><p>使用 <code>&lt;F1&gt;</code> 可以查看帮助文档</p><p>我挑一些常用的键位说一下</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;Tab&gt;           <span class="comment"># 出现提示后，进行选择</span></span><br><span class="line">&lt;C<span class="_">-a</span>&gt;           <span class="comment"># 快速跳转行首</span></span><br><span class="line">&lt;C<span class="_">-e</span>&gt;           <span class="comment"># 快速跳转行尾，如果有上次输入记录，则自动输入</span></span><br><span class="line">&lt;C-u&gt;           <span class="comment"># 清空当前行</span></span><br><span class="line">&lt;C-w&gt;           <span class="comment"># 删除前一个单词</span></span><br><span class="line">&lt;C-h&gt;           <span class="comment"># 删除删除前一个字符，免去了手指移动到 backspace 的时间，刚好我在 Vim 中也设置了这个按键</span></span><br><span class="line"></span><br><span class="line">&lt;F1&gt;            <span class="comment"># 帮助文档</span></span><br><span class="line">&lt;F3&gt;            <span class="comment"># 打开配置文件，第一次提示是否生成配置文件</span></span><br><span class="line">&lt;F6&gt;            <span class="comment"># 重新加载 module，这在测试程序时非常有必要</span></span><br><span class="line">&lt;F7&gt;            <span class="comment"># 将当前 shell 中的代码放在临时文件中，并使用 vim 进行编辑</span></span><br><span class="line">&lt;F8&gt;            <span class="comment"># 将当前代码上传到 pastebin 上，并生成一个有效期为 7 天的链接</span></span><br></pre></td></tr></table></figure><p>挑几个重点的说下</p><p><strong>查看文档</strong></p><p>ipython 中可以使用 <code>requests.get?</code> 来查看文档</p><p>而 bpython 会自动出现该方法的文档</p><p><img src="https://wxnacy-img.oss-cn-beijing.aliyuncs.com/blog/bpy1.png" alt="wpy1"></p><p><strong>重载 module</strong></p><p>bpython 目前没有启动自动重载的能力，只能通过按键手动重载，不过我们可以修改它的按键，毕竟每次按 <code>&lt;F6&gt;</code> 还是很不方便的。</p><ul><li>进入 <code>bpython</code> 命令，按 <code>&lt;F3&gt;</code> 生成并编辑 <code>config</code> 文件<ul><li>默认配置文件的位置为 <code>~/.config/bpython/config</code>，如果你想修改它的位置，那么启动的时候需要增加参数 <code>bpython --config &lt;config-path&gt;</code></li></ul></li><li><code>&lt;C-r&gt;</code> 是我认为比较舒服的按键，但是它已经被撤销按键占住了，我认为撤销不是常用按键，所以进行了修改，最终配置如下</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">reimport = C-r  <span class="comment"># 重载按键</span></span><br><span class="line">undo = C-q      <span class="comment"># 撤销按键</span></span><br></pre></td></tr></table></figure><ul><li>然后退出 <code>bpython</code>，重新进入即可生效</li></ul><p><strong>上传 pastebin</strong></p><p>这是个比较有意思的功能，假如你想与别人及时分享一段代码，这是很优雅的方式，按下 <code>&lt;F8&gt;</code> 即可将当前命令行中的代码上传并得到一个地址，点击效果如下。</p><p><img src="https://wxnacy-img.oss-cn-beijing.aliyuncs.com/blog/bpy2_514.png" alt="bpy2"></p><p>当然 bpython 也不是没有缺点，比如在使用一些第三方模块时，自动补全有时会卡顿，这还是挺影响心情的，不过瑕不掩瑜，它仍然是让我爱不释手的 shell 工具。</p><ul><li><a href="https://github.com/bpython/bpython" target="_blank" rel="noopener">源代码</a></li><li><a href="https://docs.bpython-interpreter.org/configuration.html" target="_blank" rel="noopener">Configuration</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;提到 Python Shell 工具，要说 ipython 排老二，那没有哪位能排第一，它的功能强大是毋庸置疑的，然后强大归强大，这并不代表能适合所有人。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="python" scheme="http://wxnacy.com/tags/python/"/>
     
   </entry>
   
