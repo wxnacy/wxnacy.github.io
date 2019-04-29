@@ -1,7 +1,10 @@
 ---
 title: Linux time 命令统计脚本耗时
-tags: [linux]
+tags:
+  - linux
+date: 2019-04-29 12:10:22
 ---
+
 
 在 Linux 中 time 命令可以统计执行脚本的耗时。
 
