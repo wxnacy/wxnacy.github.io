@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-05-05T11:48:47.296Z</updated>
+  <updated>2019-05-14T08:48:32.515Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python 在 Mac 系统中从剪切板中获取图片</title>
+    <link href="http://wxnacy.com/2019/05/13/python-get-image-from-clipboard-on-mac/"/>
+    <id>http://wxnacy.com/2019/05/13/python-get-image-from-clipboard-on-mac/</id>
+    <published>2019-05-13T07:46:09.000Z</published>
+    <updated>2019-05-14T08:48:32.515Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近想给 <a href="https://github.com/wxnacy/goss" target="_blank" rel="noopener">goss</a> 加点料，就是省去截完图后，保存本地图片的步骤，而是直接从剪切板里获取图片并上传 Github，这样，如何从剪切板中获取图片就成了关键。</p><a id="more"></a><div class="toc"><!-- toc --><ul><li><a href="#an-zhuang">安装</a></li><li><a href="#huo-qu-bing-bao-cun-ben-di">获取并保存本地</a></li><li><a href="#huo-qu-bing-xie-ru-dao-liu">获取并写入到流</a></li></ul><!-- tocstop --></div><p>本来想着直接使用 <code>pbcopy</code> 和 <code>pbpaste</code> 命令组合，不过可惜的是它们只能适用于文本。</p><p>此时我们需要借助三方包 <a href="https://pillow.readthedocs.io/en/stable/" target="_blank" rel="noopener">Pillow</a></p><h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install pillow</span><br></pre></td></tr></table></figure><h2><span id="huo-qu-bing-bao-cun-ben-di">获取并保存本地</span><a href="#huo-qu-bing-bao-cun-ben-di" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"><span class="comment"># Description:</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> ImageGrab</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line">img = ImageGrab.grabclipboard()</span><br><span class="line"><span class="keyword">if</span> isinstance(img, Image.Image):</span><br><span class="line">    img.save(<span class="string">'test.png'</span>, <span class="string">'png'</span>)</span><br></pre></td></tr></table></figure><p>截图并保存剪切板后，<code>grabclipboard()</code> 方法可以获取剪切板中的图片，为了防止出错，我们还要判断取出的数据是否 <code>Image.Image</code> 图片类型，随后调用 <code>save()</code> 方法保存本地即可。</p><h2><span id="huo-qu-bing-xie-ru-dao-liu">获取并写入到流</span><a href="#huo-qu-bing-xie-ru-dao-liu" class="header-anchor"></a></h2><p>不过我希望的不是保存到本地，而是直接写入到流中，再进行二次操作，此时需要借助 io 包，将图片保存到 io 流中。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"><span class="comment"># Description:</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> ImageGrab</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> io</span><br><span class="line"></span><br><span class="line">img = ImageGrab.grabclipboard()</span><br><span class="line">img_bytes = io.BytesIO()</span><br><span class="line"><span class="keyword">if</span> isinstance(img, Image.Image):</span><br><span class="line">    <span class="comment">#  img.save('test.png', 'png')</span></span><br><span class="line">    img.save(img_bytes, <span class="string">'png'</span>)</span><br><span class="line">    print(img_bytes.getvalue())</span><br></pre></td></tr></table></figure><p>能拿到字节流就可以对其操作，在转换为其它格式，比如 base64，具体方法可以参考 <a href="https://www.devdungeon.com/content/grab-image-clipboard-python-pillow#convert_bytes_to_html_base64_img_tag" target="_blank" rel="noopener">Convert bytes to base64 HTML img tag</a></p><ul><li><a href="https://stackoverflow.com/questions/35254655/how-to-copy-a-image-from-clipboard-in-python?rq=1" target="_blank" rel="noopener">How to copy a image from clipboard in Python?</a></li><li><a href="https://www.devdungeon.com/content/grab-image-clipboard-python-pillow" target="_blank" rel="noopener">Grab Image from Clipboard in Python with Pillow</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近想给 &lt;a href=&quot;https://github.com/wxnacy/goss&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;goss&lt;/a&gt; 加点料，就是省去截完图后，保存本地图片的步骤，而是直接从剪切板里获取图片并上传 Github，这样，如何从剪切板中获取图片就成了关键。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://wxnacy.com/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>Python 使用 memory_profiler 分析程序内存占用情况</title>
@@ -397,26 +417,6 @@
     
     
       <category term="python" scheme="http://wxnacy.com/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Expect 设置变量和读取环境变量</title>
-    <link href="http://wxnacy.com/2019/04/05/expect-variables/"/>
-    <id>http://wxnacy.com/2019/04/05/expect-variables/</id>
-    <published>2019-04-05T12:34:00.000Z</published>
-    <updated>2019-04-05T12:34:00.928Z</updated>
-    
-    <content type="html"><![CDATA[<p>Expect 中设置变量跟 Bash 稍有不同</p><a id="more"></a><p><strong>Bash</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name=wxnacy</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$name</span>  <span class="comment"># wxnacy</span></span><br></pre></td></tr></table></figure><p><strong>Expect</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> name wxnacy</span><br><span class="line">puts <span class="variable">$name</span>  <span class="comment"># wxnacy</span></span><br></pre></td></tr></table></figure><p>边境变量也是如此</p><p><strong>Bash</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$HOME</span>      <span class="comment"># /Users/wxnacy</span></span><br></pre></td></tr></table></figure><p><strong>Expect</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">puts <span class="variable">$env</span>(HOME) <span class="comment"># /Users/wxnacy</span></span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Expect 中设置变量跟 Bash 稍有不同&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="expect" scheme="http://wxnacy.com/tags/expect/"/>
     
   </entry>
   
