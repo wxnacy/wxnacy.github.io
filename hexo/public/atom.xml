@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-05-18T02:35:54.696Z</updated>
+  <updated>2019-05-19T00:01:36.181Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PySpider 安装的坑：PyCurl 出错</title>
+    <link href="http://wxnacy.com/2019/05/19/install-pycurl-error/"/>
+    <id>http://wxnacy.com/2019/05/19/install-pycurl-error/</id>
+    <published>2019-05-19T00:01:36.000Z</published>
+    <updated>2019-05-19T00:01:36.181Z</updated>
+    
+    <content type="html"><![CDATA[<p>问题起源在于安装 PySpider 时需要依赖 PyCurl，过程中报错</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Collecting pycurl (from pyspider)</span><br><span class="line">  Using cached https://pypi.tuna.tsinghua.edu.cn/packages/e8/e4/0dbb8735407189f00b33d84122b9be52c790c7c3b25286826f4e1bdb7bde/pycurl-7.43.0.2.tar.gz</span><br><span class="line">    ERROR: Complete output from <span class="built_in">command</span> python setup.py egg_info:</span><br><span class="line">    ERROR: Using curl-config (libcurl 7.54.0)</span><br><span class="line">    Traceback (most recent call last):</span><br><span class="line">      File <span class="string">"&lt;string&gt;"</span>, line 1, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">      File <span class="string">"/private/var/folders/kz/8syfctw919zdt3shr9w5j8v00000gn/T/pip-install-h_pgkvxp/pycurl/setup.py"</span>, line 913, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">        ext = get_extension(sys.argv, split_extension_source=split_extension_source)</span><br><span class="line">      File <span class="string">"/private/var/folders/kz/8syfctw919zdt3shr9w5j8v00000gn/T/pip-install-h_pgkvxp/pycurl/setup.py"</span>, line 582, <span class="keyword">in</span> get_extension</span><br><span class="line">        ext_config = ExtensionConfiguration(argv)</span><br><span class="line">      File <span class="string">"/private/var/folders/kz/8syfctw919zdt3shr9w5j8v00000gn/T/pip-install-h_pgkvxp/pycurl/setup.py"</span>, line 99, <span class="keyword">in</span> __init__</span><br><span class="line">        self.configure()</span><br><span class="line">      File <span class="string">"/private/var/folders/kz/8syfctw919zdt3shr9w5j8v00000gn/T/pip-install-h_pgkvxp/pycurl/setup.py"</span>, line 316, <span class="keyword">in</span> configure_unix</span><br><span class="line">        specify the SSL backend manually.<span class="string">''</span><span class="string">')</span></span><br><span class="line"><span class="string">    __main__.ConfigurationError: Curl is configured to use SSL, but we have not been able to determine which SSL backend it is using. Please see PycURL documentation for how to specify the SSL backend manually.</span></span><br><span class="line"><span class="string">    ----------------------------------------</span></span><br><span class="line"><span class="string">ERROR: Command "python setup.py egg_info" failed with error code 1 in /private/var/folders/kz/8syfctw919zdt3shr9w5j8v00000gn/T/pip-install-h_pgkvxp/pycurl/</span></span><br></pre></td></tr></table></figure><p>出错内容 <code>Curl is configured to use SSL, but we have not been able to determine which SSL backend it is using. Please see PycURL documentation for how to specify the SSL backend manually.</code></p><p>原因在于正确配置配置 SSL，<a href="http://pycurl.io/docs/latest/install.html#easy-install-pip" target="_blank" rel="noopener">官方文档</a>中给出了方式</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PYCURL_SSL_LIBRARY=[openssl|gnutls|nss]</span><br></pre></td></tr></table></figure><p>openssl 是比较常用的</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PYCURL_SSL_LIBRARY=openssl</span><br></pre></td></tr></table></figure><p>如果你的 <code>.bash_profile</code> 文件中没有配置 <code>LDFLAGS</code> 和 <code>CPPFLAGS</code>，那需要在当前环境中进行激活。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">export</span> CFLAGS=<span class="string">"-I<span class="variable">$(brew --prefix openssl)</span>/include"</span></span><br><span class="line">$ <span class="built_in">export</span> LDFLAGS=<span class="string">"-L<span class="variable">$(brew --prefix openssl)</span>/lib"</span></span><br></pre></td></tr></table></figure><p><code>$(brew --prefix openssl)</code> 是为了获取 openssl 的安装目录，这是在使用 HomeBrew 安装的前提下，如果不是的话可以使用 <code>find</code> 命令进行查找</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo find /usr -iname ssl.h</span><br></pre></td></tr></table></figure><ul><li><a href="https://stackoverflow.com/questions/51019622/curl-is-configured-to-use-ssl-but-we-have-not-been-able-to-determine-which-ssl" target="_blank" rel="noopener">Curl is configured to use SSL, but we have not been able to determine which SSL backend it is using</a></li><li><a href="https://www.jianshu.com/p/61fd0c16aef4" target="_blank" rel="noopener">Mac下安装pycurl填坑记录</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;问题起源在于安装 PySpider 时需要依赖 PyCurl，过程中报错&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://wxnacy.com/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>Vim 执行 Shell 命令（3）</title>
@@ -397,26 +417,6 @@
     
     
       <category term="ffmpeg" scheme="http://wxnacy.com/tags/ffmpeg/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python 复制文件的两种方式</title>
-    <link href="http://wxnacy.com/2019/04/07/python-copy-command/"/>
-    <id>http://wxnacy.com/2019/04/07/python-copy-command/</id>
-    <published>2019-04-07T10:48:45.000Z</published>
-    <updated>2019-04-07T10:48:45.188Z</updated>
-    
-    <content type="html"><![CDATA[<p>Python 中实现文件复制，大概分为两种方式<strong>复制函数</strong>和<strong>调用 shell</strong></p><a id="more"></a><div class="toc"><br><br><!-- toc --><ul><li><a href="#han-shu-fu-zhi">函数复制</a></li><li><a href="#diao-yong-shell">调用 shell</a></li><li><a href="#xiao-lu-dui-bi">效率对比</a></li></ul><!-- tocstop --></div><h2><span id="han-shu-fu-zhi">函数复制</span><a href="#han-shu-fu-zhi" class="header-anchor"></a></h2><p><code>shutil</code> 模块中有几个可以实现复制的方法</p><p>其实 <code>copy()</code> 方法是最常用到的，它相当于 <code>cp -P</code> 命令，可以复制文件的内容和权限。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"><span class="comment"># shutil.copy(源文件, 目标文件) 目标文件可以是目录</span></span><br><span class="line">shutil.copy(<span class="string">'test.sh'</span>, <span class="string">'test_copy.sh'</span>)</span><br><span class="line">shutil.copy(<span class="string">'test.sh'</span>, <span class="string">'/tmp'</span>)</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-rwxr-xr-x  1 wxnacy  wheel     90 Apr  6 19:05 test.sh</span><br><span class="line">-rwxr-xr-x  1 wxnacy  wheel     90 Apr  6 19:09 test_copy.sh</span><br></pre></td></tr></table></figure><p><code>copy()</code> 方法中调用了 <code>copyfile()</code> <code>copymode()</code> 两个方法。</p><ul><li><code>copyfile()</code> 负责复制文件内容，但是目标文件不能是目录，并且必须可以写入</li><li><code>copymode()</code> 负责复制文件权限</li></ul><p><code>copyfile()</code> 方法中又调用了低级方法 <code>copyfileobj()</code></p><p><code>copyfileobj()</code> 方法可以假定了一个可选参数（缓冲区大小），你可以用来设置缓冲区长度。这是复制过程中保存在内存中的字节数。系统使用的默认大小是 16 KB。</p><p>还有个 <code>copy2()</code> 方法，它类似 <code>copy()</code>，但是它可以在复制数据时获取元数据中添加的访问和修改时间。</p><p>几个方法就功能而言 <code>copy2() &gt; copy() &gt; copyfile()</code>，相对应的功能和耗时是成正比的，所以我建议一般情况下可以使用 <code>copy()</code> 方法，如果大批量复制操作，并且没有特殊权限，比如图片，那么还是使用 <code>copyfile()</code> 更好一点。</p><h2><span id="diao-yong-shell">调用 shell</span><a href="#diao-yong-shell" class="header-anchor"></a></h2><p>还有一个万能的方式是直接调用 shell 命令。</p><p>现在使用 <code>subprocess</code> 模块代替其他调用 shell 的模块。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"><span class="keyword">import</span> shlex</span><br><span class="line"></span><br><span class="line">cmds = shlex.split(<span class="string">"cp test.sh test_popen.sh"</span>)</span><br><span class="line">p = subprocess.Popen(cmds)</span><br><span class="line">p.communicate()</span><br></pre></td></tr></table></figure><p><code>Popen()</code> 方法的第一个参数为执行的命令，在 Unix 系统中，如果该参数为字符串，那它只能是一个可执行文件，如果想要传参，则必须以数组的形式传入，<code>shlex.split()</code> 方法可以将复杂的命令转换为数组的形式。</p><p>在 Windows 系统中可以使用字符串传入命令行，并且需要使用 <code>copy source_file target_file</code> 命令。</p><h2><span id="xiao-lu-dui-bi">效率对比</span><a href="#xiao-lu-dui-bi" class="header-anchor"></a></h2><p>最后对比下他们的速度，执行 100 次时间如下。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">copy_file time    0.022215532000000003</span><br><span class="line">copy time         0.059561121999999994</span><br><span class="line">copy2 time        0.07728823600000001</span><br><span class="line">popen time        0.37018151000000005</span><br></pre></td></tr></table></figure><p>大概是 <code>subprocess</code> 模块会生成子进程的原因，速度慢了很多，在这种情况下，复制操作优选依然是 <code>copy()</code> <code>copyfile()</code> 方法。</p><ul><li><a href="https://www.techbeamers.com/python-copy-file/" target="_blank" rel="noopener">How to Copy a File in Python – 9 Different Ways to do It!</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Python 中实现文件复制，大概分为两种方式&lt;strong&gt;复制函数&lt;/strong&gt;和&lt;strong&gt;调用 shell&lt;/strong&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="python" scheme="http://wxnacy.com/tags/python/"/>
     
   </entry>
   
