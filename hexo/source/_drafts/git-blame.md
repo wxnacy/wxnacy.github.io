@@ -1,0 +1,129 @@
+---
+title: Git blame 查看代码是谁写的
+tags: [git]
+---
+
+`git blame` 命令可以查看每行代码的提交详情，包括提交人、时间等信息，成熟的编辑器如 Sublime、Jetbrains 等都集成了这个功能，使用起来非常简单，今天我们来关注下这个命令本身，毕竟在服务器上我们可不能安装这些编辑器。
+
+<!-- more -->
+<!-- toc -->
+
+```bash
+$ git blame <filename>
+```
+
+![1](https://raw.githubusercontent.com/wxnacy/image/master/blog/git-blame1_874.png)
+
+得到的结果，每列分别为
+
+```bash
+提交 sha1   用户名 提交时间                    行数    代码
+...
+39a22489    (wxnacy 2018-07-26 19:01:55 +0800  6)      def filter(source: dict, *args, **kwargs):
+...
+```
+
+这是最简单的语法，我们查看文件的每一行代码的最后提交详情，不过这通常不是我们的目的，一般只需要看某一行或某个范围行，这时可以使用 `-L` 参数。
+
+```bash
+$ git blame <filename> -L <start>[,<end>]
+```
+
+**查看第 10 行**
+
+```bash
+$ git blame <filename> -L 10,10
+```
+
+**查看第 10 行及以后**
+
+```bash
+$ git blame <filename> -L 10
+```
+
+**查看第 10 到 20 行**
+
+```bash
+$ git blame <filename> -L 10,20
+```
+
+`end` 也可以加上正负符号，比如
+
+**查看 10 行以后 5 行的数据**
+
+```bash
+$ git blame <filename> -L 10,+5
+```
+
+**查看 10 行以前 5 行的数据**
+
+```bash
+$ git blame <filename> -L 10,-5
+```
+
+`start` 和 `end` 又不止于数字，它还可以是个正则表达式，如果 `start` 为正则表达式，则会匹配到 `end` 行，如果 `end` 为正则表达式，则从 `start` 行开始匹配，到匹配行截止，如果 `start` 或者 `end` 其中之一有值，则从匹配行开始显示全部内容。
+
+**查看正则匹配到 20 行**
+
+```bash
+$ git blame <filename> -L /filter/,20
+```
+
+![2](https://raw.githubusercontent.com/wxnacy/image/master/blog/git-blame2_872.png)
+
+**查看 3 行到正则匹配行**
+
+```bash
+$ git blame <filename> -L 3,/filter/
+```
+
+![3](https://raw.githubusercontent.com/wxnacy/image/master/blog/git-blame3.png)
+
+`-L` 参数的功能还不止这些，有个更智能的方式是直接通过函数名来查看一个区域块的代码
+
+```bash
+$ git blame <filename> -L:<func_name>
+```
+
+这是很方便的能力，不过只能识别文件最外层的方法名和类名
+
+```bash
+$ git blame <filename> -L:filter
+```
+
+![4](https://raw.githubusercontent.com/wxnacy/image/master/blog/git-blame4.png)
+
+完整参数列表
+
+```bash
+usage: git blame [<options>] [<rev-opts>] [<rev>] [--] <file>
+
+    <rev-opts> are documented in git-rev-list(1)
+
+    --incremental         Show blame entries as we find them, incrementally
+    -b                    Show blank SHA-1 for boundary commits (Default: off)
+    --root                Do not treat root commits as boundaries (Default: off)
+    --show-stats          Show work cost statistics
+    --progress            Force progress reporting
+    --score-debug         Show output score for blame entries
+    -f, --show-name       Show original filename (Default: auto)
+    -n, --show-number     Show original linenumber (Default: off)
+    -p, --porcelain       Show in a format designed for machine consumption
+    --line-porcelain      Show porcelain format with per-line commit information
+    -c                    Use the same output mode as git-annotate (Default: off)
+    -t                    提交时间显示为时间戳，默认关闭
+    -l                    显示完整的 commit sha1，默认关闭
+    -s                    Suppress author name and timestamp (Default: off)
+    -e, --show-email      显示提交用户的邮箱，默认关闭
+    -w                    Ignore whitespace differences
+    --indent-heuristic    Use an experimental heuristic to improve diffs
+    --minimal             Spend extra cycles to find better match
+    -S <file>             Use revisions from <file> instead of calling git-rev-list
+    --contents <file>     Use <file>'s contents as the final image
+    -C[<score>]           Find line copies within and across files
+    -M[<score>]           Find line movements within and across files
+    -L <n,m>              Process only line range n,m, counting from 1
+    --abbrev[=<n>]        use <n> digits to display SHA-1s
+```
+
+- [git-blame](https://git-scm.com/docs/git-blame)

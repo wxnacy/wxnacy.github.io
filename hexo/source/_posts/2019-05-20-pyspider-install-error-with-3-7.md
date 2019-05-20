@@ -1,7 +1,10 @@
 ---
 title: PySpider 安装的坑：不支持 3.7 版本
-tags: [python]
+tags:
+  - python
+date: 2019-05-20 18:13:05
 ---
+
 
 PySpider 安装还真是各种坑啊，所以感觉不能单独记录，收成一个系列吧。
 
