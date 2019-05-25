@@ -8,3 +8,6 @@
 
 准备好刷题了吗，我们现在开始吧。
 
+本系列 Demo 库
+
+- [Python](https://github.com/wxnacy/study/blob/master/python/leetcode/README.md)
