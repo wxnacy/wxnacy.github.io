@@ -143,4 +143,5 @@ class Solution:
 
 ## 其他语言
 
-- [python](https://github.com/wxnacy/study/blob/master/python/leetcode/2-add-two-numbers.py)
+- [Python](https://github.com/wxnacy/study/blob/master/python/leetcode/2-add-two-numbers.py)
+- [Go](https://github.com/wxnacy/study/blob/master/goland/src/leetcode/2-add-two-numbers_test.go)
