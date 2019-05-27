@@ -125,4 +125,5 @@ class Solution:
 
 ## 其他语言
 
-- [python](https://github.com/wxnacy/study/blob/master/python/leetcode/7-reverse-integer.py)
+- [Python](https://github.com/wxnacy/study/blob/master/python/leetcode/7-reverse-integer.py)
+- [Go](https://github.com/wxnacy/study/blob/master/goland/src/leetcode/7-reverse-integer_test.go)
