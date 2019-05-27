@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-05-25T01:51:51.228Z</updated>
+  <updated>2019-05-27T09:36:33.810Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python list 对象一些方法的时间复杂度</title>
+    <link href="http://wxnacy.com/2019/05/27/python-list-time-complexity/"/>
+    <id>http://wxnacy.com/2019/05/27/python-list-time-complexity/</id>
+    <published>2019-05-27T09:07:51.000Z</published>
+    <updated>2019-05-27T09:36:33.810Z</updated>
+    
+    <content type="html"><![CDATA[<p>列举下 Python list 对象常用方法的时间复杂度</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><table><thead><tr><th>方法</th><th>时间复杂度</th></tr></thead><tbody><tr><td>list[i]</td><td>O(1)</td></tr><tr><td>list[i] = 1</td><td>O(1)</td></tr><tr><td>list[i:j]</td><td>O(k)  k = j - i</td></tr><tr><td>list[i:k] = list()</td><td>O(n + k)</td></tr><tr><td>list.index(item)</td><td>O(n)</td></tr><tr><td>list.append(item)</td><td>O(1)</td></tr><tr><td>list.insert(i, item)</td><td>O(n)</td></tr><tr><td>list.pop()</td><td>O(1)</td></tr><tr><td>list.pop(i)</td><td>O(n) 假如推出的是第一个元素，那么数组所有的元素都要重新计算坐标</td></tr><tr><td>del list[i]</td><td>O(n)</td></tr><tr><td>item in list</td><td>O(n)</td></tr><tr><td>list.reverse()</td><td>O(n)</td></tr><tr><td>list.sort()</td><td>O(n logn)</td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;列举下 Python list 对象常用方法的时间复杂度&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://wxnacy.com/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>Javascript 跳转其他页面</title>
@@ -397,26 +417,6 @@
     
     
       <category term="linux" scheme="http://wxnacy.com/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python 如何打印不换行进度条</title>
-    <link href="http://wxnacy.com/2019/04/12/python-single-line-progress/"/>
-    <id>http://wxnacy.com/2019/04/12/python-single-line-progress/</id>
-    <published>2019-04-12T14:36:10.000Z</published>
-    <updated>2019-04-12T14:48:11.317Z</updated>
-    
-    <content type="html"><![CDATA[<p>Python 中打印不换行进度条，可以说是简单透顶，使用内置方法 <code>print</code> 直接打印即可</p><a id="more"></a><p>先看下效果</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/python_progress.gif" alt="image"></p><p>大部分时间我们使用 <code>print</code> 是不带多与参数的，但是它有个带有默认值的参数 <code>end</code></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">''</span>, end=<span class="string">'\n'</span>)</span><br></pre></td></tr></table></figure><p>默认情况下 <code>end=&#39;\n&#39;</code>，表示打印完毕后进行换行。</p><p><code>\r</code> 则表示将光标移动到行首</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">''</span>, end=<span class="string">'\r'</span>)     <span class="comment"># 简而言之，这样就可以起到不换行的效果</span></span><br></pre></td></tr></table></figure><p>完整代码请见 <a href="https://github.com/wxnacy/study/blob/master/python/simple/single_line_progress.py" target="_blank" rel="noopener">single_line_progress.py</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Python 中打印不换行进度条，可以说是简单透顶，使用内置方法 &lt;code&gt;print&lt;/code&gt; 直接打印即可&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="python" scheme="http://wxnacy.com/tags/python/"/>
     
   </entry>
   
