@@ -6,7 +6,7 @@
 
 知识点：哈希表、双指针、字符串、Sliding Window
 
-地址： [https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/)
+地址：[https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/)
 
 ```
 给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
@@ -224,3 +224,7 @@ class Solution:
 ```
 
 这是一种时间换逻辑的改法，它的时间复杂度依然是 O(n)，但是有一些重复计算，速度会稍慢一些，但是逻辑无脑，代码美观，如果你不需要极致的速度，那这是一种不错的写法。
+
+## 其他语言
+
+- [python](https://github.com/wxnacy/study/blob/master/python/leetcode/3-longest-substring-without-repeating-characters.py)
