@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-05-27T09:36:33.810Z</updated>
+  <updated>2019-05-28T06:21:41.531Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>异或运算及应用</title>
+    <link href="http://wxnacy.com/2019/05/28/what-is-xor/"/>
+    <id>http://wxnacy.com/2019/05/28/what-is-xor/</id>
+    <published>2019-05-28T06:04:30.000Z</published>
+    <updated>2019-05-28T06:21:41.531Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>异或，英文为exclusive OR，缩写成xor，异或是一个数学运算符。它应用于逻辑运算</p></blockquote><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>异或也叫半加运算，其运算法则相当于不带进位的二进制加法，它的运算规则为：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">二进制的比较位相同则结果返回 0，不同则为 1</span><br></pre></td></tr></table></figure><p>运算符有几种表示方式</p><table><thead><tr><th>名称</th><th>符号</th></tr></thead><tbody><tr><td>数学符号</td><td>⊕</td></tr><tr><td>英文简称</td><td>xor</td></tr><tr><td>程序符号</td><td>^</td></tr></tbody></table><p><strong>运算推导</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5 ^ 8 = 2</span><br></pre></td></tr></table></figure><p>单看这个表达式比较费解，我们转成二进制来看下</p><table><thead><tr><th>-</th><th>相同</th><th>不同</th><th>相同</th></tr></thead><tbody><tr><td>5</td><td>1</td><td>0</td><td>1</td></tr><tr><td>8</td><td>1</td><td>1</td><td>1</td></tr><tr><td>5 ^ 8</td><td>0</td><td>1</td><td>0</td></tr><tr><td>2</td><td>0</td><td>1</td><td>0</td></tr></tbody></table><p>异或在开发中的应用可以参看一道算法题 <a href="/leetcode/problems/136-single-number/">只出现一次的数字</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;异或，英文为exclusive OR，缩写成xor，异或是一个数学运算符。它应用于逻辑运算&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="算法" scheme="http://wxnacy.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>Python list 对象一些方法的时间复杂度</title>
@@ -397,26 +419,6 @@
       <category term="工具" scheme="http://wxnacy.com/tags/%E5%B7%A5%E5%85%B7/"/>
     
       <category term="python" scheme="http://wxnacy.com/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux tar 打包命令</title>
-    <link href="http://wxnacy.com/2019/04/13/linux-tar/"/>
-    <id>http://wxnacy.com/2019/04/13/linux-tar/</id>
-    <published>2019-04-13T01:52:28.000Z</published>
-    <updated>2019-04-14T02:50:03.915Z</updated>
-    
-    <content type="html"><![CDATA[<p>在 Github 打标签的时候，它会自动归档两种压缩格式的文件 <code>.zip</code> 和 <code>.tar.gz</code>，如图</p><a id="more"></a><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/tar_944.png" alt="tar"></p><p><code>zip</code> 格式的压缩和解压可以参看我这篇文章 <a href="/2018/09/19/zip-unzip/">Linux zip 和 unzip 命令</a></p><p>今天我主要来说一下 <code>tar</code> 打包命令。</p><div class="toc"><!-- toc --><ul><li><a href="#da-bao-jie-bao">打包解包</a></li><li><a href="#ya-suo-jie-ya-gz-ge-shi">压缩解压 .gz 格式</a></li><li><a href="#ya-suo-jie-ya-bz2-ge-shi">压缩解压 .bz2 格式</a></li><li><a href="#geng-duo-yu-fa">更多语法</a></li></ul><!-- tocstop --></div><p>首先要强调的是 <code>tar</code> 是打包命令，本身不压缩，需要调用 <code>gzip</code> 压缩命令才可以生成 <code>.gz</code> 后缀的压缩文件。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ tar cvf pm2.log.tar pm2.log       <span class="comment"># 打包</span></span><br><span class="line">$ tar zcvf pm2.log.tar.gz pm2.log   <span class="comment"># 打包，并压缩</span></span><br><span class="line">$ zip pm2.zip pm2.log               <span class="comment"># 使用 zip 压缩</span></span><br><span class="line">$ ll</span><br><span class="line">-rw-r--r--    1 wxnacy  staff  259615701 Apr 13 06:37 pm2.log</span><br><span class="line">-rw-r--r--    1 wxnacy  staff  259617280 Apr 13 09:47 pm2.log.tar</span><br><span class="line">-rw-r--r--    1 wxnacy  staff    7746015 Apr 13 09:48 pm2.log.tar.gz</span><br><span class="line">-rw-r--r--    1 wxnacy  staff    7763656 Apr 13 09:51 pm2.zip</span><br></pre></td></tr></table></figure><p>从结果来看，只是打包命令的话，不但不压缩，本身比原文件还要大一点，调用压缩命令后，压缩比很明显，并且比 <code>zip</code> 的压缩比要高，所以在文件压缩时，我们可以优先使用 <code>tar</code> 打包并压缩。</p><h2><span id="da-bao-jie-bao">打包解包</span><a href="#da-bao-jie-bao" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ tar cvf &lt;filename&gt;.tar &lt;filename|dirname&gt;     <span class="comment"># 打包</span></span><br><span class="line">$ tar xvf &lt;filename&gt;.tar                        <span class="comment"># 解包</span></span><br></pre></td></tr></table></figure><h2><span id="ya-suo-jie-ya-gz-ge-shi">压缩解压 .gz 格式</span><a href="#ya-suo-jie-ya-gz-ge-shi" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ tar zcvf &lt;filename&gt;.tar.gz &lt;filename|dirname&gt;     <span class="comment"># 压缩</span></span><br><span class="line">$ tar zxvf &lt;filename&gt;.tar.gz                        <span class="comment"># 解压</span></span><br></pre></td></tr></table></figure><h2><span id="ya-suo-jie-ya-bz2-ge-shi">压缩解压 .bz2 格式</span><a href="#ya-suo-jie-ya-bz2-ge-shi" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ tar jcvf &lt;filename&gt;.tar.bz2 &lt;filename|dirname&gt;     <span class="comment"># 压缩</span></span><br><span class="line">$ tar jxvf &lt;filename&gt;.tar.bz2                        <span class="comment"># 解压</span></span><br></pre></td></tr></table></figure><h2><span id="geng-duo-yu-fa">更多语法</span><a href="#geng-duo-yu-fa" class="header-anchor"></a></h2><p>必要参数有如下：</p><ul><li><code>-A</code> 新增压缩文件到已存在的压缩</li><li><code>-B</code> 设置区块大小</li><li><code>-c</code> 建立新的压缩文件</li><li><code>-d</code> 记录文件的差别</li><li><code>-r</code> 添加文件到已经压缩的文件</li><li><code>-u</code> 添加改变了和现有的文件到已经存在的压缩文件</li><li><code>-x</code> 从压缩的文件中提取文件</li><li><code>-t</code> 显示压缩文件的内容</li><li><code>-z</code> 支持gzip解压文件</li><li><code>-j</code> 支持bzip2解压文件</li><li><code>-Z</code> 支持compress解压文件</li><li><code>-v</code> 显示操作过程</li><li><code>-l</code> 文件系统边界设置</li><li><code>-k</code> 保留原有文件不覆盖</li><li><code>-m</code> 保留文件不被覆盖</li><li><code>-W</code> 确认压缩文件的正确性</li></ul><p>可选参数如下：</p><ul><li><code>-b</code> 设置区块数目</li><li><code>-C</code> 切换到指定目录</li><li><code>-f</code> 指定压缩文件</li><li><code>--help</code> 显示帮助信息</li><li><code>--version</code> 显示版本信息</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在 Github 打标签的时候，它会自动归档两种压缩格式的文件 &lt;code&gt;.zip&lt;/code&gt; 和 &lt;code&gt;.tar.gz&lt;/code&gt;，如图&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="linux" scheme="http://wxnacy.com/tags/linux/"/>
     
   </entry>
   
