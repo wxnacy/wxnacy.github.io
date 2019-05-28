@@ -108,4 +108,5 @@ class Solution(object):
 
 ## 其他语言
 
-- [python](https://github.com/wxnacy/study/blob/master/python/leetcode/1-two-sum.py)
+- [Python](https://github.com/wxnacy/study/blob/master/python/leetcode/1-two-sum.py)
+- [Go](https://github.com/wxnacy/study/blob/master/goland/src/leetcode/2-add-two-numbers_test.go)
