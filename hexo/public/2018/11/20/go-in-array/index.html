@@ -16,10 +16,12 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="Go 中不像 Python 那样可以通过 a in [] 判断数组是否包含某个 item，项目中只能自己编写该方法。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2019-03-21T14:57:46.101Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/wxnacy/image/master/blog/wgo1.gif">
+<meta property="og:updated_time" content="2019-05-29T06:58:03.562Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Go 判断数组中是否包含某个 item">
 <meta name="twitter:description" content="Go 中不像 Python 那样可以通过 a in [] 判断数组是否包含某个 item，项目中只能自己编写该方法。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/wxnacy/image/master/blog/wgo1.gif">
   
     <link rel="alternative" href="/atom.xml" title="温欣爸比的博客" type="application/atom+xml">
   
@@ -222,10 +224,21 @@
       
         <p>Go 中不像 Python 那样可以通过 <code>a in []</code> 判断数组是否包含某个 item，项目中只能自己编写该方法。</p>
 <a id="more"></a>
+<div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#reflect">reflect</a></li>
+<li><a href="#yi-ci-bian-li">一次遍历</a></li>
+<li><a href="#wgo">wgo</a></li>
+</ul>
+<!-- tocstop -->
+</div>
+
 <p>刚入门时第一个想到的方法就是对某个类型的数组进行遍历，再逐个对比，但这样有个最大的问题就是我们只能对一种类型的数组进行对比，不能灵活的应对各种类型。</p>
-<p>在 stackexchange 中看到一个方法，充分的利用了 <code>reflect</code> 包对 <code>interface{}</code> 进行判断，如下</p>
+<h2><span id="reflect">reflect</span><a href="#reflect" class="header-anchor"></a></h2><p>在 stackexchange 中看到一个方法，充分的利用了 <code>reflect</code> 包对 <code>interface{}</code> 进行判断，如下</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"reflect"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Contains</span><span class="params">(array <span class="keyword">interface</span>&#123;&#125;, val <span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">(index <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">    index = <span class="number">-1</span></span><br><span class="line">    <span class="keyword">switch</span> reflect.TypeOf(array).Kind() &#123;</span><br><span class="line">        <span class="keyword">case</span> reflect.Slice: &#123;</span><br><span class="line">            s := reflect.ValueOf(array)</span><br><span class="line">            <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; s.Len(); i++ &#123;</span><br><span class="line">                <span class="keyword">if</span> reflect.DeepEqual(val, s.Index(i).Interface()) &#123;</span><br><span class="line">                    index = i</span><br><span class="line">                    <span class="keyword">return</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>2019-03-21 更新：</strong></p>
+<h2><span id="yi-ci-bian-li">一次遍历</span><a href="#yi-ci-bian-li" class="header-anchor"></a></h2><p><strong>2019-03-21 更新：</strong></p>
 <p>今天才从网上看到一个说法，Go 中 <code>reflect</code> 很慢，尽量不要使用，我心里咯噔一下，赶紧来测试下</p>
 <p>对比下强类型遍历的方法</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">StringsContains</span><span class="params">(array []<span class="keyword">string</span>, val <span class="keyword">string</span>)</span> <span class="params">(index <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">    index = <span class="number">-1</span></span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(array); i++ &#123;</span><br><span class="line">        <span class="keyword">if</span> array[i] == val &#123;</span><br><span class="line">            index = i</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -239,8 +252,24 @@
 <li>涉及到内存分配以后GC</li>
 <li>reflect实现里面有大量的枚举</li>
 </ul>
-<p>不管怎样，<code>reflect</code> 是不争的事实，有浏览了下其他的文章，大多观点都视它如“猛虎”，避之不及。</p>
+<p>不管怎样，<code>reflect</code> 耗时长是不争的事实，又浏览了下其他的文章，大多观点都视它如“猛虎”，避之不及。</p>
 <p>但是静下心来想想，大可不必。慢，也是相对的。毕竟这个例子很简单，为了追求性能，当然可以使用强类型比较，那如果是更复杂的映射操作呢，Go 是强类型语言啊，你不用 <code>reflect</code> 用啥。反射就不能用，你让 SpringMVC 咋办。</p>
+<h2><span id="wgo">wgo</span><a href="#wgo" class="header-anchor"></a></h2><p>在官方完美解决这个问题前，我们只能在项目中自己写方法，或者使用第三方包 <a href="https://github.com/wxnacy/wgo" target="_blank" rel="noopener">wgo</a></p>
+<p>wgo 是类似 Python 交互命令的脚本化运行工具。</p>
+<p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/wgo1.gif" alt="1"></p>
+<p>该包本身包含一些开发中常用但是 Go 不具备的方法和工具。</p>
+<p><strong>安装</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ go get -u github.com/wxnacy/wgo</span><br></pre></td></tr></table></figure>
+<p><strong>导入</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"github.com/wxnacy/wgo/arrays"</span></span><br></pre></td></tr></table></figure>
+<p><strong>常用 Contains 方法</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Contains Returns the index position of the val in array</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Contains</span><span class="params">(array <span class="keyword">interface</span>&#123;&#125;, val <span class="keyword">interface</span>&#123;&#125;)</span> <span class="params">(index <span class="keyword">int</span>)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ContainsString Returns the index position of the string val in array</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ContainsString</span><span class="params">(array []<span class="keyword">string</span>, val <span class="keyword">string</span>)</span> <span class="params">(index <span class="keyword">int</span>)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ContainsInt Returns the index position of the int64 val in array</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ContainsInt</span><span class="params">(array []<span class="keyword">int64</span>, val <span class="keyword">int64</span>)</span> <span class="params">(index <span class="keyword">int</span>)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ContainsFloat Returns the index position of the float64 val in array</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ContainsFloat</span><span class="params">(array []<span class="keyword">float64</span>, val <span class="keyword">float64</span>)</span> <span class="params">(index <span class="keyword">int</span>)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ContainsBool Returns the index position of the bool val in array</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ContainsBool</span><span class="params">(array []<span class="keyword">bool</span>, val <span class="keyword">bool</span>)</span> <span class="params">(index <span class="keyword">int</span>)</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>demo</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"github.com/wxnacy/wgo/arrays"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> arr = []<span class="keyword">int64</span>&#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">8</span>, <span class="number">12</span>, <span class="number">4</span>, <span class="number">9</span>&#125;</span><br><span class="line">    <span class="keyword">var</span> i <span class="keyword">int</span></span><br><span class="line">    i = arrays.ContainsInt(arr, <span class="number">8</span>)</span><br><span class="line">    fmt.Println(i)      <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line">    i = arrays.Contains(arr, <span class="keyword">int64</span>(<span class="number">12</span>))</span><br><span class="line">    fmt.Println(i)      <span class="comment">// 4</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><a href="https://codereview.stackexchange.com/questions/60074/in-array-in-go" target="_blank" rel="noopener">in_array() in Go</a></li>
 </ul>
@@ -432,7 +461,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">reflect</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">一次遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">wgo</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -613,11 +642,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
