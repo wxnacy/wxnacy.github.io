@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-05-29T02:36:38.374Z</updated>
+  <updated>2019-06-03T00:54:18.014Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MkDocs 使用 Markdown 管理项目文档</title>
+    <link href="http://wxnacy.com/2019/06/03/mkdocs/"/>
+    <id>http://wxnacy.com/2019/06/03/mkdocs/</id>
+    <published>2019-06-03T00:54:17.000Z</published>
+    <updated>2019-06-03T00:54:18.014Z</updated>
+    
+    <content type="html"><![CDATA[<p>坚持写博客也两年多了，使用 hexo 的一个很大的问题就是不太方便写系列性的文章，属于比较随性的想起什么写什么，最近发现了 <a href="https://github.com/mkdocs/mkdocs" target="_blank" rel="noopener">mkdocs</a>，同样的使用 Markdown 格式编写文档，写系列文章很合适。</p><a id="more"></a><div class="toc"><!-- toc --><ul><li><a href="#an-zhuang-shi-yong">安装使用</a></li><li><a href="#pei-zhi">配置</a></li></ul><!-- tocstop --></div><p>它的官网就是用 mkdocs 搭建的。</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/mkdocs2_1058.png" alt="2"></p><p>如果这个界面不熟悉的话，看下面的截图</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/mkdocs1_1102.png" alt="1"></p><p>这是它为著名的 <a href="https://readthedocs.org/" target="_blank" rel="noopener">readthedocs</a> 提供的主题，是不是很亲切。</p><p>mkdocs 使用配置起来都很简单，它是由 Python 编写的，这是让我亲切的另一个原因。</p><h2><span id="an-zhuang-shi-yong">安装使用</span><a href="#an-zhuang-shi-yong" class="header-anchor"></a></h2><p><strong>安装</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install mkdocs</span><br></pre></td></tr></table></figure><p><strong>生成项目</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ mkdocs new my-project</span><br><span class="line">$ <span class="built_in">cd</span> my-project</span><br></pre></td></tr></table></figure><p>项目的结构如下</p><p><img src="https://www.mkdocs.org/img/initial-layout.png" alt="3"></p><p><strong>启动服务</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ mkdocs serve</span><br><span class="line">INFO    -  Building documentation...</span><br><span class="line">INFO    -  Cleaning site directory</span><br><span class="line">[I 160402 15:50:43 server:271] Serving on http://127.0.0.1:8000</span><br><span class="line">[I 160402 15:50:43 handlers:58] Start watching changes</span><br><span class="line">[I 160402 15:50:43 handlers:60] Start detecting changes</span><br></pre></td></tr></table></figure><p>mkdocs 会启动一个端口为 8000 的服务，效果如下</p><p><img src="https://www.mkdocs.org/img/screenshot.png" alt="4"></p><p>网页首页默认打开的是文档 <code>docs/index.md</code>，修改文档内容，网页会自动刷新到最新状态。</p><p><strong>生成静态文件</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkdocs build</span><br></pre></td></tr></table></figure><p>随后根目录下会生成一个 <code>site</code> 文件夹，内容是文档的静态网页，使用 Nginx 代理即可访问。</p><h2><span id="pei-zhi">配置</span><a href="#pei-zhi" class="header-anchor"></a></h2><p>mkdocs 的全部配置都在 <code>mkdocs.yml</code> 中，一个最简单的配置如下</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">site_name:</span> <span class="string">MkLorum</span>      <span class="comment"># 站点名称</span></span><br><span class="line"><span class="attr">nav:</span>                    <span class="comment"># 文档目录</span></span><br><span class="line"><span class="attr">    - Home:</span> <span class="string">index.md</span></span><br><span class="line"><span class="attr">    - About:</span> <span class="string">about.md</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">readthedocs</span>      <span class="comment"># 主题</span></span><br></pre></td></tr></table></figure><p><img src="https://www.mkdocs.org/img/readthedocs.png" alt="5"></p><p>另外还有一些常用配置</p><ul><li><code>repo_url</code> 页面会生成一个链接，指向仓库地址，可以是 <code>GitHub, Bitbucket, GitLab</code> 等</li><li><code>site_description</code> 网站的描述</li><li><code>copyright</code> 版权信息</li><li><code>google_analytics</code> 配置 <code>Google analytics</code> 信息，接收一个数组</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">google_analytics: [&apos;UA-36723568-3&apos;, &apos;mkdocs.org&apos;]</span><br></pre></td></tr></table></figure><ul><li><code>docs_dir</code> 文档的存放目录，默认为 <code>docs</code></li><li><code>site_dir</code> 生成静态网页的存放目录，默认为 <code>site</code></li><li><code>dev_addr</code> 使用 <code>mkdocs serve</code> 时启动的地址和端口号，默认 <code>127.0.0.1:8000</code></li></ul><p>更多的配置详见<a href="https://www.mkdocs.org/user-guide/configuration/" target="_blank" rel="noopener">文档</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;坚持写博客也两年多了，使用 hexo 的一个很大的问题就是不太方便写系列性的文章，属于比较随性的想起什么写什么，最近发现了 &lt;a href=&quot;https://github.com/mkdocs/mkdocs&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;mkdocs&lt;/a&gt;，同样的使用 Markdown 格式编写文档，写系列文章很合适。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="工具" scheme="http://wxnacy.com/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="python" scheme="http://wxnacy.com/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>重新学 Java 系列：数组</title>
@@ -399,26 +421,6 @@
     
     
       <category term="ffmpeg" scheme="http://wxnacy.com/tags/ffmpeg/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Vim 执行 Shell 命令（1）</title>
-    <link href="http://wxnacy.com/2019/04/15/vim-run-shell/"/>
-    <id>http://wxnacy.com/2019/04/15/vim-run-shell/</id>
-    <published>2019-04-15T13:50:52.000Z</published>
-    <updated>2019-04-18T14:36:00.164Z</updated>
-    
-    <content type="html"><![CDATA[<p>Vim 编写程序时，无须退出 Vim 或者新建 Terminal 窗口即可执行 Shell 命令。</p><a id="more"></a><p>在 Mac 环境开发时，可以使用 Tmux 搭配 Vim，一个窗口编写，一个窗口执行。然而线上环境往往不能安装过于复杂的开发环境，那每次都反复的进入退出很是让人烦躁，其实 Vim 中可以直接运行 Shell 命令。</p><div class="toc"><!-- toc --><ul><li><a href="#zhi-xing">执行</a></li><li><a href="#du-qu">读取</a></li><li><a href="#xie-ru">写入</a></li><li><a href="#ti-huan">替换</a></li></ul><!-- tocstop --></div><h2><span id="zhi-xing">执行</span><a href="#zhi-xing" class="header-anchor"></a></h2><p><strong>语法</strong></p><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:!command</span><br></pre></td></tr></table></figure><p><code>command</code> 可以是任何一个 Shell 命令，回车执行后，会在 Shell 中显示结果，再次回车返回 Vim。先来看个动图</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/vim-shell1.gif" alt="1"></p><h2><span id="du-qu">读取</span><a href="#du-qu" class="header-anchor"></a></h2><p>该模式下还可以直接把执行结果，读取到 Vim 中，这是很神奇的功能。</p><p><strong>语法</strong></p><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:r !command</span><br></pre></td></tr></table></figure><p>执行该命令后，Shell 命令结果会自动复制到当前行的下面</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/vim-shell2.gif" alt="2"></p><p>前面输入数字，可以复制到第 N 行的下面，比如第二行</p><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="number">2</span>r !command</span><br></pre></td></tr></table></figure><h2><span id="xie-ru">写入</span><a href="#xie-ru" class="header-anchor"></a></h2><p>能读取，就能写入，使用 <code>w</code> 可以将制定行数的文本通过管道传给想要执行的命令</p><p><strong>语法</strong></p><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:n1, n2w !command</span><br></pre></td></tr></table></figure><p>比如我们想要将第 7 到 10 行的内容传给 <code>wc</code> 命令，获取行数，单词数和字符数。</p><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="number">7</span>, <span class="number">10</span><span class="keyword">w</span> !wc</span><br></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/vim-shell3.gif" alt="3"></p><h2><span id="ti-huan">替换</span><a href="#ti-huan" class="header-anchor"></a></h2><p>最后要说的是替换，它好像将上边两种命令结合一般，这次直接输入行数范围即可</p><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:n1, n2 !wc</span><br></pre></td></tr></table></figure><p>还是上面的例子，我们重新执行一次</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/vim-shell4.gif" alt="4"></p><p>最后提一句 <code>:!!</code> 可以执行上一次执行的命令，没错，就像 Shell 中一样。</p><p>直接在 Vim 中执行 Shell 命令，只是一种方式，我们还可以直接切换到 Shell 模式在执行复杂的操作。</p><p>不过今天先到这里，想要学好 Vim，一次输入太多知识不是个好习惯，还需要大量的练习来巩固它，下一章我们再来探讨怎样切换 Shell 环境。</p><p>传送门 <a href="/2019/04/18/vim-in-shell/">Vim 执行 Shell 命令（2）</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Vim 编写程序时，无须退出 Vim 或者新建 Terminal 窗口即可执行 Shell 命令。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="vim" scheme="http://wxnacy.com/tags/vim/"/>
     
   </entry>
   
