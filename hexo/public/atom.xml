@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-06-03T00:54:18.014Z</updated>
+  <updated>2019-06-04T13:39:02.534Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Nginx 配置有爱心的 404</title>
+    <link href="http://wxnacy.com/2019/06/04/lovely-404/"/>
+    <id>http://wxnacy.com/2019/06/04/lovely-404/</id>
+    <published>2019-06-04T13:39:02.000Z</published>
+    <updated>2019-06-04T13:39:02.534Z</updated>
+    
+    <content type="html"><![CDATA[<p>之前我是不太在乎 404 页面的，一是我基本不会修改网页的地址，搜索过来的时候都能准确访问。二是我默认看我博客的都是技术人员，他们可以很容易的找到首页地址，虽然我的博客可能不会让他们有那么大的动力这么干。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>但是，今天我想配置上 404 的页面，一个有爱心的 404 页面</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/404-2_709.png" alt="1"></p><p>作为一名老父亲，看到这些丢失的孩子，心里是感觉被揪了一下的。如果你也想在自己的站点加一个这样的 404 页面，可以接着看下去。</p><p>这个页面是由益云提供的，这是他们的网址 <a href="https://yibo.iyiyun.com/Home/Index/web404" target="_blank" rel="noopener">https://yibo.iyiyun.com/Home/Index/web404</a></p><p>点击进入后根据自己的需求选择完成后，点击生成代码即可</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/404-3_1285.png" alt="2"></p><p>复制生成的代码，黏贴你自己的 <code>404.html</code> 的 <code>body</code> 标签中即可。</p><p>然后怎么在网站中生效呢？如果你之前配置过，那现在刷新页面就已经生效了。如果像我一样没有配置过，那只要在 Nginx 中做一些小改动即可</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    error_page 404 404.html;</span><br><span class="line"></span><br><span class="line">    location /404.html &#123;</span><br><span class="line">        # 配置 404.html 的目录</span><br><span class="line">        root   /www/wxnacy.github.io/nginx/html;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>在你的 <code>server</code> 标签中也做如上配置即可，<code>root</code> 改成你存放 <code>404.html</code> 页面的目录</p><p><strong>重新加载配置</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ nginx -t          <span class="comment"># 测试配置是否通过</span></span><br><span class="line">$ nginx -s reload   <span class="comment"># 重新加载</span></span><br></pre></td></tr></table></figure><p>再次访问网站的 404 页面即可生效。</p><p>需要注意的一点，他默认提供的代码中，给的是 <code>http://</code> 开头的网址，如果你的网站是 <code>https</code> 的话，那会请求失败，所以需要手动改成 <code>https</code>。</p><p>说到公益 404，印象比较深的是微信公众号里的 web 页面，如果网页提供者返回了 404 状态，那微信就会强制显示这个公益的 404 页面，而提供者的页面就会被覆盖。虽然这是件有爱心的事，但做法却有点耍流氓，你也不能强制别人献爱心啊。</p><p>最后呢，希望我的一点小小的举动，可以给身处黑暗中的孩子一点莹莹星火，让他们可以早点找到家的方向。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;之前我是不太在乎 404 页面的，一是我基本不会修改网页的地址，搜索过来的时候都能准确访问。二是我默认看我博客的都是技术人员，他们可以很容易的找到首页地址，虽然我的博客可能不会让他们有那么大的动力这么干。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="nginx" scheme="http://wxnacy.com/tags/nginx/"/>
+    
+  </entry>
   
   <entry>
     <title>MkDocs 使用 Markdown 管理项目文档</title>
@@ -401,26 +421,6 @@
     
     
       <category term="python" scheme="http://wxnacy.com/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用 ffmpeg 分离视频流和音频流</title>
-    <link href="http://wxnacy.com/2019/04/16/ffmpeg-split-video-audio/"/>
-    <id>http://wxnacy.com/2019/04/16/ffmpeg-split-video-audio/</id>
-    <published>2019-04-16T14:41:36.000Z</published>
-    <updated>2019-04-16T15:19:45.363Z</updated>
-    
-    <content type="html"><![CDATA[<p>通常情况下，我们提到“视频”会有两个要素，声音和画面。但其实严格意义上说视频中含有<strong>视频流</strong>和<strong>音频流</strong>，如果一个视频只有视频流，那么就只有画面没有声音，反之亦然。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>我有听英语电影原声的习惯，但是总是放视频很不方便，网上的资源又不是太称心如意，就想着自己动手来分离，我首先想到的是 ffmpeg。</p><p>我们先来看看视频中的这两个流</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -i mavel4.mp4</span><br></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/ffsplit1_713.png" alt="1"></p><p>执行该命令可以直接查看视频的信息，其中就有刚才的提到的<strong>视频流（Video: h264）</strong>和<strong>音频流（Audio: aac）</strong></p><p>使用参数 <code>-vcodec copy -an</code> 和 <code>-acodec copy -vn</code> 可以分离出视频流和音频流。</p><p><strong>分离视频</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -i mavel4.mp4 -vcodec copy -an mav.mp4</span><br></pre></td></tr></table></figure><p>等待转码成功后，观看 <code>mav.mp4</code> 发现已经没有声音了，查看发现只有一个流</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/ffsplit2_667.png" alt="2"></p><p><strong>分离音频</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -i mavel4.mp4 -acodec copy -vn m.m4a</span><br></pre></td></tr></table></figure><p>再次查看音频流信息</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/ffsplit3_702.png" alt="3"></p><p>网上很多博客都是直接甩一个类似这样的命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -i mavel4.mp4 -acodec copy -vn m.mp3</span><br></pre></td></tr></table></figure><p>如果你执行的话，多半会报错，因为查看视频信息，很可能像例子中的音频流一样是 aac 格式的，什么是 aac 格式呢</p><blockquote><p>高级音频编码（英语：Advanced Audio Coding，AAC），出现于1997年，为一种基于MPEG-2的有损数字音频压缩的专利音频编码标准，由Fraunhofer IIS、杜比实验室、AT&amp;T、Sony、Nokia等公司共同开发。2000年，MPEG-4标准在原本的基础上加上了PNS（Perceptual Noise Substitution）等技术，并提供了多种扩展工具。为了区别于传统的MPEG-2 AAC又称为MPEG-4 AAC。其作为MP3的后继者而被设计出来，在相同的比特率之下，AAC相较于MP3通常可以达到更好的声音质量[2]。</p></blockquote><p>关键是下面这句</p><blockquote><p>AAC 被YouTube、iPhone、iPod、 iPad、 任天堂DSi、任天堂3DS、iTunes、DivX、PlayStation 3和多款Nokia 40系列、Sony Ericsson手机采用为默认的音频编码格式，并且被PlayStation Vita、Wii、Sony Walkman MP3系列及随后的Android、BlackBerry等移动操作系统支持。</p></blockquote><p>也就是说，现在很多视频的音频流都将是这个格式，那直接分离 <code>mp3</code> 格式的音频自然会报错。</p><p>那我就是想要 <code>mp3</code> 的音频该怎么办呢？</p><p>再来一次转码</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -i m.m4a m.mp3</span><br></pre></td></tr></table></figure><p>或者直接将视频转码为 <code>mp3</code> 格式。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -i mavel4.mp4 m.mp3</span><br></pre></td></tr></table></figure><ul><li><a href="https://zh.wikipedia.org/wiki/%E9%80%B2%E9%9A%8E%E9%9F%B3%E8%A8%8A%E7%B7%A8%E7%A2%BC#%E7%9B%B8%E8%BC%83%E6%96%BCMP3%E7%9A%84%E6%94%B9%E9%80%B2" target="_blank" rel="noopener">高级音频编码</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;通常情况下，我们提到“视频”会有两个要素，声音和画面。但其实严格意义上说视频中含有&lt;strong&gt;视频流&lt;/strong&gt;和&lt;strong&gt;音频流&lt;/strong&gt;，如果一个视频只有视频流，那么就只有画面没有声音，反之亦然。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="ffmpeg" scheme="http://wxnacy.com/tags/ffmpeg/"/>
     
   </entry>
   
