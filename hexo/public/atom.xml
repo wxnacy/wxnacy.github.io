@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-06-06T00:48:28.816Z</updated>
+  <updated>2019-06-07T12:50:03.243Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python 二分查找模块 bisect</title>
+    <link href="http://wxnacy.com/2019/06/07/python-bisect/"/>
+    <id>http://wxnacy.com/2019/06/07/python-bisect/</id>
+    <published>2019-06-07T12:50:03.000Z</published>
+    <updated>2019-06-07T12:50:03.243Z</updated>
+    
+    <content type="html"><![CDATA[<p>Python 中 bisect 模块的作用是将一个数字插入到一个排好序的数组中，而不影响数组原来的排序。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>换句话说是找到一个数字在一个排序数组中应该出现的位置，而它采用的是二分查找法。</p><p>既然是二分查找法首先要准备一个排好序的数组</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = [<span class="number">1</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br></pre></td></tr></table></figure><p>我们希望知道再插入一个 <code>4</code>，应该出现在什么位置。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> bisect</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bisect.bisect(a, <span class="number">4</span>)</span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure><p><code>bisect()</code> 方法只是返回一个索引不会更改数组，另外还有 <code>bisect_right()</code> 和 <code>bisect_left()</code> 两个方法，<code>bisect_right()</code> 等同于 <code>bisect()</code> 都是从数组右侧开始查找，而 <code>bisect()</code> 是从左侧开始查找。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>bisect.bisect_left(a, <span class="number">4</span>)</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure><p>如果想要直接插入这个数字呢？可以用 <code>insort()</code> 方法</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>bisect.insort(a, <span class="number">4</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[<span class="number">1</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br></pre></td></tr></table></figure><p>这个方法没有返回值，是在原数组上做的修改，另外也还有 <code>insort_left()</code> 和 <code>insort_right()</code>，他们的作用相信你已经明白了。</p><p>说到这的话，其实标题说 <code>bisect</code> 是二分查找模块有点不准确，因为当数组中没有该数字时，<code>bisect.bisect()</code> 方法也会返回一个有效索引。所以如果我们想把它当做二分查找法的话，还需要做一些判断</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> bisect</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binary_search</span><span class="params">(nums, n)</span>:</span></span><br><span class="line">    i = bisect.bisect_left(nums, n)</span><br><span class="line">    <span class="keyword">if</span> i &gt;= len(nums):</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">if</span> nums[i] == n:</span><br><span class="line">            <span class="keyword">return</span> i</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure><p>最后要说的是，数组只能是正序，如果是倒序该模块不生效</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a.reverse()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[<span class="number">6</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bisect.insort_left(a, <span class="number">2</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[<span class="number">2</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>]</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Python 中 bisect 模块的作用是将一个数字插入到一个排好序的数组中，而不影响数组原来的排序。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://wxnacy.com/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>cURL 如何只返回状态码 status code</title>
@@ -403,26 +423,6 @@
     
     
       <category term="redis" scheme="http://wxnacy.com/tags/redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Vim 执行 Shell 命令（2）</title>
-    <link href="http://wxnacy.com/2019/04/18/vim-in-shell/"/>
-    <id>http://wxnacy.com/2019/04/18/vim-in-shell/</id>
-    <published>2019-04-18T14:08:20.000Z</published>
-    <updated>2019-04-18T14:34:35.327Z</updated>
-    
-    <content type="html"><![CDATA[<p>前两天我写了在 Vim 中执行 Shell 命令，传送门 <a href="/2019/04/15/vim-run-shell/">Vim 执行 Shell 命令（1）</a></p><a id="more"></a><div class="toc"><!-- toc --><ul><li><a href="#ctrl-z"><code>&lt;ctrl-z&gt;</code></a></li><li><a href="#shell">:shell</a></li></ul><!-- tocstop --></div><p>今天我们来说如何在 Vim 和 Shell 间切换。</p><h2><span id="lt-ctrl-z-gt"><code>&lt;ctrl-z&gt;</code></span><a href="#lt-ctrl-z-gt" class="header-anchor"></a></h2><p>使用 <code>&lt;ctrl-z&gt;</code> 可以将当前 Vim 挂起，然后回到 Shell 模式，可以执行任何命令后，再使用 <code>fg</code> 或者 <code>fg %vim</code> 返回 Vim。</p><p>如果连续挂起多个，可以使用 <code>fg %1</code> 或者 <code>fg %vim filename</code> 回到 Vim。</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/vim-shell5.gif" alt="1"></p><p>这种方式来回切换多少有点不方便，直接使用 command 模式要更方便一点。</p><h2><span id="shell">:shell</span><a href="#shell" class="header-anchor"></a></h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="keyword">sh</span>[ell]</span><br></pre></td></tr></table></figure><p>输入该命令即可进入 Shell 环境，然后使用 <code>&lt;ctrl-d&gt;</code> 即可返回 Vim。</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/vim-shell6.gif" alt="2"></p><p>这个流程显得顺畅很多，另外我们可以使用映射来做到只用 <code>&lt;ctrl-d&gt;</code> 来回切换。</p><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="keyword">noremap</span> <span class="symbol">&lt;c-d&gt;</span> :<span class="keyword">sh</span><span class="symbol">&lt;cr&gt;</span>  <span class="string">" 修改映射"</span></span><br></pre></td></tr></table></figure><p>这样虽然方便，但 <code>&lt;ctrl-d&gt;</code> 本来是向下翻半页，很挺常用的，是否要更换这个映射还有待斟酌。</p><p>因为 <code>:sh</code> 是主动进入 Shell 环境，所以它可以指定命令，比如你想使用 <code>fish</code> 则可以这样</p><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="keyword">set</span> <span class="keyword">shell</span>=/usr/local/bin/fish</span><br></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/vim-shell7.gif" alt="3"></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;前两天我写了在 Vim 中执行 Shell 命令，传送门 &lt;a href=&quot;/2019/04/15/vim-run-shell/&quot;&gt;Vim 执行 Shell 命令（1）&lt;/a&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="vim" scheme="http://wxnacy.com/tags/vim/"/>
     
   </entry>
   

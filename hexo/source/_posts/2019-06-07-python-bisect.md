@@ -1,7 +1,10 @@
 ---
 title: Python 二分查找模块 bisect
-tags: [python]
+tags:
+  - python
+date: 2019-06-07 20:50:03
 ---
+
 
 Python 中 bisect 模块的作用是将一个数字插入到一个排好序的数组中，而不影响数组原来的排序。
 
