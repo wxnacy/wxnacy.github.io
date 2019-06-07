@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-06-07T12:50:03.243Z</updated>
+  <updated>2019-06-07T21:48:00.191Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux 查看文件的几种方式</title>
+    <link href="http://wxnacy.com/2019/06/08/linux-show-file/"/>
+    <id>http://wxnacy.com/2019/06/08/linux-show-file/</id>
+    <published>2019-06-07T21:48:00.000Z</published>
+    <updated>2019-06-07T21:48:00.191Z</updated>
+    
+    <content type="html"><![CDATA[<p>Linux 中查看文件是很常见的操作，根据需求不同可以有几个不同的查看方式。</p><a id="more"></a><div class="toc"><!-- toc --><ul><li><a href="#cat">cat</a></li><li><a href="#head">head</a></li><li><a href="#tail">tail</a></li><li><a href="#less">less</a></li></ul><!-- tocstop --></div><p>首先点击下载一个 demo 文件: <a href="https://raw.githubusercontent.com/wxnacy/file/master/common/nums.txt" target="_blank" rel="noopener">https://raw.githubusercontent.com/wxnacy/file/master/common/nums.txt</a></p><h2><span id="cat">cat</span><a href="#cat" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat nums.txt</span><br></pre></td></tr></table></figure><p><code>cat</code> 可以将文本全部打印到屏幕中，但是只适合短小的文件，像这个 600 行的文件，翻看起来会很麻烦，如果你刚好是看最后几行的内容还好，如果想看头几行的内容那就惨了。</p><p><strong>其他参数</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cat -e nums.txt       <span class="comment"># 每行最后添加 $ 符号</span></span><br><span class="line">$ cat -n nums.txt       <span class="comment"># 每行开头带有行号</span></span><br></pre></td></tr></table></figure><h2><span id="head">head</span><a href="#head" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ head nums.txt</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td></tr></table></figure><p><code>head</code> 可以查看前十行的内容，另外可以传参查看前 n 行的数据，或者前 n 个字节的数据。</p><p><strong>其他参数</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ head -n 15 nums.txt   <span class="comment"># 前 15 行</span></span><br><span class="line">$ head -c 90 nums.txt   <span class="comment"># 前 90 字节</span></span><br></pre></td></tr></table></figure><h2><span id="tail">tail</span><a href="#tail" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ tail nums.txt</span><br><span class="line"></span><br><span class="line">591</span><br><span class="line">592</span><br><span class="line">593</span><br><span class="line">594</span><br><span class="line">595</span><br><span class="line">596</span><br><span class="line">597</span><br><span class="line">598</span><br><span class="line">599</span><br><span class="line">600</span><br></pre></td></tr></table></figure><p><code>tail</code> 查看末尾 10 行的数据，经常查看日志的同学肯定对它很熟悉，<code>tail -f file</code> 可以等待文件追加并且到屏幕中，动态查看新增日志非常常用。</p><p><strong>其他参数</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tail -n 15 nums.txt     <span class="comment"># 末尾 15 行的数据</span></span><br><span class="line">tail -c 15 nums.txt     <span class="comment"># 末尾 15 个字节的数据</span></span><br><span class="line">tail -b 1 nums.txt      <span class="comment"># 末尾 1 个 512 字节块的数据</span></span><br><span class="line">tail -q nums.txt n.txt  <span class="comment"># 检查多个文件时，进制打印标头</span></span><br><span class="line">tail -f nums.txt        <span class="comment"># 等待文件追加，并输出到标准输出中</span></span><br><span class="line">tail -r -n 10 nums.txt  <span class="comment"># 将最后 10 行，倒序显示</span></span><br></pre></td></tr></table></figure><h2><span id="less">less</span><a href="#less" class="header-anchor"></a></h2><p>最后是重头戏，<code>less</code> 是 Linux 的正统查看文件的方式，相似的还有 <code>more</code> 命令，虽然都说它不如 <code>less</code>，但是我觉得两者相差无几。</p><p><code>less</code> 可以分页显示文档，翻页的方式与 <code>vim</code> 几乎一致，如果你不了解 <code>vim</code> 的翻页机制，可以看这里 <a href="https://vim.wxnacy.com/#docs/all-key#%E5%85%89%E6%A0%87%E7%A7%BB%E5%8A%A8" target="_blank" rel="noopener">光标移动</a></p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/less1.gif" alt="1"></p><p>它还可以搜索文件，方式也与 <code>vim</code> 一样，输入 <code>/</code> 后输入匹配字符，使用 <code>n</code> 向后查找，使用 <code>N</code> 向前查找</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/less2.gif" alt="2"></p><p>查看多个文件时，使用 <code>:e filename</code> 切换查看文件，或者使用 <code>:n</code> 和 <code>:p</code> 向后或向前查找</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/less3.gif" alt="3"></p><p>既然它跟 <code>vim</code> 有这么多的相似点，那切换到 <code>vim</code> 模式也是很方便的，按下 <code>v</code> 即可</p><p>使用 <code>F</code> 则可以达到 <code>tail -f file</code> 的效果，等待文件的输入，<code>&lt;CTRL-C&gt;</code> 退出。</p><p>最后按下 <code>q</code> 即可退出 <code>less</code> 模式。</p><p><code>less</code> 命令模式非常常见，帮助命令 <code>man</code> 就是完全依照此模式来使用的，使用 <code>man less</code> 查看更多的使用方式。</p><p><strong>其他参数</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ less -N nums.txt      <span class="comment"># 显示行号</span></span><br><span class="line">$ less -m nums.txt      <span class="comment"># 显示查看的百分比进度</span></span><br><span class="line">$ less -e nums.txt      <span class="comment"># 查看到文档末尾时，自动退出</span></span><br><span class="line">$ less +20 nums.txt     <span class="comment"># 从第 20 行开始查看</span></span><br></pre></td></tr></table></figure><p>其它的命令搭配 <code>less</code> 管道输入模式可以起到很好的效果。</p><p><strong>分页显示当前所有进程</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ps aux | less</span><br></pre></td></tr></table></figure><p><strong>分页显示历史命令</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">history</span> | less</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Linux 中查看文件是很常见的操作，根据需求不同可以有几个不同的查看方式。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="http://wxnacy.com/tags/linux/"/>
+    
+  </entry>
   
   <entry>
     <title>Python 二分查找模块 bisect</title>
@@ -403,26 +423,6 @@
     
     
       <category term="python" scheme="http://wxnacy.com/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Redis get 报错 a key holding the wrong kind of value</title>
-    <link href="http://wxnacy.com/2019/04/23/redis-error-wrong-kind/"/>
-    <id>http://wxnacy.com/2019/04/23/redis-error-wrong-kind/</id>
-    <published>2019-04-23T07:45:17.000Z</published>
-    <updated>2019-04-23T07:56:25.497Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近发现使用 <code>redis-cli</code> 命令来获取数据报错，如下</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(error) WRONGTYPE Operation against a key holding the wrong kind of value</span><br></pre></td></tr></table></figure><p>比较费解，因为线上程序并没有报错，时间紧迫也没有多关注，今天有时间感觉搜索了下。</p><p>这个错误是因为对 <code>key</code> 的 <code>value</code> 使用了错误的操作，比如 <code>lpush</code> 的数据只能使用 <code>lrange</code> 获取数据，使用 <code>get</code> 就会报错。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; lpush test_key 1</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; get test_key</span><br><span class="line">(error) WRONGTYPE Operation against a key holding the wrong kind of value</span><br><span class="line">127.0.0.1:6379&gt; lrange test_key 0 1</span><br><span class="line">1) <span class="string">"1"</span></span><br></pre></td></tr></table></figure><p>同样的使用 <code>set</code> 报错的数据，在使用 <code>lpush</code> 就会报错。</p><p>因为是很久之前写的代码，已经忘记了是用 <code>lpush</code> 保存的数据，所以在命令行中使用 <code>get</code> 自然报错。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近发现使用 &lt;code&gt;redis-cli&lt;/code&gt; 命令来获取数据报错，如下&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="redis" scheme="http://wxnacy.com/tags/redis/"/>
     
   </entry>
   
