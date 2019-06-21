@@ -59,6 +59,8 @@ $ date -d 'TZ="Asia/Shanghai" 2019-06-18 11:13:59'
 Tue Jun 18 03:13:59 UTC 2019
 ```
 
+世界时区名称列表 [List of tz database time zones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
+
 ## datestr
 
 `-d/--date` 的语法为
