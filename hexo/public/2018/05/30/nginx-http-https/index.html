@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="https 越来越普及，但是当用户自己访问 http 是控制不了的，所以强制跳转的功能就必不可少了，下面是几种强制跳转的方法">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2019-01-19T05:30:00.644Z">
+<meta property="og:updated_time" content="2019-07-11T08:24:31.812Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nginx http 强制跳转 https 地址">
 <meta name="twitter:description" content="https 越来越普及，但是当用户自己访问 http 是控制不了的，所以强制跳转的功能就必不可少了，下面是几种强制跳转的方法">
@@ -221,7 +221,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><code>https</code> 越来越普及，但是当用户自己访问 <code>http</code> 是控制不了的，所以强制跳转的功能就必不可少了，下面是几种强制跳转的方法</p>
-<a id="more"></a><div class="toc"><br><br><!-- toc -->
+<a id="more"></a>
+<div class="toc">
+
+<!-- toc -->
 <ul>
 <li><a href="#return-301">return 301</a></li>
 <li><a href="#rewrite">rewrite</a></li>
@@ -233,7 +236,7 @@
 
 <h2><span id="return-301">return 301</span><a href="#return-301" class="header-anchor"></a></h2><p>返回 301 错误，并跳转到 https 地址<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  wxnacy.com;</span><br><span class="line">    <span class="built_in">return</span>       301 https://<span class="variable">$server_name</span><span class="variable">$request_uri</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2><span id="rewrite">rewrite</span><a href="#rewrite" class="header-anchor"></a></h2><p>将 http 请求重写到 https 地址</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rewrite ^(.*)$  https://<span class="variable">$host</span><span class="variable">$1</span> permanent;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rewrite ^ https://<span class="variable">$server_name</span><span class="variable">$request_uri</span>? permanent;</span><br></pre></td></tr></table></figure>
 <p>两者相比，<code>301</code> 的方式在搜索引擎速度上要块一些。</p>
 <h2><span id="error-page-497">error_page 497</span><a href="#error-page-497" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error code 497: normal request was sent to HTTPS</span><br></pre></td></tr></table></figure>
 <p>在一个站点只允许 https 访问时, 如果使用 http 访问会报出497错误码</p>
@@ -577,15 +580,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -629,15 +632,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -705,19 +708,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">sqlalchemy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">html</a>
+                <a href="javascript:void(0)" class="js-tag color1">sqlalchemy</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">electron</a>
+                <a href="javascript:void(0)" class="js-tag color5">html</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -729,6 +728,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">electron</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">宝贝</a>
               </li>
              
@@ -737,11 +740,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">ansible</a>
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
+                <a href="javascript:void(0)" class="js-tag color3">ansible</a>
               </li>
              
               <li class="article-tag-list-item">

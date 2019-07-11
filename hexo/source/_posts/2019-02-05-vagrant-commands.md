@@ -6,8 +6,8 @@ tags: [vagrant]
 
 记录些 Vagrant 经常用到的命令
 
-<!-- more --><!-- toc -->
-
+<!-- more -->
+<!-- toc -->
 
 ## 工作目录中
 
@@ -19,7 +19,7 @@ $ vagrant halt                      # 登陆虚拟机"
 $ vagrant destroy                   # 销毁虚拟机"
 $ vagrant destroy -f                # 销毁虚拟机，并对询问回答 yes"
 $ vagrant package                   # 打包 box"
-$ vagrant package --ouput=box-name  # 打包 box，并指定包名"
+$ vagrant package --ouput box-name  # 打包 box，并指定包名"
 $ vagrant box update                # 更新 box 版本"
 $ vagrant status                    # 当前虚拟机状态
 $ vagrant reload                    # 重新加载虚拟机配置

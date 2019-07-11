@@ -5,10 +5,10 @@ tags:
 date: 2018-05-30 13:55:35
 ---
 
-
 `https` 越来越普及，但是当用户自己访问 `http` 是控制不了的，所以强制跳转的功能就必不可少了，下面是几种强制跳转的方法
 
-<!-- more --><!-- toc -->
+<!-- more -->
+<!-- toc -->
 
 ## return 301
 
@@ -26,7 +26,7 @@ server {
 将 http 请求重写到 https 地址
 
 ```bash
-rewrite ^(.*)$  https://$host$1 permanent;
+rewrite ^ https://$server_name$request_uri? permanent;
 ```
 
 两者相比，`301` 的方式在搜索引擎速度上要块一些。
