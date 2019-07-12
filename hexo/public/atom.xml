@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-07-11T13:35:24.193Z</updated>
+  <updated>2019-07-12T09:06:01.078Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Centos7 如何安装 Redis</title>
+    <link href="http://wxnacy.com/2019/07/12/centos7-install-redis/"/>
+    <id>http://wxnacy.com/2019/07/12/centos7-install-redis/</id>
+    <published>2019-07-12T09:02:08.000Z</published>
+    <updated>2019-07-12T09:06:01.078Z</updated>
+    
+    <content type="html"><![CDATA[<p>Centos 默认仓库不包含 Redis 安装包，我们可以从 Remi 仓库中来安装。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p><strong>安装 Remi 仓库</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install epel-release yum-utils</span><br><span class="line">$ sudo yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm</span><br><span class="line">$ sudo yum-config-manager --<span class="built_in">enable</span> remi</span><br></pre></td></tr></table></figure><p><strong>安装 Redis</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install -y redis</span><br></pre></td></tr></table></figure><p><strong>启动</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl start redis    <span class="comment"># 启动</span></span><br><span class="line">$ sudo systemctl <span class="built_in">enable</span> redis   <span class="comment"># 开机自启</span></span><br></pre></td></tr></table></figure><p><strong>测试是否安装成功</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ redis-cli ping</span><br><span class="line">PONG</span><br></pre></td></tr></table></figure><ul><li><a href="https://linuxize.com/post/how-to-install-and-configure-redis-on-centos-7/" target="_blank" rel="noopener">How To Install and Configure Redis on CentOS 7</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Centos 默认仓库不包含 Redis 安装包，我们可以从 Remi 仓库中来安装。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="http://wxnacy.com/tags/linux/"/>
+    
+  </entry>
   
   <entry>
     <title>apt 下载报错 [Could not get lock /var/lib/dpkg/lock-frontend]</title>
@@ -408,26 +428,6 @@
     
     
       <category term="python" scheme="http://wxnacy.com/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Vim 执行 Shell 命令（3）</title>
-    <link href="http://wxnacy.com/2019/05/17/vim-open-terminal/"/>
-    <id>http://wxnacy.com/2019/05/17/vim-open-terminal/</id>
-    <published>2019-05-17T09:40:56.000Z</published>
-    <updated>2019-05-18T02:35:54.696Z</updated>
-    
-    <content type="html"><![CDATA[<p>上个月写了两篇 Vim 中使用 Shell 的文章，<a href="/2019/04/15/vim-run-shell/">Vim 执行 Shell 命令（1）</a> 和 <a href="/2019/04/18/vim-in-shell/">Vim 执行 Shell 命令（2）</a>，在 <a href="https://github.com/wxnacy/wxnacy.github.io/issues/1" target="_blank" rel="noopener">typebrook</a> 的提醒下发现还有 <code>:terminal</code> 可以实现，并且用了下发现还很好用。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/vim-shell8.gif" alt="1"></p><p>像预览中展示的这样，<code>:terminal</code> 可以切分出一个 terminal 来运行 shell 命令，这样的方式比前面的介绍的两种方式要更好，它类似 tmux 的多窗口操作，你也可以一边编写代码，一边执行命令。</p><p>打开命令如下</p><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">" 打开 terminal，水平分屏"</span></span><br><span class="line">:terminal</span><br><span class="line">:term</span><br><span class="line">:ter</span><br><span class="line"></span><br><span class="line"><span class="string">" 打开 terminal，垂直分屏"</span></span><br><span class="line">:<span class="keyword">vertical</span> terminal</span><br><span class="line">:<span class="keyword">vert</span> ter</span><br></pre></td></tr></table></figure><p>关闭 terminal 可以直接输入 <code>exit</code> 然后回车，也可以直接使用 <code>&lt;CTRL-D&gt;</code>，我更喜欢使用后者。</p><p>打开 terminal 后，可以使用 <code>CTRL-W</code> 前缀键来进行窗口操作，正常使用 <code>&lt;CTRL-W&gt;n</code> 打开窗口后，怎么操作，terminal 就可以怎么操作，比如在垂直打开 terminal 后，使用 <code>&lt;CTRL-W&gt;h</code> 和 <code>&lt;CTRL-W&gt;l</code> 可以将光标在两个窗口中切换</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/vim-shell9.gif" alt="2"></p><p>打开 terminal 后，左下角显示的 <code>TERMINAL</code> 字样，此时我们无法直接对该窗口下的内容进行保存操作，因为它处于 <code>buftype</code> 下，我们可以使用另存为的方式将执行结果保存起来，比如 <code>&lt;CTRL-W&gt;:w newfile</code>，不过这时候有个问题，它会将 shell 环境下所有的显示内容都保存到文件中，包括你的输入命令和一些无关的显示文字。</p><p>这时候我们可以在打开 terminal 时，在命令后面跟上想要使用的 shell 命令，这时会将执行结果保存在缓存文件中并在 terminal 中打开。</p><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="keyword">vert</span> ter <span class="keyword">ls</span> -<span class="keyword">l</span></span><br></pre></td></tr></table></figure><p>该窗口仍然是缓存状态，所以不能直接保存，使用 <code>:w newfile</code> 另存为新文件即可，此时窗口左下角显示的是 <code>NORMAL</code>，我们不能再用 <code>&lt;CTRL-D&gt;</code> 关闭窗口了，只能使用 <code>:q</code> 来关闭。</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/vim-shell10.gif" alt="3"></p><p>我介绍的三种方式都各有应用场景，综合来说 <code>:terminal</code> 是我在没有 tmux 情况的首选。</p><p>以上只是很简单的使用，也是比较常用的，它在 Vim 中是个大栏目，很多复杂的编辑器操作都可以通过它来完成，你可以阅读文档 <code>:h terminal</code> 来了解这些</p><p>不管你用了 Vim 多久，你总是会发现更多你不了解的功能，又学到了新东西，开心😊</p><ul><li><a href="https://vimhelp.org/terminal.txt.html#terminal.txt" target="_blank" rel="noopener">terminal.txt</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;上个月写了两篇 Vim 中使用 Shell 的文章，&lt;a href=&quot;/2019/04/15/vim-run-shell/&quot;&gt;Vim 执行 Shell 命令（1）&lt;/a&gt; 和 &lt;a href=&quot;/2019/04/18/vim-in-shell/&quot;&gt;Vim 执行 Shell 命令（2）&lt;/a&gt;，在 &lt;a href=&quot;https://github.com/wxnacy/wxnacy.github.io/issues/1&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;typebrook&lt;/a&gt; 的提醒下发现还有 &lt;code&gt;:terminal&lt;/code&gt; 可以实现，并且用了下发现还很好用。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="vim" scheme="http://wxnacy.com/tags/vim/"/>
     
   </entry>
   
