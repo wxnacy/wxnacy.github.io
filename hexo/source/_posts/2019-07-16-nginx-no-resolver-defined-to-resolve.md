@@ -1,7 +1,10 @@
 ---
 title: Nginx 报错 no resolver defined to resolve
-tags: [nginx]
+tags:
+  - nginx
+date: 2019-07-16 14:49:25
 ---
+
 
 起因是使用 `ngxin + lua` 链接外部机器 Redis 时产生的
 

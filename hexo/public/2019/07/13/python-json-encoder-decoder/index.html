@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="Python 处理 JSON 数据时，dumps 函数是经常用到的，当 JSON 数据中有特殊类型时，往往是比较头疼的，因为经常会报这样一个错误。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2019-07-13T01:56:59.269Z">
+<meta property="og:updated_time" content="2019-07-13T02:04:21.229Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 对 JSON 中的特殊类型进行 Encoder">
 <meta name="twitter:description" content="Python 处理 JSON 数据时，dumps 函数是经常用到的，当 JSON 数据中有特殊类型时，往往是比较头疼的，因为经常会报这样一个错误。">
@@ -247,8 +247,8 @@
 <p>根据对象的类型不同，而做出不同的处理。刚好有个装饰器可以做到这点，它就是单分派函数 <code>functools.singledispatch</code></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> date</span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> singledispatch</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomEncoder</span><span class="params">(json.JSONEncoder)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">default</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">return</span> encode(x)</span><br><span class="line">        <span class="keyword">except</span> TypeError:</span><br><span class="line">            <span class="keyword">return</span> super().default(self, x)</span><br><span class="line"></span><br><span class="line"><span class="meta">@singledispatch             # 1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encode</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">raise</span> TypeError(<span class="string">'Unencode type'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@encode.register(datetime)  # 2</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> int(x.timestamp())</span><br><span class="line"></span><br><span class="line"><span class="meta">@encode.register(date)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> x.isoformat()</span><br><span class="line"></span><br><span class="line">print(json.dumps(dict(dt = datetime.now(), d = date.today()), cls=CustomEncoder))</span><br><span class="line"><span class="comment"># &#123;"dt": 1562940781, "d": "2019-07-12"&#125;</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li><code>1</code> 使用 <code>@singledispatch</code> 装饰 <code>encode</code> 函数，是他处理默认类型。同时给他添加一个装饰器构造函数变量。</li>
-<li><code>2</code> <a href="mailto:`@encode.register" target="_blank" rel="noopener">`@encode.register</a>()<code>是一个装饰器构造函数，接收需要处理的对象类型作为参数。用它装饰的函数不需要名字，</code>_` 代替即可。</li>
+<li>1 使用 <code>@singledispatch</code> 装饰 <code>encode</code> 函数，是他处理默认类型。同时给他添加一个装饰器构造函数变量。</li>
+<li>2 <a href="mailto:`@encode.register" target="_blank" rel="noopener">`@encode.register</a>()` 是一个装饰器构造函数，接收需要处理的对象类型作为参数。用它装饰的函数不需要名字，<em>_</em> 代替即可。</li>
 </ul>
 <p>最后提一点，<code>json</code> 也可以在命令行中使用</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'&#123;"json": "obj"&#125;'</span> | python -m json.tool</span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"json"</span>: <span class="string">"obj"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -404,6 +404,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/07/16/nginx-no-resolver-defined-to-resolve/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Nginx 报错 no resolver defined to resolve
+        
+      </div>
+    </a>
   
   
     <a href="/2019/07/12/centos7-install-redis/" id="article-nav-older" class="article-nav-link-wrap">
@@ -595,10 +604,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
@@ -619,11 +624,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -719,6 +724,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">html</a>
               </li>
              
@@ -799,11 +808,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">

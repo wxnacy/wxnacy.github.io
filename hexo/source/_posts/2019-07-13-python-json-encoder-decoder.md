@@ -183,8 +183,8 @@ print(json.dumps(dict(dt = datetime.now(), d = date.today()), cls=CustomEncoder)
 # {"dt": 1562940781, "d": "2019-07-12"}
 ```
 
-- `1` 使用 `@singledispatch` 装饰 `encode` 函数，是他处理默认类型。同时给他添加一个装饰器构造函数变量。
-- `2` `@encode.register()` 是一个装饰器构造函数，接收需要处理的对象类型作为参数。用它装饰的函数不需要名字，`_` 代替即可。
+- 1 使用 `@singledispatch` 装饰 `encode` 函数，是他处理默认类型。同时给他添加一个装饰器构造函数变量。
+- 2 `@encode.register()` 是一个装饰器构造函数，接收需要处理的对象类型作为参数。用它装饰的函数不需要名字，*_* 代替即可。
 
 最后提一点，`json` 也可以在命令行中使用
 
