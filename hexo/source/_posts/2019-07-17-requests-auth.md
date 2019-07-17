@@ -1,7 +1,10 @@
 ---
 title: Python 使用 Requests 模块进行身份验证
-tags: [python]
+tags:
+  - python
+date: 2019-07-17 10:46:27
 ---
+
 
 [Requests](https://github.com/kennethreitz/requests) 可以说是 Python 最好用的 http 模块，没有之一。
 
