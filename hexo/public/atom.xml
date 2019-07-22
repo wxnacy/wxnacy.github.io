@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-07-17T02:46:27.152Z</updated>
+  <updated>2019-07-22T01:38:03.405Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Docker 报错 Please provide a source image with `from` prior to commit</title>
+    <link href="http://wxnacy.com/2019/07/22/docker-before-from-use-args/"/>
+    <id>http://wxnacy.com/2019/07/22/docker-before-from-use-args/</id>
+    <published>2019-07-22T01:38:03.000Z</published>
+    <updated>2019-07-22T01:38:03.405Z</updated>
+    
+    <content type="html"><![CDATA[<p>在使用 openresty 的 <a href="https://hub.docker.com/r/openresty/openresty/" target="_blank" rel="noopener">docker</a> 版本时，需要重构镜像，本地测试通过，但服务器上报错。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Please provide a <span class="built_in">source</span> image with `from` prior to commit</span><br></pre></td></tr></table></figure><p>Google 后发现问题出在这里</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ARG RESTY_IMAGE_BASE=<span class="string">"ubuntu"</span></span><br><span class="line">ARG RESTY_IMAGE_TAG=<span class="string">"bionic"</span></span><br><span class="line"></span><br><span class="line">FROM <span class="variable">$&#123;RESTY_IMAGE_BASE&#125;</span>:<span class="variable">$&#123;RESTY_IMAGE_TAG&#125;</span></span><br></pre></td></tr></table></figure><p>在老版本中是不支持 <code>FROM</code> 前使用 <code>ARG</code> 的，这个问题在 <a href="https://github.com/moby/moby/pull/31352" target="_blank" rel="noopener">docker 17.05.0-ce</a> 版本中得到了修改，而服务器上的版本比较老，所以才报错，只要升级版本即可。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在使用 openresty 的 &lt;a href=&quot;https://hub.docker.com/r/openresty/openresty/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;docker&lt;/a&gt; 版本时，需要重构镜像，本地测试通过，但服务器上报错。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="docker" scheme="http://wxnacy.com/tags/docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vagrant 使用 root 账号登录</title>
+    <link href="http://wxnacy.com/2019/07/18/vagrant-root-login/"/>
+    <id>http://wxnacy.com/2019/07/18/vagrant-root-login/</id>
+    <published>2019-07-18T09:42:57.000Z</published>
+    <updated>2019-07-18T09:42:57.127Z</updated>
+    
+    <content type="html"><![CDATA[<p>Vagrant 想要使用 root 身份登录要稍微麻烦一点。网上的文章大多是从一个地方抄过来的，并且还没抄对，所以我在这里总结一篇正确做法。</p><a id="more"></a><div class="toc"><!-- toc --><ul><li><a href="#xiu-gai-sshd-pei-zhi">修改 sshd 配置</a></li><li><a href="#xiu-gai-vagrantfile">修改 Vagrantfile</a></li><li><a href="#shi-yong-gong-si-yao-deng-lu">使用公私钥登录</a></li></ul><!-- tocstop --></div><h2><span id="xiu-gai-sshd-pei-zhi">修改 sshd 配置</span><a href="#xiu-gai-sshd-pei-zhi" class="header-anchor"></a></h2><p>首先以默认身份登录，并修改 <code>sshd</code> 配置文件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant ssh</span><br><span class="line">$ sudo vim /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure><p>做如下变动</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># PermitRootLogin prohibit-password</span></span><br><span class="line">PermitRootLogin yes             <span class="comment"># 允许 root 身份登录</span></span><br><span class="line"><span class="comment"># PasswordAuthentication on</span></span><br><span class="line">PasswordAuthentication yes      <span class="comment"># 可以使用密码登录</span></span><br></pre></td></tr></table></figure><p>重启 <code>sshd</code> 服务</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl restart sshd</span><br></pre></td></tr></table></figure><h2><span id="xiu-gai-vagrantfile">修改 Vagrantfile</span><a href="#xiu-gai-vagrantfile" class="header-anchor"></a></h2><p>增加如下配置</p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">config.ssh.username = <span class="string">'root'</span></span><br><span class="line">config.ssh.password = <span class="string">'root'</span></span><br><span class="line">config.ssh.insert_key = <span class="literal">false</span></span><br></pre></td></tr></table></figure><p>然后再次登录即可</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant ssh</span><br></pre></td></tr></table></figure><p>这里注意，网上大部分给出的例子是设置 <code>config.ssh.insert_key = true</code>，如果你这样设置了，会发现 <code>config.ssh.password</code> 将会失效，每次登录都需要手动输入密码。</p><p>为什么呢？根据<a href="https://www.vagrantup.com/docs/vagrantfile/ssh_settings.html#config-ssh-insert_key" target="_blank" rel="noopener">官网</a>的定义，<code>config.ssh.insert_key</code> 代表了是否使用公私钥来登录虚拟机，如果你想要使用不那么安全的登录方式，比如密码登录，则可以将它设置为 <code>false</code>，它的默认值为 <code>true</code></p><p>了解了这一点，就可以发现手动设置 <code>config.ssh.insert_key=true</code> 是有点蠢的做法。</p><h2><span id="shi-yong-gong-si-yao-deng-lu">使用公私钥登录</span><a href="#shi-yong-gong-si-yao-deng-lu" class="header-anchor"></a></h2><p>使用密码登录的缺点很明显，明文的密码就像只穿一个裤衩就出门一样让人不安，默认的 <code>vagrant</code> 就不需要密码，那它是怎么登录的呢？</p><p>关于怎么使用公私钥登录服务器可以查看这篇文章 <a href="/2017/08/23/linux-2017-08-23-ssh/">Linux SSH 登陆远程服务器和无密码操作</a></p><p>有了这篇文章作为基础，我们来查看下 <code>vagrant</code> 账号是否做了秘钥登录。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat /home/vagrant/.ssh/authorized_keys</span><br></pre></td></tr></table></figure><p>执行这条命令后会发现文件中包含一条记录，证明了确实使用了秘钥登录。</p><p>下面我们为 <code>root</code> 用户赋予秘钥登录的功能</p><p>首先将电脑的公钥内容</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure><p>复制到虚拟机中</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'公钥内容'</span> &gt;&gt; /home/vagrant/.ssh/authorized_keys</span><br></pre></td></tr></table></figure><p>然后修改 <code>Vagrantfile</code> 配置</p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">config.ssh.username = <span class="string">'root'</span>                                <span class="comment"># 使用 root 身份登录</span></span><br><span class="line">config.ssh.private_key_path = <span class="string">'/Users/wxnacy/.ssh/id_rsa'</span>   <span class="comment"># 私钥位置</span></span><br></pre></td></tr></table></figure><p>接下来在登录会发现如 <code>vagrant</code> 账号般顺滑</p><ul><li><a href="https://www.vagrantup.com/docs/vagrantfile/ssh_settings.html#config-ssh-private_key_path" target="_blank" rel="noopener">SSH Settings</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Vagrant 想要使用 root 身份登录要稍微麻烦一点。网上的文章大多是从一个地方抄过来的，并且还没抄对，所以我在这里总结一篇正确做法。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="vagrant" scheme="http://wxnacy.com/tags/vagrant/"/>
+    
+  </entry>
   
   <entry>
     <title>Python 使用 Requests 模块进行身份验证</title>
@@ -388,46 +428,6 @@
     
     
       <category term="算法" scheme="http://wxnacy.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python list 对象一些方法的时间复杂度</title>
-    <link href="http://wxnacy.com/2019/05/27/python-list-time-complexity/"/>
-    <id>http://wxnacy.com/2019/05/27/python-list-time-complexity/</id>
-    <published>2019-05-27T09:07:51.000Z</published>
-    <updated>2019-05-27T09:36:33.810Z</updated>
-    
-    <content type="html"><![CDATA[<p>列举下 Python list 对象常用方法的时间复杂度</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><table><thead><tr><th>方法</th><th>时间复杂度</th></tr></thead><tbody><tr><td>list[i]</td><td>O(1)</td></tr><tr><td>list[i] = 1</td><td>O(1)</td></tr><tr><td>list[i:j]</td><td>O(k)  k = j - i</td></tr><tr><td>list[i:k] = list()</td><td>O(n + k)</td></tr><tr><td>list.index(item)</td><td>O(n)</td></tr><tr><td>list.append(item)</td><td>O(1)</td></tr><tr><td>list.insert(i, item)</td><td>O(n)</td></tr><tr><td>list.pop()</td><td>O(1)</td></tr><tr><td>list.pop(i)</td><td>O(n) 假如推出的是第一个元素，那么数组所有的元素都要重新计算坐标</td></tr><tr><td>del list[i]</td><td>O(n)</td></tr><tr><td>item in list</td><td>O(n)</td></tr><tr><td>list.reverse()</td><td>O(n)</td></tr><tr><td>list.sort()</td><td>O(n logn)</td></tr></tbody></table>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;列举下 Python list 对象常用方法的时间复杂度&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="python" scheme="http://wxnacy.com/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Javascript 跳转其他页面</title>
-    <link href="http://wxnacy.com/2019/05/25/js-href/"/>
-    <id>http://wxnacy.com/2019/05/25/js-href/</id>
-    <published>2019-05-25T01:49:45.000Z</published>
-    <updated>2019-05-25T01:51:51.228Z</updated>
-    
-    <content type="html"><![CDATA[<p>几种常见的页面跳转方式</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=<span class="string">"javascript"</span> type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">       window.location.href=<span class="string">"login.jsp?backurl="</span>+window.location.href;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=<span class="string">"javascript"</span>&gt;</span><br><span class="line">    alert(<span class="string">"返回"</span>);</span><br><span class="line">    window.history.back(-<span class="number">1</span>);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=<span class="string">"javascript"</span>&gt;</span><br><span class="line">    window.navigate(<span class="string">"top.jsp"</span>);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=<span class="string">"JavaScript"</span>&gt;</span><br><span class="line">    self.location=’top.htm’;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=<span class="string">"javascript"</span>&gt;</span><br><span class="line">    alert(<span class="string">"非法访问！"</span>);</span><br><span class="line">    top.location=’xx.jsp’;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;几种常见的页面跳转方式&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="javascript" scheme="http://wxnacy.com/tags/javascript/"/>
     
   </entry>
   
