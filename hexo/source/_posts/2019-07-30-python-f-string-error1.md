@@ -1,7 +1,10 @@
 ---
 title: Python 报错 f-string expression part cannot include a backslash
-tags: [python]
+tags:
+  - python
+date: 2019-07-30 15:02:15
 ---
+
 
 Python 3.6 版本新增加的 `f-string` 语句非常简洁，其中可以直接在字符串中使用表达式，可以让代码写起来非常方便。
 
