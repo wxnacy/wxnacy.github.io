@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-07-30T07:02:15.722Z</updated>
+  <updated>2019-08-01T09:09:32.556Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mysql 开始慢查询日志</title>
+    <link href="http://wxnacy.com/2019/08/01/mysql-slow-query-log/"/>
+    <id>http://wxnacy.com/2019/08/01/mysql-slow-query-log/</id>
+    <published>2019-08-01T09:09:32.000Z</published>
+    <updated>2019-08-01T09:09:32.556Z</updated>
+    
+    <content type="html"><![CDATA[<p>项目长期运行过程中，Mysql 慢查询的监控是必不可少的一步日常工作，今天来说下配置过程。</p><a id="more"></a><div class="toc"><!-- toc --><ul><li><a href="#pei-zhi">配置</a></li><li><a href="#fen-xi-gong-ju">分析工具</a></li></ul><!-- tocstop --></div><h2><span id="pei-zhi">配置</span><a href="#pei-zhi" class="header-anchor"></a></h2><p>先来查看默认慢查询日志开启状态</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show variables like &quot;%slow_query_log%&quot;;</span><br><span class="line">+---------------------+--------------------------------------+</span><br><span class="line">| Variable_name       | Value                                |</span><br><span class="line">+---------------------+--------------------------------------+</span><br><span class="line">| slow_query_log      | OFF                                  |</span><br><span class="line">| slow_query_log_file | /var/lib/mysql/1bcb14797cd4-slow.log |</span><br><span class="line">+---------------------+--------------------------------------+</span><br><span class="line">2 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure><ul><li><code>slow_query_log</code> 是否开启慢查询日志，默认关闭</li><li><code>slow_query_log_file</code> 慢查询日志的默认位置，系统自动生成的文件名。自定义的日志名最好符合 <code>*-slow.log</code> 格式，后面会讲到原因。</li></ul><p>因为慢查询日志本身比较耗性能，所以默认是关闭的，在需要的时候我们需要手动打开。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; set global slow_query_log=1;</span><br><span class="line">Query OK, 0 rows affected (0.09 sec)</span><br></pre></td></tr></table></figure><p>该命令可以全局开启该功能，但是如果 Mysql 服务重启则会还原默认值，想要持久化，需要修改配置文件，然后重启</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim /etc/mysql/my.cnf</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line"><span class="comment"># 开启慢查询日志</span></span><br><span class="line">slow_query_log=1</span><br><span class="line"><span class="comment"># 设置慢查询日志位置</span></span><br><span class="line">slow_query_log_file=/var/lib/mysql/slow.log</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl restart mysql</span><br></pre></td></tr></table></figure><p>修改 <code>slow_query_log_file</code> 时需要注意，文件的目录位置必须已存在，否则会报错，慢查询日志功能自动关闭。</p><p>另外还一些其他的参数可以修改，方法跟上面的一样。</p><ul><li><code>long_query_time</code> 慢查询阈值，当查询时间多于设定的阈值时记录日志。默认 10 秒。</li><li><code>log_queries_not_using_indexes</code> 未使用索引的查询也被记录到慢查询日志中（可选项）。</li><li><code>log_output</code> 日志存储方式。log_output=’FILE’表示将日志存入文件，默认值是’FILE’。log_output=’TABLE’表示将日志存入数据库，这样日志信息就会被写入到mysql.slow_log表中。MySQL数据库支持同时两种日志存储方式，配置的时候以逗号隔开即可，如：log_output=’FILE,TABLE’。日志记录到系统的专用日志表中，要比记录到文件耗费更多的系统资源，因此对于需要启用慢查询日志，又需要能够获得更高的系统性能，那么建议优先记录到文件。</li></ul><h2><span id="fen-xi-gong-ju">分析工具</span><a href="#fen-xi-gong-ju" class="header-anchor"></a></h2><p>Mysql 提供了慢查询日志的分析工具 mysqldumpslow，这要比自己查看日志文件要方便的多。</p><p>下面是几个常用的参数</p><ul><li><code>-s</code> 是表示按照何种方式排序</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">c: 访问计数</span><br><span class="line">l: 锁定时间</span><br><span class="line">r: 返回记录</span><br><span class="line">t: 查询时间</span><br><span class="line">al:平均锁定时间</span><br><span class="line">ar:平均返回记录数</span><br><span class="line">at:平均查询时间</span><br></pre></td></tr></table></figure><ul><li><code>-t</code> 是top n的意思，即为返回前面多少条的数据</li><li><code>-g</code> 后边可以写一个正则匹配模式，大小写不敏感的</li></ul><p>更多的参数可以查看帮助文档 <code>mysqldumpslow --help</code></p><p>举个例子，查看记录最多的 10 个 sql</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ mysqldumpslow -s r -t 10</span><br><span class="line">Can<span class="string">'t find '</span>/var/lib/mysql/*-slow.log<span class="string">'</span></span><br></pre></td></tr></table></figure><p>如果我们自定义了日志文件，并且格式比较随意，那默认会报找不到文件的错误。</p><p>如果你的日志文件已经自定义为其它格式，那也可以通过传入文件名的方式分析</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysqldumpslow -s r -t 10 /var/lib/mysql/some-name.log</span><br></pre></td></tr></table></figure><ul><li><a href="https://dev.mysql.com/doc/refman/5.7/en/slow-query-log.html" target="_blank" rel="noopener">The Slow Query Log</a></li><li><a href="https://dev.mysql.com/doc/refman/5.7/en/mysqldumpslow.html" target="_blank" rel="noopener">mysqldumpslow — Summarize Slow Query Log Files</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;项目长期运行过程中，Mysql 慢查询的监控是必不可少的一步日常工作，今天来说下配置过程。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="mysql" scheme="http://wxnacy.com/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ansible 在 Vagrant 中使用</title>
+    <link href="http://wxnacy.com/2019/07/31/ansible-vagrant-host/"/>
+    <id>http://wxnacy.com/2019/07/31/ansible-vagrant-host/</id>
+    <published>2019-07-31T09:38:41.000Z</published>
+    <updated>2019-07-31T09:38:41.202Z</updated>
+    
+    <content type="html"><![CDATA[<p>Ansible 在 Vagrant 中使用的难点在于获取 ssh 登录需要的配置信息。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>在默认 <code>Vagrantfile</code> 中我们找不到这些信息，此时需要通过 <code>vagrant ssh-config</code> 命令查看</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant ssh-config</span><br><span class="line">Host default</span><br><span class="line">  HostName 127.0.0.1</span><br><span class="line">  User vagrant</span><br><span class="line">  Port 2222</span><br><span class="line">  UserKnownHostsFile /dev/null</span><br><span class="line">  StrictHostKeyChecking no</span><br><span class="line">  PasswordAuthentication no</span><br><span class="line">  IdentityFile /Users/wxnacy/.vagrant.d/boxes/wxnacy-VAGRANTSLASH-ubuntu1804/0/virtualbox/vagrant_private_key</span><br><span class="line">  IdentitiesOnly yes</span><br><span class="line">  LogLevel FATAL</span><br></pre></td></tr></table></figure><p>啊，让我费解的 <code>IdentityFile</code> 文件终于露出来，关键就是这个文件。</p><p>接下来我们只需要配置 Ansible 的 hosts 文件，<code>/etc/ansible/hosts</code> 中添加，或者创建独立的 <code>hosts</code> 文件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[vagrant]</span><br><span class="line">127.0.0.1 ansible_ssh_user=vagrant ansible_ssh_port=2222 ansible_ssh_private_key_file=/Users/wxnacy/.vagrant.d/boxes/wxnacy-VAGRANTSLASH-ubuntu1804/0/virtualbox/vagrant_private_key</span><br></pre></td></tr></table></figure><p>最后查看是否能正常连接</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ ansible all -m <span class="built_in">command</span> -a <span class="string">'who'</span> --inventory-file=hosts</span><br><span class="line">127.0.0.1 | CHANGED | rc=0 &gt;&gt;</span><br><span class="line">vagrant  pts/0        Jul 30 07:35 (10.0.2.2)</span><br><span class="line">vagrant  pts/1        Jul 30 06:19 (10.0.2.2)</span><br></pre></td></tr></table></figure><p>如果新建其他位置的 <code>hosts</code> 文件，需要 <code>--inventory-file, -i</code> 指定文件。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Ansible 在 Vagrant 中使用的难点在于获取 ssh 登录需要的配置信息。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="vagrant" scheme="http://wxnacy.com/tags/vagrant/"/>
+    
+      <category term="ansible" scheme="http://wxnacy.com/tags/ansible/"/>
+    
+  </entry>
   
   <entry>
     <title>Python 报错 f-string expression part cannot include a backslash</title>
@@ -380,48 +422,6 @@
     
     
       <category term="python" scheme="http://wxnacy.com/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>cURL 如何只返回状态码 status code</title>
-    <link href="http://wxnacy.com/2019/06/06/curl-return-code/"/>
-    <id>http://wxnacy.com/2019/06/06/curl-return-code/</id>
-    <published>2019-06-06T00:15:42.000Z</published>
-    <updated>2019-06-06T00:48:28.816Z</updated>
-    
-    <content type="html"><![CDATA[<p>在写一些 Shell 测试用例时需要检测 url 的状态是否为 <code>200</code>，这时如果能只获取它的状态码是最理想的，cURL 可以很方便的实现。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p><code>-w</code> 可以格式化输出 reponse 的返回结果。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ curl -w <span class="string">"%&#123;http_code&#125;"</span> https://baidu.com</span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;&lt;title&gt;302 Found&lt;/title&gt;&lt;/head&gt;</span><br><span class="line">&lt;body bgcolor=<span class="string">"white"</span>&gt;</span><br><span class="line">&lt;center&gt;&lt;h1&gt;302 Found&lt;/h1&gt;&lt;/center&gt;</span><br><span class="line">&lt;hr&gt;&lt;center&gt;bfe/1.0.8.18&lt;/center&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">302%</span><br></pre></td></tr></table></figure><p>访问带有跳转性质的网站，我们还需要加上 <code>-L</code> 做进一步跳转，同时为了避免当资源过大请求缓慢的情况，通过 <code>-I</code> 只返回头信息</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">$ curl -IL -w <span class="string">"%&#123;http_code&#125;"</span> https://baidu.com</span><br><span class="line"></span><br><span class="line">HTTP/1.1 302 Moved Temporarily</span><br><span class="line">Server: bfe/1.0.8.18</span><br><span class="line">Date: Thu, 06 Jun 2019 00:25:02 GMT</span><br><span class="line">Content-Type: text/html</span><br><span class="line">Content-Length: 161</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Location: http://www.baidu.com/</span><br><span class="line"></span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Accept-Ranges: bytes</span><br><span class="line">Cache-Control: private, no-cache, no-store, proxy-revalidate, no-transform</span><br><span class="line">Connection: Keep-Alive</span><br><span class="line">Content-Length: 277</span><br><span class="line">Content-Type: text/html</span><br><span class="line">Date: Thu, 06 Jun 2019 00:25:05 GMT</span><br><span class="line">Etag: <span class="string">"575e1f60-115"</span></span><br><span class="line">Last-Modified: Mon, 13 Jun 2016 02:50:08 GMT</span><br><span class="line">Pragma: no-cache</span><br><span class="line">Server: bfe/1.0.8.18</span><br><span class="line"></span><br><span class="line">200%</span><br></pre></td></tr></table></figure><p>然后隐藏掉打印信息，将打印的结果输出到 <code>/dev/null</code></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ curl -IL -w <span class="string">"%&#123;http_code&#125;"</span> -o /dev/null https://baidu.com</span><br><span class="line">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span><br><span class="line">                                 Dload  Upload   Total   Spent    Left  Speed</span><br><span class="line">  0   161    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0</span><br><span class="line">  0   277    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0</span><br><span class="line">200%</span><br></pre></td></tr></table></figure><p>竟然还有多余信息，继续使用 <code>-s</code> 不显示进度和错误信息</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ curl -sIL -w <span class="string">"%&#123;http_code&#125;"</span> -o /dev/null https://baidu.com</span><br><span class="line">200%</span><br></pre></td></tr></table></figure><p>最后的最后，默认输出是不换行的，也就是会带有一个 <code>%</code> 符号，我们有两种方式去掉它</p><p><strong>输出换行</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ curl -sIL -w <span class="string">"%&#123;http_code&#125;\n"</span> -o /dev/null https://baidu.com</span><br><span class="line">200</span><br></pre></td></tr></table></figure><p><strong>使用 echo</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> $(curl -sIL -w <span class="string">"%&#123;http_code&#125;"</span> -o /dev/null https://baidu.com)</span><br><span class="line">200</span><br></pre></td></tr></table></figure><p><code>-w</code> 的一些其它参数，没有注明的可以自行测试下</p><ul><li><code>url_effective</code></li><li><code>http_code</code> 状态码</li><li><code>http_connect</code></li><li><code>time_total</code> 请求总用时</li><li><code>time_namelookup</code> DNS 域名解析的时候，就是把 <a href="https://baidu.com" target="_blank" rel="noopener">https://baidu.com</a> 转换成 ip 地址的过程</li><li><code>time_connect</code> TCP 连接建立的时间，就是三次握手的时间</li><li><code>time_appconnect</code> SSL/SSH 等上层协议建立连接的时间，比如 connect/handshake 的时间</li><li><code>time_redirect</code> 从开始到最后一个请求事务的时间</li><li><code>time_pretransfer</code> 从请求开始到响应开始传输的时间</li><li><code>time_starttransfer</code> 从请求开始到第一个字节将要传输的时间</li><li><code>size_download</code></li><li><code>size_upload</code></li><li><code>size_header</code></li><li><code>size_request</code></li><li><code>speed_download</code></li><li><code>speed_upload</code></li><li><code>content_type</code></li><li><code>num_connects</code></li><li><code>num_redirects</code></li><li><code>ftp_entry_path</code></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在写一些 Shell 测试用例时需要检测 url 的状态是否为 &lt;code&gt;200&lt;/code&gt;，这时如果能只获取它的状态码是最理想的，cURL 可以很方便的实现。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="http" scheme="http://wxnacy.com/tags/http/"/>
-    
-      <category term="linux" scheme="http://wxnacy.com/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Nginx 配置有爱心的 404</title>
-    <link href="http://wxnacy.com/2019/06/04/lovely-404/"/>
-    <id>http://wxnacy.com/2019/06/04/lovely-404/</id>
-    <published>2019-06-04T13:39:02.000Z</published>
-    <updated>2019-06-04T13:39:02.534Z</updated>
-    
-    <content type="html"><![CDATA[<p>之前我是不太在乎 404 页面的，一是我基本不会修改网页的地址，搜索过来的时候都能准确访问。二是我默认看我博客的都是技术人员，他们可以很容易的找到首页地址，虽然我的博客可能不会让他们有那么大的动力这么干。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>但是，今天我想配置上 404 的页面，一个有爱心的 404 页面</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/404-2_709.png" alt="1"></p><p>作为一名老父亲，看到这些丢失的孩子，心里是感觉被揪了一下的。如果你也想在自己的站点加一个这样的 404 页面，可以接着看下去。</p><p>这个页面是由益云提供的，这是他们的网址 <a href="https://yibo.iyiyun.com/Home/Index/web404" target="_blank" rel="noopener">https://yibo.iyiyun.com/Home/Index/web404</a></p><p>点击进入后根据自己的需求选择完成后，点击生成代码即可</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/404-3_1285.png" alt="2"></p><p>复制生成的代码，黏贴你自己的 <code>404.html</code> 的 <code>body</code> 标签中即可。</p><p>然后怎么在网站中生效呢？如果你之前配置过，那现在刷新页面就已经生效了。如果像我一样没有配置过，那只要在 Nginx 中做一些小改动即可</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    error_page 404 404.html;</span><br><span class="line"></span><br><span class="line">    location /404.html &#123;</span><br><span class="line">        # 配置 404.html 的目录</span><br><span class="line">        root   /www/wxnacy.github.io/nginx/html;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>在你的 <code>server</code> 标签中也做如上配置即可，<code>root</code> 改成你存放 <code>404.html</code> 页面的目录</p><p><strong>重新加载配置</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ nginx -t          <span class="comment"># 测试配置是否通过</span></span><br><span class="line">$ nginx -s reload   <span class="comment"># 重新加载</span></span><br></pre></td></tr></table></figure><p>再次访问网站的 404 页面即可生效。</p><p>需要注意的一点，他默认提供的代码中，给的是 <code>http://</code> 开头的网址，如果你的网站是 <code>https</code> 的话，那会请求失败，所以需要手动改成 <code>https</code>。</p><p>说到公益 404，印象比较深的是微信公众号里的 web 页面，如果网页提供者返回了 404 状态，那微信就会强制显示这个公益的 404 页面，而提供者的页面就会被覆盖。虽然这是件有爱心的事，但做法却有点耍流氓，你也不能强制别人献爱心啊。</p><p>最后呢，希望我的一点小小的举动，可以给身处黑暗中的孩子一点莹莹星火，让他们可以早点找到家的方向。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;之前我是不太在乎 404 页面的，一是我基本不会修改网页的地址，搜索过来的时候都能准确访问。二是我默认看我博客的都是技术人员，他们可以很容易的找到首页地址，虽然我的博客可能不会让他们有那么大的动力这么干。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="nginx" scheme="http://wxnacy.com/tags/nginx/"/>
     
   </entry>
   
