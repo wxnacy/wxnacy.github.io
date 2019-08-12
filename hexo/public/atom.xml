@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-08-01T09:09:32.556Z</updated>
+  <updated>2019-08-12T13:38:08.706Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Docker 配置国内仓库</title>
+    <link href="http://wxnacy.com/2019/08/12/docker-use-china-mirrors/"/>
+    <id>http://wxnacy.com/2019/08/12/docker-use-china-mirrors/</id>
+    <published>2019-08-12T13:38:08.000Z</published>
+    <updated>2019-08-12T13:38:08.706Z</updated>
+    
+    <content type="html"><![CDATA[<p>类似这种需要下载包的一般都要配置个国内的仓库源，同时使用默认的国外仓库，真的很慢。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>以阿里云仓库为例，配置方式很简单</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ sudo tee /etc/docker/daemon.json &lt;&lt;-<span class="string">'EOF'</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"registry-mirrors"</span>: [<span class="string">"https://4qqg0972.mirror.aliyuncs.com"</span>]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line">$ sudo systemctl daemon-reload</span><br><span class="line">$ sudo systemctl restart docker</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;类似这种需要下载包的一般都要配置个国内的仓库源，同时使用默认的国外仓库，真的很慢。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="docker" scheme="http://wxnacy.com/tags/docker/"/>
+    
+  </entry>
   
   <entry>
     <title>Mysql 开始慢查询日志</title>
@@ -402,26 +422,6 @@
     
     
       <category term="linux" scheme="http://wxnacy.com/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python 二分查找模块 bisect</title>
-    <link href="http://wxnacy.com/2019/06/07/python-bisect/"/>
-    <id>http://wxnacy.com/2019/06/07/python-bisect/</id>
-    <published>2019-06-07T12:50:03.000Z</published>
-    <updated>2019-06-07T12:50:03.243Z</updated>
-    
-    <content type="html"><![CDATA[<p>Python 中 bisect 模块的作用是将一个数字插入到一个排好序的数组中，而不影响数组原来的排序。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>换句话说是找到一个数字在一个排序数组中应该出现的位置，而它采用的是二分查找法。</p><p>既然是二分查找法首先要准备一个排好序的数组</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = [<span class="number">1</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br></pre></td></tr></table></figure><p>我们希望知道再插入一个 <code>4</code>，应该出现在什么位置。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> bisect</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bisect.bisect(a, <span class="number">4</span>)</span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure><p><code>bisect()</code> 方法只是返回一个索引不会更改数组，另外还有 <code>bisect_right()</code> 和 <code>bisect_left()</code> 两个方法，<code>bisect_right()</code> 等同于 <code>bisect()</code> 都是从数组右侧开始查找，而 <code>bisect()</code> 是从左侧开始查找。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>bisect.bisect_left(a, <span class="number">4</span>)</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure><p>如果想要直接插入这个数字呢？可以用 <code>insort()</code> 方法</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>bisect.insort(a, <span class="number">4</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[<span class="number">1</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br></pre></td></tr></table></figure><p>这个方法没有返回值，是在原数组上做的修改，另外也还有 <code>insort_left()</code> 和 <code>insort_right()</code>，他们的作用相信你已经明白了。</p><p>说到这的话，其实标题说 <code>bisect</code> 是二分查找模块有点不准确，因为当数组中没有该数字时，<code>bisect.bisect()</code> 方法也会返回一个有效索引。所以如果我们想把它当做二分查找法的话，还需要做一些判断</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> bisect</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binary_search</span><span class="params">(nums, n)</span>:</span></span><br><span class="line">    i = bisect.bisect_left(nums, n)</span><br><span class="line">    <span class="keyword">if</span> i &gt;= len(nums):</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">if</span> nums[i] == n:</span><br><span class="line">            <span class="keyword">return</span> i</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure><p>最后要说的是，数组只能是正序，如果是倒序该模块不生效</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a.reverse()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[<span class="number">6</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bisect.insort_left(a, <span class="number">2</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[<span class="number">2</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>]</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Python 中 bisect 模块的作用是将一个数字插入到一个排好序的数组中，而不影响数组原来的排序。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="python" scheme="http://wxnacy.com/tags/python/"/>
     
   </entry>
   
