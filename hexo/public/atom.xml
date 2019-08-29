@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-08-22T09:40:01.268Z</updated>
+  <updated>2019-08-29T13:32:37.143Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python 使用 Pillow 模块给图片添加文字水印</title>
+    <link href="http://wxnacy.com/2019/08/29/python-pillow-text-watermark/"/>
+    <id>http://wxnacy.com/2019/08/29/python-pillow-text-watermark/</id>
+    <published>2019-08-29T13:32:37.000Z</published>
+    <updated>2019-08-29T13:32:37.143Z</updated>
+    
+    <content type="html"><![CDATA[<p>像微博一类的平台上传图片时，平台都会添加一个水印，宣誓着对图片的所有权，我们自己的博客平台也可以给自己的图片添加上水印。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>还是用 <a href="https://github.com/python-pillow/Pillow" target="_blank" rel="noopener">Pillow</a> 模块来实现</p><p>先来看一个简单的例子</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> PIL <span class="keyword">import</span> ImageDraw</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>image = Image.open(<span class="string">'/Users/wxnacy/Downloads/vm-error1.png'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>draw = ImageDraw.Draw(image)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>draw.text((<span class="number">10</span>, <span class="number">10</span>), <span class="string">'wxnacy'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>image.show()</span><br></pre></td></tr></table></figure><p>随后图片的左上角就可以看到水印的添加效果</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/pillow-watermark1.png" alt="1"></p><p>水印的颜色默认为白色，当然可以通过传参改变</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>draw.text((<span class="number">10</span>, <span class="number">10</span>), <span class="string">'wxnacy'</span>, (<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>))</span><br></pre></td></tr></table></figure><p>添加一个参数，这和上面得到的结果是一样的，这里用的是三原色，<code>(255, 255, 255)</code> 分别为红色、绿色、蓝色</p><p>最后是字体</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> PIL <span class="keyword">import</span> ImageFont</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>font=ImageFont.truetype(<span class="string">'PingFang.ttc'</span>,<span class="number">40</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>draw.text((<span class="number">70</span>,<span class="number">300</span>),<span class="string">'This is wxnacy\'s website'</span>,(<span class="number">0</span>,<span class="number">255</span>,<span class="number">255</span>), font=font)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>image.show()</span><br></pre></td></tr></table></figure><p><code>PingFang.ttc</code> 必须是本地有的字体文件，<code>40</code> 是字体大小，这样最后的水印结果为</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/pillow-watermark2.png" alt="2"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;像微博一类的平台上传图片时，平台都会添加一个水印，宣誓着对图片的所有权，我们自己的博客平台也可以给自己的图片添加上水印。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://wxnacy.com/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>Docker logs 命令</title>
@@ -399,26 +419,6 @@
     
     
       <category term="python" scheme="http://wxnacy.com/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux split 分割日志</title>
-    <link href="http://wxnacy.com/2019/06/25/linux-split/"/>
-    <id>http://wxnacy.com/2019/06/25/linux-split/</id>
-    <published>2019-06-25T06:43:11.000Z</published>
-    <updated>2019-06-25T07:21:56.093Z</updated>
-    
-    <content type="html"><![CDATA[<p>split 命令用于将文件平均分割为多个小文件，多用于日志查看。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>先下载一个测试文件 <a href="https://raw.githubusercontent.com/wxnacy/file/master/common/split_test" target="_blank" rel="noopener">split_test</a></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ split split_test</span><br><span class="line">$ ll</span><br><span class="line"></span><br><span class="line">-rw-r--r--  1 wxnacy  staff  216320 Jun 25 14:52 split_test</span><br><span class="line">-rw-r--r--  1 wxnacy  staff   20000 Jun 25 14:54 xaa</span><br><span class="line">-rw-r--r--  1 wxnacy  staff   20000 Jun 25 14:54 xab</span><br><span class="line">-rw-r--r--  1 wxnacy  staff   20000 Jun 25 14:54 xac</span><br><span class="line">-rw-r--r--  1 wxnacy  staff   20000 Jun 25 14:54 xad</span><br><span class="line">-rw-r--r--  1 wxnacy  staff   20000 Jun 25 14:54 xae</span><br><span class="line">-rw-r--r--  1 wxnacy  staff   20000 Jun 25 14:54 xaf</span><br><span class="line">-rw-r--r--  1 wxnacy  staff   20000 Jun 25 14:54 xag</span><br><span class="line">-rw-r--r--  1 wxnacy  staff   20000 Jun 25 14:54 xah</span><br><span class="line">-rw-r--r--  1 wxnacy  staff   20000 Jun 25 14:54 xai</span><br><span class="line">-rw-r--r--  1 wxnacy  staff   20000 Jun 25 14:54 xaj</span><br><span class="line">-rw-r--r--  1 wxnacy  staff   16320 Jun 25 14:54 xak</span><br></pre></td></tr></table></figure><p>默认 <code>split</code> 会将文件均匀的分割成多个小文件，文件名以 <code>x</code> 开头，剩余字符按字符表排序。</p><p><strong>语法</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ split [OPTION]... [FILE [PREFIX]]</span><br></pre></td></tr></table></figure><p><code>split</code> 命令有多个参数可供调用</p><p><code>-b</code> 指定输出文件的大小，单位为 byte。<br><code>-d</code> 使用数字作为后缀。<br><code>-l</code> 指定输出文件的行数<br><code>-a</code> 指定后缀的长度</p><p><strong>分割出 100k 的文件</strong></p><p><code>-b</code> 默认单位为 byte，可以指定分割单位，如 <code>K,M,G,T,P,E,Z,Y</code></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ split -b 100k split_test</span><br><span class="line">$ ll</span><br><span class="line">total 856</span><br><span class="line">-rw-r--r--  1 wxnacy  staff  216320 Jun 25 14:52 split_test</span><br><span class="line">-rw-r--r--  1 wxnacy  staff  102400 Jun 25 14:59 xaa</span><br><span class="line">-rw-r--r--  1 wxnacy  staff  102400 Jun 25 14:59 xab</span><br><span class="line">-rw-r--r--  1 wxnacy  staff   11520 Jun 25 14:59 xac</span><br></pre></td></tr></table></figure><p><strong>使用数字为后缀，并指定长度</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ split -b 100k -d -a 4 split_test</span><br><span class="line">$ ll</span><br><span class="line">total 424</span><br><span class="line">-rw-rw-r-- 1 vagrant vagrant 216320 Jun 25 07:12 split_test</span><br><span class="line">-rw-rw-r-- 1 vagrant vagrant 102400 Jun 25 07:13 x0000</span><br><span class="line">-rw-rw-r-- 1 vagrant vagrant 102400 Jun 25 07:13 x0001</span><br><span class="line">-rw-rw-r-- 1 vagrant vagrant  11520 Jun 25 07:13 x0002</span><br></pre></td></tr></table></figure><p><strong>指定文件前缀</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ split -b 100k -d -a 4 split_test split.</span><br><span class="line">$ ll</span><br><span class="line">total 424</span><br><span class="line">-rw-rw-r-- 1 vagrant vagrant 216320 Jun 25 07:12 split_test</span><br><span class="line">-rw-rw-r-- 1 vagrant vagrant 102400 Jun 25 07:15 split.0000</span><br><span class="line">-rw-rw-r-- 1 vagrant vagrant 102400 Jun 25 07:15 split.0001</span><br><span class="line">-rw-rw-r-- 1 vagrant vagrant  11520 Jun 25 07:15 split.0002</span><br></pre></td></tr></table></figure><p><strong>指定行数分割文件</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$ split -l 1000 split_test</span><br><span class="line">$ ll</span><br><span class="line">total 428</span><br><span class="line">-rw-rw-r-- 1 vagrant vagrant 216320 Jun 25 07:12 split_test</span><br><span class="line">-rw-rw-r-- 1 vagrant vagrant  20000 Jun 25 07:20 xaa</span><br><span class="line">-rw-rw-r-- 1 vagrant vagrant  20000 Jun 25 07:20 xab</span><br><span class="line">-rw-rw-r-- 1 vagrant vagrant  20000 Jun 25 07:20 xac</span><br><span class="line">-rw-rw-r-- 1 vagrant vagrant  20000 Jun 25 07:20 xad</span><br><span class="line">-rw-rw-r-- 1 vagrant vagrant  20000 Jun 25 07:20 xae</span><br><span class="line">-rw-rw-r-- 1 vagrant vagrant  20000 Jun 25 07:20 xaf</span><br><span class="line">-rw-rw-r-- 1 vagrant vagrant  20000 Jun 25 07:20 xag</span><br><span class="line">-rw-rw-r-- 1 vagrant vagrant  20000 Jun 25 07:20 xah</span><br><span class="line">-rw-rw-r-- 1 vagrant vagrant  20000 Jun 25 07:20 xai</span><br><span class="line">-rw-rw-r-- 1 vagrant vagrant  20000 Jun 25 07:20 xaj</span><br><span class="line">-rw-rw-r-- 1 vagrant vagrant  16320 Jun 25 07:20 xak</span><br><span class="line"></span><br><span class="line">$ wc -l xaa</span><br><span class="line">1000 xaa</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;split 命令用于将文件平均分割为多个小文件，多用于日志查看。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="linux" scheme="http://wxnacy.com/tags/linux/"/>
     
   </entry>
   
