@@ -1,7 +1,10 @@
 ---
 title: Python 使用多属性来进行排序
-tags: [python]
+tags:
+  - python
+date: 2019-08-31 14:11:29
 ---
+
 
 Python 中 `list.sort()` 是列表中非常常用的排序函数，`key` 参数可以对单个属性进行排序。
 
