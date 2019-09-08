@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-08-31T06:11:29.643Z</updated>
+  <updated>2019-09-08T08:46:41.832Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>微信公众号被动自动回复两条消息</title>
+    <link href="http://wxnacy.com/2019/09/08/weixin-two-reply/"/>
+    <id>http://wxnacy.com/2019/09/08/weixin-two-reply/</id>
+    <published>2019-09-08T08:46:41.000Z</published>
+    <updated>2019-09-08T08:46:41.832Z</updated>
+    
+    <content type="html"><![CDATA[<p>这么长时间来开发微信公众号一直都是只用到了被动回复一条消息，最近有需要要自动回复两条消息，第一反应是怎么可能，查了下<a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421140543" target="_blank" rel="noopener">文档</a>也确实不行，但是其他公众号又有这么实现的。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>搜索了下发现以前的用法还是太死板了，被动消息是只能回复一条，但是还可以调用<a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421140547" target="_blank" rel="noopener">客服消息</a>来主动发送一条消息。</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/wx-kf_885.png" alt="1"></p><p>了解这个思路就已经可以了，具体的实现过程就不在赘述，有点经验可以说下。</p><p>如果让客服消息当做第一条，被动回复当做第二条，这样的通过进行可能会让单次请求时间加长。</p><p>我的做法是先异步调用客服消息，然后被动回复消息，打个时间差，客服消息刚好当做第二条消息，在被动回复的消息不就后到达。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这么长时间来开发微信公众号一直都是只用到了被动回复一条消息，最近有需要要自动回复两条消息，第一反应是怎么可能，查了下&lt;a href=&quot;https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;amp;id=mp1421140543&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;文档&lt;/a&gt;也确实不行，但是其他公众号又有这么实现的。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="微信" scheme="http://wxnacy.com/tags/%E5%BE%AE%E4%BF%A1/"/>
+    
+  </entry>
   
   <entry>
     <title>Python 使用多属性来进行排序</title>
@@ -399,26 +419,6 @@
     
     
       <category term="linux" scheme="http://wxnacy.com/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python 内存管理之 `*` 运算的陷阱</title>
-    <link href="http://wxnacy.com/2019/07/10/python-memory-mul/"/>
-    <id>http://wxnacy.com/2019/07/10/python-memory-mul/</id>
-    <published>2019-07-10T13:05:49.000Z</published>
-    <updated>2019-07-10T13:06:47.677Z</updated>
-    
-    <content type="html"><![CDATA[<p>Python 中实现了 <code>__mul__</code> 魔法函数的对象，都支持 <code>*</code> 号运算。内置类型更是默认实现了该函数，使用起来也很方便。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>但是对列表对象进行 <code>*</code> 运算时，却不得不注意一个陷阱。</p><p>刚接触这个特性时，美滋滋的以为可以快速的扩展列表，比如这样。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = [<span class="number">1</span>] * <span class="number">3</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a[<span class="number">0</span>] = <span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[<span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span>]</span><br></pre></td></tr></table></figure><p>看起来没什么问题，然而实际开发中没这么简单的例子，随便复杂一点，就会出现问题。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = [[]] * <span class="number">3</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b</span><br><span class="line">[[], [], []]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b[<span class="number">0</span>].append(<span class="number">1</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b</span><br><span class="line">[[<span class="number">1</span>], [<span class="number">1</span>], [<span class="number">1</span>]]</span><br></pre></td></tr></table></figure><p>很显然出现了问题，我只是给索引位置 <code>0</code> 的元素增加了一个子元素，然后所有的元素都改变了。</p><p>出现这个问题的原因是 <code>*</code> 运算复制的不是子元素，而是当前子元素所指对象的引用，所以当改变该对象时，所有引用该对象的元素都会发生改变。</p><p>关于对象引用可以看 <a href="/2019/06/16/python-memory-management">Python 内存管理</a>，里面有更详细的讲解。</p><p>再看一个现象</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>b[<span class="number">0</span>] = [<span class="number">2</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b</span><br><span class="line">[[<span class="number">2</span>], [<span class="number">1</span>], [<span class="number">1</span>]]</span><br></pre></td></tr></table></figure><p>这次就想开始那个简单例子一样，结果跟我们预期的一样，这次是为什么呢？</p><p>因为我们没有改变该索引位置的对象，而是让他引向了新的对象 <code>[2]</code>，这样就不影响其他索引位置的对象了。</p><p>那么怎么才能做到扩展列表呢？答案是列表解析</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>c = [[] <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c</span><br><span class="line">[[], [], []]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c[<span class="number">0</span>].append(<span class="number">1</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c</span><br><span class="line">[[<span class="number">1</span>], [], []]</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Python 中实现了 &lt;code&gt;__mul__&lt;/code&gt; 魔法函数的对象，都支持 &lt;code&gt;*&lt;/code&gt; 号运算。内置类型更是默认实现了该函数，使用起来也很方便。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="python" scheme="http://wxnacy.com/tags/python/"/>
     
   </entry>
   
