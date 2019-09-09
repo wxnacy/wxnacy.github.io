@@ -1,7 +1,10 @@
 ---
 title: VMware 报错：未找到文件
-tags: [vmware]
+tags:
+  - vmware
+date: 2019-09-09 10:56:46
 ---
+
 
 之前卸载过 VMware，再次安装时就报这个错
 
