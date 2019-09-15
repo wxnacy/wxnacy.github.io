@@ -1,7 +1,11 @@
 ---
 title: 使用 youtube-dl 下载油管视频
-tags: [python, 工具]
+tags:
+  - python
+  - 工具
+date: 2019-09-15 14:56:00
 ---
+
 
 油管上有全球最大的视频资源库，由于一些限制我们不能随时随地看到，如果有机会看的时候，也能批量下载一些视频就非常 nice 了， [youtube-dl](https://github.com/ytdl-org/youtube-dl) 可以完美的实现这个需求
 

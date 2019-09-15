@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-09-09T02:56:46.243Z</updated>
+  <updated>2019-09-15T06:56:00.309Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用 youtube-dl 下载油管视频</title>
+    <link href="http://wxnacy.com/2019/09/15/use-youtube-dl/"/>
+    <id>http://wxnacy.com/2019/09/15/use-youtube-dl/</id>
+    <published>2019-09-15T06:56:00.000Z</published>
+    <updated>2019-09-15T06:56:00.309Z</updated>
+    
+    <content type="html"><![CDATA[<p>油管上有全球最大的视频资源库，由于一些限制我们不能随时随地看到，如果有机会看的时候，也能批量下载一些视频就非常 nice 了， <a href="https://github.com/ytdl-org/youtube-dl" target="_blank" rel="noopener">youtube-dl</a> 可以完美的实现这个需求</p><a id="more"></a><div class="toc"><!-- toc --><ul><li><a href="#xia-zai">下载</a><ul><li><a href="#pip">pip</a></li><li><a href="#linux">Linux</a></li><li><a href="#mac">Mac</a></li><li><a href="#windows">Windows</a></li></ul></li><li><a href="#xia-zai-shi-pin">下载视频</a></li><li><a href="#chong-ming-ming">重命名</a></li></ul><!-- tocstop --></div><h2><span id="xia-zai">下载</span><a href="#xia-zai" class="header-anchor"></a></h2><h3><span id="pip">pip</span><a href="#pip" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo -H pip install --upgrade youtube-dl</span><br></pre></td></tr></table></figure><h3><span id="linux">Linux</span><a href="#linux" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/<span class="built_in">local</span>/bin/youtube-dl</span><br><span class="line">$ sudo chmod a+rx /usr/<span class="built_in">local</span>/bin/youtube-dl</span><br></pre></td></tr></table></figure><h3><span id="mac">Mac</span><a href="#mac" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install youtube-dl</span><br></pre></td></tr></table></figure><h3><span id="windows">Windows</span><a href="#windows" class="header-anchor"></a></h3><p>下载 <a href="https://yt-dl.org/latest/youtube-dl.exe" target="_blank" rel="noopener">youtube-dl.exe</a> 文件直接运行即可。</p><p>这里有点需要注意，如果你是 Windows10 系统，很可能会报一个找不到 <code>MSVCR100.dll</code> 的错误，此时需要先安装 <a href="https://www.microsoft.com/en-US/download/details.aspx?id=5555" target="_blank" rel="noopener">Microsoft Visual C++ 2010 Redistributable Package (x86)</a>，然后再次执行 <code>youtube-dl.exe</code> 即可</p><h2><span id="xia-zai-shi-pin">下载视频</span><a href="#xia-zai-shi-pin" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ youtube-dl https://www.youtube.com/watch?v=OKIfTOEo7P0</span><br></pre></td></tr></table></figure><p>下载视频就是这么简单，默认下载的是 720p 的视频，只要你有的话，我们也可以先看下视频都包含什么格式</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ youtube-dl -F https://www.youtube.com/watch?v=OKIfTOEo7P0</span><br></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/ytdl1.png" alt="1"></p><p>也可以指定下载 1080p 的视频，使用第一列的数字可以精准下载</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ youtube-dl -f 137 https://www.youtube.com/watch?v=OKIfTOEo7P0</span><br></pre></td></tr></table></figure><p>有时候默认情况下会下载 webm 格式的视频，我们可以设置只下载 mp4 格式的视频</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ youtube-dl -f mp4 https://www.youtube.com/watch?v=OKIfTOEo7P0</span><br></pre></td></tr></table></figure><h2><span id="chong-ming-ming">重命名</span><a href="#chong-ming-ming" class="header-anchor"></a></h2><p><code>youtube-dl</code> 下载的视频默认保存在当前目录，使用视频名+扩展名来保存，我们可以通过重命名的方式来修改下载目录和文件名，不过通常是在下载播放列表和频道全部视频时才需要。</p><p>是的，它还可以直接下载频道全部视频和播放列表，这样不需要写什么脚本也可以实现批量下载了</p><p>通过 <code>-o</code> 参数可以格式化下载的位置和名字</p><p><strong>下载播放列表</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ youtube-dl -o <span class="string">'%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'</span> https://www.youtube.com/playlist?list=PLumqm-XDIBr1tduTDECpjF_l33IVupKAN</span><br></pre></td></tr></table></figure><p>下载的文件名格式化为 <code>播放列表名称/视频位置 - 视频标题.扩展名</code></p><p><strong>下载频道</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ youtube-dl -o <span class="string">'%(uploader)s/%(title)s.%(ext)s'</span> https://www.youtube.com/channel/UCahEYs3JbJQL-oyL_0H9pRA</span><br></pre></td></tr></table></figure><p>下载的文件名格式化为 <code>上传者姓名/视频标题.扩展名</code></p><p>更多的格式化模板可以看<a href="https://github.com/ytdl-org/youtube-dl#output-template" target="_blank" rel="noopener">文档</a></p><p>在下载列表时有一点需要注意，很多原因都会导致下载某个视频时失败，我们希望它可以在失败跳过继续下载，而不是直接停止，加上 <code>-i</code> 参数即可。</p><p><strong>下载失败时跳过</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ youtube-dl -o <span class="string">'%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'</span> https://www.youtube.com/playlist?list=PLumqm-XDIBr1tduTDECpjF_l33IVupKAN</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;油管上有全球最大的视频资源库，由于一些限制我们不能随时随地看到，如果有机会看的时候，也能批量下载一些视频就非常 nice 了， &lt;a href=&quot;https://github.com/ytdl-org/youtube-dl&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;youtube-dl&lt;/a&gt; 可以完美的实现这个需求&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="工具" scheme="http://wxnacy.com/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="python" scheme="http://wxnacy.com/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>VMware 报错：未找到文件</title>
@@ -395,26 +417,6 @@
     
     
       <category term="python" scheme="http://wxnacy.com/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Centos7 如何安装 Redis</title>
-    <link href="http://wxnacy.com/2019/07/12/centos7-install-redis/"/>
-    <id>http://wxnacy.com/2019/07/12/centos7-install-redis/</id>
-    <published>2019-07-12T09:02:08.000Z</published>
-    <updated>2019-07-12T09:06:01.078Z</updated>
-    
-    <content type="html"><![CDATA[<p>Centos 默认仓库不包含 Redis 安装包，我们可以从 Remi 仓库中来安装。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p><strong>安装 Remi 仓库</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install epel-release yum-utils</span><br><span class="line">$ sudo yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm</span><br><span class="line">$ sudo yum-config-manager --<span class="built_in">enable</span> remi</span><br></pre></td></tr></table></figure><p><strong>安装 Redis</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install -y redis</span><br></pre></td></tr></table></figure><p><strong>启动</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl start redis    <span class="comment"># 启动</span></span><br><span class="line">$ sudo systemctl <span class="built_in">enable</span> redis   <span class="comment"># 开机自启</span></span><br></pre></td></tr></table></figure><p><strong>测试是否安装成功</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ redis-cli ping</span><br><span class="line">PONG</span><br></pre></td></tr></table></figure><ul><li><a href="https://linuxize.com/post/how-to-install-and-configure-redis-on-centos-7/" target="_blank" rel="noopener">How To Install and Configure Redis on CentOS 7</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Centos 默认仓库不包含 Redis 安装包，我们可以从 Remi 仓库中来安装。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="linux" scheme="http://wxnacy.com/tags/linux/"/>
     
   </entry>
   
