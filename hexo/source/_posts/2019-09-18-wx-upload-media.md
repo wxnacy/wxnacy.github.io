@@ -1,7 +1,11 @@
 ---
 title: 使用 Python 新建微信公众号临时素材
-tags: [微信, python]
+tags:
+  - 微信
+  - python
+date: 2019-09-18 15:23:48
 ---
+
 
 微信公众号相关的官方文档一直是以垃圾著称的，比如这个[新建临时素材](https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1444738726)。
 
