@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-09-18T07:23:48.136Z</updated>
+  <updated>2019-09-19T05:55:13.679Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>获取 youtube 视频屏蔽地区</title>
+    <link href="http://wxnacy.com/2019/09/19/youtube-block-region/"/>
+    <id>http://wxnacy.com/2019/09/19/youtube-block-region/</id>
+    <published>2019-09-19T05:55:13.000Z</published>
+    <updated>2019-09-19T05:55:13.679Z</updated>
+    
+    <content type="html"><![CDATA[<p>记得前几年 youtube 视频网页内是包含该视频的允许和屏蔽播放的区域的，但是最近需要使用时发现怎么也找不到了，估计是油管因为一些原因做了隐藏。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>先是 google 了一些方法，发现了一个网站可以查询视频的屏蔽地区，只需要输入网址或者 id 就可以了</p><p>网址：<a href="https://polsy.org.uk/stuff/ytrestrict.cgi" target="_blank" rel="noopener">https://polsy.org.uk/stuff/ytrestrict.cgi</a></p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/yt-polsy_1090.png" alt="1"></p><p>当做网页工具还是挺不错的，对它的结果网页做解析也比较简单，但是有些视频会查询不出来，所以在程序中还是不推荐使用。</p><p>转了一圈，发现官方就有相关的 API，记得以前是有一些使用限制的，现在再找并没有发现什么限制，只有每天的调用次数限制，大概 100000 次，一般使用也足够了</p><p>网址：<a href="https://developers.google.com/youtube/v3/docs/videos" target="_blank" rel="noopener">https://developers.google.com/youtube/v3/docs/videos</a></p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/yt-api-videos_823.png" alt="2"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;记得前几年 youtube 视频网页内是包含该视频的允许和屏蔽播放的区域的，但是最近需要使用时发现怎么也找不到了，估计是油管因为一些原因做了隐藏。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="youtube" scheme="http://wxnacy.com/tags/youtube/"/>
+    
+  </entry>
   
   <entry>
     <title>使用 Python 新建微信公众号临时素材</title>
@@ -399,26 +419,6 @@
     
     
       <category term="python" scheme="http://wxnacy.com/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Nginx 报错 no resolver defined to resolve</title>
-    <link href="http://wxnacy.com/2019/07/16/nginx-no-resolver-defined-to-resolve/"/>
-    <id>http://wxnacy.com/2019/07/16/nginx-no-resolver-defined-to-resolve/</id>
-    <published>2019-07-16T06:49:25.000Z</published>
-    <updated>2019-07-16T06:49:25.476Z</updated>
-    
-    <content type="html"><![CDATA[<p>起因是使用 <code>ngxin + lua</code> 链接外部机器 Redis 时产生的</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>原因是 Nginx 0.6.18以后的版本中启用了一个resolver指令，在使用变量来构造某个server地址的时候一定要用resolver指令来指定DNS服务器的地址，所以解决这个问题的方法很简单：在nginx的配置文件中的http{}部分添加一行DNS地址即可</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    resolver 8.8.8.8;</span><br><span class="line">    server &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>如果机器支持 ipv6，可以去掉对它的支持，免得产生类似错误。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">resolver 8.8.8.8 ipv6=off;</span><br></pre></td></tr></table></figure><ul><li><a href="https://github.com/openresty/lua-resty-redis/issues/159" target="_blank" rel="noopener">No resolver defined to resolve</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;起因是使用 &lt;code&gt;ngxin + lua&lt;/code&gt; 链接外部机器 Redis 时产生的&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="nginx" scheme="http://wxnacy.com/tags/nginx/"/>
     
   </entry>
   
