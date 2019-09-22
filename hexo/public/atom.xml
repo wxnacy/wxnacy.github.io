@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-09-19T05:55:13.679Z</updated>
+  <updated>2019-09-22T14:04:14.446Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>世界货币查询文档</title>
+    <link href="http://wxnacy.com/2019/09/22/world-currency/"/>
+    <id>http://wxnacy.com/2019/09/22/world-currency/</id>
+    <published>2019-09-22T14:04:14.000Z</published>
+    <updated>2019-09-22T14:04:14.446Z</updated>
+    
+    <content type="html"><![CDATA[<p>因为工作需要了解一些外币信息的知识，收集一些网站一遍日常查询。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>两个国外的网站货币名称、简称和符号是比较全的。</p><p><a href="http://fx.sauder.ubc.ca/currency_table.html" target="_blank" rel="noopener">http://fx.sauder.ubc.ca/currency_table.html</a></p><p><a href="https://justforex.com/cn/education/currencies" target="_blank" rel="noopener">https://justforex.com/cn/education/currencies</a></p><p>但是因为是全英文的，所以查询不会方便，另外还有两个中文的可共查询</p><p><a href="https://fxtop.com/cn/countries-currencies.php" target="_blank" rel="noopener">https://fxtop.com/cn/countries-currencies.php</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;因为工作需要了解一些外币信息的知识，收集一些网站一遍日常查询。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="工具" scheme="http://wxnacy.com/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>获取 youtube 视频屏蔽地区</title>
@@ -399,26 +419,6 @@
     
     
       <category term="vagrant" scheme="http://wxnacy.com/tags/vagrant/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python 使用 Requests 模块进行身份验证</title>
-    <link href="http://wxnacy.com/2019/07/17/requests-auth/"/>
-    <id>http://wxnacy.com/2019/07/17/requests-auth/</id>
-    <published>2019-07-17T02:46:27.000Z</published>
-    <updated>2019-07-17T02:46:27.152Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://github.com/kennethreitz/requests" target="_blank" rel="noopener">Requests</a> 可以说是 Python 最好用的 http 模块，没有之一。</p><a id="more"></a><p>它对于身份验证有非常方便的使用规则。</p><p><strong>基本身份验证</strong></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> requests.auth <span class="keyword">import</span> HTTPBasicAuth</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>requests.get(<span class="string">'https://api.github.com/user'</span>, auth=HTTPBasicAuth(<span class="string">'user'</span>, <span class="string">'pass'</span>))</span><br><span class="line">&lt;Response [<span class="number">200</span>]&gt;</span><br></pre></td></tr></table></figure><p>因为这种验证非常常用，所以也提供了方便的写法。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>requests.get(<span class="string">'https://api.github.com/user'</span>, auth=(<span class="string">'user'</span>, <span class="string">'pass'</span>))</span><br><span class="line">&lt;Response [<span class="number">200</span>]&gt;</span><br></pre></td></tr></table></figure><p><strong>摘要式身份认证</strong></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> requests.auth <span class="keyword">import</span> HTTPDigestAuth</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>url = <span class="string">'http://httpbin.org/digest-auth/auth/user/pass'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>requests.get(url, auth=HTTPDigestAuth(<span class="string">'user'</span>, <span class="string">'pass'</span>))</span><br><span class="line">&lt;Response [<span class="number">200</span>]&gt;</span><br></pre></td></tr></table></figure><p><strong>OAuth 1</strong></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> requests</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> requests_oauthlib <span class="keyword">import</span> OAuth1</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>url = <span class="string">'https://api.twitter.com/1.1/account/verify_credentials.json'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>auth = OAuth1(<span class="string">'YOUR_APP_KEY'</span>, <span class="string">'YOUR_APP_SECRET'</span>,</span><br><span class="line"><span class="meta">... </span>              <span class="string">'USER_OAUTH_TOKEN'</span>, <span class="string">'USER_OAUTH_TOKEN_SECRET'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>requests.get(url, auth=auth)</span><br><span class="line">&lt;Response [<span class="number">200</span>]&gt;</span><br></pre></td></tr></table></figure><p>更多复杂验证如 OAuth 2，请参看<a href="http://docs.python-requests.org/zh_CN/latest/user/authentication.html?highlight=requests.auth#oauth-2-openid" target="_blank" rel="noopener">文档</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;a href=&quot;https://github.com/kennethreitz/requests&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Requests&lt;/a&gt; 可以说是 Python 最好用的 http 模块，没有之一。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="python" scheme="http://wxnacy.com/tags/python/"/>
     
   </entry>
   
