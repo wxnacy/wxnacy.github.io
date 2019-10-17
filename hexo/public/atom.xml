@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-09-22T14:04:14.446Z</updated>
+  <updated>2019-10-17T09:28:41.467Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Nginx 报警告 the &quot;ssl&quot; directive is deprecated</title>
+    <link href="http://wxnacy.com/2019/10/17/nginx-the-ssl-depreated/"/>
+    <id>http://wxnacy.com/2019/10/17/nginx-the-ssl-depreated/</id>
+    <published>2019-10-17T06:51:04.000Z</published>
+    <updated>2019-10-17T09:28:41.467Z</updated>
+    
+    <content type="html"><![CDATA[<p>一直用的一个配置文件，在用 docker 启动的 openresty 时，突然报了一堆警告</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx: [warn] the <span class="string">"ssl"</span> directive is deprecated, use the <span class="string">"listen ... ssl"</span> directive instead <span class="keyword">in</span> /usr/<span class="built_in">local</span>/openresty/nginx/conf/conf.d/biz.conf:4</span><br></pre></td></tr></table></figure><p>因为只是警告，所以程序可以正常运行，但每次都报还是很闹心，经查后发现还是版本问题。</p><p>在升级<a href="http://nginx.org/en/CHANGES" target="_blank" rel="noopener">日志</a>中是这样说的</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/nginx-ssl-deprecated.png" alt="1"></p><p><code>ssl on;</code> 的用法已经过时了，现在 <code>https</code> 需要使用 <code>listen ... ssl</code> 格式来标记。</p><p>就像这样</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 443 ssl;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一直用的一个配置文件，在用 docker 启动的 openresty 时，突然报了一堆警告&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="nginx" scheme="http://wxnacy.com/tags/nginx/"/>
+    
+  </entry>
   
   <entry>
     <title>世界货币查询文档</title>
@@ -399,26 +419,6 @@
     
     
       <category term="docker" scheme="http://wxnacy.com/tags/docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Vagrant 使用 root 账号登录</title>
-    <link href="http://wxnacy.com/2019/07/18/vagrant-root-login/"/>
-    <id>http://wxnacy.com/2019/07/18/vagrant-root-login/</id>
-    <published>2019-07-18T09:42:57.000Z</published>
-    <updated>2019-07-18T09:42:57.127Z</updated>
-    
-    <content type="html"><![CDATA[<p>Vagrant 想要使用 root 身份登录要稍微麻烦一点。网上的文章大多是从一个地方抄过来的，并且还没抄对，所以我在这里总结一篇正确做法。</p><a id="more"></a><div class="toc"><!-- toc --><ul><li><a href="#xiu-gai-sshd-pei-zhi">修改 sshd 配置</a></li><li><a href="#xiu-gai-vagrantfile">修改 Vagrantfile</a></li><li><a href="#shi-yong-gong-si-yao-deng-lu">使用公私钥登录</a></li></ul><!-- tocstop --></div><h2><span id="xiu-gai-sshd-pei-zhi">修改 sshd 配置</span><a href="#xiu-gai-sshd-pei-zhi" class="header-anchor"></a></h2><p>首先以默认身份登录，并修改 <code>sshd</code> 配置文件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant ssh</span><br><span class="line">$ sudo vim /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure><p>做如下变动</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># PermitRootLogin prohibit-password</span></span><br><span class="line">PermitRootLogin yes             <span class="comment"># 允许 root 身份登录</span></span><br><span class="line"><span class="comment"># PasswordAuthentication on</span></span><br><span class="line">PasswordAuthentication yes      <span class="comment"># 可以使用密码登录</span></span><br></pre></td></tr></table></figure><p>重启 <code>sshd</code> 服务</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl restart sshd</span><br></pre></td></tr></table></figure><h2><span id="xiu-gai-vagrantfile">修改 Vagrantfile</span><a href="#xiu-gai-vagrantfile" class="header-anchor"></a></h2><p>增加如下配置</p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">config.ssh.username = <span class="string">'root'</span></span><br><span class="line">config.ssh.password = <span class="string">'root'</span></span><br><span class="line">config.ssh.insert_key = <span class="literal">false</span></span><br></pre></td></tr></table></figure><p>然后再次登录即可</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant ssh</span><br></pre></td></tr></table></figure><p>这里注意，网上大部分给出的例子是设置 <code>config.ssh.insert_key = true</code>，如果你这样设置了，会发现 <code>config.ssh.password</code> 将会失效，每次登录都需要手动输入密码。</p><p>为什么呢？根据<a href="https://www.vagrantup.com/docs/vagrantfile/ssh_settings.html#config-ssh-insert_key" target="_blank" rel="noopener">官网</a>的定义，<code>config.ssh.insert_key</code> 代表了是否使用公私钥来登录虚拟机，如果你想要使用不那么安全的登录方式，比如密码登录，则可以将它设置为 <code>false</code>，它的默认值为 <code>true</code></p><p>了解了这一点，就可以发现手动设置 <code>config.ssh.insert_key=true</code> 是有点蠢的做法。</p><h2><span id="shi-yong-gong-si-yao-deng-lu">使用公私钥登录</span><a href="#shi-yong-gong-si-yao-deng-lu" class="header-anchor"></a></h2><p>使用密码登录的缺点很明显，明文的密码就像只穿一个裤衩就出门一样让人不安，默认的 <code>vagrant</code> 就不需要密码，那它是怎么登录的呢？</p><p>关于怎么使用公私钥登录服务器可以查看这篇文章 <a href="/2017/08/23/linux-2017-08-23-ssh/">Linux SSH 登陆远程服务器和无密码操作</a></p><p>有了这篇文章作为基础，我们来查看下 <code>vagrant</code> 账号是否做了秘钥登录。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat /home/vagrant/.ssh/authorized_keys</span><br></pre></td></tr></table></figure><p>执行这条命令后会发现文件中包含一条记录，证明了确实使用了秘钥登录。</p><p>下面我们为 <code>root</code> 用户赋予秘钥登录的功能</p><p>首先将电脑的公钥内容</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure><p>复制到虚拟机中</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'公钥内容'</span> &gt;&gt; /home/vagrant/.ssh/authorized_keys</span><br></pre></td></tr></table></figure><p>然后修改 <code>Vagrantfile</code> 配置</p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">config.ssh.username = <span class="string">'root'</span>                                <span class="comment"># 使用 root 身份登录</span></span><br><span class="line">config.ssh.private_key_path = <span class="string">'/Users/wxnacy/.ssh/id_rsa'</span>   <span class="comment"># 私钥位置</span></span><br></pre></td></tr></table></figure><p>接下来在登录会发现如 <code>vagrant</code> 账号般顺滑</p><ul><li><a href="https://www.vagrantup.com/docs/vagrantfile/ssh_settings.html#config-ssh-private_key_path" target="_blank" rel="noopener">SSH Settings</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Vagrant 想要使用 root 身份登录要稍微麻烦一点。网上的文章大多是从一个地方抄过来的，并且还没抄对，所以我在这里总结一篇正确做法。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="vagrant" scheme="http://wxnacy.com/tags/vagrant/"/>
     
   </entry>
   
