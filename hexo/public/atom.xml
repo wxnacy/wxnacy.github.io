@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-10-17T09:28:41.467Z</updated>
+  <updated>2019-10-28T00:14:44.357Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mac 使用 vmware 装机报错 /dev/vmmon：Broken pipe</title>
+    <link href="http://wxnacy.com/2019/10/28/mac-vmware-error-broken-pipe/"/>
+    <id>http://wxnacy.com/2019/10/28/mac-vmware-error-broken-pipe/</id>
+    <published>2019-10-28T00:14:44.000Z</published>
+    <updated>2019-10-28T00:14:44.357Z</updated>
+    
+    <content type="html"><![CDATA[<p>好久不用虚拟机了，最近想装个 win10 调试程序，结果各种问题，记录下以备后用。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>在加载镜像后，启动前一直莫名报这个错。</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/vm-error1.png" alt="1"></p><p>问题出在 Mac 禁止了 VMware 的一些功能，可以进入 <code>系统偏好设置 -&gt; 安全性与隐私 -&gt; 通用</code>，然后点击下方的允许即可。</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/vm-error2.png" alt="2"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;好久不用虚拟机了，最近想装个 win10 调试程序，结果各种问题，记录下以备后用。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="mac" scheme="http://wxnacy.com/tags/mac/"/>
+    
+      <category term="vmware" scheme="http://wxnacy.com/tags/vmware/"/>
+    
+  </entry>
   
   <entry>
     <title>Nginx 报警告 the &quot;ssl&quot; directive is deprecated</title>
@@ -394,26 +416,6 @@
     <summary type="html">
     
       &lt;p&gt;Docker 占用储存空间很大的部分在于下载的镜像，因为 Docker 包括容器、镜像等存储数据都默认保存在 &lt;code&gt;/var/lib/docker&lt;/code&gt; 目录下，如果系统磁盘空间比较小的话就会很麻烦，我想将目录改为挂载的扩充磁盘上。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="docker" scheme="http://wxnacy.com/tags/docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Docker 报错 Please provide a source image with `from` prior to commit</title>
-    <link href="http://wxnacy.com/2019/07/22/docker-before-from-use-args/"/>
-    <id>http://wxnacy.com/2019/07/22/docker-before-from-use-args/</id>
-    <published>2019-07-22T01:38:03.000Z</published>
-    <updated>2019-07-22T01:38:03.405Z</updated>
-    
-    <content type="html"><![CDATA[<p>在使用 openresty 的 <a href="https://hub.docker.com/r/openresty/openresty/" target="_blank" rel="noopener">docker</a> 版本时，需要重构镜像，本地测试通过，但服务器上报错。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Please provide a <span class="built_in">source</span> image with `from` prior to commit</span><br></pre></td></tr></table></figure><p>Google 后发现问题出在这里</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ARG RESTY_IMAGE_BASE=<span class="string">"ubuntu"</span></span><br><span class="line">ARG RESTY_IMAGE_TAG=<span class="string">"bionic"</span></span><br><span class="line"></span><br><span class="line">FROM <span class="variable">$&#123;RESTY_IMAGE_BASE&#125;</span>:<span class="variable">$&#123;RESTY_IMAGE_TAG&#125;</span></span><br></pre></td></tr></table></figure><p>在老版本中是不支持 <code>FROM</code> 前使用 <code>ARG</code> 的，这个问题在 <a href="https://github.com/moby/moby/pull/31352" target="_blank" rel="noopener">docker 17.05.0-ce</a> 版本中得到了修改，而服务器上的版本比较老，所以才报错，只要升级版本即可。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在使用 openresty 的 &lt;a href=&quot;https://hub.docker.com/r/openresty/openresty/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;docker&lt;/a&gt; 版本时，需要重构镜像，本地测试通过，但服务器上报错。&lt;/p&gt;
     
     </summary>
     

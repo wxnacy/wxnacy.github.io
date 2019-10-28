@@ -1,7 +1,11 @@
 ---
 title: Mac 使用 vmware 装机报错 /dev/vmmon：Broken pipe
-tags: [mac, vmware]
+tags:
+  - mac
+  - vmware
+date: 2019-10-28 08:14:44
 ---
+
 
 好久不用虚拟机了，最近想装个 win10 调试程序，结果各种问题，记录下以备后用。
 
