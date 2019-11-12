@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-10-28T00:14:44.357Z</updated>
+  <updated>2019-11-12T14:16:43.519Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Javascript 字符串填充</title>
+    <link href="http://wxnacy.com/2019/11/12/js-padstart/"/>
+    <id>http://wxnacy.com/2019/11/12/js-padstart/</id>
+    <published>2019-11-12T13:59:29.000Z</published>
+    <updated>2019-11-12T14:16:43.519Z</updated>
+    
+    <content type="html"><![CDATA[<p>在 JavaScript 中字符串填充可以使用 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart" target="_blank" rel="noopener">String.prototype.padStart()</a> 和 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padEnd" target="_blank" rel="noopener">String.prototype.padEnd()</a></p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>以 <code>padStart()</code> 为例，效果如下</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'abc'</span>.padStart(<span class="number">10</span>);         <span class="comment">// "       abc"</span></span><br><span class="line"><span class="string">'abc'</span>.padStart(<span class="number">10</span>, <span class="string">"foo"</span>);  <span class="comment">// "foofoofabc"</span></span><br><span class="line"><span class="string">'abc'</span>.padStart(<span class="number">6</span>,<span class="string">"123465"</span>); <span class="comment">// "123abc"</span></span><br><span class="line"><span class="string">'abc'</span>.padStart(<span class="number">8</span>, <span class="string">"0"</span>);     <span class="comment">// "00000abc"</span></span><br><span class="line"><span class="string">'abc'</span>.padStart(<span class="number">1</span>);          <span class="comment">// "abc"</span></span><br></pre></td></tr></table></figure><p>在浏览器的支持版本如下</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/psbs.png" alt="1"></p><p>对于不知道的版本，我们可以自己加上这个方法，在代码运行前执行如下代码即可。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://github.com/uxitten/polyfill/blob/master/string.polyfill.js</span></span><br><span class="line"><span class="comment">// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart</span></span><br><span class="line"><span class="keyword">if</span> (!String.prototype.padStart) &#123;</span><br><span class="line">    String.prototype.padStart = <span class="function">function <span class="title">padStart</span><span class="params">(targetLength, padString)</span> </span>&#123;</span><br><span class="line">        targetLength = targetLength &gt;&gt; <span class="number">0</span>; <span class="comment">//truncate if number, or convert non-number to 0;</span></span><br><span class="line">        padString = String(typeof padString !== <span class="string">'undefined'</span> ? padString : <span class="string">' '</span>);</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.length &gt;= targetLength) &#123;</span><br><span class="line">            <span class="keyword">return</span> String(<span class="keyword">this</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            targetLength = targetLength - <span class="keyword">this</span>.length;</span><br><span class="line">            <span class="keyword">if</span> (targetLength &gt; padString.length) &#123;</span><br><span class="line">                padString += padString.repeat(targetLength / padString.length); <span class="comment">//append to original to ensure we are longer than needed</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> padString.slice(<span class="number">0</span>, targetLength) + String(<span class="keyword">this</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><code>padEnd()</code> 的代码如下</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://github.com/uxitten/polyfill/blob/master/string.polyfill.js</span></span><br><span class="line"><span class="comment">// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padEnd</span></span><br><span class="line"><span class="keyword">if</span> (!String.prototype.padEnd) &#123;</span><br><span class="line">    String.prototype.padEnd = <span class="function">function <span class="title">padEnd</span><span class="params">(targetLength,padString)</span> </span>&#123;</span><br><span class="line">        targetLength = targetLength&gt;&gt;<span class="number">0</span>; <span class="comment">//floor if number or convert non-number to 0;</span></span><br><span class="line">        padString = String((typeof padString !== <span class="string">'undefined'</span> ? padString : <span class="string">' '</span>));</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.length &gt; targetLength) &#123;</span><br><span class="line">            <span class="keyword">return</span> String(<span class="keyword">this</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            targetLength = targetLength-<span class="keyword">this</span>.length;</span><br><span class="line">            <span class="keyword">if</span> (targetLength &gt; padString.length) &#123;</span><br><span class="line">                padString += padString.repeat(targetLength/padString.length); <span class="comment">//append to original to ensure we are longer than needed</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> String(<span class="keyword">this</span>) + padString.slice(<span class="number">0</span>,targetLength);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart" target="_blank" rel="noopener">String.prototype.padStart()</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在 JavaScript 中字符串填充可以使用 &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;String.prototype.padStart()&lt;/a&gt; 和 &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padEnd&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;String.prototype.padEnd()&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="javascript" scheme="http://wxnacy.com/tags/javascript/"/>
+    
+  </entry>
   
   <entry>
     <title>Mac 使用 vmware 装机报错 /dev/vmmon：Broken pipe</title>
@@ -396,26 +416,6 @@
     <summary type="html">
     
       &lt;p&gt;整理自&lt;a href=&quot;https://yeasy.gitbooks.io/docker_practice/container/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;操作 Docker 容器&lt;/a&gt;，为了方便查看简化整理为一篇。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="docker" scheme="http://wxnacy.com/tags/docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Docker 改变镜像下载目录</title>
-    <link href="http://wxnacy.com/2019/07/26/docker-change-store-dir/"/>
-    <id>http://wxnacy.com/2019/07/26/docker-change-store-dir/</id>
-    <published>2019-07-26T07:16:22.000Z</published>
-    <updated>2019-07-26T07:16:22.830Z</updated>
-    
-    <content type="html"><![CDATA[<p>Docker 占用储存空间很大的部分在于下载的镜像，因为 Docker 包括容器、镜像等存储数据都默认保存在 <code>/var/lib/docker</code> 目录下，如果系统磁盘空间比较小的话就会很麻烦，我想将目录改为挂载的扩充磁盘上。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>先停止 Docker</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl stop docker</span><br></pre></td></tr></table></figure><p>确认没有 Docker 进程在跑</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ps faux | grep docker</span><br></pre></td></tr></table></figure><p>假设新的目录为 <code>/data/docker</code>，先将数据复制到新的目录下</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo cp -r /var/lib/docker /data/docker</span><br></pre></td></tr></table></figure><p>然后将该目录软连接到 <code>/var/lib/docker</code></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ln -sf /data/docker /var/lib/docker</span><br></pre></td></tr></table></figure><p>启动 Docker</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl start docker</span><br></pre></td></tr></table></figure><p>最后查看镜像列表是否正常</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker image ls</span><br></pre></td></tr></table></figure><p>这样软连接的方式是比较灵活的，不会改变我们熟知的存储目录。官方论坛中也有修改配置文件来全局修改存储位置的方法，感兴趣的同学可以点击下方链接进入。</p><ul><li><a href="https://forums.docker.com/t/how-do-i-change-the-docker-image-installation-directory/1169/1" target="_blank" rel="noopener">How do I change the Docker image installation directory?</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Docker 占用储存空间很大的部分在于下载的镜像，因为 Docker 包括容器、镜像等存储数据都默认保存在 &lt;code&gt;/var/lib/docker&lt;/code&gt; 目录下，如果系统磁盘空间比较小的话就会很麻烦，我想将目录改为挂载的扩充磁盘上。&lt;/p&gt;
     
     </summary>
     
