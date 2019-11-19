@@ -5,30 +5,41 @@ tags:
 date: 2018-01-15 10:07:33
 ---
 
-
 Linux 中使用 crontab 来定时执行命令或指定脚本。
 
-<!-- more --><!-- toc -->
+<!-- more -->
+<!-- toc -->
+
 ## Hello World
+
 先什么都不要说，跟我一起 Hello World
 首先修改 `~/.bash_profile`
+
 ```bash
 export EDITOR=vim
 ```
+
 然后执行 `source ~/.bash_profile` 使配置生效
 随后新建一个定时任务
+
 ```bash
 $ crontab -e
 ```
+
 将下面的文字复制进去
+
 ```bash
 * * * * * /bin/echo Hello World `date`\n >> ~/output
 ```
+
 <!-- 然后执行 `:wq` 退出，会得到如下提示 -->
+
 ```bash
 crontab: installing new crontab
 ```
+
 这代表你已经创建一个定时任务，它的作用是，每分钟在 `~/output` 文件中添加一行带有时间标记的字符串 `Hello World`，如下
+
 ```bash
 Hello World Sun Jan 14 20:14:01 CST 2018n
 Hello World Sun Jan 14 20:15:01 CST 2018n
@@ -36,7 +47,9 @@ Hello World Sun Jan 14 20:16:01 CST 2018n
 Hello World Sun Jan 14 20:17:01 CST 2018n
 Hello World Sun Jan 14 20:18:01 CST 2018n
 ```
+
 你使用 `tail -f ~/output` 命令就可以每隔一分钟看到一行输出。
+
 ## 使用说明
 不管你有没有成功的实现刚才的效果，现在来跟我一起看看刚才就做了些什么吧
 - **crontab -e** crontab 执行定时任务，需要配置任务列表，这条命令就是在编辑任务
@@ -87,6 +100,33 @@ $ crontab ~/roottab     # 启动定时任务，并制定该文件
 # 每周一上午8点到11点的第3和第15分钟执行
 3,15 8-11 * * 1 /bin/echo Hello World `date`\n >> ~/output
 ```
+
+## 按秒数间隔来执行
+
+有点需要单说一下，crontab 最小单位是按照分钟来执行的，默认是不支持按照秒数来执行的，不过我们可以想一些变通的方法，利用**延时**。
+
+```bash
+* * * * * sleep 15; /bin/echo Hello World `date`\n >> ~/output
+```
+
+上面的语句代表了每分钟执行任务的时候，先睡眠 15 秒在执行。
+
+```bash
+* * * * * /bin/echo Hello World `date`\n >> ~/output
+* * * * * sleep 15; /bin/echo Hello World `date`\n >> ~/output
+```
+
+这样写的话就代表了，每分钟执行一次，每分钟推后 15 秒在执行一次，在多写几个，我们就可以得到一个每隔 15 秒执行一次的定时任务了，比如
+
+```bash
+* * * * * /bin/echo Hello World `date`\n >> ~/output
+* * * * * sleep 15; /bin/echo Hello World `date`\n >> ~/output
+* * * * * sleep 30; /bin/echo Hello World `date`\n >> ~/output
+* * * * * sleep 45; /bin/echo Hello World `date`\n >> ~/output
+```
+
+唯一的缺点就是第一次执行这个定时任务的时候，前 1 分钟是轮空的。
+
 ## 服务状态
 Ubuntu
 ```bash

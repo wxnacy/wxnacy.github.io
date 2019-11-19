@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="Linux 中使用 crontab 来定时执行命令或指定脚本。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2019-01-19T05:30:00.581Z">
+<meta property="og:updated_time" content="2019-11-19T06:20:51.019Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux Crontab 定时任务">
 <meta name="twitter:description" content="Linux 中使用 crontab 来定时执行命令或指定脚本。">
@@ -221,7 +221,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Linux 中使用 crontab 来定时执行命令或指定脚本。</p>
-<a id="more"></a><div class="toc"><br><br><!-- toc -->
+<a id="more"></a>
+<div class="toc">
+
+<!-- toc -->
 <ul>
 <li><a href="#hello-world">Hello World</a></li>
 <li><a href="#shi-yong-shuo-ming">使用说明</a><ul>
@@ -232,17 +235,23 @@
 <li><a href="#geng-duo-shi-yong-shi-li">更多使用实例</a></li>
 </ul>
 </li>
+<li><a href="#an-miao-shu-jian-ge-lai-zhi-xing">按秒数间隔来执行</a></li>
 <li><a href="#fu-wu-zhuang-tai">服务状态</a></li>
 <li><a href="#can-kao">参考</a></li>
 </ul>
 <!-- tocstop -->
-<p></p></div><p></p>
-<h2><span id="hello-world">Hello World</span><a href="#hello-world" class="header-anchor"></a></h2><p>先什么都不要说，跟我一起 Hello World<br>首先修改 <code>~/.bash_profile</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> EDITOR=vim</span><br></pre></td></tr></table></figure></p>
-<p>然后执行 <code>source ~/.bash_profile</code> 使配置生效<br>随后新建一个定时任务<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ crontab -e</span><br></pre></td></tr></table></figure></p>
-<p>将下面的文字复制进去<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* * * * * /bin/<span class="built_in">echo</span> Hello World `date`\n &gt;&gt; ~/output</span><br></pre></td></tr></table></figure></p>
+</div>
+
+<h2><span id="hello-world">Hello World</span><a href="#hello-world" class="header-anchor"></a></h2><p>先什么都不要说，跟我一起 Hello World<br>首先修改 <code>~/.bash_profile</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> EDITOR=vim</span><br></pre></td></tr></table></figure>
+<p>然后执行 <code>source ~/.bash_profile</code> 使配置生效<br>随后新建一个定时任务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ crontab -e</span><br></pre></td></tr></table></figure>
+<p>将下面的文字复制进去</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* * * * * /bin/<span class="built_in">echo</span> Hello World `date`\n &gt;&gt; ~/output</span><br></pre></td></tr></table></figure>
 <!-- 然后执行 `:wq` 退出，会得到如下提示 -->
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab: installing new crontab</span><br></pre></td></tr></table></figure>
-<p>这代表你已经创建一个定时任务，它的作用是，每分钟在 <code>~/output</code> 文件中添加一行带有时间标记的字符串 <code>Hello World</code>，如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Hello World Sun Jan 14 20:14:01 CST 2018n</span><br><span class="line">Hello World Sun Jan 14 20:15:01 CST 2018n</span><br><span class="line">Hello World Sun Jan 14 20:16:01 CST 2018n</span><br><span class="line">Hello World Sun Jan 14 20:17:01 CST 2018n</span><br><span class="line">Hello World Sun Jan 14 20:18:01 CST 2018n</span><br></pre></td></tr></table></figure></p>
+<p>这代表你已经创建一个定时任务，它的作用是，每分钟在 <code>~/output</code> 文件中添加一行带有时间标记的字符串 <code>Hello World</code>，如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Hello World Sun Jan 14 20:14:01 CST 2018n</span><br><span class="line">Hello World Sun Jan 14 20:15:01 CST 2018n</span><br><span class="line">Hello World Sun Jan 14 20:16:01 CST 2018n</span><br><span class="line">Hello World Sun Jan 14 20:17:01 CST 2018n</span><br><span class="line">Hello World Sun Jan 14 20:18:01 CST 2018n</span><br></pre></td></tr></table></figure>
 <p>你使用 <code>tail -f ~/output</code> 命令就可以每隔一分钟看到一行输出。</p>
 <h2><span id="shi-yong-shuo-ming">使用说明</span><a href="#shi-yong-shuo-ming" class="header-anchor"></a></h2><p>不管你有没有成功的实现刚才的效果，现在来跟我一起看看刚才就做了些什么吧</p>
 <ul>
@@ -256,6 +265,13 @@
 <h3><span id="di-er-chong-fang-fa">第二种方法</span><a href="#di-er-chong-fang-fa" class="header-anchor"></a></h3><p>如果你不像文件生成在这个目录中，也可以做如下操作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ vim ~/roottab         <span class="comment"># 手动生成一个配置文件</span></span><br><span class="line"></span><br><span class="line">* * * * * /bin/<span class="built_in">echo</span> Hello World `date`\n &gt;&gt; ~/output</span><br><span class="line"></span><br><span class="line">$ crontab ~/roottab     <span class="comment"># 启动定时任务，并制定该文件</span></span><br></pre></td></tr></table></figure></p>
 <h3><span id="pei-zhi-wen-jian-ge-shi">配置文件格式</span><a href="#pei-zhi-wen-jian-ge-shi" class="header-anchor"></a></h3><p>下面来详细说说 crontab 文件格式<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">* * * * * /bin/<span class="built_in">echo</span> Hello World `date`\n &gt;&gt; ~/output</span><br><span class="line">|-|-|-|-|-|- 分钟 0 ~ 59</span><br><span class="line">  |-|-|-|-|- 小时 0 ~ 23</span><br><span class="line">    |-|-|-|- 日   1 ~ 31</span><br><span class="line">      |-|-|- 月   1 ~ 12</span><br><span class="line">        |-|- 周   0 ~ 7</span><br><span class="line">          |- 需要执行的命令</span><br></pre></td></tr></table></figure></p>
 <h3><span id="geng-duo-shi-yong-shi-li">更多使用实例</span><a href="#geng-duo-shi-yong-shi-li" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 每分钟执行一次</span></span><br><span class="line">* * * * * /bin/<span class="built_in">echo</span> Hello World `date`\n &gt;&gt; ~/output</span><br><span class="line"><span class="comment"># 每小时执行一次</span></span><br><span class="line">* */1 * * * /bin/<span class="built_in">echo</span> Hello World `date`\n &gt;&gt; ~/output</span><br><span class="line"><span class="comment"># 每小时的第3和第15分钟执行</span></span><br><span class="line">3,15 * * * * /bin/<span class="built_in">echo</span> Hello World `date`\n &gt;&gt; ~/output</span><br><span class="line"><span class="comment"># 每隔两天的上午8点到11点的第3和第15分钟执行</span></span><br><span class="line">3,15 8-11 */2 * * /bin/<span class="built_in">echo</span> Hello World `date`\n &gt;&gt; ~/output</span><br><span class="line"><span class="comment"># 每周一上午8点到11点的第3和第15分钟执行</span></span><br><span class="line">3,15 8-11 * * 1 /bin/<span class="built_in">echo</span> Hello World `date`\n &gt;&gt; ~/output</span><br></pre></td></tr></table></figure>
+<h2><span id="an-miao-shu-jian-ge-lai-zhi-xing">按秒数间隔来执行</span><a href="#an-miao-shu-jian-ge-lai-zhi-xing" class="header-anchor"></a></h2><p>有点需要单说一下，crontab 最小单位是按照分钟来执行的，默认是不支持按照秒数来执行的，不过我们可以想一些变通的方法，利用<strong>延时</strong>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* * * * * sleep 15; /bin/<span class="built_in">echo</span> Hello World `date`\n &gt;&gt; ~/output</span><br></pre></td></tr></table></figure>
+<p>上面的语句代表了每分钟执行任务的时候，先睡眠 15 秒在执行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* * * * * /bin/<span class="built_in">echo</span> Hello World `date`\n &gt;&gt; ~/output</span><br><span class="line">* * * * * sleep 15; /bin/<span class="built_in">echo</span> Hello World `date`\n &gt;&gt; ~/output</span><br></pre></td></tr></table></figure>
+<p>这样写的话就代表了，每分钟执行一次，每分钟推后 15 秒在执行一次，在多写几个，我们就可以得到一个每隔 15 秒执行一次的定时任务了，比如</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">* * * * * /bin/<span class="built_in">echo</span> Hello World `date`\n &gt;&gt; ~/output</span><br><span class="line">* * * * * sleep 15; /bin/<span class="built_in">echo</span> Hello World `date`\n &gt;&gt; ~/output</span><br><span class="line">* * * * * sleep 30; /bin/<span class="built_in">echo</span> Hello World `date`\n &gt;&gt; ~/output</span><br><span class="line">* * * * * sleep 45; /bin/<span class="built_in">echo</span> Hello World `date`\n &gt;&gt; ~/output</span><br></pre></td></tr></table></figure>
+<p>唯一的缺点就是第一次执行这个定时任务的时候，前 1 分钟是轮空的。</p>
 <h2><span id="fu-wu-zhuang-tai">服务状态</span><a href="#fu-wu-zhuang-tai" class="header-anchor"></a></h2><p>Ubuntu<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动、重启，停止、重载、运行状态</span></span><br><span class="line">$ service cron start|restart|stop|reload|status</span><br></pre></td></tr></table></figure></p>
 <p>CentOS &lt; 7<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动、重启，停止、重载、运行状态</span></span><br><span class="line">$ service crond start|restart|stop|reload|status</span><br><span class="line"></span><br><span class="line">$ chkconfig sshd on     <span class="comment"># 开机自启sshd</span></span><br><span class="line">$ chkconfig sshd off    <span class="comment"># 开机关闭自启sshd</span></span><br><span class="line">$ chkconfig --list sshd <span class="comment"># 查看每个运行级别类型中服务的当前状态</span></span><br></pre></td></tr></table></figure></p>
 <p>CentOS &gt;= 7<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl <span class="built_in">enable</span> crond.service     <span class="comment"># 开机自启crond</span></span><br><span class="line">$ systemctl <span class="built_in">disable</span> crond.service    <span class="comment"># 开机关闭自启crond</span></span><br><span class="line">$ systemctl start crond.service      <span class="comment"># 启动crond</span></span><br><span class="line">$ systemctl restart crond.service    <span class="comment"># 重启</span></span><br><span class="line">$ systemctl stop crond.service       <span class="comment"># 停止</span></span><br><span class="line">$ systemctl reload crond.service     <span class="comment"># 重新加载</span></span><br><span class="line">$ systemctl status crond.service     <span class="comment"># 查看启动状态</span></span><br></pre></td></tr></table></figure></p>
@@ -450,7 +466,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">Hello World</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">使用说明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text">查看任务列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text">删除任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.3.</span> <span class="toc-text">第二种方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.4.</span> <span class="toc-text">配置文件格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.5.</span> <span class="toc-text">更多使用实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">服务状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">Hello World</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">使用说明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text">查看任务列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text">删除任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.3.</span> <span class="toc-text">第二种方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.4.</span> <span class="toc-text">配置文件格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.5.</span> <span class="toc-text">更多使用实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">按秒数间隔来执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">服务状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -603,15 +619,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -639,11 +655,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -659,15 +675,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -679,11 +695,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -775,11 +791,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color3">go</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">go</a>
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
