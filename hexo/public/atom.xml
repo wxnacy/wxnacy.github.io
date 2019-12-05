@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-11-19T14:02:21.202Z</updated>
+  <updated>2019-12-05T09:42:24.952Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mysql 随机获取表中一条数据</title>
+    <link href="http://wxnacy.com/2019/12/05/mysql-rand/"/>
+    <id>http://wxnacy.com/2019/12/05/mysql-rand/</id>
+    <published>2019-12-05T08:58:19.000Z</published>
+    <updated>2019-12-05T09:42:24.952Z</updated>
+    
+    <content type="html"><![CDATA[<p>现在有个需求是从表中随机取出一条数据，除了全部拿出数据用程序来随机外，还可以使用数据库的 <code>RAND()</code> 函数。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p><code>RAND()</code> 函数可以返回一个 <code>0~1</code> 的随机数</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt; select RAND();</span><br><span class="line">+--------------------+</span><br><span class="line">| RAND()             |</span><br><span class="line">+--------------------+</span><br><span class="line">| 0.8503168074882745 |</span><br><span class="line">+--------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line">&gt; select RAND();</span><br><span class="line">+--------------------+</span><br><span class="line">| RAND()             |</span><br><span class="line">+--------------------+</span><br><span class="line">| 0.6016649581507453 |</span><br><span class="line">+--------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure><p><code>RAND()</code> 还可以给一个数字参数，以该数字作为基准来生成一个可重复的随机数。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt; select RAND(5);</span><br><span class="line">+---------------------+</span><br><span class="line">| RAND(5)             |</span><br><span class="line">+---------------------+</span><br><span class="line">| 0.40613597483014313 |</span><br><span class="line">+---------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line">&gt; select RAND(5);</span><br><span class="line">+---------------------+</span><br><span class="line">| RAND(5)             |</span><br><span class="line">+---------------------+</span><br><span class="line">| 0.40613597483014313 |</span><br><span class="line">+---------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure><p>官方定义的该参数的取值范围是 <code>0~1</code>，但实测超过该范围也可以得到结果。</p><p>如果想要得到一个随机的整数，则可以运用数学运算和 <code>FLOOR()</code> 函数，比如想要一个 <code>[10,20]</code> 区间的随机数</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; select FLOOR(10 + (RAND() * 11));</span><br><span class="line">+---------------------------+</span><br><span class="line">| FLOOR(10 + (RAND() * 11)) |</span><br><span class="line">+---------------------------+</span><br><span class="line">|                        18 |</span><br><span class="line">+---------------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure><p>最后回来点一下题，如何获取表中的随机数据？</p><p>这里需要配合排序语句 <code>ORDER BY RAND()</code> 来使用，可以获取一个按照随机排序的列表。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt; SELECT * FROM USER ORDER BY RAND();</span><br><span class="line">+----+--------+----------+--------------+--------------+---------------------+---------------------+</span><br><span class="line">| id | name   | password | ext_property | is_available | create_ts           | update_ts           |</span><br><span class="line">+----+--------+----------+--------------+--------------+---------------------+---------------------+</span><br><span class="line">|  4 | spring |          | &#123;&#125;           |            1 | 2018-03-02 11:04:11 | 2018-03-02 11:04:11 |</span><br><span class="line">|  1 | wxnacy |          | &#123;&#125;           |            1 | 2018-03-02 11:04:11 | 2018-03-02 11:04:11 |</span><br><span class="line">|  2 | win    |          | &#123;&#125;           |            1 | 2018-03-02 11:04:11 | 2018-03-02 11:04:11 |</span><br><span class="line">|  3 | xiao   |          | &#123;&#125;           |            1 | 2018-03-02 11:04:11 | 2018-03-02 11:04:11 |</span><br><span class="line">|  5 | 温     |          | &#123;&#125;           |            1 | 2018-03-02 11:04:11 | 2018-03-02 11:04:11 |</span><br><span class="line">+----+--------+----------+--------------+--------------+---------------------+---------------------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure><p>最后再配合 <code>LIMIT</code> 来获取随机的一条数据</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; SELECT * FROM USER ORDER BY RAND() LIMIT 1;</span><br><span class="line">+----+--------+----------+--------------+--------------+---------------------+---------------------+</span><br><span class="line">| id | name   | password | ext_property | is_available | create_ts           | update_ts           |</span><br><span class="line">+----+--------+----------+--------------+--------------+---------------------+---------------------+</span><br><span class="line">|  2 | win    |          | &#123;&#125;           |            1 | 2018-03-02 11:04:11 | 2018-03-02 11:04:11 |</span><br><span class="line">+----+--------+----------+--------------+--------------+---------------------+---------------------+</span><br><span class="line">1 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;现在有个需求是从表中随机取出一条数据，除了全部拿出数据用程序来随机外，还可以使用数据库的 &lt;code&gt;RAND()&lt;/code&gt; 函数。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="mysql" scheme="http://wxnacy.com/tags/mysql/"/>
+    
+  </entry>
   
   <entry>
     <title>Nginx 丢失头信息的解决方法</title>
@@ -401,26 +421,6 @@
       <category term="vagrant" scheme="http://wxnacy.com/tags/vagrant/"/>
     
       <category term="ansible" scheme="http://wxnacy.com/tags/ansible/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python 报错 f-string expression part cannot include a backslash</title>
-    <link href="http://wxnacy.com/2019/07/30/python-f-string-error1/"/>
-    <id>http://wxnacy.com/2019/07/30/python-f-string-error1/</id>
-    <published>2019-07-30T07:02:15.000Z</published>
-    <updated>2019-07-30T07:02:15.722Z</updated>
-    
-    <content type="html"><![CDATA[<p>Python 3.6 版本新增加的 <code>f-string</code> 语句非常简洁，其中可以直接在字符串中使用表达式，可以让代码写起来非常方便。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>不过也要了解它的一些特性，不然就可能会报一个错误。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>n = <span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">f'say <span class="subst">&#123;<span class="string">"\t"</span> * n&#125;</span>'</span></span><br><span class="line">  File <span class="string">"&lt;input&gt;"</span>, line <span class="number">1</span></span><br><span class="line">SyntaxError: f-string expression part cannot include a backslash</span><br></pre></td></tr></table></figure><p>好像也没有用错，确实应该这样写的，错误翻译过来是 <code>f-string</code> 的表达式中不能出现反斜杠。</p><p>那记住这一点，以后写起来注意下就好了，有两个方法解决。</p><p><strong>外部计算</strong></p><p>将表达式挪到外部计算好后在传入</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>n = <span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>tables = <span class="string">"\t"</span> * n</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">f'say <span class="subst">&#123;tables&#125;</span>'</span></span><br><span class="line"><span class="string">'say \t\t'</span></span><br></pre></td></tr></table></figure><p><strong>使用 format </strong></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'say &#123;&#125;'</span>.format(<span class="string">'\t'</span> * n)</span><br><span class="line"><span class="string">'say \t\t'</span></span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Python 3.6 版本新增加的 &lt;code&gt;f-string&lt;/code&gt; 语句非常简洁，其中可以直接在字符串中使用表达式，可以让代码写起来非常方便。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="python" scheme="http://wxnacy.com/tags/python/"/>
     
   </entry>
   
