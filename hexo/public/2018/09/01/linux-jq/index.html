@@ -16,10 +16,12 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="jq 是用 C 语言编写的，没有运行时依赖性，因此应该可以为几乎任何平台构建它。 预构建的二进制文件适用于Linux，OS X和Windows。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2019-01-19T04:06:42.128Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/wxnacy/image/master/blog/jq-id_620.png">
+<meta property="og:updated_time" content="2019-12-16T03:31:30.070Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux 强大的 JSON 数据命令行工具 jq">
 <meta name="twitter:description" content="jq 是用 C 语言编写的，没有运行时依赖性，因此应该可以为几乎任何平台构建它。 预构建的二进制文件适用于Linux，OS X和Windows。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/wxnacy/image/master/blog/jq-id_620.png">
   
     <link rel="alternative" href="/atom.xml" title="温欣爸比的博客" type="application/atom+xml">
   
@@ -228,6 +230,7 @@
 <li><a href="#xia-zai">下载</a></li>
 <li><a href="#shi-yong">使用</a></li>
 <li><a href="#guo-lu">过滤</a></li>
+<li><a href="#geng-duo-shi-yong-shi-li">更多使用实例</a></li>
 </ul>
 <!-- tocstop -->
 </div>
@@ -263,6 +266,9 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'&#123;"name":"wxnacy", "id": 1&#125;'</span> | jq <span class="string">'.name, .id'</span></span><br><span class="line"><span class="string">"wxnacy"</span></span><br><span class="line">1</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">'[1, 2, 3, 4]'</span> | jq <span class="string">'.[0, 3]'</span></span><br><span class="line">1</span><br><span class="line">4</span><br></pre></td></tr></table></figure>
 <p>更多过滤方法见<a href="https://stedolan.github.io/jq/manual/" target="_blank" rel="noopener">文档</a></p>
+<h2><span id="geng-duo-shi-yong-shi-li">更多使用实例</span><a href="#geng-duo-shi-yong-shi-li" class="header-anchor"></a></h2><p><strong>获取列表中某个字段的值</strong></p>
+<p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/jq-id_620.png" alt="eq1"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ curl -s https://raw.githubusercontent.com/wxnacy/file/master/common/V9MiMl2DwA4.json | jq <span class="string">'.data.items[].id'</span> | sed <span class="string">'s/"//g'</span></span><br><span class="line"></span><br><span class="line">V9MiMl2DwA4</span><br><span class="line">wQKKZXYx7eg</span><br><span class="line">NfFnHs67qjY</span><br><span class="line">826v1-bvSwA</span><br><span class="line">IAK-IP0Sjic</span><br></pre></td></tr></table></figure>
 
       
 
@@ -451,7 +457,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">过滤</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">过滤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">更多使用实例</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -604,11 +610,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -616,11 +622,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -636,11 +642,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -824,11 +830,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">

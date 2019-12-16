@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-12-05T09:42:24.952Z</updated>
+  <updated>2019-12-16T03:37:17.900Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ffmpeg-shell</title>
+    <link href="http://wxnacy.com/2019/12/09/ffmpeg-shell/"/>
+    <id>http://wxnacy.com/2019/12/09/ffmpeg-shell/</id>
+    <published>2019-12-09T15:04:16.000Z</published>
+    <updated>2019-12-16T03:37:17.900Z</updated>
+    
+    <content type="html"><![CDATA[<p>记录 FFmpeg 的一些命令</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p><strong>m3u8 格式文件转为 mp4</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -i <span class="string">"https://xxxx.com/20191005/WofkPuP1/1200kb/hls/index.m3u8"</span> -bsf:a aac_adtstoasc -vcodec copy -c copy -crf 50 target.mp4</span><br></pre></td></tr></table></figure><p><strong>分割视频</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -ss 开始时间（可选）</span></span><br><span class="line"><span class="comment"># -t 结束时间（可选）</span></span><br><span class="line"><span class="comment"># source.mp4 视频源</span></span><br><span class="line"><span class="comment"># target.mp4 目标名称</span></span><br><span class="line">$ ffmpeg -ss 00:12:00 -t 00:56:00 -i source.mp4 -vcodec copy -acodec copy target.mp4</span><br></pre></td></tr></table></figure><p><strong>将字幕文件烧进视频文件中</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -i source.mkv -vf subtitles=source.srt output.mkv</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;记录 FFmpeg 的一些命令&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="ffmpeg" scheme="http://wxnacy.com/tags/ffmpeg/"/>
+    
+  </entry>
   
   <entry>
     <title>Mysql 随机获取表中一条数据</title>
@@ -399,28 +419,6 @@
     
     
       <category term="mysql" scheme="http://wxnacy.com/tags/mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ansible 在 Vagrant 中使用</title>
-    <link href="http://wxnacy.com/2019/07/31/ansible-vagrant-host/"/>
-    <id>http://wxnacy.com/2019/07/31/ansible-vagrant-host/</id>
-    <published>2019-07-31T09:38:41.000Z</published>
-    <updated>2019-07-31T09:38:41.202Z</updated>
-    
-    <content type="html"><![CDATA[<p>Ansible 在 Vagrant 中使用的难点在于获取 ssh 登录需要的配置信息。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>在默认 <code>Vagrantfile</code> 中我们找不到这些信息，此时需要通过 <code>vagrant ssh-config</code> 命令查看</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant ssh-config</span><br><span class="line">Host default</span><br><span class="line">  HostName 127.0.0.1</span><br><span class="line">  User vagrant</span><br><span class="line">  Port 2222</span><br><span class="line">  UserKnownHostsFile /dev/null</span><br><span class="line">  StrictHostKeyChecking no</span><br><span class="line">  PasswordAuthentication no</span><br><span class="line">  IdentityFile /Users/wxnacy/.vagrant.d/boxes/wxnacy-VAGRANTSLASH-ubuntu1804/0/virtualbox/vagrant_private_key</span><br><span class="line">  IdentitiesOnly yes</span><br><span class="line">  LogLevel FATAL</span><br></pre></td></tr></table></figure><p>啊，让我费解的 <code>IdentityFile</code> 文件终于露出来，关键就是这个文件。</p><p>接下来我们只需要配置 Ansible 的 hosts 文件，<code>/etc/ansible/hosts</code> 中添加，或者创建独立的 <code>hosts</code> 文件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[vagrant]</span><br><span class="line">127.0.0.1 ansible_ssh_user=vagrant ansible_ssh_port=2222 ansible_ssh_private_key_file=/Users/wxnacy/.vagrant.d/boxes/wxnacy-VAGRANTSLASH-ubuntu1804/0/virtualbox/vagrant_private_key</span><br></pre></td></tr></table></figure><p>最后查看是否能正常连接</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ ansible all -m <span class="built_in">command</span> -a <span class="string">'who'</span> --inventory-file=hosts</span><br><span class="line">127.0.0.1 | CHANGED | rc=0 &gt;&gt;</span><br><span class="line">vagrant  pts/0        Jul 30 07:35 (10.0.2.2)</span><br><span class="line">vagrant  pts/1        Jul 30 06:19 (10.0.2.2)</span><br></pre></td></tr></table></figure><p>如果新建其他位置的 <code>hosts</code> 文件，需要 <code>--inventory-file, -i</code> 指定文件。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Ansible 在 Vagrant 中使用的难点在于获取 ssh 登录需要的配置信息。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="vagrant" scheme="http://wxnacy.com/tags/vagrant/"/>
-    
-      <category term="ansible" scheme="http://wxnacy.com/tags/ansible/"/>
     
   </entry>
   
