@@ -1,5 +1,5 @@
 ---
-title: ffmpeg-shell
+title: FFmpeg 常用的命令
 date: 2019-12-09 23:04:16
 tags: [ffmpeg]
 ---

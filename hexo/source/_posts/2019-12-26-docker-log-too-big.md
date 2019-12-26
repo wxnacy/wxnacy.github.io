@@ -40,7 +40,7 @@ $ sudo du -d1 -h /var/lib/docker/containers | sort -h
 $ sudo sh -c "cat /dev/null > ${log_file}"
 ```
 
-`${log_file}` 就是日志文件，可以通过 `find` 命令查找
+`${log_file}` 就是日志文件，可以通过 `find` 命令查找全部日志
 
 ```bash
 $ sudo find /var/lib/docker/containers -name *.log
@@ -58,6 +58,13 @@ $ sudo find /var/lib/docker/containers -name *.log
 /var/lib/docker/containers/6bd1f79f16b8b06f2bd203dd84443004ba08c150ac51d23fa620e8b2cbf4b773/6bd1f79f16b8b06f2bd203dd84443004ba08c150ac51d23fa620e8b2cbf4b773-json.log
 /var/lib/docker/containers/05fc24ef7a14e31e4557c9881482d350cfb05f2f1cb870638de344581154ca01/05fc24ef7a14e31e4557c9881482d350cfb05f2f1cb870638de344581154ca01-json.log
 /var/lib/docker/containers/7bd3a179cf67b1537e0965c1d1f518420ac5d4cd151ecb75c37ada8c2347ca6b/7bd3a179cf67b1537e0965c1d1f518420ac5d4cd151ecb75c37ada8c2347ca6b-json.log
+```
+
+或者查看具体容器名称的日志位置
+
+```bash
+$ docker inspect --format='{{.LogPath}}' redis
+/var/lib/docker/containers/6ee184044661c436b44769d56c203f1fc296dbfe08f6ed4cf79aa6fb8cae6659/6ee184044661c436b44769d56c203f1fc296dbfe08f6ed4cf79aa6fb8cae6659-json.log
 ```
 
 这样只是解决燃眉之急，并不是长久之计，最好是创建容器时就控制日志的大小.

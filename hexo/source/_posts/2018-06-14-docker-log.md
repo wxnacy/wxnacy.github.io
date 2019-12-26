@@ -10,6 +10,12 @@ Docker 再启动容器后，可以用 `docker logs -f <container_name>` 来查�
 
 <!-- more --><!-- toc -->
 
+**查找全部容器的日志文件**
+
+```bash
+$ sudo find /var/lib/docker/containers -name *.log
+```
+
 **查看日志位置**
 
 ```bash

@@ -11,6 +11,8 @@ date: 2019-08-22 17:40:01
 <!-- more -->
 <!-- toc -->
 
+## 基础命令
+
 ```bash
 $ docker logs --help
 
@@ -53,4 +55,12 @@ $ docker logs -t --since=10m <container-id>
 
 ```bash
 $ docker logs -t --since="2019-08-20T13:23:37" --until="2019-08-21T13:23:37" <container-id>
+```
+
+## 使用 grep
+
+如果你使用 `grep` 会发现根本不起作用，因为 `docker logs` 命令并没有将日志打印到标准输出，这里我们需要先重定向下。
+
+```bash
+$ docker logs -f --tail 10 <container-id> 2>&1 | grep 'grep thing'
 ```
