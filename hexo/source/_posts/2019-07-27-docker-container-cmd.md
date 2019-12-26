@@ -185,3 +185,10 @@ $ docker container rm -f <id:name>
 # 关闭全部终止状态的容器
 $ docker container prune
 ```
+
+## 重启服务
+
+```bash
+$ sudo systemctl daemon-reload
+$ sudo systemctl restart docker
+```
