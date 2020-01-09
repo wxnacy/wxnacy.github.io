@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2019-12-26T07:33:06.774Z</updated>
+  <updated>2020-01-09T08:28:38.561Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Shell 获取单个文件大小的几种方式</title>
+    <link href="http://wxnacy.com/2020/01/09/shell-file-size/"/>
+    <id>http://wxnacy.com/2020/01/09/shell-file-size/</id>
+    <published>2020-01-09T08:21:42.000Z</published>
+    <updated>2020-01-09T08:28:38.561Z</updated>
+    
+    <content type="html"><![CDATA[<p>假设有文件 <code>wxnacy</code></p><a id="more"></a><div class="toc"><!-- toc --><ul><li><a href="#wc">wc</a></li><li><a href="#ls">ls</a></li><li><a href="#stat">stat</a></li></ul><!-- tocstop --></div><h2><span id="wc">wc</span><a href="#wc" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> $(wc -c &lt; wxnacy)</span><br><span class="line">$ <span class="built_in">echo</span> $(cat wxnacy | wc -c)</span><br><span class="line">$ wc -c wxnacy | awk <span class="string">'&#123;print $1&#125;'</span></span><br></pre></td></tr></table></figure><h2><span id="ls">ls</span><a href="#ls" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ls -l wxnacy | awk <span class="string">'&#123;print $5&#125;'</span></span><br></pre></td></tr></table></figure><h2><span id="stat">stat</span><a href="#stat" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">stat</span> wxnacy | awk <span class="string">'&#123;print $8&#125;'</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;假设有文件 &lt;code&gt;wxnacy&lt;/code&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="shell" scheme="http://wxnacy.com/tags/shell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mysql 分组查找最后一条记录</title>
+    <link href="http://wxnacy.com/2020/01/08/mysql-group-last-row/"/>
+    <id>http://wxnacy.com/2020/01/08/mysql-group-last-row/</id>
+    <published>2020-01-08T08:45:19.000Z</published>
+    <updated>2020-01-09T08:51:21.393Z</updated>
+    
+    <content type="html"><![CDATA[<p>现在有一张表，以 <code>yt_channel_id</code> 为外键 id，不断的写进数据，每次的数据 <code>videos</code> 字段会不一样。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>现在想要批量每个 <code>yt_channel_id</code> 最新插入的数据，使用 <code>group</code> 配合 <code>max(create_ts)</code> 即可。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ select yt_channel_id, videos, max(create_ts) from youtube_data group by yt_channel_id;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;现在有一张表，以 &lt;code&gt;yt_channel_id&lt;/code&gt; 为外键 id，不断的写进数据，每次的数据 &lt;code&gt;videos&lt;/code&gt; 字段会不一样。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="mysql" scheme="http://wxnacy.com/tags/mysql/"/>
+    
+  </entry>
   
   <entry>
     <title>解决 Docker 日志文件太大的问题</title>
@@ -379,46 +419,6 @@
     
     
       <category term="python" scheme="http://wxnacy.com/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python 使用 Pillow 包实现图片叠加</title>
-    <link href="http://wxnacy.com/2019/08/15/pillow-overlay/"/>
-    <id>http://wxnacy.com/2019/08/15/pillow-overlay/</id>
-    <published>2019-08-15T09:39:29.000Z</published>
-    <updated>2019-08-15T09:55:25.261Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://github.com/python-pillow/Pillow" target="_blank" rel="noopener">Pillow</a> 包实现图片叠加非常简单</p><a id="more"></a><div class="toc"><!-- toc --><ul><li><a href="#jian-dan-shi-yong">简单使用</a></li><li><a href="#xiang-mu-zhong-shi-yong">项目中使用</a></li></ul><!-- tocstop --></div><h2><span id="jian-dan-shi-yong">简单使用</span><a href="#jian-dan-shi-yong" class="header-anchor"></a></h2><p><strong>安装</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install Pillow</span><br></pre></td></tr></table></figure><p><strong>简单实现</strong></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line">big_image =Image.open(<span class="string">'big.jpg'</span>)</span><br><span class="line">small_image=Image.open(<span class="string">'small.jpg'</span>)</span><br><span class="line"><span class="comment"># small_image.thumbnail((400,400))  可以实现压缩</span></span><br><span class="line">big_image.paste(small_image,(<span class="number">157</span>, <span class="number">45</span>))</span><br><span class="line">big_image.show()</span><br></pre></td></tr></table></figure><p><strong>原图</strong></p><p><img src="https://wxnacy.com/images/rss.png" alt="1"><br><img src="https://wxnacy.com/images/mp.jpg" alt="2"></p><p><strong>叠加效果</strong></p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/pillow_overlay.png" alt="3"></p><h2><span id="xiang-mu-zhong-shi-yong">项目中使用</span><a href="#xiang-mu-zhong-shi-yong" class="header-anchor"></a></h2><p>在 web 项目中往往我们不会使用本地图片，大多是对网络图片进行处理，再传到线上，所以首先需要能解析网络图片，其次处理后需要拿到图片二进制，再进行上传处理。</p><p>这套逻辑的代码在 <a href="https://github.com/wxnacy/study/blob/master/python/pillow_demo/overlay.py" target="_blank" rel="noopener">https://github.com/wxnacy/study/blob/master/python/pillow_demo/overlay.py</a></p><p>这里复制一份</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"><span class="comment"># Description: 图片叠加</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> io</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_image</span><span class="params">(path)</span>:</span></span><br><span class="line">    <span class="string">'''通过地址获取 image 对象'''</span></span><br><span class="line">    image = <span class="keyword">None</span></span><br><span class="line">    <span class="keyword">if</span> path.startswith(<span class="string">'http'</span>):</span><br><span class="line">        res = requests.get(path)</span><br><span class="line">        image = Image.open(io.BytesIO(res.content))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        image = Image.open(path)</span><br><span class="line">    <span class="keyword">return</span> image</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">image2bytes</span><span class="params">(image)</span>:</span></span><br><span class="line">    <span class="string">'''图片转二进制'''</span></span><br><span class="line">    img_bytes = io.BytesIO()</span><br><span class="line">    image.save(img_bytes, image.format)</span><br><span class="line">    <span class="keyword">return</span> img_bytes.getvalue()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">overlay</span><span class="params">(big_path, small_path, width, height, small_thumbnail=<span class="params">()</span>)</span>:</span></span><br><span class="line">    <span class="string">'''叠加'''</span></span><br><span class="line">    big_image = get_image(big_path)</span><br><span class="line">    small_image = get_image(small_path)</span><br><span class="line">    <span class="keyword">if</span> small_thumbnail:</span><br><span class="line">        small_image.thumbnail(small_thumbnail)</span><br><span class="line">    big_image.paste(small_image,(width, height))</span><br><span class="line">    big_image.show()    <span class="comment"># 显示图片</span></span><br><span class="line">    <span class="comment">#  big_image.save('/Users/wxnacy/Downloads/pillow_overlay.png')  # 保存</span></span><br><span class="line">    <span class="comment"># 或者返回图片的二进制</span></span><br><span class="line">    <span class="keyword">return</span> image2bytes(big_image)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    overlay(<span class="string">'https://wxnacy.com/images/rss.png'</span>,</span><br><span class="line">            <span class="string">'https://wxnacy.com/images/mp.jpg'</span>, <span class="number">157</span>, <span class="number">45</span>)</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;a href=&quot;https://github.com/python-pillow/Pillow&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Pillow&lt;/a&gt; 包实现图片叠加非常简单&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="python" scheme="http://wxnacy.com/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Docker 配置国内仓库</title>
-    <link href="http://wxnacy.com/2019/08/12/docker-use-china-mirrors/"/>
-    <id>http://wxnacy.com/2019/08/12/docker-use-china-mirrors/</id>
-    <published>2019-08-12T13:38:08.000Z</published>
-    <updated>2019-08-12T13:38:08.706Z</updated>
-    
-    <content type="html"><![CDATA[<p>类似这种需要下载包的一般都要配置个国内的仓库源，同时使用默认的国外仓库，真的很慢。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>以阿里云仓库为例，配置方式很简单</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ sudo tee /etc/docker/daemon.json &lt;&lt;-<span class="string">'EOF'</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"registry-mirrors"</span>: [<span class="string">"https://4qqg0972.mirror.aliyuncs.com"</span>]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line">$ sudo systemctl daemon-reload</span><br><span class="line">$ sudo systemctl restart docker</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;类似这种需要下载包的一般都要配置个国内的仓库源，同时使用默认的国外仓库，真的很慢。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="docker" scheme="http://wxnacy.com/tags/docker/"/>
     
   </entry>
   
