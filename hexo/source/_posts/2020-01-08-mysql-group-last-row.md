@@ -14,3 +14,5 @@ tags: [mysql]
 ```mysql
 $ select yt_channel_id, videos, max(create_ts) from youtube_data group by yt_channel_id;
 ```
+
+不过 `5.7.19` 版本不可用，直接报错，`5.7.23` 及以上可用。

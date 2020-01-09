@@ -41,9 +41,9 @@
     <link href="http://wxnacy.com/2020/01/08/mysql-group-last-row/"/>
     <id>http://wxnacy.com/2020/01/08/mysql-group-last-row/</id>
     <published>2020-01-08T08:45:19.000Z</published>
-    <updated>2020-01-09T08:51:21.393Z</updated>
+    <updated>2020-01-09T08:53:15.142Z</updated>
     
-    <content type="html"><![CDATA[<p>现在有一张表，以 <code>yt_channel_id</code> 为外键 id，不断的写进数据，每次的数据 <code>videos</code> 字段会不一样。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>现在想要批量每个 <code>yt_channel_id</code> 最新插入的数据，使用 <code>group</code> 配合 <code>max(create_ts)</code> 即可。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ select yt_channel_id, videos, max(create_ts) from youtube_data group by yt_channel_id;</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<p>现在有一张表，以 <code>yt_channel_id</code> 为外键 id，不断的写进数据，每次的数据 <code>videos</code> 字段会不一样。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>现在想要批量每个 <code>yt_channel_id</code> 最新插入的数据，使用 <code>group</code> 配合 <code>max(create_ts)</code> 即可。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ select yt_channel_id, videos, max(create_ts) from youtube_data group by yt_channel_id;</span><br></pre></td></tr></table></figure><p>不过 <code>5.7.19</code> 版本不可用，直接报错，<code>5.7.23</code> 及以上可用。</p>]]></content>
     
     <summary type="html">
     
@@ -53,6 +53,26 @@
     
     
       <category term="mysql" scheme="http://wxnacy.com/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Shell 获取字符串长度的几种方式</title>
+    <link href="http://wxnacy.com/2020/01/07/shell-string-length/"/>
+    <id>http://wxnacy.com/2020/01/07/shell-string-length/</id>
+    <published>2020-01-07T09:43:52.000Z</published>
+    <updated>2020-01-09T09:49:03.782Z</updated>
+    
+    <content type="html"><![CDATA[<p>记录几种获取字符串长度的方式</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ str=wxnacy</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;#str&#125;</span></span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -n 是去掉 \n 符号，不然计算的长度为 7</span></span><br><span class="line">$ <span class="built_in">echo</span> $(<span class="built_in">echo</span> -n <span class="variable">$str</span> | wc -c)</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="variable">$str</span> | awk <span class="string">'&#123;print length($0)&#125;'</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;记录几种获取字符串长度的方式&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="shell" scheme="http://wxnacy.com/tags/shell/"/>
     
   </entry>
   
@@ -399,26 +419,6 @@
     
     
       <category term="node" scheme="http://wxnacy.com/tags/node/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python 获取当前文件的模块对象</title>
-    <link href="http://wxnacy.com/2019/08/20/python-current-module/"/>
-    <id>http://wxnacy.com/2019/08/20/python-current-module/</id>
-    <published>2019-08-20T06:26:10.000Z</published>
-    <updated>2019-08-20T06:34:54.439Z</updated>
-    
-    <content type="html"><![CDATA[<p>根据<a href="https://www.python.org/dev/peps/pep-3130/" target="_blank" rel="noopener">官方</a>文档可以得到这样的用法</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">mod = sys.modules[__name__]</span><br></pre></td></tr></table></figure><p>这个特性可以应用在什么场景呢？当模块中的方法有什么共同特性时，我们可以配合 <code>getattr</code> 方法来进行动态调用，而不必编写复杂的判断语句。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"><span class="comment"># Description:</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">format_size</span><span class="params">(size: int)</span>:</span></span><br><span class="line">    <span class="string">'''格式化大小'''</span></span><br><span class="line">    unit = &#123;</span><br><span class="line">        <span class="number">0</span>: <span class="string">'B'</span>,</span><br><span class="line">        <span class="number">1</span>: <span class="string">'K'</span>,</span><br><span class="line">        <span class="number">2</span>: <span class="string">'M'</span>,</span><br><span class="line">        <span class="number">3</span>: <span class="string">'G'</span>,</span><br><span class="line">        <span class="number">4</span>: <span class="string">'T'</span>,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">6</span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="number">1024</span> ** i &lt;= size &lt; <span class="number">1024</span> ** ( i + <span class="number">1</span> ):</span><br><span class="line">            <span class="keyword">if</span> i &gt; <span class="number">0</span>:</span><br><span class="line">                size = size / <span class="number">1024</span> ** i</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'&#123;:0.1f&#125;&#123;&#125;'</span>.format( size, unit[i])</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'&#123;&#125;B'</span>.format(size)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    <span class="keyword">import</span> sys</span><br><span class="line">    module = sys.modules[__name__]</span><br><span class="line">    args = sys.argv[<span class="number">1</span>:]</span><br><span class="line">    func_name = args[<span class="number">0</span>]</span><br><span class="line">    func = getattr(module, func_name)</span><br><span class="line">    res = func(int(args[<span class="number">1</span>]))</span><br><span class="line">    print(res)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 调用方法</span></span><br><span class="line">    <span class="comment"># $ python utils.py format_size 1024</span></span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;根据&lt;a href=&quot;https://www.python.org/dev/peps/pep-3130/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;官方&lt;/a&gt;文档可以得到这样的用法&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="python" scheme="http://wxnacy.com/tags/python/"/>
     
   </entry>
   
