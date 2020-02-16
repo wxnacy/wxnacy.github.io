@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2020-01-09T08:28:38.561Z</updated>
+  <updated>2020-02-16T15:46:41.285Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mac 电脑通过 Finder 获取文件夹的命令行地址</title>
+    <link href="http://wxnacy.com/2020/02/15/mac-finder-get-pwd/"/>
+    <id>http://wxnacy.com/2020/02/15/mac-finder-get-pwd/</id>
+    <published>2020-02-14T16:08:05.000Z</published>
+    <updated>2020-02-16T15:46:41.285Z</updated>
+    
+    <content type="html"><![CDATA[<p>记录几种 Mac 电脑通过 Finder 获取文件地址的方式。</p><a id="more"></a><div class="toc"><!-- toc --><ul><li><a href="#zhi-jie-fu-zhi">直接复制</a></li><li><a href="#ding-bu-yong-jiu-xian-shi">顶部永久显示</a></li><li><a href="#zhi-jie-zai-zhong-duan-zhong-da-kai">直接在终端中打开</a></li></ul><!-- tocstop --></div><h2><span id="zhi-jie-fu-zhi">直接复制</span><a href="#zhi-jie-fu-zhi" class="header-anchor"></a></h2><p>在文件列表中直接使用 <code>command + c</code> 复制，然后在 <code>Terminal</code> 中粘贴即可</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/finder1.png" alt="1"></p><p>在 Finder 左侧的目录则需要使用 <code>option + command + c</code> 来进行复制</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/finder2.png" alt="2"></p><h2><span id="ding-bu-yong-jiu-xian-shi">顶部永久显示</span><a href="#ding-bu-yong-jiu-xian-shi" class="header-anchor"></a></h2><p>打开 <code>Terminal</code> 并输入命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES</span><br></pre></td></tr></table></figure><p>效果如图</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/finder3.png" alt="3"></p><h2><span id="zhi-jie-zai-zhong-duan-zhong-da-kai">直接在终端中打开</span><a href="#zhi-jie-zai-zhong-duan-zhong-da-kai" class="header-anchor"></a></h2><p>如果你安装了 <code>iTerm2</code>，则可以通过 <code>右键 -》服务 -》New iTerm2 Window Here</code> 直接打开当前目录</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/finder4_552.png" alt="4"></p><p>如果没有安装，也可以在文件夹的右键在默认终端中直接打开</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/finder5_612.png" alt="5"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;记录几种 Mac 电脑通过 Finder 获取文件地址的方式。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="mac" scheme="http://wxnacy.com/tags/mac/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Shell 截取字符串的几种方式</title>
+    <link href="http://wxnacy.com/2020/01/13/shell-substr/"/>
+    <id>http://wxnacy.com/2020/01/13/shell-substr/</id>
+    <published>2020-01-13T15:33:18.000Z</published>
+    <updated>2020-01-14T02:08:45.401Z</updated>
+    
+    <content type="html"><![CDATA[<p>Shell 中截取字符串的方式也有很多种。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ str=https://wxnacy.com/2020/01/13/shell-substr</span><br></pre></td></tr></table></figure><p><strong>从索引处开始截取</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;str:6&#125;</span></span><br><span class="line">//wxnacy.com/2020/01/13/shell-substr</span><br></pre></td></tr></table></figure><p><strong>截取指定长度</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;str:6:8&#125;</span></span><br><span class="line">//wxnacy</span><br></pre></td></tr></table></figure><p><strong>从右边索引处开始截取</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;str:0-6&#125;</span></span><br><span class="line">substr</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Shell 中截取字符串的方式也有很多种。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="shell" scheme="http://wxnacy.com/tags/shell/"/>
+    
+  </entry>
   
   <entry>
     <title>Shell 获取单个文件大小的几种方式</title>
@@ -379,46 +419,6 @@
     
     
       <category term="python" scheme="http://wxnacy.com/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Docker logs 命令</title>
-    <link href="http://wxnacy.com/2019/08/22/docker-logs/"/>
-    <id>http://wxnacy.com/2019/08/22/docker-logs/</id>
-    <published>2019-08-22T09:40:01.000Z</published>
-    <updated>2019-12-26T07:30:12.450Z</updated>
-    
-    <content type="html"><![CDATA[<p>之前没有留意过 <code>docker logs</code> 的正确用法，总是直接使用 <code>docker logs -f</code> 来实时跟踪日志，但是每次都要全部显示日志后再跟踪，时间一长日志变多就是灾难，看一下帮助文档，学习下正确用法。</p><a id="more"></a><div class="toc"><!-- toc --><ul><li><a href="#ji-chu-ming-ling">基础命令</a></li><li><a href="#shi-yong-grep">使用 grep</a></li></ul><!-- tocstop --></div><h2><span id="ji-chu-ming-ling">基础命令</span><a href="#ji-chu-ming-ling" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ docker logs --<span class="built_in">help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker logs [OPTIONS] CONTAINER</span><br><span class="line"></span><br><span class="line">Fetch the logs of a container</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">      --details        Show extra details provided to logs</span><br><span class="line">  -f, --follow         Follow <span class="built_in">log</span> output</span><br><span class="line">      --since string   Show logs since timestamp (e.g. 2013-01-02T13:23:37) or relative (e.g. 42m <span class="keyword">for</span> 42 minutes)</span><br><span class="line">      --tail string    Number of lines to show from the end of the logs (default <span class="string">"all"</span>)</span><br><span class="line">  -t, --timestamps     Show timestamps</span><br><span class="line">      --until string   Show logs before a timestamp (e.g. 2013-01-02T13:23:37) or relative (e.g. 42m <span class="keyword">for</span> 42 minutes)</span><br></pre></td></tr></table></figure><p>想要跟 <code>tail -f</code> 命令一样从末尾10条以后开始跟踪，需要使用 <code>--tail</code> 参数，默认就是全部</p><p><strong>从末尾 10 条后开始跟踪</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker logs -f --tail 10 &lt;container-id&gt;</span><br></pre></td></tr></table></figure><p>除了行数限制，还可以根据时间戳来获取指定时间前后的是日志</p><p><strong>获取指定时间以后的日志</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker logs -t --since=<span class="string">"2019-08-20T13:23:37"</span> &lt;container-id&gt;</span><br></pre></td></tr></table></figure><p><strong>获取最后 10 分钟的日志</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker logs -t --since=10m &lt;container-id&gt;</span><br></pre></td></tr></table></figure><p><strong>获取指定时间范围的日志</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker logs -t --since=<span class="string">"2019-08-20T13:23:37"</span> --until=<span class="string">"2019-08-21T13:23:37"</span> &lt;container-id&gt;</span><br></pre></td></tr></table></figure><h2><span id="shi-yong-grep">使用 grep</span><a href="#shi-yong-grep" class="header-anchor"></a></h2><p>如果你使用 <code>grep</code> 会发现根本不起作用，因为 <code>docker logs</code> 命令并没有将日志打印到标准输出，这里我们需要先重定向下。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker logs -f --tail 10 &lt;container-id&gt; 2&gt;&amp;1 | grep <span class="string">'grep thing'</span></span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;之前没有留意过 &lt;code&gt;docker logs&lt;/code&gt; 的正确用法，总是直接使用 &lt;code&gt;docker logs -f&lt;/code&gt; 来实时跟踪日志，但是每次都要全部显示日志后再跟踪，时间一长日志变多就是灾难，看一下帮助文档，学习下正确用法。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="docker" scheme="http://wxnacy.com/tags/docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>pm2 容器使用环境变量</title>
-    <link href="http://wxnacy.com/2019/08/21/pm2-env/"/>
-    <id>http://wxnacy.com/2019/08/21/pm2-env/</id>
-    <published>2019-08-21T01:53:12.000Z</published>
-    <updated>2019-08-21T01:53:12.603Z</updated>
-    
-    <content type="html"><![CDATA[<p>pm2 容器管理进程时，设置环境变量非常简单</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  apps : [</span><br><span class="line">      &#123;</span><br><span class="line">        name: <span class="string">"myapp"</span>,</span><br><span class="line">        script: <span class="string">"./app.js"</span>,</span><br><span class="line">        watch: <span class="literal">true</span>,</span><br><span class="line">        env: &#123;</span><br><span class="line">            <span class="string">"PORT"</span>: <span class="number">3000</span>,</span><br><span class="line">            <span class="string">"NODE_ENV"</span>: <span class="string">"development"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        env_production: &#123;</span><br><span class="line">            <span class="string">"PORT"</span>: <span class="number">80</span>,</span><br><span class="line">            <span class="string">"NODE_ENV"</span>: <span class="string">"production"</span>,</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><code>env</code> 是 pm2 默认使用的环境变量，使用 <code>env_production</code>  需要运行时指定环境</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pm2 start ecosystem.config.js --env production</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;pm2 容器管理进程时，设置环境变量非常简单&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="node" scheme="http://wxnacy.com/tags/node/"/>
     
   </entry>
   

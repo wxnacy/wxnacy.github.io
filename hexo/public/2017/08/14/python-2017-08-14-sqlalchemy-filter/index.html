@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://wxnacy.com">
   <title>SQLAlchemy 各种查询语句写法 | 温欣爸比的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="and in or 排序 大于小于 like     andfilter 与 filter_by 语法稍有不同12User.query.filter_by(id=1,name=&apos;win&apos;).first()User.query.filter(User.id==1,User.name == &apos;win&apos;).first() in1234sql = User.query.filter(User.id">
+  <meta name="description" content="and in or 排序 大于小于 like JSON 相关     andfilter 与 filter_by 语法稍有不同 12User.query.filter_by(id=1,name=&apos;win&apos;).first()User.query.filter(User.id==1,User.name == &apos;win&apos;).first() in1234sql = User.query.filte">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQLAlchemy 各种查询语句写法">
 <meta property="og:url" content="http://wxnacy.com/2017/08/14/python-2017-08-14-sqlalchemy-filter/index.html">
 <meta property="og:site_name" content="温欣爸比的博客">
-<meta property="og:description" content="and in or 排序 大于小于 like     andfilter 与 filter_by 语法稍有不同12User.query.filter_by(id=1,name=&apos;win&apos;).first()User.query.filter(User.id==1,User.name == &apos;win&apos;).first() in1234sql = User.query.filter(User.id">
+<meta property="og:description" content="and in or 排序 大于小于 like JSON 相关     andfilter 与 filter_by 语法稍有不同 12User.query.filter_by(id=1,name=&apos;win&apos;).first()User.query.filter(User.id==1,User.name == &apos;win&apos;).first() in1234sql = User.query.filte">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2019-01-19T04:06:42.202Z">
+<meta property="og:updated_time" content="2020-01-13T15:14:39.056Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQLAlchemy 各种查询语句写法">
-<meta name="twitter:description" content="and in or 排序 大于小于 like     andfilter 与 filter_by 语法稍有不同12User.query.filter_by(id=1,name=&apos;win&apos;).first()User.query.filter(User.id==1,User.name == &apos;win&apos;).first() in1234sql = User.query.filter(User.id">
+<meta name="twitter:description" content="and in or 排序 大于小于 like JSON 相关     andfilter 与 filter_by 语法稍有不同 12User.query.filter_by(id=1,name=&apos;win&apos;).first()User.query.filter(User.id==1,User.name == &apos;win&apos;).first() in1234sql = User.query.filte">
   
     <link rel="alternative" href="/atom.xml" title="温欣爸比的博客" type="application/atom+xml">
   
@@ -230,16 +230,19 @@
 <li><a href="#pai-xu">排序</a></li>
 <li><a href="#da-yu-xiao-yu">大于小于</a></li>
 <li><a href="#like">like</a></li>
+<li><a href="#json-xiang-guan">JSON 相关</a></li>
 </ul>
 <!-- tocstop -->
 </div>
 
-<h2><span id="and">and</span><a href="#and" class="header-anchor"></a></h2><p>filter 与 filter_by 语法稍有不同<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">User.query.filter_by(id=<span class="number">1</span>,name=<span class="string">'win'</span>).first()</span><br><span class="line">User.query.filter(User.id==<span class="number">1</span>,User.name == <span class="string">'win'</span>).first()</span><br></pre></td></tr></table></figure></p>
+<h2><span id="and">and</span><a href="#and" class="header-anchor"></a></h2><p>filter 与 filter_by 语法稍有不同</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">User.query.filter_by(id=<span class="number">1</span>,name=<span class="string">'win'</span>).first()</span><br><span class="line">User.query.filter(User.id==<span class="number">1</span>,User.name == <span class="string">'win'</span>).first()</span><br></pre></td></tr></table></figure>
 <h2><span id="in">in</span><a href="#in" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sql = User.query.filter(User.id.in_([<span class="number">1</span>,<span class="number">2</span>]))</span><br><span class="line">print(sql)</span><br><span class="line"></span><br><span class="line">&gt; select * <span class="keyword">from</span> user where id <span class="keyword">in</span> (<span class="number">1</span>,<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
 <h2><span id="or">or</span><a href="#or" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> or_</span><br><span class="line">sql = User.query.filter(or_(User.name == <span class="string">'winn'</span>,User.mobile == <span class="string">'183'</span>),User.email == <span class="string">'371'</span>)</span><br><span class="line">print(sql)</span><br><span class="line"></span><br><span class="line">&gt; select * <span class="keyword">from</span> user where (name = <span class="string">'winn'</span> <span class="keyword">or</span> mobile = <span class="string">'183'</span>) <span class="keyword">and</span> email= <span class="string">'371'</span></span><br></pre></td></tr></table></figure>
 <h2><span id="pai-xu">排序</span><a href="#pai-xu" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> desc</span><br><span class="line">User.query.order_by(create_ts).all() <span class="comment"># 根据创建时间正序</span></span><br><span class="line">User.query.order_by(desc(create_ts)).all() <span class="comment"># 根据创建时间倒序</span></span><br></pre></td></tr></table></figure>
 <h2><span id="da-yu-xiao-yu">大于小于</span><a href="#da-yu-xiao-yu" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User.query.filter(User.age &gt;= <span class="number">12</span>,User.age &lt; <span class="number">23</span>).all()</span><br></pre></td></tr></table></figure>
 <h2><span id="like">like</span><a href="#like" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User.query.filter(User.name.like(<span class="string">'%win%'</span>)).all()</span><br></pre></td></tr></table></figure>
+<h2><span id="json-xiang-guan">JSON 相关</span><a href="#json-xiang-guan" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># select * from user where json_field -&gt; '$.id' = 1;</span></span><br><span class="line">User.query.filter(User.json_field[<span class="string">'id'</span>] == <span class="number">1</span>).all()</span><br><span class="line"></span><br><span class="line"><span class="comment"># select * from user where array_field -&gt; '$[0]' = 1;</span></span><br><span class="line">User.query.filter(User.array_field[<span class="number">0</span>] == <span class="number">1</span>).all()</span><br><span class="line"></span><br><span class="line">User.query.filter(User.array_field[].contains([<span class="number">1</span>])).all()</span><br></pre></td></tr></table></figure>
 
       
 
@@ -247,6 +250,18 @@
       
       <div class="page-reward">
             <div>最近更新</div>
+            
+            <div class="reward-box-item">
+                <a href="/2020/01/09/shell-file-size/">Shell 获取单个文件大小的几种方式</a>
+            </div>
+            
+            <div class="reward-box-item">
+                <a href="/2020/01/08/mysql-group-last-row/">Mysql 分组查找最后一条记录</a>
+            </div>
+            
+            <div class="reward-box-item">
+                <a href="/2020/01/07/shell-string-length/">Shell 获取字符串长度的几种方式</a>
+            </div>
             
             <div class="reward-box-item">
                 <a href="/2019/12/26/docker-log-too-big/">解决 Docker 日志文件太大的问题</a>
@@ -274,18 +289,6 @@
             
             <div class="reward-box-item">
                 <a href="/2019/10/17/nginx-the-ssl-depreated/">Nginx 报警告 the &#34;ssl&#34; directive is deprecated</a>
-            </div>
-            
-            <div class="reward-box-item">
-                <a href="/2019/09/22/world-currency/">世界货币查询文档</a>
-            </div>
-            
-            <div class="reward-box-item">
-                <a href="/2019/09/19/youtube-block-region/">获取 youtube 视频屏蔽地区</a>
-            </div>
-            
-            <div class="reward-box-item">
-                <a href="/2019/09/18/wx-upload-media/">使用 Python 新建微信公众号临时素材</a>
             </div>
             
       </div>
@@ -390,18 +393,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/15/python-2017-08-15-gunicorn-run/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/08/14/ansible-2017-08-14-album-study-notes/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Python 使用 gunicorn 启动你的项目
+          ansible学习笔记
         
       </div>
     </a>
   
   
-    <a href="/2017/08/14/ansible-2017-08-14-album-study-notes/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">ansible学习笔记</div>
+    <a href="/2017/08/13/movie-2017-08-13-MCU/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">漫威电影宇宙合集 更新到《蜘蛛侠：返校季》</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -428,7 +431,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">and</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">in</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">or</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">大于小于</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">like</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">and</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">in</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">or</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">大于小于</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">like</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">7.</span> <span class="toc-text">JSON 相关</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -577,6 +580,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
@@ -585,19 +596,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">

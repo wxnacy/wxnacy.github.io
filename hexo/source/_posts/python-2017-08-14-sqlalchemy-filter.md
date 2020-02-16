@@ -7,11 +7,14 @@ tags: [python]
 <!-- toc -->
 
 ## and
+
 filter 与 filter_by 语法稍有不同
+
 ```python
 User.query.filter_by(id=1,name='win').first()
 User.query.filter(User.id==1,User.name == 'win').first()
 ```
+
 ## in
 ```python
 sql = User.query.filter(User.id.in_([1,2]))
@@ -47,4 +50,19 @@ User.query.filter(User.age >= 12,User.age < 23).all()
 User.query.filter(User.name.like('%win%')).all()
 ```
 
+## JSON 相关
+
+```python
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+# Author: wxnacy(wxnacy@gmail.com)
+
+# select * from user where json_field -> '$.id' = 1;
+User.query.filter(User.json_field['id'] == 1).all()
+
+# select * from user where array_field -> '$[0]' = 1;
+User.query.filter(User.array_field[0] == 1).all()
+
+User.query.filter(User.array_field[].contains([1])).all()
+```
 

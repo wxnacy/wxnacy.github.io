@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="adb 是 Android 的远程调试命令，在 Android 打开 USB 调试模式或直接打开 ADB 功能，就可以用 shell 命令来控制系统。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2019-03-12T03:04:51.242Z">
+<meta property="og:updated_time" content="2020-01-21T10:09:52.999Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 远程调试命令 adb">
 <meta name="twitter:description" content="adb 是 Android 的远程调试命令，在 Android 打开 USB 调试模式或直接打开 ADB 功能，就可以用 shell 命令来控制系统。">
@@ -276,8 +276,10 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell pm clear com.test.abc</span><br></pre></td></tr></table></figure>
 <h2><span id="jin-cheng-guan-li">进程管理</span><a href="#jin-cheng-guan-li" class="header-anchor"></a></h2><p><strong>启动应用</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell 进入 Android</span><br><span class="line">$ am start -n &lt;package-name&gt;/&lt;package-name&gt;.&lt;activity-name&gt;</span><br></pre></td></tr></table></figure>
+<p>或者直接运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell am start -n &lt;package-name&gt;/&lt;package-name&gt;.&lt;activity-name&gt;</span><br></pre></td></tr></table></figure>
 <p>一些系统应用打开方式</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 日历</span></span><br><span class="line">$ am start -n com.android.calendar/com.android.calendar.LaunchActivity</span><br><span class="line"><span class="comment"># 闹钟</span></span><br><span class="line">$ am start -n com.android.alarmclock/com.android.alarmclock.AlarmClock</span><br><span class="line"><span class="comment"># 音乐和视频</span></span><br><span class="line">$ am start -n com.android.music/com.android.music.MusicBrowserActivity</span><br><span class="line">$ am start -n com.android.music/com.android.music.VideoBrowserActivity</span><br><span class="line">$ am start -n com.android.music/com.android.music.MediaPlaybackActivity</span><br><span class="line"><span class="comment"># 照相机</span></span><br><span class="line">$ am start -n com.android.camera/com.android.camera.Camera</span><br><span class="line"><span class="comment"># 浏览器</span></span><br><span class="line">$ am start -n com.android.browser/com.android.browser.BrowserActivity</span><br><span class="line"><span class="comment"># 打开网址</span></span><br><span class="line">$ am start -a android.intent.action.VIEW -d  http://www.google.cn/</span><br><span class="line"><span class="comment"># 拨打电话</span></span><br><span class="line">$ am start -a android.intent.action.CALL -d tel:10086</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置</span></span><br><span class="line">$ am start -n com.android.settings/com.android.settings.Settings</span><br><span class="line"><span class="comment"># 日历</span></span><br><span class="line">$ am start -n com.android.calendar/com.android.calendar.LaunchActivity</span><br><span class="line"><span class="comment"># 闹钟</span></span><br><span class="line">$ am start -n com.android.alarmclock/com.android.alarmclock.AlarmClock</span><br><span class="line"><span class="comment"># 音乐和视频</span></span><br><span class="line">$ am start -n com.android.music/com.android.music.MusicBrowserActivity</span><br><span class="line">$ am start -n com.android.music/com.android.music.VideoBrowserActivity</span><br><span class="line">$ am start -n com.android.music/com.android.music.MediaPlaybackActivity</span><br><span class="line"><span class="comment"># 照相机</span></span><br><span class="line">$ am start -n com.android.camera/com.android.camera.Camera</span><br><span class="line"><span class="comment"># 浏览器</span></span><br><span class="line">$ am start -n com.android.browser/com.android.browser.BrowserActivity</span><br><span class="line"><span class="comment"># 打开网址</span></span><br><span class="line">$ am start -a android.intent.action.VIEW -d  http://www.google.cn/</span><br><span class="line"><span class="comment"># 拨打电话</span></span><br><span class="line">$ am start -a android.intent.action.CALL -d tel:10086</span><br></pre></td></tr></table></figure>
 <p>这里有个问题，我们可以通过 <code>pm</code> 命令查到 apk 的包名，但是 <code>activity</code> 就不方便知道了，我们希望只通过包名就能启动应用，从网上查到这个方法</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ am start -a android.intent.action.MAIN -n &lt;package-name&gt;</span><br></pre></td></tr></table></figure>
 <p>但是这种方式，我在模拟器中只可以打开系统应用，第三方应用会报错，再次查找发现可以使用 <code>monkey</code> 命令来启动应用</p>
@@ -307,6 +309,18 @@
             <div>最近更新</div>
             
             <div class="reward-box-item">
+                <a href="/2020/01/09/shell-file-size/">Shell 获取单个文件大小的几种方式</a>
+            </div>
+            
+            <div class="reward-box-item">
+                <a href="/2020/01/08/mysql-group-last-row/">Mysql 分组查找最后一条记录</a>
+            </div>
+            
+            <div class="reward-box-item">
+                <a href="/2020/01/07/shell-string-length/">Shell 获取字符串长度的几种方式</a>
+            </div>
+            
+            <div class="reward-box-item">
                 <a href="/2019/12/26/docker-log-too-big/">解决 Docker 日志文件太大的问题</a>
             </div>
             
@@ -332,18 +346,6 @@
             
             <div class="reward-box-item">
                 <a href="/2019/10/17/nginx-the-ssl-depreated/">Nginx 报警告 the &#34;ssl&#34; directive is deprecated</a>
-            </div>
-            
-            <div class="reward-box-item">
-                <a href="/2019/09/22/world-currency/">世界货币查询文档</a>
-            </div>
-            
-            <div class="reward-box-item">
-                <a href="/2019/09/19/youtube-block-region/">获取 youtube 视频屏蔽地区</a>
-            </div>
-            
-            <div class="reward-box-item">
-                <a href="/2019/09/18/wx-upload-media/">使用 Python 新建微信公众号临时素材</a>
             </div>
             
       </div>
@@ -635,6 +637,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
@@ -643,19 +653,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
