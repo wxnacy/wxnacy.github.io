@@ -290,28 +290,132 @@
 
 
   
-    <article id="post-python-2017-08-22-get-image-size" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-linux-2017-08-23-ssh" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/22/python-2017-08-22-get-image-size/">Python 获取本地或网络图片的宽高</a>
+      <a class="article-title" href="/2017/08/23/linux-2017-08-23-ssh/">Linux SSH 登陆远程服务器和无密码操作</a>
     </h1>
   
 
         
-        <a href="/2017/08/22/python-2017-08-22-get-image-size/" class="archive-article-date">
-  	<time datetime="2017-08-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
+        <a href="/2017/08/23/linux-2017-08-23-ssh/" class="archive-article-date">
+  	<time datetime="2017-08-22T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2><span id="ben-di">本地</span><a href="#ben-di" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line">fp = <span class="string">'/Users/wxnacy/Documents/WX20170412-190958@2x.png'</span></span><br><span class="line">i = Image.open(fp)</span><br><span class="line">print(i.size) <span class="comment"># 获取宽高 (w,h)</span></span><br><span class="line">print(i.format) <span class="comment"># 获取图片格式</span></span><br></pre></td></tr></table></figure>
-<h2><span id="wang-luo-tu-pian">网络图片</span><a href="#wang-luo-tu-pian" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> io</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">''</span></span><br><span class="line">i = Image.open(io.BytesIO(requests.get(url).content))</span><br><span class="line">print(i.size) <span class="comment"># 获取宽高 (w,h)</span></span><br><span class="line">print(i.format) <span class="comment"># 获取图片格式</span></span><br></pre></td></tr></table></figure>
+        <div class="tocStart"></div>
+
+<!-- toc -->
+<ul>
+<li><a href="#shi-yong">使用</a></li>
+<li><a href="#sshd-fu-wu-qi-xi-bu-she-ding">sshd 服务器细部设定</a></li>
+<li><a href="#zhi-zuo-bu-yong-mi-ma-ke-li-ji-deng-ru-de-ssh-yong-hu">制作不用密码可立即登入的 ssh 用户</a><ul>
+<li><a href="#1-ke-hu-duan-jian-li-liang-ba-yao-chi">1. 客户端建立两把钥匙</a></li>
+<li><a href="#2-jiang-gong-yao-dang-an-shu-ju-shang-chuan-dao-fu-wu-qi-shang">2. 将公钥档案数据上传到服务器上</a></li>
+<li><a href="#3-jiang-gong-yao-fang-zhi-fu-wu-qi-duan-de-zheng-que-mu-lu-yu-wen-jian-ming">3. 将公钥放置服务器端的正确目录与文件名</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<p><div class="tocEnd"></div><br>
+        
+          <a class="article-more-a" href="/2017/08/23/linux-2017-08-23-ssh/#more">阅读全文 >></a>
+        
+      
+
+      
+      
+
+      
+      
+
+
+      
+
+      
+    </p></div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ssh</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/23/linux-2017-08-23-ssh/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-python-2017-08-23-scrapy-basic" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/23/python-2017-08-23-scrapy-basic/">Python Scrapy 入门教程</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/23/python-2017-08-23-scrapy-basic/" class="archive-article-date">
+  	<time datetime="2017-08-22T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2><span id="an-zhuang">安装</span><a href="#an-zhuang" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install Scrapy</span><br></pre></td></tr></table></figure>
+<h2><span id="chuang-jian-xiang-mu">创建项目</span><a href="#chuang-jian-xiang-mu" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ scrapy startproject crawler</span><br><span class="line"></span><br><span class="line">New Scrapy project <span class="string">'crawler'</span>, using template directory <span class="string">'/Users/wxnacy/.pyenv/versions/3.5.0/envs/env_lightcircle/lib/python3.5/site-packages/scrapy/templates/project'</span>, created <span class="keyword">in</span>:</span><br><span class="line">    /Users/wxnacy/WebstormProjects/wxnacy.github.io/crawler</span><br><span class="line"></span><br><span class="line">You can start your first spider with:</span><br><span class="line">    <span class="built_in">cd</span> crawler</span><br><span class="line">    scrapy genspider example example.com</span><br></pre></td></tr></table></figure>
+<p>通过提示我们可以通过如下命令创建第一个spider<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> crawler</span><br><span class="line">$ scrapy genspider youtube youtube.com</span><br><span class="line"></span><br><span class="line">Created spider <span class="string">'youtube'</span> using template <span class="string">'basic'</span> <span class="keyword">in</span> module:</span><br><span class="line">  crawler.spiders.youtube</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -344,7 +448,183 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/22/python-2017-08-22-get-image-size/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/23/python-2017-08-23-scrapy-basic/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-vim-2017-08-23-basic-cmd" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/23/vim-2017-08-23-basic-cmd/">Vim 基础命令</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/23/vim-2017-08-23-basic-cmd/" class="archive-article-date">
+  	<time datetime="2017-08-22T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="/vim">专辑：Vim 练级手册</a></p>
+<p>开始之前我们先来谈谈为什么用 Vim， 网上有很多探讨 Vim 哲学的文章，在我看来 Vim 是这样的一款编辑器。它可以很简单，简单到除了你正在编辑的文字，其余什么都没有。它也可以很复杂，复杂到可以囊括所有 IDE 可以有的功能。它可以很简单，简单到只需要几个输入几个字符，就可以完成其他 IDE 几分钟的工作量。它也可以很复杂，复杂到你连退出就不会。它是一个很神奇的编辑器，它可以无所不能，也可以化繁为简。它可以变成任何你想要的样子，问题只有一个，你是不是准备好开始接受它了。上车吧，我们要出发了</p>
+        
+          <a class="article-more-a" href="/2017/08/23/vim-2017-08-23-basic-cmd/#more">阅读全文 >></a>
+        
+      
+
+      
+      
+
+      
+      
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vim</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/23/vim-2017-08-23-basic-cmd/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-linux-2017-08-22-centos-start-stop-restart-sshd" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/">Linux CentOS 各个版本启动SSHD服务命令</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/" class="archive-article-date">
+  	<time datetime="2017-08-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>本篇介绍如何在 CentOS 系统中怎样启动sshd服务，如何开机自启</p>
+</blockquote>
+<h2><span id="ming-ling-gai-kuang">命令概况</span><a href="#ming-ling-gai-kuang" class="header-anchor"></a></h2><p>CentOS &lt; 7.x<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service <span class="built_in">command</span>     <span class="comment"># 使用service命令做start|stop|restart sshd</span></span><br><span class="line">chkconfig <span class="built_in">command</span>   <span class="comment"># turn on or off 机器自启sshd</span></span><br></pre></td></tr></table></figure></p>
+<p>CentOS &gt;= 7.x<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">command</span> <span class="comment"># 管理 start|stop|start 自启sshd</span></span><br></pre></td></tr></table></figure></p>
+<h2><span id="centos-lt-7-x">CentOS &lt; 7.x</span><a href="#centos-lt-7-x" class="header-anchor"></a></h2><h3><span id="chkconfig">chkconfig</span><a href="#chkconfig" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ chkconfig sshd on     <span class="comment"># 开机自启sshd</span></span><br><span class="line">$ chkconfig sshd off    <span class="comment"># 开机关闭自启sshd</span></span><br><span class="line">$ chkconfig --list sshd <span class="comment"># 查看每个运行级别类型中服务的当前状态</span></span><br></pre></td></tr></table></figure>
+<h3><span id="service">service</span><a href="#service" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ service sshd start | stop | restart</span><br><span class="line">or</span><br><span class="line">$ /etc/init.d/sshd start | stop | restart</span><br></pre></td></tr></table></figure>
+<h2><span id="centos-gt-7-x">CentOS &gt;= 7.x</span><a href="#centos-gt-7-x" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl <span class="built_in">enable</span> sshd.service     <span class="comment"># 开机自启sshd</span></span><br><span class="line">$ systemctl <span class="built_in">disable</span> sshd.service    <span class="comment"># 开机关闭自启sshd</span></span><br><span class="line">$ systemctl start sshd.service      <span class="comment"># 启动sshd</span></span><br><span class="line">$ systemctl restart sshd.service    <span class="comment"># 重启</span></span><br><span class="line">$ systemctl stop sshd.service       <span class="comment"># 停止</span></span><br><span class="line">$ systemctl reload sshd.service     <span class="comment"># 重新加载</span></span><br><span class="line">$ systemctl status sshd.service     <span class="comment"># 查看启动状态</span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+      
+
+      
+      
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/">展开全文 >></a>
         </p>
       
 
@@ -461,19 +741,19 @@
 
 
   
-    <article id="post-linux-2017-08-22-centos-start-stop-restart-sshd" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-python-2017-08-22-get-image-size" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/">Linux CentOS 各个版本启动SSHD服务命令</a>
+      <a class="article-title" href="/2017/08/22/python-2017-08-22-get-image-size/">Python 获取本地或网络图片的宽高</a>
     </h1>
   
 
         
-        <a href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/" class="archive-article-date">
+        <a href="/2017/08/22/python-2017-08-22-get-image-size/" class="archive-article-date">
   	<time datetime="2017-08-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-22</time>
 </a>
         
@@ -481,14 +761,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>本篇介绍如何在 CentOS 系统中怎样启动sshd服务，如何开机自启</p>
-</blockquote>
-<h2><span id="ming-ling-gai-kuang">命令概况</span><a href="#ming-ling-gai-kuang" class="header-anchor"></a></h2><p>CentOS &lt; 7.x<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service <span class="built_in">command</span>     <span class="comment"># 使用service命令做start|stop|restart sshd</span></span><br><span class="line">chkconfig <span class="built_in">command</span>   <span class="comment"># turn on or off 机器自启sshd</span></span><br></pre></td></tr></table></figure></p>
-<p>CentOS &gt;= 7.x<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">command</span> <span class="comment"># 管理 start|stop|start 自启sshd</span></span><br></pre></td></tr></table></figure></p>
-<h2><span id="centos-lt-7-x">CentOS &lt; 7.x</span><a href="#centos-lt-7-x" class="header-anchor"></a></h2><h3><span id="chkconfig">chkconfig</span><a href="#chkconfig" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ chkconfig sshd on     <span class="comment"># 开机自启sshd</span></span><br><span class="line">$ chkconfig sshd off    <span class="comment"># 开机关闭自启sshd</span></span><br><span class="line">$ chkconfig --list sshd <span class="comment"># 查看每个运行级别类型中服务的当前状态</span></span><br></pre></td></tr></table></figure>
-<h3><span id="service">service</span><a href="#service" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ service sshd start | stop | restart</span><br><span class="line">or</span><br><span class="line">$ /etc/init.d/sshd start | stop | restart</span><br></pre></td></tr></table></figure>
-<h2><span id="centos-gt-7-x">CentOS &gt;= 7.x</span><a href="#centos-gt-7-x" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl <span class="built_in">enable</span> sshd.service     <span class="comment"># 开机自启sshd</span></span><br><span class="line">$ systemctl <span class="built_in">disable</span> sshd.service    <span class="comment"># 开机关闭自启sshd</span></span><br><span class="line">$ systemctl start sshd.service      <span class="comment"># 启动sshd</span></span><br><span class="line">$ systemctl restart sshd.service    <span class="comment"># 重启</span></span><br><span class="line">$ systemctl stop sshd.service       <span class="comment"># 停止</span></span><br><span class="line">$ systemctl reload sshd.service     <span class="comment"># 重新加载</span></span><br><span class="line">$ systemctl status sshd.service     <span class="comment"># 查看启动状态</span></span><br></pre></td></tr></table></figure>
+        <h2><span id="ben-di">本地</span><a href="#ben-di" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line">fp = <span class="string">'/Users/wxnacy/Documents/WX20170412-190958@2x.png'</span></span><br><span class="line">i = Image.open(fp)</span><br><span class="line">print(i.size) <span class="comment"># 获取宽高 (w,h)</span></span><br><span class="line">print(i.format) <span class="comment"># 获取图片格式</span></span><br></pre></td></tr></table></figure>
+<h2><span id="wang-luo-tu-pian">网络图片</span><a href="#wang-luo-tu-pian" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> io</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">''</span></span><br><span class="line">i = Image.open(io.BytesIO(requests.get(url).content))</span><br><span class="line">print(i.size) <span class="comment"># 获取宽高 (w,h)</span></span><br><span class="line">print(i.format) <span class="comment"># 获取图片格式</span></span><br></pre></td></tr></table></figure>
 
       
 
@@ -511,7 +785,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		
 		</ul>
@@ -521,7 +795,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/22/linux-2017-08-22-centos-start-stop-restart-sshd/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/08/22/python-2017-08-22-get-image-size/">展开全文 >></a>
         </p>
       
 
@@ -810,307 +1084,6 @@
 
 
   
-    <article id="post-shell-2017-08-16-zsh-install" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/16/shell-2017-08-16-zsh-install/">Zsh 与 oh-my-zsh 安装与使用</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/16/shell-2017-08-16-zsh-install/" class="archive-article-date">
-  	<time datetime="2017-08-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>经常操作 Unix 系统有一款好的 Shell 工具是必备的，程序员刚开始接触的都是 Bash<br>随着时代的进步，有越来越多的更好更方便的 Shell 工具可用，下面我们来介绍里面的<br>翘楚 <strong><em>Zsh</em></strong></p>
-<div class="toc">
-
-<!-- toc -->
-<ul>
-<li><a href="#an-zhuang-zsh">安装 Zsh</a><ul>
-<li><a href="#centos">CentOS</a></li>
-<li><a href="#ubuntu">Ubuntu</a></li>
-<li><a href="#mac">Mac</a></li>
-</ul>
-</li>
-<li><a href="#an-zhuang-oh-my-zsh">安装 oh-my-zsh</a></li>
-<li><a href="#pi-fu">皮肤</a></li>
-</ul>
-<!-- tocstop -->
-</div>
-
-<h2><span id="an-zhuang-zsh">安装 Zsh</span><a href="#an-zhuang-zsh" class="header-anchor"></a></h2><h3><span id="centos">CentOS</span><a href="#centos" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum -y install zsh</span><br></pre></td></tr></table></figure>
-<h3><span id="ubuntu">Ubuntu</span><a href="#ubuntu" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-get -y install zsh</span><br></pre></td></tr></table></figure>
-<h3><span id="mac">Mac</span><a href="#mac" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install zsh</span><br></pre></td></tr></table></figure>
-<p>安装完毕我们就可以通过输入 <code>zsh</code> 进入 Zsh 命令行，如果想系统默认使用 Zsh 则可以<br>修改配置文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ chsh -s /bin/zsh <span class="comment"># 将默认shell改为zsh</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$SHELL</span> <span class="comment"># 查看是否生效</span></span><br></pre></td></tr></table></figure></p>
-<p>但是在 Mac 系统中这样会失败，因为 Zsh 的默认位置不在 <code>/bin/zsh</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">which</span> zsh</span><br><span class="line">/usr/<span class="built_in">local</span>/bin/zsh</span><br></pre></td></tr></table></figure></p>
-<p>通过如上命令可以发现，brew 将 Zsh 安装到到 <code>/usr/local/bin/zsh</code><br>我们需要修改 Shell 配置，<code>sudo vim /etc/shells</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># List of acceptable shells for chpass(1).</span></span><br><span class="line">  2 <span class="comment"># Ftpd will not allow users to connect who are not using</span></span><br><span class="line">  3 <span class="comment"># one of these shells.</span></span><br><span class="line">  4</span><br><span class="line">  5 /bin/bash</span><br><span class="line">  6 /bin/csh</span><br><span class="line">  7 /bin/ksh</span><br><span class="line">  8 /bin/sh</span><br><span class="line">  9 /bin/tcsh</span><br><span class="line">-10 /bin/zsh</span><br><span class="line">+10 /usr/<span class="built_in">local</span>/bin/zsh</span><br></pre></td></tr></table></figure></p>
-<p>我们将新的 Zsh 位置替换掉以前的，关闭文件，再次执行开始的命令即可</p>
-<h2><span id="an-zhuang-oh-my-zsh">安装 oh-my-zsh</span><a href="#an-zhuang-oh-my-zsh" class="header-anchor"></a></h2><p>想要更好的使用 Zsh 我们还需要安装一个配置管理工具 <a href="http://ohmyz.sh/" target="_blank" rel="noopener">oh-my-zsh</a><br>curl<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sh -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span></span><br></pre></td></tr></table></figure></p>
-<p>wget<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sh -c <span class="string">"<span class="variable">$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)</span>"</span></span><br></pre></td></tr></table></figure></p>
-<p>最后修改配置兼容 bash_profile 的环境变量 <code>vim ~/.zshrc</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="built_in">source</span> ~/.bash_profile</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
-<h2><span id="pi-fu">皮肤</span><a href="#pi-fu" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">修改配置文件 `vim ~/.zshrc`</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">ZSH_THEME=<span class="string">"fishy"</span>       <span class="comment"># 修改此处可以更改zsh使用皮肤</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<p><a href="https://github.com/robbyrussell/oh-my-zsh/wiki/themes" target="_blank" rel="noopener">更多皮肤</a></p>
-<p>Zsh 可以支持一些第三方应用命令的快速输入或简写，比如 <code>gst</code> 直接对应 <code>git status</code><br><code>gd</code> 对应 <code>git diff</code>，这样在开发或维护服务都很有效率，不过想要生效还需要配置一下<br><code>vim ~/.zshrc</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">plugins=(git)</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
-
-      
-
-      
-      
-
-      
-      
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">mac</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/16/shell-2017-08-16-zsh-install/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-openresty-2017-08-16-install" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/16/openresty-2017-08-16-install/">openresty 安装</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/16/openresty-2017-08-16-install/" class="archive-article-date">
-  	<time datetime="2017-08-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>专辑:<a href="/openresty/2017/08/16/album-study-notes">openresty 学习笔记</a></p>
-<h2><span id="mac-os">Mac OS</span><a href="#mac-os" class="header-anchor"></a></h2><p>推荐使用<code>brew</code>安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">brew install homebrew/nginx/openresty</span><br><span class="line">brew update</span><br><span class="line">brew install pcre openssl</span><br></pre></td></tr></table></figure></p>
-<h2><span id="centos">CentOS</span><a href="#centos" class="header-anchor"></a></h2><p>你可以在你的 CentOS 系统中添加 openresty 仓库，这样就可以便于未来安装或更新我们的软件包（通过 yum update 命令）。运行下面的命令就可以添加我们的仓库：</p>
-<pre><code>sudo yum install yum-utils
-sudo yum-config-manager --add-repo https://openresty.org/package/centos/openresty.repo
-</code></pre><p>然后就可以像下面这样安装软件包，比如 openresty：</p>
-<pre><code>sudo yum install openresty
-</code></pre><p>如果你想安装命令行工具 resty，那么可以像下面这样安装 openresty-resty 包：</p>
-<pre><code>sudo yum install openresty-resty
-</code></pre><p>命令行工具 opm 在 openresty-opm 包里，而 restydoc 工具在 openresty-doc 包里头。</p>
-<p>列出所有 openresty 仓库里头的软件包：</p>
-<pre><code>sudo yum --disablerepo=&quot;*&quot; --enablerepo=&quot;openresty&quot; list available
-</code></pre>
-      
-
-      
-      
-
-      
-      
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">openresty</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/16/openresty-2017-08-16-install/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-linux-2017-08-16-curl" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/16/linux-2017-08-16-curl/">网络请求工具 cURL</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/16/linux-2017-08-16-curl/" class="archive-article-date">
-  	<time datetime="2017-08-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>cRUL 是一种命令行工具，作用是发出网络请求，然后得到和提取数据，显示在 “标准输出”（stdout）上面。</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2017/08/16/linux-2017-08-16-curl/#more">阅读全文 >></a>
-        
-      
-
-      
-      
-
-      
-      
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/16/linux-2017-08-16-curl/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/54/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/53/">53</a><a class="page-number" href="/page/54/">54</a><span class="page-number current">55</span><a class="page-number" href="/page/56/">56</a><a class="page-number" href="/page/57/">57</a><span class="space">&hellip;</span><a class="page-number" href="/page/59/">59</a><a class="extend next" rel="next" href="/page/56/">Next &raquo;</a>
@@ -1317,19 +1290,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">开发</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1469,11 +1442,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">

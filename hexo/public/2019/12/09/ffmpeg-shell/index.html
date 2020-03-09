@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="记录 FFmpeg 的一些命令">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2019-12-26T07:35:58.746Z">
+<meta property="og:updated_time" content="2020-02-22T08:29:33.868Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FFmpeg 常用的命令">
 <meta name="twitter:description" content="记录 FFmpeg 的一些命令">
@@ -230,10 +230,26 @@
 
 <p><strong>m3u8 格式文件转为 mp4</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -i <span class="string">"https://xxxx.com/20191005/WofkPuP1/1200kb/hls/index.m3u8"</span> -bsf:a aac_adtstoasc -vcodec copy -c copy -crf 50 target.mp4</span><br></pre></td></tr></table></figure>
+<p><strong>mkv 格式转为 mp4</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -i input.mkv -c copy -strict -2 output.mp4</span><br></pre></td></tr></table></figure>
 <p><strong>分割视频</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -ss 开始时间（可选）</span></span><br><span class="line"><span class="comment"># -t 结束时间（可选）</span></span><br><span class="line"><span class="comment"># source.mp4 视频源</span></span><br><span class="line"><span class="comment"># target.mp4 目标名称</span></span><br><span class="line">$ ffmpeg -ss 00:12:00 -t 00:56:00 -i source.mp4 -vcodec copy -acodec copy target.mp4</span><br></pre></td></tr></table></figure>
 <p><strong>将字幕文件烧进视频文件中</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -i source.mkv -vf subtitles=source.srt output.mkv</span><br></pre></td></tr></table></figure>
+<p><strong>将多个视频无损的合并为一个</strong></p>
+<p>首先在视频目录下准备一个文件 <code>filename.txt</code> 内容为 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">file 05-wodedipan.mkv</span><br><span class="line">file 05-yuanyouhui.mkv</span><br><span class="line">file 05-luanwuchunqiu.mkv</span><br><span class="line">file 06-langmanshouji.mkv</span><br><span class="line">file 06-lansefengbao.mkv</span><br><span class="line">file 06-piaoyi.mkv</span><br><span class="line">file 02-duibuqi.mkv</span><br><span class="line">file 03-anhao.mkv</span><br></pre></td></tr></table></figure>
+<p>然后执行命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -f concat -i filelist.txt -c copy output.mkv</span><br></pre></td></tr></table></figure>
+<p><strong><em>注意 filename.txt 中的文件名不能有中文</em></strong></p>
+<p><code>filename.txt</code> 可以使用命令行来直接生成，先把视频都放在同一文件夹下然后执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ll | awk <span class="string">'&#123;print "file" $9&#125;'</span> &gt; filelist.txt</span><br></pre></td></tr></table></figure>
+<p>一般文件名我们都习惯取中文名，这里改成英文名也可以借助程序来批量修改。</p>
+<p>这里需要用到 <code>Python</code> 来写一个脚本</p>
+<p>首先下载依赖包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install pypinyin</span><br></pre></td></tr></table></figure>
+<p>然后在视频目录下运行该文件即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pypinyin <span class="keyword">import</span> lazy_pinyin</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hans2py</span><span class="params">(hans)</span>:</span></span><br><span class="line">    <span class="string">'''汉字转拼音'''</span></span><br><span class="line">    hans = hans.lower()</span><br><span class="line">    hans = hans.split()</span><br><span class="line">    all_words = lazy_pinyin(hans)</span><br><span class="line">    <span class="keyword">return</span> all_words</span><br><span class="line"></span><br><span class="line">dirs = os.listdir()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> d <span class="keyword">in</span> dirs:</span><br><span class="line">    pin = hans2py(d)</span><br><span class="line">    os.rename(d, <span class="string">''</span>.join(pin))</span><br></pre></td></tr></table></figure>
 
       
 
@@ -643,19 +659,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">开发</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -795,11 +811,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
