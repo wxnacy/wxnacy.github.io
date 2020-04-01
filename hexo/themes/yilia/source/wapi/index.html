@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Wapi | wxnacy 工具</title>
+
+    <meta name="description" content="在线编辑 html js css">
+    <meta name="keywords" content="在线编辑 html js css">
+    <meta property="og:type" content="tool">
+    <meta property="og:title" content="在线编辑 | wxnacy 博客">
+    <meta property="og:url" content="http://wxnacy.com/run.html">
+    <meta property="og:site_name" content="wxnacy 博客">
+    <meta property="og:description" content="在线编辑 html js css">
+    <meta property="og:locale" content="zh-cn">
+    <meta property="og:updated_time" content="2018-03-29T21:27:18.000Z">
+    <meta name="twitter:title" content="在线编辑 | wxnacy 博客">
+    <meta name="twitter:description" content="在线编辑 html js css">
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/signin.css">
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <link rel="import" href="/tools/nav.html">
+    <style>
+textarea {
+  width: 100%
+}
+    </style>
+  </head>
+  <body>
+    <div id="nav"></div>
+
+    <!-- Modal -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <button type="button" class="btn btn-primary" id="run">运行</button>
+          <button type="button" class="btn btn-primary" id="save">保存</button>
+          <a class="btn btn-success" id="new" >新建</a>
+          <button type="button" class="btn btn-primary" id="download">下载</button>
+          <button type="button" class="btn btn-primary" id="fmt">格式化</button>
+        </div>
+        <div class="col">
+          <div class="input-group">
+            <select class="custom-select" id="method">
+              <option selected value="GET">GET</option>
+              <option value="POST">POST</option>
+              <option value="PUT">PUT</option>
+              <option value="DELETE">DELETE</option>
+            </select>
+            <input type="text" id="url" style="width: 450px" value="/api/v1/wapi/test?domain=wxnacy.com">
+
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" id="send" type="button">发送</button>
+              <button class="btn btn-outline-secondary" type="button">Button</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="layui-tab layui-tab-card">
+            <ul class="layui-tab-title">
+              <li class="layui-this" >参数</li>
+            </ul>
+            <div class="layui-tab-content" style="height: 260px">
+              <div class="layui-tab-item layui-show">
+                <textarea class="form-control" data-editor="json" data-gutter="1"  id="params" rows="10">{"name": "wxnacy"}</textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="layui-tab layui-tab-card">
+            <ul class="layui-tab-title">
+              <li class="layui-this" >头信息</li>
+            </ul>
+            <div class="layui-tab-content" style="height: 260px">
+              <div class="layui-tab-item layui-show">
+                <textarea class="form-control" data-editor="json" data-gutter="1"  id="headers" rows="10">{"Content-Type": "application/json"}</textarea>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="col">
+          <!-- <div style="height: 610px" class="card card-body"> -->
+            <div class="layui-tab layui-tab-card" lay-filter="result-filter">
+              <ul class="layui-tab-title">
+                <li class="layui-this" id="result-nav" >结果</li>
+                <li id="result-headers-nav">头信息</li>
+              </ul>
+              <div class="layui-tab-content" style="height: 620px">
+                <div class="layui-tab-item layui-show">
+                  <textarea class="form-control" data-editor="json" data-gutter="1"  id="result" cols="30" rows="25"></textarea>
+                </div>
+                <div class="layui-tab-item ">
+                  <textarea class="form-control" data-editor="json" data-gutter="1"  id="resultHeaders" cols="30" rows="25"></textarea>
+                </div>
+              </div>
+            </div>
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+  </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/json5/0.5.1/json5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.5/require.min.js" ></script>
+  <!-- <script src="/js/require.js" ></script> -->
+  <!-- <script src="/js/ace/ace.js" ></script> -->
+  <script src="/layui/layui.js" ></script>
+  <script src="/js/ext-beautify.js" ></script>
+  <script src="/js/wxnacy.min.js" ></script>
+  <script src="/js/web-tools.js" ></script>
+  <script src="/js/tools-common.js" ></script>
+  <script src="/js/tools-wapi.js" ></script>
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" ></script>
+  <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</html>

@@ -1,0 +1,49 @@
+<template>
+
+  <link rel="stylesheet" href="/css/pricing.css">
+  <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+    <h5 class="my-0 mr-md-auto font-weight-normal">wxnacy 工具</h5>
+    <nav class="my-2 my-md-0 mr-md-3">
+      <a class="p-2 text-dark" href="/run/" target="_blank">在线 HTML</a>
+      <a class="p-2 text-dark" href="/" target="_blank">博客</a>
+    </nav>
+    <nav class="my-2 my-md-0 mr-md-3">
+      <a class="btn btn-outline-primary no-login" data-toggle="modal" data-target="#loginModel" href="#">登录</a>
+      <span id="userName" class="is-login"></span>
+      <a id="logoutBtn" class="btn btn-outline-primary d-none is-login" href="#" >登出</a>
+    </nav>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="loginModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginTitle">登陆</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="form-signin" >
+            <input type="email" id="login-email" class="form-control" placeholder="邮箱" required autofocus>
+            <input type="password" id="login-password" class="form-control" placeholder="密码" required>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="loginBtn">登录</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- alert -->
+<!-- <div class="alert alert-warning fade hide"> -->
+  <!-- <a href="#" class="close" data-dismiss="alert"> -->
+    <!-- &times; -->
+  <!-- </a> -->
+  <!-- <strong>警告！</strong>您的网络连接有问题。 -->
+<!-- </div> -->
+  <script async type="text/javascript" src='/js/tools-login.js'></script>
+</template>
