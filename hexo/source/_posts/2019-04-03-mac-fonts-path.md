@@ -18,7 +18,7 @@ $ open /System/Library/Fonts
 
 打开后是这样的
 
-![mac1](https://wxnacy-img.oss-cn-beijing.aliyuncs.com/blog/mac-font3_770.png)
+![mac1](https://s1.ax1x.com/2020/05/17/Y2na3q.jpg)
 
 文件名全部都是英文的，如果你对字体不熟悉，那要寻找中文字体几乎是不可能的。
 
@@ -32,5 +32,6 @@ $ open /System/Library/Fonts
 
 随后直接可以在 `Finder` 中定位该字体。
 
-![mac4](https://wxnacy-img.oss-cn-beijing.aliyuncs.com/blog/mac-font3_770.png)
+![mac4](https://s1.ax1x.com/2020/05/17/Y2na3q.jpg)
+<!-- ![mac4](https://wxnacy-img.oss-cn-beijing.aliyuncs.com/blog/mac-font3_770.png) -->
 
