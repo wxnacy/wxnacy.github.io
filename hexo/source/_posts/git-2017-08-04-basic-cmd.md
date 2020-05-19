@@ -81,6 +81,7 @@ git reset –soft HEAD~3              # 向前回退到第3个版本
 git reset –hard origin/master       # 将本地的状态回退到和远程的一样
 git reset 057d                      # 回退到某个版本
 git revert HEAD                     # 回退到上一次提交的状态，按照某一次的commit完全反向的进行一次commit.(代码回滚到上个版本，并提交git)
+git merge --abort                   # 撤销所有合并操作
 ```
 或者
 ```bash
@@ -97,8 +98,10 @@ git remote set-url origin ${new_repository_path}
 ```bash
 git checkout -b ${new_branch} master    # 从master创建新分支
 git checkout ${branch_name}             # 定位分支
+git checkout -b {local-branch-name} origin/{remote-branch-name} # 从远程分支创建新分支
 git merge --no-off ${branch_name}       # 将其他分支合并到master
 git rebase origin master # master分支合并到当前分支
+git pull origin {branch-name}           # 拉取远程分支
 ```
 
 ## 标签

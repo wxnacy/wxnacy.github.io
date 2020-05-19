@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="温欣爸比的博客">
 <meta property="og:description" content="有这些命令就够了">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2019-01-19T05:30:00.567Z">
+<meta property="og:updated_time" content="2020-05-17T08:15:49.643Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git 常用命令">
 <meta name="twitter:description" content="有这些命令就够了">
@@ -262,10 +262,10 @@
 <h2><span id="yong-hu-xin-xi">用户信息</span><a href="#yong-hu-xin-xi" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name wxnacy            <span class="comment"># 配置用户名</span></span><br><span class="line">git config --global user.email xxx@qq.com       <span class="comment"># 配置邮件</span></span><br><span class="line"></span><br><span class="line">$ git config user.name      <span class="comment"># 查看登录名</span></span><br><span class="line">$ git config user.email     <span class="comment"># 查看登录邮箱</span></span><br></pre></td></tr></table></figure>
 <h2><span id="ji-zhu-mi-ma">记住密码</span><a href="#ji-zhu-mi-ma" class="header-anchor"></a></h2><p>在服务器上 <code>clone</code> 代码第一次通常会提示输入密码，为了下次不再提示，可以在 <code>clone</code> 后做如下操作<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config credential.helper store</span><br></pre></td></tr></table></figure></p>
 <h2><span id="che-xiao-cao-zuo">撤销操作</span><a href="#che-xiao-cao-zuo" class="header-anchor"></a></h2><h3><span id="chong-xin-ti-jiao">重新提交</span><a href="#chong-xin-ti-jiao" class="header-anchor"></a></h3><p>提交后如果发现遗漏可以使用 <code>git commit --amend</code> 重新提交<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">'initial commit'</span></span><br><span class="line">git add forgotten_file</span><br><span class="line">git commit --amend</span><br></pre></td></tr></table></figure></p>
-<h3><span id="che-xiao-ti-jiao-wen-jian">撤销提交文件</span><a href="#che-xiao-ti-jiao-wen-jian" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git checkout -- &lt;file&gt;              <span class="comment"># 取消对文件的修改。还原到最近的版本，废弃本地做的修改。</span></span><br><span class="line">git reset HEAD &lt;file&gt;...            <span class="comment"># 取消已经暂存的文件。即，撤销先前"git add"的操作</span></span><br><span class="line">git reset HEAD^                     <span class="comment"># 回退所有内容到上一个版本</span></span><br><span class="line">git reset HEAD^ a.py                <span class="comment"># 回退a.py这个文件的版本到上一个版本</span></span><br><span class="line">git reset –soft HEAD~3              <span class="comment"># 向前回退到第3个版本</span></span><br><span class="line">git reset –hard origin/master       <span class="comment"># 将本地的状态回退到和远程的一样</span></span><br><span class="line">git reset 057d                      <span class="comment"># 回退到某个版本</span></span><br><span class="line">git revert HEAD                     <span class="comment"># 回退到上一次提交的状态，按照某一次的commit完全反向的进行一次commit.(代码回滚到上个版本，并提交git)</span></span><br></pre></td></tr></table></figure>
+<h3><span id="che-xiao-ti-jiao-wen-jian">撤销提交文件</span><a href="#che-xiao-ti-jiao-wen-jian" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">git checkout -- &lt;file&gt;              <span class="comment"># 取消对文件的修改。还原到最近的版本，废弃本地做的修改。</span></span><br><span class="line">git reset HEAD &lt;file&gt;...            <span class="comment"># 取消已经暂存的文件。即，撤销先前"git add"的操作</span></span><br><span class="line">git reset HEAD^                     <span class="comment"># 回退所有内容到上一个版本</span></span><br><span class="line">git reset HEAD^ a.py                <span class="comment"># 回退a.py这个文件的版本到上一个版本</span></span><br><span class="line">git reset –soft HEAD~3              <span class="comment"># 向前回退到第3个版本</span></span><br><span class="line">git reset –hard origin/master       <span class="comment"># 将本地的状态回退到和远程的一样</span></span><br><span class="line">git reset 057d                      <span class="comment"># 回退到某个版本</span></span><br><span class="line">git revert HEAD                     <span class="comment"># 回退到上一次提交的状态，按照某一次的commit完全反向的进行一次commit.(代码回滚到上个版本，并提交git)</span></span><br><span class="line">git merge --abort                   <span class="comment"># 撤销所有合并操作</span></span><br></pre></td></tr></table></figure>
 <p>或者<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git -c core.quotepath=<span class="literal">false</span> rm --cached -f -- env.sh</span><br><span class="line">git -c core.quotepath=<span class="literal">false</span> checkout HEAD -- env.sh</span><br></pre></td></tr></table></figure></p>
 <h2><span id="xiu-gai-remote-url">修改remote url</span><a href="#xiu-gai-remote-url" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote <span class="built_in">set</span>-url origin <span class="variable">$&#123;new_repository_path&#125;</span></span><br></pre></td></tr></table></figure>
-<h2><span id="fen-zhi">分支</span><a href="#fen-zhi" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b <span class="variable">$&#123;new_branch&#125;</span> master    <span class="comment"># 从master创建新分支</span></span><br><span class="line">git checkout <span class="variable">$&#123;branch_name&#125;</span>             <span class="comment"># 定位分支</span></span><br><span class="line">git merge --no-off <span class="variable">$&#123;branch_name&#125;</span>       <span class="comment"># 将其他分支合并到master</span></span><br><span class="line">git rebase origin master <span class="comment"># master分支合并到当前分支</span></span><br></pre></td></tr></table></figure>
+<h2><span id="fen-zhi">分支</span><a href="#fen-zhi" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b <span class="variable">$&#123;new_branch&#125;</span> master    <span class="comment"># 从master创建新分支</span></span><br><span class="line">git checkout <span class="variable">$&#123;branch_name&#125;</span>             <span class="comment"># 定位分支</span></span><br><span class="line">git checkout -b &#123;<span class="built_in">local</span>-branch-name&#125; origin/&#123;remote-branch-name&#125; <span class="comment"># 从远程分支创建新分支</span></span><br><span class="line">git merge --no-off <span class="variable">$&#123;branch_name&#125;</span>       <span class="comment"># 将其他分支合并到master</span></span><br><span class="line">git rebase origin master <span class="comment"># master分支合并到当前分支</span></span><br><span class="line">git pull origin &#123;branch-name&#125;           <span class="comment"># 拉取远程分支</span></span><br></pre></td></tr></table></figure>
 <h2><span id="biao-qian">标签</span><a href="#biao-qian" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git tag <span class="variable">$&#123;tag_name&#125;</span> master              <span class="comment"># 创建新分支</span></span><br><span class="line">git push origin <span class="variable">$&#123;tag_name&#125;</span>             <span class="comment"># 将标签推到远程仓库</span></span><br><span class="line">git branch -D <span class="variable">$&#123;branch_tag_name&#125;</span>        <span class="comment"># 删除本地分支或标签</span></span><br><span class="line">git push origin :<span class="variable">$&#123;branch_tag_name&#125;</span>     <span class="comment"># 删除远程分支或分支</span></span><br></pre></td></tr></table></figure>
 <h2><span id="ti-jiao-jian-cha">提交检查</span><a href="#ti-jiao-jian-cha" class="header-anchor"></a></h2><p>在代码提前前或查看提交记录详情时可能会用到下面几组命令</p>
 <h3><span id="status">status</span><a href="#status" class="header-anchor"></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status          <span class="comment"># 查看当前版本状态（是否修改）</span></span><br></pre></td></tr></table></figure>
@@ -426,11 +426,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/08/05/algorithm-2017-08-05-bank-verify/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/08/05/js-2017-08-05-screen-wh/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          银行卡校验规则(Luhn算法)
+          js和css获取屏幕大小
         
       </div>
     </a>
@@ -613,10 +613,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
@@ -629,6 +625,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
@@ -637,15 +637,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">微信</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">jpa</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">微信</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -673,15 +673,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -837,11 +837,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
+                <a href="javascript:void(0)" class="js-tag color1">movie</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">movie</a>
+                <a href="javascript:void(0)" class="js-tag color4">HomeBrew</a>
               </li>
              
               <li class="article-tag-list-item">
