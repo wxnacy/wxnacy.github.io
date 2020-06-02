@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # TAG_NAME=`./next_version`
-TAG_NAME=v$(date '+%Y%m%d%H%M%S')
+TAG_NAME=v$(date '+%Y.%m.%d.%H%M%S')
 cd hexo
 hexo clean
 hexo generate
