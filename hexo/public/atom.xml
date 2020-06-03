@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2020-06-02T08:58:05.343Z</updated>
+  <updated>2020-06-03T01:49:19.258Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mac 电脑显示隐藏文件</title>
+    <link href="http://wxnacy.com/2020/06/03/mac-show-hide-file/"/>
+    <id>http://wxnacy.com/2020/06/03/mac-show-hide-file/</id>
+    <published>2020-06-03T01:49:19.000Z</published>
+    <updated>2020-06-03T01:49:19.258Z</updated>
+    
+    <content type="html"><![CDATA[<p>Mac 电脑显示隐藏文件的两种方式。</p><a id="more"></a><div class="toc"><!-- toc --><ul><li><a href="#kuai-jie-jian">快捷键</a></li><li><a href="#ming-ling-xing">命令行</a></li></ul><!-- tocstop --></div><h2><span id="kuai-jie-jian">快捷键</span><a href="#kuai-jie-jian" class="header-anchor"></a></h2><p><code>command + shift + .</code> 快捷键可以控制隐藏文件的显示与否，非常方便</p><h2><span id="ming-ling-xing">命令行</span><a href="#ming-ling-xing" class="header-anchor"></a></h2><p>作为程序员当然还要了解命令行的方式</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 显示隐藏文件</span></span><br><span class="line">$ defaults write com.apple.finder AppleShowAllFiles yes</span><br><span class="line"><span class="comment"># 不显示隐藏文件</span></span><br><span class="line">$ defaults write com.apple.finder AppleShowAllFiles no</span><br></pre></td></tr></table></figure><p>然后再重启下 Finder</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ killall Finder /System/Library/CoreServices/Finder.app</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Mac 电脑显示隐藏文件的两种方式。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="mac" scheme="http://wxnacy.com/tags/mac/"/>
+    
+  </entry>
   
   <entry>
     <title>Shell 对行进行循环处理</title>
@@ -397,26 +417,6 @@
       <category term="mac" scheme="http://wxnacy.com/tags/mac/"/>
     
       <category term="vmware" scheme="http://wxnacy.com/tags/vmware/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Nginx 报警告 the &quot;ssl&quot; directive is deprecated</title>
-    <link href="http://wxnacy.com/2019/10/17/nginx-the-ssl-depreated/"/>
-    <id>http://wxnacy.com/2019/10/17/nginx-the-ssl-depreated/</id>
-    <published>2019-10-17T06:51:04.000Z</published>
-    <updated>2019-10-17T09:28:41.467Z</updated>
-    
-    <content type="html"><![CDATA[<p>一直用的一个配置文件，在用 docker 启动的 openresty 时，突然报了一堆警告</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx: [warn] the <span class="string">"ssl"</span> directive is deprecated, use the <span class="string">"listen ... ssl"</span> directive instead <span class="keyword">in</span> /usr/<span class="built_in">local</span>/openresty/nginx/conf/conf.d/biz.conf:4</span><br></pre></td></tr></table></figure><p>因为只是警告，所以程序可以正常运行，但每次都报还是很闹心，经查后发现还是版本问题。</p><p>在升级<a href="http://nginx.org/en/CHANGES" target="_blank" rel="noopener">日志</a>中是这样说的</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/nginx-ssl-deprecated.png" alt="1"></p><p><code>ssl on;</code> 的用法已经过时了，现在 <code>https</code> 需要使用 <code>listen ... ssl</code> 格式来标记。</p><p>就像这样</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 443 ssl;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;一直用的一个配置文件，在用 docker 启动的 openresty 时，突然报了一堆警告&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="nginx" scheme="http://wxnacy.com/tags/nginx/"/>
     
   </entry>
   
