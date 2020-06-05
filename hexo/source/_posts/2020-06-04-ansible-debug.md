@@ -1,7 +1,10 @@
 ---
 title: Ansible Debug 调试
-tags: [ansible]
+tags:
+  - ansible
+date: 2020-06-04 09:37:07
 ---
+
 
 使用 Ansible 最痛苦的就是远程命令没有生效，但又看不到报错信息，Debug 就是为了解决这个烦恼。
 

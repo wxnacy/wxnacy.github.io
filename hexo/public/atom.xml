@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2020-06-03T01:49:19.258Z</updated>
+  <updated>2020-06-04T01:37:07.704Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ansible Debug 调试</title>
+    <link href="http://wxnacy.com/2020/06/04/ansible-debug/"/>
+    <id>http://wxnacy.com/2020/06/04/ansible-debug/</id>
+    <published>2020-06-04T01:37:07.000Z</published>
+    <updated>2020-06-04T01:37:07.704Z</updated>
+    
+    <content type="html"><![CDATA[<p>使用 Ansible 最痛苦的就是远程命令没有生效，但又看不到报错信息，Debug 就是为了解决这个烦恼。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>先来看个简单的例子，获取当前目录</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">- hosts:</span> <span class="string">wxnacytest</span></span><br><span class="line"><span class="attr">  remote_user:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">  tasks:</span></span><br><span class="line"><span class="attr">  - name:</span> <span class="string">Get</span> <span class="string">path</span></span><br><span class="line"><span class="attr">    shell:</span> <span class="string">|</span></span><br><span class="line"><span class="string">        pwd</span></span><br><span class="line"><span class="string"></span><span class="attr">    register:</span> <span class="string">result</span></span><br><span class="line"><span class="attr">  - name:</span> <span class="string">Get</span> <span class="string">debug</span> <span class="string">info</span></span><br><span class="line"><span class="attr">    debug:</span> <span class="string">var=result</span> <span class="string">verbosity=0</span></span><br></pre></td></tr></table></figure><p>输出结果为</p><!-- ![tdMeXT.png](https://s1.ax1x.com/2020/06/03/tdMeXT.png) --><p><a href="https://imgchr.com/i/tdMeXT" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/06/03/tdMeXT.md.png" alt="tdMeXT.md.png"></a></p><p>如图，远程执行命令的结果非常详细</p><p><code>result.cmd</code> 运行的命令<br><code>result.stdout</code> 运行的结果</p><p><code>debug</code> 的参数如下</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">msg：调试输出的消息</span><br><span class="line">var：将某个任务执行的输出作为变量传递给debug模块，debug会直接将其打印输出</span><br><span class="line">verbosity：debug的级别（默认是0级，全部显示）</span><br></pre></td></tr></table></figure><p>如果不想输出这么多信息，可以指定某个信息，比如 <code>stdout</code></p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">- hosts:</span> <span class="string">wxnacytest</span></span><br><span class="line"><span class="attr">  remote_user:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">  tasks:</span></span><br><span class="line"><span class="attr">  - name:</span> <span class="string">Get</span> <span class="string">path</span></span><br><span class="line"><span class="attr">    shell:</span> <span class="string">|</span></span><br><span class="line"><span class="string">        pwd</span></span><br><span class="line"><span class="string"></span><span class="attr">    register:</span> <span class="string">result</span></span><br><span class="line"><span class="attr">  - name:</span> <span class="string">Get</span> <span class="string">debug</span> <span class="string">info</span></span><br><span class="line"><span class="attr">    debug:</span> <span class="string">var=result.stdout</span> <span class="string">verbosity=0</span></span><br></pre></td></tr></table></figure><p><img src="https://s1.ax1x.com/2020/06/03/td3UxI.png" alt="td3UxI.png"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;使用 Ansible 最痛苦的就是远程命令没有生效，但又看不到报错信息，Debug 就是为了解决这个烦恼。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="ansible" scheme="http://wxnacy.com/tags/ansible/"/>
+    
+  </entry>
   
   <entry>
     <title>Mac 电脑显示隐藏文件</title>
@@ -395,28 +415,6 @@
     
     
       <category term="javascript" scheme="http://wxnacy.com/tags/javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mac 使用 vmware 装机报错 /dev/vmmon：Broken pipe</title>
-    <link href="http://wxnacy.com/2019/10/28/mac-vmware-error-broken-pipe/"/>
-    <id>http://wxnacy.com/2019/10/28/mac-vmware-error-broken-pipe/</id>
-    <published>2019-10-28T00:14:44.000Z</published>
-    <updated>2019-10-28T00:14:44.357Z</updated>
-    
-    <content type="html"><![CDATA[<p>好久不用虚拟机了，最近想装个 win10 调试程序，结果各种问题，记录下以备后用。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>在加载镜像后，启动前一直莫名报这个错。</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/vm-error1.png" alt="1"></p><p>问题出在 Mac 禁止了 VMware 的一些功能，可以进入 <code>系统偏好设置 -&gt; 安全性与隐私 -&gt; 通用</code>，然后点击下方的允许即可。</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/vm-error2.png" alt="2"></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;好久不用虚拟机了，最近想装个 win10 调试程序，结果各种问题，记录下以备后用。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="mac" scheme="http://wxnacy.com/tags/mac/"/>
-    
-      <category term="vmware" scheme="http://wxnacy.com/tags/vmware/"/>
     
   </entry>
   
