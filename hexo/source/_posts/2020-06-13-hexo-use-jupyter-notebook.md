@@ -44,7 +44,7 @@ $ pip install nbconvert
 **文章嵌入**
 
 ```markdown
-<script src="http://code.jquery.com/jquery-2.0.0.js"></script>
+<script src="https://code.jquery.com/jquery-2.0.0.js"></script>
 {% asset_jupyter /Users/wxnacy/.pyenv/shims/python ../../notebook/locales.ipynb %}
 ```
 

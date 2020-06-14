@@ -26,7 +26,7 @@ $ pip install Faker
 
 使用
 
-<script src="http://code.jquery.com/jquery-2.0.0.js"></script>
+<script src="https://code.jquery.com/jquery-2.0.0.js"></script>
 {% asset_jupyter /Users/wxnacy/.pyenv/shims/python ../../notebook/faker/quickstart.ipynb %}
 
 
@@ -36,7 +36,7 @@ Faker 有远不止以上的用法，使用 `dir(fake)` 可以查看更多的用�
 
 Faker 默认使用英文，当然也可以设置想要的语言
 
-<script src="http://code.jquery.com/jquery-2.0.0.js"></script>
+<script src="https://code.jquery.com/jquery-2.0.0.js"></script>
 {% asset_jupyter /Users/wxnacy/.pyenv/shims/python ../../notebook/faker/locales.ipynb %}
 
 更多语言支持查看[文档](https://faker.readthedocs.io/en/master/locales.html)
