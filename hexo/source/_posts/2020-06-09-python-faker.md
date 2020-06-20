@@ -45,19 +45,7 @@ Faker 默认使用英文，当然也可以设置想要的语言
 
 Faker 也可以在命令行中使用
 
-```bash
-$ faker name
-Brian Foster
-
-# 设置语言
-$ faker -l zh_CN name
-阎艳
-
-# 重复三次，并设置后缀
-$ faker -r 3 -s ";" name
-Matthew Cook;
-Michael Sutton;
-Meredith Krueger;
-```
+<script src="https://code.jquery.com/jquery-2.0.0.js"></script>
+{% asset_jupyter /Users/wxnacy/.pyenv/shims/python ../../notebook/faker/command.ipynb %}
 
 更多使用方式查看[文档](https://github.com/joke2k/faker#command-line-usage)
