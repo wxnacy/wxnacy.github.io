@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2020-06-19T16:00:24.736Z</updated>
+  <updated>2020-07-20T09:54:50.823Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Sqlalchemy 快速生成 sql 语句</title>
+    <link href="http://wxnacy.com/2020/07/19/sqlalchemy-selectable/"/>
+    <id>http://wxnacy.com/2020/07/19/sqlalchemy-selectable/</id>
+    <published>2020-07-18T16:57:02.000Z</published>
+    <updated>2020-07-20T09:54:50.823Z</updated>
+    
+    <content type="html"><![CDATA[<p>Sqlalchemy 使用 <code>select(), insert(), update(), delete()</code> 方法可以快速生成 Sql 语句并执行。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><iframe id="ipynb" marginheight="0" frameborder="0" width="980px" height="4100px" src="http://notebook.wxnacy.com/modules/sqlalchemy/selectable.html" style="scrolling:no;"></iframe><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"> </script><script>$(function () {  console.log("ww");$("#ipynb").load( function() {    console.log("Hello World");    console.log(this.contentWindow);    console.log($(this).contents().find("#notebook").height());document.getElementById('ipynb').height=$("#ipynb").contents().find("#notebook").height()+100;})});</script>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Sqlalchemy 使用 &lt;code&gt;select(), insert(), update(), delete()&lt;/code&gt; 方法可以快速生成 Sql 语句并执行。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://wxnacy.com/tags/python/"/>
+    
+      <category term="sqlalchemy" scheme="http://wxnacy.com/tags/sqlalchemy/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Excel 一键填充一列数据</title>
+    <link href="http://wxnacy.com/2020/07/18/excel-ctrld/"/>
+    <id>http://wxnacy.com/2020/07/18/excel-ctrld/</id>
+    <published>2020-07-18T14:44:20.000Z</published>
+    <updated>2020-07-18T14:55:14.781Z</updated>
+    
+    <content type="html"><![CDATA[<p>一般我们快速填充一列数据，都知道按住单元格右下角的黑色十字架向下拖动即可，但是如果有 10 万行数据怎么办？</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>Excel 还有更方便的方式</p><p>选中一列，去掉标题，直接按下 <code>Ctrl-D</code>，整列直接填充第一行选中的数据，一键搞定。</p><p><img src="https://s1.ax1x.com/2020/07/18/U2db6S.gif" alt="U2db6S.gif"></p><p>缺点就是只能填充第一行的数据，不能根据前面几行的规律自动填充。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一般我们快速填充一列数据，都知道按住单元格右下角的黑色十字架向下拖动即可，但是如果有 10 万行数据怎么办？&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="excel" scheme="http://wxnacy.com/tags/excel/"/>
+    
+  </entry>
   
   <entry>
     <title>解决重装 Windows 7 时提示“缺少所需的CD/DVD驱动器设备驱动程序”</title>
@@ -377,46 +419,6 @@
     
     
       <category term="shell" scheme="http://wxnacy.com/tags/shell/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>解决 Docker 日志文件太大的问题</title>
-    <link href="http://wxnacy.com/2019/12/26/docker-log-too-big/"/>
-    <id>http://wxnacy.com/2019/12/26/docker-log-too-big/</id>
-    <published>2019-12-26T06:51:31.000Z</published>
-    <updated>2019-12-26T07:33:06.774Z</updated>
-    
-    <content type="html"><![CDATA[<p>Docker 在不重建容器的情况下，日志文件默认会一直追加，时间一长会逐渐占满服务器的硬盘的空间，内存消耗也会一直增加，本篇来了解一些控制日志文件的方法。</p><a id="more"></a><div class="toc"><!-- toc --><ul><li><a href="#qing-li-dan-ge-wen-jian">清理单个文件</a></li><li><a href="#yun-xing-shi-kong-zhi">运行时控制</a></li><li><a href="#quan-ju-pei-zhi">全局配置</a></li></ul><!-- tocstop --></div><p>Docker 的日志文件存在 <code>/var/lib/docker/containers</code> 目录中，通过下面的命令可以将日志文件夹根据升序的方式罗列出来。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ sudo du -d1 -h /var/lib/docker/containers | sort -h</span><br><span class="line"></span><br><span class="line">28K     /var/lib/docker/containers/0db860afe94df368335c2e96f290275f4c396b996b4e8d22770b01baafd9982c</span><br><span class="line">36K     /var/lib/docker/containers/6ee184044661c436b44769d56c203f1fc296dbfe08f6ed4cf79aa6fb8cae6659</span><br><span class="line">44K     /var/lib/docker/containers/66c44231981fcb5ecd33bf0fc3390e71c5cbbabb839d79441eb3317b8500d551</span><br><span class="line">60K     /var/lib/docker/containers/bc4136199037e73d712614ef57de0915d294cbe51045d213f0d822d71a86cf2c</span><br><span class="line">344K    /var/lib/docker/containers/7bd3a179cf67b1537e0965c1d1f518420ac5d4cd151ecb75c37ada8c2347ca6b</span><br><span class="line">984K    /var/lib/docker/containers/6bd1f79f16b8b06f2bd203dd84443004ba08c150ac51d23fa620e8b2cbf4b773</span><br><span class="line">1.7M    /var/lib/docker/containers/a93a4275571b0033367f9cab8213c467b21a03c600e2203195640b5a5bc7f523</span><br><span class="line">4.4M    /var/lib/docker/containers/082564c5bdb19b642491b09419a69061122483c0f959a36eb186dd1fec53c163</span><br><span class="line">14M     /var/lib/docker/containers/05fc24ef7a14e31e4557c9881482d350cfb05f2f1cb870638de344581154ca01</span><br><span class="line">32M     /var/lib/docker/containers/5d70c82942083d16593670058aefed339cfe874c9027205b1e6eb8e569894d65</span><br><span class="line">129M    /var/lib/docker/containers/a88d104d20e5ee58ffeaeecbb559b3231c5b8c73ad1443538928ebeae4ff705c</span><br><span class="line">285M    /var/lib/docker/containers/b623602a667c0b31068563f244610a548ed055ff9802197f372ff436a294ab5c</span><br><span class="line">917M    /var/lib/docker/containers/3d71c509ab6aea34400d37f6c006914eed2cb05e6e6cd07b3ee03eb783dc367b</span><br><span class="line">1.4G    /var/lib/docker/containers</span><br></pre></td></tr></table></figure><p>有三种方式可以清理日志文件</p><h2><span id="qing-li-dan-ge-wen-jian">清理单个文件</span><a href="#qing-li-dan-ge-wen-jian" class="header-anchor"></a></h2><p>感觉哪个容器的日志太大就清理哪个</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo sh -c <span class="string">"cat /dev/null &gt; <span class="variable">$&#123;log_file&#125;</span>"</span></span><br></pre></td></tr></table></figure><p><code>${log_file}</code> 就是日志文件，可以通过 <code>find</code> 命令查找全部日志</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ sudo find /var/lib/docker/containers -name *.<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line">/var/lib/docker/containers/3d71c509ab6aea34400d37f6c006914eed2cb05e6e6cd07b3ee03eb783dc367b/3d71c509ab6aea34400d37f6c006914eed2cb05e6e6cd07b3ee03eb783dc367b-json.log</span><br><span class="line">/var/lib/docker/containers/0db860afe94df368335c2e96f290275f4c396b996b4e8d22770b01baafd9982c/0db860afe94df368335c2e96f290275f4c396b996b4e8d22770b01baafd9982c-json.log</span><br><span class="line">/var/lib/docker/containers/bc4136199037e73d712614ef57de0915d294cbe51045d213f0d822d71a86cf2c/bc4136199037e73d712614ef57de0915d294cbe51045d213f0d822d71a86cf2c-json.log</span><br><span class="line">/var/lib/docker/containers/5d70c82942083d16593670058aefed339cfe874c9027205b1e6eb8e569894d65/5d70c82942083d16593670058aefed339cfe874c9027205b1e6eb8e569894d65-json.log</span><br><span class="line">/var/lib/docker/containers/6ee184044661c436b44769d56c203f1fc296dbfe08f6ed4cf79aa6fb8cae6659/6ee184044661c436b44769d56c203f1fc296dbfe08f6ed4cf79aa6fb8cae6659-json.log</span><br><span class="line">/var/lib/docker/containers/082564c5bdb19b642491b09419a69061122483c0f959a36eb186dd1fec53c163/082564c5bdb19b642491b09419a69061122483c0f959a36eb186dd1fec53c163-json.log</span><br><span class="line">/var/lib/docker/containers/b623602a667c0b31068563f244610a548ed055ff9802197f372ff436a294ab5c/b623602a667c0b31068563f244610a548ed055ff9802197f372ff436a294ab5c-json.log</span><br><span class="line">/var/lib/docker/containers/66c44231981fcb5ecd33bf0fc3390e71c5cbbabb839d79441eb3317b8500d551/66c44231981fcb5ecd33bf0fc3390e71c5cbbabb839d79441eb3317b8500d551-json.log</span><br><span class="line">/var/lib/docker/containers/a93a4275571b0033367f9cab8213c467b21a03c600e2203195640b5a5bc7f523/a93a4275571b0033367f9cab8213c467b21a03c600e2203195640b5a5bc7f523-json.log</span><br><span class="line">/var/lib/docker/containers/a88d104d20e5ee58ffeaeecbb559b3231c5b8c73ad1443538928ebeae4ff705c/a88d104d20e5ee58ffeaeecbb559b3231c5b8c73ad1443538928ebeae4ff705c-json.log</span><br><span class="line">/var/lib/docker/containers/6bd1f79f16b8b06f2bd203dd84443004ba08c150ac51d23fa620e8b2cbf4b773/6bd1f79f16b8b06f2bd203dd84443004ba08c150ac51d23fa620e8b2cbf4b773-json.log</span><br><span class="line">/var/lib/docker/containers/05fc24ef7a14e31e4557c9881482d350cfb05f2f1cb870638de344581154ca01/05fc24ef7a14e31e4557c9881482d350cfb05f2f1cb870638de344581154ca01-json.log</span><br><span class="line">/var/lib/docker/containers/7bd3a179cf67b1537e0965c1d1f518420ac5d4cd151ecb75c37ada8c2347ca6b/7bd3a179cf67b1537e0965c1d1f518420ac5d4cd151ecb75c37ada8c2347ca6b-json.log</span><br></pre></td></tr></table></figure><p>或者查看具体容器名称的日志位置</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker inspect --format=<span class="string">'&#123;&#123;.LogPath&#125;&#125;'</span> redis</span><br><span class="line">/var/lib/docker/containers/6ee184044661c436b44769d56c203f1fc296dbfe08f6ed4cf79aa6fb8cae6659/6ee184044661c436b44769d56c203f1fc296dbfe08f6ed4cf79aa6fb8cae6659-json.log</span><br></pre></td></tr></table></figure><p>这样只是解决燃眉之急，并不是长久之计，最好是创建容器时就控制日志的大小.</p><h2><span id="yun-xing-shi-kong-zhi">运行时控制</span><a href="#yun-xing-shi-kong-zhi" class="header-anchor"></a></h2><p>启动容器时，我们可以通过参数来控制日志的文件个数和单个文件的大小</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># max-size 最大数值</span></span><br><span class="line"><span class="comment"># max-file 最大日志数</span></span><br><span class="line">$ docker run -it --<span class="built_in">log</span>-opt max-size=10m --<span class="built_in">log</span>-opt max-file=3 redis</span><br></pre></td></tr></table></figure><p>一两个容器还好，但是如果有很多容器需要管理，这样就很不方便了，最好还是可以统一管理。</p><h2><span id="quan-ju-pei-zhi">全局配置</span><a href="#quan-ju-pei-zhi" class="header-anchor"></a></h2><p>创建或修改文件 <code>/etc/docker/daemon.json</code>，并增加以下配置</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"log-driver"</span>:<span class="string">"json-file"</span>,</span><br><span class="line">    <span class="attr">"log-opts"</span>:&#123;</span><br><span class="line">        <span class="attr">"max-size"</span> :<span class="string">"50m"</span>,<span class="attr">"max-file"</span>:<span class="string">"1"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>随后重启 Docker 服务</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl daemon-reload</span><br><span class="line">$ sudo systemctl restart docker</span><br></pre></td></tr></table></figure><p>不过已存在的容器不会生效，需要重建才可以</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Docker 在不重建容器的情况下，日志文件默认会一直追加，时间一长会逐渐占满服务器的硬盘的空间，内存消耗也会一直增加，本篇来了解一些控制日志文件的方法。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="docker" scheme="http://wxnacy.com/tags/docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>FFmpeg 常用的命令</title>
-    <link href="http://wxnacy.com/2019/12/09/ffmpeg-shell/"/>
-    <id>http://wxnacy.com/2019/12/09/ffmpeg-shell/</id>
-    <published>2019-12-09T15:04:16.000Z</published>
-    <updated>2020-02-22T08:29:33.868Z</updated>
-    
-    <content type="html"><![CDATA[<p>记录 FFmpeg 的一些命令</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p><strong>m3u8 格式文件转为 mp4</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -i <span class="string">"https://xxxx.com/20191005/WofkPuP1/1200kb/hls/index.m3u8"</span> -bsf:a aac_adtstoasc -vcodec copy -c copy -crf 50 target.mp4</span><br></pre></td></tr></table></figure><p><strong>mkv 格式转为 mp4</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -i input.mkv -c copy -strict -2 output.mp4</span><br></pre></td></tr></table></figure><p><strong>分割视频</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -ss 开始时间（可选）</span></span><br><span class="line"><span class="comment"># -t 结束时间（可选）</span></span><br><span class="line"><span class="comment"># source.mp4 视频源</span></span><br><span class="line"><span class="comment"># target.mp4 目标名称</span></span><br><span class="line">$ ffmpeg -ss 00:12:00 -t 00:56:00 -i source.mp4 -vcodec copy -acodec copy target.mp4</span><br></pre></td></tr></table></figure><p><strong>将字幕文件烧进视频文件中</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -i source.mkv -vf subtitles=source.srt output.mkv</span><br></pre></td></tr></table></figure><p><strong>将多个视频无损的合并为一个</strong></p><p>首先在视频目录下准备一个文件 <code>filename.txt</code> 内容为 </p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">file 05-wodedipan.mkv</span><br><span class="line">file 05-yuanyouhui.mkv</span><br><span class="line">file 05-luanwuchunqiu.mkv</span><br><span class="line">file 06-langmanshouji.mkv</span><br><span class="line">file 06-lansefengbao.mkv</span><br><span class="line">file 06-piaoyi.mkv</span><br><span class="line">file 02-duibuqi.mkv</span><br><span class="line">file 03-anhao.mkv</span><br></pre></td></tr></table></figure><p>然后执行命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -f concat -i filelist.txt -c copy output.mkv</span><br></pre></td></tr></table></figure><p><strong><em>注意 filename.txt 中的文件名不能有中文</em></strong></p><p><code>filename.txt</code> 可以使用命令行来直接生成，先把视频都放在同一文件夹下然后执行</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ll | awk <span class="string">'&#123;print "file" $9&#125;'</span> &gt; filelist.txt</span><br></pre></td></tr></table></figure><p>一般文件名我们都习惯取中文名，这里改成英文名也可以借助程序来批量修改。</p><p>这里需要用到 <code>Python</code> 来写一个脚本</p><p>首先下载依赖包</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install pypinyin</span><br></pre></td></tr></table></figure><p>然后在视频目录下运行该文件即可</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pypinyin <span class="keyword">import</span> lazy_pinyin</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hans2py</span><span class="params">(hans)</span>:</span></span><br><span class="line">    <span class="string">'''汉字转拼音'''</span></span><br><span class="line">    hans = hans.lower()</span><br><span class="line">    hans = hans.split()</span><br><span class="line">    all_words = lazy_pinyin(hans)</span><br><span class="line">    <span class="keyword">return</span> all_words</span><br><span class="line"></span><br><span class="line">dirs = os.listdir()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> d <span class="keyword">in</span> dirs:</span><br><span class="line">    pin = hans2py(d)</span><br><span class="line">    os.rename(d, <span class="string">''</span>.join(pin))</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;记录 FFmpeg 的一些命令&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="ffmpeg" scheme="http://wxnacy.com/tags/ffmpeg/"/>
     
   </entry>
   

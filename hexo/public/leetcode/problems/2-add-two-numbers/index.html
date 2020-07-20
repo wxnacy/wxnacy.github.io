@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>2. 两数相加 - Leetcode 刷题集</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "2. \u4e24\u6570\u76f8\u52a0";
+    var mkdocs_page_input_path = "problems/2-add-two-numbers.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Leetcode 刷题集</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">来刷题</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../1-two-sum/">1. 两数之和</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">2. 两数相加</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">题目描述</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">两次遍历</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">推导过程</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">代码</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_6">复杂度分析</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_7">一次遍历</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">推导过程</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_9">代码</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_10">复杂度分析</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_11">其他语言</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../3-longest-substring-without-repeating-characters/">3. 无重复字符的最长子串</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../7-reverse-integer/">7. 整数反转</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../136-single-number/">136. 只出现一次的数字</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Leetcode 刷题集</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>2. 两数相加</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="_1">两数相加</h1>
+<h2 id="_2">题目描述</h2>
+<p>难度：中等</p>
+<p>知识点：链表、数学</p>
+<p>地址：<a href="https://leetcode-cn.com/problems/add-two-numbers/">https://leetcode-cn.com/problems/add-two-numbers/</a></p>
+<pre><code>给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。
+
+如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。
+
+您可以假设除了数字 0 之外，这两个数都不会以 0 开头。
+
+示例:
+
+    输入：(2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)
+    输出：7 -&gt; 0 -&gt; 8
+    原因：342 + 465 = 807
+</code></pre>
+
+<h2 id="_3">两次遍历</h2>
+<p>首先从题目描述我们可以很直观的得到一个很直接的解法，先计算 <code>l1</code> 和 <code>l2</code> 表示的整数，相加后，再根据数字推导出 <code>l3</code></p>
+<p>这时会用到数学的进位和取余。</p>
+<h3 id="_4">推导过程</h3>
+<pre><code class="bash">l1: 2 -&gt; 4 -&gt; 3
+    |
+    2 * ( 10 ** 0 ) + 4 * ( 10 ** 1 ) + 3 * ( 10 ** 2 ) = 342
+</code></pre>
+
+<pre><code class="bash">l2: 5 -&gt; 6 -&gt; 4
+    |
+    5 * ( 10 ** 0 ) + 6 * ( 10 ** 1 ) + 4 * ( 10 ** 2 ) = 465
+</code></pre>
+
+<pre><code class="bash">    807 -&gt; 807 % 10 = 7
+            |
+            -&gt; 80 % 10 = 0
+                |
+                -&gt; 8 % 10 = 8
+l3: 8 -&gt; 0 -&gt; 7
+</code></pre>
+
+<h3 id="_5">代码</h3>
+<p>根据上边的推导，很自然可以得到下面的代码，这个过程需要经历两次遍历。</p>
+<pre><code class="python">#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+# Author: wxnacy(wxnacy@gmail.com)
+
+class Solution:
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -&gt; ListNode:
+        n1, n2 = 0, 0
+        n = 0
+        while l1 or l2:
+            if l1:
+                n1 += l1.val * (10 ** n)
+                l1 = l1.next
+            if l2:
+                n2 += l2.val * (10 ** n)
+                l2 = l2.next
+            n += 1
+
+        n3 = n1 + n2
+        if n3 == 0:
+            return ListNode(0)
+
+        l3 = ListNode(0)
+        l4 = l3
+        while n3 &gt; 0:
+            rmd = n3 % 10
+            l4.next = ListNode(rmd)
+            l4 = l4.next
+            n3 = (n3 - rmd) // 10
+
+        return l3.next
+</code></pre>
+
+<h3 id="_6">复杂度分析</h3>
+<p>时间复杂度：O(n)，<code>n = max(len(l1), len(l2)) + 1</code> 加一是因为可能会遇到进位。</p>
+<p>空间复杂度：O(n)，同上</p>
+<h2 id="_7">一次遍历</h2>
+<p>再回过头来观察三个链表可以发现，<code>l3</code> 的每个位置刚好是 <code>l1</code> 和 <code>l2</code> 每个位置的和，那我们完全可以在一次循环内完成取值、求和、生成 <code>l3</code> 的操作，只是需要在列表的结尾需要考虑 <code>carry</code> 进位的问题。</p>
+<h3 id="_8">推导过程</h3>
+<pre><code class="bash">l1: 2 -&gt;    4 -&gt; 3
+    +       +    +
+l2: 5 -&gt;    6 -&gt; 4
+    =       =    =
+l3: 7+ 1 -&gt; 0 -&gt; 7
+</code></pre>
+
+<h3 id="_9">代码</h3>
+<pre><code class="python">#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+# Author: wxnacy(wxnacy@gmail.com)
+
+class Solution:
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -&gt; ListNode:
+
+        carry = 0
+        l3 = ListNode(0)
+        l4 = l3
+        while l1 or l2 or carry:
+            n3 = carry
+            if l1:
+                n3 += l1.val
+                l1 = l1.next
+            if l2:
+                n3 += l2.val
+                l2 = l2.next
+            carry = n3 //  10
+            l4.next = ListNode(n3 % 10)
+            l4 = l4.next
+        return l3.next
+</code></pre>
+
+<h3 id="_10">复杂度分析</h3>
+<p>时间复杂度：O(n)，两种的时间复杂度相同，但是只进行了一次遍历，所以实际时间会快一些</p>
+<p>空间复杂度：O(n)，同样的会节省掉 <code>n1</code> 和 <code>n2</code> 所占用的空间。</p>
+<h2 id="_11">其他语言</h2>
+<ul>
+<li><a href="https://github.com/wxnacy/study/blob/master/python/leetcode/2-add-two-numbers.py">Python</a></li>
+<li><a href="https://github.com/wxnacy/study/blob/master/goland/src/leetcode/2-add-two-numbers_test.go">Go</a></li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../3-longest-substring-without-repeating-characters/" class="btn btn-neutral float-right" title="3. 无重复字符的最长子串">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../1-two-sum/" class="btn btn-neutral" title="1. 两数之和"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../1-two-sum/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../3-longest-substring-without-repeating-characters/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/wxnacy.min.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

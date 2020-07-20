@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>136. 只出现一次的数字 - Leetcode 刷题集</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "136. \u53ea\u51fa\u73b0\u4e00\u6b21\u7684\u6570\u5b57";
+    var mkdocs_page_input_path = "problems/136-single-number.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Leetcode 刷题集</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">来刷题</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../1-two-sum/">1. 两数之和</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../2-add-two-numbers/">2. 两数相加</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../3-longest-substring-without-repeating-characters/">3. 无重复字符的最长子串</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../7-reverse-integer/">7. 整数反转</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">136. 只出现一次的数字</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">题目描述</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">哈希表</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">代码</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">复杂度分析</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">异或运算</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_7">推导过程</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">代码</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_9">复杂度分析</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_10">其他语言</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Leetcode 刷题集</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>136. 只出现一次的数字</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="_1">只出现一次的数字</h1>
+<h2 id="_2">题目描述</h2>
+<p>难度：简单</p>
+<p>知识点：哈希表、位运算</p>
+<p>地址：<a href="https://leetcode-cn.com/problems/single-number/">https://leetcode-cn.com/problems/single-number/</a></p>
+<pre><code>给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。
+
+说明:
+
+你的算法应该具有线性时间复杂度。 你可以不使用额外空间来实现吗？
+
+示例 1:
+
+    输入: [2,2,1]
+    输出: 1
+示例 2:
+
+    输入: [4,1,2,1,2]
+    输出: 4
+</code></pre>
+
+<h2 id="_3">哈希表</h2>
+<p>这道题这么多的限制条件，显然是为了考察某个知识点，我们先抛开这些，想想如何使用普通方式来解题，并且尽量时间和空间都最优。</p>
+<p>凡是涉及某个元素出现次数的问题，都可以优先考虑哈希表，遍历一遍数组统计每个元素出现的次数，在遍历一遍哈希表，找出只出现一次的即可。这样时间复杂度为 O(2n)，空间复杂度为 O(n)</p>
+<p>再进一步优化下，因为其他元素都是出现两次，也就是我们可以将重复出现的抵消掉，这样遍历一遍数组后，哈希表只会有一个元素存在，在遍历哈希表时，时间复杂度就是 O(1)。总体时间复杂度为 O(n)，在最优的情况下空间复杂度只有 O(1)。</p>
+<h3 id="_4">代码</h3>
+<pre><code class="python">#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+# Author: wxnacy(wxnacy@gmail.com)
+
+class Solution:
+    def singleNumber(self, nums: List[int]) -&gt; int:
+        m = {}
+        for n in nums:
+            if n not in m:
+                m[n] = 1
+            else:
+                del m[n]
+        for k, v in m.items():
+            return k
+</code></pre>
+
+<h3 id="_5">复杂度分析</h3>
+<p>时间复杂度：O(n)</p>
+<p>空间复杂度：O(n)</p>
+<h2 id="_6">异或运算</h2>
+<p>回归原题的要求，普通方式是不可能达到不使用额外空间的。再看原题，<strong><em>其余每个元素均出现两次</em></strong>，这个地方很关键，它提示我们可以使用位运算<strong><em>异或</em></strong>来进行计算。</p>
+<h3 id="_7">推导过程</h3>
+<p>数组 <code>[4, 1, 2, 1, 2]</code> 元素的二进制值分别为 <code>[100, 1, 10, 1, 10]</code></p>
+<pre><code>4 ^ 1   -&gt;  100 ^ 1
+|           |
+5 ^ 2   -&gt;  101 ^ 10
+|           |
+7 ^ 1   -&gt;  111 ^ 1
+|           |
+6 ^ 2   -&gt;  110 ^ 10
+|           |
+4       -&gt;  100
+</code></pre>
+
+<h3 id="_8">代码</h3>
+<pre><code class="python">#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+# Author: wxnacy(wxnacy@gmail.com)
+
+class Solution:
+    def singleNumber(self, nums: List[int]) -&gt; int:
+        for i in range(1, len(nums)):
+            nums[0] = nums[0] ^ nums[i]
+        return nums[0]
+</code></pre>
+
+<h3 id="_9">复杂度分析</h3>
+<p>时间复杂度：O(n)</p>
+<p>空间复杂度：O(0)，这里确实没有用到额外空间，但是改变数组元素，如果实际开发中可能需要使用变量来储存最后的结果。</p>
+<h2 id="_10">其他语言</h2>
+<ul>
+<li><a href="https://github.com/wxnacy/study/blob/master/python/leetcode/136-single-number.py">Python</a></li>
+<li><a href="https://github.com/wxnacy/study/blob/master/goland/src/leetcode/136-single-number_test.go">Go</a></li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../7-reverse-integer/" class="btn btn-neutral" title="7. 整数反转"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../7-reverse-integer/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/wxnacy.min.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
