@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2020-07-20T09:54:50.823Z</updated>
+  <updated>2020-07-20T10:24:36.329Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Javascript 创建随机字符串的方法</title>
+    <link href="http://wxnacy.com/2020/07/20/javascript-random/"/>
+    <id>http://wxnacy.com/2020/07/20/javascript-random/</id>
+    <published>2020-07-20T10:16:37.000Z</published>
+    <updated>2020-07-20T10:24:36.329Z</updated>
+    
+    <content type="html"><![CDATA[<p>这里使用 JavaScript 自带的几种数学函数</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><ul><li><code>Math.random()</code> 随机返回区间 [0, 1) 内的小数</li><li><code>Math.round(num)</code> 取 num 四舍五入后的整数</li><li><code>Math.ceil(num)</code> 将 num 向上取整</li><li><code>Math.floor(num)</code> 将 num 向下取整</li></ul><p>我们利用 <code>Math.random()</code> 和 <code>Math.floor()</code> 两个函数来构建函数。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> chars = [</span><br><span class="line">    <span class="string">'0'</span>,<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>,<span class="string">'4'</span>,<span class="string">'5'</span>,<span class="string">'6'</span>,<span class="string">'7'</span>,<span class="string">'8'</span>,<span class="string">'9'</span>,</span><br><span class="line">    <span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>,<span class="string">'D'</span>,<span class="string">'E'</span>,<span class="string">'F'</span>,<span class="string">'G'</span>,<span class="string">'H'</span>,<span class="string">'I'</span>,<span class="string">'J'</span>,</span><br><span class="line">    <span class="string">'K'</span>,<span class="string">'L'</span>,<span class="string">'M'</span>,<span class="string">'N'</span>,<span class="string">'O'</span>,<span class="string">'P'</span>,<span class="string">'Q'</span>,<span class="string">'R'</span>,<span class="string">'S'</span>,<span class="string">'T'</span>,</span><br><span class="line">    <span class="string">'U'</span>,<span class="string">'V'</span>,<span class="string">'W'</span>,<span class="string">'X'</span>,<span class="string">'Y'</span>,<span class="string">'Z'</span></span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 生成随机数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">randomString</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> res = <span class="string">""</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; n ; i ++) &#123;</span><br><span class="line">        <span class="keyword">var</span> id = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * chars.length);</span><br><span class="line">        res += chars[id];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(randomString(<span class="number">10</span>))</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这里使用 JavaScript 自带的几种数学函数&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="javascript" scheme="http://wxnacy.com/tags/javascript/"/>
+    
+  </entry>
   
   <entry>
     <title>Sqlalchemy 快速生成 sql 语句</title>
@@ -399,26 +419,6 @@
     
     
       <category term="mysql" scheme="http://wxnacy.com/tags/mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Shell 获取字符串长度的几种方式</title>
-    <link href="http://wxnacy.com/2020/01/07/shell-string-length/"/>
-    <id>http://wxnacy.com/2020/01/07/shell-string-length/</id>
-    <published>2020-01-07T09:43:52.000Z</published>
-    <updated>2020-01-09T09:49:03.782Z</updated>
-    
-    <content type="html"><![CDATA[<p>记录几种获取字符串长度的方式</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ str=wxnacy</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;#str&#125;</span></span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -n 是去掉 \n 符号，不然计算的长度为 7</span></span><br><span class="line">$ <span class="built_in">echo</span> $(<span class="built_in">echo</span> -n <span class="variable">$str</span> | wc -c)</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="variable">$str</span> | awk <span class="string">'&#123;print length($0)&#125;'</span></span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;记录几种获取字符串长度的方式&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="shell" scheme="http://wxnacy.com/tags/shell/"/>
     
   </entry>
   
