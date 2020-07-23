@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wxnacy.com/"/>
-  <updated>2020-07-23T05:19:18.957Z</updated>
+  <updated>2020-07-23T16:28:18.163Z</updated>
   <id>http://wxnacy.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Docker 镜像 latest 仅仅只是一个标签名</title>
+    <link href="http://wxnacy.com/2020/07/24/docker-the-latest/"/>
+    <id>http://wxnacy.com/2020/07/24/docker-the-latest/</id>
+    <published>2020-07-23T16:28:18.000Z</published>
+    <updated>2020-07-23T16:28:18.163Z</updated>
+    
+    <content type="html"><![CDATA[<p>之前没有验证过，一直一厢情愿的认为 <code>latest</code> 标签就是最新的意思。</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>然而，然而。</p><p>它仅仅只是一个叫 <code>latest</code> 的标签而已。</p><p>如果说它还有点特殊含义，那就是作为默认标签使用的。</p><p>我们试验一下，以 <code>hello-world</code> 镜像为例，我们先把它推送到自己的仓库里，标签取名 <code>1.0.0</code></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull hello-world</span><br><span class="line">$ docker tag hello-world wxnacy/hello-world:1.0.0</span><br><span class="line">$ docker push wxnacy/hello-world:1.0.0</span><br></pre></td></tr></table></figure><p>然后删掉本地的镜像</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image rm wxnacy/hello-world:1.0.0</span><br></pre></td></tr></table></figure><p>最后试下重新拉取</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull wxnacy/hello-world:latest</span><br><span class="line">Error response from daemon: manifest <span class="keyword">for</span> wxnacy/hello-world:latest not found</span><br><span class="line"></span><br><span class="line">$ docker pull wxnacy/hello-world</span><br><span class="line">Using default tag: latest</span><br><span class="line">Error response from daemon: manifest <span class="keyword">for</span> wxnacy/hello-world:latest not found</span><br><span class="line"></span><br><span class="line">$ docker pull wxnacy/hello-world:1.0.0</span><br><span class="line">1.0.0: Pulling from wxnacy/hello-world</span><br><span class="line">Digest: sha256:90659bf80b44ce6be8234e6ff90a1ac34acbeb826903b02cfa0da11c82cbc042</span><br><span class="line">Status: Downloaded newer image <span class="keyword">for</span> wxnacy/hello-world:1.0.0</span><br></pre></td></tr></table></figure><p>按照实验结果，只有准确输入标签名 <code>1.0.0</code> 时，才能正确下载镜像</p><p>而第二次不使用任何标签拉取时，结果提示 <code>Using default tag: latest</code>，说明默认标签为 <code>latest</code></p><p>总结一下，Docker 的这个行为还是挺违背常理的，如果是默认标签，使用关键字 <code>default</code> 岂不是更直观。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;之前没有验证过，一直一厢情愿的认为 &lt;code&gt;latest&lt;/code&gt; 标签就是最新的意思。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="docker" scheme="http://wxnacy.com/tags/docker/"/>
+    
+  </entry>
   
   <entry>
     <title>微信公众号只在扫码时报错“该公众号提供的服务出现故障，请稍后再试”</title>
@@ -394,26 +414,6 @@
     <summary type="html">
     
       &lt;p&gt;Shell 中截取字符串的方式也有很多种。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="shell" scheme="http://wxnacy.com/tags/shell/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Shell 获取单个文件大小的几种方式</title>
-    <link href="http://wxnacy.com/2020/01/09/shell-file-size/"/>
-    <id>http://wxnacy.com/2020/01/09/shell-file-size/</id>
-    <published>2020-01-09T08:21:42.000Z</published>
-    <updated>2020-01-09T08:28:38.561Z</updated>
-    
-    <content type="html"><![CDATA[<p>假设有文件 <code>wxnacy</code></p><a id="more"></a><div class="toc"><!-- toc --><ul><li><a href="#wc">wc</a></li><li><a href="#ls">ls</a></li><li><a href="#stat">stat</a></li></ul><!-- tocstop --></div><h2><span id="wc">wc</span><a href="#wc" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> $(wc -c &lt; wxnacy)</span><br><span class="line">$ <span class="built_in">echo</span> $(cat wxnacy | wc -c)</span><br><span class="line">$ wc -c wxnacy | awk <span class="string">'&#123;print $1&#125;'</span></span><br></pre></td></tr></table></figure><h2><span id="ls">ls</span><a href="#ls" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ls -l wxnacy | awk <span class="string">'&#123;print $5&#125;'</span></span><br></pre></td></tr></table></figure><h2><span id="stat">stat</span><a href="#stat" class="header-anchor"></a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">stat</span> wxnacy | awk <span class="string">'&#123;print $8&#125;'</span></span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;假设有文件 &lt;code&gt;wxnacy&lt;/code&gt;&lt;/p&gt;
     
     </summary>
     

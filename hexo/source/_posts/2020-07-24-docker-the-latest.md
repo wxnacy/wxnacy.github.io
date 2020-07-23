@@ -1,7 +1,10 @@
 ---
 title: Docker 镜像 latest 仅仅只是一个标签名
-tags: [docker]
+tags:
+  - docker
+date: 2020-07-24 00:28:18
 ---
+
 
 之前没有验证过，一直一厢情愿的认为 `latest` 标签就是最新的意思。
 
