@@ -303,6 +303,46 @@
   </entry>
   
   <entry>
+    <title>Mysql 查询一个表的数据并插入到另一个表中</title>
+    <link href="http://wxnacy.com/2020/05/02/mysql-select-and-insert/"/>
+    <id>http://wxnacy.com/2020/05/02/mysql-select-and-insert/</id>
+    <published>2020-05-02T08:09:17.000Z</published>
+    <updated>2020-07-30T08:21:29.345Z</updated>
+    
+    <content type="html"><![CDATA[<p>这种情况通常发生在需要迁移数据时</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>如果两个表的结构完全一致，那比较简单</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into test_user1 select * from test_user;</span><br></pre></td></tr></table></figure><p>如果只有部分字段符合，则需要将具体字段列出</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into test_user1 (name, age) select name, age from test_user;</span><br></pre></td></tr></table></figure><p>当然也可以过滤掉一些重复数据在插入</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into test_user1 select * from test_user where not exists (select * from test_user1 where test_user1.id = test_user.id);</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这种情况通常发生在需要迁移数据时&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="mysql" scheme="http://wxnacy.com/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python 使用双引号打印字典数据</title>
+    <link href="http://wxnacy.com/2020/05/01/python-print-dict-double-quotation-marks/"/>
+    <id>http://wxnacy.com/2020/05/01/python-print-dict-double-quotation-marks/</id>
+    <published>2020-05-01T07:55:34.000Z</published>
+    <updated>2020-07-30T07:56:59.886Z</updated>
+    
+    <content type="html"><![CDATA[<p>默认 Python 打印字典数据是用的单引号</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><p>但标准的 JSON 数据都是用双引号的，我希望可以用双引号打印并直接复制</p><p>使用 <code>json.dumps</code> 方法即可</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line">m = dict(name = <span class="string">'温'</span>, others=[<span class="string">'wen'</span>])</span><br><span class="line">print(json.dumps(m, ensure_ascii=<span class="keyword">False</span>))</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">"name"</span>: <span class="string">"温"</span>, <span class="string">"others"</span>: [<span class="string">"wen"</span>]&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;默认 Python 打印字典数据是用的单引号&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://wxnacy.com/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Python os 模块方法梳理</title>
     <link href="http://wxnacy.com/2020/04/11/python-os/"/>
     <id>http://wxnacy.com/2020/04/11/python-os/</id>
@@ -379,46 +419,6 @@
     
     
       <category term="node" scheme="http://wxnacy.com/tags/node/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Node 从管道输入参数</title>
-    <link href="http://wxnacy.com/2020/03/06/node-pipe-input/"/>
-    <id>http://wxnacy.com/2020/03/06/node-pipe-input/</id>
-    <published>2020-03-06T03:45:51.000Z</published>
-    <updated>2020-03-08T03:52:48.164Z</updated>
-    
-    <content type="html"><![CDATA[<p>记录 Node 从管道输入参数的方式</p><a id="more"></a><div class="toc"><!-- toc --><!-- tocstop --></div><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> stdin = process.stdin;</span><br><span class="line"><span class="keyword">let</span> data = <span class="string">''</span>;</span><br><span class="line"></span><br><span class="line">stdin.setEncoding(<span class="string">'utf8'</span>);</span><br><span class="line"></span><br><span class="line">stdin.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">chunk</span>) </span>&#123;</span><br><span class="line">  data += chunk;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">stdin.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Hello "</span> + data);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">stdin.on(<span class="string">'error'</span>, <span class="built_in">console</span>.error);</span><br></pre></td></tr></table></figure><p>调用方式</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ echo <span class="string">"1 2"</span> | node test.js</span><br></pre></td></tr></table></figure><p>改为同步调用方式</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  * Author: wxnacy(wxnacy@gmail.com)</span></span><br><span class="line"><span class="comment"> *   * Description:</span></span><br><span class="line"><span class="comment"> *    */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> stdin = process.stdin;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pipeInput</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> data = <span class="string">''</span>;</span><br><span class="line"></span><br><span class="line">    stdin.setEncoding(<span class="string">'utf8'</span>);</span><br><span class="line"></span><br><span class="line">    stdin.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">chunk</span>) </span>&#123;</span><br><span class="line">      data += chunk;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    stdin.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      resolve(data)</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    stdin.on(<span class="string">'error'</span>, reject);</span><br><span class="line"></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">(<span class="keyword">async</span>()=&gt;&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> data = <span class="keyword">await</span> pipeInput()</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`参数为：<span class="subst">$&#123;data&#125;</span>`</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    <span class="built_in">console</span>.error(e)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;记录 Node 从管道输入参数的方式&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="node" scheme="http://wxnacy.com/tags/node/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mac 电脑通过 Finder 获取文件夹的命令行地址</title>
-    <link href="http://wxnacy.com/2020/02/15/mac-finder-get-pwd/"/>
-    <id>http://wxnacy.com/2020/02/15/mac-finder-get-pwd/</id>
-    <published>2020-02-14T16:08:05.000Z</published>
-    <updated>2020-02-16T15:46:41.285Z</updated>
-    
-    <content type="html"><![CDATA[<p>记录几种 Mac 电脑通过 Finder 获取文件地址的方式。</p><a id="more"></a><div class="toc"><!-- toc --><ul><li><a href="#zhi-jie-fu-zhi">直接复制</a></li><li><a href="#ding-bu-yong-jiu-xian-shi">顶部永久显示</a></li><li><a href="#zhi-jie-zai-zhong-duan-zhong-da-kai">直接在终端中打开</a></li></ul><!-- tocstop --></div><h2><span id="zhi-jie-fu-zhi">直接复制</span><a href="#zhi-jie-fu-zhi" class="header-anchor"></a></h2><p>在文件列表中直接使用 <code>command + c</code> 复制，然后在 <code>Terminal</code> 中粘贴即可</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/finder1.png" alt="1"></p><p>在 Finder 左侧的目录则需要使用 <code>option + command + c</code> 来进行复制</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/finder2.png" alt="2"></p><h2><span id="ding-bu-yong-jiu-xian-shi">顶部永久显示</span><a href="#ding-bu-yong-jiu-xian-shi" class="header-anchor"></a></h2><p>打开 <code>Terminal</code> 并输入命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES</span><br></pre></td></tr></table></figure><p>效果如图</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/finder3.png" alt="3"></p><h2><span id="zhi-jie-zai-zhong-duan-zhong-da-kai">直接在终端中打开</span><a href="#zhi-jie-zai-zhong-duan-zhong-da-kai" class="header-anchor"></a></h2><p>如果你安装了 <code>iTerm2</code>，则可以通过 <code>右键 -》服务 -》New iTerm2 Window Here</code> 直接打开当前目录</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/finder4_552.png" alt="4"></p><p>如果没有安装，也可以在文件夹的右键在默认终端中直接打开</p><p><img src="https://raw.githubusercontent.com/wxnacy/image/master/blog/finder5_612.png" alt="5"></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;记录几种 Mac 电脑通过 Finder 获取文件地址的方式。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="mac" scheme="http://wxnacy.com/tags/mac/"/>
     
   </entry>
   

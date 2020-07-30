@@ -1,7 +1,10 @@
 ---
 title: Python 使用双引号打印字典数据
-tags: [python]
+tags:
+  - python
+date: 2020-05-01 15:55:34
 ---
+
 
 默认 Python 打印字典数据是用的单引号
 
