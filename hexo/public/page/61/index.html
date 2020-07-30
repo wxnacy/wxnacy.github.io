@@ -212,6 +212,97 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-algorithm-2017-08-05-bank-verify" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/05/algorithm-2017-08-05-bank-verify/">银行卡校验规则(Luhn算法)</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/05/algorithm-2017-08-05-bank-verify/" class="archive-article-date">
+  	<time datetime="2017-08-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://www.icloudyin.com/?p=61" target="_blank" rel="noopener">原文:http://www.icloudyin.com/?p=61</a></p>
+<ul>
+<li>检验数字算法（Luhn Check Digit Algorithm），也叫做模数10公式，是一种简单的算法，用于验证银行卡、信用卡号码的有效性的算法。对所有大型信用卡公司发行的信用卡都起作用，这些公司包括美国Express、护照、万事达卡、Discover和用餐者俱乐部等。这种算法最初是在20世纪60年代由一组数学家制定，现在Luhn检验数字算法属于大众，任何人都可以使用它。</li>
+<li>将卡号上的每个数字乘上其权重（weight），如果卡号上的数字个数是偶数，那么第一个数字的权重就是2，若是奇数，那么权重就给1，剩下来的数字，根据第一个数字依序给定。例如某信用卡卡号的数字个数为偶数，那么从第一个数字开始的权重依序为 2、1、2、1、2、1 …。</li>
+<li>如果数字乘上自己的权重后比9还大，那么就从这加权数字里扣除9。</li>
+<li>接下来将所有处理过的加权数字全部加总起来，并且除以10，取其余数。</li>
+</ul>
+<h2><span id="java">java</span><a href="#java" class="header-anchor"></a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">boolean</span> even = <span class="keyword">true</span>;</span><br><span class="line">	<span class="keyword">for</span> ( <span class="keyword">int</span> index = digits.size() - <span class="number">1</span>; index &gt;= <span class="number">0</span>; index-- ) &#123;</span><br><span class="line">		<span class="keyword">int</span> digit = digits.get( index );</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> ( even ) &#123;</span><br><span class="line">			digit &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> ( digit &gt; <span class="number">9</span> ) &#123;</span><br><span class="line">			digit -= <span class="number">9</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		sum += digit;</span><br><span class="line">		even = !even;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ( <span class="number">10</span> - ( sum % <span class="number">10</span> ) ) % <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+<h2><span id="python">python</span><a href="#python" class="header-anchor"></a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_bank_card</span><span class="params">(card_num)</span>:</span></span><br><span class="line">    <span class="string">"""检查银行卡的合法性"""</span></span><br><span class="line">    total = <span class="number">0</span></span><br><span class="line">    even = <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">if</span> isinstance(card_num, int):</span><br><span class="line">        card_num = str(card_num)</span><br><span class="line">    check_num = card_num[<span class="number">-1</span>]</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> card_num[<span class="number">-2</span>::<span class="number">-1</span>]:</span><br><span class="line">        item = int(item)</span><br><span class="line">        <span class="keyword">if</span> even:</span><br><span class="line">            item &lt;&lt;= <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> item &gt; <span class="number">9</span>:</span><br><span class="line">            item -= <span class="number">9</span></span><br><span class="line">        total += item</span><br><span class="line">        even = <span class="keyword">not</span> even</span><br><span class="line">    <span class="keyword">return</span> int(check_num) <span class="keyword">is</span> (<span class="number">10</span> - (total % <span class="number">10</span>)) % <span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+      
+
+      
+      
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/05/algorithm-2017-08-05-bank-verify/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-git-2017-08-04-basic-cmd" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -518,11 +609,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -530,7 +617,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">openresty</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -582,15 +673,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tmux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -750,11 +841,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">excel</a>
+                <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
+                <a href="javascript:void(0)" class="js-tag color1">excel</a>
               </li>
              
               <li class="article-tag-list-item">
