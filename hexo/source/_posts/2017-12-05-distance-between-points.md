@@ -6,8 +6,11 @@ tags: [算法, python, javascript]
 
 在针对经纬度之间距离的运算维基百科推荐使用 [Haversine](https://en.wikipedia.org/wiki/Haversine_formula) 算法
 
-<!-- more --><!-- toc -->
+<!-- more -->
+<!-- toc -->
+
 ## Python
+
 ```python
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
@@ -37,6 +40,7 @@ if __name__ == '__main__':
     ```
 
 ## Javascript
+
 ```javascript
 rad = function(x) {return x*Math.PI/180;}
 
@@ -55,3 +59,15 @@ distHaversine = function(p1, p2) {
 
 }
 ```
+
+## Excel
+
+```bash
+# C2, D2 = lat1, lng1
+# F2, G2 = lat2, lng2
+=6371004*SQRT(POWER(COS(C2*PI()/180)*(G2*PI()/180-D2*PI()/180),2)+POWER((F2*PI()/180-C2*PI()/180),2))
+```
+
+## 参考
+
+- [Calculate distance, bearing and more between Latitude/Longitude points](http://www.movable-type.co.uk/scripts/latlong.html)
