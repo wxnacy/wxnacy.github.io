@@ -1,7 +1,10 @@
 ---
 title: Python 获取某天是当月的第几周
-tags: [python]
+tags:
+  - python
+date: 2020-08-01 21:47:21
 ---
+
 
 Python 本身是不提供这样的方法的，我们需要自己做下处理。
 
