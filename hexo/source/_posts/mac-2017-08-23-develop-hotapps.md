@@ -9,7 +9,6 @@ tags: [mac]
 <!-- more -->
 <!-- toc -->
 
-
 ## 操作设置
 - **如何安装 macOS**：[教程](https://support.apple.com/zh-cn/HT204904)
 - **打开三指拖动**：[教程](https://support.apple.com/zh-cn/HT204609)
@@ -52,5 +51,6 @@ tags: [mac]
 - [popclip](https://pilotmoon.com/popclip/) 选择文本增强工具
 - todoist 任务清单
 - Vanilla 工具栏整理
+
 
 
